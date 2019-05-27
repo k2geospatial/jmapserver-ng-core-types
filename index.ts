@@ -9,13 +9,6 @@ export interface JAPI {
   Service: JAPIService
 }
 
-// API OPTIONS
-export interface JAPIOptions {
-  projectId: number,
-  application?: JAPIApplicationOptions,
-  restBaseUrl?: string
-}
-
 // API DATA
 export interface JAPIData extends JStoreGetterApi {
   getStore(): Store<JAPIState> | undefined
@@ -44,7 +37,7 @@ export interface JStoreGetterProject {
   getScaleMin(): number
   getColorSelection(): string
   getColorBackground(): string
-  getInitialViewBounds(): JBounds
+  getInitialExtent(): JBounds
 }
 
 export interface JStoreGetterLayer {
@@ -131,6 +124,7 @@ export interface JAPIService {
   Project: JProjectService
   Layer: JLayerService
   User: JUserService
+  Map: JMapService
 }
 
 export enum API_MODE {
@@ -140,6 +134,19 @@ export enum API_MODE {
   DRAW = "draw",
   SEARCH = "search",
   ADD = "add"
+}
+
+// API SERVICE -> MAP
+export interface JMapService {
+  getImplementationName(): MAP_IMPLEMENTATION
+  getImplementationTag(): string
+  toggleImplementation(): void
+  setLayerVisibility(layerId: string, isVisibile: boolean): void
+  getMap(): any
+  setCenter(x: number, y: number): void
+  setZoom(zoom: number): void
+  createMap(): void
+  destroyMap(): void
 }
 
 // API SERVICE -> LANGUAGE
@@ -168,7 +175,7 @@ export interface JProject {
   scaleMin: number
   colorSelection: string
   colorBackground: string
-  initialViewBounds: JBounds
+  initialExtent: JBounds
 }
 
 // API SERVICE -> PROJECT
@@ -177,6 +184,7 @@ export interface JProjectService {
   unload(): void
 }
 
+// API SERVICE -> LAYER
 export interface JLayerService {
   setVisible(layerId: number, visible: boolean): void
   setGroupOpen(nodeId: number, open: boolean): void
@@ -224,10 +232,10 @@ export interface JProjection {
 }
 
 export interface JBounds {
-  coord0: JPoint
-  coord1: JPoint
-  coord2: JPoint
-  coord3: JPoint
+  x1: number
+  x2: number
+  y1: number
+  y2: number
 }
 
 export type JPoint = Array<number>
@@ -331,9 +339,29 @@ export interface JDocumentDescriptor {
   depositName: string
 }
 
+export interface JAPIOptions {
+  projectId: number,
+  application?: JAPIApplicationOptions,
+  restBaseUrl?: string
+}
+
 // MIS
 export interface JObjectId {
   project: string
   layer: string
   element: string
+}
+
+// GEOMETRY
+export interface JGeoJsonFeature {
+  id: string
+  type: string
+  geometry: JGeoJsonGeometry
+  properties: { [ propertyName: string ]: any },
+  bbox?: number[]
+}
+
+export interface JGeoJsonGeometry {
+  type: string,
+  coordinates: number[]
 }
