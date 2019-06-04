@@ -1,5 +1,7 @@
 import { Action, Store } from "redux"
 
+export type UIComponent = void | Element | React.Component
+
 // API
 export interface JAPI {
   Extension: JAPIExtention
@@ -14,6 +16,8 @@ export interface JAPIData extends JStoreGetterApi {
   getStore(): Store<JAPIState> | undefined
   App: JStoreGetterApp
   Project: JStoreGetterProject
+  Layer: JStoreGetterLayer
+  Map: JStoreGetterMap
   User: JStoreGetterUser
 }
 
@@ -41,9 +45,21 @@ export interface JStoreGetterProject {
 }
 
 export interface JStoreGetterLayer {
+  getLayerTree(): JLayerTree
+  getDisplayableLayers(): JLayer[]
+  exists(layerId: number): boolean
+  getById(layerId: number): JLayerElement
+  getSelfOrChildren(layerId: number): JLayer[]
   getName(layerId: number): string
-  isVisible(layerId: number): boolean
   getDescription(layerId: number): string
+  isVisible(layerId: number): boolean
+}
+
+export interface JStoreGetterMap {
+  getImplementation(): MAP_IMPLEMENTATION
+  getCenter(): { x: number, y: number }
+  getZoom(): number
+  getBaseMap(): string
 }
 
 export interface JStoreGetterUser {
@@ -56,6 +72,7 @@ export interface JStoreGetterUser {
 export interface JAPIState {
   api: JAPIOwnState
   app: JAppState
+  map: JMapState
   project: JProjectState
   layer: JLayerState
   user: JUserState
@@ -76,6 +93,25 @@ export enum MAP_IMPLEMENTATION {
 // API DATA -> APP
 export interface JAppState {
   sidePanelOpen: boolean
+}
+
+// API DATA -> MAP
+export interface JMapState {
+  implementation: MAP_IMPLEMENTATION
+  center: JPosition
+  zoom: number
+  boundaryBox: JBoundaryBox
+  baseMap: string
+}
+
+export interface JBoundaryBox {
+  sw: JPosition
+  ne: JPosition
+} 
+
+export interface JPosition {
+  x: number
+  y: number
 }
 
 // API DATA -> PROJECT
@@ -138,15 +174,11 @@ export enum API_MODE {
 
 // API SERVICE -> MAP
 export interface JMapService {
-  getImplementationName(): MAP_IMPLEMENTATION
-  getImplementationTag(): string
-  toggleImplementation(): void
-  setLayerVisibility(layerId: string, isVisibile: boolean): void
   getMap(): any
+  getAvailableBaseMaps(): string[]
+  setBaseMap(mapName: string): void
   setCenter(x: number, y: number): void
   setZoom(zoom: number): void
-  createMap(): void
-  destroyMap(): void
 }
 
 // API SERVICE -> LANGUAGE
@@ -186,8 +218,20 @@ export interface JProjectService {
 
 // API SERVICE -> LAYER
 export interface JLayerService {
+  Filter: JLayerFilterService
+  exists(layerId: number): boolean
+  getById(layerId: number): JLayerElement
+  getName(layerId: number): string
+  getDescription(layerId: number): string
+  isVisible(layerId: number): boolean
   setVisible(layerId: number, visible: boolean): void
   setGroupOpen(nodeId: number, open: boolean): void
+  removeLayer(layerId: number): void
+}
+
+export interface JLayerFilterService {
+  filterByGeometry(layerId: number, geometry: string): number
+  filterByRadius(layerId: number, center: JPosition, radiusInMeters: number): number
 }
 
 export enum LAYER_GEOMETRY {
@@ -209,6 +253,7 @@ export interface JLayerGeometry {
 export interface JLayerElement {
   id: number,
   name: string,
+  description: string
   initialVisibility: boolean
   visible: boolean
   isNode: boolean
@@ -242,11 +287,12 @@ export type JPoint = Array<number>
 
 // API SERVICE -> USER
 export interface JUserService {
-  login(login: string, password: string): Promise<JLoginData>
+  setSession(session: JSessionData): void
+  login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>
 }
 
-export interface JLoginData {
+export interface JSessionData {
   sessionId: number
   user: JUserPublicData
 }
@@ -260,13 +306,14 @@ export interface JUserPublicData {
 
 // API COMPONENTS
 export interface JAPIComponent {
-  User: JAPIComponentItem<JUserCmp>
+  User: JAPIComponentItem<JUserCmp, JUserProps>
 }
 
-export interface JAPIComponentItem<C extends React.Component> {
-  create(containerId: string, options: any): React.Component
+// P for react props
+export interface JAPIComponentItem<C extends UIComponent, P> {
+  create(containerId: string, props?: P): C
   destroy(containerId: string): void
-  getInstance(containerId: string): React.Component
+  getInstance(containerId: string): C
 }
 
 // API COMPONENTS -> USER CMP
@@ -343,6 +390,7 @@ export interface JAPIOptions {
   projectId: number,
   application?: JAPIApplicationOptions,
   restBaseUrl?: string
+  session?: JSessionData
 }
 
 // MIS
