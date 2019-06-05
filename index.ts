@@ -1,4 +1,5 @@
 import { Action, Store } from "redux"
+import { Feature } from "geojson"
 
 export type UIComponent = void | Element | React.Component
 
@@ -46,7 +47,7 @@ export interface JStoreGetterProject {
 
 export interface JStoreGetterLayer {
   getLayerTree(): JLayerTree
-  getDisplayableLayers(): JLayer[]
+  getRenderedLayers(): JLayer[]
   exists(layerId: number): boolean
   getById(layerId: number): JLayerElement
   getSelfOrChildren(layerId: number): JLayer[]
@@ -102,6 +103,11 @@ export interface JMapState {
   zoom: number
   boundaryBox: JBoundaryBox
   baseMap: string
+}
+
+export interface JCircle {
+  center: JPosition,
+  radius: number
 }
 
 export interface JBoundaryBox {
@@ -177,8 +183,21 @@ export interface JMapService {
   getMap(): any
   getAvailableBaseMaps(): string[]
   setBaseMap(mapName: string): void
-  setCenter(x: number, y: number): void
-  setZoom(zoom: number): void
+  getRenderedFeatures(layerId: number, filter?: JPosition | JBoundaryBox): Feature[]
+  getRenderedFeaturesAttributeValues(layerId: number, filter?: JPosition | JBoundaryBox): JMapFeatureAttributeValues[]
+  panTo(center: JPosition): void
+  zoomTo(zoom: number): void
+  panAndZoomTo(center: JPosition, zoom: number): void
+  Filter: {
+    applySpatial(layerId: number, filter: JBoundaryBox | JCircle): void
+    applyAttributeValueEqualsOrIn(layerId: number, attributeId: string, attributeValue: any | any[]): void
+    removeAllFilters(layerId: number): void
+  }
+}
+
+export interface JMapFeatureAttributeValues {
+  featureId: number
+  [ attributeId: string ]: any
 }
 
 // API SERVICE -> LANGUAGE
@@ -218,7 +237,9 @@ export interface JProjectService {
 
 // API SERVICE -> LAYER
 export interface JLayerService {
-  Filter: JLayerFilterService
+  getLayerAttributes(layerId: number): JLayerAttribute[]
+  getLayerTree(): JLayerTree
+  getRenderedLayerIds(): number[]
   exists(layerId: number): boolean
   getById(layerId: number): JLayerElement
   getName(layerId: number): string
@@ -229,9 +250,9 @@ export interface JLayerService {
   removeLayer(layerId: number): void
 }
 
-export interface JLayerFilterService {
-  filterByGeometry(layerId: number, geometry: string): number
-  filterByRadius(layerId: number, center: JPosition, radiusInMeters: number): number
+export interface JLayerAttribute {
+  id: string
+  label: string
 }
 
 export enum LAYER_GEOMETRY {
@@ -262,6 +283,7 @@ export interface JLayerElement {
 
 export interface JLayer extends JLayerElement {
   geometry: JLayerGeometry
+  attributes: JLayerAttribute[]
 }
 
 export interface JLayerNode extends JLayerElement {
@@ -391,6 +413,7 @@ export interface JAPIOptions {
   application?: JAPIApplicationOptions,
   restBaseUrl?: string
   session?: JSessionData
+  implementation?: MAP_IMPLEMENTATION
 }
 
 // MIS
