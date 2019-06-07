@@ -13,6 +13,35 @@ declare namespace JMAP_API {
     namespace Project {
       function setId(projectId: string): void
     }
+    namespace Layer {
+      function getLayerAttributes(layerId: number): JLayerAttribute[]
+      function getLayerTree(): JLayerTree
+      function getRenderedLayerIds(): number[]
+      function exists(layerId: number): boolean
+      function getById(layerId: number): JLayerElement
+      function getName(layerId: number): string
+      function getDescription(layerId: number): string
+      function isVisible(layerId: number): boolean
+      function setVisible(layerId: number, visible: boolean): void
+      function setGroupOpen(nodeId: number, open: boolean): void
+      function removeLayer(layerId: number): void
+    }
+    namespace Map {
+      function getMap(): any
+      function getAvailableBaseMaps(): string[]
+      function setBaseMap(mapName: string): void
+      function getRenderedFeatures(layerId: number, filter?: JPosition | JBoundaryBox): any[]
+      function getRenderedFeaturesAttributeValues(layerId: number, filter?: JPosition | JBoundaryBox): JMapFeatureAttributeValues[]
+      function panTo(center: JPosition): void
+      function zoomTo(zoom: number): void
+      function panAndZoomTo(center: JPosition, zoom: number): void
+      namespace Filter {
+        function applyAttributeValueEqualsOrIn(layerId: number, attributeId: string, attributeValue: any | any[]): string
+        function applySpatial(layerId: number, filterGeometry: JPolygon | JCircle): string
+        function removeByFilterId(filterId: string): void
+        function removeAllFilters(layerId: number): void
+      }
+    }
     namespace User {
       function setSessionId(sessionId: string): void
       function login(login: string, password: string): Promise<JLoginData>
@@ -108,11 +137,83 @@ declare namespace JMAP_API {
       function launchSearchAdvanced(valuesByAttributeName: { [attributeName: string]: any }): void
     }
   }
+  function setMode(mode: API_MODE): void
 }
 
 declare interface Window {
-  JMAP_API_OPTIONS?: any // TODO JAPIOptions
+  JMAP_API_OPTIONS?: JAPIOptions
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: any
+}
+
+type API_MODE = "layer" | "select" | "tool" | "draw" | "search" | "add"
+
+interface JMapFeatureAttributeValues {
+  featureId: number
+  [ attributeId: string ]: any
+}
+
+interface JLayerAttribute {
+  id: string
+  label: string
+}
+
+interface JLayerElement {
+  id: number,
+  name: string,
+  description: string
+  initialVisibility: boolean
+  visible: boolean
+  isNode: boolean
+  path: string
+}
+
+type JLayerTree = Array<JLayerElement>
+
+interface JBoundaryBox {
+  sw: JPosition
+  ne: JPosition
+} 
+
+interface JPosition {
+  x: number
+  y: number
+}
+
+type JPoint = [ number, number ]
+
+type JPolygon = Array<JPoint>
+
+interface JCircle {
+  center: JPosition,
+  radius: number
+}
+
+interface JAPIOptions {
+  projectId: number,
+  application?: JAPIApplicationOptions,
+  map?: JAPIMapOptions,
+  restBaseUrl?: string
+  session?: JSessionData
+  implementation?: MAP_IMPLEMENTATION
+}
+
+type MAP_IMPLEMENTATION = "MapBox" | "OpenLayers"
+
+interface JAPIMapOptions {
+  mapboxToken?: ""
+  implementation?: MAP_IMPLEMENTATION
+}
+
+interface JSessionData {
+  sessionId: number
+  user: JUserPublicData
+}
+
+interface JUserPublicData {
+  login: string,
+  firstname: string,
+  lastname: string,
+  admin: boolean
 }
 
 interface JAllDocumentDescriptors {

@@ -86,11 +86,6 @@ export interface JAPIOwnState {
   mapImplementation: MAP_IMPLEMENTATION
 }
 
-export enum MAP_IMPLEMENTATION {
-  MAP_BOX = "MapBox",
-  OPEN_LAYERS = "OpenLayers"
-}
-
 // API DATA -> APP
 export interface JAppState {
   sidePanelOpen: boolean
@@ -103,21 +98,6 @@ export interface JMapState {
   zoom: number
   boundaryBox: JBoundaryBox
   baseMap: string
-}
-
-export interface JCircle {
-  center: JPosition,
-  radius: number
-}
-
-export interface JBoundaryBox {
-  sw: JPosition
-  ne: JPosition
-} 
-
-export interface JPosition {
-  x: number
-  y: number
 }
 
 // API DATA -> PROJECT
@@ -169,15 +149,6 @@ export interface JAPIService {
   Map: JMapService
 }
 
-export enum API_MODE {
-  LAYER = "layer",
-  SELECT = "select",
-  TOOL = "tool",
-  DRAW = "draw",
-  SEARCH = "search",
-  ADD = "add"
-}
-
 // API SERVICE -> MAP
 export interface JMapService {
   getMap(): any
@@ -188,16 +159,14 @@ export interface JMapService {
   panTo(center: JPosition): void
   zoomTo(zoom: number): void
   panAndZoomTo(center: JPosition, zoom: number): void
-  Filter: {
-    applySpatial(layerId: number, filter: JBoundaryBox | JCircle): void
-    applyAttributeValueEqualsOrIn(layerId: number, attributeId: string, attributeValue: any | any[]): void
-    removeAllFilters(layerId: number): void
-  }
+  Filter: JMapFilterService
 }
 
-export interface JMapFeatureAttributeValues {
-  featureId: number
-  [ attributeId: string ]: any
+export interface JMapFilterService {
+  applyAttributeValueEqualsOrIn(layerId: number, attributeId: string, attributeValue: any | any[]): string
+  applySpatial(layerId: number, filterGeometry: JPolygon | JCircle): string
+  removeByFilterId(filterId: string): void
+  removeAllFilters(layerId: number): void
 }
 
 // API SERVICE -> LANGUAGE
@@ -250,11 +219,6 @@ export interface JLayerService {
   removeLayer(layerId: number): void
 }
 
-export interface JLayerAttribute {
-  id: string
-  label: string
-}
-
 export enum LAYER_GEOMETRY {
   ANNOTATION = "ANNOTATION",
   CURVE = "CURVE",
@@ -271,16 +235,6 @@ export interface JLayerGeometry {
   editable: boolean
 }
 
-export interface JLayerElement {
-  id: number,
-  name: string,
-  description: string
-  initialVisibility: boolean
-  visible: boolean
-  isNode: boolean
-  path: string
-}
-
 export interface JLayer extends JLayerElement {
   geometry: JLayerGeometry
   attributes: JLayerAttribute[]
@@ -290,8 +244,6 @@ export interface JLayerNode extends JLayerElement {
   open: boolean
   children: JLayerElement[]
 }
-
-export type JLayerTree = Array<JLayerElement>
 
 export interface JProjection {
   code: string
@@ -305,25 +257,11 @@ export interface JBounds {
   y2: number
 }
 
-export type JPoint = Array<number>
-
 // API SERVICE -> USER
 export interface JUserService {
   setSession(session: JSessionData): void
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>
-}
-
-export interface JSessionData {
-  sessionId: number
-  user: JUserPublicData
-}
-
-export interface JUserPublicData {
-  login: string,
-  firstname: string,
-  lastname: string,
-  admin: boolean
 }
 
 // API COMPONENTS
@@ -411,9 +349,9 @@ export interface JDocumentDescriptor {
 export interface JAPIOptions {
   projectId: number,
   application?: JAPIApplicationOptions,
+  map?: JAPIMapOptions,
   restBaseUrl?: string
   session?: JSessionData
-  implementation?: MAP_IMPLEMENTATION
 }
 
 // MIS
