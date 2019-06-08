@@ -98,6 +98,7 @@ export interface JMapState {
   zoom: number
   boundaryBox: JBoundaryBox
   baseMap: string
+  selection: JMapSelection
 }
 
 // API DATA -> PROJECT
@@ -151,6 +152,8 @@ export interface JAPIService {
 
 // API SERVICE -> MAP
 export interface JMapService {
+  Filter: JMapFilterService
+  Selection: JMapSelectionService
   getMap(): any
   getAvailableBaseMaps(): string[]
   setBaseMap(mapName: string): void
@@ -159,7 +162,19 @@ export interface JMapService {
   panTo(center: JPosition): void
   zoomTo(zoom: number): void
   panAndZoomTo(center: JPosition, zoom: number): void
-  Filter: JMapFilterService
+}
+
+export interface JMapSelectionService {
+  selectAllLayersAtPosition(position: JPosition): JMapSelection
+  selectOneLayerAtPosition(layerId: number, position: JPosition): Feature[]
+  setSelection(layerId: number, features: Feature |Feature[]): void
+  addFeaturesToLayerSelection(layerId: number, features: Feature |Feature[]): void
+  removeFeaturesFromLayerSelection(layerId: number, featureIds: number | number[]): void
+  clearSelection(layerId?: number): void
+}
+
+export interface JMapSelection {
+  [ layerId: number ]: Feature[]
 }
 
 export interface JMapFilterService {
