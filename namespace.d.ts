@@ -262,6 +262,7 @@ interface JAPIOptions {
 type MAP_IMPLEMENTATION = "MapBox" | "OpenLayers"
 
 interface JAPIMapOptions {
+  containerId?: string
   mapboxToken?: ""
   implementation?: MAP_IMPLEMENTATION
 }
