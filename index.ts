@@ -5,11 +5,50 @@ export type UIComponent = void | Element | React.Component
 
 // API
 export interface JAPI {
-  Extension: JAPIExtention
+  External: JAPIExternal
+  Event: JAPIEvent
   Data: JAPIData
   Application: JAPIApplication
   Component: JAPIComponent
   Service: JAPIService
+}
+
+// API EVENT
+
+export interface JAPIEvent {
+  Layer: JLayerEventModule
+  Map: JMapEventModule
+}
+
+export type JEventFunction = (p1?: any, p2?: any) => void
+
+export interface JEventListener {
+  id: number
+  fn: JEventFunction
+}
+
+export interface JEventModule {
+  addListener: {
+    [ eventId: string ]: (fn: JEventFunction) => number
+  }
+  removeListener(listenerId: number): void
+}
+
+export interface JLayerEventModule extends JEventModule {
+  addListener: {
+    onVisibilityChanged(fn: (layerElement: JLayerElement) => void): number
+    onLayerDeleted(fn: (layerElement: JLayerElement) => void): number
+  }
+}
+
+export interface JMapEventModule extends JEventModule {
+  addListener: {
+    onMapLoaded(fn: (map: any) => void): number
+    onMapMoveStarted(fn: (map: any) => void): number
+    onMapMoveEnded(fn: (map: any) => void): number
+    onMapCliked(fn: (map: any, location: JLocation) => void): number
+    onMapDestroyed(fn: () => void): number
+  }
 }
 
 // API DATA
@@ -61,6 +100,8 @@ export interface JStoreGetterMap {
   getCenter(): { x: number, y: number }
   getZoom(): number
   getBaseMap(): string
+  getSelectedFeaturesForLayer(layerId: number): Feature[]
+  getSelectedFeatureIdsForLayer(layerId: number): number[]
 }
 
 export interface JStoreGetterUser {
@@ -94,7 +135,7 @@ export interface JAppState {
 // API DATA -> MAP
 export interface JMapState {
   implementation: MAP_IMPLEMENTATION
-  center: JPosition
+  center: JLocation
   zoom: number
   boundaryBox: JBoundaryBox
   baseMap: string
@@ -157,18 +198,18 @@ export interface JMapService {
   getMap(): any
   getAvailableBaseMaps(): string[]
   setBaseMap(mapName: string): void
-  getRenderedFeatures(layerId: number, filter?: JPosition | JBoundaryBox): Feature[]
-  getRenderedFeaturesAttributeValues(layerId: number, filter?: JPosition | JBoundaryBox): JMapFeatureAttributeValues[]
-  panTo(center: JPosition): void
+  getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): Feature[]
+  getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox): JMapFeatureAttributeValues[]
+  panTo(center: JLocation): void
   zoomTo(zoom: number): void
-  panAndZoomTo(center: JPosition, zoom: number): void
+  panAndZoomTo(center: JLocation, zoom: number): void
 }
 
 export interface JMapSelectionService {
-  selectAllLayersAtPosition(position: JPosition): JMapSelection
-  selectOneLayerAtPosition(layerId: number, position: JPosition): Feature[]
-  setSelection(layerId: number, features: Feature |Feature[]): void
-  addFeaturesToLayerSelection(layerId: number, features: Feature |Feature[]): void
+  selectOnAllLayersAtLocation(location: JLocation): JMapSelection
+  selectOnOneLayerAtLocation(layerId: number, location: JLocation): Feature[]
+  setLayerSelection(layerId: number, features: Feature | Feature[]): void
+  addFeaturesToLayerSelection(layerId: number, features: Feature | Feature[]): void
   removeFeaturesFromLayerSelection(layerId: number, featureIds: number | number[]): void
   clearSelection(layerId?: number): void
 }
@@ -231,28 +272,7 @@ export interface JLayerService {
   isVisible(layerId: number): boolean
   setVisible(layerId: number, visible: boolean): void
   setGroupOpen(nodeId: number, open: boolean): void
-  removeLayer(layerId: number): void
-}
-
-export enum LAYER_GEOMETRY {
-  ANNOTATION = "ANNOTATION",
-  CURVE = "CURVE",
-  COMPLEX = "COMPLEX",
-  POINT = "POINT",
-  RASTER = "RASTER",
-  SURFACE = "SURFACE",
-  ELLIPSE = "ELLIPSE",
-  NONE = "NONE"
-}
-
-export interface JLayerGeometry {
-  type: LAYER_GEOMETRY
-  editable: boolean
-}
-
-export interface JLayer extends JLayerElement {
-  geometry: JLayerGeometry
-  attributes: JLayerAttribute[]
+  deleteLayer(layerId: number): void
 }
 
 export interface JLayerNode extends JLayerElement {
@@ -297,25 +317,25 @@ export interface JUserProps {
   user?: JUserState
 }
 
-// API EXTENSION
-export interface JAPIExtention {
+// API EXTERNAL
+export interface JAPIExternal {
   Document?: JDocumentService
-  register(extensionModel: JExtensionModel): void
-  isRegistered(extensionId: string): boolean
+  register(externalModel: JExternalModel): void
+  isRegistered(externalId: string): boolean
   getAllRegistered(): string[]
-  renderMouseOver(layerId: string, elementId: string): JExtensionMouseOver[]
+  renderMouseOver(layerId: string, elementId: string): JExternalMouseOver[]
   hasMouseOver(): boolean // @Deprecated should not be used in JMap Web NG
 }
 
-export interface JExtensionModel {
+export interface JExternalModel {
   id: string
   initFn: (options: any) => void
   storeReducer?: (reducerState: any, action: Action) => any
   serviceToExpose?: any
-  renderMouseOver?(layerId: string, elementId: string): JExtensionMouseOver
+  renderMouseOver?(layerId: string, elementId: string): JExternalMouseOver
 }
 
-export interface JExtensionMouseOver {
+export interface JExternalMouseOver {
   html: string  // static html content
   js?: string   // javascript that will be evaluated after html rendered
 }
