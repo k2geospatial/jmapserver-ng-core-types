@@ -6,6 +6,10 @@
 declare namespace JMap {
   // JMap.Service : expose API services
   namespace Service {
+    // JMap.Service.Api
+    namespace Api {
+      function setMode(mode: API_MODE): void
+    }
     // JMap.Service.Language
     namespace Language {
       function getLocale(): string // EN (default), FR, ES, or PT
@@ -58,6 +62,13 @@ declare namespace JMap {
   // JMap.Data : Provide redux store used by api, and also getters to easy access data
   namespace Data {
     function getStore(): any | undefined
+    // JMap.Data.Api
+    namespace Api {
+      function gerRestUrl(): string
+      function getMode(): API_MODE
+      function getAllMode(): API_MODE[]
+      function getMapImplementation(): MAP_IMPLEMENTATION
+    }
     // JMap.Data.App
     namespace App {
       // TODO
@@ -180,7 +191,6 @@ declare namespace JMap {
       function removeListener(listenerId: number): void
     }
   }
-  function setMode(mode: API_MODE): void
 }
 
 declare interface Window {
@@ -188,7 +198,7 @@ declare interface Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: any
 }
 
-type API_MODE = "layer" | "select" | "tool" | "draw" | "search" | "add"
+type API_MODE = "layer" | "select" | "tool" | "draw" | "search" | "add" | "external"
 
 interface JMapFeatureAttributeValues {
   featureId: number

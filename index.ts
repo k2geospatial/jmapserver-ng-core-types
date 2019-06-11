@@ -28,32 +28,33 @@ export interface JEventListener {
 }
 
 export interface JEventModule {
-  addListener: {
-    [ eventId: string ]: (fn: JEventFunction) => number
+  on: {
+    [ method: string ]: (fn: JEventFunction) => number // return listener id
   }
-  removeListener(listenerId: number): void
+  remove(listenerId: number): void
 }
 
 export interface JLayerEventModule extends JEventModule {
-  addListener: {
-    onVisibilityChanged(fn: (layerElement: JLayerElement) => void): number
-    onLayerDeleted(fn: (layerElement: JLayerElement) => void): number
+  on: {
+    visibilityChange(fn: (layerElement: JLayerElement) => void): number
+    layerDeletion(fn: (layerElement: JLayerElement) => void): number
   }
 }
 
 export interface JMapEventModule extends JEventModule {
-  addListener: {
-    onMapLoaded(fn: (map: any) => void): number
-    onMapMoveStarted(fn: (map: any) => void): number
-    onMapMoveEnded(fn: (map: any) => void): number
-    onMapCliked(fn: (map: any, location: JLocation) => void): number
-    onMapDestroyed(fn: () => void): number
+  on: {
+    mapLoad(fn: (map: any) => void): number
+    mapDestroy(fn: () => void): number
+    moveStart(fn: (map: any) => void): number
+    moveEnd(fn: (map: any) => void): number
+    click(fn: (location: JLocation, map: any) => void): number
   }
 }
 
 // API DATA
-export interface JAPIData extends JStoreGetterApi {
+export interface JAPIData {
   getStore(): Store<JAPIState> | undefined
+  Api: JStoreGetterApi
   App: JStoreGetterApp
   Project: JStoreGetterProject
   Layer: JStoreGetterLayer
@@ -62,6 +63,7 @@ export interface JAPIData extends JStoreGetterApi {
 }
 
 export interface JStoreGetterApi {
+  gerRestUrl(): string
   getMode(): API_MODE
   getAllMode(): API_MODE[]
   getMapImplementation(): MAP_IMPLEMENTATION
@@ -122,6 +124,7 @@ export interface JAPIState {
 }
 
 export interface JAPIOwnState {
+  restUrl: string,
   mode: API_MODE,
   allMode: API_MODE[]
   mapImplementation: MAP_IMPLEMENTATION
@@ -182,13 +185,18 @@ export interface JAPIApplicationOptions {
 
 // API SERVICE
 export interface JAPIService {
-  setMode(mode: API_MODE): void
+  Api: JAPIOwnService
   Popup: JPopupService
   Language: JAPILanguageService
   Project: JProjectService
   Layer: JLayerService
   User: JUserService
   Map: JMapService
+}
+
+// API SERVICE -> API
+export interface JAPIOwnService {
+  setMode(mode: API_MODE): void
 }
 
 // API SERVICE -> MAP
