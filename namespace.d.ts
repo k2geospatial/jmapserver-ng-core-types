@@ -1,7 +1,7 @@
 // Here the JMAP API namespace definition
 // It will enable to call the API like that in your code :
 // Ex: JMap.Services.User.logout()
-// This is the API contract, if changed it has impact on customers
+// This is the API contract, if changed it could have impact on customers !
 
 declare namespace JMap {
   // JMap.Service : expose API services
@@ -45,10 +45,29 @@ declare namespace JMap {
       function panAndZoomTo(center: JLocation, zoom: number): void
       // JMap.Service.Map.Filter
       namespace Filter {
-        function applyAttributeValueEqualsOrIn(layerId: number, attributeId: string, attributeValue: any | any[]): string
+        function applyHasAttribute(layerId: number, attributeId: string): string
+        function applyHasNotAttribute(layerId: number, attributeId: string): string
+        function applyAttributeValueEqualTo(layerId: number, attributeId: string, attributeValue: any): string
+        function applyAttributeValueBetween(layerId: number, attributeId: string, start: any, end: any): string
+        function applyAttributeValueNotEqualTo(layerId: number, attributeId: string, attributeValue: any): string
+        function applyAttributeValueGreaterThan(layerId: number, attributeId: string, attributeValue: any): string
+        function applyAttributeValueGreaterOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
+        function applyAttributeValueLowerThan(layerId: number, attributeId: string, attributeValue: any): string
+        function applyAttributeValueLowerOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
+        function applyAttributeValueIn(layerId: number, attributeId: string, attributeValues: any[]): string
+        function applyAttributeValueNotIn(layerId: number, attributeId: string, attributeValues: any[]): string
         function applySpatial(layerId: number, filterGeometry: JPolygon | JCircle): string
         function removeByFilterId(filterId: string): void
         function removeAllFilters(layerId: number): void
+      }
+      // JMap.Service.Map.Selection
+      namespace Selection {
+        function selectOnAllLayersAtLocation(location: JLocation): { [ layerId: number ]: any[] } // any is a feature
+        function selectOnOneLayerAtLocation(layerId: number, location: JLocation): any[]
+        function setLayerSelection(layerId: number, features: any | any[]): void
+        function addFeaturesToLayerSelection(layerId: number, features: any | any[]): void
+        function removeFeaturesFromLayerSelection(layerId: number, featureIds: number | number[]): void
+        function clearSelection(layerId?: number): void
       }
     }
     // JMap.Service.User
@@ -258,6 +277,14 @@ type JPolygon = Array<JPoint>
 interface JCircle {
   center: JLocation,
   radius: number
+}
+
+interface JMapLayersVisibilityStatus {
+  [ layerElementId: number ]: {
+    isVisible: boolean
+    userVisibility: boolean
+    mapVisibility: boolean
+  }
 }
 
 interface JAPIOptions {

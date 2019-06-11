@@ -88,6 +88,7 @@ export interface JStoreGetterProject {
 
 export interface JStoreGetterLayer {
   getLayerTree(): JLayerTree
+  getLayerTreeElementsById(): { [ layerElementId: number ]: JLayerElement }
   getRenderedLayers(): JLayer[]
   exists(layerId: number): boolean
   getById(layerId: number): JLayerElement
@@ -206,6 +207,7 @@ export interface JMapService {
   getMap(): any
   getAvailableBaseMaps(): string[]
   setBaseMap(mapName: string): void
+  getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): Feature[]
   getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox): JMapFeatureAttributeValues[]
   panTo(center: JLocation): void
@@ -227,7 +229,17 @@ export interface JMapSelection {
 }
 
 export interface JMapFilterService {
-  applyAttributeValueEqualsOrIn(layerId: number, attributeId: string, attributeValue: any | any[]): string
+  applyHasAttribute(layerId: number, attributeId: string): string
+  applyHasNotAttribute(layerId: number, attributeId: string): string
+  applyAttributeValueEqualTo(layerId: number, attributeId: string, attributeValue: any): string
+  applyAttributeValueBetween(layerId: number, attributeId: string, start: any, end: any): string
+  applyAttributeValueNotEqualTo(layerId: number, attributeId: string, attributeValue: any): string
+  applyAttributeValueGreaterThan(layerId: number, attributeId: string, attributeValue: any): string
+  applyAttributeValueGreaterOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
+  applyAttributeValueLowerThan(layerId: number, attributeId: string, attributeValue: any): string
+  applyAttributeValueLowerOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
+  applyAttributeValueIn(layerId: number, attributeId: string, attributeValues: any[]): string
+  applyAttributeValueNotIn(layerId: number, attributeId: string, attributeValues: any[]): string
   applySpatial(layerId: number, filterGeometry: JPolygon | JCircle): string
   removeByFilterId(filterId: string): void
   removeAllFilters(layerId: number): void
