@@ -23,31 +23,33 @@ export interface JAPIEvent {
 export type JEventFunction = (p1?: any, p2?: any) => void
 
 export interface JEventListener {
-  id: number
+  id: string
   fn: JEventFunction
 }
 
 export interface JEventModule {
   on: {
-    [ method: string ]: (fn: JEventFunction) => number // return listener id
+    [ method: string ]: (listenerId: string, fn: JEventFunction) => void
   }
-  remove(listenerId: number): void
+  activate(listenerId: string): void
+  deactivate(listenerId: string): void
+  remove(listenerId: string): void
 }
 
 export interface JLayerEventModule extends JEventModule {
   on: {
-    visibilityChange(fn: (layerElement: JLayerElement) => void): number
-    layerDeletion(fn: (layerElement: JLayerElement) => void): number
+    visibilityChange(listenerId: string, fn: (layerElement: JLayerElement) => void): void
+    layerDeletion(listenerId: string, fn: (layerElement: JLayerElement) => void): void
   }
 }
 
 export interface JMapEventModule extends JEventModule {
   on: {
-    mapLoad(fn: (map: any) => void): number
-    mapDestroy(fn: () => void): number
-    moveStart(fn: (map: any) => void): number
-    moveEnd(fn: (map: any) => void): number
-    click(fn: (location: JLocation, map: any) => void): number
+    mapLoad(listenerId: string, fn: (map: any) => void): void
+    mapDestroy(listenerId: string, fn: () => void): void
+    moveStart(listenerId: string, fn: (map: any) => void): void
+    moveEnd(listenerId: string, fn: (map: any) => void): void
+    click(listenerId: string, fn: (location: JLocation, map: any) => void): void
   }
 }
 
@@ -202,17 +204,30 @@ export interface JAPIOwnService {
 
 // API SERVICE -> MAP
 export interface JMapService {
+  Interaction: JMapInteractionService
   Filter: JMapFilterService
   Selection: JMapSelectionService
   getMap(): any
-  getAvailableBaseMaps(): string[]
-  setBaseMap(mapName: string): void
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
+  getInUseJMapLayerIds(): number[]
+  getInUseJMapVectorLayerIds(): number[]
+  getInUseJMapLayerBefore(layerId: number): number | undefined
+  getInUseJMapLayerAfter(layerId: number): number | undefined
   getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): Feature[]
   getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox): JMapFeatureAttributeValues[]
+  getAvailableBaseMaps(): string[]
+  setBaseMap(mapName: string): void
   panTo(center: JLocation): void
   zoomTo(zoom: number): void
   panAndZoomTo(center: JLocation, zoom: number): void
+}
+
+export interface JMapInteractionService {
+  addInteraction(name: string, interactor: JMapInteractor, active?: boolean): void
+  terminateInteraction(interactorId: string): void
+  getAllInteractions(): JMapInteractorDescriptor[]
+  getActiveInteraction(): JMapInteractorDescriptor
+  activate(interactorId: string): void
 }
 
 export interface JMapSelectionService {

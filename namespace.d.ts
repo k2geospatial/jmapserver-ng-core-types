@@ -36,13 +36,26 @@ declare namespace JMap {
     // JMap.Service.Map
     namespace Map {
       function getMap(): any
-      function getAvailableBaseMaps(): string[]
-      function setBaseMap(mapName: string): void
+      function getLayersVisibilityStatus(): JMapLayersVisibilityStatus
+      function getInUseJMapLayerIds(): number[]
+      function getInUseJMapVectorLayerIds(): number[]
+      function getInUseJMapLayerBefore(layerId: number): number | undefined
+      function getInUseJMapLayerAfter(layerId: number): number | undefined
       function getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): any[]
       function getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox): JMapFeatureAttributeValues[]
+      function getAvailableBaseMaps(): string[]
+      function setBaseMap(mapName: string): void
       function panTo(center: JLocation): void
       function zoomTo(zoom: number): void
       function panAndZoomTo(center: JLocation, zoom: number): void
+      // JMap.Service.Map.Interaction
+      namespace Interaction {
+        function addInteraction(name: string, interactor: JMapInteractor, active?: boolean): void
+        function terminateInteraction(interactorId: string): void
+        function getAllInteractions(): JMapInteractorDescriptor[]
+        function getActiveInteraction(): JMapInteractorDescriptor
+        function activate(interactorId: string): void
+      }
       // JMap.Service.Map.Filter
       namespace Filter {
         function applyHasAttribute(layerId: number, attributeId: string): string
@@ -190,24 +203,28 @@ declare namespace JMap {
   namespace Event {
     // JMap.Event.Layer
     namespace Layer {
-      // JMap.Event.Layer.addListener
-      namespace addListener {
-        function onVisibilityChanged(fn: (layerElement: JLayerElement) => void): number
-        function onLayerDeleted(fn: (layerElement: JLayerElement) => void): number
+      // JMap.Event.Layer.on
+      namespace on {
+        function visibilityChange(listenerId: string, fn: (layerElement: JLayerElement) => void): void
+        function layerDeletion(listenerId: string, fn: (layerElement: JLayerElement) => void): void
       }
-      function removeListener(listenerId: number): void
+      function activate(listenerId: string): void
+      function deactivate(listenerId: string): void
+      function remove(listenerId: string): void
     }
     // JMap.Event.Map
     namespace Map {
-      // JMap.Event.Map.addListener
-      namespace addListener {
-        function onMapLoaded(fn: (map: any) => void): number
-        function onMapMoveStarted(fn: (map: any) => void): number
-        function onMapMoveEnded(fn: (map: any) => void): number
-        function onMapCliked(fn: (map: any, location: JLocation) => void): number
-        function onMapDestroyed(fn: () => void): number
+      // JMap.Event.Map.on
+      namespace on {
+        function mapLoad(listenerId: string, fn: (map: any) => void): void
+        function mapDestroy(listenerId: string, fn: () => void): void
+        function moveStart(listenerId: string, fn: (map: any) => void): void
+        function moveEnd(listenerId: string, fn: (map: any) => void): void
+        function click(listenerId: string, fn: (location: JLocation, map: any) => void): void
       }
-      function removeListener(listenerId: number): void
+      function activate(listenerId: string): void
+      function deactivate(listenerId: string): void
+      function remove(listenerId: string): void
     }
   }
 }
@@ -277,6 +294,19 @@ type JPolygon = Array<JPoint>
 interface JCircle {
   center: JLocation,
   radius: number
+}
+
+interface JMapInteractorDescriptor {
+  id: string
+  apiMode: API_MODE
+  isExternal: boolean
+}
+
+interface JMapInteractor {
+  init(map: any): void
+  activate(): void
+  deactivate(): void
+  terminate(): void
 }
 
 interface JMapLayersVisibilityStatus {
