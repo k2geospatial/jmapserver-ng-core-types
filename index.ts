@@ -20,7 +20,7 @@ export interface JAPIEvent {
   Map: JMapEventModule
 }
 
-export type JEventFunction = (p1?: any, p2?: any) => void
+export type JEventFunction = (p1?: any, p2?: any, p3?: any, p4?: any) => void
 
 export interface JEventListener {
   id: string
@@ -49,6 +49,10 @@ export interface JMapEventModule extends JEventModule {
     mapDestroy(listenerId: string, fn: () => void): void
     moveStart(listenerId: string, fn: (map: any) => void): void
     moveEnd(listenerId: string, fn: (map: any) => void): void
+    mouseMove(listenerId: string, fn: (layerId: number, location: JLocation, map: any) => void): void
+    mouseMoveOnLayer(listenerId: string, fn: (layerId: number, location: JLocation, feature: Feature[], map: any) => void): void
+    mouseEnter(listenerId: string, fn: (layerId: number, location: JLocation, feature: Feature[], map: any) => void): void
+    mouseLeave(listenerId: string, fn: (map: any) => void): void
     click(listenerId: string, fn: (location: JLocation, map: any) => void): void
   }
 }
@@ -208,6 +212,7 @@ export interface JMapService {
   Filter: JMapFilterService
   Selection: JMapSelectionService
   getMap(): any
+  getMapJSLib(): any
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getInUseJMapLayerIds(): number[]
   getInUseJMapVectorLayerIds(): number[]
@@ -223,11 +228,11 @@ export interface JMapService {
 }
 
 export interface JMapInteractionService {
-  addInteraction(name: string, interactor: JMapInteractor, active?: boolean): void
-  terminateInteraction(interactorId: string): void
-  getAllInteractions(): JMapInteractorDescriptor[]
-  getActiveInteraction(): JMapInteractorDescriptor
-  activate(interactorId: string): void
+  addInteractor(name: string, interactor: JMapInteractor, active?: boolean): void
+  terminateInteractorById(interactorId: string): void
+  getAllInteractorDescriptors(): JMapInteractorDescriptor[]
+  getActiveInteractorDescriptor(): JMapInteractorDescriptor
+  activateInteractorById(interactorId: string): void
 }
 
 export interface JMapSelectionService {

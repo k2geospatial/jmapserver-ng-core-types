@@ -36,6 +36,7 @@ declare namespace JMap {
     // JMap.Service.Map
     namespace Map {
       function getMap(): any
+      function getMapJSLib(): any
       function getLayersVisibilityStatus(): JMapLayersVisibilityStatus
       function getInUseJMapLayerIds(): number[]
       function getInUseJMapVectorLayerIds(): number[]
@@ -50,11 +51,11 @@ declare namespace JMap {
       function panAndZoomTo(center: JLocation, zoom: number): void
       // JMap.Service.Map.Interaction
       namespace Interaction {
-        function addInteraction(name: string, interactor: JMapInteractor, active?: boolean): void
-        function terminateInteraction(interactorId: string): void
-        function getAllInteractions(): JMapInteractorDescriptor[]
-        function getActiveInteraction(): JMapInteractorDescriptor
-        function activate(interactorId: string): void
+        function addInteractor(name: string, interactor: JMapInteractor, active?: boolean): void
+        function terminateInteractorById(interactorId: string): void
+        function getAllInteractorDescriptors(): JMapInteractorDescriptor[]
+        function getActiveInteractorDescriptors(): JMapInteractorDescriptor
+        function activateInteractorById(interactorId: string): void
       }
       // JMap.Service.Map.Filter
       namespace Filter {
@@ -220,6 +221,9 @@ declare namespace JMap {
         function mapDestroy(listenerId: string, fn: () => void): void
         function moveStart(listenerId: string, fn: (map: any) => void): void
         function moveEnd(listenerId: string, fn: (map: any) => void): void
+        function mouseMoveOnLayer(listenerId: string, fn: (layerId: number, location: JLocation, feature: any[], map: any) => void): void
+        function mouseEnter(listenerId: string, fn: (layerId: number, location: JLocation, feature: any[], map: any) => void): void
+        function mouseLeave(listenerId: string, fn: (map: any) => void): void
         function click(listenerId: string, fn: (location: JLocation, map: any) => void): void
       }
       function activate(listenerId: string): void
