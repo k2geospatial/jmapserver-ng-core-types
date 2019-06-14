@@ -54,7 +54,7 @@ declare namespace JMap {
         function addInteractor(name: string, interactor: JMapInteractor, active?: boolean): void
         function terminateInteractorById(interactorId: string): void
         function getAllInteractorDescriptors(): JMapInteractorDescriptor[]
-        function getActiveInteractorDescriptors(): JMapInteractorDescriptor
+        function getActiveInteractorDescriptor(): JMapInteractorDescriptor
         function activateInteractorById(interactorId: string): void
       }
       // JMap.Service.Map.Filter
@@ -217,14 +217,48 @@ declare namespace JMap {
     namespace Map {
       // JMap.Event.Map.on
       namespace on {
-        function mapLoad(listenerId: string, fn: (map: any) => void): void
+        function mapLoad(listenerId: string, fn: (params: {
+            implementation: MAP_IMPLEMENTATION,
+            map: any
+          }) => void): void
         function mapDestroy(listenerId: string, fn: () => void): void
-        function moveStart(listenerId: string, fn: (map: any) => void): void
-        function moveEnd(listenerId: string, fn: (map: any) => void): void
-        function mouseMoveOnLayer(listenerId: string, fn: (layerId: number, location: JLocation, feature: any[], map: any) => void): void
-        function mouseEnter(listenerId: string, fn: (layerId: number, location: JLocation, feature: any[], map: any) => void): void
-        function mouseLeave(listenerId: string, fn: (map: any) => void): void
-        function click(listenerId: string, fn: (location: JLocation, map: any) => void): void
+        function moveStart(listenerId: string, fn: (params: {
+            map: any,
+            mapEvent: any
+          }) => void): void
+        function moveEnd(listenerId: string, fn: (params: {
+            map: any,
+            mapEvent: any
+          }) => void): void
+        function mouseMove(listenerId: string, fn: (params: {
+            layerId: number,
+            location: JLocation,
+            map: any,
+            mapEvent: any
+          }) => void): void
+        function mouseMoveOnLayer(listenerId: string, fn: (params: {
+            layerId: number,
+            location: JLocation,
+            features: any[],
+            map: any,
+            mapEvent: any
+          }) => void): void
+        function mouseEnter(listenerId: string, fn: (params: {
+            layerId: number,
+            location: JLocation,
+            features: any[],
+            map: any,
+            mapEvent: any
+          }) => void): void
+        function mouseLeave(listenerId: string, fn: (params: {
+            map: any,
+            mapEvent: any
+          }) => void): void
+        function click(listenerId: string, fn: (params: {
+            location: JLocation,
+            map: any,
+            mapEvent: any
+          }) => void): void
       }
       function activate(listenerId: string): void
       function deactivate(listenerId: string): void
@@ -336,6 +370,7 @@ interface JAPIMapOptions {
   containerId?: string
   mapboxToken?: ""
   implementation?: MAP_IMPLEMENTATION
+  onStartupMapReadyFn?: (map: any) => {}
 }
 
 interface JSessionData {

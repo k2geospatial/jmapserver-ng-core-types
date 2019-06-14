@@ -20,7 +20,7 @@ export interface JAPIEvent {
   Map: JMapEventModule
 }
 
-export type JEventFunction = (p1?: any, p2?: any, p3?: any, p4?: any) => void
+export type JEventFunction = (params?: any) => void
 
 export interface JEventListener {
   id: string
@@ -45,15 +45,48 @@ export interface JLayerEventModule extends JEventModule {
 
 export interface JMapEventModule extends JEventModule {
   on: {
-    mapLoad(listenerId: string, fn: (map: any) => void): void
+    mapLoad(listenerId: string, fn: (params: {
+      implementation: MAP_IMPLEMENTATION,
+      map: any
+    }) => void): void
     mapDestroy(listenerId: string, fn: () => void): void
-    moveStart(listenerId: string, fn: (map: any) => void): void
-    moveEnd(listenerId: string, fn: (map: any) => void): void
-    mouseMove(listenerId: string, fn: (layerId: number, location: JLocation, map: any) => void): void
-    mouseMoveOnLayer(listenerId: string, fn: (layerId: number, location: JLocation, feature: Feature[], map: any) => void): void
-    mouseEnter(listenerId: string, fn: (layerId: number, location: JLocation, feature: Feature[], map: any) => void): void
-    mouseLeave(listenerId: string, fn: (map: any) => void): void
-    click(listenerId: string, fn: (location: JLocation, map: any) => void): void
+    moveStart(listenerId: string, fn: (params: {
+      map: any,
+      mapEvent: any
+    }) => void): void
+    moveEnd(listenerId: string, fn: (params: {
+      map: any,
+      mapEvent: any
+    }) => void): void
+    mouseMove(listenerId: string, fn: (params: {
+      layerId: number,
+      location: JLocation,
+      map: any,
+      mapEvent: any
+    }) => void): void
+    mouseMoveOnLayer(listenerId: string, fn: (params: {
+      layerId: number,
+      location: JLocation,
+      features: Feature[],
+      map: any,
+      mapEvent: any
+    }) => void): void
+    mouseEnter(listenerId: string, fn: (params: {
+      layerId: number,
+      location: JLocation,
+      features: Feature[],
+      map: any,
+      mapEvent: any
+    }) => void): void
+    mouseLeave(listenerId: string, fn: (params: {
+      map: any,
+      mapEvent: any
+    }) => void): void
+    click(listenerId: string, fn: (params: {
+      location: JLocation,
+      map: any,
+      mapEvent: any
+    }) => void): void
   }
 }
 
