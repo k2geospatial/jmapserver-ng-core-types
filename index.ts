@@ -38,55 +38,22 @@ export interface JEventModule {
 
 export interface JLayerEventModule extends JEventModule {
   on: {
-    visibilityChange(listenerId: string, fn: (layerElement: JLayerElement) => void): void
-    layerDeletion(listenerId: string, fn: (layerElement: JLayerElement) => void): void
+    visibilityChange(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
+    layerDeletion(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
   }
 }
 
 export interface JMapEventModule extends JEventModule {
   on: {
-    mapLoad(listenerId: string, fn: (params: {
-      implementation: MAP_IMPLEMENTATION,
-      map: any
-    }) => void): void
+    mapLoad(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
     mapDestroy(listenerId: string, fn: () => void): void
-    moveStart(listenerId: string, fn: (params: {
-      map: any,
-      mapEvent: any
-    }) => void): void
-    moveEnd(listenerId: string, fn: (params: {
-      map: any,
-      mapEvent: any
-    }) => void): void
-    mouseMove(listenerId: string, fn: (params: {
-      layerId: number,
-      location: JLocation,
-      map: any,
-      mapEvent: any
-    }) => void): void
-    mouseMoveOnLayer(listenerId: string, fn: (params: {
-      layerId: number,
-      location: JLocation,
-      features: Feature[],
-      map: any,
-      mapEvent: any
-    }) => void): void
-    mouseEnter(listenerId: string, fn: (params: {
-      layerId: number,
-      location: JLocation,
-      features: Feature[],
-      map: any,
-      mapEvent: any
-    }) => void): void
-    mouseLeave(listenerId: string, fn: (params: {
-      map: any,
-      mapEvent: any
-    }) => void): void
-    click(listenerId: string, fn: (params: {
-      location: JLocation,
-      map: any,
-      mapEvent: any
-    }) => void): void
+    moveStart(listenerId: string, fn: (params: JMapEventParams) => void): void
+    moveEnd(listenerId: string, fn: (params: JMapEventParams) => void): void
+    mouseMove(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
+    mouseMoveOnLayer(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
+    mouseEnter(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
+    mouseLeave(listenerId: string, fn: (params: JMapEventParams) => void): void
+    click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
   }
 }
 
@@ -265,7 +232,7 @@ export interface JMapInteractionService {
   terminateInteractorById(interactorId: string): void
   getAllInteractorDescriptors(): JMapInteractorDescriptor[]
   getActiveInteractorDescriptor(): JMapInteractorDescriptor
-  activateInteractorById(interactorId: string): void
+  activateInteractorById(interactorId: string, force?: boolean): void
 }
 
 export interface JMapSelectionService {

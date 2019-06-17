@@ -206,8 +206,8 @@ declare namespace JMap {
     namespace Layer {
       // JMap.Event.Layer.on
       namespace on {
-        function visibilityChange(listenerId: string, fn: (layerElement: JLayerElement) => void): void
-        function layerDeletion(listenerId: string, fn: (layerElement: JLayerElement) => void): void
+        function visibilityChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
+        function layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
       }
       function activate(listenerId: string): void
       function deactivate(listenerId: string): void
@@ -217,48 +217,15 @@ declare namespace JMap {
     namespace Map {
       // JMap.Event.Map.on
       namespace on {
-        function mapLoad(listenerId: string, fn: (params: {
-            implementation: MAP_IMPLEMENTATION,
-            map: any
-          }) => void): void
+        function mapLoad(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
         function mapDestroy(listenerId: string, fn: () => void): void
-        function moveStart(listenerId: string, fn: (params: {
-            map: any,
-            mapEvent: any
-          }) => void): void
-        function moveEnd(listenerId: string, fn: (params: {
-            map: any,
-            mapEvent: any
-          }) => void): void
-        function mouseMove(listenerId: string, fn: (params: {
-            layerId: number,
-            location: JLocation,
-            map: any,
-            mapEvent: any
-          }) => void): void
-        function mouseMoveOnLayer(listenerId: string, fn: (params: {
-            layerId: number,
-            location: JLocation,
-            features: any[],
-            map: any,
-            mapEvent: any
-          }) => void): void
-        function mouseEnter(listenerId: string, fn: (params: {
-            layerId: number,
-            location: JLocation,
-            features: any[],
-            map: any,
-            mapEvent: any
-          }) => void): void
-        function mouseLeave(listenerId: string, fn: (params: {
-            map: any,
-            mapEvent: any
-          }) => void): void
-        function click(listenerId: string, fn: (params: {
-            location: JLocation,
-            map: any,
-            mapEvent: any
-          }) => void): void
+        function moveStart(listenerId: string, fn: (params: JMapEventParams) => void): void
+        function moveEnd(listenerId: string, fn: (params: JMapEventParams) => void): void
+        function mouseMove(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
+        function mouseMoveOnLayer(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
+        function mouseEnter(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
+        function mouseLeave(listenerId: string, fn: (params: JMapEventParams) => void): void
+        function click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
       }
       function activate(listenerId: string): void
       function deactivate(listenerId: string): void
@@ -280,6 +247,32 @@ interface JMapFeatureAttributeValues {
 }
 
 type LAYER_GEOMETRY = "ANNOTATION" | "CURVE" | "COMPLEX" | "POINT" | "RASTER" | "SURFACE" | "ELLIPSE" | "NONE"
+
+interface JLayerEventParams {
+  layer: JLayerElement
+}
+
+interface JMapEventImplementationParams {
+  implementation: MAP_IMPLEMENTATION,
+  map: any
+}
+
+interface JMapEventParams {
+  map: any,
+  mapEvent: any
+}
+
+interface JMapEventLocationParams extends JMapEventParams {
+  location: JLocation
+}
+
+interface JMapEventLayerParams extends JMapEventLocationParams {
+  layerId: number
+}
+
+interface JMapEventFeaturesParams extends JMapEventLayerParams {
+  features: any[]
+}
 
 interface JLayerGeometry {
   type: LAYER_GEOMETRY
@@ -370,7 +363,7 @@ interface JAPIMapOptions {
   containerId?: string
   mapboxToken?: ""
   implementation?: MAP_IMPLEMENTATION
-  onStartupMapReadyFn?: (map: any) => {}
+  onMapReadyFn?: (map: any) => {}
 }
 
 interface JSessionData {
