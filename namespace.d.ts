@@ -76,7 +76,7 @@ declare namespace JMap {
       }
       // JMap.Service.Map.Selection
       namespace Selection {
-        function selectOnAllLayersAtLocation(location: JLocation): { [ layerId: number ]: any[] } // any is a feature
+        function selectOnAllLayersAtLocation(location: JLocation): JMapSelection
         function selectOnOneLayerAtLocation(layerId: number, location: JLocation): any[]
         function setLayerSelection(layerId: number, features: any | any[]): void
         function addFeaturesToLayerSelection(layerId: number, features: any | any[]): void
@@ -127,6 +127,7 @@ declare namespace JMap {
       function getCenter(): JLocation
       function getZoom(): number
       function getBaseMap(): string
+      function getSelectedFeatures(): JMapSelection
       function getSelectedFeaturesForLayer(layerId: number): any[]
       function getSelectedFeatureIdsForLayer(layerId: number): number[]
     }
@@ -252,6 +253,10 @@ interface JLayerEventParams {
   layer: JLayerElement
 }
 
+interface JMapSelection {
+  [ layerId: number ]: any[] // any = feature
+}
+
 interface JMapEventImplementationParams {
   implementation: MAP_IMPLEMENTATION,
   map: any
@@ -283,6 +288,11 @@ interface JLayer extends JLayerElement {
   geometry: JLayerGeometry
   attributes: JLayerAttribute[]
   selectionStyle: JLayerStyle
+  mouseOver: JMapMouseOver
+}
+
+interface JMapMouseOver {
+  text: string | null
 }
 
 interface JLayerStyle {

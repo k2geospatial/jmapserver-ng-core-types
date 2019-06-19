@@ -1,6 +1,6 @@
 {
   "name": "jmap-api-ng",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "JMap typescript extension files",
   "main": "index.js",
   "scripts": {

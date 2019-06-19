@@ -109,6 +109,7 @@ export interface JStoreGetterMap {
   getCenter(): { x: number, y: number }
   getZoom(): number
   getBaseMap(): string
+  getSelectedFeatures(): JMapSelection
   getSelectedFeaturesForLayer(layerId: number): Feature[]
   getSelectedFeatureIdsForLayer(layerId: number): number[]
 }
@@ -242,10 +243,6 @@ export interface JMapSelectionService {
   addFeaturesToLayerSelection(layerId: number, features: Feature | Feature[]): void
   removeFeaturesFromLayerSelection(layerId: number, featureIds: number | number[]): void
   clearSelection(layerId?: number): void
-}
-
-export interface JMapSelection {
-  [ layerId: number ]: Feature[]
 }
 
 export interface JMapFilterService {
