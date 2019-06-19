@@ -363,7 +363,7 @@ interface JAPIMapOptions {
   containerId?: string
   mapboxToken?: ""
   implementation?: MAP_IMPLEMENTATION
-  onMapReadyFn?: (map: any) => {}
+  onStartupMapReadyFn?: (map: any) => {}
 }
 
 interface JSessionData {
