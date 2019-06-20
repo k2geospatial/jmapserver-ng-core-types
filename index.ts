@@ -36,10 +36,16 @@ export interface JEventModule {
   remove(listenerId: string): void
 }
 
+export interface JProjectEventModule extends JEventModule {
+  on: {
+    projectChange(listenerId: string, fn: (params: JProjectEventParams) => void): void
+  }
+}
+
 export interface JLayerEventModule extends JEventModule {
   on: {
-    visibilityChange(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
-    layerDeletion(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
+    visibilityChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
+    layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
   }
 }
 
@@ -278,20 +284,6 @@ export interface JPopupService {
 }
 
 // API SERVICE -> PROJECT
-export interface JProject {
-  id: number
-  name: string
-  description: string
-  projection: JProjection
-  initialRotation: number
-  scaleMax: number
-  scaleMin: number
-  colorSelection: string
-  colorBackground: string
-  initialExtent: JBounds
-}
-
-// API SERVICE -> PROJECT
 export interface JProjectService {
   load(project?: number): Promise<void>
   unload(): void
@@ -315,18 +307,6 @@ export interface JLayerService {
 export interface JLayerNode extends JLayerElement {
   open: boolean
   children: JLayerElement[]
-}
-
-export interface JProjection {
-  code: string
-  name: string
-}
-
-export interface JBounds {
-  x1: number
-  x2: number
-  y1: number
-  y2: number
 }
 
 // API SERVICE -> USER
@@ -360,7 +340,7 @@ export interface JAPIExternal {
   register(externalModel: JExternalModel): void
   isRegistered(externalId: string): boolean
   getAllRegistered(): string[]
-  renderMouseOver(layerId: string, elementId: string): JExternalMouseOver[]
+  renderMouseOver(layer: JLayer, feature: Feature): JExternalMouseOver[]
   hasMouseOver(): boolean // @Deprecated should not be used in JMap Web NG
 }
 
@@ -369,7 +349,7 @@ export interface JExternalModel {
   initFn: (options: any) => void
   storeReducer?: (reducerState: any, action: Action) => any
   serviceToExpose?: any
-  renderMouseOver?(layerId: string, elementId: string): JExternalMouseOver
+  renderMouseOver?(layer: JLayer, feature: Feature): JExternalMouseOver
 }
 
 export interface JExternalMouseOver {
@@ -389,8 +369,7 @@ export interface JDocumentService {
   getElementDocuments(toSelectObjectId: JObjectId): Promise<JAllDocumentDescriptors>
   selectDocuments(descriptors: JAllDocumentDescriptors): void
   filter(filterValue: string | undefined): void
-
-  getRichPreview(websiteUrl: string): void
+  getRichPreview(webSiteUrl: string): void
 }
 
 export interface JAllDocumentDescriptors {
@@ -445,4 +424,12 @@ export interface JGeoJsonFeature {
 export interface JGeoJsonGeometry {
   type: string,
   coordinates: number[]
+}
+
+export interface JPhotoDescriptor {
+  id: number
+  title: string
+  fileName: string
+  comment: string | undefined
+  imageBase64: string
 }

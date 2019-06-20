@@ -203,6 +203,16 @@ declare namespace JMap {
   }
   // JMap.Event
   namespace Event {
+    // JMap.Event.Project
+    namespace Project {
+      // JMap.Event.Project.on
+      namespace on {
+        function projectChange(listenerId: string, fn: (params: JProjectEventParams) => void): void
+      }
+      function activate(listenerId: string): void
+      function deactivate(listenerId: string): void
+      function remove(listenerId: string): void
+    }
     // JMap.Event.Layer
     namespace Layer {
       // JMap.Event.Layer.on
@@ -249,6 +259,35 @@ interface JMapFeatureAttributeValues {
 
 type LAYER_GEOMETRY = "ANNOTATION" | "CURVE" | "COMPLEX" | "POINT" | "RASTER" | "SURFACE" | "ELLIPSE" | "NONE"
 
+interface JProjectEventParams {
+  project: JProject
+}
+
+interface JProject {
+  id: number
+  name: string
+  description: string
+  projection: JProjection
+  initialRotation: number
+  scaleMax: number
+  scaleMin: number
+  colorSelection: string
+  colorBackground: string
+  initialExtent: JBounds
+}
+
+interface JProjection {
+  code: string
+  name: string
+}
+
+interface JBounds {
+  x1: number
+  x2: number
+  y1: number
+  y2: number
+}
+
 interface JLayerEventParams {
   layer: JLayerElement
 }
@@ -293,6 +332,11 @@ interface JLayer extends JLayerElement {
 
 interface JMapMouseOver {
   text: string | null
+  preventTextDuplication: boolean
+  backgroundColor: string
+  visible: boolean
+  minimumScale: number
+  maximumScale: number
 }
 
 interface JLayerStyle {
@@ -304,7 +348,10 @@ interface JLayerStyle {
 interface JLayerAttribute {
   id: string
   label: string
+  type: JLayerAttributeType
 }
+
+type JLayerAttributeType = "string" | "number" | "date" | "datetime" | "boolean" | "binary"
 
 interface JLayerElement {
   id: number,
@@ -650,7 +697,7 @@ interface JExtensionModel {
   initFn: (options: any) => void
   storeReducer?: (reducerState: any, action: any) => any
   serviceToExpose?: any
-  renderMouseOver?(layerId: string, elementId: string): JExtensionMouseOver
+  renderMouseOver?(layer: JLayer, feature: any): JExtensionMouseOver
 }
 
 type JDocumentMode = "MENU" | "SELECTION" | "SEARCH_BASIC" | "SEARCH_ADVANCED"
