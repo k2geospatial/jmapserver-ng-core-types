@@ -90,6 +90,13 @@ declare namespace JMap {
       function login(login: string, password: string): Promise<JLoginData>
       function logout(): Promise<void>
     }
+    // JMap.Service.MouseOver
+    namespace MouseOver {
+      function renderForFeaturesAtLocation(containerId: string, location: JLocation): boolean // return true if has mouseover
+      function renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
+      function getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined
+      function processJSAndPhotosForContent(content: JMouseOverContent): void
+    }
   }
 
   // JMap.Data : Provide redux store used by api, and also getters to easy access data
@@ -124,8 +131,10 @@ declare namespace JMap {
     // JMap.Data.Map
     namespace Map {
       function getImplementation(): MAP_IMPLEMENTATION
+      function isMapLoaded(): boolean
       function getCenter(): JLocation
       function getZoom(): number
+      function getScale(): number
       function getBaseMap(): string
       function getSelectedFeatures(): JMapSelection
       function getSelectedFeaturesForLayer(layerId: number): any[]
@@ -138,9 +147,15 @@ declare namespace JMap {
       function getIdentity(): JUserIdentity
       function getLogin(): string
     }
-    // JMap.Data.Selectio
+    // JMap.Data.Selection
     namespace Selection {
       function getSelection(): JElementSelection
+    }
+    // JMap.Data.Photo
+    namespace Photo {
+      function isPopupOpened(): boolean
+      function getPhotoDescriptors(): JPhotoDescriptor[]
+      function getSelectedPhotoId(): number | undefined
     }
   }
 
@@ -164,7 +179,6 @@ declare namespace JMap {
     function isRegistered(extensionId: string): boolean // ex : JMap.Extension.isRegistered('Document')
     function getAllRegistered(): string[]
     function renderMouseOver(layerId: string, elementId: string): JExtensionMouseOver[]
-    function hasMouseOver(): boolean
 
     // JMap.Extension.Document : @Optional
     namespace Document {
@@ -201,7 +215,8 @@ declare namespace JMap {
       function launchSearchAdvanced(valuesByAttributeName: { [attributeName: string]: any }): void
     }
   }
-  // JMap.Event
+
+  // JMap.Event : Register, activate, deactivate, remove your custom event listeners here
   namespace Event {
     // JMap.Event.Project
     namespace Project {
@@ -252,12 +267,27 @@ declare interface Window {
 
 type API_MODE = "layer" | "select" | "tool" | "draw" | "search" | "add" | "external"
 
+type LAYER_GEOMETRY = "ANNOTATION" | "CURVE" | "COMPLEX" | "POINT" | "RASTER" | "SURFACE" | "ELLIPSE" | "NONE"
+
+interface JPhotoDescriptor {
+  id: number
+  url: string
+  title: string
+  fileName: string
+  comment: string | undefined
+  imageBase64: string
+}
+
 interface JMapFeatureAttributeValues {
   featureId: number
   [ attributeId: string ]: any
 }
 
-type LAYER_GEOMETRY = "ANNOTATION" | "CURVE" | "COMPLEX" | "POINT" | "RASTER" | "SURFACE" | "ELLIPSE" | "NONE"
+interface JMouseOverContent {
+  html: string
+  photoFeatureIdsByLayerId: { [ layerId: number ]: number[] }
+  toEvalJS: string[]
+}
 
 interface JProjectEventParams {
   project: JProject
@@ -418,8 +448,10 @@ type MAP_IMPLEMENTATION = "MapBox" | "OpenLayers"
 
 interface JAPIMapOptions {
   containerId?: string
-  mapboxToken?: ""
   implementation?: MAP_IMPLEMENTATION
+  mapboxToken?: ""
+  center?: JLocation
+  zoom?: number
   onStartupMapReadyFn?: (map: any) => {}
 }
 

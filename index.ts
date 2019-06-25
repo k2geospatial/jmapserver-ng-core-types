@@ -72,6 +72,7 @@ export interface JAPIData {
   Layer: JStoreGetterLayer
   Map: JStoreGetterMap
   User: JStoreGetterUser
+  Photo: JStoreGetterPhoto
 }
 
 export interface JStoreGetterApi {
@@ -112,8 +113,10 @@ export interface JStoreGetterLayer {
 
 export interface JStoreGetterMap {
   getImplementation(): MAP_IMPLEMENTATION
+  isMapLoaded(): boolean
   getCenter(): { x: number, y: number }
   getZoom(): number
+  getScale(): number
   getBaseMap(): string
   getSelectedFeatures(): JMapSelection
   getSelectedFeaturesForLayer(layerId: number): Feature[]
@@ -127,6 +130,12 @@ export interface JStoreGetterUser {
   getLogin(): string
 }
 
+export interface JStoreGetterPhoto {
+  isPopupOpened(): boolean
+  getPhotoDescriptors(): JPhotoDescriptor[]
+  getSelectedPhotoId(): number | undefined
+}
+
 export interface JAPIState {
   api: JAPIOwnState
   app: JAppState
@@ -134,6 +143,7 @@ export interface JAPIState {
   project: JProjectState
   layer: JLayerState
   user: JUserState
+  photo: JPhotoState
   external?: any
 }
 
@@ -152,8 +162,10 @@ export interface JAppState {
 // API DATA -> MAP
 export interface JMapState {
   implementation: MAP_IMPLEMENTATION
+  isLoaded: boolean
   center: JLocation
   zoom: number
+  scale: number
   boundaryBox: JBoundaryBox
   baseMap: string
   selection: JMapSelection
@@ -174,6 +186,13 @@ export interface JUserState {
   lastName: string
   login: string
   sessionId: number
+}
+
+// API DATA -> PHOTO
+export interface JPhotoState {
+  selectedPhoto: number | undefined
+  photoDescriptors: JPhotoDescriptor[]
+  isPopupOpened: boolean
 }
 
 // API APPLICATION
@@ -206,6 +225,7 @@ export interface JAPIService {
   Layer: JLayerService
   User: JUserService
   Map: JMapService
+  MouseOver: JMouseOverService
 }
 
 // API SERVICE -> API
@@ -316,6 +336,14 @@ export interface JUserService {
   logout(): Promise<void>
 }
 
+// API SERVICE -> MOUSE_OVER
+export interface JMouseOverService {
+  renderForFeaturesAtLocation(containerId: string, location: JLocation): boolean // return true if has mouseover
+  renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
+  getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined
+  processJSAndPhotosForContent(content: JMouseOverContent): void
+}
+
 // API COMPONENTS
 export interface JAPIComponent {
   User: JAPIComponentItem<JUserCmp, JUserProps>
@@ -341,7 +369,6 @@ export interface JAPIExternal {
   isRegistered(externalId: string): boolean
   getAllRegistered(): string[]
   renderMouseOver(layer: JLayer, feature: Feature): JExternalMouseOver[]
-  hasMouseOver(): boolean // @Deprecated should not be used in JMap Web NG
 }
 
 export interface JExternalModel {
@@ -424,12 +451,4 @@ export interface JGeoJsonFeature {
 export interface JGeoJsonGeometry {
   type: string,
   coordinates: number[]
-}
-
-export interface JPhotoDescriptor {
-  id: number
-  title: string
-  fileName: string
-  comment: string | undefined
-  imageBase64: string
 }
