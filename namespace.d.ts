@@ -154,6 +154,7 @@ declare namespace JMap {
     // JMap.Data.Photo
     namespace Photo {
       function isPopupOpened(): boolean
+      function isInfoPanelOpened(): boolean
       function getPhotoDescriptors(): JPhotoDescriptor[]
       function getSelectedPhotoId(): number | undefined
     }
@@ -176,7 +177,7 @@ declare namespace JMap {
   // JMap.Extension : provide an api to register dynamically an extension
   namespace External {
     function register(extensionModel: JExtensionModel): void
-    function isRegistered(extensionId: string): boolean // ex : JMap.Extension.isRegistered('Document')
+    function isRegistered(extensionId: string): boolean // ex : JMap.Extension.isRegistered("Document")
     function getAllRegistered(): string[]
     function renderMouseOver(layerId: string, elementId: string): JExtensionMouseOver[]
 
@@ -274,7 +275,7 @@ interface JPhotoDescriptor {
   url: string
   title: string
   fileName: string
-  comment: string | undefined
+  comment: string
   imageBase64: string
 }
 
@@ -450,6 +451,8 @@ interface JAPIMapOptions {
   containerId?: string
   implementation?: MAP_IMPLEMENTATION
   mapboxToken?: ""
+  scalePanelVisible?: boolean
+  scalePanelUnit?: "imperial" |  "metric" |  "nautical"
   center?: JLocation
   zoom?: number
   onStartupMapReadyFn?: (map: any) => {}

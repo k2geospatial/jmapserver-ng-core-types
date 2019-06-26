@@ -132,6 +132,7 @@ export interface JStoreGetterUser {
 
 export interface JStoreGetterPhoto {
   isPopupOpened(): boolean
+  isInfoPanelOpened(): boolean
   getPhotoDescriptors(): JPhotoDescriptor[]
   getSelectedPhotoId(): number | undefined
 }
@@ -193,6 +194,7 @@ export interface JPhotoState {
   selectedPhoto: number | undefined
   photoDescriptors: JPhotoDescriptor[]
   isPopupOpened: boolean
+  isInfoPanelOpened: boolean
 }
 
 // API APPLICATION
