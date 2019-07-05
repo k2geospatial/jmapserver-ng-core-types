@@ -1,7 +1,7 @@
 import { Action, Store } from "redux"
 import { Feature } from "geojson"
 
-export type UIComponent = void | Element | React.Component
+export type JUIComponent = void | Element | React.Component
 
 // API
 export interface JAPI {
@@ -213,11 +213,6 @@ export interface JSidePanelController {
   close(): void
 }
 
-export interface JAPIApplicationOptions {
-  start: boolean
-  containerId: string
-}
-
 // API SERVICE
 export interface JAPIService {
   Api: JAPIOwnService
@@ -346,13 +341,8 @@ export interface JMouseOverService {
   processJSAndPhotosForContent(content: JMouseOverContent): void
 }
 
-// API COMPONENTS
-export interface JAPIComponent {
-  User: JAPIComponentItem<JUserCmp, JUserProps>
-}
-
 // P for react props
-export interface JAPIComponentItem<C extends UIComponent, P> {
+export interface JAPIComponentItem<C extends JUIComponent, P> {
   create(containerId: string, props?: P): C
   destroy(containerId: string): void
   getInstance(containerId: string): C
@@ -424,14 +414,6 @@ export interface JDocumentDescriptor {
   fileName: string
   creation: number // timestamp
   depositName: string
-}
-
-export interface JAPIOptions {
-  projectId: number,
-  application?: JAPIApplicationOptions,
-  map?: JAPIMapOptions,
-  restBaseUrl?: string
-  session?: JSessionData
 }
 
 // MIS
