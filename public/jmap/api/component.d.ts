@@ -1,19 +1,13 @@
-declare interface JAPIComponent<C extends React.Component, P> {
-  create(containerId: string, options?: P): C
-  destroy(containerId: string): void
-  getInstance(containerId: string): C
+declare interface JAPIComponent {
+  User: JAPIComponentItem<JUserCmp, JUserCmpProps>
 }
 
-declare interface JFormCmp extends React.Component<JFormProps, {}> {}
+declare interface JAPIComponentItem<C extends React.Component, P> {
+  create(containerId: string, options?: P): void
+  destroy(containerId: string): void
+}
 
-declare interface JFormProps {
-  idPrefix: string
-  formDescriptor: JFormDescriptor,
-  buttonLabelSubmit?: string
-  buttonLabelCancel?: string
-  buttonLabelClear?: string
-  hideClearButton?: boolean
-  onSubmit: (values: any) => void,
-  onCancel?: () => void
-  onClear?: () => void
+declare interface JUserCmp extends React.Component<JUserCmpProps, {}> { }
+declare interface JUserCmpProps {
+  user?: JUserState
 }

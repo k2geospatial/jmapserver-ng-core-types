@@ -196,7 +196,7 @@ declare namespace JMap {
        * JMap.Service.Layer.removeLayer
        * 
        * Remove the layer in the data store and in the map.
-       * It doesn't exists anymore after, it is not deleted server side, only in the browser.
+       * It is not deleted server side, only in the browser.
        * 
        * @throws Error if layer is not found
        * @param layerId The JMap layer id
@@ -205,6 +205,21 @@ declare namespace JMap {
        * ```
        */
       function removeLayer(layerId: number): void
+      /**
+       * JMap.Service.Layer.setThematicVisibility
+       * 
+       * Show or hide a layer's thematic on the map
+       * 
+       * @throws Error if layer or thematic are not found
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * // Display the thematic id=3 of layer id=7
+       * JMap.Service.Layer.Thematic.setThematicVisibility(7, 3, true)
+       * // Hide the thematic id=3 of layer id=7
+       * JMap.Service.Layer.Thematic.setThematicVisibility(7, 3, false)
+       * ```
+       */
+      function setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
     }
     /**
        * JMap.Service.Map
@@ -512,15 +527,10 @@ declare namespace JMap {
     function start(containerId?: string, initOptions?: JAPIApplicationOptions): void
   }
   namespace Component {
-    /**
-     * JMap.Component.FormFlat
-     * 
-     * FormFlat are simple forms that display the field vertically, ignoring the sections.
-     * 
-     * @param JFormCmp The Form React component
-     * @param JFormProps The React component properties interface
-     */
-    const FormFlat: JAPIComponent<JFormCmp, JFormProps>
+    namespace User {
+      function create(containerId: string, options?: JUserCmpProps): void
+      function destroy(containerId: string): void
+    }
   }
   namespace Data {
     function getStore(): any | undefined
@@ -542,6 +552,24 @@ declare namespace JMap {
       function getName(layerId: number): string
       function getDescription(layerId: number): string
       function isVisible(layerId: number): boolean
+      function getStyle(layerId: number): JLayerStyle
+      function getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
+      function getSelectionStyle(layerId: number): JLayerStyle | null
+      function getThematicById(layerId: number, thematicId: number): JLayerThematic
+      /**
+       * JMap.Data.Layer.getAllThematicsForLayer
+       * 
+       * Return all layer's thematics
+       * 
+       * @throws Error if layer is not found
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * JMap.Data.Layer.getAllThematicsForLayer(4)
+       * ```
+       */
+      function getAllThematicsForLayer(layerId: number): JLayerThematic[]
+      function hasVisibleThematics(layerId: number): boolean
+      function getVisibleThematics(layerId: number): JLayerThematic[]
     }
     namespace Map {
       function getImplementation(): MAP_IMPLEMENTATION
@@ -556,7 +584,7 @@ declare namespace JMap {
     }
     namespace User {
       function getLocale(): string
-      function getSessionId(): string
+      function getToken(): string
       function getIdentity(): JUserIdentity
       function getLogin(): string
     }
@@ -638,5 +666,8 @@ declare namespace JMap {
       function clearSearchAdvancedResult(): void
       function launchSearchAdvanced(valuesByAttributeName: { [attributeName: string]: any }): void
     }
+  }
+  namespace Documentation {
+    function open(): void
   }
 }

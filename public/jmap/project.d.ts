@@ -16,5 +16,5 @@ declare interface JProject {
   scaleMin: number
   colorSelection: string
   colorBackground: string
-  initialExtent: JBounds
+  initialExtent: JBounds | null
 }

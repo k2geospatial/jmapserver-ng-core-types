@@ -5,7 +5,7 @@ declare namespace JMap.Service.User {
 }
 
 declare interface JSessionData {
-  sessionId: number
+  token: string
   user: JUserPublicData
 }
 

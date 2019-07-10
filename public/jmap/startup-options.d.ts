@@ -4,11 +4,12 @@ declare interface Window {
 }
 
 declare interface JAPIOptions {
-  projectId?: number,
+  projectId?: number
   restBaseUrl?: string
+  noSessionExpiration: boolean
   session?: JSessionData
-  application?: JAPIApplicationOptions,
-  map?: JAPIMapOptions,
+  application?: JAPIApplicationOptions
+  map?: JAPIMapOptions
 }
 
 declare interface JAPIMapOptions {

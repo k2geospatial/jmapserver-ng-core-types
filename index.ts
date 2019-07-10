@@ -1,8 +1,6 @@
 import { Action, Store } from "redux"
 import { Feature } from "geojson"
 
-export type JUIComponent = void | Element | React.Component
-
 // API
 export interface JAPI {
   External: JAPIExternal
@@ -11,6 +9,13 @@ export interface JAPI {
   Application: JAPIApplication
   Component: JAPIComponent
   Service: JAPIService
+  Documentation: JAPIDocumentation
+}
+
+// API DOCUMENTATION
+
+export interface JAPIDocumentation {
+  open(): void
 }
 
 // API EVENT
@@ -96,7 +101,7 @@ export interface JStoreGetterProject {
   getScaleMin(): number
   getColorSelection(): string
   getColorBackground(): string
-  getInitialExtent(): JBounds
+  getInitialExtent(): JBounds | null
 }
 
 export interface JStoreGetterLayer {
@@ -109,6 +114,13 @@ export interface JStoreGetterLayer {
   getName(layerId: number): string
   getDescription(layerId: number): string
   isVisible(layerId: number): boolean
+  getStyle(layerId: number): JLayerStyle
+  getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
+  getSelectionStyle(layerId: number): JLayerStyle | null
+  getAllThematicsForLayer(layerId: number): JLayerThematic[]
+  getThematicById(layerId: number, thematicId: number): JLayerThematic
+  hasVisibleThematics(layerId: number): boolean
+  getVisibleThematics(layerId: number): JLayerThematic[]
 }
 
 export interface JStoreGetterMap {
@@ -124,7 +136,7 @@ export interface JStoreGetterMap {
 }
 
 export interface JStoreGetterUser {
-  getSessionId(): number
+  getToken(): string
   getFirstName(): string
   getLastName(): string
   getLogin(): string
@@ -179,14 +191,6 @@ export type JProjectState = JProject
 export interface JLayerState {
   tree: JLayerTree
   allById: { [layerElementId: string]: JLayerElement }
-}
-
-// API DATA -> USER
-export interface JUserState {
-  firstName: string
-  lastName: string
-  login: string
-  sessionId: number
 }
 
 // API DATA -> PHOTO
@@ -319,6 +323,7 @@ export interface JLayerService {
   setVisible(layerId: number, visible: boolean): void
   setGroupOpen(nodeId: number, open: boolean): void
   deleteLayer(layerId: number): void
+  setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
 }
 
 export interface JLayerNode extends JLayerElement {
@@ -339,19 +344,6 @@ export interface JMouseOverService {
   renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
   getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined
   processJSAndPhotosForContent(content: JMouseOverContent): void
-}
-
-// P for react props
-export interface JAPIComponentItem<C extends JUIComponent, P> {
-  create(containerId: string, props?: P): C
-  destroy(containerId: string): void
-  getInstance(containerId: string): C
-}
-
-// API COMPONENTS -> USER CMP
-export interface JUserCmp extends React.Component<JUserProps, {}> { }
-export interface JUserProps {
-  user?: JUserState
 }
 
 // API EXTERNAL
