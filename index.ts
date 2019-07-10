@@ -18,6 +18,17 @@ export interface JAPIDocumentation {
   open(): void
 }
 
+// API COMPONENT
+
+export interface JAPIComponent {
+  User: JAPIComponentItem<JUserCmpProps>
+}
+
+export interface JAPIComponentItem<P> {
+  create(containerId: string, options?: P): void
+  destroy(containerId: string): void
+}
+
 // API EVENT
 
 export interface JAPIEvent {

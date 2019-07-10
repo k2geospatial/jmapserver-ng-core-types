@@ -1,10 +1,7 @@
-declare namespace JMap.Service.User {
-  function setSessionId(sessionId: string): void
-  function login(login: string, password: string): Promise<JLoginData>
-  function logout(): Promise<void>
-}
-
 declare interface JSessionData {
+  /**
+   * The session token
+   */
   token: string
   user: JUserPublicData
 }
@@ -27,21 +24,8 @@ declare interface JLoginData {
   user: JUserPublicData
 }
 
-declare interface JUserPublicData {
-  login: string,
-  firstname: string,
-  lastname: string,
-  admin: boolean
-}
-
 declare interface JUserState {
   identity: JUserIdentity
   token: string
   locale: string
-}
-
-declare interface JUserIdentity {
-  firstName: string
-  lastName: string
-  login: string
 }

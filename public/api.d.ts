@@ -1,3 +1,12 @@
+/**
+ * JMap is the entry point of our API.
+ * 
+ * All references to our API will start by JMap.
+ * 
+ * @example ```ts
+ *  JMap.Documentation.open()
+ * ```
+ */
 declare namespace JMap {
   /**
    * JMap.Service

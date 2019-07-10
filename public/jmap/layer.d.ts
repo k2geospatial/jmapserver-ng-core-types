@@ -79,6 +79,7 @@ declare interface JLayerStyleVector extends JLayerStyle {
 }
 
 declare interface JLayerStylePoint extends JLayerStyleVector {
+  styleType: "POINT"
   symbolScale: number
   symbolRotationInDegree: number
   symbolProportionalSizeEnabled: boolean
@@ -91,6 +92,7 @@ declare interface JLayerStylePoint extends JLayerStyleVector {
 }
 
 declare interface JLayerStyleLine extends JLayerStyleVector {
+  styleType: "LINE"
   lineColor: JRGBColor
   lineThickness: number
   arrowType: JLayerStyleArrow
@@ -98,6 +100,7 @@ declare interface JLayerStyleLine extends JLayerStyleVector {
 }
 
 declare interface JLayerStyleSurface extends JLayerStyleVector {
+  styleType: "SURFACE"
   fillColor: JRGBColor
   transparentFill: boolean 
   borderColor: JRGBColor
@@ -109,6 +112,7 @@ declare interface JLayerStyleSurface extends JLayerStyleVector {
 }
 
 declare interface JLayerStyleAnnotation extends JLayerStyleVector {
+  styleType: "ANNOTATION"
   textFont: string
   textColor: JRGBColor
   textBold: boolean
@@ -120,6 +124,7 @@ declare interface JLayerStyleAnnotation extends JLayerStyleVector {
 }
 
 declare interface JLayerStyleMixed extends JLayerStyleVector {
+  styleType: "MIXED"
   point: JLayerStylePoint
   line: JLayerStyleLine
   surface: JLayerStyleSurface
