@@ -3,6 +3,7 @@ import { Feature } from "geojson"
 
 // API
 export interface JAPI {
+  version: string
   External: JAPIExternal
   Event: JAPIEvent
   Data: JAPIData

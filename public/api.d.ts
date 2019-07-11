@@ -9,6 +9,15 @@
  */
 declare namespace JMap {
   /**
+   * The API version.
+   * 
+   * @example ```ts
+   * console.info(JMap.version)
+   * // return a string that is the version like "1.0.1"
+   * ``
+   */
+  const version: string
+  /**
    * JMap.Service
    * 
    * This is where you can interact with the API.
