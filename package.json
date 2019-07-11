@@ -1,11 +1,11 @@
 {
   "name": "jmap-api-ng",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "JMap Web API Typescript extension files",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "export NODE_ENV='production'; gulp publish --gulpfile build/gulpfile.js;"
+    "pub": "export NODE_ENV='production'; gulp publish --gulpfile build/gulpfile.js;"
   },
   "repository": {
     "type": "git",
