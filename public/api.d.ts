@@ -422,7 +422,7 @@ declare namespace JMap {
          * @param interactor The map interactor descriptor
          * @param active If true will activate the new interactor
          * @example ```ts
-         * JMap.Service.Map.Interactor.addInteractor("custom-selection", { ...mapInteractor }, true)
+         * JMap.Service.Map.Interaction.addInteractor("custom-selection", { ...mapInteractor }, true)
          * ```
          */
         function addInteractor(name: string, interactor: JMapInteractor, active?: boolean): void
@@ -433,7 +433,7 @@ declare namespace JMap {
          * 
          * @param interactorId The interactor to terminate
          * @example ```ts
-         * JMap.Service.Map.Interactor.terminateInteractorById("custom-selection")
+         * JMap.Service.Map.Interaction.terminateInteractorById("custom-selection")
          * ```
          */
         function terminateInteractorById(interactorId: string): void
@@ -443,7 +443,7 @@ declare namespace JMap {
          * Return all registered interactor descriptors.
          * 
          * @example ```ts
-         * JMap.Service.Map.Interactor.getAllInteractorDescriptors()
+         * JMap.Service.Map.Interaction.getAllInteractorDescriptors()
          * ```
          */
         function getAllInteractorDescriptors(): JMapInteractorDescriptor[]
@@ -453,7 +453,7 @@ declare namespace JMap {
          * Return the actived interactor descriptor.
          * 
          * @example ```ts
-         * JMap.Service.Map.Interactor.getActiveInteractorDescriptor()
+         * JMap.Service.Map.Interaction.getActiveInteractorDescriptor()
          * ```
          */
         function getActiveInteractorDescriptor(): JMapInteractorDescriptor
@@ -464,7 +464,7 @@ declare namespace JMap {
          * 
          * @param interactorId The interactor to activate
          * @example ```ts
-         * JMap.Service.Map.Interactor.activateInteractorById("layer")
+         * JMap.Service.Map.Interaction.activateInteractorById("layer")
          * ```
          */
         function activateInteractorById(interactorId: string): void
@@ -478,33 +478,115 @@ declare namespace JMap {
         /**
          * JMap.Service.Map.Filter.applyHasAttribute
          * 
-         * For a layer, show on map only the features that has the attribute defined in their properties, even if the property is defined but value is undefined.
+         * Render only layer's features that has the attribute defined in their properties.
+         * If the feature attribute is defined but its value is undefined, the feature will be rendered.
          * 
          * @param layerId The JMap layer id
          * @param attributeId The JMap attribute id
          * @example ```ts
-         * JMap.Service.Map.Interactor.applyHasAttribute(4, "name")
+         * // Will render only features having attribute "name" for layer 4
+         * JMap.Service.Map.Filter.applyHasAttribute(4, "name")
          * ```
          */
         function applyHasAttribute(layerId: number, attributeId: string): string
         /**
          * JMap.Service.Map.Filter.applyHasNotAttribute
          * 
-         * For a layer, show on map only the features that hasn't the attribute defined in their properties.
-         * If the property is defined but value is undefined, the feature will not be shown.
+         * Render only layer's features that hasn't the attribute defined in their properties.
+         * If the property is defined but value is undefined, the feature will not be rendered.
          * 
          * @param layerId The JMap layer id
          * @param attributeId The JMap attribute id
          * @example ```ts
-         * JMap.Service.Map.Interactor.applyHasNotAttribute(4, "name")
+         * // Will hide features having attribute "name" for layer 4
+         * JMap.Service.Map.Filter.applyHasNotAttribute(4, "name")
          * ```
          */
         function applyHasNotAttribute(layerId: number, attributeId: string): string
+        /**
+         * JMap.Service.Map.Filter.applyAttributeValueEqualTo
+         * 
+         * Render only layer's features that has attributeId having value equals to attributeValue
+         * 
+         * @param layerId The JMap layer id
+         * @param attributeId The JMap attribute id
+         * @param attributeValue The attribute value
+         * @example ```ts
+         * // Will render features having "name" equals to "Aquarius" for layer 4
+         * JMap.Service.Map.Filter.applyAttributeValueEqualTo(4, "name", "Aquarius")
+         * ```
+         */
         function applyAttributeValueEqualTo(layerId: number, attributeId: string, attributeValue: any): string
+        /**
+         * JMap.Service.Map.Filter.applyAttributeValueBetween
+         * 
+         * Render only layer's features that has attributeId having value between start and end attributes,
+         * including equals values.
+         * 
+         * @param layerId The JMap layer id
+         * @param attributeId The JMap attribute id
+         * @param start The min value
+         * @param start The max value
+         * @example ```ts
+         * // Will render only features having "level" greater or equals to 2 and lower or equals to 10 for layer 4
+         * JMap.Service.Map.Filter.applyAttributeValueBetween(4, "level", 2, 10)
+         * ```
+         */
         function applyAttributeValueBetween(layerId: number, attributeId: string, start: any, end: any): string
+        /**
+         * JMap.Service.Map.Filter.applyAttributeValueNotEqualTo
+         * 
+         * Render only layer's features that has attributeId not having value equals to attributeValue
+         * 
+         * @param layerId The JMap layer id
+         * @param attributeId The JMap attribute id
+         * @param attributeValue The attribute value
+         * @example ```ts
+         * // Will hide features having "name" equals "Aquarius" for layer 4
+         * JMap.Service.Map.Filter.applyAttributeValueNotEqualTo(4, "name", "Aquarius")
+         * ```
+         */
         function applyAttributeValueNotEqualTo(layerId: number, attributeId: string, attributeValue: any): string
+        /**
+         * JMap.Service.Map.Filter.applyAttributeValueGreaterThan
+         * 
+         * Render only layer's features that has attributeId having value greater to attributeValue.
+         * 
+         * @param layerId The JMap layer id
+         * @param attributeId The JMap attribute id
+         * @param attributeValue The attribute value
+         * @example ```ts
+         * // Will hide features having "level" equals or lower to 2 for layer 4
+         * JMap.Service.Map.Filter.applyAttributeValueGreaterThan(4, "level", 2)
+         * ```
+         */
         function applyAttributeValueGreaterThan(layerId: number, attributeId: string, attributeValue: any): string
+        /**
+         * JMap.Service.Map.Filter.applyAttributeValueGreaterOrEqualsTo
+         * 
+         * Render only layer's features that has attributeId having value greater or equals to attributeValue.
+         * 
+         * @param layerId The JMap layer id
+         * @param attributeId The JMap attribute id
+         * @param attributeValue The attribute value
+         * @example ```ts
+         * // Will hide features having "level" equals or lower to 2 for layer 4
+         * JMap.Service.Map.Filter.applyAttributeValueGreaterOrEqualsTo(4, "name", "Aquarius")
+         * ```
+         */
         function applyAttributeValueGreaterOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
+        /**
+         * JMap.Service.Map.Filter.applyAttributeValueLowerThan
+         * 
+         * Render only layer's features that has attributeId having value lower to attributeValue.
+         * 
+         * @param layerId The JMap layer id
+         * @param attributeId The JMap attribute id
+         * @param attributeValue The attribute value
+         * @example ```ts
+         * JMap.Service.Map.Filter.applyAttributeValueLowerThan(4, "name", "Aquarius")
+         * ```
+         */
         function applyAttributeValueLowerThan(layerId: number, attributeId: string, attributeValue: any): string
         function applyAttributeValueLowerOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
         function applyAttributeValueIn(layerId: number, attributeId: string, attributeValues: any[]): string
