@@ -13,9 +13,9 @@ const typedoc = require("gulp-typedoc")
 const ROOT_DIR = join(__dirname, '..')
 const DOC_ROOT_DIR = join(__dirname, '../docs')
 const SRC_DIR = join(ROOT_DIR, '/src/public')
-
 const packageJSON = JSON.parse(fs.readFileSync("../package.json"))
-let newNpmVersion = packageJSON.version
+const newNpmVersion = packageJSON.version
+const DOC_DIR = join(DOC_ROOT_DIR, `v${newNpmVersion}`)
 
 console.log('Directories :')
 console.log(`  Doc dir  => ${DOC_ROOT_DIR}`)
@@ -24,19 +24,21 @@ console.log(`  Src dir => ${SRC_DIR}`)
 /************************************* PUBLISH ************************************/
 
 gulp.task('publish-npm', cb => {
-  // execSync(`npm publish`, { cwd: ROOT_DIR })
-  console.log(`NPM version="${newNpmVersion}" published`)
+  execSync(`npm publish`, { cwd: ROOT_DIR })
+  console.log(`NPM : version="${newNpmVersion}" has been published`)
   cb()
 })
 
 /*********************************** COMMIT ************************************/
 
 gulp.task('commit', cb => {
-  console.log("TODO COMMIT")
   execSync(`git add .`, { cwd: ROOT_DIR })
-  execSync(`git commit -m "Publish version '${newNpmVersion}' of documentation"`, { cwd: ROOT_DIR })
+  console.log(`GIT : all documentation files staged for commit`)
+  const commitMessage = `Publish version '${newNpmVersion}' of documentation`
+  execSync(`git commit -m "${commitMessage}"`, { cwd: ROOT_DIR })
+  console.log(`GIT : commit done (message="${commitMessage}")`)
   execSync(`git push`, { cwd: ROOT_DIR })
-  console.log(`Documentation commited`)
+  console.log(`Git : all documentation files has been committed and pushed on origin`)
   cb()
 })
 
@@ -44,7 +46,7 @@ gulp.task('commit', cb => {
 
 // https://typedoc.org/api/
 gulp.task("typedoc", cb => {
-  // TODO check if doc folder already exist and throw error if yes
+  console.log(`DOC : generating doc in directory "${DOC_DIR}"`)
   return gulp
       .src([
         "../public/**/*.ts"
@@ -56,7 +58,7 @@ gulp.task("typedoc", cb => {
           excludePrivate: true,
           tsconfig: "./tsconfig.json",
           includeDeclarations: true,
-          out: join(DOC_ROOT_DIR, `v${newNpmVersion}`),
+          out: DOC_DIR,
           name: "jmap-api",
           hideGenerator: true,
           version: false,
