@@ -119,19 +119,43 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:504</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L535">api.d.ts:535</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>JMap.Service.Map.Filter.applyAttributeValueBetween</p>
+								</div>
+								<p>Render only layer&#39;s features that has attributeId having value between start and end attributes,
+								including equals values.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span class="hljs-comment">// Will render only features having "level" greater or equals to 2 and lower or equals to 10 for layer 4</span>
+JMap.Service.Map.Filter.applyAttributeValueBetween(<span class="hljs-number">4</span>, <span class="hljs-string">"level"</span>, <span class="hljs-number">2</span>, <span class="hljs-number">10</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>layerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap layer id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap attribute id</p>
+									</div>
 								</li>
 								<li>
 									<h5>start: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The max value</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5>end: <span class="tsd-signature-type">any</span></h5>
@@ -151,19 +175,40 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:503</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L519">api.d.ts:519</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>JMap.Service.Map.Filter.applyAttributeValueEqualTo</p>
+								</div>
+								<p>Render only layer&#39;s features that has attributeId having value equals to attributeValue</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span class="hljs-comment">// Will render features having "name" equals to "Aquarius" for layer 4</span>
+JMap.Service.Map.Filter.applyAttributeValueEqualTo(<span class="hljs-number">4</span>, <span class="hljs-string">"name"</span>, <span class="hljs-string">"Aquarius"</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>layerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap layer id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap attribute id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeValue: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The attribute value</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -180,19 +225,40 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:507</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L577">api.d.ts:577</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>JMap.Service.Map.Filter.applyAttributeValueGreaterOrEqualsTo</p>
+								</div>
+								<p>Render only layer&#39;s features that has attributeId having value greater or equals to attributeValue.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span class="hljs-comment">// Will hide features having "level" equals or lower to 2 for layer 4</span>
+JMap.Service.Map.Filter.applyAttributeValueGreaterOrEqualsTo(<span class="hljs-number">4</span>, <span class="hljs-string">"name"</span>, <span class="hljs-string">"Aquarius"</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>layerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap layer id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap attribute id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeValue: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The attribute value</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -209,19 +275,40 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:506</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L563">api.d.ts:563</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>JMap.Service.Map.Filter.applyAttributeValueGreaterThan</p>
+								</div>
+								<p>Render only layer&#39;s features that has attributeId having value greater to attributeValue.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span class="hljs-comment">// Will hide features having "level" equals or lower to 2 for layer 4</span>
+JMap.Service.Map.Filter.applyAttributeValueGreaterThan(<span class="hljs-number">4</span>, <span class="hljs-string">"level"</span>, <span class="hljs-number">2</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>layerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap layer id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap attribute id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeValue: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The attribute value</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -238,7 +325,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:510</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L592">api.d.ts:592</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -267,7 +354,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:509</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L591">api.d.ts:591</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -296,19 +383,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:508</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L590">api.d.ts:590</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>JMap.Service.Map.Filter.applyAttributeValueLowerThan</p>
+								</div>
+								<p>Render only layer&#39;s features that has attributeId having value lower to attributeValue.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">JMap.Service.Map.Filter.applyAttributeValueLowerThan(<span class="hljs-number">4</span>, <span class="hljs-string">"name"</span>, <span class="hljs-string">"Aquarius"</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>layerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap layer id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap attribute id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeValue: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The attribute value</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -325,19 +432,40 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:505</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L549">api.d.ts:549</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>JMap.Service.Map.Filter.applyAttributeValueNotEqualTo</p>
+								</div>
+								<p>Render only layer&#39;s features that has attributeId not having value equals to attributeValue</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts"><span class="hljs-comment">// Will hide features having "name" equals "Aquarius" for layer 4</span>
+JMap.Service.Map.Filter.applyAttributeValueNotEqualTo(<span class="hljs-number">4</span>, <span class="hljs-string">"name"</span>, <span class="hljs-string">"Aquarius"</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>layerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap layer id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The JMap attribute id</p>
+									</div>
 								</li>
 								<li>
 									<h5>attributeValue: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The attribute value</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -354,7 +482,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:511</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L593">api.d.ts:593</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -383,17 +511,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:489</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L491">api.d.ts:491</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>JMap.Service.Map.Filter.applyHasAttribute</p>
 								</div>
-								<p>For a layer, show on map only the features that has the attribute defined in their properties, even if the property is defined but value is undefined.</p>
+								<p>Render only layer&#39;s features that has the attribute defined in their properties.
+								If the feature attribute is defined but its value is undefined, the feature will be rendered.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><pre><code class="language-ts">JMap.Service.Map.Interactor.applyHasAttribute(<span class="hljs-number">4</span>, <span class="hljs-string">"name"</span>)</code></pre>
+									<dd><pre><code class="language-ts"><span class="hljs-comment">// Will render only features having attribute "name" for layer 4</span>
+JMap.Service.Map.Filter.applyHasAttribute(<span class="hljs-number">4</span>, <span class="hljs-string">"name"</span>)</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -426,18 +556,19 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:502</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L505">api.d.ts:505</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>JMap.Service.Map.Filter.applyHasNotAttribute</p>
 								</div>
-								<p>For a layer, show on map only the features that hasn&#39;t the attribute defined in their properties.
-								If the property is defined but value is undefined, the feature will not be shown.</p>
+								<p>Render only layer&#39;s features that hasn&#39;t the attribute defined in their properties.
+								If the property is defined but value is undefined, the feature will not be rendered.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
-									<dd><pre><code class="language-ts">JMap.Service.Map.Interactor.applyHasNotAttribute(<span class="hljs-number">4</span>, <span class="hljs-string">"name"</span>)</code></pre>
+									<dd><pre><code class="language-ts"><span class="hljs-comment">// Will hide features having attribute "name" for layer 4</span>
+JMap.Service.Map.Filter.applyHasNotAttribute(<span class="hljs-number">4</span>, <span class="hljs-string">"name"</span>)</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -470,7 +601,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:512</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L594">api.d.ts:594</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -496,7 +627,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:514</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L596">api.d.ts:596</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -519,7 +650,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api.d.ts:513</li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/95f91ed/public/api.d.ts#L595">api.d.ts:595</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
