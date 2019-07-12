@@ -15,7 +15,7 @@ const DOC_ROOT_DIR = join(__dirname, '../docs')
 const SRC_DIR = join(ROOT_DIR, '/src/public')
 const packageJSON = JSON.parse(fs.readFileSync("../package.json"))
 const newNpmVersion = packageJSON.version
-const DOC_DIR = join(DOC_ROOT_DIR, `v${newNpmVersion}`)
+const DOC_DIR = process.env.DOC_DIR ? join(ROOT_DIR, process.env.DOC_DIR) : join(DOC_ROOT_DIR, `v${newNpmVersion}`)
 
 console.log('Directories :')
 console.log(`  Doc dir  => ${DOC_ROOT_DIR}`)
@@ -47,6 +47,7 @@ gulp.task('commit', cb => {
 // https://typedoc.org/api/
 gulp.task("typedoc", cb => {
   console.log(`DOC : generating doc in directory "${DOC_DIR}"`)
+  console.log(`DOC : file://${DOC_DIR}/index.html`)
   return gulp
       .src([
         "../public/**/*.ts"

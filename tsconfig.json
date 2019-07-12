@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "outDir": "./out",
+    "baseUrl": "./",
+    "strict": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "lib": [
+      "es2017",
+      "dom",
+      "es5",
+      "es2015.promise"
+    ]
+  },
+  "include": [
+    "../public/**/*",
+    "../private/**/*",
+    "./index.ts"
+  ]
+}
