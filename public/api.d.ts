@@ -3,14 +3,14 @@
  * 
  * All references to JMAP Web API will start by ***JMap***.
  * 
- * By example :
+ * For example :
  * ```ts
- * // Return the API build version.
+ * // return the API build version.
  * JMap.Api.getVersion()
  * ```
  * 
  * The API is organized in modules, some of them can have sub-modules :
- *   - [[JMap.Api]] : Get the API version, and consult this documentation
+ *   - [[JMap.Api]] : Get API information (version, documentation)
  *   - [[JMap.Data]] : Get API state data
  *   - [[JMap.Service]] : Manage and change the API state
  *   - [[JMap.Component]] : Create and destroy your JMap API Component instances
@@ -20,6 +20,11 @@
  */
 declare namespace JMap {
   
+  /**
+   * **JMap.Api**
+   * 
+   * This is where you can find information about the API.
+   */
   namespace Api {
 
     /**
@@ -29,8 +34,8 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the version, for example "1.0.1"
-     * console.info(`JMap version = "${JMap.getVersion()}"`)
+     * // return the build version, for example "1.0.1"
+     * JMap.Api.getVersion()
      * ```
      */
     function getVersion(): string
@@ -2162,6 +2167,19 @@ declare namespace JMap {
      * This section contains all JMap map getter methods
      */
     namespace Map {
+
+      /**
+       * ***JMap.Data.Map.getDomContainerId***
+       * 
+       * Return the map div container id, where the map is created.
+       * 
+       * @example ```ts
+       * 
+       * // return the map div container id
+       * JMap.Data.Map.getDomContainerId()
+       * ```
+       */
+      function getDomContainerId(): string
 
       /**
        * ***JMap.Data.Map.getImplementation***

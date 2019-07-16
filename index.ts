@@ -137,6 +137,7 @@ export interface JStoreGetterLayer {
 }
 
 export interface JStoreGetterMap {
+  getDomContainerId(): string
   getImplementation(): MAP_IMPLEMENTATION
   isMapLoaded(): boolean
   getCenter(): { x: number, y: number }

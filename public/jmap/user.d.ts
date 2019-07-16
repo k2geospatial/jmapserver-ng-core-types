@@ -1,8 +1,21 @@
 declare interface JSessionData {
   /**
-   * The session token
+   * The JMap user session token.
    */
   token: string
+  /**
+   * The user information.
+   * 
+   * @example ```ts
+   * 
+   * user: {
+   *   login: "jdo@company.com",
+   *   firstname: "Do",
+   *   lastname: "John",
+   *   admin: true
+   * }
+   * ```
+   */
   user: JUserPublicData
 }
 
