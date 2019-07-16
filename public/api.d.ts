@@ -1,49 +1,80 @@
 /**
- * The API entry point in the javascript console is ***JMap***, the entry point.
- * All references to our API will start by ***JMap***.
+ * The API entry point, in the javascript console, is ***JMap***.
  * 
- * @example ```ts
+ * All references to JMAP Web API will start by ***JMap***.
  * 
- *  JMap.Data.Project.getId()
+ * By example :
+ * ```ts
+ * // Return the API build version.
+ * JMap.Api.getVersion()
  * ```
+ * 
+ * The API is organized in modules, some of them can have sub-modules :
+ *   - [[JMap.Api]] : Get the API version, and consult this documentation
+ *   - [[JMap.Data]] : Get API state data
+ *   - [[JMap.Service]] : Manage and change the API state
+ *   - [[JMap.Component]] : Create and destroy your JMap API Component instances
+ *   - [[JMap.Application]] : Manage the JMap API application
+ *   - [[JMap.Event]] : Create, activate, deactivate and remove your own listeners, reacting to JMAP API events
+ *   - [[JMap.External]] : Fully integrate your own plugin to JMAP API
  */
 declare namespace JMap {
   
-  /**
-   * The API version.
-   * 
-   * @example ```ts
-   * 
-   * console.info(JMap.version)
-   * // return a string that is the version like "1.0.1"
-   * ``
-   */
-  const version: string
+  namespace Api {
+
+    /**
+     * **JMap.Api.getVersion**
+     * 
+     * Return the API build version.
+     * 
+     * @example ```ts
+     * 
+     * // return the version, for example "1.0.1"
+     * console.info(`JMap version = "${JMap.getVersion()}"`)
+     * ```
+     */
+    function getVersion(): string
+
+    /**
+    * **JMap.Api.openDocumentation**
+    * 
+    * Open JMap Web API online documentation, in a new tab.
+    * 
+    * @example ```ts
+    * 
+    * // open JMap Web API online documentation, in a new tab
+    * JMap.Api.openDocumentation()
+    * ```
+    */
+   function open(): void
+  }
   
   /**
    * **JMap.Service**
    * 
    * This is where you can interact with the API.
-   * It is split by features.
+   * If you want to get data, most of the time you will find your function in JMap.Data but not here.
+   * But if you want to set or apply things, it's there that you gonna do.
    */
   namespace Service {
     
     /**
      * **JMap.Service.Api**
      * 
-     * API related methods.
+     * JMap API related methods.
      */
     namespace Api {
       
       /**
        * **JMap.Service.Api.setMode**
        * 
-       *  Change the API mode. Mainly used when the application is launched.
+       * Change the API mode. Mainly used when the application is launched.
        * 
        * @param mode JMap.Service.Api.setMode()
        * @example ```ts
        * 
-       *  JMap.Service.Api.setMode("layer")
+       * // set the API mode to "layer"
+       * JMap.Service.Api.setMode("layer")
        * ```
        */
       function setMode(mode: API_MODE): void
@@ -115,30 +146,43 @@ declare namespace JMap {
        * ```
        */
       function getLayerAttributes(layerId: number): JLayerAttribute[]
-      
+
       /**
        * **JMap.Service.Layer.getLayerTree**
        * 
-       * Return the tree of layer elements.
-       * A layer element can be a tree node or a layer descriptor
+       * Return project's layer tree.
+       * 
+       * The layer tree is an array of layer element.
+       * 
+       * A layer element is a node or a leaf.
+       * 
+       * A node contains leaves and/or other nodes, and has a negative id.
+       * 
+       * A leaf is a JMap layer and has a positive id.
+       * 
+       * If no project is loaded, return en empty array.
        * 
        * @example ```ts
        * 
-       *  JMap.Service.Layer.getLayerTree()
+       * // return the entire layer element tree of the project
+       * JMap.Service.Layer.getLayerTree()
        * ```
        */
       function getLayerTree(): JLayerTree
-      
+
       /**
        * **JMap.Service.Layer.getRenderedLayerIds**
        * 
        * Return the ids of the layers that are displayed on the map.
        * 
-       * This function exists because MapBox cannot display all the layers defined by the project.
+       * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
+       * 
+       * This function return all layers ids that are managed by the map.
        * 
        * @example ```ts
        * 
-       *  JMap.Service.Layer.getRenderedLayerIds()
+       * // return all layer ids that are managed by the map
+       * JMap.Service.Layer.getRenderedLayerIds()
        * ```
        */
       function getRenderedLayerIds(): number[]
@@ -146,101 +190,91 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.exists**
        * 
-       * Return true if the layer exists.
+       * Return true if a layer having the id exists.
        * 
-       * @throws Error if layer is not found
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return true if the layer with id=4 exists
-       * JMap.Service.Layer.exists(4)
+       * // return true if layer id=3 exists
+       * JMap.Service.Layer.exists(3)
        * ```
        */
       function exists(layerId: number): boolean
-      
+
       /**
        * **JMap.Service.Layer.getById**
        * 
-       * Get the layer element in the tree (a node or a layer descriptor) and return it.
+       * Return the JMap layer having the id.
        * 
-       * @throws Error if layer is not found
+       * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * JMap.Service.Layer.getById(4)
+       * // return the JMap layer id=3
+       * JMap.Service.Layer.getById(3)
        * ```
        */
       function getById(layerId: number): JLayerElement
-      
+
       /**
        * **JMap.Service.Layer.getName**
        * 
-       * Return the layer element name.
+       * Return the name of the layer.
        * 
-       * @throws Error if layer is not found
+       * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * JMap.Service.Layer.getName(4)
+       * // return the name of layer id=3
+       * JMap.Service.Layer.getName(3)
        * ```
        */
       function getName(layerId: number): string
-      
+
       /**
        * **JMap.Service.Layer.getDescription**
        * 
-       * Return the layer element description.
+       * Return the descrition of the layer.
        * 
-       * @throws Error if layer is not found
+       * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * JMap.Service.Layer.getDescription(4)
+       * // return the description of layer id=3
+       * JMap.Service.Layer.getDescription(3)
        * ```
        */
       function getDescription(layerId: number): string
-      
+
       /**
        * **JMap.Service.Layer.isVisible**
        * 
-       * Return true if the layer element is visible.
+       * Return true if the layer is visible.
        * 
-       * It is the user visibility, not the map visibility that depends on the scale.
+       * This is the "user" visibility, different from the "map" visibility
+       * which is based on the min and max scale. 
        * 
-       * @throws Error if layer is not found
+       * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * JMap.Service.Layer.isVisible(4)
+       * // return false if layer id=3 is not set as visible
+       * JMap.Service.Layer.isVisible(3)
        * ```
        */
       function isVisible(layerId: number): boolean
-      
-      /**
-       * **JMap.Service.Layer.setVisible**
-       * 
-       * Set the layer element visibility.
-       * 
-       * @throws Error if layer is not found
-       * @param layerId The JMap layer id
-       * @param visible if true will display, if false will hide the layer element
-       * @example ```ts
-       * 
-       * JMap.Service.Layer.setVisible(4, false)
-       * ```
-       */
-      function setVisible(layerId: number, visible: boolean): void
-      
+
       /**
        * **JMap.Service.Layer.setGroupOpen**
        * 
        * Set the tree node open or closed.
        * 
-       * @throws Error if layer is not found
-       * @param layerId The JMap layer id
+       * @throws Error if tree node is not found
+       * @param nodeId The JMap layer id
        * @param open if true will display, if false will hide the node
        * @example ```ts
        * 
+       * // Open the node 4
        * JMap.Service.Layer.setGroupOpen(4, false)
        * ```
        */
@@ -256,6 +290,7 @@ declare namespace JMap {
        * @param layerId The JMap layer id
        * @example ```ts
        * 
+       * // Remove layer 4 (only client side)
        * JMap.Service.Layer.removeLayer(4)
        * ```
        */
@@ -268,6 +303,8 @@ declare namespace JMap {
        * 
        * @throws Error if layer or thematic are not found
        * @param layerId The JMap layer id
+       * @param thematicId The thematic id
+       * @param visibility true to show, false to hide
        * @example ```ts
        * 
        * // Display the thematic id=3 of layer id=7
@@ -283,17 +320,22 @@ declare namespace JMap {
     /**
      * **JMap.Service.Map**
      * 
-     * Map related features
+     * This section contains map related methods.
+     * 
+     * JMap support 2 type of map implementations : "MapBox" or "OpenLayers".
+     * 
+     * Sometimes the result of the methods depends on this [[MAP_IMPLEMENTATION]].
      */
     namespace Map {
       
       /**
        * **JMap.Service.Map.getMap**
        * 
-       * Return the map implementation : MapBox or OpenLayer map.
+       * Return the map implementation instance, a MapBox or OpenLayer map.
        * 
        * @example ```ts
        * 
+       * // return the implementation map instance
        * JMap.Service.Map.getMap()
        * ```
        */
@@ -302,7 +344,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getMapJSLib**
        * 
-       * Return the map implementation librairie : MapBox or OpenLayer.
+       * Return the map implementation JS library : MapBox or OpenLayer.
        * 
        * Usefull to be able to create library's object, by example a Mapbox popup.
        * 
@@ -320,11 +362,29 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getLayersVisibilityStatus**
        * 
-       * Return the layer visibility status. 
+       * Return layers visibility status.
+       * 
+       * The result is a map (= javascript object) where :
+       *  - the key is the JMap layer id
+       *  - the value is an object containing all visibility status for a layer
+       * 
+       * The visibility status are the following :
+       *  - isVisible: true if the user can see the layer on the map
+       *  - userVisibility: user can show or hide a layer
+       *  - mapVisibility: depending on the map scale or zoom level a layer can be hidden
        * 
        * @example ```ts
        * 
+       * // return the visibility status
        * JMap.Service.Map.getLayersVisibilityStatus()
+       * 
+       * // Example of result :
+       * [
+       *  1: { isVisible: true, userVisibility: true, mapVisibility: true }
+       *  2: { isVisible: false, userVisibility: true, mapVisibility: false }
+       *  3: { isVisible: false, userVisibility: false, mapVisibility: false }
+       *  4: { isVisible: false, userVisibility: false, mapVisibility: false }
+       * ]
        * ```
        */
       function getLayersVisibilityStatus(): JMapLayersVisibilityStatus
@@ -334,8 +394,13 @@ declare namespace JMap {
        * 
        * Return all layer ids that are displayed by the map.
        * 
+       * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
+       * 
+       * This function return all layers ids that are managed by the map.
+       * 
        * @example ```ts
        * 
+       * // return layer ids managed by the map implementation
        * JMap.Service.Map.getInUseJMapLayerIds()
        * ```
        */
@@ -346,8 +411,13 @@ declare namespace JMap {
        * 
        * Return all vector layer ids that are displayed by the map.
        * 
+       * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
+       * 
+       * This function return all vector layers ids that are managed by the map.
+       * 
        * @example ```ts
        * 
+       * // return vector layer ids managed by the map implementation
        * JMap.Service.Map.getInUseJMapVectorLayerIds()
        * ```
        */
@@ -360,9 +430,11 @@ declare namespace JMap {
        * 
        * @throws Error if layer is not found
        * @param layerId The JMap layer id
+       * @returns the JMap layer id, or undefined if no layer before
        * @example ```ts
        * 
-       * JMap.Service.Map.getInUseJMapLayerBefore()
+       * // Return the layer's id that is located before layer id=4
+       * JMap.Service.Map.getInUseJMapLayerBefore(4)
        * ```
        */
       function getInUseJMapLayerBefore(layerId: number): number | undefined
@@ -374,9 +446,11 @@ declare namespace JMap {
        * 
        * @throws Error if layer is not found
        * @param layerId The JMap layer id
+       * @returns the JMap layer id, or undefined if no layer after
        * @example ```ts
        * 
-       * JMap.Service.Map.getInUseJMapLayerAfter()
+       * // Return the layer's id that is located after layer id=3
+       * JMap.Service.Map.getInUseJMapLayerAfter(3)
        * ```
        */
       function getInUseJMapLayerAfter(layerId: number): number | undefined
@@ -393,15 +467,18 @@ declare namespace JMap {
        * @return A features array
        * @example ```ts
        * 
-       * // Will return all rendered geojson features for layer 4
+       * // Return all rendered geojson features for layer 4
        * JMap.Service.Map.getRenderedFeatures(4)
        * 
-       * // Will return all rendered geojson features for layer 4 at location x=45.54 and y=65.43
+       * // Return all rendered geojson features for layer 4 at location x=45.54 and y=65.43
        * JMap.Service.Map.getRenderedFeatures(4, { x: 45.54, y: 65.43 })
        * 
-       * // Will return all rendered geojson features for layer 4 that intersect the boundary box
-       * // having south west corner x=45.54 and y=65.43 and north est corner x=48.54 and y=70.43
-       * JMap.Service.Map.getRenderedFeatures(4, { sw: { x: 45.54, y: 65.43 }, ne: { x: 48.54, y: 70.43 }})
+       * // Return all rendered geojson features for layer 4 that intersect the boundary box
+       * // having south-west { x=45.54 and y=65.43 } and north-est { x=48.54 and y=70.43 }
+       * JMap.Service.Map.getRenderedFeatures(4, {
+       *  sw: { x: 45.54, y: 65.43 },
+       *  ne: { x: 48.54, y: 70.43 }
+       * })
        * ```
        */
       function getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): any[]
@@ -424,14 +501,16 @@ declare namespace JMap {
        * // Will return all features attributes for layer 4
        * JMap.Service.Map.getRenderedFeaturesAttributeValues(4)
        * 
+       * // Will return all features attributes for layer 4, that intersect the location
        * JMap.Service.Map.getRenderedFeaturesAttributeValues(4, { x: 45.54, y: 65.43 })
        * 
+       * // Will return all features attributes for layer 4, that intersect the boundary box
        * JMap.Service.Map.getRenderedFeaturesAttributeValues(4, { sw: { x: 45.54, y: 65.43 }, ne: { x: 48.54, y: 70.43 }})
        * 
-       * // Result example :
+       * // Example of result for features that have only 2 attributes "Firestation" and "Nursery" :
        * [
-       *  { name: "Firestation", featureId: 2377 },
-       *  { name: "Nursery", featureId: 345 }
+       *  { name: "Firestation", age: 23, featureId: 2377 },
+       *  { name: "Nursery", age: 20, featureId: 3456 }
        * ]
        * ```
        */
@@ -442,9 +521,16 @@ declare namespace JMap {
        * 
        * Return the available basemap names that can be used with method setBaseMap.
        * 
+       * Depends on the map implementation ([[MAP_IMPLEMENTATION]]).
+       * 
+       * For mapbox : [ "light", "streets", "satellite", "dark", "outdoors", "none" ]
+       * 
+       * For openlayers : Not yet implemented
+       * 
+       * @returns an array of string, the available basemap names for map implementation
        * @example ```ts
        * 
-       * // For mapbox it returns [ "light", "streets", "satellite", "dark", "outdoors", "none" ]
+       * // return an array of string comtaining names of available basemaps
        * JMap.Service.Map.getAvailableBaseMaps()
        * ```
        */
@@ -459,6 +545,7 @@ declare namespace JMap {
        * @param mapName The name of the basemap, use JMap.Service.Map.getAvailableBaseMaps() to get available basemap names
        * @example ```ts
        * 
+       * // Set the basemap as "streets"
        * JMap.Service.Map.setBaseMap("streets")
        * ```
        */
@@ -467,12 +554,13 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.panTo**
        * 
-       * Move and center the map to the location
+       * Move and center the map to the location (animated)
        * 
        * @throws Error if no or incorrect center is passed
        * @param center The location where the map will be centered
        * @example ```ts
        * 
+       * // Move the map to the desired location
        * JMap.Service.Map.panTo({ x: 45.34, y: 65.87 })
        * ```
        */
@@ -481,12 +569,13 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.zoomTo**
        * 
-       * Zoom or unzoom the map
+       * Zoom or unzoom the map (animated)
        * 
        * @throws Error if no zoom is passed
        * @param zoom The zoom level to apply
        * @example ```ts
        * 
+       * // Zoom or unzoom the map to reach the desired zoom level
        * JMap.Service.Map.zoomTo(4.45)
        * ```
        */
@@ -495,13 +584,14 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.panAndZoomTo**
        * 
-       * Move and zoom (or unzoom) the map
+       * Move and zoom (or unzoom) the map (animated)
        * 
        * @throws Error if bad parameters are passed
        * @param center The location where the map will be centered
        * @param zoom The zoom level to apply
        * @example ```ts
        * 
+       * // Move and zoom the map
        * JMap.Service.Map.panAndZoomTo({ x: 45.34, y: 65.87 }, 5)
        * ```
        */
@@ -555,7 +645,7 @@ declare namespace JMap {
          * 
          * So be carrefull not to remove JMap interactors.
          * 
-         * You can get the list of already existing interactor ids like that :
+         * You can get the list of already existing interactor ids like this :
          * ```ts
          * JMap.Service.Map.Interaction
          *    .getAllInteractorDescriptors()
@@ -568,11 +658,11 @@ declare namespace JMap {
          * @param active If true will activate the new interactor after being added
          * @example ```ts
          * 
-         * JMap.Service.Map.Interaction.addInteractor(
-         *    "custom-selection",
-         *    { ...mapInteractor },
-         *    true
-         * )
+         * // add a new interactor
+         * JMap.Service.Map.Interaction.addInteractor("my-custom-pin", { ...mapInteractor }, false)
+         * 
+         * // add and activate a new interactor
+         * JMap.Service.Map.Interaction.addInteractor("my-custom-pin", { ...mapInteractor }, true)
          * ```
          */
         function addInteractor(id: string, interactor: JMapInteractor, active?: boolean): void
@@ -590,6 +680,7 @@ declare namespace JMap {
          * @param interactorId The interactor id to terminate
          * @example ```ts
          * 
+         * // terminate interactor id="custom-selection"
          * JMap.Service.Map.Interaction.terminateInteractorById("custom-selection")
          * ```
          */
@@ -602,6 +693,7 @@ declare namespace JMap {
          * 
          * @example ```ts
          * 
+         * // return all existing interactor descriptors
          * JMap.Service.Map.Interaction.getAllInteractorDescriptors()
          * ```
          */
@@ -614,6 +706,7 @@ declare namespace JMap {
          * 
          * @example ```ts
          * 
+         * // Return the active interactor descriptor
          * JMap.Service.Map.Interaction.getActiveInteractorDescriptor()
          * ```
          */
@@ -630,6 +723,7 @@ declare namespace JMap {
          * @param interactorId The interactor id to activate
          * @example ```ts
          * 
+         * // Activate the JMAP defined interactor "draw"
          * JMap.Service.Map.Interaction.activateInteractorById("draw")
          * ```
          */
@@ -944,6 +1038,7 @@ declare namespace JMap {
          * @returns The new feature selection
          * @example ```ts
          * 
+         * // Process a selection on the map for all layers, at the location in params
          * JMap.Service.Map.Selection.selectOnAllLayersAtLocation({ x: 34.23, y: 55.5 })
          * ```
          */
@@ -962,6 +1057,7 @@ declare namespace JMap {
          * @returns The features array
          * @example ```ts
          * 
+         * // Process a selection on the map for layer id=4, at the location in params
          * JMap.Service.Map.Selection.selectOnOneLayerAtLocation(4, { x: 34.23, y: 55.5 })
          * ```
          */
@@ -1287,6 +1383,7 @@ declare namespace JMap {
        * const userLogin = "jdo@mycompany.com"
        * const userPassword = "xxx"
        * 
+       * // Open a new user session, and get back user's data from server
        * JMap.Service.User
        *    .login(userLogin, userPassword)
        *    .then(sessionData => {
@@ -1306,6 +1403,7 @@ declare namespace JMap {
        * 
        * @example ```ts
        * 
+       * // Close the user session client and server side
        * JMap.Service.User
        *    .logout()
        *    .then(() => {
@@ -1340,126 +1438,1608 @@ declare namespace JMap {
       function setSession(session: JSessionData): void
     }
   }
+
+  /**
+   * **JMap.Application**
+   * 
+   * Here are JMap application related method.
+   * 
+   * JMap API can be started with only the map in the div of your choice, and you can start some JMap component too.
+   * 
+   * But from this section you will be able to manage the full JMap Web Application.
+   */
   namespace Application {
-    function needToStart(): boolean
-    function getContainerId(): string
-    function getInstance(): React.Component<any, React.ComponentState> | Element | void
-    function start(containerId?: string, initOptions?: JAPIApplicationOptions): void
+
+    /**
+     * **JMap.Application.start**
+     * 
+     * Start the JMap application.
+     * 
+     * The container div need to exist in the DOM before calling this method.
+     * 
+     * @throws Error if app has already been started or if container not found in the DOM
+     * @param containerId The id of the div in the DOM where app will be inserted.
+     * @example ```ts
+     * 
+     * // Start the JMap application and mount it in div id="my-div"
+     * JMap.Application.start("my-div")
+     * ```
+     */
+    function start(containerId?: string): void
+
+    /**
+     * **JMap.Application.startIfNeeded**
+     * 
+     * You should not need to use this function.
+     * 
+     * This function is called by the API in order to check if the application need to start.
+     * 
+     * If yes it call the function *JMap.Application.start*.
+     * 
+     * @param containerId The id of the div in the DOM where app will be inserted.
+     * @example ```ts
+     * 
+     * // Start the JMap application if it is set to true in the startup options
+     * JMap.Application.startIfNeeded()
+     * ```
+     */
+    function startIfNeeded(): void
+
+    /**
+     * **JMap.Application.SidePanel**
+     * 
+     * You can manage the application left panel from here.
+     */
+    namespace SidePanel {
+
+      /**
+       * **JMap.Application.Sidepanel.setVisible**
+       * 
+       * Set the application's left side panel visibility.
+       * 
+       * @param open if true show the panel, else hide it
+       * @example ```ts
+       * 
+       * // Show the left side panel
+       * JMap.Application.Sidepanel.setVisible(true)
+       * 
+       * // Hide the left side panel
+       * JMap.Application.Sidepanel.setVisible(false)
+       * ```
+       */
+      function setVisible(open: boolean): void
+
+      /**
+       * **JMap.Application.Sidepanel.open**
+       * 
+       * Display the left application panel if not visible.
+       * 
+       * Do nothing if it's already visible.
+       * 
+       * @example ```ts
+       * 
+       * // Open the application left side panel
+       * JMap.Application.Sidepanel.open()
+       * ```
+       */
+      function open(): void
+
+      /**
+       * **JMap.Application.Sidepanel.open**
+       * 
+       * Hide the left application panel if visible.
+       * 
+       * Do nothing if it's already not visible.
+       * 
+       * @example ```ts
+       * 
+       * // Close the application left side panel
+       * JMap.Application.Sidepanel.close()
+       * ```
+       */
+      function close(): void
+    }
   }
+
+  /**
+   * **JMap.Component**
+   * 
+   * From this section you can start and destroy JMap component
+   * that you can mount where you want in your own DOM containers.
+   */
   namespace Component {
+
+    /**
+     * **JMap.Component.User**
+     * 
+     * The user component is a panel where :
+     *  - If you are not loggued in display the login form
+     *  - If you loggued in display the user information
+     */
     namespace User {
-      function create(containerId: string, options?: JUserCmpProps): void
+
+      /**
+       * **JMap.Component.User.create**
+       * 
+       * Create a new instance of user component in the container div.
+       * 
+       * @throws Error if container doesn't exist in the DOM
+       * @param containerId The DOM container id where the component will be mounted
+       * @example ```ts
+       * 
+       * // create a user component, and mount it in div id="my-custom-div-id"
+       * JMap.Component.User.create("my-custom-div-id")
+       * ```
+       */
+      function create(containerId: string): void
+
+      /**
+       * **JMap.Component.User.destroy**
+       * 
+       * Destroy the user component instance that has been created in the container div.
+       * 
+       * @throws Error if container doesn't exist in the DOM
+       * @param containerId The DOM container id where the component will be mounted
+       * @example ```ts
+       * 
+       * // destroy the user component mounted in div id="my-custom-div-id"
+       * JMap.Component.User.destroy("my-custom-div-id")
+       * ```
+       */
       function destroy(containerId: string): void
     }
   }
+
+  /**
+   * **JMap.Data**
+   * 
+   * From this section you can get all the data you need about the different data states of the API.
+   * 
+   * There is not data modifications from this section, you can just get data.
+   * 
+   * If you want to change the data state, have a look in [[JMap.Service]].
+   */
   namespace Data {
+
+    /**
+     * **JMap.Component.User.destroy**
+     * 
+     * Return the JMap data store, currently an instance of Redux (https://redux.js.org/).
+     *
+     * @example ```ts
+     * 
+     * // return the Web API redux store
+     * const reduxStore = JMap.Data.getStore()
+     * reduxStore.dispatch(...)
+     * ```
+     */
     function getStore(): any | undefined
+
+    /**
+     * ***JMap.Data.Api***
+     * 
+     * This section contains all JMAp Api getter methods
+     */
     namespace Api {
-      function gerRestUrl(): string
+
+      /**
+       * **JMap.Data.Api.getRestUrl**
+       * 
+       * Return in use JMap API server rest API.
+       *
+       * This is the url on which the JMap API will make all of its ajax call.
+       * 
+       * @example ```ts
+       * 
+       * // return the JMap server rest URL in use
+       * JMap.Data.Api.getRestUrl()
+       * ```
+       */
+      function getRestUrl(): string
+
+      /**
+       * **JMap.Data.Api.getMode**
+       * 
+       * Return the current JMap API mode state.
+       *
+       * This mode is mainly use for the JMap application.
+       * 
+       * @example ```ts
+       * 
+       * // return the currently activated API mode
+       * JMap.Data.Api.getMode()
+       * ```
+       */
       function getMode(): API_MODE
+
+      /**
+       * **JMap.Data.Api.getAllMode**
+       * 
+       * Return all available JMap API modes (see [[API_MODE]]).
+       * 
+       * @example ```ts
+       * 
+       * // return all available API modes
+       * JMap.Data.Api.getAllMode()
+       * ```
+       */
       function getAllMode(): API_MODE[]
+
+      /**
+       * **JMap.Data.Api.getMapImplementation**
+       * 
+       * Return the map implementation : "MapBox" or "OpenLayers".
+       * 
+       * @example ```ts
+       * 
+       * // return "MapBox" or "OpenLayers"
+       * JMap.Data.Api.getMapImplementation()
+       * ```
+       */
       function getMapImplementation(): MAP_IMPLEMENTATION
     }
-    namespace Project {
-      function getId(): string
-    }
-    namespace Layer {
-      function getLayerTree(): JLayerTree
-      function getRenderedLayers(): JLayer[]
-      function exists(layerId: number): boolean
-      function getById(layerId: number): JLayerElement
-      function getSelfOrChildren(layerId: number): JLayer[]
-      function getName(layerId: number): string
-      function getDescription(layerId: number): string
-      function isVisible(layerId: number): boolean
-      function getStyle(layerId: number): JLayerStyle
-      function getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
-      function getSelectionStyle(layerId: number): JLayerStyle | null
-      function getThematicById(layerId: number, thematicId: number): JLayerThematic
+
+    /**
+     * ***JMap.Data.Application***
+     * 
+     * This section contains all JMap application getter methods
+     */
+    namespace Application {
+
       /**
-       * JMap.Data.Layer.getAllThematicsForLayer
+       * **JMap.Data.Application.isSidePanelOpen**
        * 
-       * Return all layer's thematics
+       * Return true if the JMAP application main panel on the left is opened.
        * 
-       * @throws Error if layer is not found
+       * @example ```ts
+       * 
+       * // return true if side panel is opened
+       * JMap.Data.Application.isSidePanelOpen()
+       * ```
+       */
+      function isSidePanelOpen(): boolean
+
+      /**
+       * **JMap.Data.Application.getDomContainerId**
+       * 
+       * Return the DOM div element id where application UI has been inserted.
+       * 
+       * @example ```ts
+       * 
+       * // return the application DOM container id
+       * JMap.Data.Application.getDomContainerId()
+       * ```
+       */
+      function getDomContainerId(): string
+    }
+
+    /**
+     * ***JMap.Data.Project***
+     * 
+     * This section contains all JMap project getter methods
+     */
+    namespace Project {
+
+      /**
+       * **JMap.Data.Project.getId**
+       * 
+       * Return current JMap project's id.
+       * 
+       * If no project is loaded, return -1.
+       * 
+       * @example ```ts
+       * 
+       * // return the currently loaded project's id
+       * JMap.Data.Project.getId()
+       * ```
+       */
+      function getId(): number
+
+      /**
+       * **JMap.Data.Project.getName**
+       * 
+       * Return current JMap project's name.
+       * 
+       * If no project is loaded, return "".
+       * 
+       * @example ```ts
+       * 
+       * // return the currently loaded project's name
+       * JMap.Data.Project.getName()
+       * ```
+       */
+      function getName(): string
+
+      /**
+       * **JMap.Data.Project.getDescription**
+       * 
+       * Return current JMap project's description.
+       * 
+       * If no project is loaded, return "".
+       * 
+       * @example ```ts
+       * 
+       * // return the currently loaded project's description
+       * JMap.Data.Project.getDescription()
+       * ```
+       */
+      function getDescription(): string
+
+      /**
+       * **JMap.Data.Project.getProjection**
+       * 
+       * Return current JMap project's projection.
+       * 
+       * If no project is loaded, return an empty projection : { code: "", name: "" }.
+       * 
+       * In MapBox projection is always "***EPSG:3857***", but that function returns the project
+       * defined projection (so it can be different of ***ESPG:3857***).
+       * 
+       * @example ```ts
+       * 
+       * // return the project's projection
+       * JMap.Data.Project.getProjection()
+       * ```
+       */
+      function getProjection(): JProjection
+
+      /**
+       * **JMap.Data.Project.getInitialRotation**
+       * 
+       * Return current JMap project's initial map rotation.
+       * 
+       * If no project is loaded, return 0.
+       * 
+       * @example ```ts
+       * 
+       * // return the project's initial rotation
+       * JMap.Data.Project.getInitialRotation()
+       * ```
+       */
+      function getInitialRotation(): number
+
+      /**
+       * **JMap.Data.Project.getScaleMax**
+       * 
+       * Return current JMap project's max scale.
+       * 
+       * If no project is loaded, return 0.
+       * 
+       * @example ```ts
+       * 
+       * // return the project's max scale
+       * JMap.Data.Project.getScaleMax()
+       * ```
+       */
+      function getScaleMax(): number
+
+      /**
+       * **JMap.Data.Project.getScaleMin**
+       * 
+       * Return current JMap project's min scale.
+       * 
+       * If no project is loaded, return 0.
+       * 
+       * @example ```ts
+       * 
+       * // return the project's min scale
+       * JMap.Data.Project.getScaleMin()
+       * ```
+       */
+      function getScaleMin(): number
+
+      /**
+       * **JMap.Data.Project.getColorSelection**
+       * 
+       * Return current JMap project's selection color in html hexa format.
+       * 
+       * This is the color that is applied to all layers that has not a selection color defined.
+       * 
+       * If no project is loaded, return "#ffffff".
+       * 
+       * @example ```ts
+       * 
+       * // return the project's selection color as a html hexa color
+       * JMap.Data.Project.getColorSelection()
+       * ```
+       */
+      function getColorSelection(): string
+
+      /**
+       * **JMap.Data.Project.getColorBackground**
+       * 
+       * Return current JMap project's background color in html hexa format.
+       * 
+       * If no project is loaded, return "bisque".
+       * 
+       * @example ```ts
+       * 
+       * // return the project's background color as a html hexa color
+       * JMap.Data.Project.getColorBackground()
+       * ```
+       */
+      function getColorBackground(): string
+
+      /**
+       * **JMap.Data.Project.getInitialExtent**
+       * 
+       * Return current JMap project's initial extent.
+       * 
+       * If no project is loaded, return null.
+       * 
+       * @example ```ts
+       * 
+       * // return the project's initial extent if exists
+       * JMap.Data.Project.getInitialExtent()
+       * ```
+       */
+      function getInitialExtent(): JBounds | null
+    }
+
+    /**
+     * ***JMap.Data.Layer***
+     * 
+     * This section contains all JMap layer getter methods
+     */
+    namespace Layer {
+
+      /**
+       * **JMap.Data.Layer.getLayerTree**
+       * 
+       * Return project's layer tree.
+       * 
+       * The layer tree is an array of layer element.
+       * 
+       * A layer element is a node or a leaf.
+       * 
+       * A node contains leaves and/or other nodes, and has a negative id.
+       * 
+       * A leaf is a JMap layer and has a positive id.
+       * 
+       * If no project is loaded, return en empty array.
+       * 
+       * @example ```ts
+       * 
+       * // return the entire layer element tree of the project
+       * JMap.Data.Layer.getLayerTree()
+       * ```
+       */
+      function getLayerTree(): JLayerTree
+
+      /**
+       * **JMap.Data.Layer.getLayerTreeElementsById**
+       * 
+       * Return a map (= a javascript object) where :
+       *  - the key is the layer element id
+       *  - the value the layer element
+       * 
+       * A layer element is a node or a leaf.
+       * 
+       * A node contains leaves and/or other nodes, and has a negative id.
+       * 
+       * A leaf is a JMap layer and has a positive id.
+       * 
+       * If no project is loaded, return en empty object.
+       * 
+       * @example ```ts
+       * 
+       * // return a map of layer elements defined by layer id
+       * JMap.Data.Layer.getLayerTreeElementsById()
+       * ```
+       */
+      function getLayerTreeElementsById(): { [ layerElementId: number ]: JLayerElement }
+
+      /**
+       * **JMap.Data.Layer.getRenderedLayers**
+       * 
+       * Return only JMap layers, not the nodes.
+       * 
+       * The layer tree is composed of nodes and leaves.
+       * 
+       * A node contains leaves and/or other nodes, and has a negative id.
+       * 
+       * A leaf is a JMap layer and has a positive id.
+       * 
+       * So this function remove all nodes and return only the leaves.
+       * 
+       * If no project is loaded, return en empty array.
+       * 
+       * @example ```ts
+       * 
+       * // return only the JMap layers (the one that are rendered on the map, so not the nodes)
+       * JMap.Data.Layer.getRenderedLayers()
+       * ```
+       */
+      function getRenderedLayers(): JLayer[]
+
+      /**
+       * **JMap.Data.Layer.exists**
+       * 
+       * Return true if a layer having the id exists.
+       * 
        * @param layerId The JMap layer id
        * @example ```ts
+       * 
+       * // return true if layer id=3 exists
+       * JMap.Data.Layer.exists(3)
+       * ```
+       */
+      function exists(layerId: number): boolean
+
+      /**
+       * **JMap.Data.Layer.getById**
+       * 
+       * Return the JMap layer having the id.
+       * 
+       * @throws Error if no layer found for the id
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return the JMap layer id=3
+       * JMap.Data.Layer.getById(3)
+       * ```
+       */
+      function getById(layerId: number): JLayerElement
+
+      /**
+       * **JMap.Data.Layer.getSelfOrChildren**
+       * 
+       * If the layerId is a JMap layer return it.
+       * If the layerId is a node, return all node's JMap layers (remove all nodes).
+       * Return an empty array if it's an empty node
+       * 
+       * @throws Error if no layer found for the id
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return an array with only JMap layers (no node)
+       * JMap.Data.Layer.getSelfOrChildren(3)
+       * ```
+       */
+      function getSelfOrChildren(layerId: number): JLayer[]
+
+      /**
+       * **JMap.Data.Layer.getName**
+       * 
+       * Return the name of the layer.
+       * 
+       * @throws Error if no layer found for the id
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return the name of layer id=3
+       * JMap.Data.Layer.getName(3)
+       * ```
+       */
+      function getName(layerId: number): string
+
+      /**
+       * **JMap.Data.Layer.getDescription**
+       * 
+       * Return the descrition of the layer.
+       * 
+       * @throws Error if no layer found for the id
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return the description of layer id=3
+       * JMap.Data.Layer.getDescription(3)
+       * ```
+       */
+      function getDescription(layerId: number): string
+
+      /**
+       * **JMap.Data.Layer.isVisible**
+       * 
+       * Return true if the layer is visible.
+       * 
+       * This is the "user" visibility, different from the "map" visibility
+       * which is based on the min and max scale. 
+       * 
+       * @throws Error if no layer found for the id
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return false if layer id=3 is not set as visible
+       * JMap.Data.Layer.isVisible(3)
+       * ```
+       */
+      function isVisible(layerId: number): boolean
+
+      /**
+       * **JMap.Data.Layer.getStyle**
+       * 
+       * Return the base style of the layer.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return layer id=3 base style
+       * JMap.Data.Layer.getStyle(3)
+       * ```
+       */
+      function getStyle(layerId: number): JLayerStyle
+
+      /**
+       * **JMap.Data.Layer.getSimpleSelectionStyle**
+       * 
+       * Return the selection "simple" style of the layer.
+       * 
+       * It return always an object, and if no selection has been set on the layer,
+       * it return the project values.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return the simple selection style of layer id=3
+       * JMap.Data.Layer.getSimpleSelectionStyle(3)
+       * ```
+       */
+      function getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
+
+      /**
+       * **JMap.Data.Layer.getSelectionStyle**
+       * 
+       * Return the layer's selection style if defined, else return null.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return the simple selection style of layer id=3
+       * JMap.Data.Layer.getSelectionStyle(3)
+       * ```
+       */
+      function getSelectionStyle(layerId: number): JLayerStyle | null
+
+      /**
+       * ***JMap.Data.Layer.getAllThematicsForLayer***
+       * 
+       * Return all layer's thematics.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return all thematics of layer id=4
        * JMap.Data.Layer.getAllThematicsForLayer(4)
        * ```
        */
       function getAllThematicsForLayer(layerId: number): JLayerThematic[]
+
+      /**
+       * ***JMap.Data.Layer.getThematicById***
+       * 
+       * Return a particular layer's thematic.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a node, or if the thematic doesn't exist.
+       * @param layerId The JMap layer id
+       * @param thematicId The thematic id
+       * @example ```ts
+       * 
+       * // return thematic id=3 of layer id=4
+       * JMap.Data.Layer.getThematicById(4, 3)
+       * ```
+       */
+      function getThematicById(layerId: number, thematicId: number): JLayerThematic
+
+      /**
+       * ***JMap.Data.Layer.hasVisibleThematics***
+       * 
+       * Return true if the layer has at least one thematic displayed on the map.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return false if no thematic are displayed for layer id=4
+       * JMap.Data.Layer.hasVisibleThematics(4)
+       * ```
+       */
       function hasVisibleThematics(layerId: number): boolean
+
+      /**
+       * ***JMap.Data.Layer.getVisibleThematics***
+       * 
+       * Return layer's thematics that are currently displayed on the map.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return false if no thematic are displayed for layer id=4
+       * JMap.Data.Layer.getVisibleThematics(4)
+       * ```
+       */
       function getVisibleThematics(layerId: number): JLayerThematic[]
     }
+
+    /**
+     * ***JMap.Data.Map***
+     * 
+     * This section contains all JMap map getter methods
+     */
     namespace Map {
+
+      /**
+       * ***JMap.Data.Map.getImplementation***
+       * 
+       * Return the map implementation ("MapBox" or "OpenLayers")
+       * 
+       * @example ```ts
+       * 
+       * // return "MapBox" or "OpenLayers"
+       * JMap.Data.Map.getImplementation()
+       * ```
+       */
       function getImplementation(): MAP_IMPLEMENTATION
+
+      /**
+       * ***JMap.Data.Map.isMapLoaded***
+       * 
+       * Return true if the map has been loaded and is ready.
+       * 
+       * @example ```ts
+       * 
+       * // return true or false
+       * JMap.Data.Map.isMapLoaded()
+       * ```
+       */
       function isMapLoaded(): boolean
+
+      /**
+       * ***JMap.Data.Map.getCenter***
+       * 
+       * Return the location that is the current center of the map.
+       * 
+       * @example ```ts
+       * 
+       * // return the current center of the map
+       * JMap.Data.Map.getCenter()
+       * ```
+       */
       function getCenter(): JLocation
+
+      /**
+       * ***JMap.Data.Map.getZoom***
+       * 
+       * Return the current map's zoom.
+       * 
+       * @example ```ts
+       * 
+       * // return the current map's zoom
+       * JMap.Data.Map.getZoom()
+       * ```
+       */
       function getZoom(): number
+
+      /**
+       * ***JMap.Data.Map.getScale***
+       * 
+       * Return the current map's scale.
+       * 
+       * @example ```ts
+       * 
+       * // return the current map's scale
+       * JMap.Data.Map.getScale()
+       * ```
+       */
       function getScale(): number
+
+      /**
+       * ***JMap.Data.Map.getScale***
+       * 
+       * Return the current map's basemap.
+       * 
+       * The basemap depends on the map implementation ([[MAP_IMPLEMENTATION]]).
+       * 
+       * For mapbox : [ "light", "streets", "satellite", "dark", "outdoors", "none" ]
+       * 
+       * For openlayers : Not yet implemented
+       * 
+       * @example ```ts
+       * 
+       * // return the current map's basemap
+       * JMap.Data.Map.getBaseMap()
+       * ```
+       */
       function getBaseMap(): string
+
+      /**
+       * ***JMap.Data.Map.getSelectedFeatures***
+       * 
+       * Return the current map's selection as a javascript map (= a javascript object) where :
+       *  - the key is the layer element id
+       *  - the value is an array of feature (an empty array if layer doesn't have features selected)
+       * 
+       * @example ```ts
+       * 
+       * // return the current selected features by layer id
+       * JMap.Data.Map.getSelectedFeatures()
+       * ```
+       */
       function getSelectedFeatures(): JMapSelection
+
+      /**
+       * ***JMap.Data.Map.getSelectedFeaturesForLayer***
+       * 
+       * Return the current selected features for a particular JMap layer.
+       * 
+       * @returns an array of GeoJSON features
+       * @example ```ts
+       * 
+       * // return the current selected features for layer 3
+       * JMap.Data.Map.getSelectedFeaturesForLayer(3)
+       * ```
+       */
       function getSelectedFeaturesForLayer(layerId: number): any[]
+
+      /**
+       * ***JMap.Data.Map.getSelectedFeatureIdsForLayer***
+       * 
+       * Return the current selected feature ids for a particular JMap layer.
+       * 
+       * This function is the equivalent of that code :
+       * ```ts
+       * // return the same as JMap.Data.Map.getSelectedFeatureIdsForLayer(3)
+       * JMap.Data
+       *    .getSelectedFeaturesForLayer(layerId: number)
+       *    .map(feature => feature.id)
+       * ```
+       * 
+       * @example ```ts
+       * 
+       * // return the current selected feature ids for layer 3
+       * JMap.Data.Map.getSelectedFeatureIdsForLayer(3)
+       * ```
+       */
       function getSelectedFeatureIdsForLayer(layerId: number): number[]
     }
+
+    /**
+     * ***JMap.Data.User***
+     * 
+     * This section contains all JMap user getter methods
+     */
     namespace User {
-      function getLocale(): string
+
+      /**
+       * ***JMap.Data.User.getToken***
+       * 
+       * If user is loggued, return the current user session token.
+       * 
+       * Else return "-1" if user has no active session.
+       * 
+       * @example ```ts
+       * 
+       * // return the user session token
+       * JMap.Data.User.getToken()
+       * ```
+       */
       function getToken(): string
-      function getIdentity(): JUserIdentity
+
+      /**
+       * ***JMap.Data.User.getFirstName***
+       * 
+       * Return user first name.
+       * 
+       * @example ```ts
+       * 
+       * // return the user first name
+       * JMap.Data.User.getFirstName()
+       * ```
+       */
+      function getFirstName(): string
+
+      /**
+       * ***JMap.Data.User.getLastName***
+       * 
+       * Return user last name.
+       * 
+       * @example ```ts
+       * 
+       * // return the user last name
+       * JMap.Data.User.getLastName()
+       * ```
+       */
+      function getLastName(): string
+
+      /**
+       * ***JMap.Data.User.getLogin***
+       * 
+       * Return user login.
+       * 
+       * @example ```ts
+       * 
+       * // return the user login
+       * JMap.Data.User.getLogin()
+       * ```
+       */
       function getLogin(): string
     }
-    namespace Selection {
-      function getSelection(): JElementSelection
-    }
+
+    /**
+     * ***JMap.Data.Application***
+     * 
+     * This section contains all JMap photo getter methods.
+     */
     namespace Photo {
+
+      /**
+       * ***JMap.Data.Photo.isPopupOpened***
+       * 
+       * Return true if the photo popup is opened.
+       * 
+       * @example ```ts
+       * 
+       * // return true if the photo popup is displayed
+       * JMap.Data.Photo.isPopupOpened()
+       * ```
+       */
       function isPopupOpened(): boolean
-      function isInfoPanelOpened(): boolean
+
+      /**
+       * ***JMap.Data.Photo.isPopupInfoPanelOpened***
+       * 
+       * Return true if the info panel is opened inside the photo popup.
+       * 
+       * @example ```ts
+       * 
+       * // return true if the info panel is opened inside the photo popup
+       * JMap.Data.Photo.isPopupInfoPanelOpened()
+       * ```
+       */
+      function isPopupInfoPanelOpened(): boolean
+
+      /**
+       * ***JMap.Data.Photo.getPhotoDescriptors***
+       * 
+       * Return the displayed photo descriptors, an empty array if no photo displayed.
+       * 
+       * @example ```ts
+       * 
+       * // return the displayed photo descriptors, an empty array if no photo displayed
+       * JMap.Data.Photo.getPhotoDescriptors()
+       * ```
+       */
       function getPhotoDescriptors(): JPhotoDescriptor[]
+
+      /**
+       * ***JMap.Data.Photo.getSelectedPhotoId***
+       * 
+       * Return the current selected/displayed photo ids.
+       * 
+       * Return undefined if no photo is selected.
+       * 
+       * This function is the equivalent of :
+       * ```ts
+       * JMap.Data.Photo
+       *    .getPhotoDescriptors()
+       *    .map(photoDescriptor => photoDescriptor.id)
+       * ```
+       * 
+       * @example ```ts
+       * 
+       * // return the selected photo ids.
+       * JMap.Data.Photo.getSelectedPhotoId()
+       * ```
+       */
       function getSelectedPhotoId(): number | undefined
     }
   }
+
+  /**
+   * **JMap.Event**
+   * 
+   * From this section you can manage your own event listeners reacting to JMap API events.
+   * 
+   * For all your listener you need provide a listener id. We introduced this notion of listener ids in order
+   * to be able to know what's the problem if something goes wrong in a listener.
+   * 
+   * Like that we are able to identify more easily the problem in the javascript console.
+   * 
+   * Listener ids have to be unique for the namespace, regardless to the type of event you register your listener.
+   * 
+   * By example, for all Layer events, you can register only one listener named "***my-custom-listener***"".
+   * 
+   * A good practice could be prefixing all your listener ids. For example if you work for the city of Montreal
+   * they could all start with "***mtm-***"".
+   * 
+   * Listeners can be deactivated and reactivated.
+   * 
+   * Deactivating a listener keep it in the JMAP API, but ignore it when an event is emitted.
+   */
   namespace Event {
+
+    /**
+     * ***JMap.Event.Project***
+     * 
+     * Here you can manage all project related event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Project.on]]***. 
+     */
     namespace Project {
+
+      /**
+       * ***JMap.Event.Project.on***
+       * 
+       * Here you have all available project events on which you can attach a listener.
+       */
       namespace on {
+
+        /**
+         * ***JMap.Event.Project.on.projectChange***
+         * 
+         * This event is triggered when a new project is loaded.
+         * 
+         * @param listenerId Your listener id (must be unique for all project events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a new project is loaded will display the new project id in the console
+         * JMap.Event.Project.on.projectChange(
+         *    "custom-project-change",
+         *    project => console.log(`New project id="${project.id}"`)
+         * )
+         * ```
+         */
         function projectChange(listenerId: string, fn: (params: JProjectEventParams) => void): void
       }
+
+      /**
+       * ***JMap.Event.Project.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-project-listener"
+       * JMap.Event.Project.activate("my-project-listener")
+       * ```
+       */
       function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Project.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-project-listener"
+       * JMap.Event.Project.deactivate("my-project-listener")
+       * ```
+       */
       function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Project.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap API. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-project-listener"
+       * JMap.Event.Project.remove("my-project-listener")
+       * ```
+       */
       function remove(listenerId: string): void
     }
+
+    /**
+     * ***JMap.Event.Layer***
+     * 
+     * Here you can manage all layer related event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Layer.on]]***. 
+     */
     namespace Layer {
+
+      /**
+       * ***JMap.Event.Layer.on***
+       * 
+       * Here you have all available layer events on which you can attach a listener.
+       */
       namespace on {
+
+        /**
+         * ***JMap.Event.Layer.on.projectChange***
+         * 
+         * This event is triggered when a layer visibility changed.
+         * 
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a layer element visibility is changed, will display the new visibility
+         * // in the console
+         * JMap.Event.Layer.on.visibilityChange(
+         *    "custom-visibility-change",
+         *    element => {
+         *      console.log(`Layer element id="${element.id}" visible="${element.visible}"`)
+         *    }
+         * )
+         * ```
+         */
         function visibilityChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Layer.on.layerDeletion***
+         * 
+         * This event is triggered when a layer is deleted.
+         * 
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a layer element is deleted, will display a message in the console
+         * JMap.Event.Layer.on.layerDeletion(
+         *    "custom-layer-deletion",
+         *    layerElement => {
+         *      console.log(`Layer element id="${layerElement.id}" has been deleted client side`)
+         *    }
+         * )
+         * ```
+         */
         function layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
       }
+
+      /**
+       * ***JMap.Event.Layer.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-layer-listener"
+       * JMap.Event.Layer.activate("my-layer-listener")
+       * ```
+       */
       function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Layer.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-layer-listener"
+       * JMap.Event.Layer.deactivate("my-layer-listener")
+       * ```
+       */
       function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Layer.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap API. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-layer-listener"
+       * JMap.Event.Layer.remove("my-layer-listener")
+       * ```
+       */
       function remove(listenerId: string): void
     }
+
+    /**
+     * ***JMap.Event.Map***
+     * 
+     * Here you can manage all map related event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Map.on]]***. 
+     */
     namespace Map {
+
+      /**
+       * ***JMap.Event.Map.on***
+       * 
+       * Here you have all available map events on which you can attach a listener.
+       */
       namespace on {
+
+        /**
+         * ***JMap.Event.Map.on.mapLoad***
+         * 
+         * This event is triggered when a layer is deleted.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a map is created and ready, will display a message in the console
+         * JMap.Event.Map.on.mapLoad(
+         *    "custom-map-load",
+         *    args => {
+         *      // implementation is "MapBox" or "OpenLayers"
+         *      console.log(`Instance of map "${args.implementation}" ready`, args.map)
+         *    }
+         * )
+         * ```
+         */
         function mapLoad(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.mapDestroy***
+         * 
+         * This event is triggered when the map is destroyed.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the map is destroyed, will display a message in the console
+         * JMap.Event.Map.on.mapDestroy(
+         *    "custom-map-destroyed",
+         *    () => console.log(`The map has been destroyed`)
+         * )
+         * ```
+         */
         function mapDestroy(listenerId: string, fn: () => void): void
+
+        /**
+         * ***JMap.Event.Map.on.moveStart***
+         * 
+         * This event is triggered when the map start moving (when user or API pan the map).
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the map start moving, will display a message in the console
+         * JMap.Event.Map.on.moveStart(
+         *    "custom-map-move-start",
+         *    args => {
+         *      console.log(`The map start moving`, args.map, args.mapEvent)
+         *      // mapEvent is the map implementation event
+         *    }
+         * )
+         * ```
+         */
         function moveStart(listenerId: string, fn: (params: JMapEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.moveStart***
+         * 
+         * This event is triggered when the map end moving (when user or API pan the map).
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the map stop moving, will display a message in the console
+         * JMap.Event.Map.on.moveEnd(
+         *    "custom-map-move-end",
+         *    args => {
+         *      console.log(`The map stop moving`, args.map, args.mapEvent)
+         *      // mapEvent is the map implementation event
+         *    }
+         * )
+         * ```
+         */
         function moveEnd(listenerId: string, fn: (params: JMapEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.mouseMove***
+         * 
+         * This event is triggered when the mouse is moving over the map (when user or API pan the map).
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When mouse is moving over the map, will display a message in the console
+         * JMap.Event.Map.on.mouseMove(
+         *    "custom-map-mouse-move",
+         *    args => {
+         *      console.log(
+         *          `The mouse is moving on layer id="${args.layerId}"`, map.location,
+         *          args.map, args.mapEvent // mapEvent is the map implementation event
+         *      )
+         *    }
+         * )
+         * ```
+         */
         function mouseMove(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.mouseMoveOnLayer***
+         * 
+         * This event is triggered when the mouse is moving over the map (when user or API pan the map).
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When mouse is moving over the map, will display 2 messages in the console
+         * JMap.Event.Map.on.mouseMoveOnLayer(
+         *    "custom-map-mouse-move-on-layer",
+         *    args => {
+         *      console.log(
+         *          `The mouse is moving on layer id="${args.layerId}"`,
+         *          args.map, args.mapEvent // the mapEvent is the map implementation event
+         *      )
+         *      console.log(
+         *        `The mouse cursor is over ${args.features.length} features`,
+         *        args.location
+         *      )
+         *    }
+         * )
+         * ```
+         */
         function mouseMoveOnLayer(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.mouseEnter***
+         * 
+         * This event is triggered when the mouse enter over a layer feature.
+         * 
+         * When switching from one feature to another, this event is not called again if the features
+         * are joined or intersect.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When mouse is entering over a layer feature(s), will display 2 messages
+         * // in the console
+         * JMap.Event.Map.on.mousemouseEnterMoveOnLayer(
+         *    "custom-map-mouse-enter",
+         *    args => {
+         *      console.log(
+         *          `The mouse entered an element of layer id="${args.layerId}"`,
+         *          args.map, args.mapEvent // mapEvent is the map implementation event
+         *      )
+         *      console.log(
+         *        `The mouse cursor is over ${args.features.length} features`,
+         *        args.location
+         *      )
+         *    }
+         * )
+         * ```
+         */
         function mouseEnter(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
-        function mouseLeave(listenerId: string, fn: (params: JMapEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.mouseLeave***
+         * 
+         * This event is triggered when the mouse leave a layer feature, and is not over another
+         * feature.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When mouse is leaving a layer, will display a message in the console
+         * JMap.Event.Map.on.mouseLeave(
+         *    "custom-map-mouse-leave",
+         *    args => {
+         *      console.log(
+         *          `The mouse leaved the layer id="${args.layerId}"`, args.location,
+         *          args.map, args.mapEvent // mapEvent is the map implementation event
+         *      )
+         *    }
+         * )
+         * ```
+         */
+        function mouseLeave(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.click***
+         * 
+         * This event is triggered when the mouse is clicked.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When mouse clicked on the map, will display a message in the console
+         * JMap.Event.Map.on.click(
+         *    "custom-map-mouse-click",
+         *    args => {
+         *      const location = args.location
+         *      console.log(
+         *          `The mouse has been clicked at { x="${location.x}, y="${location.y}" }"`,
+         *          args.map, args.mapEvent // mapEvent is the map implementation event
+         *      )
+         *    }
+         * )
+         * ```
+         */
         function click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
       }
+
+      /**
+       * ***JMap.Event.Map.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-map-listener"
+       * JMap.Event.Layer.activate("my-map-listener")
+       * ```
+       */
       function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Map.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-map-listener"
+       * JMap.Event.Map.deactivate("my-map-listener")
+       * ```
+       */
       function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Map.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap API. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-map-listener"
+       * JMap.Event.Map.remove("my-map-listener")
+       * ```
+       */
       function remove(listenerId: string): void
     }
   }
+
+  /**
+   * **JMap.External**
+   * 
+   * We introduced the notion of "external" in JMap.
+   * 
+   * We designed a mecanism for our needs, that could loads optional plugins for JMap.
+   * 
+   * This mecanism provide a clean way to integrate in JMap your own external plugin.
+   * 
+   * You can create an object that implement the interface [[JExtensionModel]], and register it
+   * from this section.
+   * 
+   * By example you register an external extension with id="***MyCompany***"".
+   * 
+   * You can defined your own Redux reducer that will react to all actions trigerred. In the store
+   * your data will be located at ***external.MyCompany***.
+   * 
+   * You can defined your own JMap related services, that will be accessible at
+   * this location : ***JMap.External.MyCompany***
+   * 
+   * And you also can integrate your own mouseover (for more details look in JMap.Service.MouseOver
+   * documentation).
+   */
   namespace External {
+
+    /**
+     * ***JMap.External.register***
+     * 
+     * Register your own external extension.
+     * 
+     * @throws Error if a parameter is not correct
+     * @param extensionModel The extension model
+     * @example ```ts
+     * 
+     * JMap.External.register({
+     *  id: "MyExternalModule", // Unique id
+     *  initFn: () => {
+     *    // here you can start your UI component if needed
+     *    console.log("JMap is started and my external extension has been successfuly started")
+     *  }
+     * })
+     * ```
+     */
     function register(extensionModel: JExtensionModel): void
-    function isRegistered(extensionId: string): boolean // ex : JMap.Extension.isRegistered("Document")
+
+    /**
+     * ***JMap.External.isRegistered***
+     * 
+     * Tell if an external extension has been registered or not.
+     * 
+     * It can be usefull to know if a JMap extension is in use or not.
+     * 
+     * @throws Error if extensionId format is not correct
+     * @param extensionId The extension id
+     * @example ```ts
+     * 
+     * // return true if the JMap Document extension is in use or not for the project
+     * JMap.External.isRegistered("Document")
+     * ```
+     */
+    function isRegistered(extensionId: string): boolean
+
+    /**
+     * ***JMap.External.getAllRegistered***
+     * 
+     * Return all registered extension ids.
+     * 
+     * @example ```ts
+     * 
+     * // Could return [ "Document", "MyCustomExtension" ]
+     * JMap.External.getAllRegistered()
+     * ```
+     */
     function getAllRegistered(): string[]
-    function renderMouseOver(layerId: string, elementId: string): JExtensionMouseOver[]
-  }
-  namespace Documentation {
-    function open(): void
+
+    /**
+     * ***JMap.External.getAllRegistered***
+     * 
+     * *You should not need to use this function. It is usefull for the API itself.*
+     * 
+     * Return all external mouseovers for a particular layer's feature.
+     * 
+     * Each result elements are the result of calling method [[JExtensionModel.renderMouseOver]]
+     * 
+     * You can have a look at ***[[JMap.Service.MouseOver]]***.
+     * 
+     * @param layer The JMap layer
+     * @param feature A geoJSON feature
+     * @returns an empty array if no external registered
+     * @example ```ts
+     * 
+     * // Could return [ "Document", "MyCustomExtension" ]
+     * JMap.External.getAllRegistered()
+     * ```
+     */
+    function renderMouseOver(layer: JLayer, feature: any): JExternalMouseOver[]
   }
 }

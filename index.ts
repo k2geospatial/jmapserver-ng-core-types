@@ -3,26 +3,26 @@ import { Feature } from "geojson"
 
 // API
 export interface JAPI {
-  version: string
+  Api: JAPIApi
   External: JAPIExternal
   Event: JAPIEvent
   Data: JAPIData
   Application: JAPIApplication
   Component: JAPIComponent
   Service: JAPIService
-  Documentation: JAPIDocumentation
 }
 
-// API DOCUMENTATION
+// API Api
 
-export interface JAPIDocumentation {
-  open(): void
+export interface JAPIApi {
+  getVersion(): string
+  openDocumentation(): void
 }
 
 // API COMPONENT
 
 export interface JAPIComponent {
-  User: JAPIComponentItem<JUserCmpProps>
+  User: JAPIComponentItem<{}>
 }
 
 export interface JAPIComponentItem<P> {
@@ -75,7 +75,7 @@ export interface JMapEventModule extends JEventModule {
     mouseMove(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
     mouseMoveOnLayer(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
     mouseEnter(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
-    mouseLeave(listenerId: string, fn: (params: JMapEventParams) => void): void
+    mouseLeave(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
     click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
   }
 }
@@ -84,7 +84,7 @@ export interface JMapEventModule extends JEventModule {
 export interface JAPIData {
   getStore(): Store<JAPIState> | undefined
   Api: JStoreGetterApi
-  App: JStoreGetterApp
+  Application: JStoreGetterApp
   Project: JStoreGetterProject
   Layer: JStoreGetterLayer
   Map: JStoreGetterMap
@@ -93,14 +93,15 @@ export interface JAPIData {
 }
 
 export interface JStoreGetterApi {
-  gerRestUrl(): string
+  getRestUrl(): string
   getMode(): API_MODE
   getAllMode(): API_MODE[]
   getMapImplementation(): MAP_IMPLEMENTATION
 }
 
 export interface JStoreGetterApp {
-  // TODO
+  isSidePanelOpen(): boolean
+  getDomContainerId(): string
 }
 
 export interface JStoreGetterProject {
@@ -156,7 +157,7 @@ export interface JStoreGetterUser {
 
 export interface JStoreGetterPhoto {
   isPopupOpened(): boolean
-  isInfoPanelOpened(): boolean
+  isPopupInfoPanelOpened(): boolean
   getPhotoDescriptors(): JPhotoDescriptor[]
   getSelectedPhotoId(): number | undefined
 }
@@ -210,15 +211,13 @@ export interface JPhotoState {
   selectedPhoto: number | undefined
   photoDescriptors: JPhotoDescriptor[]
   isPopupOpened: boolean
-  isInfoPanelOpened: boolean
+  isPopupInfoPanelOpened: boolean
 }
 
 // API APPLICATION
 export interface JAPIApplication {
-  needToStart(): boolean
-  getDomContainerId(): string
-  getInstance(): React.Component
-  start(containerId?: string, initOptions?: JAPIApplicationOptions): void
+  startIfNeeded(): void
+  start(containerId?: string): void
   SidePanel: JSidePanelController
 }
 
@@ -375,19 +374,7 @@ export interface JExternalModel {
   renderMouseOver?(layer: JLayer, feature: Feature): JExternalMouseOver
 }
 
-export interface JExternalMouseOver {
-  html: string  // static html content
-  js?: string   // javascript that will be evaluated after html rendered
-}
-
-// @Deprecated will be removed when old jmap will be retired
-export interface JDocumentServiceUiController {
-  createDocumentIcon(layerId: string, elementId: string): void
-  displayElementDocuments(layerId: string, elementId: string): void
-}
-
 export interface JDocumentService {
-  ui_controller: JDocumentServiceUiController // @Deprecated
   selectElement(layer: string, element: string): Promise<void>
   getElementDocuments(toSelectObjectId: JObjectId): Promise<JAllDocumentDescriptors>
   selectDocuments(descriptors: JAllDocumentDescriptors): void
