@@ -51,7 +51,7 @@ declare namespace JMap {
     * JMap.Api.openDocumentation()
     * ```
     */
-   function open(): void
+   function openDocumentation(): void
   }
   
   /**
@@ -1307,7 +1307,7 @@ declare namespace JMap {
        * exist in the DOM.
        * 
        * @throws Error if mouseover content format is not good
-       * @param content The mouseover content you get with method JMap.Service.MouseOver.getMouseOverContent
+       * @param content The mouseover content you get from method JMap.Service.MouseOver.getMouseOverContent
        * @example ```ts
        * 
        * const mouseOverContent = JMap.Service.MouseOver.getMouseOverContent(...)
