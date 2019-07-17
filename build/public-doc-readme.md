@@ -1,6 +1,6 @@
 **JMap Web API documentation**
 
-You can explore the API by clicking on the link at the top right of this page named ***JMap***, just under *Globals*.
+You can explore the API by clicking on this link ***[[JMap]]***.
 
 The project has been written in Typescript, so this documentation is able to provide information about result types or arguments to pass to the API.
 
