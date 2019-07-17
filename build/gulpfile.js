@@ -69,7 +69,10 @@ gulp.task("typedoc", cb => {
 
 /********************************** PUBLIC TASKS **********************************/
 
-// Main task, the only task that should be call
-gulp.task('publish', gulp.series('typedoc', 'commit', 'publish-npm'))
+// Use it when you want to modify the doc but not publish
+gulp.task('commit-doc', gulp.series('typedoc', 'commit'))
+
+// Main task
+gulp.task('publish', gulp.series('commit-doc', 'publish-npm'))
 
 gulp.task('default', gulp.series('publish'))
