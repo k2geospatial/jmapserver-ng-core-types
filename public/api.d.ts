@@ -331,9 +331,9 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.setThematicVisibility**
        * 
-       * Show or hide a layer's thematic on the map
+       * Show or hide a layer's thematic on the map.
        * 
-       * @throws Error if layer or thematic are not found
+       * @throws Error if layer or thematic is not found
        * @param layerId The JMap layer id
        * @param thematicId The thematic id
        * @param visibility true to show, false to hide
@@ -1627,7 +1627,7 @@ declare namespace JMap {
    * 
    * From this section you can get all the data you need about the different data states of the API.
    * 
-   * There is not data modifications from this section, you can just get data.
+   * There is no data modification from this section, you can just get data.
    * 
    * If you want to change the data state, have a look in [[JMap.Service]].
    */
@@ -1636,7 +1636,7 @@ declare namespace JMap {
     /**
      * **JMap.Component.User.destroy**
      * 
-     * Return the JMap data store, currently an instance of Redux (https://redux.js.org/).
+     * Returns the JMap data store, currently an instance of Redux (https://redux.js.org/).
      *
      * @example ```ts
      * 
@@ -1650,7 +1650,7 @@ declare namespace JMap {
     /**
      * ***JMap.Data.Api***
      * 
-     * This section contains all JMAp Api getter methods
+     * This section contains all JMap Api getter methods
      */
     namespace Api {
 
@@ -1663,7 +1663,7 @@ declare namespace JMap {
        * 
        * @example ```ts
        * 
-       * // return the JMap server rest URL in use
+       * // return the JMap server REST URL in use
        * JMap.Data.Api.getRestUrl()
        * ```
        */
@@ -1674,7 +1674,7 @@ declare namespace JMap {
        * 
        * Return the current JMap API mode state.
        *
-       * This mode is mainly use for the JMap application.
+       * This mode is mainly used for the JMap application.
        * 
        * @example ```ts
        * 
@@ -1714,7 +1714,7 @@ declare namespace JMap {
     /**
      * ***JMap.Data.Application***
      * 
-     * This section contains all JMap application getter methods
+     * This section contains all JMap application getter methods.
      */
     namespace Application {
 
@@ -1755,7 +1755,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getId**
        * 
-       * Return current JMap project's id.
+       * Return current JMap project id.
        * 
        * If no project is loaded, return -1.
        * 
@@ -1770,7 +1770,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getName**
        * 
-       * Return current JMap project's name.
+       * Return current JMap project name.
        * 
        * If no project is loaded, return "".
        * 
@@ -1785,7 +1785,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getDescription**
        * 
-       * Return current JMap project's description.
+       * Return current JMap project description.
        * 
        * If no project is loaded, return "".
        * 
@@ -1804,8 +1804,8 @@ declare namespace JMap {
        * 
        * If no project is loaded, return an empty projection : { code: "", name: "" }.
        * 
-       * In MapBox projection is always "***EPSG:3857***", but that function returns the project
-       * defined projection (so it can be different of ***ESPG:3857***).
+       * In MapBox, projection is always "***EPSG:3857***", but that function returns the project
+       * defined projection (so it can be different than ***ESPG:3857***).
        * 
        * @example ```ts
        * 
@@ -1818,7 +1818,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getInitialRotation**
        * 
-       * Return current JMap project's initial map rotation.
+       * Return current JMap project initial map rotation. This rotation is applied when the project is opened.
        * 
        * If no project is loaded, return 0.
        * 
@@ -1833,13 +1833,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getScaleMax**
        * 
-       * Return current JMap project's max scale.
+       * Return current JMap project max scale.
        * 
        * If no project is loaded, return 0.
        * 
        * @example ```ts
        * 
-       * // return the project's max scale
+       * // return the project max scale
        * JMap.Data.Project.getScaleMax()
        * ```
        */
@@ -1848,13 +1848,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getScaleMin**
        * 
-       * Return current JMap project's min scale.
+       * Return current JMap project min scale.
        * 
        * If no project is loaded, return 0.
        * 
        * @example ```ts
        * 
-       * // return the project's min scale
+       * // return the project min scale
        * JMap.Data.Project.getScaleMin()
        * ```
        */
@@ -1865,7 +1865,7 @@ declare namespace JMap {
        * 
        * Return current JMap project's selection color in html hexa format.
        * 
-       * This is the color that is applied to all layers that has not a selection color defined.
+       * This is the color that is used for selected features of layers that don't have a specific selection style defined.
        * 
        * If no project is loaded, return "#ffffff".
        * 
@@ -1880,7 +1880,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getColorBackground**
        * 
-       * Return current JMap project's background color in html hexa format.
+       * Return current JMap project background color in html hexa format. This color is used as the background of the map.
        * 
        * If no project is loaded, return "bisque".
        * 
@@ -1895,7 +1895,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getInitialExtent**
        * 
-       * Return current JMap project's initial extent.
+       * Return current JMap project initial extent. This is the extent that is automatically displayed when the project is opened.
        * 
        * If no project is loaded, return null.
        * 
@@ -1911,7 +1911,7 @@ declare namespace JMap {
     /**
      * ***JMap.Data.Layer***
      * 
-     * This section contains all JMap layer getter methods
+     * This section contains all JMap layer getter methods.
      */
     namespace Layer {
 
@@ -1920,7 +1920,7 @@ declare namespace JMap {
        * 
        * Return project's layer tree.
        * 
-       * The layer tree is an array of layer element.
+       * The layer tree is an array of layer elements.
        * 
        * A layer element is a node or a leaf.
        * 
@@ -1928,7 +1928,7 @@ declare namespace JMap {
        * 
        * A leaf is a JMap layer and has a positive id.
        * 
-       * If no project is loaded, return en empty array.
+       * If no project is loaded, returns en empty array.
        * 
        * @example ```ts
        * 
@@ -1943,7 +1943,7 @@ declare namespace JMap {
        * 
        * Return a map (= a javascript object) where :
        *  - the key is the layer element id
-       *  - the value the layer element
+       *  - the value is the layer element
        * 
        * A layer element is a node or a leaf.
        * 
@@ -1951,7 +1951,7 @@ declare namespace JMap {
        * 
        * A leaf is a JMap layer and has a positive id.
        * 
-       * If no project is loaded, return en empty object.
+       * If no project is loaded, returns en empty object.
        * 
        * @example ```ts
        * 
@@ -1972,13 +1972,13 @@ declare namespace JMap {
        * 
        * A leaf is a JMap layer and has a positive id.
        * 
-       * So this function remove all nodes and return only the leaves.
+       * So this function removes all nodes and returns only the leaves.
        * 
-       * If no project is loaded, return en empty array.
+       * If no project is loaded, returns en empty array.
        * 
        * @example ```ts
        * 
-       * // return only the JMap layers (the one that are rendered on the map, so not the nodes)
+       * // returns only the JMap layers (the ones that are rendered on the map, so not the nodes)
        * JMap.Data.Layer.getRenderedLayers()
        * ```
        */
@@ -2017,8 +2017,8 @@ declare namespace JMap {
        * **JMap.Data.Layer.getSelfOrChildren**
        * 
        * If the layerId is a JMap layer return it.
-       * If the layerId is a node, return all node's JMap layers (remove all nodes).
-       * Return an empty array if it's an empty node
+       * If the layerId is a node, return all node's JMap layers (removes all nodes).
+       * Return an empty array if it's an empty node.
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
@@ -2098,8 +2098,8 @@ declare namespace JMap {
        * 
        * Return the selection "simple" style of the layer.
        * 
-       * It return always an object, and if no selection has been set on the layer,
-       * it return the project values.
+       * It always returns an object, and if no selection style has been set on the layer,
+       * it returns the project default values.
        * 
        * @throws Error if no layer found for the id, or if the layer is a node.
        * @param layerId The JMap layer id
@@ -2144,9 +2144,9 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Layer.getThematicById***
        * 
-       * Return a particular layer's thematic.
+       * Return a specific layer's thematic.
        * 
-       * @throws Error if no layer found for the id, or if the layer is a node, or if the thematic doesn't exist.
+       * @throws Error if no layer found for the id, if the layer is a node, or if the thematic doesn't exist.
        * @param layerId The JMap layer id
        * @param thematicId The thematic id
        * @example ```ts
@@ -2166,7 +2166,7 @@ declare namespace JMap {
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return false if no thematic are displayed for layer id=4
+       * // return false if no thematic is displayed for layer id=4
        * JMap.Data.Layer.hasVisibleThematics(4)
        * ```
        */
@@ -2181,7 +2181,7 @@ declare namespace JMap {
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return false if no thematic are displayed for layer id=4
+       * // return false if no thematic is displayed for layer id=4
        * JMap.Data.Layer.getVisibleThematics(4)
        * ```
        */
@@ -2263,7 +2263,7 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getScale***
        * 
-       * Return the current map's scale.
+       * Return the current map scale.
        * 
        * @example ```ts
        * 
@@ -2295,7 +2295,7 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getSelectedFeatures***
        * 
-       * Return the current map's selection as a javascript map (= a javascript object) where :
+       * Return the current map selection as a javascript map (= a javascript object) where :
        *  - the key is the layer element id
        *  - the value is an array of feature (an empty array if layer doesn't have features selected)
        * 
@@ -2310,7 +2310,7 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getSelectedFeaturesForLayer***
        * 
-       * Return the current selected features for a particular JMap layer.
+       * Return the current selected features for a specific JMap layer.
        * 
        * @returns an array of GeoJSON features
        * @example ```ts
@@ -2353,7 +2353,7 @@ declare namespace JMap {
       /**
        * ***JMap.Data.User.getToken***
        * 
-       * If user is loggued, return the current user session token.
+       * If user is logged in, return the current user session token.
        * 
        * Else return "-1" if user has no active session.
        * 
@@ -2441,7 +2441,7 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Photo.getPhotoDescriptors***
        * 
-       * Return the displayed photo descriptors, an empty array if no photo displayed.
+       * Return the displayed photo descriptors, or an empty array if no photo is displayed.
        * 
        * @example ```ts
        * 
