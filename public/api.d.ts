@@ -270,6 +270,33 @@ declare namespace JMap {
       function isVisible(layerId: number): boolean
 
       /**
+       * **JMap.Service.Layer.setVisible**
+       * 
+       * Set the layer visibility.
+       * 
+       * If the layer is a node, it will apply the visibility to all its children
+       * and itself.
+       * 
+       * If it's a JMap layer, it apply the visibility to it.
+       * 
+       * This is the "user" visibility, different from the "map" visibility
+       * which is based on the min and max scale. 
+       * 
+       * @throws Error if no layer found for the id
+       * @param layerId The JMap layer id
+       * @param visible The layer visibility
+       * @example ```ts
+       * 
+       * // show layer id=5
+       * JMap.Service.Layer.setVisible(5, true)
+       * 
+       * // hide layer id=3
+       * JMap.Service.Layer.setVisible(3, false)
+       * ```
+       */
+      function setVisible(layerId: number, visible: boolean): void
+
+      /**
        * **JMap.Service.Layer.setGroupOpen**
        * 
        * Set the tree node open or closed.
