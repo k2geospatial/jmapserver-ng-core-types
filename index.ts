@@ -95,7 +95,7 @@ export interface JAPIData {
 export interface JStoreGetterApi {
   getRestUrl(): string
   getMode(): API_MODE
-  getAllMode(): API_MODE[]
+  getAllModes(): API_MODE[]
   getMapImplementation(): MAP_IMPLEMENTATION
 }
 
@@ -110,10 +110,10 @@ export interface JStoreGetterProject {
   getDescription(): string
   getProjection(): JProjection
   getInitialRotation(): number
-  getScaleMax(): number
-  getScaleMin(): number
-  getColorSelection(): string
-  getColorBackground(): string
+  getMinScale(): number
+  getMaxScale(): number
+  getSelectionColor(): string
+  getBackgroundColor(): string
   getInitialExtent(): JBounds | null
 }
 
@@ -151,8 +151,7 @@ export interface JStoreGetterMap {
 
 export interface JStoreGetterUser {
   getToken(): string
-  getFirstName(): string
-  getLastName(): string
+  getFullName(): string
   getLogin(): string
 }
 

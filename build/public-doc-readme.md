@@ -19,13 +19,24 @@ By default the API is started without any options. So nothing special is done ex
 
 Before being able to use the API, you must be authenticated (= having a valid JMap token) and you need to set some JMap startup options ([[JAPIOptions]]).
 
-This file gets the ***sessionId*** (token) and the ***projectId*** (JMap project ID) from the url as parameters like *?sessionId=95423672742&projectId=10*.
-
-Theese options provide a valid ***sessionId*** and a ***projectId***, so when API will start it will automatically start the map and display the project 10 in the div id=**"jmap-map"**.
-
-Then you can start our UI components where you want in your page.
+You can start a JMAP UI components where you want in your page.
 
 For example if you want to insert in your html div id="user-container-id" the JMap component "User" (manages the user session and information), you can add it like that :
 ```ts
   JMap.Component.User.create("user-container-id", { ...options })
 ```
+
+**API changes**
+
+**V0.2.4 => V0.2.5**
+ - Function added :
+    - **[[JMap.Data.User.getFullName]]**
+ - Function removed :
+    - <span style="color:red">**JMap.Data.User.getFirstName**</span> (replaced by JMap.Data.User.getFullName())
+    - <span style="color:red">**JMap.Data.User.getLastName**</span> (replaced by JMap.Data.User.getFullName())
+ - Functions renamed :
+    - JMap.Data.Api.getAllMode => <span style="color:green">**JMap.Data.Api.getAllMode*s***</span>
+    - JMap.Data.Project.getScaleMin => <span style="color:green">**JMap.Data.Project.get*MinScale***</span>
+    - JMap.Data.Project.getScaleMax => <span style="color:green">**JMap.Data.Project.get*MaxScale***</span>
+    - JMap.Data.Project.getColorSelection => <span style="color:green">**JMap.Data.Project.get*SelectionColor***</span>
+    - JMap.Data.Project.getColorBackground => <span style="color:green">**JMap.Data.Project.get*BackgroundColor***</span>

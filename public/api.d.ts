@@ -5,7 +5,7 @@
  * 
  * For example :
  * ```ts
- * // return the API build version.
+ * // returns the API build version.
  * JMap.Api.getVersion()
  * ```
  * 
@@ -19,7 +19,7 @@
  *   - [[JMap.External]] : Fully integrate your own plugin to JMAP API
  */
 declare namespace JMap {
-  
+
   /**
    * **JMap.Api**
    * 
@@ -30,11 +30,11 @@ declare namespace JMap {
     /**
      * **JMap.Api.getVersion**
      * 
-     * Return the API build version.
+     * Returns the API build version.
      * 
      * @example ```ts
      * 
-     * // return the build version, for example "1.0.1"
+     * // returns the build version, for example "1.0.1"
      * JMap.Api.getVersion()
      * ```
      */
@@ -108,11 +108,11 @@ declare namespace JMap {
       /**
        * **JMap.Service.Language.translate**
        * 
-       * Get the translation for a particular key.
+       * Get the translation for a specific key.
        * 
        * @param key The translation key
        * @param params Some translation are dynamics and used runtime variables to construct the translation
-       * @param locale If provided will return the translation for this locale, else the in use locale
+       * @param locale If provided will returns the translation for this locale, else the in use locale
        * @example ```ts
        *    
        * // return "Sauvegarder" if local in use is FR
@@ -141,7 +141,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.getLayerAttributes**
        * 
-       * Return all attribute descriptors for a particuler layer
+       * Returns all attribute descriptors for a particuler layer
        * 
        * @throws Error if layer is not found
        * @param layerId The JMap layer id
@@ -155,7 +155,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.getLayerTree**
        * 
-       * Return project's layer tree.
+       * Returns project's layer tree.
        * 
        * The layer tree is an array of layer element.
        * 
@@ -165,11 +165,11 @@ declare namespace JMap {
        * 
        * A leaf is a JMap layer and has a positive id.
        * 
-       * If no project is loaded, return en empty array.
+       * If no project is loaded, returns en empty array.
        * 
        * @example ```ts
        * 
-       * // return the entire layer element tree of the project
+       * // returns the entire layer element tree of the project
        * JMap.Service.Layer.getLayerTree()
        * ```
        */
@@ -178,15 +178,15 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.getRenderedLayerIds**
        * 
-       * Return the ids of the layers that are displayed on the map.
+       * Returns the ids of the layers that are displayed on the map.
        * 
        * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
        * 
-       * This function return all layers ids that are managed by the map.
+       * This function returns all layers ids that are managed by the map.
        * 
        * @example ```ts
        * 
-       * // return all layer ids that are managed by the map
+       * // returns all layer ids that are managed by the map
        * JMap.Service.Layer.getRenderedLayerIds()
        * ```
        */
@@ -195,12 +195,12 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.exists**
        * 
-       * Return true if a layer having the id exists.
+       * Returns true if a layer having the id exists.
        * 
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return true if layer id=3 exists
+       * // returns true if layer id=3 exists
        * JMap.Service.Layer.exists(3)
        * ```
        */
@@ -209,13 +209,13 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.getById**
        * 
-       * Return the JMap layer having the id.
+       * Returns the JMap layer having the id.
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return the JMap layer id=3
+       * // returns the JMap layer id=3
        * JMap.Service.Layer.getById(3)
        * ```
        */
@@ -224,13 +224,13 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.getName**
        * 
-       * Return the name of the layer.
+       * Returns the name of the layer.
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return the name of layer id=3
+       * // returns the name of layer id=3
        * JMap.Service.Layer.getName(3)
        * ```
        */
@@ -239,13 +239,13 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.getDescription**
        * 
-       * Return the descrition of the layer.
+       * Returns the descrition of the layer.
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return the description of layer id=3
+       * // returns the description of layer id=3
        * JMap.Service.Layer.getDescription(3)
        * ```
        */
@@ -254,7 +254,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.isVisible**
        * 
-       * Return true if the layer is visible.
+       * Returns true if the layer is visible.
        * 
        * This is the "user" visibility, different from the "map" visibility
        * which is based on the min and max scale. 
@@ -263,7 +263,7 @@ declare namespace JMap {
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return false if layer id=3 is not set as visible
+       * // returns false if layer id=3 is not set as visible
        * JMap.Service.Layer.isVisible(3)
        * ```
        */
@@ -331,7 +331,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.setThematicVisibility**
        * 
-       * Show or hide a layer's thematic on the map.
+       * Show or hide a layer thematic on the map
        * 
        * @throws Error if layer or thematic is not found
        * @param layerId The JMap layer id
@@ -363,11 +363,11 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getMap**
        * 
-       * Return the map implementation instance, a MapBox or OpenLayer map.
+       * Returns the map implementation instance, a MapBox or OpenLayer map.
        * 
        * @example ```ts
        * 
-       * // return the implementation map instance
+       * // returns the implementation map instance
        * JMap.Service.Map.getMap()
        * ```
        */
@@ -376,9 +376,9 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getMapJSLib**
        * 
-       * Return the map implementation JS library : MapBox or OpenLayer.
+       * Returns the map implementation JS library : MapBox or OpenLayer.
        * 
-       * Usefull to be able to create library's object, by example a Mapbox popup.
+       * Usefull to be able to create a map library object, by example a Mapbox popup.
        * 
        * @example ```ts
        * 
@@ -394,7 +394,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getLayersVisibilityStatus**
        * 
-       * Return layers visibility status.
+       * Returns layers visibility status.
        * 
        * The result is a map (= javascript object) where :
        *  - the key is the JMap layer id
@@ -407,7 +407,7 @@ declare namespace JMap {
        * 
        * @example ```ts
        * 
-       * // return the visibility status
+       * // returns the visibility status
        * JMap.Service.Map.getLayersVisibilityStatus()
        * 
        * // Example of result :
@@ -424,15 +424,15 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getInUseJMapLayerIds**
        * 
-       * Return all layer ids that are displayed by the map.
+       * Returns all layer ids that are displayed by the map.
        * 
        * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
        * 
-       * This function return all layers ids that are managed by the map.
+       * This function returns all layers ids that are managed by the map.
        * 
        * @example ```ts
        * 
-       * // return layer ids managed by the map implementation
+       * // returns layer ids managed by the map implementation
        * JMap.Service.Map.getInUseJMapLayerIds()
        * ```
        */
@@ -441,15 +441,15 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getInUseJMapVectorLayerIds**
        * 
-       * Return all vector layer ids that are displayed by the map.
+       * Returns all vector layer ids that are displayed by the map.
        * 
        * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
        * 
-       * This function return all vector layers ids that are managed by the map.
+       * This function returns all vector layers ids that are managed by the map.
        * 
        * @example ```ts
        * 
-       * // return vector layer ids managed by the map implementation
+       * // returns vector layer ids managed by the map implementation
        * JMap.Service.Map.getInUseJMapVectorLayerIds()
        * ```
        */
@@ -458,14 +458,14 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getInUseJMapLayerBefore**
        * 
-       * Return the layer id that is ordered before the layer id provided in argument.
+       * Returns the layer id that is ordered before the layer id provided in argument.
        * 
        * @throws Error if layer is not found
        * @param layerId The JMap layer id
        * @returns the JMap layer id, or undefined if no layer before
        * @example ```ts
        * 
-       * // Return the layer's id that is located before layer id=4
+       * // Returns the layer id that is located before layer id=4
        * JMap.Service.Map.getInUseJMapLayerBefore(4)
        * ```
        */
@@ -474,14 +474,14 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getInUseJMapLayerAfter**
        * 
-       * Return the layer id that is ordered after the layer id provided in argument.
+       * Returns the layer id that is ordered after the layer id provided in argument.
        * 
        * @throws Error if layer is not found
        * @param layerId The JMap layer id
        * @returns the JMap layer id, or undefined if no layer after
        * @example ```ts
        * 
-       * // Return the layer's id that is located after layer id=3
+       * // Returns the layer id that is located after layer id=3
        * JMap.Service.Map.getInUseJMapLayerAfter(3)
        * ```
        */
@@ -490,7 +490,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getRenderedFeatures**
        * 
-       * Return rendered geojson features for the layer.
+       * Returns rendered geojson features for the layer.
        * 
        * @throws Error if layer is not found
        * @throws Error if no or incorrect filter is passed
@@ -499,13 +499,13 @@ declare namespace JMap {
        * @return A features array
        * @example ```ts
        * 
-       * // Return all rendered geojson features for layer 4
+       * // Returns all rendered geojson features for layer 4
        * JMap.Service.Map.getRenderedFeatures(4)
        * 
-       * // Return all rendered geojson features for layer 4 at location x=45.54 and y=65.43
+       * // Returns all rendered geojson features for layer 4 at location x=45.54 and y=65.43
        * JMap.Service.Map.getRenderedFeatures(4, { x: 45.54, y: 65.43 })
        * 
-       * // Return all rendered geojson features for layer 4 that intersect the boundary box
+       * // Returns all rendered geojson features for layer 4 that intersect the boundary box
        * // having south-west { x=45.54 and y=65.43 } and north-est { x=48.54 and y=70.43 }
        * JMap.Service.Map.getRenderedFeatures(4, {
        *  sw: { x: 45.54, y: 65.43 },
@@ -518,7 +518,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getRenderedFeaturesAttributeValues**
        * 
-       * Return rendered features attributes for the layer.
+       * Returns rendered features attributes for the layer.
        * 
        * The result is an array of object, one object for each feature.
        * Each object contains all feature's attributes, plus another one that is called "featureId" and contains the feature id.
@@ -530,13 +530,13 @@ declare namespace JMap {
        * @return An object array
        * @example ```ts
        * 
-       * // Will return all features attributes for layer 4
+       * // Will returns all features attributes for layer 4
        * JMap.Service.Map.getRenderedFeaturesAttributeValues(4)
        * 
-       * // Will return all features attributes for layer 4, that intersect the location
+       * // Will returns all features attributes for layer 4, that intersect the location
        * JMap.Service.Map.getRenderedFeaturesAttributeValues(4, { x: 45.54, y: 65.43 })
        * 
-       * // Will return all features attributes for layer 4, that intersect the boundary box
+       * // Will returns all features attributes for layer 4, that intersect the boundary box
        * JMap.Service.Map.getRenderedFeaturesAttributeValues(4, { sw: { x: 45.54, y: 65.43 }, ne: { x: 48.54, y: 70.43 }})
        * 
        * // Example of result for features that have only 2 attributes "Firestation" and "Nursery" :
@@ -551,7 +551,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getAvailableBaseMaps**
        * 
-       * Return the available basemap names that can be used with method setBaseMap.
+       * Returns the available basemap names that can be used with method setBaseMap.
        * 
        * Depends on the map implementation ([[MAP_IMPLEMENTATION]]).
        * 
@@ -562,7 +562,7 @@ declare namespace JMap {
        * @returns an array of string, the available basemap names for map implementation
        * @example ```ts
        * 
-       * // return an array of string comtaining names of available basemaps
+       * // returns an array of string comtaining names of available basemaps
        * JMap.Service.Map.getAvailableBaseMaps()
        * ```
        */
@@ -721,11 +721,11 @@ declare namespace JMap {
         /**
          * **JMap.Service.Map.Interaction.getAllInteractorDescriptors**
          * 
-         * Return all existing interactor descriptors ([[JMapInteractorDescriptor]]).
+         * Returns all existing interactor descriptors ([[JMapInteractorDescriptor]]).
          * 
          * @example ```ts
          * 
-         * // return all existing interactor descriptors
+         * // returns all existing interactor descriptors
          * JMap.Service.Map.Interaction.getAllInteractorDescriptors()
          * ```
          */
@@ -734,11 +734,11 @@ declare namespace JMap {
         /**
          * **JMap.Service.Map.Interaction.getActiveInteractorDescriptor**
          * 
-         * Return the active interactor descriptor ([[JMapInteractorDescriptor]]).
+         * Returns the active interactor descriptor ([[JMapInteractorDescriptor]]).
          * 
          * @example ```ts
          * 
-         * // Return the active interactor descriptor
+         * // Returns the active interactor descriptor
          * JMap.Service.Map.Interaction.getActiveInteractorDescriptor()
          * ```
          */
@@ -1079,7 +1079,7 @@ declare namespace JMap {
         /**
          * **JMap.Service.Map.Selection.selectOnOneLayerAtLocation**
          * 
-         * Select for particular layer its features that are at the location.
+         * Select for specific layer its features that are at the location.
          * 
          * Same behavior as if you were clicking on the map in order to select features, but for only one layer.
          * 
@@ -1098,7 +1098,7 @@ declare namespace JMap {
         /**
          * **JMap.Service.Map.Selection.setLayerSelection**
          * 
-         * Set the selection for a particular layer.
+         * Set the selection for a specific layer.
          * 
          * Cancel previous selection if exist, and replace by new selection
          * 
@@ -1137,7 +1137,7 @@ declare namespace JMap {
         /**
          * **JMap.Service.Map.Selection.addFeaturesToLayerSelection**
          * 
-         * Add to the current layer's selection the provided feature(s).
+         * Add to the current layer selection the provided feature(s).
          * 
          * Don't cancel previous selection, but add features to it.
          * 
@@ -1146,7 +1146,7 @@ declare namespace JMap {
          * @param features The feature(s) that will be selected on the map
          * @example ```ts
          * 
-         * // Add one feature (id = 234) to layer's 4 selection
+         * // Add one feature (id = 234) to layer 4 selection
          * JMap.Service.Map.Selection.addFeaturesToLayerSelection(4, {
          *  id: 234,
          *  type: "Point",
@@ -1154,7 +1154,7 @@ declare namespace JMap {
          *  properties: [...]
          * })
          * 
-         * // Add 2 features (id = 234 and 567) to layer's 4 selection
+         * // Add 2 features (id = 234 and 567) to layer 4 selection
          * JMap.Service.Map.Selection.addFeaturesToLayerSelection(4, [
          *   {
          *    id: 234,
@@ -1176,19 +1176,19 @@ declare namespace JMap {
         /**
          * **JMap.Service.Map.Selection.removeFeaturesFromLayerSelection**
          * 
-         * Remove from current layer's selection the provided feature(s).
+         * Remove from current layer selection the provided feature(s).
          * 
          * Don't cancel previous selection, just remove feature(s) from it.
          * 
          * @throws Error if layer is not found or feature id(s) format is not good
          * @param layerId The JMap layer id
-         * @param featureIds The feature id(s) that will be remove from the layer's selection
+         * @param featureIds The feature id(s) that will be remove from the layer selection
          * @example ```ts
          * 
-         * // Remove one feature (id = 234) from layer's 4 selection
+         * // Remove one feature (id = 234) from layer 4 selection
          * JMap.Service.Map.Selection.removeFeaturesFromLayerSelection(4, 234)
          * 
-         * // Remove 2 features (id = 234 and 567) from layer's 4 selection
+         * // Remove 2 features (id = 234 and 567) from layer 4 selection
          * JMap.Service.Map.Selection.removeFeaturesFromLayerSelection(4, [ 234, 567 ])
          * ```
          */
@@ -1199,7 +1199,7 @@ declare namespace JMap {
          * 
          * Clear all selection.
          * 
-         * If a layer id is provided, clear only the layer's selection, else clear selection of all layers.
+         * If a layer id is provided, clear only the layer selection, else clear selection of all layers.
          * 
          * @throws Error if a layer id is provided but not found
          * @param layerId The JMap layer id
@@ -1252,7 +1252,7 @@ declare namespace JMap {
        * JMap.Service.MouseOver.renderForFeaturesAtLocation("my-custom-div", { x: 34.44, y: 23.44 })
        * ```
        */
-      function renderForFeaturesAtLocation(containerId: string, location: JLocation): boolean // return true if has mouseover
+      function renderForFeaturesAtLocation(containerId: string, location: JLocation): boolean // returns true if has mouseover
 
       /**
        * **JMap.Service.MouseOver.renderForFeaturesSelection**
@@ -1284,8 +1284,8 @@ declare namespace JMap {
       /**
        * **JMap.Service.MouseOver.getMouseOverContent**
        * 
-       * Return the mousever content for the provided feature selection. If no mouseover are defined
-       * for any layer it return undefined.
+       * Returns the mousever content for the provided feature selection. If no mouseover are defined
+       * for any layer it returns undefined.
        * 
        * The result you get need first to be inserted in the DOM, then after the insertion,
        * you need to call the method processJSAndPhotosForContent()
@@ -1405,7 +1405,7 @@ declare namespace JMap {
       /**
        * **JMap.Service.User.login**
        * 
-       * The login function, return a promise. Make a call to the server and if
+       * The login function, returns a promise. Make a call to the server and if
        * login is successful resolve the promise providing the user session data.
        * 
        * @throws Error if bad credentials or server error.
@@ -1415,7 +1415,7 @@ declare namespace JMap {
        * const userLogin = "jdo@mycompany.com"
        * const userPassword = "xxx"
        * 
-       * // Open a new user session, and get back user's data from server
+       * // Open a new user session, and get back user data from server
        * JMap.Service.User
        *    .login(userLogin, userPassword)
        *    .then(sessionData => {
@@ -1527,7 +1527,7 @@ declare namespace JMap {
       /**
        * **JMap.Application.Sidepanel.setVisible**
        * 
-       * Set the application's left side panel visibility.
+       * Set the application left side panel visibility.
        * 
        * @param open if true show the panel, else hide it
        * @example ```ts
@@ -1640,7 +1640,7 @@ declare namespace JMap {
      *
      * @example ```ts
      * 
-     * // return the Web API redux store
+     * // returns the Web API redux store
      * const reduxStore = JMap.Data.getStore()
      * reduxStore.dispatch(...)
      * ```
@@ -1657,13 +1657,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Api.getRestUrl**
        * 
-       * Return in use JMap API server rest API.
+       * Returns in use JMap API server rest API.
        *
        * This is the url on which the JMap API will make all of its ajax call.
        * 
        * @example ```ts
        * 
-       * // return the JMap server REST URL in use
+       * // returns the JMap server rest URL in use
        * JMap.Data.Api.getRestUrl()
        * ```
        */
@@ -1672,39 +1672,39 @@ declare namespace JMap {
       /**
        * **JMap.Data.Api.getMode**
        * 
-       * Return the current JMap API mode state.
+       * Returns the current JMap API mode state.
        *
        * This mode is mainly used for the JMap application.
        * 
        * @example ```ts
        * 
-       * // return the currently activated API mode
+       * // returns the currently activated API mode
        * JMap.Data.Api.getMode()
        * ```
        */
       function getMode(): API_MODE
 
       /**
-       * **JMap.Data.Api.getAllMode**
+       * **JMap.Data.Api.getAllModes**
        * 
-       * Return all available JMap API modes (see [[API_MODE]]).
+       * Returnsall available JMap API modes (see [[API_MODE]]).
        * 
        * @example ```ts
        * 
-       * // return all available API modes
-       * JMap.Data.Api.getAllMode()
+       * // returns all available API modes
+       * JMap.Data.Api.getAllModes()
        * ```
        */
-      function getAllMode(): API_MODE[]
+      function getAllModes(): API_MODE[]
 
       /**
        * **JMap.Data.Api.getMapImplementation**
        * 
-       * Return the map implementation : "MapBox" or "OpenLayers".
+       * Returnsthe map implementation : "MapBox" or "OpenLayers".
        * 
        * @example ```ts
        * 
-       * // return "MapBox" or "OpenLayers"
+       * // returns "MapBox" or "OpenLayers"
        * JMap.Data.Api.getMapImplementation()
        * ```
        */
@@ -1721,11 +1721,11 @@ declare namespace JMap {
       /**
        * **JMap.Data.Application.isSidePanelOpen**
        * 
-       * Return true if the JMAP application main panel on the left is opened.
+       * Returnstrue if the JMAP application main panel on the left is opened.
        * 
        * @example ```ts
        * 
-       * // return true if side panel is opened
+       * // returns true if side panel is opened
        * JMap.Data.Application.isSidePanelOpen()
        * ```
        */
@@ -1734,11 +1734,11 @@ declare namespace JMap {
       /**
        * **JMap.Data.Application.getDomContainerId**
        * 
-       * Return the DOM div element id where application UI has been inserted.
+       * Returnsthe DOM div element id where application UI has been inserted.
        * 
        * @example ```ts
        * 
-       * // return the application DOM container id
+       * // returns the application DOM container id
        * JMap.Data.Application.getDomContainerId()
        * ```
        */
@@ -1755,13 +1755,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getId**
        * 
-       * Return current JMap project id.
+       * Returns JMap project id.
        * 
-       * If no project is loaded, return -1.
+       * If no project is loaded, returns -1.
        * 
        * @example ```ts
        * 
-       * // return the currently loaded project's id
+       * // returns the currently loaded project id
        * JMap.Data.Project.getId()
        * ```
        */
@@ -1770,13 +1770,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getName**
        * 
-       * Return current JMap project name.
+       * Returns JMap project name.
        * 
-       * If no project is loaded, return "".
+       * If no project is loaded, returns "".
        * 
        * @example ```ts
        * 
-       * // return the currently loaded project's name
+       * // returns the currently loaded project name
        * JMap.Data.Project.getName()
        * ```
        */
@@ -1785,13 +1785,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getDescription**
        * 
-       * Return current JMap project description.
+       * Returns JMap project description.
        * 
-       * If no project is loaded, return "".
+       * If no project is loaded, returns "".
        * 
        * @example ```ts
        * 
-       * // return the currently loaded project's description
+       * // returns the currently loaded project description
        * JMap.Data.Project.getDescription()
        * ```
        */
@@ -1800,16 +1800,16 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getProjection**
        * 
-       * Return current JMap project's projection.
+       * Returns JMap project projection.
        * 
-       * If no project is loaded, return an empty projection : { code: "", name: "" }.
+       * If no project is loaded, returns an empty projection : { code: "", name: "" }.
        * 
        * In MapBox, projection is always "***EPSG:3857***", but that function returns the project
        * defined projection (so it can be different than ***ESPG:3857***).
        * 
        * @example ```ts
        * 
-       * // return the project's projection
+       * // returns the project projection
        * JMap.Data.Project.getProjection()
        * ```
        */
@@ -1818,90 +1818,90 @@ declare namespace JMap {
       /**
        * **JMap.Data.Project.getInitialRotation**
        * 
-       * Return current JMap project initial map rotation. This rotation is applied when the project is opened.
+       * Returns JMap project initial map rotation. This rotation is applied when the project is opened.
        * 
-       * If no project is loaded, return 0.
+       * If no project is loaded, returns 0.
        * 
        * @example ```ts
        * 
-       * // return the project's initial rotation
+       * // returns the project initial rotation
        * JMap.Data.Project.getInitialRotation()
        * ```
        */
       function getInitialRotation(): number
 
       /**
-       * **JMap.Data.Project.getScaleMax**
+       * **JMap.Data.Project.getMinScale**
        * 
-       * Return current JMap project max scale.
+       * Returns JMap project min scale.
        * 
-       * If no project is loaded, return 0.
-       * 
-       * @example ```ts
-       * 
-       * // return the project max scale
-       * JMap.Data.Project.getScaleMax()
-       * ```
-       */
-      function getScaleMax(): number
-
-      /**
-       * **JMap.Data.Project.getScaleMin**
-       * 
-       * Return current JMap project min scale.
-       * 
-       * If no project is loaded, return 0.
+       * If no project is loaded, returns 0.
        * 
        * @example ```ts
        * 
-       * // return the project min scale
-       * JMap.Data.Project.getScaleMin()
+       * // returns the project min scale
+       * JMap.Data.Project.getMinScale()
        * ```
        */
-      function getScaleMin(): number
+      function getMinScale(): number
 
       /**
-       * **JMap.Data.Project.getColorSelection**
+       * **JMap.Data.Project.getMaxScale**
        * 
-       * Return current JMap project's selection color in html hexa format.
+       * Returns JMap project max scale.
+       * 
+       * If no project is loaded, returns 0.
+       * 
+       * @example ```ts
+       * 
+       * // returns the project max scale
+       * JMap.Data.Project.getMaxScale()
+       * ```
+       */
+      function getMaxScale(): number
+
+      /**
+       * **JMap.Data.Project.getSelectionColor**
+       * 
+       * Returns JMap project selection color in html hexa format.
        * 
        * This is the color that is used for selected features of layers that don't have a specific selection style defined.
        * 
-       * If no project is loaded, return "#ffffff".
+       * If no project is loaded, returns "#ffffff".
        * 
        * @example ```ts
        * 
-       * // return the project's selection color as a html hexa color
-       * JMap.Data.Project.getColorSelection()
+       * // returns the project selection color as a html hexa color
+       * JMap.Data.Project.getSelectionColor()
        * ```
        */
-      function getColorSelection(): string
+      function getSelectionColor(): string
 
       /**
-       * **JMap.Data.Project.getColorBackground**
+       * **JMap.Data.Project.getBackgroundColor**
        * 
-       * Return current JMap project background color in html hexa format. This color is used as the background of the map.
+       * Returns JMap project background color in html hexa format. This color is used as the background of the map.
        * 
-       * If no project is loaded, return "bisque".
+       * If no project is loaded, returns "bisque".
        * 
        * @example ```ts
        * 
-       * // return the project's background color as a html hexa color
-       * JMap.Data.Project.getColorBackground()
+       * // returns the project background color as a html hexa color
+       * JMap.Data.Project.getBackgroundColor()
        * ```
        */
-      function getColorBackground(): string
+      function getBackgroundColor(): string
 
       /**
        * **JMap.Data.Project.getInitialExtent**
        * 
-       * Return current JMap project initial extent. This is the extent that is automatically displayed when the project is opened.
+       * Returns JMap project initial extent. This is the extent that is automatically displayed when the project is opened.
        * 
-       * If no project is loaded, return null.
+       * If no project is loaded, returns null.
        * 
        * @example ```ts
        * 
-       * // return the project's initial extent if exists
+       * // returns the project initial extent if exists
        * JMap.Data.Project.getInitialExtent()
        * ```
        */
@@ -1918,7 +1918,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getLayerTree**
        * 
-       * Return project's layer tree.
+       * Returns project's layer tree.
        * 
        * The layer tree is an array of layer elements.
        * 
@@ -1932,7 +1932,7 @@ declare namespace JMap {
        * 
        * @example ```ts
        * 
-       * // return the entire layer element tree of the project
+       * // returns the entire layer element tree of the project
        * JMap.Data.Layer.getLayerTree()
        * ```
        */
@@ -1941,7 +1941,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getLayerTreeElementsById**
        * 
-       * Return a map (= a javascript object) where :
+       * Returns a map (= a javascript object) where :
        *  - the key is the layer element id
        *  - the value is the layer element
        * 
@@ -1955,7 +1955,7 @@ declare namespace JMap {
        * 
        * @example ```ts
        * 
-       * // return a map of layer elements defined by layer id
+       * // returns a map of layer elements defined by layer id
        * JMap.Data.Layer.getLayerTreeElementsById()
        * ```
        */
@@ -1964,7 +1964,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getRenderedLayers**
        * 
-       * Return only JMap layers, not the nodes.
+       * Returns only JMap layers, not the nodes.
        * 
        * The layer tree is composed of nodes and leaves.
        * 
@@ -1987,12 +1987,12 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.exists**
        * 
-       * Return true if a layer having the id exists.
+       * Returns true if a layer having the id exists.
        * 
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return true if layer id=3 exists
+       * // returns true if layer id=3 exists
        * JMap.Data.Layer.exists(3)
        * ```
        */
@@ -2001,13 +2001,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getById**
        * 
-       * Return the JMap layer having the id.
+       * Returns the JMap layer having the id.
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return the JMap layer id=3
+       * // returns the JMap layer id=3
        * JMap.Data.Layer.getById(3)
        * ```
        */
@@ -2016,15 +2016,15 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getSelfOrChildren**
        * 
-       * If the layerId is a JMap layer return it.
-       * If the layerId is a node, return all node's JMap layers (removes all nodes).
-       * Return an empty array if it's an empty node.
+       * If the layerId is a JMap layer returns it.
+       * If the layerId is a node, returns all of its JMap layers children (remove all nodes).
+       * Returns an empty array if it's an empty node
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return an array with only JMap layers (no node)
+       * // returns an array with only JMap layers (no node)
        * JMap.Data.Layer.getSelfOrChildren(3)
        * ```
        */
@@ -2033,13 +2033,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getName**
        * 
-       * Return the name of the layer.
+       * Returns the name of the layer.
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return the name of layer id=3
+       * // returns the name of layer id=3
        * JMap.Data.Layer.getName(3)
        * ```
        */
@@ -2048,13 +2048,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getDescription**
        * 
-       * Return the descrition of the layer.
+       * Returns the descrition of the layer.
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return the description of layer id=3
+       * // returns the description of layer id=3
        * JMap.Data.Layer.getDescription(3)
        * ```
        */
@@ -2063,7 +2063,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.isVisible**
        * 
-       * Return true if the layer is visible.
+       * Returns true if the layer is visible.
        * 
        * This is the "user" visibility, different from the "map" visibility
        * which is based on the min and max scale. 
@@ -2072,7 +2072,7 @@ declare namespace JMap {
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return false if layer id=3 is not set as visible
+       * // returns false if layer id=3 is not set as visible
        * JMap.Data.Layer.isVisible(3)
        * ```
        */
@@ -2081,13 +2081,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getStyle**
        * 
-       * Return the base style of the layer.
+       * Returns the base style of the layer.
        * 
        * @throws Error if no layer found for the id, or if the layer is a node.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return layer id=3 base style
+       * // returns layer id=3 base style
        * JMap.Data.Layer.getStyle(3)
        * ```
        */
@@ -2096,7 +2096,7 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getSimpleSelectionStyle**
        * 
-       * Return the selection "simple" style of the layer.
+       * Returns the selection "simple" style of the layer.
        * 
        * It always returns an object, and if no selection style has been set on the layer,
        * it returns the project default values.
@@ -2105,7 +2105,7 @@ declare namespace JMap {
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return the simple selection style of layer id=3
+       * // returns the simple selection style of layer id=3
        * JMap.Data.Layer.getSimpleSelectionStyle(3)
        * ```
        */
@@ -2114,13 +2114,13 @@ declare namespace JMap {
       /**
        * **JMap.Data.Layer.getSelectionStyle**
        * 
-       * Return the layer's selection style if defined, else return null.
+       * Returns the layer selection style if defined, else returns null.
        * 
        * @throws Error if no layer found for the id, or if the layer is a node.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return the simple selection style of layer id=3
+       * // returns the simple selection style of layer id=3
        * JMap.Data.Layer.getSelectionStyle(3)
        * ```
        */
@@ -2129,13 +2129,13 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Layer.getAllThematicsForLayer***
        * 
-       * Return all layer's thematics.
+       * Returns all layer thematics.
        * 
        * @throws Error if no layer found for the id, or if the layer is a node.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return all thematics of layer id=4
+       * // returns all thematics of layer id=4
        * JMap.Data.Layer.getAllThematicsForLayer(4)
        * ```
        */
@@ -2144,14 +2144,14 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Layer.getThematicById***
        * 
-       * Return a specific layer's thematic.
+       * Returns a specific layer thematic.
        * 
        * @throws Error if no layer found for the id, if the layer is a node, or if the thematic doesn't exist.
        * @param layerId The JMap layer id
        * @param thematicId The thematic id
        * @example ```ts
        * 
-       * // return thematic id=3 of layer id=4
+       * // returns thematic id=3 of layer id=4
        * JMap.Data.Layer.getThematicById(4, 3)
        * ```
        */
@@ -2160,13 +2160,13 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Layer.hasVisibleThematics***
        * 
-       * Return true if the layer has at least one thematic displayed on the map.
+       * Returns true if the layer has at least one thematic displayed on the map.
        * 
        * @throws Error if no layer found for the id, or if the layer is a node.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return false if no thematic is displayed for layer id=4
+       * // returns false if no thematic is displayed for layer id=4
        * JMap.Data.Layer.hasVisibleThematics(4)
        * ```
        */
@@ -2175,13 +2175,13 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Layer.getVisibleThematics***
        * 
-       * Return layer's thematics that are currently displayed on the map.
+       * Returns layer thematics that are currently displayed on the map.
        * 
        * @throws Error if no layer found for the id, or if the layer is a node.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return false if no thematic is displayed for layer id=4
+       * // returns false if no thematic is displayed for layer id=4
        * JMap.Data.Layer.getVisibleThematics(4)
        * ```
        */
@@ -2198,11 +2198,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getDomContainerId***
        * 
-       * Return the map div container id, where the map is created.
+       * Returns the map div container id, where the map is created.
        * 
        * @example ```ts
        * 
-       * // return the map div container id
+       * // returns the map div container id
        * JMap.Data.Map.getDomContainerId()
        * ```
        */
@@ -2211,11 +2211,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getImplementation***
        * 
-       * Return the map implementation ("MapBox" or "OpenLayers")
+       * Returns the map implementation ("MapBox" or "OpenLayers")
        * 
        * @example ```ts
        * 
-       * // return "MapBox" or "OpenLayers"
+       * // returns "MapBox" or "OpenLayers"
        * JMap.Data.Map.getImplementation()
        * ```
        */
@@ -2224,11 +2224,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.isMapLoaded***
        * 
-       * Return true if the map has been loaded and is ready.
+       * Returns true if the map has been loaded and is ready.
        * 
        * @example ```ts
        * 
-       * // return true or false
+       * // returns true or false
        * JMap.Data.Map.isMapLoaded()
        * ```
        */
@@ -2237,11 +2237,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getCenter***
        * 
-       * Return the location that is the current center of the map.
+       * Returns the location that is the current center of the map.
        * 
        * @example ```ts
        * 
-       * // return the current center of the map
+       * // returns the current center of the map
        * JMap.Data.Map.getCenter()
        * ```
        */
@@ -2250,11 +2250,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getZoom***
        * 
-       * Return the current map's zoom.
+       * Returns the current map zoom.
        * 
        * @example ```ts
        * 
-       * // return the current map's zoom
+       * // returns the current map zoom
        * JMap.Data.Map.getZoom()
        * ```
        */
@@ -2263,11 +2263,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getScale***
        * 
-       * Return the current map scale.
+       * Returns the current map scale.
        * 
        * @example ```ts
        * 
-       * // return the current map's scale
+       * // returns the current map scale
        * JMap.Data.Map.getScale()
        * ```
        */
@@ -2276,7 +2276,7 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getScale***
        * 
-       * Return the current map's basemap.
+       * Returns the current basemap.
        * 
        * The basemap depends on the map implementation ([[MAP_IMPLEMENTATION]]).
        * 
@@ -2286,7 +2286,7 @@ declare namespace JMap {
        * 
        * @example ```ts
        * 
-       * // return the current map's basemap
+       * // returns the current basemap
        * JMap.Data.Map.getBaseMap()
        * ```
        */
@@ -2295,13 +2295,13 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getSelectedFeatures***
        * 
-       * Return the current map selection as a javascript map (= a javascript object) where :
+       * Returns the current map selection as a javascript map (= a javascript object) where :
        *  - the key is the layer element id
        *  - the value is an array of feature (an empty array if layer doesn't have features selected)
        * 
        * @example ```ts
        * 
-       * // return the current selected features by layer id
+       * // returns the current selected features by layer id
        * JMap.Data.Map.getSelectedFeatures()
        * ```
        */
@@ -2310,12 +2310,12 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getSelectedFeaturesForLayer***
        * 
-       * Return the current selected features for a specific JMap layer.
+       * Returns the current selected features for a specific JMap layer.
        * 
        * @returns an array of GeoJSON features
        * @example ```ts
        * 
-       * // return the current selected features for layer 3
+       * // returns the current selected features for layer 3
        * JMap.Data.Map.getSelectedFeaturesForLayer(3)
        * ```
        */
@@ -2324,11 +2324,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Map.getSelectedFeatureIdsForLayer***
        * 
-       * Return the current selected feature ids for a particular JMap layer.
+       * Returns the current selected feature ids for a specific JMap layer.
        * 
        * This function is the equivalent of that code :
        * ```ts
-       * // return the same as JMap.Data.Map.getSelectedFeatureIdsForLayer(3)
+       * // returns the same as JMap.Data.Map.getSelectedFeatureIdsForLayer(3)
        * JMap.Data
        *    .getSelectedFeaturesForLayer(layerId: number)
        *    .map(feature => feature.id)
@@ -2336,7 +2336,7 @@ declare namespace JMap {
        * 
        * @example ```ts
        * 
-       * // return the current selected feature ids for layer 3
+       * // returns the current selected feature ids for layer 3
        * JMap.Data.Map.getSelectedFeatureIdsForLayer(3)
        * ```
        */
@@ -2353,52 +2353,39 @@ declare namespace JMap {
       /**
        * ***JMap.Data.User.getToken***
        * 
-       * If user is logged in, return the current user session token.
+       * If user is logged in, returns the current user session token.
        * 
-       * Else return "-1" if user has no active session.
+       * Else returns "-1" if user has no active session.
        * 
        * @example ```ts
        * 
-       * // return the user session token
+       * // returns the user session token
        * JMap.Data.User.getToken()
        * ```
        */
       function getToken(): string
 
       /**
-       * ***JMap.Data.User.getFirstName***
+       * ***JMap.Data.User.getFullName***
        * 
-       * Return user first name.
-       * 
-       * @example ```ts
-       * 
-       * // return the user first name
-       * JMap.Data.User.getFirstName()
-       * ```
-       */
-      function getFirstName(): string
-
-      /**
-       * ***JMap.Data.User.getLastName***
-       * 
-       * Return user last name.
+       * Returns user full name.
        * 
        * @example ```ts
        * 
-       * // return the user last name
-       * JMap.Data.User.getLastName()
+       * // returns the user full name, ex : "John Do"
+       * JMap.Data.User.getFullName()
        * ```
        */
-      function getLastName(): string
+      function getFullName(): string
 
       /**
        * ***JMap.Data.User.getLogin***
        * 
-       * Return user login.
+       * Returns user login.
        * 
        * @example ```ts
        * 
-       * // return the user login
+       * // returns the user login
        * JMap.Data.User.getLogin()
        * ```
        */
@@ -2415,11 +2402,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Photo.isPopupOpened***
        * 
-       * Return true if the photo popup is opened.
+       * Returns true if the photo popup is opened.
        * 
        * @example ```ts
        * 
-       * // return true if the photo popup is displayed
+       * // returns true if the photo popup is displayed
        * JMap.Data.Photo.isPopupOpened()
        * ```
        */
@@ -2428,11 +2415,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Photo.isPopupInfoPanelOpened***
        * 
-       * Return true if the info panel is opened inside the photo popup.
+       * Returns true if the info panel is opened inside the photo popup.
        * 
        * @example ```ts
        * 
-       * // return true if the info panel is opened inside the photo popup
+       * // returns true if the info panel is opened inside the photo popup
        * JMap.Data.Photo.isPopupInfoPanelOpened()
        * ```
        */
@@ -2441,11 +2428,11 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Photo.getPhotoDescriptors***
        * 
-       * Return the displayed photo descriptors, or an empty array if no photo is displayed.
+       * Returns the displayed photo descriptors, or an empty array if no photo is displayed.
        * 
        * @example ```ts
        * 
-       * // return the displayed photo descriptors, an empty array if no photo displayed
+       * // returns the displayed photo descriptors, an empty array if no photo displayed
        * JMap.Data.Photo.getPhotoDescriptors()
        * ```
        */
@@ -2454,9 +2441,9 @@ declare namespace JMap {
       /**
        * ***JMap.Data.Photo.getSelectedPhotoId***
        * 
-       * Return the current selected/displayed photo ids.
+       * Returns the current selected/displayed photo ids.
        * 
-       * Return undefined if no photo is selected.
+       * Returns undefined if no photo is selected.
        * 
        * This function is the equivalent of :
        * ```ts
@@ -2467,7 +2454,7 @@ declare namespace JMap {
        * 
        * @example ```ts
        * 
-       * // return the selected photo ids.
+       * // returns the selected photo ids.
        * JMap.Data.Photo.getSelectedPhotoId()
        * ```
        */
@@ -3046,7 +3033,7 @@ declare namespace JMap {
      * @param extensionId The extension id
      * @example ```ts
      * 
-     * // return true if the JMap Document extension is in use or not for the project
+     * // returns true if the JMap Document extension is in use or not for the project
      * JMap.External.isRegistered("Document")
      * ```
      */
@@ -3055,11 +3042,11 @@ declare namespace JMap {
     /**
      * ***JMap.External.getAllRegistered***
      * 
-     * Return all registered extension ids.
+     * Returns all registered extension ids.
      * 
      * @example ```ts
      * 
-     * // Could return [ "Document", "MyCustomExtension" ]
+     * // Could returns [ "Document", "MyCustomExtension" ]
      * JMap.External.getAllRegistered()
      * ```
      */
@@ -3070,7 +3057,7 @@ declare namespace JMap {
      * 
      * *You should not need to use this function. It is usefull for the API itself.*
      * 
-     * Return all external mouseovers for a particular layer's feature.
+     * Returns all external mouseovers for a specific layer feature.
      * 
      * Each result elements are the result of calling method [[JExtensionModel.renderMouseOver]]
      * 
@@ -3081,7 +3068,7 @@ declare namespace JMap {
      * @returns an empty array if no external registered
      * @example ```ts
      * 
-     * // Could return [ "Document", "MyCustomExtension" ]
+     * // Could returns [ "Document", "MyCustomExtension" ]
      * JMap.External.getAllRegistered()
      * ```
      */

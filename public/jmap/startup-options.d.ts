@@ -29,7 +29,7 @@ declare interface Window {
  *     <div id="app"></div>
  *    <script type="text/javascript">
  *       const url = new URL(window.location.href)
- *       const sessionId = url.searchParams.get("sessionId")
+ *       const token = url.searchParams.get("token")
  *       let projectId = Number(url.searchParams.get("projectId"))
  *       if (isNaN(projectId)) {
  *         projectId = 0
@@ -38,7 +38,7 @@ declare interface Window {
  *         projectId: Number(projectId),
  *         restBaseUrl: "http://your-jmap-server-url/services/rest/v2.0",
  *         session: {
- *           token: Number(sessionId),
+ *           token: Number(token),
  *           user: {
  *             admin: false,
  *             firstname: "John",
@@ -60,6 +60,14 @@ declare interface Window {
  *   </body>
  * </html>
  * ```
+ * 
+ * This html file gets parameters ***token*** and ***projectId*** from the url.
+ * 
+ * For example, you can pass this parameters like that :
+ *   - **http:// my-company/my-custom-page-using-jmap?sessionId=95423672742&projectId=10**.
+ * 
+ * When JMAP API starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
+ * the **JMap project id=*10***, then load the map in the **div id="*jmap-map*"**.
  */
 declare interface JAPIOptions {
   /**

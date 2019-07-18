@@ -69,7 +69,7 @@ gulp.task("typedoc", cb => {
 
 /********************************** PUBLIC TASKS **********************************/
 
-// Use it when you want to modify the doc but not publish
+// Use it when you only want to modify the doc (but not publish)
 gulp.task('commit-doc', gulp.series('typedoc', 'commit'))
 
 // Main task
