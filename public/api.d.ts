@@ -55,6 +55,34 @@ declare namespace JMap {
     function getDataStore(): any | undefined
 
     /**
+     * **JMap.Api.getRestUrl**
+     * 
+     * Returns in use JMap API server rest API.
+     *
+     * This is the url on which the JMap API will make all of its ajax call.
+     * 
+     * @example ```ts
+     * 
+     * // returns the JMap server rest URL in use
+     * JMap.Api.getRestUrl()
+     * ```
+     */
+    function getRestUrl(): string
+
+    /**
+     * **JMap.Api.getMapImplementation**
+     * 
+     * Returnsthe map implementation : "MapBox" or "OpenLayers".
+     * 
+     * @example ```ts
+     * 
+     * // returns "MapBox" or "OpenLayers"
+     * JMap.Api.getMapImplementation()
+     * ```
+     */
+    function getMapImplementation(): MAP_IMPLEMENTATION
+
+    /**
     * **JMap.Api.openDocumentation**
     * 
     * Open JMap Web API online documentation, in a new tab.
@@ -1507,6 +1535,19 @@ declare namespace JMap {
     function setMode(mode: API_MODE): void
 
     /**
+     * **JMap.Application.getDomContainerId**
+     * 
+     * Returns the DOM div element id where application UI has been inserted.
+     * 
+     * @example ```ts
+     * 
+     * // returns the application DOM container id
+     * JMap.Application.getDomContainerId()
+     * ```
+     */
+    function getDomContainerId(): string
+
+    /**
      * **JMap.Application.start**
      * 
      * Start the JMap application.
@@ -1542,58 +1583,79 @@ declare namespace JMap {
     function startIfNeeded(): void
 
     /**
-     * **JMap.Application.SidePanel**
+     * **JMap.Application.UI**
      * 
-     * You can manage the application left panel from here.
+     * You can manage the application UI components here.
      */
-    namespace SidePanel {
+    namespace UI {
 
       /**
-       * **JMap.Application.Sidepanel.setVisible**
+       * **JMap.Application.UI.SidePanel**
        * 
-       * Set the application left side panel visibility.
-       * 
-       * @param open if true show the panel, else hide it
-       * @example ```ts
-       * 
-       * // Show the left side panel
-       * JMap.Application.Sidepanel.setVisible(true)
-       * 
-       * // Hide the left side panel
-       * JMap.Application.Sidepanel.setVisible(false)
-       * ```
+       * You can manage the application left side panel from here.
        */
-      function setVisible(open: boolean): void
-
-      /**
-       * **JMap.Application.Sidepanel.open**
-       * 
-       * Display the left application panel if not visible.
-       * 
-       * Do nothing if it's already visible.
-       * 
-       * @example ```ts
-       * 
-       * // Open the application left side panel
-       * JMap.Application.Sidepanel.open()
-       * ```
-       */
-      function open(): void
-
-      /**
-       * **JMap.Application.Sidepanel.open**
-       * 
-       * Hide the left application panel if visible.
-       * 
-       * Do nothing if it's already not visible.
-       * 
-       * @example ```ts
-       * 
-       * // Close the application left side panel
-       * JMap.Application.Sidepanel.close()
-       * ```
-       */
-      function close(): void
+      namespace SidePanel {
+  
+        /**
+         * **JMap.Application.UI.Sidepanel.setVisible**
+         * 
+         * Set the application left side panel visibility.
+         * 
+         * @param open if true show the panel, else hide it
+         * @example ```ts
+         * 
+         * // Show the left side panel
+         * JMap.Application.UI.Sidepanel.setVisible(true)
+         * 
+         * // Hide the left side panel
+         * JMap.Application.UI.Sidepanel.setVisible(false)
+         * ```
+         */
+        function setVisible(open: boolean): void
+  
+        /**
+         * **JMap.Application.UI.SidePanel.isOpen**
+         * 
+         * Returns true if the JMAP application main panel on the left is opened.
+         * 
+         * @example ```ts
+         * 
+         * // returns true if side panel is opened
+         * JMap.Application.UI.SidePanel.isOpen()
+         * ```
+         */
+        function isOpen(): boolean
+  
+        /**
+         * **JMap.Application.UI.Sidepanel.open**
+         * 
+         * Display the left application panel if not visible.
+         * 
+         * Do nothing if it's already visible.
+         * 
+         * @example ```ts
+         * 
+         * // Open the application left side panel
+         * JMap.Application.UI.Sidepanel.open()
+         * ```
+         */
+        function open(): void
+  
+        /**
+         * **JMap.Application.UI.Sidepanel.open**
+         * 
+         * Hide the left application panel if visible.
+         * 
+         * Do nothing if it's already not visible.
+         * 
+         * @example ```ts
+         * 
+         * // Close the application left side panel
+         * JMap.Application.UI.Sidepanel.close()
+         * ```
+         */
+        function close(): void
+      }
     }
   }
 
@@ -1656,76 +1718,6 @@ declare namespace JMap {
    * If you want to change the data state, have a look in [[JMap.Service]].
    */
   namespace Data {
-
-    /**
-     * ***JMap.Data.Api***
-     * 
-     * This section contains all JMap Api getter methods
-     */
-    namespace Api {
-
-      /**
-       * **JMap.Data.Api.getRestUrl**
-       * 
-       * Returns in use JMap API server rest API.
-       *
-       * This is the url on which the JMap API will make all of its ajax call.
-       * 
-       * @example ```ts
-       * 
-       * // returns the JMap server rest URL in use
-       * JMap.Data.Api.getRestUrl()
-       * ```
-       */
-      function getRestUrl(): string
-
-      /**
-       * **JMap.Data.Api.getMapImplementation**
-       * 
-       * Returnsthe map implementation : "MapBox" or "OpenLayers".
-       * 
-       * @example ```ts
-       * 
-       * // returns "MapBox" or "OpenLayers"
-       * JMap.Data.Api.getMapImplementation()
-       * ```
-       */
-      function getMapImplementation(): MAP_IMPLEMENTATION
-    }
-
-    /**
-     * ***JMap.Data.Application***
-     * 
-     * This section contains all JMap application getter methods.
-     */
-    namespace Application {
-
-      /**
-       * **JMap.Data.Application.isSidePanelOpen**
-       * 
-       * Returnstrue if the JMAP application main panel on the left is opened.
-       * 
-       * @example ```ts
-       * 
-       * // returns true if side panel is opened
-       * JMap.Data.Application.isSidePanelOpen()
-       * ```
-       */
-      function isSidePanelOpen(): boolean
-
-      /**
-       * **JMap.Data.Application.getDomContainerId**
-       * 
-       * Returnsthe DOM div element id where application UI has been inserted.
-       * 
-       * @example ```ts
-       * 
-       * // returns the application DOM container id
-       * JMap.Data.Application.getDomContainerId()
-       * ```
-       */
-      function getDomContainerId(): string
-    }
 
     /**
      * ***JMap.Data.Project***

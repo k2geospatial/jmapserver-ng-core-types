@@ -17,6 +17,8 @@ export interface JAPI {
 export interface JAPIApi {
   getVersion(): string
   getDataStore(): Store<JAPIState> | undefined
+  getRestUrl(): string
+  getMapImplementation(): MAP_IMPLEMENTATION
   openDocumentation(): void
 }
 
@@ -83,23 +85,11 @@ export interface JMapEventModule extends JEventModule {
 
 // API DATA
 export interface JAPIData {
-  Api: JStoreGetterApi
-  Application: JStoreGetterApp
   Project: JStoreGetterProject
   Layer: JStoreGetterLayer
   Map: JStoreGetterMap
   User: JStoreGetterUser
   Photo: JStoreGetterPhoto
-}
-
-export interface JStoreGetterApi {
-  getRestUrl(): string
-  getMapImplementation(): MAP_IMPLEMENTATION
-}
-
-export interface JStoreGetterApp {
-  isSidePanelOpen(): boolean
-  getDomContainerId(): string
 }
 
 export interface JStoreGetterProject {
@@ -218,14 +208,19 @@ export interface JAPIApplication {
   setMode(mode: API_MODE): void
   getMode(): API_MODE
   getAllModes(): API_MODE[]
+  getDomContainerId(): string
   startIfNeeded(): void
   start(containerId?: string): void
-  SidePanel: JSidePanelController
+  UI: {
+    SidePanel: JSidePanelController
+  }
 }
 
-// API APPLICATION -> SIDE_PANEL
+
+// API APPLICATION -> UI -> SIDE_PANEL
 export interface JSidePanelController {
   setVisible(open: boolean): void
+  isOpen(): boolean
   open(): void
   close(): void
 }

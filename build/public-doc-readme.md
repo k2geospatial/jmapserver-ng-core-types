@@ -42,6 +42,7 @@ For example if you want to insert in your html div id="user-container-id" the JM
     - JMap.Service.Api.setMode => <span style="color:green">**JMap.*Application*.setMode**</span>
     - JMap.Data.Api.getMode => <span style="color:green">**JMap.*Application*.getMode**</span>
     - JMap.Data.Api.getAllModes => <span style="color:green">**JMap.*Application*.getAllModes**</span>
+    - JMap.Data.Application.getDomContainerId => <span style="color:green">**JMap.*Application*.getDomContainerId**</span>
  - Functions renamed :
     - JMap.Data.Api.getAllMode => <span style="color:green">**JMap.Data.Api.getAllMode*s***</span>
     - JMap.Data.Project.getScaleMin => <span style="color:green">**JMap.Data.Project.get*MinScale***</span>
@@ -56,6 +57,7 @@ For example if you want to insert in your html div id="user-container-id" the JM
  - Functions moved and renamed :
     - JMap.Service.Layer.getRenderedLayerIds => <span style="color:green">**JMap.Service.*Map*.getRendered*JMap*LayerIds**</span>
     - JMap.Data.getStore => <span style="color:green">**JMap.Api.get*Data*.Store**</span>
+    - JMap.Data.Application.isSidePanelOpen => <span style="color:green">**JMap.*Application.UI.*SidePanel.isOpen**</span>
  - Function having result changed :
     - <span style="color:green">**JMap.Service.Map.getLayersVisibilityStatus**</span> :
       - before was : { 1: { isVisible: true, userVisibility: true, mapVisibility: true }, 2: ... }
