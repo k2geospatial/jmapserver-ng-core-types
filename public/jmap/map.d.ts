@@ -1,11 +1,5 @@
 declare type MAP_IMPLEMENTATION = "MapBox" | "OpenLayers"
 
-declare interface JMapInteractorDescriptor {
-  id: string
-  apiMode: API_MODE
-  isExternal: boolean
-}
-
 declare interface JMapInteractor {
   init(map: any): void
   activate(): void

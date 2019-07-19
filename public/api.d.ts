@@ -688,30 +688,30 @@ declare namespace JMap {
         function terminateInteractorById(interactorId: string): void
         
         /**
-         * **JMap.Service.Map.Interaction.getAllInteractorDescriptors**
+         * **JMap.Service.Map.Interaction.getAllInteractorIds**
          * 
-         * Returns all existing interactor descriptors ([[JMapInteractorDescriptor]]).
+         * Returns all existing interactor ids.
          * 
          * @example ```ts
          * 
-         * // returns all existing interactor descriptors
-         * JMap.Service.Map.Interaction.getAllInteractorDescriptors()
+         * // returns all existing interactor ids
+         * JMap.Service.Map.Interaction.getAllInteractorIds()
          * ```
          */
-        function getAllInteractorDescriptors(): JMapInteractorDescriptor[]
+        function getAllInteractorIds(): string[]
         
         /**
-         * **JMap.Service.Map.Interaction.getActiveInteractorDescriptor**
+         * **JMap.Service.Map.Interaction.getActiveInteractorId**
          * 
-         * Returns the active interactor descriptor ([[JMapInteractorDescriptor]]).
+         * Returns the active interactor id.
          * 
          * @example ```ts
          * 
          * // Returns the active interactor descriptor
-         * JMap.Service.Map.Interaction.getActiveInteractorDescriptor()
+         * JMap.Service.Map.Interaction.getActiveInteractorId()
          * ```
          */
-        function getActiveInteractorDescriptor(): JMapInteractorDescriptor
+        function getActiveInteractorId(): string
         
         /**
          * **JMap.Service.Map.Interaction.activateInteractorById**

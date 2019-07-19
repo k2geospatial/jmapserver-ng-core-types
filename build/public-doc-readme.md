@@ -51,6 +51,8 @@ For example if you want to insert in your html div id="user-container-id" the JM
     - JMap.Data.Layer.getRenderedLayers => <span style="color:green">**JMap.Data.Layer.get*Layers***</span>
     - JMap.Service.Layer.setGroupOpen => <span style="color:green">**JMap.Service.Layer.set*Layer*Group*Expansion***</span>
     - JMap.Data.User.getLogin => <span style="color:green">**JMap.Data.User.get*Username***</span>
+    - JMap.Service.Map.Interaction.getAllInteractorDescriptors() => <span style="color:green">**JMap.Service.Map.Interaction.getAllInteractor*Id*s**</span>
+    - JMap.Service.Map.Interaction.getActiveInteractorDescriptor() => <span style="color:green">**JMap.Service.Map.Interaction.getActiveInteractor*Id***</span>
  - Functions moved and renamed :
     - JMap.Service.Layer.getRenderedLayerIds => <span style="color:green">**JMap.Service.*Map*.getRendered*JMap*LayerIds**</span>
     - JMap.Data.getStore => <span style="color:green">**JMap.Api.get*Data*.Store**</span>

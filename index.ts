@@ -267,8 +267,8 @@ export interface JMapService {
 export interface JMapInteractionService {
   addInteractor(name: string, interactor: JMapInteractor, active?: boolean): void
   terminateInteractorById(interactorId: string): void
-  getAllInteractorDescriptors(): JMapInteractorDescriptor[]
-  getActiveInteractorDescriptor(): JMapInteractorDescriptor
+  getAllInteractorIds(): string[]
+  getActiveInteractorId(): string
   activateInteractorById(interactorId: string, force?: boolean): void
 }
 
