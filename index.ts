@@ -16,6 +16,7 @@ export interface JAPI {
 
 export interface JAPIApi {
   getVersion(): string
+  getDataStore(): Store<JAPIState> | undefined
   openDocumentation(): void
 }
 
@@ -82,7 +83,6 @@ export interface JMapEventModule extends JEventModule {
 
 // API DATA
 export interface JAPIData {
-  getStore(): Store<JAPIState> | undefined
   Api: JStoreGetterApi
   Application: JStoreGetterApp
   Project: JStoreGetterProject
@@ -94,8 +94,6 @@ export interface JAPIData {
 
 export interface JStoreGetterApi {
   getRestUrl(): string
-  getMode(): API_MODE
-  getAllModes(): API_MODE[]
   getMapImplementation(): MAP_IMPLEMENTATION
 }
 
@@ -119,10 +117,11 @@ export interface JStoreGetterProject {
 
 export interface JStoreGetterLayer {
   getLayerTree(): JLayerTree
-  getLayerTreeElementsById(): { [ layerElementId: number ]: JLayerElement }
-  getRenderedLayers(): JLayer[]
+  getLayerTreeElementsById(): { [ treeElementId: number ]: JLayerTreeElement }
+  getLayers(): JLayer[]
+  getLayerIds(): number[]
   exists(layerId: number): boolean
-  getById(layerId: number): JLayerElement
+  getById(layerId: number): JLayerTreeElement
   getSelfOrChildren(layerId: number): JLayer[]
   getName(layerId: number): string
   getDescription(layerId: number): string
@@ -152,7 +151,7 @@ export interface JStoreGetterMap {
 export interface JStoreGetterUser {
   getToken(): string
   getFullName(): string
-  getLogin(): string
+  getUsername(): string
 }
 
 export interface JStoreGetterPhoto {
@@ -203,7 +202,7 @@ export type JProjectState = JProject
 // API DATA -> LAYER
 export interface JLayerState {
   tree: JLayerTree
-  allById: { [layerElementId: string]: JLayerElement }
+  allById: { [treeElementId: string]: JLayerTreeElement }
 }
 
 // API DATA -> PHOTO
@@ -216,6 +215,9 @@ export interface JPhotoState {
 
 // API APPLICATION
 export interface JAPIApplication {
+  setMode(mode: API_MODE): void
+  getMode(): API_MODE
+  getAllModes(): API_MODE[]
   startIfNeeded(): void
   start(containerId?: string): void
   SidePanel: JSidePanelController
@@ -230,7 +232,6 @@ export interface JSidePanelController {
 
 // API SERVICE
 export interface JAPIService {
-  Api: JAPIOwnService
   Popup: JPopupService
   Language: JAPILanguageService
   Project: JProjectService
@@ -240,11 +241,6 @@ export interface JAPIService {
   MouseOver: JMouseOverService
 }
 
-// API SERVICE -> API
-export interface JAPIOwnService {
-  setMode(mode: API_MODE): void
-}
-
 // API SERVICE -> MAP
 export interface JMapService {
   Interaction: JMapInteractionService
@@ -252,11 +248,13 @@ export interface JMapService {
   Selection: JMapSelectionService
   getMap(): any
   getMapJSLib(): any
+  isLayerRendered(layerId: number): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getInUseJMapLayerIds(): number[]
   getInUseJMapVectorLayerIds(): number[]
   getInUseJMapLayerBefore(layerId: number): number | undefined
   getInUseJMapLayerAfter(layerId: number): number | undefined
+  getRenderedJMapLayerIds(): number[]
   getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): Feature[]
   getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox): JMapFeatureAttributeValues[]
   getAvailableBaseMaps(): string[]
@@ -325,21 +323,20 @@ export interface JProjectService {
 export interface JLayerService {
   getLayerAttributes(layerId: number): JLayerAttribute[]
   getLayerTree(): JLayerTree
-  getRenderedLayerIds(): number[]
   exists(layerId: number): boolean
-  getById(layerId: number): JLayerElement
+  getById(layerId: number): JLayerTreeElement
   getName(layerId: number): string
   getDescription(layerId: number): string
   isVisible(layerId: number): boolean
   setVisible(layerId: number, visible: boolean): void
-  setGroupOpen(nodeId: number, open: boolean): void
+  setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
   deleteLayer(layerId: number): void
   setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
 }
 
-export interface JLayerNode extends JLayerElement {
+export interface JLayerGroup extends JLayerTreeElement {
   open: boolean
-  children: JLayerElement[]
+  children: JLayerTreeElement[]
 }
 
 // API SERVICE -> USER

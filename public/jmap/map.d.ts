@@ -19,9 +19,9 @@ declare interface JMapSelection {
 
 declare interface JMapLayersVisibilityStatus {
   [ layerElementId: number ]: {
-    isVisible: boolean
-    userVisibility: boolean
-    mapVisibility: boolean
+    isRendered: boolean
+    visibilityProperty: boolean
+    scaleVisibility: boolean
   }
 }
 

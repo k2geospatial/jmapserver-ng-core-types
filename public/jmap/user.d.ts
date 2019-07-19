@@ -9,9 +9,8 @@ declare interface JSessionData {
    * @example ```ts
    * 
    * user: {
-   *   login: "jdo@company.com",
-   *   firstname: "Do",
-   *   lastname: "John",
+   *   username: "jdo@company.com",
+   *   fullName: "John Do",
    *   admin: true
    * }
    * ```
@@ -20,16 +19,14 @@ declare interface JSessionData {
 }
 
 declare interface JUserPublicData {
-  login: string,
-  firstname: string,
-  lastname: string,
+  username: string,
+  fullName: string,
   admin: boolean
 }
 
 declare interface JUserIdentity {
-  firstName: string
-  lastName: string
-  login: string
+  username: string,
+  fullName: string
 }
 
 declare interface JLoginData {

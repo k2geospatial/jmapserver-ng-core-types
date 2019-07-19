@@ -40,10 +40,9 @@ declare interface Window {
  *         session: {
  *           token: Number(token),
  *           user: {
- *             admin: false,
- *             firstname: "John",
- *             lastname: "do",
- *             email: "jdo@mycompany.com"
+ *             username: "jdo@mycompany.com",
+ *             fullName: "John do",
+ *             admin: false
  *           }
  *         },
  *         map: {
@@ -92,9 +91,8 @@ declare interface JAPIOptions {
    * session: {
    *  token: "67464654674"
    *  user: {
-   *    login: "jdo@company.com",
-   *    firstname: "Do",
-   *    lastname: "John",
+   *    username: "jdo@company.com",
+   *    fullName: "John Do",
    *    admin: false
    *  }
    * }

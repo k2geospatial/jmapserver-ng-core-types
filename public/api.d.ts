@@ -41,6 +41,20 @@ declare namespace JMap {
     function getVersion(): string
 
     /**
+     * **JMap.Api.getDataStore**
+     * 
+     * Returns the JMap data store, an instance of Redux (https://redux.js.org/).
+     *
+     * @example ```ts
+     * 
+     * // returns the Web API Redux store
+     * const reduxStore = JMap.Api.getDataStore()
+     * reduxStore.dispatch(...)
+     * ```
+     */
+    function getDataStore(): any | undefined
+
+    /**
     * **JMap.Api.openDocumentation**
     * 
     * Open JMap Web API online documentation, in a new tab.
@@ -62,74 +76,6 @@ declare namespace JMap {
    * But if you want to set or apply things, it's there that you gonna do.
    */
   namespace Service {
-    
-    /**
-     * **JMap.Service.Api**
-     * 
-     * JMap API related methods.
-     */
-    namespace Api {
-      
-      /**
-       * **JMap.Service.Api.setMode**
-       * 
-       * Change the API mode. Mainly used when the application is launched.
-       * 
-       * @param mode JMap.Service.Api.setMode()
-       * @example ```ts
-       * 
-       * // set the API mode to "layer"
-       * JMap.Service.Api.setMode("layer")
-       * ```
-       */
-      function setMode(mode: API_MODE): void
-    }
-    
-    /**
-     * **JMap.Service.Language**
-     * 
-     * Language translation related methods.
-     */
-    namespace Language {
-      
-      /**
-       * **JMap.Service.Language.getLocale**
-       * 
-       * Get the API current locale in use.
-       * 
-       * @example ```ts
-       * 
-       * // return "EN", or "FR", or "ES", or "PT"
-       * JMap.Service.Language.getLocale()
-       * ```
-       */
-      function getLocale(): string
-      
-      /**
-       * **JMap.Service.Language.translate**
-       * 
-       * Get the translation for a specific key.
-       * 
-       * @param key The translation key
-       * @param params Some translation are dynamics and used runtime variables to construct the translation
-       * @param locale If provided will returns the translation for this locale, else the in use locale
-       * @example ```ts
-       *    
-       * // return "Sauvegarder" if local in use is FR
-       * JMap.Service.Language.translate("button.save")
-       * 
-       * // return "Save" even if local in use is FR
-       * JMap.Service.Language.translate("button.save", "EN")
-       * 
-       * // return "4 visible layer(s) on map" if local in use is EN
-       * JMap.Service.Language.translate("layer.count.visible", 4)
-       * 
-       * // return "L'utilisateur 'Jack' est admin" even if local in use is EN
-       * JMap.Service.Language.translate("user.test", [ "admin", "Jack" ], "FR")
-       * ```
-       */
-      function translate(key: string, params?: string | string[], locale?: string): string
-    }
     
     /**
      * **JMap.Service.Layer**
@@ -157,40 +103,23 @@ declare namespace JMap {
        * 
        * Returns project's layer tree.
        * 
-       * The layer tree is an array of layer element.
+       * The layer tree is an array of tree element.
        * 
-       * A layer element is a node or a leaf.
+       * A tree element is a layer group or a layer.
        * 
-       * A node contains leaves and/or other nodes, and has a negative id.
+       * A layer group contains layer and/or other layer group, and has a negative id.
        * 
-       * A leaf is a JMap layer and has a positive id.
+       * A layer has a positive id.
        * 
        * If no project is loaded, returns en empty array.
        * 
        * @example ```ts
        * 
-       * // returns the entire layer element tree of the project
+       * // returns the entire layer tree of the project
        * JMap.Service.Layer.getLayerTree()
        * ```
        */
       function getLayerTree(): JLayerTree
-
-      /**
-       * **JMap.Service.Layer.getRenderedLayerIds**
-       * 
-       * Returns the ids of the layers that are displayed on the map.
-       * 
-       * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
-       * 
-       * This function returns all layers ids that are managed by the map.
-       * 
-       * @example ```ts
-       * 
-       * // returns all layer ids that are managed by the map
-       * JMap.Service.Layer.getRenderedLayerIds()
-       * ```
-       */
-      function getRenderedLayerIds(): number[]
       
       /**
        * **JMap.Service.Layer.exists**
@@ -219,7 +148,7 @@ declare namespace JMap {
        * JMap.Service.Layer.getById(3)
        * ```
        */
-      function getById(layerId: number): JLayerElement
+      function getById(layerId: number): JLayerTreeElement
 
       /**
        * **JMap.Service.Layer.getName**
@@ -254,10 +183,15 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.isVisible**
        * 
-       * Returns true if the layer is visible.
+       * Returns the tree element visibility property.
        * 
-       * This is the "user" visibility, different from the "map" visibility
-       * which is based on the min and max scale. 
+       * The visibility property is initialy defined on the project, and can be
+       * changed by the user through the API.
+       * 
+       * If this property is false, the layer cannot be displayed on the map.
+       * 
+       * If it's true, the layer can be rendered on the map. The layer is rendered depending
+       * on the current map scale of the map, and the min / max scale defined for this layer.
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
@@ -272,19 +206,21 @@ declare namespace JMap {
       /**
        * **JMap.Service.Layer.setVisible**
        * 
-       * Set the layer visibility.
-       * 
-       * If the layer is a node, it will apply the visibility to all its children
-       * and itself.
+       * Set the visibility property of the layer.
        * 
        * If it's a JMap layer, it apply the visibility to it.
        * 
-       * This is the "user" visibility, different from the "map" visibility
-       * which is based on the min and max scale. 
+       * The visibility property is initialy defined on the project, and can be
+       * changed by the user through the API.
+       * 
+       * If this property is false, the layer cannot be displayed on the map.
+       * 
+       * If it's true, the layer can be rendered on the map. The layer is rendered depending
+       * on the current map scale of the map, and the min / max scale defined for this layer.
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
-       * @param visible The layer visibility
+       * @param isVisible The new visibility property value for the layer
        * @example ```ts
        * 
        * // show layer id=5
@@ -294,23 +230,23 @@ declare namespace JMap {
        * JMap.Service.Layer.setVisible(3, false)
        * ```
        */
-      function setVisible(layerId: number, visible: boolean): void
+      function setVisible(layerId: number, isVisible: boolean): void
 
       /**
-       * **JMap.Service.Layer.setGroupOpen**
+       * **JMap.Service.Layer.setLayerGroupExpansion**
        * 
-       * Set the tree node open or closed.
+       * Set the layer group expended or not.
        * 
-       * @throws Error if tree node is not found
-       * @param nodeId The JMap layer id
-       * @param open if true will display, if false will hide the node
+       * @throws Error if layer group is not found, or is not a layer group but a layer
+       * @param layerGroupId The JMap layer group id
+       * @param isExpanded if true will expand, if false will collapse the layer group
        * @example ```ts
        * 
-       * // Open the node 4
-       * JMap.Service.Layer.setGroupOpen(4, false)
+       * // Expand the layer group 4
+       * JMap.Service.Layer.setLayerGroupExpansion(4, false)
        * ```
        */
-      function setGroupOpen(nodeId: number, open: boolean): void
+      function setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
       
       /**
        * **JMap.Service.Layer.removeLayer**
@@ -391,6 +327,22 @@ declare namespace JMap {
        */
       function getMapJSLib(): any
       
+      /**
+       * **JMap.Service.Map.isLayerRendered**
+       * 
+       * Returns true if layer is visible on the map.
+       * 
+       * To be true the layer visibility property has to be true,
+       * and the current map scale between the layer min and max scale.
+       * 
+       * @example ```ts
+       * 
+       * // returns true if layer is visible on the map
+       * JMap.Service.Map.isLayerRendered(4)
+       * ```
+       */
+      function isLayerRendered(layerId: number): boolean
+
       /**
        * **JMap.Service.Map.getLayersVisibilityStatus**
        * 
@@ -486,7 +438,24 @@ declare namespace JMap {
        * ```
        */
       function getInUseJMapLayerAfter(layerId: number): number | undefined
-      
+
+      /**
+       * **JMap.Service.Map.getRenderedJMapLayerIds**
+       * 
+       * Returns the ids of the layers that are displayed on the map.
+       * 
+       * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
+       * 
+       * This function returns all layers ids that are managed by the map.
+       * 
+       * @example ```ts
+       * 
+       * // returns all layer ids that are managed by the map
+       * JMap.Service.Map.getRenderedJMapLayerIds()
+       * ```
+       */
+      function getRenderedJMapLayerIds(): number[]
+
       /**
        * **JMap.Service.Map.getRenderedFeatures**
        * 
@@ -1403,6 +1372,19 @@ declare namespace JMap {
     namespace User {
 
       /**
+       * **JMap.Service.User.getLocale**
+       * 
+       * Get the user locale.
+       * 
+       * @example ```ts
+       * 
+       * // return "EN", or "FR", or "ES", or "PT"
+       * JMap.Service.User.getLocale()
+       * ```
+       */
+      function getLocale(): string
+
+      /**
        * **JMap.Service.User.login**
        * 
        * The login function, returns a promise. Make a call to the server and if
@@ -1481,6 +1463,48 @@ declare namespace JMap {
    * But from this section you will be able to manage the full JMap Web Application.
    */
   namespace Application {
+
+    /**
+     * **JMap.Application.getMode**
+     * 
+     * Returns the current application mode state.
+     * 
+     * This mode is mainly used for the JMap application.
+     * 
+     * @example ```ts
+     * 
+     * // returns the currently activated API mode
+     * JMap.Application.getMode()
+     * ```
+     */
+    function getMode(): API_MODE
+
+    /**
+     * **JMap.Application.getAllModes**
+     * 
+     * Returns all available application modes (see [[API_MODE]]).
+     * 
+     * @example ```ts
+     * 
+     * // returns all available API modes
+     * JMap.Application.getAllModes()
+     * ```
+     */
+    function getAllModes(): API_MODE[]
+    
+    /**
+     * **JMap.Application.setMode**
+     * 
+     * Change the JMap application mode.
+     * 
+     * @param mode The new application mode to apply
+     * @example ```ts
+     * 
+     * // set the JMAp application mode to "layer"
+     * JMap.Application.setMode("layer")
+     * ```
+     */
+    function setMode(mode: API_MODE): void
 
     /**
      * **JMap.Application.start**
@@ -1634,20 +1658,6 @@ declare namespace JMap {
   namespace Data {
 
     /**
-     * **JMap.Component.User.destroy**
-     * 
-     * Returns the JMap data store, currently an instance of Redux (https://redux.js.org/).
-     *
-     * @example ```ts
-     * 
-     * // returns the Web API redux store
-     * const reduxStore = JMap.Data.getStore()
-     * reduxStore.dispatch(...)
-     * ```
-     */
-    function getStore(): any | undefined
-
-    /**
      * ***JMap.Data.Api***
      * 
      * This section contains all JMap Api getter methods
@@ -1668,34 +1678,6 @@ declare namespace JMap {
        * ```
        */
       function getRestUrl(): string
-
-      /**
-       * **JMap.Data.Api.getMode**
-       * 
-       * Returns the current JMap API mode state.
-       *
-       * This mode is mainly used for the JMap application.
-       * 
-       * @example ```ts
-       * 
-       * // returns the currently activated API mode
-       * JMap.Data.Api.getMode()
-       * ```
-       */
-      function getMode(): API_MODE
-
-      /**
-       * **JMap.Data.Api.getAllModes**
-       * 
-       * Returnsall available JMap API modes (see [[API_MODE]]).
-       * 
-       * @example ```ts
-       * 
-       * // returns all available API modes
-       * JMap.Data.Api.getAllModes()
-       * ```
-       */
-      function getAllModes(): API_MODE[]
 
       /**
        * **JMap.Data.Api.getMapImplementation**
@@ -1882,7 +1864,7 @@ declare namespace JMap {
        * 
        * Returns JMap project background color in html hexa format. This color is used as the background of the map.
        * 
-       * If no project is loaded, returns "bisque".
+       * If no project is loaded, returns "#ffe4c4".
        * 
        * @example ```ts
        * 
@@ -1920,13 +1902,13 @@ declare namespace JMap {
        * 
        * Returns project's layer tree.
        * 
-       * The layer tree is an array of layer elements.
+       * The layer tree is an array of tree elements.
        * 
-       * A layer element is a node or a leaf.
+       * A tree element is a layer group or a layer.
        * 
-       * A node contains leaves and/or other nodes, and has a negative id.
+       * A layer group contains layer(s) and/or other layer group(s), and has a negative id.
        * 
-       * A leaf is a JMap layer and has a positive id.
+       * A layer has a positive id.
        * 
        * If no project is loaded, returns en empty array.
        * 
@@ -1942,14 +1924,14 @@ declare namespace JMap {
        * **JMap.Data.Layer.getLayerTreeElementsById**
        * 
        * Returns a map (= a javascript object) where :
-       *  - the key is the layer element id
-       *  - the value is the layer element
+       *  - the key is the tree element id
+       *  - the value is the tree element
        * 
-       * A layer element is a node or a leaf.
+       * A tree element is a layer group or a layer.
        * 
-       * A node contains leaves and/or other nodes, and has a negative id.
+       * A layer group contains layer(s) and/or other layer group(s), and has a negative id.
        * 
-       * A leaf is a JMap layer and has a positive id.
+       * A layer has a positive id.
        * 
        * If no project is loaded, returns en empty object.
        * 
@@ -1959,31 +1941,47 @@ declare namespace JMap {
        * JMap.Data.Layer.getLayerTreeElementsById()
        * ```
        */
-      function getLayerTreeElementsById(): { [ layerElementId: number ]: JLayerElement }
+      function getLayerTreeElementsById(): { [ layerElementId: number ]: JLayerTreeElement }
 
       /**
-       * **JMap.Data.Layer.getRenderedLayers**
+       * **JMap.Data.Layer.getLayers**
        * 
-       * Returns only JMap layers, not the nodes.
+       * Returns an array with JMap layers.
        * 
-       * The layer tree is composed of nodes and leaves.
-       * 
-       * A node contains leaves and/or other nodes, and has a negative id.
-       * 
-       * A leaf is a JMap layer and has a positive id.
-       * 
-       * So this function removes all nodes and returns only the leaves.
+       * The array order is the same as the one in the tree.
        * 
        * If no project is loaded, returns en empty array.
        * 
        * @example ```ts
        * 
-       * // returns only the JMap layers (the ones that are rendered on the map, so not the nodes)
-       * JMap.Data.Layer.getRenderedLayers()
+       * // returns all JMap layers
+       * JMap.Data.Layer.getLayers()
        * ```
        */
-      function getRenderedLayers(): JLayer[]
+      function getLayers(): JLayer[]
 
+      /**
+       * **JMap.Data.Layer.getLayerIds**
+       * 
+       * Returns an array with JMap layer ids.
+       * 
+       * The array order is the same as the one in the tree.
+       * 
+       * If no project is loaded, returns en empty array.
+       * 
+       * This function is equivalent to :
+       * ```ts
+       * JMap.Data.Layer.getLayers().map(layer => layer.id)
+       * ```
+       * 
+       * @example ```ts
+       * 
+       * // returns all JMap layer ids
+       * JMap.Data.Layer.getLayerIds()
+       * ```
+       */
+      function getLayerIds(): number[]
+      
       /**
        * **JMap.Data.Layer.exists**
        * 
@@ -2011,20 +2009,22 @@ declare namespace JMap {
        * JMap.Data.Layer.getById(3)
        * ```
        */
-      function getById(layerId: number): JLayerElement
+      function getById(layerId: number): JLayerTreeElement
 
       /**
        * **JMap.Data.Layer.getSelfOrChildren**
        * 
-       * If the layerId is a JMap layer returns it.
-       * If the layerId is a node, returns all of its JMap layers children (remove all nodes).
-       * Returns an empty array if it's an empty node
+       * If the layerId is a layer returns it.
+       * If the layerId is a layer group, returns all of its layers children
+       * (remove all layer groups).
+       * 
+       * Returns an empty array if it's an empty layer group
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // returns an array with only JMap layers (no node)
+       * // returns an array with only JMap layers (no layer group)
        * JMap.Data.Layer.getSelfOrChildren(3)
        * ```
        */
@@ -2083,7 +2083,7 @@ declare namespace JMap {
        * 
        * Returns the base style of the layer.
        * 
-       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @throws Error if no layer found for the id, or if the layer is a layer group.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
@@ -2101,7 +2101,7 @@ declare namespace JMap {
        * It always returns an object, and if no selection style has been set on the layer,
        * it returns the project default values.
        * 
-       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @throws Error if no layer found for the id, or if the layer is a layer group.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
@@ -2116,7 +2116,7 @@ declare namespace JMap {
        * 
        * Returns the layer selection style if defined, else returns null.
        * 
-       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @throws Error if no layer found for the id, or if the layer is a layer group.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
@@ -2131,7 +2131,7 @@ declare namespace JMap {
        * 
        * Returns all layer thematics.
        * 
-       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @throws Error if no layer found for the id, or if the layer is a layer group.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
@@ -2146,7 +2146,7 @@ declare namespace JMap {
        * 
        * Returns a specific layer thematic.
        * 
-       * @throws Error if no layer found for the id, if the layer is a node, or if the thematic doesn't exist.
+       * @throws Error if no layer found for the id, if the layer is a layer group, or if the thematic doesn't exist.
        * @param layerId The JMap layer id
        * @param thematicId The thematic id
        * @example ```ts
@@ -2162,7 +2162,7 @@ declare namespace JMap {
        * 
        * Returns true if the layer has at least one thematic displayed on the map.
        * 
-       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @throws Error if no layer found for the id, or if the layer is a layer group.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
@@ -2177,7 +2177,7 @@ declare namespace JMap {
        * 
        * Returns layer thematics that are currently displayed on the map.
        * 
-       * @throws Error if no layer found for the id, or if the layer is a node.
+       * @throws Error if no layer found for the id, or if the layer is a layer group.
        * @param layerId The JMap layer id
        * @example ```ts
        * 
@@ -2379,17 +2379,17 @@ declare namespace JMap {
       function getFullName(): string
 
       /**
-       * ***JMap.Data.User.getLogin***
+       * ***JMap.Data.User.getUsername***
        * 
-       * Returns user login.
+       * Returns the username (the one used to login).
        * 
        * @example ```ts
        * 
-       * // returns the user login
-       * JMap.Data.User.getLogin()
+       * // returns the username
+       * JMap.Data.User.getUsername()
        * ```
        */
-      function getLogin(): string
+      function getUsername(): string
     }
 
     /**

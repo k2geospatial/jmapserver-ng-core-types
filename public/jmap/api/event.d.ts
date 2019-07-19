@@ -1,5 +1,5 @@
 declare interface JLayerEventParams {
-  layer: JLayerElement
+  layer: JLayerTreeElement
 }
 
 declare interface JMapEventImplementationParams {

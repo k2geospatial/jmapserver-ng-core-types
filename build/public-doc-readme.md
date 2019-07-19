@@ -31,12 +31,37 @@ For example if you want to insert in your html div id="user-container-id" the JM
 **V0.2.4 => V0.2.5**
  - Function added :
     - **[[JMap.Data.User.getFullName]]**
+    - **[[JMap.Data.Layer.getLayerIds]]**
+    - **[[JMap.Service.Map.isLayerRendered]]**
  - Function removed :
-    - <span style="color:red">**JMap.Data.User.getFirstName**</span> (replaced by JMap.Data.User.getFullName())
-    - <span style="color:red">**JMap.Data.User.getLastName**</span> (replaced by JMap.Data.User.getFullName())
+    - <span style="color:red">**JMap.Data.User.getFirstName**</span> (replaced by JMap.Data.User.getFullName)
+    - <span style="color:red">**JMap.Data.User.getLastName**</span> (replaced by JMap.Data.User.getFullName)
+    - <span style="color:red">**JMap.Service.Language.translate**</span> (no replacement)
+ - Function moved :
+    - JMap.Service.Language.getLocale() => <span style="color:green">**JMap.Service.*User*.getLocale**</span>
+    - JMap.Service.Api.setMode => <span style="color:green">**JMap.*Application*.setMode**</span>
+    - JMap.Data.Api.getMode => <span style="color:green">**JMap.*Application*.getMode**</span>
+    - JMap.Data.Api.getAllModes => <span style="color:green">**JMap.*Application*.getAllModes**</span>
  - Functions renamed :
     - JMap.Data.Api.getAllMode => <span style="color:green">**JMap.Data.Api.getAllMode*s***</span>
     - JMap.Data.Project.getScaleMin => <span style="color:green">**JMap.Data.Project.get*MinScale***</span>
     - JMap.Data.Project.getScaleMax => <span style="color:green">**JMap.Data.Project.get*MaxScale***</span>
     - JMap.Data.Project.getColorSelection => <span style="color:green">**JMap.Data.Project.get*SelectionColor***</span>
     - JMap.Data.Project.getColorBackground => <span style="color:green">**JMap.Data.Project.get*BackgroundColor***</span>
+    - JMap.Data.Layer.getRenderedLayers => <span style="color:green">**JMap.Data.Layer.get*Layers***</span>
+    - JMap.Service.Layer.setGroupOpen => <span style="color:green">**JMap.Service.Layer.set*Layer*Group*Expansion***</span>
+    - JMap.Data.User.getLogin => <span style="color:green">**JMap.Data.User.get*Username***</span>
+ - Functions moved and renamed :
+    - JMap.Service.Layer.getRenderedLayerIds => <span style="color:green">**JMap.Service.*Map*.getRendered*JMap*LayerIds**</span>
+    - JMap.Data.getStore => <span style="color:green">**JMap.Api.get*Data*.Store**</span>
+ - Function having result changed :
+    - <span style="color:green">**JMap.Service.Map.getLayersVisibilityStatus**</span> :
+      - before was : { 1: { isVisible: true, userVisibility: true, mapVisibility: true }, 2: ... }
+      - now is : { 1: { **is*Rendered***: true, **visibility*Property***: true, ***scale*Visibility**: true }, 2: ... }
+        - => isVisible changed for isRendered
+        - => userVisibility changed for visibilityProperty
+        - => mapVisibility changed for scaleVisibility
+ - Startup option changed :
+    - <span style="color:green">**JMAP_API_OPTIONS.session.user**</span> :
+      - Properties *firstName* and *lastName* fusioned into one property named <span style="color:green">**fullName**</span>
+      - Property *login* changed for <span style="color:green">**username**</span>

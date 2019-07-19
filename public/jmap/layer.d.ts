@@ -15,7 +15,7 @@ declare interface JLayerGeometry {
   editable: boolean
 }
 
-declare interface JLayer extends JLayerElement {
+declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
   attributes: JLayerAttribute[]
   mouseOver: JMapMouseOver
@@ -31,17 +31,17 @@ declare interface JLayerAttribute {
   type: JLayerAttributeType
 }
 
-declare interface JLayerElement {
+declare interface JLayerTreeElement {
   id: number,
   name: string,
   description: string
   initialVisibility: boolean
   visible: boolean
-  isNode: boolean
+  isGroup: boolean
   path: string
 }
 
-declare type JLayerTree = Array<JLayerElement>
+declare type JLayerTree = Array<JLayerTreeElement>
 
 declare interface JLayerThematic {
   id: number
