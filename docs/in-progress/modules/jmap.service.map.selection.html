@@ -92,6 +92,9 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.selection.html#addfeaturestolayerselection" class="tsd-kind-icon">add<wbr>Features<wbr>ToLayer<wbr>Selection</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.selection.html#clearselection" class="tsd-kind-icon">clear<wbr>Selection</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.selection.html#getselectedfeatureidsforlayer" class="tsd-kind-icon">get<wbr>Selected<wbr>Feature<wbr>Ids<wbr>For<wbr>Layer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.selection.html#getselectedfeatures" class="tsd-kind-icon">get<wbr>Selected<wbr>Features</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.selection.html#getselectedfeaturesforlayer" class="tsd-kind-icon">get<wbr>Selected<wbr>Features<wbr>For<wbr>Layer</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.selection.html#removefeaturesfromlayerselection" class="tsd-kind-icon">remove<wbr>Features<wbr>From<wbr>Layer<wbr>Selection</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.selection.html#selectonalllayersatlocation" class="tsd-kind-icon">select<wbr>OnAll<wbr>Layers<wbr>AtLocation</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.selection.html#selectononelayeratlocation" class="tsd-kind-icon">select<wbr>OnOne<wbr>Layer<wbr>AtLocation</a></li>
@@ -113,7 +116,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1174">api.d.ts:1174</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1492">api.d.ts:1492</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -183,7 +186,7 @@ JMap.Service.Map.Selection.addFeaturesToLayerSelection(<span class="hljs-number"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1215">api.d.ts:1215</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1533">api.d.ts:1533</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -220,6 +223,118 @@ JMap.Service.Map.Selection.clearSelection()</code></pre>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getselectedfeatureidsforlayer" class="tsd-anchor"></a>
+					<h3>get<wbr>Selected<wbr>Feature<wbr>Ids<wbr>For<wbr>Layer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Selected<wbr>Feature<wbr>Ids<wbr>For<wbr>Layer<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1377">api.d.ts:1377</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.Selection.getSelectedFeatureIdsForLayer</em></strong></p>
+								</div>
+								<p>Returns the current selected feature ids for a specific JMap layer.</p>
+								<p>This function is the equivalent of that code :</p>
+								<pre><code class="language-ts"><span class="hljs-comment">// returns the same as JMap.Service.Map.getSelectedFeatureIdsForLayer(3)</span>
+JMap.Service.Map.Selection
+   .getSelectedFeaturesForLayer(layerId: <span class="hljs-built_in">number</span>)
+   .map(<span class="hljs-function"><span class="hljs-params">feature</span> =&gt;</span> feature.id)</code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the current selected feature ids for layer 3</span>
+JMap.Service.Map.Selection.getSelectedFeatureIdsForLayer(<span class="hljs-number">3</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getselectedfeatures" class="tsd-anchor"></a>
+					<h3>get<wbr>Selected<wbr>Features</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Selected<wbr>Features<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapselection.html" class="tsd-signature-type">JMapSelection</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1342">api.d.ts:1342</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.Selection.getSelectedFeatures</em></strong></p>
+								</div>
+								<p>Returns the current map selection as a javascript map (= a javascript object) where :</p>
+								<ul>
+									<li>the key is the layer element id</li>
+									<li>the value is an array of feature (an empty array if layer doesn&#39;t have features selected)</li>
+								</ul>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the current selected features by layer id</span>
+JMap.Service.Map.Selection.getSelectedFeatures()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/jmapselection.html" class="tsd-signature-type">JMapSelection</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getselectedfeaturesforlayer" class="tsd-anchor"></a>
+					<h3>get<wbr>Selected<wbr>Features<wbr>For<wbr>Layer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Selected<wbr>Features<wbr>For<wbr>Layer<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1356">api.d.ts:1356</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.Selection.getSelectedFeaturesForLayer</em></strong></p>
+								</div>
+								<p>Returns the current selected features for a specific JMap layer.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the current selected features for layer 3</span>
+JMap.Service.Map.Selection.getSelectedFeaturesForLayer(<span class="hljs-number">3</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>an array of GeoJSON features</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 					<a name="removefeaturesfromlayerselection" class="tsd-anchor"></a>
 					<h3>remove<wbr>Features<wbr>From<wbr>Layer<wbr>Selection</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -229,7 +344,7 @@ JMap.Service.Map.Selection.clearSelection()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1195">api.d.ts:1195</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1513">api.d.ts:1513</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -281,7 +396,7 @@ JMap.Service.Map.Selection.removeFeaturesFromLayerSelection(<span class="hljs-nu
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1077">api.d.ts:1077</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1395">api.d.ts:1395</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -325,7 +440,7 @@ JMap.Service.Map.Selection.selectOnAllLayersAtLocation({ x: <span class="hljs-nu
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1096">api.d.ts:1096</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1414">api.d.ts:1414</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -375,7 +490,7 @@ JMap.Service.Map.Selection.selectOnOneLayerAtLocation(<span class="hljs-number">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1135">api.d.ts:1135</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1453">api.d.ts:1453</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -456,9 +571,6 @@ JMap.Service.Map.Selection.setLayerSelection(<span class="hljs-number">4</span>,
 								<a href="jmap.component.html">Component</a>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-								<a href="jmap.data.html">Data</a>
-							</li>
-							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.event.html">Event</a>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
@@ -467,12 +579,6 @@ JMap.Service.Map.Selection.setLayerSelection(<span class="hljs-number">4</span>,
 							<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.service.html">Service</a>
 								<ul>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.api.html">Api</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.language.html">Language</a>
-									</li>
 									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 										<a href="jmap.service.layer.html">Layer</a>
 									</li>
@@ -512,6 +618,15 @@ JMap.Service.Map.Selection.setLayerSelection(<span class="hljs-number">4</span>,
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.selection.html#clearselection" class="tsd-kind-icon">clear<wbr>Selection</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.selection.html#getselectedfeatureidsforlayer" class="tsd-kind-icon">get<wbr>Selected<wbr>Feature<wbr>Ids<wbr>For<wbr>Layer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.selection.html#getselectedfeatures" class="tsd-kind-icon">get<wbr>Selected<wbr>Features</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.selection.html#getselectedfeaturesforlayer" class="tsd-kind-icon">get<wbr>Selected<wbr>Features<wbr>For<wbr>Layer</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.selection.html#removefeaturesfromlayerselection" class="tsd-kind-icon">remove<wbr>Features<wbr>From<wbr>Layer<wbr>Selection</a>

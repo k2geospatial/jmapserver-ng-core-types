@@ -60,7 +60,10 @@
 					<a href="jmap.application.html">Application</a>
 				</li>
 				<li>
-					<a href="jmap.application.sidepanel.html">SidePanel</a>
+					<a href="jmap.application.ui.html">UI</a>
+				</li>
+				<li>
+					<a href="jmap.application.ui.sidepanel.html">SidePanel</a>
 				</li>
 			</ul>
 			<h1>Module SidePanel</h1>
@@ -73,9 +76,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p><strong>JMap.Application.SidePanel</strong></p>
+						<p><strong>JMap.Application.UI.SidePanel</strong></p>
 					</div>
-					<p>You can manage the application left panel from here.</p>
+					<p>You can manage the application left side panel from here.</p>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -85,9 +88,10 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.sidepanel.html#close" class="tsd-kind-icon">close</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.sidepanel.html#open" class="tsd-kind-icon">open</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.sidepanel.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.ui.sidepanel.html#close" class="tsd-kind-icon">close</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.ui.sidepanel.html#isopen" class="tsd-kind-icon">is<wbr>Open</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.ui.sidepanel.html#open" class="tsd-kind-icon">open</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.ui.sidepanel.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a></li>
 							</ul>
 						</section>
 					</div>
@@ -105,12 +109,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1572">api.d.ts:1572</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2174">api.d.ts:2174</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p><strong>JMap.Application.Sidepanel.open</strong></p>
+									<p><strong>JMap.Application.UI.Sidepanel.open</strong></p>
 								</div>
 								<p>Hide the left application panel if visible.</p>
 								<p>Do nothing if it&#39;s already not visible.</p>
@@ -118,11 +122,41 @@
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
 <span class="hljs-comment">// Close the application left side panel</span>
-JMap.Application.Sidepanel.close()</code></pre>
+JMap.Application.UI.Sidepanel.close()</code></pre>
 									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="isopen" class="tsd-anchor"></a>
+					<h3>is<wbr>Open</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Open<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2144">api.d.ts:2144</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Application.UI.SidePanel.isOpen</strong></p>
+								</div>
+								<p>Returns true if the JMAP application main panel on the left is opened.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns true if side panel is opened</span>
+JMap.Application.UI.SidePanel.isOpen()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -136,12 +170,12 @@ JMap.Application.Sidepanel.close()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1557">api.d.ts:1557</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2159">api.d.ts:2159</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p><strong>JMap.Application.Sidepanel.open</strong></p>
+									<p><strong>JMap.Application.UI.Sidepanel.open</strong></p>
 								</div>
 								<p>Display the left application panel if not visible.</p>
 								<p>Do nothing if it&#39;s already visible.</p>
@@ -149,7 +183,7 @@ JMap.Application.Sidepanel.close()</code></pre>
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
 <span class="hljs-comment">// Open the application left side panel</span>
-JMap.Application.Sidepanel.open()</code></pre>
+JMap.Application.UI.Sidepanel.open()</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -167,22 +201,22 @@ JMap.Application.Sidepanel.open()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1542">api.d.ts:1542</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2131">api.d.ts:2131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p><strong>JMap.Application.Sidepanel.setVisible</strong></p>
+									<p><strong>JMap.Application.UI.Sidepanel.setVisible</strong></p>
 								</div>
 								<p>Set the application left side panel visibility.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
 <span class="hljs-comment">// Show the left side panel</span>
-JMap.Application.Sidepanel.setVisible(<span class="hljs-literal">true</span>)
+JMap.Application.UI.Sidepanel.setVisible(<span class="hljs-literal">true</span>)
 
 <span class="hljs-comment">// Hide the left side panel</span>
-JMap.Application.Sidepanel.setVisible(<span class="hljs-literal">false</span>)</code></pre>
+JMap.Application.UI.Sidepanel.setVisible(<span class="hljs-literal">false</span>)</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -217,15 +251,17 @@ JMap.Application.Sidepanel.setVisible(<span class="hljs-literal">false</span>)</
 								<a href="jmap.application.html">Application</a>
 								<ul>
 									<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.application.sidepanel.html">Side<wbr>Panel</a>
+										<a href="jmap.application.ui.html">UI</a>
+										<ul>
+											<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
+												<a href="jmap.application.ui.sidepanel.html">Side<wbr>Panel</a>
+											</li>
+										</ul>
 									</li>
 								</ul>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.component.html">Component</a>
-							</li>
-							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-								<a href="jmap.data.html">Data</a>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.event.html">Event</a>
@@ -243,13 +279,16 @@ JMap.Application.Sidepanel.setVisible(<span class="hljs-literal">false</span>)</
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="jmap.application.sidepanel.html#close" class="tsd-kind-icon">close</a>
+						<a href="jmap.application.ui.sidepanel.html#close" class="tsd-kind-icon">close</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="jmap.application.sidepanel.html#open" class="tsd-kind-icon">open</a>
+						<a href="jmap.application.ui.sidepanel.html#isopen" class="tsd-kind-icon">is<wbr>Open</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="jmap.application.sidepanel.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a>
+						<a href="jmap.application.ui.sidepanel.html#open" class="tsd-kind-icon">open</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.application.ui.sidepanel.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a>
 					</li>
 				</ul>
 			</nav>

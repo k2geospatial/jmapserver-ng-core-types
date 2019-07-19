@@ -79,20 +79,103 @@
 				<p><strong>V0.2.4 =&gt; V0.2.5</strong></p>
 				<ul>
 					<li>Function added :<ul>
-							<li><strong><a href="modules/jmap.data.user.html#getfullname">JMap.Data.User.getFullName</a></strong></li>
+							<li><strong><a href="modules/jmap.service.user.html#getfullname">JMap.Service.User.getFullName</a></strong></li>
+							<li><strong><a href="modules/jmap.service.layer.html#getlayerids">JMap.Service.Layer.getLayerIds</a></strong></li>
+							<li><strong><a href="modules/jmap.service.map.html#islayerrendered">JMap.Service.Map.isLayerRendered</a></strong></li>
 						</ul>
 					</li>
 					<li>Function removed :<ul>
-							<li><span style="color:red"><strong>JMap.Data.User.getFirstName</strong></span> (replaced by JMap.Data.User.getFullName())</li>
-							<li><span style="color:red"><strong>JMap.Data.User.getLastName</strong></span> (replaced by JMap.Data.User.getFullName())</li>
+							<li><span style="color:red"><strong>JMap.Data.User.getFirstName</strong></span> (replaced by <a href="modules/jmap.service.user.html#getfullname">JMap.Service.User.getFullName</a>)</li>
+							<li><span style="color:red"><strong>JMap.Data.User.getLastName</strong></span> (replaced by <a href="modules/jmap.service.user.html#getfullname">JMap.Service.User.getFullName</a>)</li>
+							<li><span style="color:red"><strong>JMap.Service.Language.translate</strong></span> (no replacement)</li>
+							<li><span style="color:red"><strong>JMap.Data.Layer.getLayerTree</strong></span> (instead use <a href="modules/jmap.service.layer.html#getlayertree">JMap.Service.Layer.getLayerTree</a>)</li>
+							<li><span style="color:red"><strong>JMap.Data.Layer.exists</strong></span> (instead use <a href="modules/jmap.service.layer.html#exists">JMap.Service.Layer.exists</a>)</li>
+							<li><span style="color:red"><strong>JMap.Data.Layer.getById</strong></span> (instead use <a href="modules/jmap.service.layer.html#getbyid">JMap.Service.Layer.getById</a>)</li>
+							<li><span style="color:red"><strong>JMap.Data.Layer.getName</strong></span> (instead use <a href="modules/jmap.service.layer.html#getname">JMap.Service.Layer.getName</a>)</li>
+							<li><span style="color:red"><strong>JMap.Data.Layer.getDescription</strong></span> (instead use <a href="modules/jmap.service.layer.html#getdescription">JMap.Service.Layer.getDescription</a>)</li>
+							<li><span style="color:red"><strong>JMap.Data.Layer.isVisible</strong></span> (instead use <a href="modules/jmap.service.layer.html#isvisible">JMap.Service.Layer.isVisible</a>)</li>
+							<li><span style="color:red"><strong>JMap.Data.Api.getMapImplementation</strong></span> (instead use <a href="modules/jmap.service.map.html#getimplementation">JMap.Service.Map.getImplementation</a>)</li>
+							<li><span style="color:red"><strong>JMap.Data.Photo.isPopupOpened</strong></span> (no replacement)</li>
+							<li><span style="color:red"><strong>JMap.Data.Photo.isPopupInfoPanelOpened</strong></span> (no replacement)</li>
+							<li><span style="color:red"><strong>JMap.Data.Photo.getPhotoDescriptors</strong></span> (no replacement)</li>
+							<li><span style="color:red"><strong>JMap.Data.Photo.getSelectedPhotoId</strong></span> (no replacement)</li>
+						</ul>
+					</li>
+					<li>Function moved :<ul>
+							<li>JMap.Service.Language.getLocale() =&gt; <span style="color:green"><strong>JMap.Service.<em>User</em>.getLocale</strong></span></li>
+							<li>JMap.Service.Api.setMode =&gt; <span style="color:green"><strong>JMap.<em>Application</em>.setMode</strong></span></li>
+							<li>JMap.Data.Api.getMode =&gt; <span style="color:green"><strong>JMap.<em>Application</em>.getMode</strong></span></li>
+							<li>JMap.Data.Application.getDomContainerId =&gt; <span style="color:green"><strong>JMap.<em>Application</em>.getDomContainerId</strong></span></li>
+							<li>JMap.Data.Project.getId =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.getId</strong></span></li>
+							<li>JMap.Data.Project.getName =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.getName</strong></span></li>
+							<li>JMap.Data.Project.getDescription =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.getDescription</strong></span></li>
+							<li>JMap.Data.Project.getProjection =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.getProjection</strong></span></li>
+							<li>JMap.Data.Project.getInitialRotation =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.getInitialRotation</strong></span></li>
+							<li>JMap.Data.Project.getInitialExtent =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.getInitialExtent</strong></span></li>
+							<li>JMap.Data.Layer.getLayerTreeElementsById =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getLayerTreeElementsById</strong></span></li>
+							<li>JMap.Data.Layer.getLayers =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getLayers</strong></span></li>
+							<li>JMap.Data.Layer.getLayerIds =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getLayerIds</strong></span></li>
+							<li>JMap.Data.Layer.getSelfOrChildren =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getSelfOrChildren</strong></span></li>
+							<li>JMap.Data.Layer.getStyle =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getStyle</strong></span></li>
+							<li>JMap.Data.Layer.getSimpleSelectionStyle =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getSimpleSelectionStyle</strong></span></li>
+							<li>JMap.Data.Layer.getSelectionStyle =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getSelectionStyle</strong></span></li>
+							<li>JMap.Data.Layer.getAllThematicsForLayer =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getAllThematicsForLayer</strong></span></li>
+							<li>JMap.Data.Layer.getThematicById =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getThematicById</strong></span></li>
+							<li>JMap.Data.Layer.hasVisibleThematics =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.hasVisibleThematics</strong></span></li>
+							<li>JMap.Data.Layer.getVisibleThematics =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.getVisibleThematics</strong></span></li>
+							<li>JMap.Data.Map.getDomContainerId =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.getDomContainerId</strong></span></li>
+							<li>JMap.Data.Map.getImplementation =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.getImplementation</strong></span></li>
+							<li>JMap.Data.Map.isMapLoaded =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.isMapLoaded</strong></span></li>
+							<li>JMap.Data.Map.getCenter =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.getCenter</strong></span></li>
+							<li>JMap.Data.Map.getZoom =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.getZoom</strong></span></li>
+							<li>JMap.Data.Map.getScale =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.getScale</strong></span></li>
+							<li>JMap.Data.Map.getBaseMap =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.getBaseMap</strong></span></li>
+							<li>JMap.Data.Map.getSelectedFeatures =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.<em>Selection</em>.getSelectedFeatures</strong></span></li>
+							<li>JMap.Data.Map.getSelectedFeaturesForLayer =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.<em>Selection</em>.getSelectedFeaturesForLayer</strong></span></li>
+							<li>JMap.Data.Map.getSelectedFeatureIdsForLayer =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Map.<em>Selection</em>.getSelectedFeatureIdsForLayer</strong></span></li>
+							<li>JMap.Data.User.getToken =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.User.getToken</strong></span></li>
+							<li>JMap.Data.User.getFullName =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.User.getFullName</strong></span></li>
+							<li>JMap.Data.User.getUsername =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.User.getUsername</strong></span></li>
 						</ul>
 					</li>
 					<li>Functions renamed :<ul>
-							<li>JMap.Data.Api.getAllMode =&gt; <span style="color:green"><strong>JMap.Data.Api.getAllMode<em>s</em></strong></span></li>
-							<li>JMap.Data.Project.getScaleMin =&gt; <span style="color:green"><strong>JMap.Data.Project.get<em>MinScale</em></strong></span></li>
-							<li>JMap.Data.Project.getScaleMax =&gt; <span style="color:green"><strong>JMap.Data.Project.get<em>MaxScale</em></strong></span></li>
-							<li>JMap.Data.Project.getColorSelection =&gt; <span style="color:green"><strong>JMap.Data.Project.get<em>SelectionColor</em></strong></span></li>
-							<li>JMap.Data.Project.getColorBackground =&gt; <span style="color:green"><strong>JMap.Data.Project.get<em>BackgroundColor</em></strong></span></li>
+							<li>JMap.Service.Layer.setGroupOpen =&gt; <span style="color:green"><strong>JMap.Service.Layer.set<em>Layer</em>Group<em>Expansion</em></strong></span></li>
+							<li>JMap.Data.User.getLogin =&gt; <span style="color:green"><strong>JMap.Service.User.get<em>Username</em></strong></span></li>
+							<li>JMap.Service.Map.Interaction.getAllInteractorDescriptors() =&gt; <span style="color:green"><strong>JMap.Service.Map.Interaction.getAllInteractor<em>Id</em>s</strong></span></li>
+							<li>JMap.Service.Map.Interaction.getActiveInteractorDescriptor() =&gt; <span style="color:green"><strong>JMap.Service.Map.Interaction.getActiveInteractor<em>Id</em></strong></span></li>
+						</ul>
+					</li>
+					<li>Functions moved and renamed :<ul>
+							<li>JMap.Data.Api.getAllMode =&gt; <span style="color:green"><strong>JMap.<em>Application</em>.getAllMode<em>s</em></strong></span></li>
+							<li>JMap.Data.Project.getScaleMin =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.get<em>MinScale</em></strong></span></li>
+							<li>JMap.Data.Project.getScaleMax =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.get<em>MaxScale</em></strong></span></li>
+							<li>JMap.Data.Project.getColorSelection =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.get<em>SelectionColor</em></strong></span></li>
+							<li>JMap.Data.Project.getColorBackground =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Project.get<em>BackgroundColor</em></strong></span></li>
+							<li>JMap.Data.Layer.getRenderedLayers =&gt; <span style="color:green"><strong>JMap.<em>Service</em>.Layer.get<em>Layers</em></strong></span></li>
+							<li>JMap.Service.Layer.getRenderedLayerIds =&gt; <span style="color:green"><strong>JMap.Service.<em>Map</em>.getRendered<em>JMap</em>LayerIds</strong></span></li>
+							<li>JMap.Data.getStore =&gt; <span style="color:green"><strong>JMap.Api.get<em>Data</em>.Store</strong></span></li>
+							<li>JMap.Data.Application.isSidePanelOpen =&gt; <span style="color:green"><strong>JMap.<em>Application.UI.</em>SidePanel.isOpen</strong></span></li>
+						</ul>
+					</li>
+					<li>Function having result changed :<ul>
+							<li><span style="color:green"><strong>JMap.Service.Map.getLayersVisibilityStatus</strong></span> :<ul>
+									<li>before was : { 1: { isVisible: true, userVisibility: true, mapVisibility: true }, 2: ... }</li>
+									<li>now is : { 1: { <strong>is<em>Rendered</em></strong>: true, <strong>visibility<em>Property</em></strong>: true, <strong><em>scale</em>Visibility</strong>: true }, 2: ... }<ul>
+											<li>=&gt; isVisible changed for isRendered</li>
+											<li>=&gt; userVisibility changed for visibilityProperty</li>
+											<li>=&gt; mapVisibility changed for scaleVisibility</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>Startup option changed :<ul>
+							<li><span style="color:green"><strong>JMAP_API_OPTIONS.session.user</strong></span> :<ul>
+									<li>Properties <em>firstName</em> and <em>lastName</em> fusioned into one property named <span style="color:green"><strong>fullName</strong></span></li>
+									<li>Property <em>login</em> changed for <span style="color:green"><strong>username</strong></span></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -214,9 +297,6 @@
 						<a href="interfaces/jlayerattribute.html" class="tsd-kind-icon">JLayer<wbr>Attribute</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="interfaces/jlayerelement.html" class="tsd-kind-icon">JLayer<wbr>Element</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/jlayereventparams.html" class="tsd-kind-icon">JLayer<wbr>Event<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
@@ -259,6 +339,9 @@
 						<a href="interfaces/jlayerthematic.html" class="tsd-kind-icon">JLayer<wbr>Thematic</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/jlayertreeelement.html" class="tsd-kind-icon">JLayer<wbr>Tree<wbr>Element</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/jlocation.html" class="tsd-kind-icon">JLocation</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
@@ -284,9 +367,6 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/jmapinteractor.html" class="tsd-kind-icon">JMap<wbr>Interactor</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="interfaces/jmapinteractordescriptor.html" class="tsd-kind-icon">JMap<wbr>Interactor<wbr>Descriptor</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/jmaplayersvisibilitystatus.html" class="tsd-kind-icon">JMap<wbr>Layers<wbr>Visibility<wbr>Status</a>

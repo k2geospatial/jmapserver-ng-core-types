@@ -84,12 +84,16 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Modules</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-module tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.sidepanel.html" class="tsd-kind-icon">Side<wbr>Panel</a></li>
+								<li class="tsd-kind-module tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.ui.html" class="tsd-kind-icon">UI</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.html#getallmodes" class="tsd-kind-icon">get<wbr>All<wbr>Modes</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.html#getdomcontainerid" class="tsd-kind-icon">get<wbr>Dom<wbr>Container<wbr>Id</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.html#getmode" class="tsd-kind-icon">get<wbr>Mode</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.html#setmode" class="tsd-kind-icon">set<wbr>Mode</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.html#start" class="tsd-kind-icon">start</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.html#startifneeded" class="tsd-kind-icon">start<wbr>IfNeeded</a></li>
 							</ul>
@@ -100,6 +104,136 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getallmodes" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Modes</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Modes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#api_mode" class="tsd-signature-type">API_MODE</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2038">api.d.ts:2038</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Application.getAllModes</strong></p>
+								</div>
+								<p>Returns all available application modes (see <a href="../globals.html#api_mode">API_MODE</a>).</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns all available API modes</span>
+JMap.Application.getAllModes()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#api_mode" class="tsd-signature-type">API_MODE</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getdomcontainerid" class="tsd-anchor"></a>
+					<h3>get<wbr>Dom<wbr>Container<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Dom<wbr>Container<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2065">api.d.ts:2065</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Application.getDomContainerId</strong></p>
+								</div>
+								<p>Returns the DOM div element id where application UI has been inserted.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the application DOM container id</span>
+JMap.Application.getDomContainerId()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getmode" class="tsd-anchor"></a>
+					<h3>get<wbr>Mode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Mode<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#api_mode" class="tsd-signature-type">API_MODE</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2025">api.d.ts:2025</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Application.getMode</strong></p>
+								</div>
+								<p>Returns the current application mode state.</p>
+								<p>This mode is mainly used for the JMap application.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the currently activated API mode</span>
+JMap.Application.getMode()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#api_mode" class="tsd-signature-type">API_MODE</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="setmode" class="tsd-anchor"></a>
+					<h3>set<wbr>Mode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Mode<span class="tsd-signature-symbol">(</span>mode<span class="tsd-signature-symbol">: </span><a href="../globals.html#api_mode" class="tsd-signature-type">API_MODE</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2052">api.d.ts:2052</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Application.setMode</strong></p>
+								</div>
+								<p>Change the JMap application mode.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// set the JMAp application mode to "layer"</span>
+JMap.Application.setMode(<span class="hljs-string">"layer"</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mode: <a href="../globals.html#api_mode" class="tsd-signature-type">API_MODE</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new application mode to apply</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 					<a name="start" class="tsd-anchor"></a>
 					<h3>start</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -109,7 +243,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1500">api.d.ts:1500</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2082">api.d.ts:2082</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -152,7 +286,7 @@ JMap.Application.start(<span class="hljs-string">"my-div"</span>)</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1518">api.d.ts:1518</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L2100">api.d.ts:2100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -192,15 +326,12 @@ JMap.Application.startIfNeeded()</code></pre>
 								<a href="jmap.application.html">Application</a>
 								<ul>
 									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.application.sidepanel.html">Side<wbr>Panel</a>
+										<a href="jmap.application.ui.html">UI</a>
 									</li>
 								</ul>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.component.html">Component</a>
-							</li>
-							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-								<a href="jmap.data.html">Data</a>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.event.html">Event</a>
@@ -217,6 +348,18 @@ JMap.Application.startIfNeeded()</code></pre>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.application.html#getallmodes" class="tsd-kind-icon">get<wbr>All<wbr>Modes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.application.html#getdomcontainerid" class="tsd-kind-icon">get<wbr>Dom<wbr>Container<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.application.html#getmode" class="tsd-kind-icon">get<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.application.html#setmode" class="tsd-kind-icon">set<wbr>Mode</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.application.html#start" class="tsd-kind-icon">start</a>
 					</li>

@@ -30,31 +30,71 @@ For example if you want to insert in your html div id="user-container-id" the JM
 
 **V0.2.4 => V0.2.5**
  - Function added :
-    - **[[JMap.Data.User.getFullName]]**
-    - **[[JMap.Data.Layer.getLayerIds]]**
+    - **[[JMap.Service.User.getFullName]]**
+    - **[[JMap.Service.Layer.getLayerIds]]**
     - **[[JMap.Service.Map.isLayerRendered]]**
  - Function removed :
-    - <span style="color:red">**JMap.Data.User.getFirstName**</span> (replaced by JMap.Data.User.getFullName)
-    - <span style="color:red">**JMap.Data.User.getLastName**</span> (replaced by JMap.Data.User.getFullName)
+    - <span style="color:red">**JMap.Data.User.getFirstName**</span> (replaced by [[JMap.Service.User.getFullName]])
+    - <span style="color:red">**JMap.Data.User.getLastName**</span> (replaced by [[JMap.Service.User.getFullName]])
     - <span style="color:red">**JMap.Service.Language.translate**</span> (no replacement)
+    - <span style="color:red">**JMap.Data.Layer.getLayerTree**</span> (instead use [[JMap.Service.Layer.getLayerTree]])
+    - <span style="color:red">**JMap.Data.Layer.exists**</span> (instead use [[JMap.Service.Layer.exists]])
+    - <span style="color:red">**JMap.Data.Layer.getById**</span> (instead use [[JMap.Service.Layer.getById]])
+    - <span style="color:red">**JMap.Data.Layer.getName**</span> (instead use [[JMap.Service.Layer.getName]])
+    - <span style="color:red">**JMap.Data.Layer.getDescription**</span> (instead use [[JMap.Service.Layer.getDescription]])
+    - <span style="color:red">**JMap.Data.Layer.isVisible**</span> (instead use [[JMap.Service.Layer.isVisible]])
+    - <span style="color:red">**JMap.Data.Api.getMapImplementation**</span> (instead use [[JMap.Service.Map.getImplementation]])
+    - <span style="color:red">**JMap.Data.Photo.isPopupOpened**</span> (no replacement)
+    - <span style="color:red">**JMap.Data.Photo.isPopupInfoPanelOpened**</span> (no replacement)
+    - <span style="color:red">**JMap.Data.Photo.getPhotoDescriptors**</span> (no replacement)
+    - <span style="color:red">**JMap.Data.Photo.getSelectedPhotoId**</span> (no replacement)
  - Function moved :
     - JMap.Service.Language.getLocale() => <span style="color:green">**JMap.Service.*User*.getLocale**</span>
     - JMap.Service.Api.setMode => <span style="color:green">**JMap.*Application*.setMode**</span>
     - JMap.Data.Api.getMode => <span style="color:green">**JMap.*Application*.getMode**</span>
-    - JMap.Data.Api.getAllModes => <span style="color:green">**JMap.*Application*.getAllModes**</span>
     - JMap.Data.Application.getDomContainerId => <span style="color:green">**JMap.*Application*.getDomContainerId**</span>
+    - JMap.Data.Project.getId => <span style="color:green">**JMap.*Service*.Project.getId**</span>
+    - JMap.Data.Project.getName => <span style="color:green">**JMap.*Service*.Project.getName**</span>
+    - JMap.Data.Project.getDescription => <span style="color:green">**JMap.*Service*.Project.getDescription**</span>
+    - JMap.Data.Project.getProjection => <span style="color:green">**JMap.*Service*.Project.getProjection**</span>
+    - JMap.Data.Project.getInitialRotation => <span style="color:green">**JMap.*Service*.Project.getInitialRotation**</span>
+    - JMap.Data.Project.getInitialExtent => <span style="color:green">**JMap.*Service*.Project.getInitialExtent**</span>
+    - JMap.Data.Layer.getLayerTreeElementsById => <span style="color:green">**JMap.*Service*.Layer.getLayerTreeElementsById**</span>
+    - JMap.Data.Layer.getLayers => <span style="color:green">**JMap.*Service*.Layer.getLayers**</span>
+    - JMap.Data.Layer.getLayerIds => <span style="color:green">**JMap.*Service*.Layer.getLayerIds**</span>
+    - JMap.Data.Layer.getSelfOrChildren => <span style="color:green">**JMap.*Service*.Layer.getSelfOrChildren**</span>
+    - JMap.Data.Layer.getStyle => <span style="color:green">**JMap.*Service*.Layer.getStyle**</span>
+    - JMap.Data.Layer.getSimpleSelectionStyle => <span style="color:green">**JMap.*Service*.Layer.getSimpleSelectionStyle**</span>
+    - JMap.Data.Layer.getSelectionStyle => <span style="color:green">**JMap.*Service*.Layer.getSelectionStyle**</span>
+    - JMap.Data.Layer.getAllThematicsForLayer => <span style="color:green">**JMap.*Service*.Layer.getAllThematicsForLayer**</span>
+    - JMap.Data.Layer.getThematicById => <span style="color:green">**JMap.*Service*.Layer.getThematicById**</span>
+    - JMap.Data.Layer.hasVisibleThematics => <span style="color:green">**JMap.*Service*.Layer.hasVisibleThematics**</span>
+    - JMap.Data.Layer.getVisibleThematics => <span style="color:green">**JMap.*Service*.Layer.getVisibleThematics**</span>
+    - JMap.Data.Map.getDomContainerId => <span style="color:green">**JMap.*Service*.Map.getDomContainerId**</span>
+    - JMap.Data.Map.getImplementation => <span style="color:green">**JMap.*Service*.Map.getImplementation**</span>
+    - JMap.Data.Map.isMapLoaded => <span style="color:green">**JMap.*Service*.Map.isMapLoaded**</span>
+    - JMap.Data.Map.getCenter => <span style="color:green">**JMap.*Service*.Map.getCenter**</span>
+    - JMap.Data.Map.getZoom => <span style="color:green">**JMap.*Service*.Map.getZoom**</span>
+    - JMap.Data.Map.getScale => <span style="color:green">**JMap.*Service*.Map.getScale**</span>
+    - JMap.Data.Map.getBaseMap => <span style="color:green">**JMap.*Service*.Map.getBaseMap**</span>
+    - JMap.Data.Map.getSelectedFeatures => <span style="color:green">**JMap.*Service*.Map.*Selection*.getSelectedFeatures**</span>
+    - JMap.Data.Map.getSelectedFeaturesForLayer => <span style="color:green">**JMap.*Service*.Map.*Selection*.getSelectedFeaturesForLayer**</span>
+    - JMap.Data.Map.getSelectedFeatureIdsForLayer => <span style="color:green">**JMap.*Service*.Map.*Selection*.getSelectedFeatureIdsForLayer**</span>
+    - JMap.Data.User.getToken => <span style="color:green">**JMap.*Service*.User.getToken**</span>
+    - JMap.Data.User.getFullName => <span style="color:green">**JMap.*Service*.User.getFullName**</span>
+    - JMap.Data.User.getUsername => <span style="color:green">**JMap.*Service*.User.getUsername**</span>
  - Functions renamed :
-    - JMap.Data.Api.getAllMode => <span style="color:green">**JMap.Data.Api.getAllMode*s***</span>
-    - JMap.Data.Project.getScaleMin => <span style="color:green">**JMap.Data.Project.get*MinScale***</span>
-    - JMap.Data.Project.getScaleMax => <span style="color:green">**JMap.Data.Project.get*MaxScale***</span>
-    - JMap.Data.Project.getColorSelection => <span style="color:green">**JMap.Data.Project.get*SelectionColor***</span>
-    - JMap.Data.Project.getColorBackground => <span style="color:green">**JMap.Data.Project.get*BackgroundColor***</span>
-    - JMap.Data.Layer.getRenderedLayers => <span style="color:green">**JMap.Data.Layer.get*Layers***</span>
     - JMap.Service.Layer.setGroupOpen => <span style="color:green">**JMap.Service.Layer.set*Layer*Group*Expansion***</span>
-    - JMap.Data.User.getLogin => <span style="color:green">**JMap.Data.User.get*Username***</span>
+    - JMap.Data.User.getLogin => <span style="color:green">**JMap.Service.User.get*Username***</span>
     - JMap.Service.Map.Interaction.getAllInteractorDescriptors() => <span style="color:green">**JMap.Service.Map.Interaction.getAllInteractor*Id*s**</span>
     - JMap.Service.Map.Interaction.getActiveInteractorDescriptor() => <span style="color:green">**JMap.Service.Map.Interaction.getActiveInteractor*Id***</span>
  - Functions moved and renamed :
+    - JMap.Data.Api.getAllMode => <span style="color:green">**JMap.*Application*.getAllMode*s***</span>
+    - JMap.Data.Project.getScaleMin => <span style="color:green">**JMap.*Service*.Project.get*MinScale***</span>
+    - JMap.Data.Project.getScaleMax => <span style="color:green">**JMap.*Service*.Project.get*MaxScale***</span>
+    - JMap.Data.Project.getColorSelection => <span style="color:green">**JMap.*Service*.Project.get*SelectionColor***</span>
+    - JMap.Data.Project.getColorBackground => <span style="color:green">**JMap.*Service*.Project.get*BackgroundColor***</span>
+    - JMap.Data.Layer.getRenderedLayers => <span style="color:green">**JMap.*Service*.Layer.get*Layers***</span>
     - JMap.Service.Layer.getRenderedLayerIds => <span style="color:green">**JMap.Service.*Map*.getRendered*JMap*LayerIds**</span>
     - JMap.Data.getStore => <span style="color:green">**JMap.Api.get*Data*.Store**</span>
     - JMap.Data.Application.isSidePanelOpen => <span style="color:green">**JMap.*Application.UI.*SidePanel.isOpen**</span>

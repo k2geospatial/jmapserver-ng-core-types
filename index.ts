@@ -4,12 +4,18 @@ import { Feature } from "geojson"
 // API
 export interface JAPI {
   Api: JAPIApi
-  Data: JAPIData
   Service: JAPIService
   Component: JAPIComponent
   Application: JAPIApplication
   Event: JAPIEvent
   External: JAPIExternal
+}
+
+export interface JStoreGetterPhoto {
+  isPopupOpened(): boolean
+  isPopupInfoPanelOpened(): boolean
+  getPhotoDescriptors(): JPhotoDescriptor[]
+  getSelectedPhotoId(): number | undefined
 }
 
 // API Api
@@ -18,7 +24,6 @@ export interface JAPIApi {
   getVersion(): string
   getDataStore(): Store<JAPIState> | undefined
   getRestUrl(): string
-  getMapImplementation(): MAP_IMPLEMENTATION
   openDocumentation(): void
 }
 
@@ -83,77 +88,8 @@ export interface JMapEventModule extends JEventModule {
   }
 }
 
-// API DATA
-export interface JAPIData {
-  Project: JStoreGetterProject
-  Layer: JStoreGetterLayer
-  Map: JStoreGetterMap
-  User: JStoreGetterUser
-  Photo: JStoreGetterPhoto
-}
-
-export interface JStoreGetterProject {
-  getId(): number
-  getName(): string
-  getDescription(): string
-  getProjection(): JProjection
-  getInitialRotation(): number
-  getMinScale(): number
-  getMaxScale(): number
-  getSelectionColor(): string
-  getBackgroundColor(): string
-  getInitialExtent(): JBounds | null
-}
-
-export interface JStoreGetterLayer {
-  getLayerTree(): JLayerTree
-  getLayerTreeElementsById(): { [ treeElementId: number ]: JLayerTreeElement }
-  getLayers(): JLayer[]
-  getLayerIds(): number[]
-  exists(layerId: number): boolean
-  getById(layerId: number): JLayerTreeElement
-  getSelfOrChildren(layerId: number): JLayer[]
-  getName(layerId: number): string
-  getDescription(layerId: number): string
-  isVisible(layerId: number): boolean
-  getStyle(layerId: number): JLayerStyle
-  getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
-  getSelectionStyle(layerId: number): JLayerStyle | null
-  getAllThematicsForLayer(layerId: number): JLayerThematic[]
-  getThematicById(layerId: number, thematicId: number): JLayerThematic
-  hasVisibleThematics(layerId: number): boolean
-  getVisibleThematics(layerId: number): JLayerThematic[]
-}
-
-export interface JStoreGetterMap {
-  getDomContainerId(): string
-  getImplementation(): MAP_IMPLEMENTATION
-  isMapLoaded(): boolean
-  getCenter(): { x: number, y: number }
-  getZoom(): number
-  getScale(): number
-  getBaseMap(): string
-  getSelectedFeatures(): JMapSelection
-  getSelectedFeaturesForLayer(layerId: number): Feature[]
-  getSelectedFeatureIdsForLayer(layerId: number): number[]
-}
-
-export interface JStoreGetterUser {
-  getToken(): string
-  getFullName(): string
-  getUsername(): string
-}
-
-export interface JStoreGetterPhoto {
-  isPopupOpened(): boolean
-  isPopupInfoPanelOpened(): boolean
-  getPhotoDescriptors(): JPhotoDescriptor[]
-  getSelectedPhotoId(): number | undefined
-}
-
 export interface JAPIState {
-  api: JAPIOwnState
-  app: JAppState
+  application: JAppState
   map: JMapState
   project: JProjectState
   layer: JLayerState
@@ -171,6 +107,8 @@ export interface JAPIOwnState {
 
 // API DATA -> APP
 export interface JAppState {
+  mode: API_MODE,
+  allMode: API_MODE[]
   sidePanelOpen: boolean
 }
 
@@ -228,7 +166,6 @@ export interface JSidePanelController {
 // API SERVICE
 export interface JAPIService {
   Popup: JPopupService
-  Language: JAPILanguageService
   Project: JProjectService
   Layer: JLayerService
   User: JUserService
@@ -243,6 +180,12 @@ export interface JMapService {
   Selection: JMapSelectionService
   getMap(): any
   getMapJSLib(): any
+  getImplementation(): MAP_IMPLEMENTATION
+  getDomContainerId(): string
+  isMapLoaded(): boolean
+  getCenter(): { x: number, y: number }
+  getZoom(): number
+  getScale(): number
   isLayerRendered(layerId: number): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getInUseJMapLayerIds(): number[]
@@ -253,6 +196,7 @@ export interface JMapService {
   getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): Feature[]
   getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox): JMapFeatureAttributeValues[]
   getAvailableBaseMaps(): string[]
+  getBaseMap(): string
   setBaseMap(mapName: string): void
   panTo(center: JLocation): void
   zoomTo(zoom: number): void
@@ -268,6 +212,9 @@ export interface JMapInteractionService {
 }
 
 export interface JMapSelectionService {
+  getSelectedFeatures(): JMapSelection
+  getSelectedFeaturesForLayer(layerId: number): Feature[]
+  getSelectedFeatureIdsForLayer(layerId: number): number[]
   selectOnAllLayersAtLocation(location: JLocation): JMapSelection
   selectOnOneLayerAtLocation(layerId: number, location: JLocation): Feature[]
   setLayerSelection(layerId: number, features: Feature | Feature[]): void
@@ -310,19 +257,40 @@ export interface JPopupService {
 
 // API SERVICE -> PROJECT
 export interface JProjectService {
+  getId(): number
+  getName(): string
+  getDescription(): string
+  getProjection(): JProjection
+  getInitialRotation(): number
+  getMinScale(): number
+  getMaxScale(): number
+  getSelectionColor(): string
+  getBackgroundColor(): string
+  getInitialExtent(): JBounds | null
   load(project?: number): Promise<void>
   unload(): void
 }
 
 // API SERVICE -> LAYER
 export interface JLayerService {
-  getLayerAttributes(layerId: number): JLayerAttribute[]
   getLayerTree(): JLayerTree
+  getLayerTreeElementsById(): { [ treeElementId: number ]: JLayerTreeElement }
+  getLayers(): JLayer[]
+  getLayerIds(): number[]
+  getLayerAttributes(layerId: number): JLayerAttribute[]
   exists(layerId: number): boolean
   getById(layerId: number): JLayerTreeElement
+  getSelfOrChildren(layerId: number): JLayer[]
   getName(layerId: number): string
   getDescription(layerId: number): string
   isVisible(layerId: number): boolean
+  getStyle(layerId: number): JLayerStyle
+  getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
+  getSelectionStyle(layerId: number): JLayerStyle | null
+  getAllThematicsForLayer(layerId: number): JLayerThematic[]
+  getThematicById(layerId: number, thematicId: number): JLayerThematic
+  hasVisibleThematics(layerId: number): boolean
+  getVisibleThematics(layerId: number): JLayerThematic[]
   setVisible(layerId: number, visible: boolean): void
   setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
   deleteLayer(layerId: number): void
@@ -336,6 +304,10 @@ export interface JLayerGroup extends JLayerTreeElement {
 
 // API SERVICE -> USER
 export interface JUserService {
+  getToken(): string
+  getFullName(): string
+  getUsername(): string
+  getLocale(): string
   setSession(session: JSessionData): void
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>

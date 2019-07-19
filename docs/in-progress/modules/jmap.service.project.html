@@ -85,6 +85,16 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getbackgroundcolor" class="tsd-kind-icon">get<wbr>Background<wbr>Color</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getdescription" class="tsd-kind-icon">get<wbr>Description</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getinitialextent" class="tsd-kind-icon">get<wbr>Initial<wbr>Extent</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getinitialrotation" class="tsd-kind-icon">get<wbr>Initial<wbr>Rotation</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getmaxscale" class="tsd-kind-icon">get<wbr>Max<wbr>Scale</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getminscale" class="tsd-kind-icon">get<wbr>Min<wbr>Scale</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getprojection" class="tsd-kind-icon">get<wbr>Projection</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#getselectioncolor" class="tsd-kind-icon">get<wbr>Selection<wbr>Color</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#load" class="tsd-kind-icon">load</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#setid" class="tsd-kind-icon">set<wbr>Id</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.project.html#unload" class="tsd-kind-icon">unload</a></li>
@@ -96,6 +106,322 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getbackgroundcolor" class="tsd-anchor"></a>
+					<h3>get<wbr>Background<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Background<wbr>Color<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1816">api.d.ts:1816</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getBackgroundColor</strong></p>
+								</div>
+								<p>Returns JMap project background color in html hexa format. This color is used as the background of the map.</p>
+								<p>If no project is loaded, returns &quot;#ffe4c4&quot;.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the project background color as a html hexa color</span>
+JMap.Service.Project.getBackgroundColor()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getdescription" class="tsd-anchor"></a>
+					<h3>get<wbr>Description</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Description<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1721">api.d.ts:1721</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getDescription</strong></p>
+								</div>
+								<p>Returns JMap project description.</p>
+								<p>If no project is loaded, returns &quot;&quot;.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the currently loaded project description</span>
+JMap.Service.Project.getDescription()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getid" class="tsd-anchor"></a>
+					<h3>get<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1691">api.d.ts:1691</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getId</strong></p>
+								</div>
+								<p>Returns JMap project id.</p>
+								<p>If no project is loaded, returns -1.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the currently loaded project id</span>
+JMap.Service.Project.getId()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getinitialextent" class="tsd-anchor"></a>
+					<h3>get<wbr>Initial<wbr>Extent</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Initial<wbr>Extent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/jbounds.html" class="tsd-signature-type">JBounds</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1831">api.d.ts:1831</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getInitialExtent</strong></p>
+								</div>
+								<p>Returns JMap project initial extent. This is the extent that is automatically displayed when the project is opened.</p>
+								<p>If no project is loaded, returns null.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the project initial extent if exists</span>
+JMap.Service.Project.getInitialExtent()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/jbounds.html" class="tsd-signature-type">JBounds</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getinitialrotation" class="tsd-anchor"></a>
+					<h3>get<wbr>Initial<wbr>Rotation</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Initial<wbr>Rotation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1754">api.d.ts:1754</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getInitialRotation</strong></p>
+								</div>
+								<p>Returns JMap project initial map rotation. This rotation is applied when the project is opened.</p>
+								<p>If no project is loaded, returns 0.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the project initial rotation</span>
+JMap.Service.Project.getInitialRotation()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getmaxscale" class="tsd-anchor"></a>
+					<h3>get<wbr>Max<wbr>Scale</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Max<wbr>Scale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1784">api.d.ts:1784</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getMaxScale</strong></p>
+								</div>
+								<p>Returns JMap project max scale.</p>
+								<p>If no project is loaded, returns 0.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the project max scale</span>
+JMap.Service.Project.getMaxScale()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getminscale" class="tsd-anchor"></a>
+					<h3>get<wbr>Min<wbr>Scale</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Min<wbr>Scale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1769">api.d.ts:1769</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getMinScale</strong></p>
+								</div>
+								<p>Returns JMap project min scale.</p>
+								<p>If no project is loaded, returns 0.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the project min scale</span>
+JMap.Service.Project.getMinScale()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getname" class="tsd-anchor"></a>
+					<h3>get<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1706">api.d.ts:1706</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getName</strong></p>
+								</div>
+								<p>Returns JMap project name.</p>
+								<p>If no project is loaded, returns &quot;&quot;.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the currently loaded project name</span>
+JMap.Service.Project.getName()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getprojection" class="tsd-anchor"></a>
+					<h3>get<wbr>Projection</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Projection<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/jprojection.html" class="tsd-signature-type">JProjection</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1739">api.d.ts:1739</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getProjection</strong></p>
+								</div>
+								<p>Returns JMap project projection.</p>
+								<p>If no project is loaded, returns an empty projection : { code: &quot;&quot;, name: &quot;&quot; }.</p>
+								<p>In MapBox, projection is always &quot;<strong><em>EPSG:3857</em></strong>&quot;, but that function returns the project
+								defined projection (so it can be different than <strong><em>ESPG:3857</em></strong>).</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the project projection</span>
+JMap.Service.Project.getProjection()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/jprojection.html" class="tsd-signature-type">JProjection</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getselectioncolor" class="tsd-anchor"></a>
+					<h3>get<wbr>Selection<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Selection<wbr>Color<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1801">api.d.ts:1801</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Project.getSelectionColor</strong></p>
+								</div>
+								<p>Returns JMap project selection color in html hexa format.</p>
+								<p>This is the color that is used for selected features of layers that don&#39;t have a specific selection style defined.</p>
+								<p>If no project is loaded, returns &quot;#ffffff&quot;.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the project selection color as a html hexa color</span>
+JMap.Service.Project.getSelectionColor()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 					<a name="load" class="tsd-anchor"></a>
 					<h3>load</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -105,7 +431,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1380">api.d.ts:1380</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1853">api.d.ts:1853</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -152,7 +478,7 @@ JMap.Service.Project.load(<span class="hljs-number">2</span>)</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/jmap/project.d.ts#L2">jmap/project.d.ts:2</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/jmap/project.d.ts#L2">jmap/project.d.ts:2</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -175,7 +501,7 @@ JMap.Service.Project.load(<span class="hljs-number">2</span>)</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L1395">api.d.ts:1395</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/78af288/public/api.d.ts#L1868">api.d.ts:1868</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -217,9 +543,6 @@ JMap.Service.Project.unload()</code></pre>
 								<a href="jmap.component.html">Component</a>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-								<a href="jmap.data.html">Data</a>
-							</li>
-							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.event.html">Event</a>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
@@ -228,12 +551,6 @@ JMap.Service.Project.unload()</code></pre>
 							<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.service.html">Service</a>
 								<ul>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.api.html">Api</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.language.html">Language</a>
-									</li>
 									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 										<a href="jmap.service.layer.html">Layer</a>
 									</li>
@@ -257,6 +574,36 @@ JMap.Service.Project.unload()</code></pre>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getbackgroundcolor" class="tsd-kind-icon">get<wbr>Background<wbr>Color</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getdescription" class="tsd-kind-icon">get<wbr>Description</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getid" class="tsd-kind-icon">get<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getinitialextent" class="tsd-kind-icon">get<wbr>Initial<wbr>Extent</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getinitialrotation" class="tsd-kind-icon">get<wbr>Initial<wbr>Rotation</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getmaxscale" class="tsd-kind-icon">get<wbr>Max<wbr>Scale</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getminscale" class="tsd-kind-icon">get<wbr>Min<wbr>Scale</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getname" class="tsd-kind-icon">get<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getprojection" class="tsd-kind-icon">get<wbr>Projection</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.project.html#getselectioncolor" class="tsd-kind-icon">get<wbr>Selection<wbr>Color</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.project.html#load" class="tsd-kind-icon">load</a>
 					</li>

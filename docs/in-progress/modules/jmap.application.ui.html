@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Language | jmap-api</title>
+	<title>UI | jmap-api</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,13 +57,13 @@
 					<a href="jmap.html">JMap</a>
 				</li>
 				<li>
-					<a href="jmap.service.html">Service</a>
+					<a href="jmap.application.html">Application</a>
 				</li>
 				<li>
-					<a href="jmap.service.language.html">Language</a>
+					<a href="jmap.application.ui.html">UI</a>
 				</li>
 			</ul>
-			<h1>Module Language</h1>
+			<h1>Module UI</h1>
 		</div>
 	</div>
 </header>
@@ -73,9 +73,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p><strong>JMap.Service.Language</strong></p>
+						<p><strong>JMap.Application.UI</strong></p>
 					</div>
-					<p>Language translation related methods.</p>
+					<p>You can manage the application UI components here.</p>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -83,106 +83,12 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Functions</h3>
+							<h3>Modules</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.language.html#getlocale" class="tsd-kind-icon">get<wbr>Locale</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.language.html#translate" class="tsd-kind-icon">translate</a></li>
+								<li class="tsd-kind-module tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.application.ui.sidepanel.html" class="tsd-kind-icon">Side<wbr>Panel</a></li>
 							</ul>
 						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-					<a name="getlocale" class="tsd-anchor"></a>
-					<h3>get<wbr>Locale</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Locale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L106">api.d.ts:106</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p><strong>JMap.Service.Language.getLocale</strong></p>
-								</div>
-								<p>Get the API current locale in use.</p>
-								<dl class="tsd-comment-tags">
-									<dt>example</dt>
-									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// return "EN", or "FR", or "ES", or "PT"</span>
-JMap.Service.Language.getLocale()</code></pre>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-					<a name="translate" class="tsd-anchor"></a>
-					<h3>translate</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">translate<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, locale<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/0a0f78b/public/api.d.ts#L131">api.d.ts:131</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p><strong>JMap.Service.Language.translate</strong></p>
-								</div>
-								<p>Get the translation for a specific key.</p>
-								<dl class="tsd-comment-tags">
-									<dt>example</dt>
-									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// return "Sauvegarder" if local in use is FR</span>
-JMap.Service.Language.translate(<span class="hljs-string">"button.save"</span>)
-
-<span class="hljs-comment">// return "Save" even if local in use is FR</span>
-JMap.Service.Language.translate(<span class="hljs-string">"button.save"</span>, <span class="hljs-string">"EN"</span>)
-
-<span class="hljs-comment">// return "4 visible layer(s) on map" if local in use is EN</span>
-JMap.Service.Language.translate(<span class="hljs-string">"layer.count.visible"</span>, <span class="hljs-number">4</span>)
-
-<span class="hljs-comment">// return "L'utilisateur 'Jack' est admin" even if local in use is EN</span>
-JMap.Service.Language.translate(<span class="hljs-string">"user.test"</span>, [ <span class="hljs-string">"admin"</span>, <span class="hljs-string">"Jack"</span> ], <span class="hljs-string">"FR"</span>)</code></pre>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>key: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The translation key</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Some translation are dynamics and used runtime variables to construct the translation</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> locale: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>If provided will returns the translation for this locale, else the in use locale</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 		</div>
@@ -198,14 +104,21 @@ JMap.Service.Language.translate(<span class="hljs-string">"user.test"</span>, [ 
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.api.html">Api</a>
 							</li>
-							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
+							<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.application.html">Application</a>
+								<ul>
+									<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
+										<a href="jmap.application.ui.html">UI</a>
+										<ul>
+											<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
+												<a href="jmap.application.ui.sidepanel.html">Side<wbr>Panel</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.component.html">Component</a>
-							</li>
-							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-								<a href="jmap.data.html">Data</a>
 							</li>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.event.html">Event</a>
@@ -213,31 +126,8 @@ JMap.Service.Language.translate(<span class="hljs-string">"user.test"</span>, [ 
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.external.html">External</a>
 							</li>
-							<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
+							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.service.html">Service</a>
-								<ul>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.api.html">Api</a>
-									</li>
-									<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.language.html">Language</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.layer.html">Layer</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.map.html">Map</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.mouseover.html">Mouse<wbr>Over</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.project.html">Project</a>
-									</li>
-									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
-										<a href="jmap.service.user.html">User</a>
-									</li>
-								</ul>
 							</li>
 						</ul>
 					</li>
@@ -245,12 +135,6 @@ JMap.Service.Language.translate(<span class="hljs-string">"user.test"</span>, [ 
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="jmap.service.language.html#getlocale" class="tsd-kind-icon">get<wbr>Locale</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="jmap.service.language.html#translate" class="tsd-kind-icon">translate</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
