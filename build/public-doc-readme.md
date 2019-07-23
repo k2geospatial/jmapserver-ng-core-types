@@ -109,3 +109,17 @@ For example if you want to insert in your html div id="user-container-id" the JM
     - <span style="color:green">**JMAP_API_OPTIONS.session.user**</span> :
       - Properties *firstName* and *lastName* fusioned into one property named <span style="color:green">**fullName**</span>
       - Property *login* changed for <span style="color:green">**username**</span>
+
+**V0.2.5 => V0.2.7**
+
+ - Function removed :
+    - <span style="color:red">**JMap.Application.setMode**</span> (no replacement)
+    - <span style="color:red">**JMap.Application.getMode**</span> (no replacement)
+    - <span style="color:red">**JMap.Application.getAllModes**</span> (no replacement)
+    - <span style="color:red">**JMap.Application.getDomContainerId**</span> (no replacement)
+    - <span style="color:red">**JMap.Application.startIfNeeded**</span> (no replacement)
+    - <span style="color:red">**JMap.Application.start**</span> (no replacement)
+    - <span style="color:red">**JMap.Application.UI.SidePanel.setVisible**</span> (no replacement)
+    - <span style="color:red">**JMap.Application.UI.SidePanel.isOpen**</span> (no replacement)
+    - <span style="color:red">**JMap.Application.UI.SidePanel.open**</span> (no replacement)
+    - <span style="color:red">**JMap.Application.UI.SidePanel.close**</span> (no replacement)

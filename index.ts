@@ -125,28 +125,6 @@ export interface JPhotoState {
   isPopupInfoPanelOpened: boolean
 }
 
-// API APPLICATION
-export interface JAPIApplication {
-  setMode(mode: API_MODE): void
-  getMode(): API_MODE
-  getAllModes(): API_MODE[]
-  getDomContainerId(): string
-  startIfNeeded(): void
-  start(containerId?: string): void
-  UI: {
-    SidePanel: JSidePanelController
-  }
-}
-
-
-// API APPLICATION -> UI -> SIDE_PANEL
-export interface JSidePanelController {
-  setVisible(open: boolean): void
-  isOpen(): boolean
-  open(): void
-  close(): void
-}
-
 // API SERVICE
 export interface JAPIService {
   Popup: JPopupService
