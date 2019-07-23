@@ -6,7 +6,6 @@ export interface JAPI {
   Api: JAPIApi
   Service: JAPIService
   Component: JAPIComponent
-  Application: JAPIApplication
   Event: JAPIEvent
   External: JAPIExternal
 }
@@ -89,27 +88,12 @@ export interface JMapEventModule extends JEventModule {
 }
 
 export interface JAPIState {
-  application: JAppState
   map: JMapState
   project: JProjectState
   layer: JLayerState
   user: JUserState
   photo: JPhotoState
   external?: any
-}
-
-export interface JAPIOwnState {
-  restUrl: string,
-  mode: API_MODE,
-  allMode: API_MODE[]
-  mapImplementation: MAP_IMPLEMENTATION
-}
-
-// API DATA -> APP
-export interface JAppState {
-  mode: API_MODE,
-  allMode: API_MODE[]
-  sidePanelOpen: boolean
 }
 
 // API DATA -> MAP
@@ -371,23 +355,9 @@ export interface JDocumentDescriptor {
   depositName: string
 }
 
-// MIS
+// MISC
 export interface JObjectId {
   project: string
   layer: string
   element: string
-}
-
-// GEOMETRY
-export interface JGeoJsonFeature {
-  id: string
-  type: string
-  geometry: JGeoJsonGeometry
-  properties: { [ propertyName: string ]: any },
-  bbox?: number[]
-}
-
-export interface JGeoJsonGeometry {
-  type: string,
-  coordinates: number[]
 }
