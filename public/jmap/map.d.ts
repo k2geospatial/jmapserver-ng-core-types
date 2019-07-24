@@ -16,6 +16,7 @@ declare interface JMapLayersVisibilityStatus {
     isRendered: boolean
     visibilityProperty: boolean
     scaleVisibility: boolean
+    extentVisibility: boolean
   }
 }
 

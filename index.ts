@@ -145,6 +145,7 @@ export interface JMapService {
   getImplementation(): MAP_IMPLEMENTATION
   getDomContainerId(): string
   isMapLoaded(): boolean
+  getExtent(): JBoundaryBox
   getCenter(): { x: number, y: number }
   getZoom(): number
   getScale(): number

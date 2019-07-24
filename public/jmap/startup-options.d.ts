@@ -11,22 +11,12 @@ declare interface Window {
  * This options has to be defined before evaluating the JMAP Web API js file :
  * ```html
  * <!DOCTYPE html>
- * <html class="jmap_wrapper">
+ * <html>
  *   <head>
  *     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
  *     <meta charset="UTF-8">
- *     <style>
- *       html {
- *         min-width: 100%;
- *         max-width: 100%;
- *         min-height: 100%;
- *         max-height: 100%;
- *       }
- *     </style>
  *   </head>
- *   <body>
- *     <div id="jmap-map"></div>
- *     <div id="app"></div>
+ *   <body class="jmap_wrapper">
  *    <script type="text/javascript">
  *       const url = new URL(window.location.href)
  *       const token = url.searchParams.get("token")
@@ -46,15 +36,14 @@ declare interface Window {
  *           }
  *         },
  *         map: {
- *           containerId: "jmap-map",
  *           mapboxToken: "xx.xxx.xx",
  *           onStartupMapReadyFn: map => console.log("JMap is ready !")
  *         }
  *       }
  *     </script>
  *     <script defer
- *        type="text/javascript"
- *        src="http://localhost:8080/services/jmap-api/resources/index.js">
+ *             type="text/javascript"
+ *             src="https://cdn.jsdelivr.net/npm/jmap-api-ng@x.x.x/public/index.js">
  *     </script>
  *   </body>
  * </html>

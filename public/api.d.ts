@@ -568,6 +568,19 @@ declare namespace JMap {
       function isMapLoaded(): boolean
 
       /**
+       * ***JMap.Service.Map.getExtent***
+       * 
+       * Returns the current map extent.
+       * 
+       * @example ```ts
+       * 
+       * // returns the current map extent
+       * JMap.Service.Map.getExtent()
+       * ```
+       */
+      function getExtent(): JBoundaryBox
+
+      /**
        * ***JMap.Service.Map.getCenter***
        * 
        * Returns the location that is the current center of the map.
@@ -643,10 +656,11 @@ declare namespace JMap {
        * 
        * // Example of result :
        * [
-       *  1: { isVisible: true, userVisibility: true, mapVisibility: true }
-       *  2: { isVisible: false, userVisibility: true, mapVisibility: false }
-       *  3: { isVisible: false, userVisibility: false, mapVisibility: false }
-       *  4: { isVisible: false, userVisibility: false, mapVisibility: false }
+       *  1: { isVisible: true, userVisibility: true, mapVisibility: true, extentVisibility: true }
+       *  2: { isVisible: false, userVisibility: true, mapVisibility: false, extentVisibility: true }
+       *  3: { isVisible: false, userVisibility: false, mapVisibility: false, extentVisibility: true }
+       *  4: { isVisible: false, userVisibility: false, mapVisibility: false, extentVisibility: true }
+       *  5: { isVisible: false, userVisibility: true, mapVisibility: true, extentVisibility: false }
        * ]
        * ```
        */

@@ -23,6 +23,7 @@ declare interface JLayer extends JLayerTreeElement {
   selectionStyle: JLayerStyle
   baseStyles: JLayerStyleScaled[]
   thematics: JLayerThematic[]
+  extent: JBoundaryBox | null
 }
 
 declare interface JLayerAttribute {

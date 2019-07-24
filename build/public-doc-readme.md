@@ -123,3 +123,14 @@ For example if you want to insert in your html div id="user-container-id" the JM
     - <span style="color:red">**JMap.Application.UI.SidePanel.isOpen**</span> (no replacement)
     - <span style="color:red">**JMap.Application.UI.SidePanel.open**</span> (no replacement)
     - <span style="color:red">**JMap.Application.UI.SidePanel.close**</span> (no replacement)
+
+**V0.2.7 => V0.2.8**
+
+ - Function added :
+    - **[[JMap.Service.Map.getExtent]]**
+
+ - Function having result changed :
+    - <span style="color:green">**JMap.Service.Map.getLayersVisibilityStatus**</span> :
+      - before was : { 1: { isRendered: true, visibilityProperty: true, scaleVisibility: true }, 2: ... }
+      - now is : { 1: { isRendered: true, visibilityProperty: true, scaleVisibility: true, ***extentVisibility***: true }, 2: ... }
+        - => extentVisibility property added
