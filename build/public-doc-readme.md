@@ -141,5 +141,4 @@ For example if you want to insert in your html div id="user-container-id" the JM
     - **[[JMap.Event.Layer.on.thematicVisibilityChange]]**
     - **[[JMap.Event.User.on.sessionChanged]]**
  - Property added in interface :
-    - Interface [[JExternalModel]] : add ***startBeforeMapIsReady*** (a boolean)
-      - if true will start the external module before the map is ready, after JMap API has been loaded.
+    - **[[JExternalModel.startBeforeMapIsReady]]**

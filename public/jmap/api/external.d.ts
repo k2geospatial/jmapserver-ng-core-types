@@ -43,6 +43,7 @@ declare interface JExternalModel {
    * be called only when you will have a valid session token, and loaded a project.
    * 
    * You can make a custom autentication using the method [[JMap.Service.User.login]]).
+   * 
    * You can load a a project using the method [[JMap.Service.Project.load]]).
    */
   startBeforeMapIsReady?: boolean
