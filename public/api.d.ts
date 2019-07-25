@@ -2111,7 +2111,7 @@ declare namespace JMap {
          * // Each time a new project is loaded will display the new project id in the console
          * JMap.Event.Project.on.projectChange(
          *    "custom-project-change",
-         *    project => console.log(`New project id="${project.id}"`)
+         *    params => console.log(`New project id="${params.project.id}"`)
          * )
          * ```
          */

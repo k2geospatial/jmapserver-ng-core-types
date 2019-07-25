@@ -42,6 +42,7 @@ export interface JAPIComponentItem<P> {
 export interface JAPIEvent {
   Layer: JLayerEventModule
   Map: JMapEventModule
+  Project: JProjectEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -291,14 +292,6 @@ export interface JAPIExternal {
   isRegistered(externalId: string): boolean
   getAllRegistered(): string[]
   renderMouseOver(layer: JLayer, feature: Feature): JExternalMouseOver[]
-}
-
-export interface JExternalModel {
-  id: string
-  initFn: (options: any) => void
-  storeReducer?: (reducerState: any, action: Action) => any
-  serviceToExpose?: any
-  renderMouseOver?(layer: JLayer, feature: Feature): JExternalMouseOver
 }
 
 export interface JDocumentService {

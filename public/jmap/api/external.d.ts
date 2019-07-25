@@ -1,8 +1,9 @@
-declare interface JExtensionModel {
+declare interface JExternalModel {
   id: string
+  serviceToExpose?: any
+  startBeforeMapIsReady?: boolean
   initFn: (options: any) => void
   storeReducer?: (reducerState: any, action: any) => any
-  serviceToExpose?: any
   renderMouseOver?(layer: JLayer, feature: any): JExternalMouseOver
 }
 
