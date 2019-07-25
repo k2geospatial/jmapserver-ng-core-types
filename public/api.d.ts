@@ -2111,7 +2111,7 @@ declare namespace JMap {
          * // Each time a new project is loaded will display the new project id in the console
          * JMap.Event.Project.on.projectChange(
          *    "custom-project-change",
-         *    params => console.log(`New project id="${params.project.id}"`)
+         *    params => console.log(`New project id="${project.project.id}"`)
          * )
          * ```
          */
@@ -2192,25 +2192,74 @@ declare namespace JMap {
       namespace on {
 
         /**
-         * ***JMap.Event.Layer.on.projectChange***
+         * ***JMap.Event.Layer.on.layersChange***
          * 
-         * This event is triggered when a layer visibility changed.
+         * This event is triggered when a new project has been loaded, and when its layers have
+         * been loaded too.
+         * 
+         * If the project has been unloaded, this event is triggered but the provided layerTree is
+         * an empty array (in JMap a project has at least one layer).
          * 
          * @param listenerId Your listener id (must be unique for all layer events)
          * @param fn Your listener function
          * @example ```ts
          * 
-         * // Each time a layer element visibility is changed, will display the new visibility
+         * // Each time a new project is loaded and its layer have also been loaded,
+         * // this method is processed.
+         * JMap.Event.Layer.on.layersChange(
+         *    "custom-layers-change",
+         *    params => {
+         *      console.log("This is the new project layer three", params.layerTree)
+         *    }
+         * )
+         * ```
+         */
+        function layersChange(listenerId: string, fn: (params: JLayerEventChangeParams) => void): void
+        
+        /**
+         * ***JMap.Event.Layer.on.visibilityChange***
+         * 
+         * This event is triggered when a tree element visibility changed.
+         * 
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a tree element visibility is changed, will display the new visibility
          * // in the console
          * JMap.Event.Layer.on.visibilityChange(
          *    "custom-visibility-change",
-         *    element => {
-         *      console.log(`Layer element id="${element.id}" visible="${element.visible}"`)
+         *    params => {
+         *      console.log(`Layer element id="${params.layer.id}" visible="${params.layer.visible}"`)
          *    }
          * )
          * ```
          */
         function visibilityChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Layer.on.thematicVisibilityChange***
+         * 
+         * This event is triggered when a layer thematic visibility changed.
+         * 
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a layer thematic visibility is changed this method is processed
+         * JMap.Event.Layer.on.thematicVisibilityChange(
+         *    "custom-thematic-visibility-change",
+         *    params => {
+         *      console.log(
+         *        `Layer id="${params.layerId}", ` +
+         *        `thematic id="${params.thematicId}" ` +
+         *        `visible="${params.visibility}"`
+         *      )
+         *    }
+         * )
+         * ```
+         */
+        function thematicVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicVisibilityParams) => void): void
 
         /**
          * ***JMap.Event.Layer.on.layerDeletion***
@@ -2221,11 +2270,11 @@ declare namespace JMap {
          * @param fn Your listener function
          * @example ```ts
          * 
-         * // Each time a layer element is deleted, will display a message in the console
+         * // Each time a layer is deleted, will display a message in the console
          * JMap.Event.Layer.on.layerDeletion(
          *    "custom-layer-deletion",
-         *    layerElement => {
-         *      console.log(`Layer element id="${layerElement.id}" has been deleted client side`)
+         *    params => {
+         *      console.log(`Layer id="${params.layer.id}" has been deleted client side`)
          *    }
          * )
          * ```
@@ -2569,6 +2618,106 @@ declare namespace JMap {
        * 
        * // remove the listener "my-map-listener"
        * JMap.Event.Map.remove("my-map-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
+     * ***JMap.Event.User***
+     * 
+     * Here you can manage all user related event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.User.on]]***. 
+     */
+    namespace User {
+
+      /**
+       * ***JMap.Event.User.on***
+       * 
+       * Here you have all available user events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.User.on.sessionChanged***
+         * 
+         * This event is triggered when the user session changed.
+         * 
+         * If it's a logout, the token in params.session is equals to "-1".
+         * 
+         * @param listenerId Your listener id (must be unique for all user events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the session has changed this method is processed
+         * JMap.Event.User.on.sessionChanged(
+         *    "custom-session-change",
+         *    params => {
+         *      if (params.session.token === "-1") {
+         *        console.log("Session has been closed")
+         *      } else {
+         *        console.log(`New session opened`, params.session)
+         *      }
+         *    }
+         * )
+         * ```
+         */
+        function sessionChanged(listenerId: string, fn: (params: JUserEventSessionChangedParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.User.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-user-listener"
+       * JMap.Event.User.activate("my-user-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.User.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-user-listener"
+       * JMap.Event.User.deactivate("my-user-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.User.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap API. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-user-listener"
+       * JMap.Event.User.remove("my-user-listener")
        * ```
        */
       function remove(listenerId: string): void

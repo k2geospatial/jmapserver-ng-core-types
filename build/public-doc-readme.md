@@ -134,3 +134,12 @@ For example if you want to insert in your html div id="user-container-id" the JM
       - before was : { 1: { isRendered: true, visibilityProperty: true, scaleVisibility: true }, 2: ... }
       - now is : { 1: { isRendered: true, visibilityProperty: true, scaleVisibility: true, ***extentVisibility***: true }, 2: ... }
         - => extentVisibility property added
+
+**V0.2.8 => V0.2.9**
+ - Function added :
+    - **[[JMap.Event.Layer.on.layersChange]]**
+    - **[[JMap.Event.Layer.on.thematicVisibilityChange]]**
+    - **[[JMap.Event.User.on.sessionChanged]]**
+ - Property added in interface :
+    - Interface [[JExternalModel]] : add ***startBeforeMapIsReady*** (a boolean)
+      - if true will start the external module before the map is ready, after JMap API has been loaded.

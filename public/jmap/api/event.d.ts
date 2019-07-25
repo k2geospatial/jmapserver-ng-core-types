@@ -1,3 +1,13 @@
+declare interface JLayerEventChangeParams {
+  layerTree: JLayerTree
+}
+
+declare interface JLayerEventThematicVisibilityParams {
+  layerId: number
+  thematicId: number
+  visibility: boolean
+}
+
 declare interface JLayerEventParams {
   layer: JLayerTreeElement
 }
@@ -22,4 +32,8 @@ declare interface JMapEventLayerParams extends JMapEventLocationParams {
 
 declare interface JMapEventFeaturesParams extends JMapEventLayerParams {
   features: any[]
+}
+
+declare interface JUserEventSessionChangedParams {
+  session: JSessionData
 }

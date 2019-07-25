@@ -43,6 +43,7 @@ export interface JAPIEvent {
   Layer: JLayerEventModule
   Map: JMapEventModule
   Project: JProjectEventModule
+  User: JUserEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -69,6 +70,8 @@ export interface JProjectEventModule extends JEventModule {
 
 export interface JLayerEventModule extends JEventModule {
   on: {
+    layersChange(listenerId: string, fn: (params: JLayerEventChangeParams) => void): void
+    thematicVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicVisibilityParams) => void): void
     visibilityChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
   }
@@ -85,6 +88,12 @@ export interface JMapEventModule extends JEventModule {
     mouseEnter(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
     mouseLeave(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
     click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
+  }
+}
+
+export interface JUserEventModule extends JEventModule {
+  on: {
+    sessionChanged(listenerId: string, fn: (params: JUserEventSessionChangedParams) => void): void
   }
 }
 
