@@ -2733,7 +2733,7 @@ declare namespace JMap {
    * 
    * This mecanism provide a clean way to integrate in JMap your own external plugin.
    * 
-   * You can create an object that implement the interface [[JExtensionModel]], and register it
+   * You can create an object that implement the interface [[JExternalModel]], and register it
    * from this section.
    * 
    * By example you register an external extension with id="***MyCompany***"".
@@ -2767,7 +2767,7 @@ declare namespace JMap {
      * })
      * ```
      */
-    function register(extensionModel: JExtensionModel): void
+    function register(extensionModel: JExternalModel): void
 
     /**
      * ***JMap.External.isRegistered***
@@ -2806,7 +2806,7 @@ declare namespace JMap {
      * 
      * Returns all external mouseovers for a specific layer feature.
      * 
-     * Each result elements are the result of calling method [[JExtensionModel.renderMouseOver]]
+     * Each result elements are the result of calling method [[JExternalModel.renderMouseOver]]
      * 
      * You can have a look at ***[[JMap.Service.MouseOver]]***.
      * 
