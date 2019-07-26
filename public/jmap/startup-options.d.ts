@@ -89,18 +89,6 @@ declare interface JAPIOptions {
    */
   session?: JSessionData
   /**
-   * The JMap application options
-   * 
-   * @example ```ts
-   * 
-   * application: {
-   *  containerId: "jmap-app", // will create the application in the div id="jmap-app"
-   *  start: true // will start the application on startup
-   * }
-   * ```
-   */
-  application?: JAPIApplicationOptions
-  /**
    * The JMap map options.
    * 
    * @example ```ts
@@ -154,20 +142,4 @@ declare interface JAPIMapOptions {
    * If set, this function will be called after JMap API is ready and the map has been loaded.
    */
   onStartupMapReadyFn?: (map: any) => {}
-}
-
-declare interface JAPIApplicationOptions {
-  /**
-   * If true the application will start automatically at startup.
-   * 
-   * Else you'll have to start it from the API ([[JMap.Service.Application.start]])
-   * after JMAp has been started.
-   */
-  start: boolean
-  /**
-   * The JMap application DOM div container id.
-   * 
-   * Default is "jmap-app"
-   */
-  containerId: string
 }
