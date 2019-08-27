@@ -1948,6 +1948,11 @@ declare namespace JMap {
        * The login function, returns a promise. Make a call to the server and if
        * login is successful resolve the promise providing the user session data.
        * 
+       * If an error occurs, 3 differents string message can be returned :
+       *   - ***"user.login.error.credential"*** => Bad username or password
+       *   - ***"user.login.error.server"*** => Unexpected error while requesting the server
+       *   - ***"user.login.error.unexpected"*** => Unexpected error client side
+       * 
        * @throws Error if bad credentials or server error.
        * @param session The user session data
        * @example ```ts
@@ -1961,8 +1966,8 @@ declare namespace JMap {
        *    .then(sessionData => {
        *      console.log(`User ${userLogin} has been authenticated, his session token is "${sessionData.token}"`)
        *    })
-       *    .catch(error => {
-       *      console.error(`Cannot loggin ${userLogin}`, error)
+       *    .catch(errorKey => {
+       *      console.error(`Cannot loggin ${userLogin}, errorKey="${errorKey}"`, error)
        *    })
        * ```
        */
@@ -1972,6 +1977,10 @@ declare namespace JMap {
        * **JMap.Service.User.logout**
        * 
        * Logout function. Make a call to the server to invalidate the session id.
+       * 
+       * If an error occurs, 2 differents string message can be returned :
+       *   - ***"user.logout.error.server"*** => Unexpected error while requesting the server
+       *   - ***"user.logout.error.unexpected"*** => Unexpected error client side
        * 
        * @example ```ts
        * 
