@@ -116,6 +116,7 @@ export interface JMapState {
   boundaryBox: JBoundaryBox
   baseMap: string
   selection: JMapSelection
+  inUseJMapLayerIds: number[]
 }
 
 // API DATA -> PROJECT
