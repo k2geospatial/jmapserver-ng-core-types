@@ -17,4 +17,9 @@ declare interface JProject {
   colorSelection: string
   colorBackground: string
   initialExtent: JBounds | null
+  apiKey: {
+    google: string | null
+    bing: string | null
+    mapBox: string | null
+  }
 }

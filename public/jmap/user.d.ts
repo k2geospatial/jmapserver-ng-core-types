@@ -19,14 +19,16 @@ declare interface JSessionData {
 }
 
 declare interface JUserPublicData {
-  username: string,
-  fullName: string,
+  username: string
+  fullName: string
+  email: string
   admin: boolean
 }
 
 declare interface JUserIdentity {
-  username: string,
+  username: string
   fullName: string
+  email: string
 }
 
 declare interface JLoginData {
