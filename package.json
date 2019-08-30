@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pub": "export NODE_ENV='production'; gulp publish --gulpfile build/gulpfile.js;",
+    "copy": "export NODE_ENV='production'; gulp copy --gulpfile build/gulpfile.js;",
     "commit-doc": "export NODE_ENV='production'; gulp commit-doc --gulpfile build/gulpfile.js;",
     "doc-test": "export DOC_DIR='./docs/current'; gulp typedoc --gulpfile build/gulpfile.js;"
   },

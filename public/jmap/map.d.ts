@@ -11,13 +11,18 @@ declare interface JMapSelection {
   [ layerId: number ]: any[] // any = feature
 }
 
+declare interface JMapLayerVisibilityStatus {
+  layerId: number
+  layerName: string
+  isRendered: boolean
+  visibilityProperty: boolean
+  parentVisibility: boolean
+  scaleVisibility: boolean
+  extentVisibility: boolean
+}
+
 declare interface JMapLayersVisibilityStatus {
-  [ layerElementId: number ]: {
-    isRendered: boolean
-    visibilityProperty: boolean
-    scaleVisibility: boolean
-    extentVisibility: boolean
-  }
+  [ layerElementId: number ]: JMapLayerVisibilityStatus
 }
 
 declare interface JProjection {

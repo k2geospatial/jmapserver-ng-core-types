@@ -120,7 +120,10 @@ export interface JMapState {
 }
 
 // API DATA -> PROJECT
-export type JProjectState = JProject
+export type JProjectState = {
+  allProjects: JProject[]
+  selectedProject: JProject
+}
 
 // API DATA -> LAYER
 export interface JLayerState {
@@ -162,6 +165,7 @@ export interface JMapService {
   getScale(): number
   isLayerRendered(layerId: number): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
+  getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
   getInUseJMapLayerIds(): number[]
   getInUseJMapVectorLayerIds(): number[]
   getInUseJMapLayerBefore(layerId: number): number | undefined
@@ -231,6 +235,7 @@ export interface JPopupService {
 
 // API SERVICE -> PROJECT
 export interface JProjectService {
+  getAllProjects(): Promise<JProject[]>
   getId(): number
   getName(): string
   getDescription(): string

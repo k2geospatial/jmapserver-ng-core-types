@@ -642,12 +642,20 @@ declare namespace JMap {
        * 
        * The result is a map (= javascript object) where :
        *  - the key is the JMap layer id
-       *  - the value is an object containing all visibility status for a layer
+       *  - the value is a JMapLayersVisibilityStatus object
        * 
-       * The visibility status are the following :
-       *  - isVisible: true if the user can see the layer on the map
-       *  - userVisibility: user can show or hide a layer
-       *  - mapVisibility: depending on the map scale or zoom level a layer can be hidden
+       * A JMapLayersVisibilityStatus object has the following properties :
+       *  - layerId: the layer id
+       *  - layerName: the layer name
+       *  - isRendered: true if 'visibilityProperty', 'parentVisibility', 
+       *                'scaleVisibility' and 'extentVisibility' are all true
+       *  - visibilityProperty: user can show or hide a layer
+       *  - parentVisibility: return false if one of its group parent(s) has
+       *                      its visibility property equals to false
+       *  - scaleVisibility: return false if at the current scale the layer
+       *                     cannot be displayed
+       *  - extentVisibility: return false if the extent of the layer is not
+       *                      contains by the current view of the map
        * 
        * @example ```ts
        * 
@@ -655,17 +663,52 @@ declare namespace JMap {
        * JMap.Service.Map.getLayersVisibilityStatus()
        * 
        * // Example of result :
-       * [
-       *  1: { isVisible: true, userVisibility: true, mapVisibility: true, extentVisibility: true }
-       *  2: { isVisible: false, userVisibility: true, mapVisibility: false, extentVisibility: true }
-       *  3: { isVisible: false, userVisibility: false, mapVisibility: false, extentVisibility: true }
-       *  4: { isVisible: false, userVisibility: false, mapVisibility: false, extentVisibility: true }
-       *  5: { isVisible: false, userVisibility: true, mapVisibility: true, extentVisibility: false }
-       * ]
+       * {
+       *  1: { layerId: 1, layerName: "layer 1", isRendered: true, visibilityProperty: true, parentVisibility: true, scaleVisibility: true, extentVisibility: true }
+       *  2: { layerId: 2, layerName: "layer 2", isRendered: false, visibilityProperty: true, parentVisibility: true, scaleVisibility: false, extentVisibility: true }
+       *  3: { layerId: 3, layerName: "layer 3", isRendered: false, visibilityProperty: false, parentVisibility: true, scaleVisibility: false, extentVisibility: true }
+       *  4: { layerId: 4, layerName: "layer 4", isRendered: false, visibilityProperty: false, parentVisibility: false, scaleVisibility: false, extentVisibility: true }
+       *  5: { layerId: 5, layerName: "layer 5", isRendered: false, visibilityProperty: true, parentVisibility: true, scaleVisibility: true, extentVisibility: false }
+       * }
        * ```
        */
       function getLayersVisibilityStatus(): JMapLayersVisibilityStatus
-      
+
+      /**
+       * **JMap.Service.Map.getLayersVisibilityStatusAsArray**
+       * 
+       * Returns layers visibility status as an array of JMapLayersVisibilityStatus object.
+       * 
+       * A JMapLayersVisibilityStatus object has the following properties :
+       *  - layerId: the layer id
+       *  - layerName: the layer name
+       *  - isRendered: true if 'visibilityProperty', 'parentVisibility', 
+       *                'scaleVisibility' and 'extentVisibility' are all true
+       *  - visibilityProperty: user can show or hide a layer
+       *  - parentVisibility: return false if one of its group parent(s) has
+       *                      its visibility property equals to false
+       *  - scaleVisibility: return false if at the current scale the layer
+       *                     cannot be displayed
+       *  - extentVisibility: return false if the extent of the layer is not
+       *                      contains by the current view of the map
+       * 
+       * @example ```ts
+       * 
+       * // returns the visibility status as an object array
+       * JMap.Service.Map.getLayersVisibilityStatusAsArray()
+       * 
+       * // Example of result :
+       * [
+       *  { layerId: 1, layerName: "layer 1", isRendered: true, visibilityProperty: true, parentVisibility: true, scaleVisibility: true, extentVisibility: true }
+       *  { layerId: 2, layerName: "layer 2", isRendered: false, visibilityProperty: true, parentVisibility: true, scaleVisibility: false, extentVisibility: true }
+       *  { layerId: 3, layerName: "layer 3", isRendered: false, visibilityProperty: false, parentVisibility: true, scaleVisibility: false, extentVisibility: true }
+       *  { layerId: 4, layerName: "layer 4", isRendered: false, visibilityProperty: false, parentVisibility: false, scaleVisibility: false, extentVisibility: true }
+       *  { layerId: 5, layerName: "layer 5", isRendered: false, visibilityProperty: true, parentVisibility: true, scaleVisibility: true, extentVisibility: false }
+       * ]
+       * ```
+       */
+      function getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
+
       /**
        * **JMap.Service.Map.getInUseJMapLayerIds**
        * 
@@ -1688,10 +1731,31 @@ declare namespace JMap {
      */
     namespace Project {
       
+      /**
+       * **JMap.Service.Project.getAllProjects**
+       * 
+       * Returns a promise that returns all JMap projects descriptors when resolved.
+       * 
+       * If no project is loaded, returns empty array.
+       * 
+       * @example ```ts
+       * 
+       * // This is asynchronous code, getAllProject return a promise that is
+       * // resolved after the server returned all project data.
+       * JMap.Service.Project
+       *    .getAllProjects()
+       *    .then(projects => {
+       *      // Here you can start using the projects
+       *      console.log(`Projects count = "${projects.length}"`
+       *    }))
+       * ```
+       */
+      function getAllProjects(): Promise<JProject[]>
+
      /**
       * **JMap.Service.Project.getId**
       * 
-      * Returns JMap project id.
+      * Returns selected JMap project id.
       * 
       * If no project is loaded, returns -1.
       * 
@@ -1706,7 +1770,7 @@ declare namespace JMap {
      /**
       * **JMap.Service.Project.getName**
       * 
-      * Returns JMap project name.
+      * Returns selected JMap project name.
       * 
       * If no project is loaded, returns "".
       * 
@@ -1721,7 +1785,7 @@ declare namespace JMap {
      /**
       * **JMap.Service.Project.getDescription**
       * 
-      * Returns JMap project description.
+      * Returns selected JMap project description.
       * 
       * If no project is loaded, returns "".
       * 
@@ -1736,9 +1800,9 @@ declare namespace JMap {
      /**
       * **JMap.Service.Project.getProjection**
       * 
-      * Returns JMap project projection.
+      * Returns selected JMap project projection.
       * 
-      * If no project is loaded, returns an empty projection : { code: "", name: "" }.
+      * If no project is selected, returns an empty projection : { code: "", name: "" }.
       * 
       * In MapBox, projection is always "***EPSG:3857***", but that function returns the project
       * defined projection (so it can be different than ***ESPG:3857***).
@@ -1754,9 +1818,10 @@ declare namespace JMap {
      /**
       * **JMap.Service.Project.getInitialRotation**
       * 
-      * Returns JMap project initial map rotation. This rotation is applied when the project is opened.
+      * Returns selected JMap project initial map rotation.
+      * This rotation is the one applied when the project is opened.
       * 
-      * If no project is loaded, returns 0.
+      * If no project is selected, returns 0.
       * 
       * @example ```ts
       * 
@@ -1769,9 +1834,9 @@ declare namespace JMap {
      /**
       * **JMap.Service.Project.getMinScale**
       * 
-      * Returns JMap project min scale.
+      * Returns selected JMap project min scale.
       * 
-      * If no project is loaded, returns 0.
+      * If no project is selected, returns 0.
       * 
       * @example ```ts
       * 
@@ -1784,9 +1849,9 @@ declare namespace JMap {
      /**
       * **JMap.Service.Project.getMaxScale**
       * 
-      * Returns JMap project max scale.
+      * Returns selected JMap project max scale.
       * 
-      * If no project is loaded, returns 0.
+      * If no project is selected, returns 0.
       * 
       * @example ```ts
       * 
@@ -1799,11 +1864,12 @@ declare namespace JMap {
      /**
       * **JMap.Service.Project.getSelectionColor**
       * 
-      * Returns JMap project selection color in html hexa format.
+      * Returns selected JMap project selection color in html hexa format.
       * 
-      * This is the color that is used for selected features of layers that don't have a specific selection style defined.
+      * This is the color that is used for selected features of layers that
+      * don't have a specific selection style defined.
       * 
-      * If no project is loaded, returns "#ffffff".
+      * If no project is selected, returns "#ffffff".
       * 
       * @example ```ts
       * 
@@ -1816,9 +1882,10 @@ declare namespace JMap {
      /**
       * **JMap.Service.Project.getBackgroundColor**
       * 
-      * Returns JMap project background color in html hexa format. This color is used as the background of the map.
+      * Returns selected JMap project background color in html hexa format.
+      * This color is used as the background of the map.
       * 
-      * If no project is loaded, returns "#ffe4c4".
+      * If no project is selected, returns "#ffe4c4".
       * 
       * @example ```ts
       * 
@@ -1831,9 +1898,10 @@ declare namespace JMap {
      /**
       * **JMap.Service.Project.getInitialExtent**
       * 
-      * Returns JMap project initial extent. This is the extent that is automatically displayed when the project is opened.
+      * Returns selected JMap project initial extent.
+      * This is the extent that is automatically displayed when the project is opened.
       * 
-      * If no project is loaded, returns null.
+      * If no project is selected, returns null.
       * 
       * @example ```ts
       * 
