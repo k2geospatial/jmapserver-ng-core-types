@@ -87,6 +87,192 @@ declare namespace JMap {
    * This is where you can get data and interact with the API.
    */
   namespace Service {
+
+    /**
+     * **JMap.Service.History**
+     * 
+     * This is where you can find browser history relative methods
+     */
+    namespace History {
+
+      /**
+       * **JMap.Service.History.transformSearchParamsIntoHashParams**
+       * 
+       * Get all search params in the url and transform them into hash params
+       * without refreshing the page.
+       * 
+       * @example ```ts
+       * 
+       * // Ex. url is = ***http://localhost:8080/services/jmap?projectId=0&myvar=test***
+       *
+       * JMap.Service.History.transformSearchParamsIntoHashParams()
+       * 
+       * // The url is now = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+       * ```
+       */
+      function transformSearchParamsIntoHashParams(): void
+      
+      /**
+       * **JMap.Service.History.goBack**
+       * 
+       * The same as clicking the back button of the browser
+       * 
+       * @example ```ts
+       * 
+       * // go to previous page
+       * JMap.Service.History.goBack()
+       * ```
+       */
+      function goBack(): void
+      
+      /**
+       * **JMap.Service.History.goForward**
+       * 
+       * The same as clicking the forward button of the browser
+       * 
+       * @example ```ts
+       * 
+       * // go to the next page if exist
+       * JMap.Service.History.goForward()
+       * ```
+       */
+      function goForward(): void
+
+      /**
+       * **JMap.Service.History.getHashParameter**
+       * 
+       * Return a JS object that contains all key / value entries present
+       * in the hash of the url.
+       * 
+       * Returns an empty string if parameter's not found.
+       * 
+       * @throws Error if parameterName is not a valid string
+       * 
+       * @example ```ts
+       * 
+       * // Ex. url = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+       * 
+       * JMap.Service.History.getHashParameter("myvar")
+       * // return "test"
+       * 
+       * JMap.Service.History.getHashParameter("myvardoesntexist")
+       * // return ""
+       * ```
+       */
+      function getHashParameter(parameterName: string): string
+
+      /**
+       * **JMap.Service.History.getHashParameters**
+       * 
+       * Return a JS object that contains all key / value entries present
+       * in the hash of the url.
+       * 
+       * @example ```ts
+       * 
+       * // get all parameters in the url hash
+       * JMap.Service.History.getHashParameters()
+       * 
+       * // Ex. url = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+       * // Will return this object :
+       * {
+       *    projectId: 0,
+       *    myvar: "test"
+       * }
+       * ```
+       */
+      function getHashParameters(): { [ key: string ]: string }
+      
+      /**
+       * **JMap.Service.History.pushHashParameters**
+       * 
+       * You can add or update a parameter in the url hash.
+       * 
+       * @param parameterName: the name of the parameter
+       * @param parameterValue: the string value of the parameter, only string are accepted.
+       * 
+       * @throws Error if parameterName is not a valid string
+       * 
+       * @example ```ts
+       * 
+       * // Ex. url is = ***http://localhost:8080/services/jmap#?projectId=0***
+       *
+       * JMap.Service.History.pushHashParameters("myvar", "test")
+       * 
+       * // The url is now = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+       * ```
+       */
+      function pushHashParameters(parameterName: string, parameterValue: string): void
+      
+      /**
+       * **JMap.Service.History.popHashParameters**
+       * 
+       * You can remove a parameter in the url hash.
+       * 
+       * Don't throw an error if the parameter doesn't exist.
+       *
+       * @param parameterName: the name of the parameter
+       *
+       * @throws Error if parameterName is not a valid string
+       *  
+       * @example ```ts
+       * 
+       * // Ex. url is = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+       *
+       * JMap.Service.History.popHashParameters("myvar")
+       * 
+       * // The url is now = ***http://localhost:8080/services/jmap#?projectId=0***
+       * ```
+       */
+      function popHashParameters(parameterName: string): void
+
+      /**
+       * **JMap.Service.History.onParameterChange**
+       * 
+       * You can attach a listener that listen for url hash params change.
+       * 
+       * The function returns the listener id that can be used after to remove the listener.
+       *
+       * @param parameterName: the name of the parameter
+       * @param fn: the function that will be processed when the property changed
+       * 
+       * @returns the listener id, can be used to remove the listener with [[JMap.Service.History.removePropertyChangeListener]]
+       *
+       * @throws Error if parameterName is not a valid string or fn is not a function
+       * 
+       * @example ```ts
+       * 
+       * const listenerId = JMap.Service.History.onParameterChange("projectId", (oldValue, newValue) => {
+       *    console.log(`In the url hash the parameter "projectId" has changed from "${oldValue}" to "${newValue}"`)
+       * })
+       * ```
+       */
+      function onParameterChange(parameterName: string, fn: (oldValue: string, newValue: string | undefined) => void): string
+
+      /**
+       * **JMap.Service.History.removePropertyChangeListener**
+       * 
+       * You can detach a property listener by its id that has been returned when it has been created
+       * with function [[JMap.Service.History.onParameterChange]].
+       * 
+       * After that the listener will be destroyed.
+       * 
+       * @param listenerId: the listener id
+       * 
+       * @throws Error if parameterName is not a valid string or fn is not a function
+       * 
+       * @example ```ts
+       * 
+       * const listenerId = JMap.Service.History.onParameterChange(...)
+       * // the listener is working
+       * 
+       * // ...
+       * 
+       * JMap.Service.History.removePropertyChangeListener(listenerId)
+       * // here the listener has stopped
+       * ```
+       */
+      function removePropertyChangeListener(listenerId: string): void
+    }
     
     /**
      * **JMap.Service.Layer**
@@ -2188,7 +2374,7 @@ declare namespace JMap {
          * // Each time a new project is loaded will display the new project id in the console
          * JMap.Event.Project.on.projectChange(
          *    "custom-project-change",
-         *    params => console.log(`New project id="${project.project.id}"`)
+         *    params => console.log(`New project id="${params.project.id}"`)
          * )
          * ```
          */

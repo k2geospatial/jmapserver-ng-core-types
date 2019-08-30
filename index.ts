@@ -141,12 +141,28 @@ export interface JPhotoState {
 
 // API SERVICE
 export interface JAPIService {
+  History: JHistoryService
   Popup: JPopupService
   Project: JProjectService
   Layer: JLayerService
   User: JUserService
   Map: JMapService
   MouseOver: JMouseOverService
+}
+
+// API SERVICE -> HISTORY
+export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
+
+export interface JHistoryService {
+  transformSearchParamsIntoHashParams(): void
+  goBack(): void
+  goForward(): void
+  getHashParameter(parameterName: string): string
+  getHashParameters(): { [ key: string ]: string }
+  pushHashParameters(parameterName: string, parameterValue: string): void
+  popHashParameters(parameterName: string): void
+  onParameterChange(parameterName: string, fn: JHistoryListener): string
+  removePropertyChangeListener(listenerId: string): void
 }
 
 // API SERVICE -> MAP
