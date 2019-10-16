@@ -278,7 +278,7 @@ export interface JLayerService {
   getSelfOrChildren(layerId: number): JLayer[]
   getName(layerId: number): string
   getDescription(layerId: number): string
-  isVisible(layerId: number): boolean
+  isVisible(layerId: number, checkParentVisibility?: boolean): boolean
   getStyle(layerId: number): JLayerStyle
   getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
   getSelectionStyle(layerId: number): JLayerStyle | null

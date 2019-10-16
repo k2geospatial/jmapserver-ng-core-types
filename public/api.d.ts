@@ -473,13 +473,14 @@ declare namespace JMap {
        * 
        * @throws Error if no layer found for the id
        * @param layerId The JMap layer id
+       * @param checkParentVisibility If true will check if all parent elements have the property visible equals to true
        * @example ```ts
        * 
        * // returns false if layer id=3 is not set as visible
        * JMap.Service.Layer.isVisible(3)
        * ```
        */
-      function isVisible(layerId: number): boolean
+      function isVisible(layerId: number, checkParentVisibility?: boolean): boolean
 
       /**
        * **JMap.Service.Layer.getStyle**

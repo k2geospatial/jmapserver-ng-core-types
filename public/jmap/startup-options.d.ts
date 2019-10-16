@@ -128,8 +128,10 @@ declare interface JAPIMapOptions {
    * If *scalePanelVisible* is true, you can define the *scalePanelUnit*.
    * 
    * This is the unit in which the scale panel will display the data.
+   * 
+   * Values "degrees" and "us" are not supported with MapBox
    */
-  scalePanelUnit?: "imperial" |  "metric" |  "nautical"
+  scalePanelUnit?: "imperial" |  "metric" |  "nautical" | "degrees" | "us"
   /**
    * If set, the map will be centered to this location.
    */
