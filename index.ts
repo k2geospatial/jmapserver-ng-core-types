@@ -279,6 +279,7 @@ export interface JLayerService {
   getName(layerId: number): string
   getDescription(layerId: number): string
   isVisible(layerId: number, checkParentVisibility?: boolean): boolean
+  isAllLayerParentsVisible(layerId: number): boolean
   getStyle(layerId: number): JLayerStyle
   getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
   getSelectionStyle(layerId: number): JLayerStyle | null
