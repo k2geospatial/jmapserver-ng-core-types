@@ -1637,24 +1637,6 @@ declare namespace JMap {
         function getSelectedFeatureIdsForLayer(layerId: number): number[]
 
         /**
-         * **JMap.Service.Map.Selection.selectOnAllLayersAtLocation**
-         * 
-         * Select for all layers the features that are at the location.
-         * 
-         * Same behavior as if you were clicking on the map in order to select features.
-         * 
-         * @throws Error if location format is not good
-         * @param location The location where you want feature selection
-         * @returns The new feature selection
-         * @example ```ts
-         * 
-         * // Process a selection on the map for all layers, at the location in params
-         * JMap.Service.Map.Selection.selectOnAllLayersAtLocation({ x: 34.23, y: 55.5 })
-         * ```
-         */
-        function selectOnAllLayersAtLocation(location: JLocation): JMapSelection
-
-        /**
          * **JMap.Service.Map.Selection.selectOnOneLayerAtLocation**
          * 
          * Select for specific layer its features that are at the location.
@@ -1664,6 +1646,7 @@ declare namespace JMap {
          * @throws Error if layer is not found or location format is not good
          * @param layerId The JMap layer id
          * @param location The location where you want feature selection
+         * @param params selection parameters, see [[JMapSelectionParams]]
          * @returns The features array
          * @example ```ts
          * 
@@ -1671,7 +1654,169 @@ declare namespace JMap {
          * JMap.Service.Map.Selection.selectOnOneLayerAtLocation(4, { x: 34.23, y: 55.5 })
          * ```
          */
-        function selectOnOneLayerAtLocation(layerId: number, location: JLocation): any[]
+        function selectOnOneLayerAtLocation(layerId: number, location: JLocation, params?: JMapSelectionParams): any[]
+
+        /**
+         * **JMap.Service.Map.Selection.selectOnOneLayerFromCircle**
+         * 
+         * Select for specific layer its features that intersect the circle.
+         * 
+         * @throws Error if layer is not found or if circle format is not good
+         * @param layerId The JMap layer id
+         * @param circle The circle
+         * @param params selection parameters, see [[JMapSelectionParams]]
+         * @returns The features array
+         * @example ```ts
+         * 
+         * // Process a selection on the map for layer id=4,
+         * // selecting features intersecting the circle
+         * JMap.Service.Map.Selection.selectOnOneLayerFromCircle(
+         *   4, //layer id
+         *   {
+         *     center: { x: 34.23, y: 55.5 },
+         *     radius: 100
+         *   }
+         * )
+         * ```
+         */
+        function selectOnOneLayerFromCircle(layerId: number, circle: JCircle, params?: JMapSelectionParams): any[]
+
+        /**
+         * **JMap.Service.Map.Selection.selectOnOneLayerFromLine**
+         * 
+         * Select for specific layer its features that intersect the line.
+         * 
+         * @throws Error if layer is not found or if line format is not good
+         * @param layerId The JMap layer id
+         * @param line The line
+         * @param params selection parameters, see [[JMapSelectionParams]]
+         * @returns The features array
+         * @example ```ts
+         * 
+         * // Process a selection on the map for layer id=4,
+         * // selecting features that intersect the line
+         * JMap.Service.Map.Selection.selectOnOneLayerFromLine(
+         *   4, // The layer id
+         *   [
+         *     [ 34.23, 55.5 ],
+         *     [ 36.24, 14.9 ],
+         *     [ 45.23, 25.2 ]
+         *   ]
+         * )
+         * ```
+         */
+        function selectOnOneLayerFromLine(layerId: number, line: JLine, params?: JMapSelectionParams): any[]
+
+        /**
+         * **JMap.Service.Map.Selection.selectOnOneLayerFromPolygon**
+         * 
+         * Select for specific layer its features that intersect the line.
+         * 
+         * @throws Error if layer is not found or if line format is not good
+         * @param layerId The JMap layer id
+         * @param polygon The line
+         * @param params selection parameters, see [[JMapSelectionParams]]
+         * @returns The features array
+         * @example ```ts
+         * 
+         * // Process a selection on the map for layer id=4, selecting features intersecting the line
+         * JMap.Service.Map.Selection.selectOnOneLayerFromPolygon(
+         *   4, // The layer id
+         *   [
+         *     [ 34.23, 55.5 ],
+         *     [ 36.24, 14.9 ],
+         *     [ 45.23, 25.2 ],
+         *     [ 34.23, 55.5 ]
+         *   ]
+         * )
+         * ```
+         */
+        function selectOnOneLayerFromPolygon(layerId: number, polygon: JPolygon, params?: JMapSelectionParams): any[]
+
+        /**
+         * **JMap.Service.Map.Selection.selectOnAllLayersAtLocation**
+         * 
+         * Select for all layers the features that are at the location.
+         * 
+         * Same behavior as if you were clicking on the map in order to select features.
+         * 
+         * @throws Error if location format is not good
+         * @param location The location where you want feature selection
+         * @param params selection parameters, see [[JMapSelectionParams]]
+         * @returns The new feature selection
+         * @example ```ts
+         * 
+         * // Process a selection on the map for all layers, at the location in params
+         * JMap.Service.Map.Selection.selectOnAllLayersAtLocation({ x: 34.23, y: 55.5 })
+         * ```
+         */
+        function selectOnAllLayersAtLocation(location: JLocation, params?: JMapSelectionParams): JMapSelection
+
+        /**
+         * **JMap.Service.Map.Selection.selectOnAllLayersFromCircle**
+         * 
+         * Select for all layers the features that intersect the circle.
+         * 
+         * @throws Error if circle format is not good
+         * @param circle The circle
+         * @param params selection parameters, see [[JMapSelectionParams]]
+         * @returns The new feature selection
+         * @example ```ts
+         * 
+         * // Process a selection on the map for all layers,
+         * // select all features that intersect the circle
+         * JMap.Service.Map.Selection.selectOnAllLayersFromCircle({
+         *   center: { x: 34.23, y: 55.5 },
+         *   radius: 100
+         * })
+         * ```
+         */
+        function selectOnAllLayersFromCircle(circle: JCircle, params?: JMapSelectionParams): JMapSelection
+
+        /**
+         * **JMap.Service.Map.Selection.selectOnAllLayersFromLine**
+         * 
+         * Select for all layers the features that intersect the line.
+         * 
+         * @throws Error if line format is not good
+         * @param line The line
+         * @param params selection parameters, see [[JMapSelectionParams]]
+         * @returns The new feature selection
+         * @example ```ts
+         * 
+         * // Process a selection on the map for all layers,
+         * // select all features that intersect the line
+         * JMap.Service.Map.Selection.selectOnAllLayersFromLine([
+         *   [ 34.23, 55.5 ],
+         *   [ 36.24, 14.9 ],
+         *   [ 45.23, 25.2 ]
+         * ])
+         * ```
+         */
+        function selectOnAllLayersFromLine(line: JLine, params?: JMapSelectionParams): JMapSelection
+
+        /**
+         * **JMap.Service.Map.Selection.selectOnAllLayersFromPolygon**
+         * 
+         * Select for all layers the features that intersect the polygon.
+         * 
+         * @throws Error if polygon format is not good
+         * @param polygon The polygon
+         * @param params selection parameters, see [[JMapSelectionParams]]
+         * @returns The new feature selection
+         * @example ```ts
+         * 
+         * // Process a selection on the map for all layers,
+         * // select all features that intersect the polygon
+         * JMap.Service.Map.Selection.selectOnAllLayersFromPolygon([
+         *   [ 34.23, 55.5 ],
+         *   [ 36.24, 14.9 ],
+         *   [ 45.23, 25.2 ],
+         *   [ 34.23, 55.5 ] // first and last point of a polygon must be equals
+         * ])
+         * ```
+         */
+        function selectOnAllLayersFromPolygon(polygon: JPolygon, params?: JMapSelectionParams): JMapSelection
 
         /**
          * **JMap.Service.Map.Selection.setLayerSelection**

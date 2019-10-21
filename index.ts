@@ -209,8 +209,14 @@ export interface JMapSelectionService {
   getSelectedFeatures(): JMapSelection
   getSelectedFeaturesForLayer(layerId: number): Feature[]
   getSelectedFeatureIdsForLayer(layerId: number): number[]
-  selectOnAllLayersAtLocation(location: JLocation): JMapSelection
-  selectOnOneLayerAtLocation(layerId: number, location: JLocation): Feature[]
+  selectOnOneLayerAtLocation(layerId: number, location: JLocation, params?: JMapSelectionParams | undefined): Feature[]
+  selectOnOneLayerFromCircle(layerId: number, circle: JCircle, params?: JMapSelectionParams | undefined): Feature[]
+  selectOnOneLayerFromLine(layerId: number, line: JLine, params?: JMapSelectionParams | undefined): Feature[]
+  selectOnOneLayerFromPolygon(layerId: number, polygon: JPolygon, params?: JMapSelectionParams | undefined): Feature[]
+  selectOnAllLayersAtLocation(location: JLocation, params?: JMapSelectionParams | undefined): JMapSelection
+  selectOnAllLayersFromCircle(circle: JCircle, params?: JMapSelectionParams | undefined): JMapSelection
+  selectOnAllLayersFromLine(line: JLine, params?: JMapSelectionParams | undefined): JMapSelection
+  selectOnAllLayersFromPolygon(polygon: JPolygon, params?: JMapSelectionParams | undefined): JMapSelection
   setLayerSelection(layerId: number, features: Feature | Feature[]): void
   addFeaturesToLayerSelection(layerId: number, features: Feature | Feature[]): void
   removeFeaturesFromLayerSelection(layerId: number, featureIds: number | number[]): void

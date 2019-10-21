@@ -142,3 +142,41 @@ For example if you want to insert in your html div id="user-container-id" the JM
     - **[[JMap.Event.User.on.sessionChanged]]**
  - Property added in interface :
     - **[[JExternalModel.startBeforeMapIsReady]]**
+
+**V0.2.9 => V0.3.5**
+ - Function added :
+    - **[[JMap.Service.Layer.isAllLayerParentsVisible]]**
+    - **[[JMap.Service.History.transformSearchParamsIntoHashParams]]**
+    - **[[JMap.Service.History.goBack]]**
+    - **[[JMap.Service.History.goForward]]**
+    - **[[JMap.Service.History.getHashParameter]]**
+    - **[[JMap.Service.History.pushHashParameters]]**
+    - **[[JMap.Service.History.popHashParameters]]**
+    - **[[JMap.Service.History.onParameterChange]]**
+    - **[[JMap.Service.History.removePropertyChangeListener]]**
+    - **[[JMap.Service.Project.getAllProjects]]**
+    - **[[JMap.Service.Map.getLayersVisibilityStatusAsArray]]**
+    - **[[JMap.Service.Map.Selection.selectOnOneLayerFromCircle]]**
+    - **[[JMap.Service.Map.Selection.selectOnOneLayerFromLine]]**
+    - **[[JMap.Service.Map.Selection.selectOnOneLayerFromPolygon]]**
+    - **[[JMap.Service.Map.Selection.selectOnAllLayersFromCircle]]**
+    - **[[JMap.Service.Map.Selection.selectOnAllLayersFromLine]]**
+    - **[[JMap.Service.Map.Selection.selectOnAllLayersFromPolygon]]**
+ - Function having result changed :
+    - <span style="color:green">**JMap.Service.Map.getLayersVisibilityStatus**</span> :
+      - Add properties in each object :
+        - parentVisibility to tell if the parent is checked or not
+        - layerId : make easier looping directly on values
+        - layerName : make easier looping directly on values
+ - Function having an additional parameter :
+    - <span style="color:green">**JMap.Service.Map.Selection.selectOnOneLayerAtLocation**</span> :
+    - <span style="color:green">**JMap.Service.Map.Selection.selectOnAllLayersAtLocation**</span> :
+      - Add an optional parameter params, see [[JMapSelectionParam]]
+    - <span style="color:green">**JMap.Service.Layer.isVisible**</span> :
+      - Add an optional parameter checkParentVisibility
+ - Interface changed :
+    - <span style="color:green">**JProject**</span> :
+      - Add "apiKey" property
+    - <span style="color:green">**JUserPublicData**</span> :
+    - <span style="color:green">**JUserIdentity**</span> :
+      - Add "username" and "email" properties

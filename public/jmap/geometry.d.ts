@@ -17,10 +17,15 @@ declare interface JLocation {
 
 declare type JPoint = [ number, number ]
 
+declare type JLine = Array<JPoint>
+
 declare type JPolygon = Array<JPoint>
 
 declare interface JCircle {
   center: JLocation,
+  /**
+   * With mapbox the radius unit is kilometer
+   */
   radius: number
 }
 
