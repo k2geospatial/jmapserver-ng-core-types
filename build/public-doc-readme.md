@@ -171,7 +171,7 @@ For example if you want to insert in your html div id="user-container-id" the JM
  - Function having an additional parameter :
     - <span style="color:green">**JMap.Service.Map.Selection.selectOnOneLayerAtLocation**</span> :
     - <span style="color:green">**JMap.Service.Map.Selection.selectOnAllLayersAtLocation**</span> :
-      - Add an optional parameter params, see [[JMapSelectionParam]]
+      - Add an optional parameter params, see [[JMapSelectionParams]]
     - <span style="color:green">**JMap.Service.Layer.isVisible**</span> :
       - Add an optional parameter checkParentVisibility
  - Interface changed :
