@@ -58,7 +58,7 @@ export interface JEventModule {
     [ method: string ]: (listenerId: string, fn: JEventFunction) => void
   }
   activate(listenerId: string): void
-  deactivate(listenerId: string): void
+  desactive(listenerId: string): void
   remove(listenerId: string): void
 }
 
