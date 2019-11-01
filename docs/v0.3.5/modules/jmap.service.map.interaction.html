@@ -90,7 +90,7 @@
 					<p>An interactor is a JS object that define 4 functions (for more details consult interface <a href="../interfaces/jmapinteractor.html">JMapInteractor</a>) :</p>
 					<pre><code class="language-ts"> - init(map: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">void</span>
  - activate(): <span class="hljs-built_in">void</span>
- - deactivate(): <span class="hljs-built_in">void</span>
+ - desactive(): <span class="hljs-built_in">void</span>
  - terminate(): <span class="hljs-built_in">void</span></code></pre>
 					<p>After creating your interactor object, you need to add it in the API :</p>
 					<pre><code class="language-ts"> JMap.Service.Map.Interaction.addInteractor(
@@ -99,7 +99,7 @@
    <span class="hljs-literal">true</span> <span class="hljs-comment">// if true activate the interactor after being added</span>
 )</code></pre>
 					<p>There is always an interactor actived, and this is the active interactions that are in use on the map.</p>
-					<p>When you activate an interactor, the previous one is deactivated, and the new one activated on the map.</p>
+					<p>When you activate an interactor, the previous one is desactived, and the new one activated on the map.</p>
 					<p>When you don&#39;t need anymore an interactor you can terminate it, and it will not exist anymore in the API.</p>
 				</div>
 			</section>
@@ -132,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/d31ac94/public/api.d.ts#L1290">api.d.ts:1290</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1290">api.d.ts:1290</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -140,7 +140,7 @@
 									<p><strong>JMap.Service.Map.Interaction.activateInteractorById</strong></p>
 								</div>
 								<p>Activate an existing map interactor.</p>
-								<p>Deactivate the previous one, and activate the new one.</p>
+								<p>desactive the previous one, and activate the new one.</p>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
 									<dd><p>Error if interactor is not found</p>
@@ -175,7 +175,7 @@ JMap.Service.Map.Interaction.activateInteractorById(<span class="hljs-string">"d
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/d31ac94/public/api.d.ts#L1228">api.d.ts:1228</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1228">api.d.ts:1228</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -238,7 +238,7 @@ JMap.Service.Map.Interaction.addInteractor(<span class="hljs-string">"my-custom-
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/d31ac94/public/api.d.ts#L1273">api.d.ts:1273</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1273">api.d.ts:1273</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -268,7 +268,7 @@ JMap.Service.Map.Interaction.getActiveInteractorId()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/d31ac94/public/api.d.ts#L1260">api.d.ts:1260</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1260">api.d.ts:1260</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,7 +298,7 @@ JMap.Service.Map.Interaction.getAllInteractorIds()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/d31ac94/public/api.d.ts#L1247">api.d.ts:1247</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1247">api.d.ts:1247</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -427,6 +427,7 @@ JMap.Service.Map.Interaction.terminateInteractorById(<span class="hljs-string">"
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>

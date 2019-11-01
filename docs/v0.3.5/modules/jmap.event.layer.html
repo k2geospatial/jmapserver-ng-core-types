@@ -76,7 +76,7 @@
 						<p><strong><em>JMap.Event.Layer</em></strong></p>
 					</div>
 					<p>Here you can manage all layer related event listeners.</p>
-					<p>List of events are located in <strong><em><a href="jmap.event.layer.on.html">JMap.Event.Layer.on</a></em></strong>.</p>
+					<p>List of events are located in <strong>*<a href="jmap.event.layer.on.html">JMap.Event.Layer.on</a>*</strong>.</p>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -93,7 +93,7 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.layer.html#activate" class="tsd-kind-icon">activate</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.layer.html#deactivate" class="tsd-kind-icon">deactivate</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.layer.html#desactive" class="tsd-kind-icon">desactive</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.layer.html#remove" class="tsd-kind-icon">remove</a></li>
 							</ul>
 						</section>
@@ -112,7 +112,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/d31ac94/public/api.d.ts#L2728">api.d.ts:2728</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L2728">api.d.ts:2728</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -121,7 +121,7 @@
 								</div>
 								<p>Activate the listener.</p>
 								<p>If listener was already activated, do nothing.</p>
-								<p>If the listener was deactivated, it state is turn to activate and it will be called again
+								<p>If the listener was desactived, it state is turn to activate and it will be called again
 								when en event is emitted.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
@@ -145,31 +145,31 @@ JMap.Event.Layer.activate(<span class="hljs-string">"my-layer-listener"</span>)<
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-					<a name="deactivate" class="tsd-anchor"></a>
-					<h3>deactivate</h3>
+					<a name="desactive" class="tsd-anchor"></a>
+					<h3>desactive</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">deactivate<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">desactive<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/d31ac94/public/api.d.ts#L2747">api.d.ts:2747</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L2747">api.d.ts:2747</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p><strong><em>JMap.Event.Layer.deactivate</em></strong></p>
+									<p><strong><em>JMap.Event.Layer.desactive</em></strong></p>
 								</div>
-								<p>Deactivate the listener.</p>
-								<p>If listener id doesn&#39;t exist or is already deactivated, do nothing.</p>
-								<p>If the listener was active, it state is turn to deactivate, and it will be ignore
+								<p>desactive the listener.</p>
+								<p>If listener id doesn&#39;t exist or is already desactived, do nothing.</p>
+								<p>If the listener was active, it state is turn to desactive, and it will be ignore
 								when en event is emitted.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// deactivate the listener "my-layer-listener"</span>
-JMap.Event.Layer.deactivate(<span class="hljs-string">"my-layer-listener"</span>)</code></pre>
+<span class="hljs-comment">// desactive the listener "my-layer-listener"</span>
+JMap.Event.Layer.desactive(<span class="hljs-string">"my-layer-listener"</span>)</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -196,7 +196,7 @@ JMap.Event.Layer.deactivate(<span class="hljs-string">"my-layer-listener"</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/d31ac94/public/api.d.ts#L2765">api.d.ts:2765</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L2765">api.d.ts:2765</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -282,7 +282,7 @@ JMap.Event.Layer.remove(<span class="hljs-string">"my-layer-listener"</span>)</c
 						<a href="jmap.event.layer.html#activate" class="tsd-kind-icon">activate</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="jmap.event.layer.html#deactivate" class="tsd-kind-icon">deactivate</a>
+						<a href="jmap.event.layer.html#desactive" class="tsd-kind-icon">desactive</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.event.layer.html#remove" class="tsd-kind-icon">remove</a>
@@ -304,6 +304,7 @@ JMap.Event.Layer.remove(<span class="hljs-string">"my-layer-listener"</span>)</c
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
