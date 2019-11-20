@@ -55,7 +55,7 @@ export interface JEventListener {
 
 export interface JEventModule {
   on: {
-    [ method: string ]: (listenerId: string, fn: JEventFunction) => void
+    [method: string]: (listenerId: string, fn: JEventFunction) => void
   }
   activate(listenerId: string): void
   desactive(listenerId: string): void
@@ -110,6 +110,7 @@ export interface JAPIState {
 export interface JMapState {
   implementation: MAP_IMPLEMENTATION
   isLoaded: boolean
+  hasFirstLoaded: boolean
   center: JLocation
   zoom: number
   scale: number
@@ -120,7 +121,7 @@ export interface JMapState {
 }
 
 // API DATA -> PROJECT
-export type JProjectState = {
+export interface JProjectState {
   allProjects: JProject[]
   selectedProject: JProject
 }
@@ -151,14 +152,14 @@ export interface JAPIService {
 }
 
 // API SERVICE -> HISTORY
-export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
+export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
 
 export interface JHistoryService {
   transformSearchParamsIntoHashParams(): void
   goBack(): void
   goForward(): void
   getHashParameter(parameterName: string): string
-  getHashParameters(): { [ key: string ]: string }
+  getHashParameters(): { [key: string]: string }
   pushHashParameters(parameterName: string, parameterValue: string): void
   popHashParameters(parameterName: string): void
   onParameterChange(parameterName: string, fn: JHistoryListener): string
@@ -235,7 +236,7 @@ export interface JMapFilterService {
   applyAttributeValueLowerOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
   applyAttributeValueIn(layerId: number, attributeId: string, attributeValues: any[]): string
   applyAttributeValueNotIn(layerId: number, attributeId: string, attributeValues: any[]): string
-  applySpatial(layerId: number, filterGeometry: JPolygon | JCircle): string
+  applySpatial(layerId: number, filterGeometry: JPolygon | JCircle): string
   removeByFilterId(filterId: string): void
   removeAllFilters(layerId: number): void
 }
@@ -267,7 +268,7 @@ export interface JProjectService {
   getMaxScale(): number
   getSelectionColor(): string
   getBackgroundColor(): string
-  getInitialExtent(): JBounds | null
+  getInitialExtent(): JBounds | null
   load(project?: number): Promise<void>
   unload(): void
 }
@@ -275,7 +276,7 @@ export interface JProjectService {
 // API SERVICE -> LAYER
 export interface JLayerService {
   getLayerTree(): JLayerTree
-  getLayerTreeElementsById(): { [ treeElementId: number ]: JLayerTreeElement }
+  getLayerTreeElementsById(): { [treeElementId: number]: JLayerTreeElement }
   getLayers(): JLayer[]
   getLayerIds(): number[]
   getLayerAttributes(layerId: number): JLayerAttribute[]
