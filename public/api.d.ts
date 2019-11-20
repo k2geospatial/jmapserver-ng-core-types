@@ -13,7 +13,7 @@
  *   - [[JMap.Api]] : Get API information (version, documentation)
  *   - [[JMap.Service]] : Get and manage API state
  *   - [[JMap.Component]] : Create and destroy your JMap API Component instances
- *   - [[JMap.Event]] : Create, activate, desactive and remove your own listeners, reacting to JMAP API events
+ *   - [[JMap.Event]] : Create, activate, deactivate and remove your own listeners, reacting to JMAP API events
  *   - [[JMap.External]] : Fully integrate your own plugin to JMAP API
  */
 declare namespace JMap {
@@ -1175,7 +1175,7 @@ declare namespace JMap {
        * ```ts
        *  - init(map: any): void
        *  - activate(): void
-       *  - desactive(): void
+       *  - deactivate(): void
        *  - terminate(): void
        * ```
        * 
@@ -1190,7 +1190,7 @@ declare namespace JMap {
        * 
        * There is always an interactor actived, and this is the active interactions that are in use on the map.
        * 
-       * When you activate an interactor, the previous one is desactived, and the new one activated on the map.
+       * When you activate an interactor, the previous one is deactivated, and the new one activated on the map.
        * 
        * When you don't need anymore an interactor you can terminate it, and it will not exist anymore in the API.
        */
@@ -1277,7 +1277,7 @@ declare namespace JMap {
          * 
          * Activate an existing map interactor.
          * 
-         * desactive the previous one, and activate the new one.
+         * Deactivate the previous one, and activate the new one.
          * 
          * @throws Error if interactor is not found
          * @param interactorId The interactor id to activate
@@ -2503,7 +2503,7 @@ declare namespace JMap {
    * A good practice could be prefixing all your listener ids. For example if you work for the city of Montreal
    * they could all start with "***mtm-***"".
    * 
-   * Listeners can be desactived and reactivated.
+   * Listeners can be deactivated and reactivated.
    * 
    * Deactivating a listener keep it in the JMAP API, but ignore it when an event is emitted.
    */
@@ -2551,7 +2551,7 @@ declare namespace JMap {
        * 
        * If listener was already activated, do nothing.
        * 
-       * If the listener was desactived, it state is turn to activate and it will be called again
+       * If the listener was deactivated, it state is turn to activate and it will be called again
        * when en event is emitted.
        * 
        * @param listenerId The listener id
@@ -2564,23 +2564,23 @@ declare namespace JMap {
       function activate(listenerId: string): void
 
       /**
-       * ***JMap.Event.Project.desactive***
+       * ***JMap.Event.Project.deactivate***
        * 
-       * desactive the listener.
+       * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already desactived, do nothing.
+       * If listener id doesn't exist or is already deactivated, do nothing.
        * 
-       * If the listener was active, it state is turn to desactive, and it will be ignore
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
        * when en event is emitted.
        * 
        * @param listenerId The listener id
        * @example ```ts
        * 
-       * // desactive the listener "my-project-listener"
-       * JMap.Event.Project.desactive("my-project-listener")
+       * // deactivate the listener "my-project-listener"
+       * JMap.Event.Project.deactivate("my-project-listener")
        * ```
        */
-      function desactive(listenerId: string): void
+      function deactivate(listenerId: string): void
 
       /**
        * ***JMap.Event.Project.remove***
@@ -2715,7 +2715,7 @@ declare namespace JMap {
        * 
        * If listener was already activated, do nothing.
        * 
-       * If the listener was desactived, it state is turn to activate and it will be called again
+       * If the listener was deactivated, it state is turn to activate and it will be called again
        * when en event is emitted.
        * 
        * @param listenerId The listener id
@@ -2728,23 +2728,23 @@ declare namespace JMap {
       function activate(listenerId: string): void
 
       /**
-       * ***JMap.Event.Layer.desactive***
+       * ***JMap.Event.Layer.deactivate***
        * 
-       * desactive the listener.
+       * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already desactived, do nothing.
+       * If listener id doesn't exist or is already deactivated, do nothing.
        * 
-       * If the listener was active, it state is turn to desactive, and it will be ignore
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
        * when en event is emitted.
        * 
        * @param listenerId The listener id
        * @example ```ts
        * 
-       * // desactive the listener "my-layer-listener"
-       * JMap.Event.Layer.desactive("my-layer-listener")
+       * // deactivate the listener "my-layer-listener"
+       * JMap.Event.Layer.deactivate("my-layer-listener")
        * ```
        */
-      function desactive(listenerId: string): void
+      function deactivate(listenerId: string): void
 
       /**
        * ***JMap.Event.Layer.remove***
@@ -2999,7 +2999,7 @@ declare namespace JMap {
        * 
        * If listener was already activated, do nothing.
        * 
-       * If the listener was desactived, it state is turn to activate and it will be called again
+       * If the listener was deactivated, it state is turn to activate and it will be called again
        * when en event is emitted.
        * 
        * @param listenerId The listener id
@@ -3012,23 +3012,23 @@ declare namespace JMap {
       function activate(listenerId: string): void
 
       /**
-       * ***JMap.Event.Map.desactive***
+       * ***JMap.Event.Map.deactivate***
        * 
-       * desactive the listener.
+       * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already desactived, do nothing.
+       * If listener id doesn't exist or is already deactivated, do nothing.
        * 
-       * If the listener was active, it state is turn to desactive, and it will be ignore
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
        * when en event is emitted.
        * 
        * @param listenerId The listener id
        * @example ```ts
        * 
-       * // desactive the listener "my-map-listener"
-       * JMap.Event.Map.desactive("my-map-listener")
+       * // deactivate the listener "my-map-listener"
+       * JMap.Event.Map.deactivate("my-map-listener")
        * ```
        */
-      function desactive(listenerId: string): void
+      function deactivate(listenerId: string): void
 
       /**
        * ***JMap.Event.Map.remove***
@@ -3099,7 +3099,7 @@ declare namespace JMap {
        * 
        * If listener was already activated, do nothing.
        * 
-       * If the listener was desactived, it state is turn to activate and it will be called again
+       * If the listener was deactivated, it state is turn to activate and it will be called again
        * when en event is emitted.
        * 
        * @param listenerId The listener id
@@ -3112,23 +3112,23 @@ declare namespace JMap {
       function activate(listenerId: string): void
 
       /**
-       * ***JMap.Event.User.desactive***
+       * ***JMap.Event.User.deactivate***
        * 
-       * desactive the listener.
+       * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already desactived, do nothing.
+       * If listener id doesn't exist or is already deactivated, do nothing.
        * 
-       * If the listener was active, it state is turn to desactive, and it will be ignore
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
        * when en event is emitted.
        * 
        * @param listenerId The listener id
        * @example ```ts
        * 
-       * // desactive the listener "my-user-listener"
-       * JMap.Event.User.desactive("my-user-listener")
+       * // deactivate the listener "my-user-listener"
+       * JMap.Event.User.deactivate("my-user-listener")
        * ```
        */
-      function desactive(listenerId: string): void
+      function deactivate(listenerId: string): void
 
       /**
        * ***JMap.Event.User.remove***
