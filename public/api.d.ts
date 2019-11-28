@@ -689,7 +689,33 @@ declare namespace JMap {
        */
       function setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
     }
-    
+    /**
+     * **JMap.Service.Geometry**
+     * 
+     * This section contains geometry related methods.
+     * 
+     * Geometry methods work with turfjs
+     */
+    namespace Geometry {
+      // TODO
+      function checkLocation(location: JLocation): void
+      function checkCircle(circle: JCircle): void
+      function checkPolygon(polygon: JPolygon): void
+      function checkLine(line: JLine): void
+      function getArea(feature: any): number
+      function getLineLength(feature: any): number
+      function getCentroid(feature: any): any
+      function getLineFromJLine(jmapLine: JLine): any
+      function getPolygonFromJCircle(jmapCircle: JCircle, units?: JGeometryUnit): any
+      function getPolygonFromJPolygon(jmapPolygon: JPolygon): any
+      function getBboxFromFeature(polygon: any): JBoundaryBox
+      function getBboxFromJPolygon(polygon: JPolygon): JBoundaryBox
+      function getBboxFromJLine(line: JLine): JBoundaryBox
+      function getPolygonFromBoundaryBox(boundaryBox: JBoundaryBox): any
+      function intersectBoundaryBox(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
+      function intersectPolygon(feature1: any, feature2: any): boolean
+      function intersectLine(feature1: any, feature2: any): boolean
+    }
     /**
      * **JMap.Service.Map**
      * 

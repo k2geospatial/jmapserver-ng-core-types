@@ -148,6 +148,7 @@ export interface JAPIService {
   Layer: JLayerService
   User: JUserService
   Map: JMapService
+  Geometry: JGeometryService,
   MouseOver: JMouseOverService
 }
 
@@ -164,6 +165,26 @@ export interface JHistoryService {
   popHashParameters(parameterName: string): void
   onParameterChange(parameterName: string, fn: JHistoryListener): string
   removePropertyChangeListener(listenerId: string): void
+}
+
+export interface JGeometryService {
+  checkLocation(location: JLocation): void
+  checkCircle(circle: JCircle): void
+  checkPolygon(polygon: JPolygon): void
+  checkLine(line: JLine): void
+  getArea(feature: Feature): number
+  getLineLength(feature: Feature): number
+  getCentroid(feature: Feature): Feature<Point>
+  getLineFromJLine(jmapLine: JLine): Feature<LineString>
+  getPolygonFromJCircle(jmapCircle: JCircle, units?: JGeometryUnit): Feature<Polygon>
+  getPolygonFromJPolygon(jmapPolygon: JPolygon): Feature<Polygon>
+  getBboxFromFeature(polygon: Feature): JBoundaryBox
+  getBboxFromJPolygon(polygon: JPolygon): JBoundaryBox
+  getBboxFromJLine(line: JLine): JBoundaryBox
+  getPolygonFromBoundaryBox(boundaryBox: JBoundaryBox): Polygon
+  intersectBoundaryBox(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
+  intersectPolygon(feature1: Feature<Polygon>, feature2: Feature): boolean
+  intersectLine(feature1: Feature<LineString>, feature2: Feature): boolean
 }
 
 // API SERVICE -> MAP

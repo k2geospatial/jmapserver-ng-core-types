@@ -21,6 +21,18 @@ declare type JLine = Array<JPoint>
 
 declare type JPolygon = Array<JPoint>
 
+declare type JGeometryUnit = "kilometers"
+    | "miles"
+    | "nauticalmiles"
+    | "degrees"
+    | "radians"
+    | "inches"
+    | "yards"
+    | "meters"
+    | "metres"
+    | "kilometres"
+    | undefined
+    
 declare interface JCircle {
   center: JLocation,
   /**
