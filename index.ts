@@ -1,6 +1,6 @@
 import { Action, Store } from "redux"
 import { Feature } from "geojson"
-import { Point, LineString, Polygon } from "geojson"
+import { Point, LineString, Polygon } from "@turf/turf"
 
 // API
 export interface JAPI {
