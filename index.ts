@@ -1,6 +1,6 @@
 import { Action, Store } from "redux"
 import { Feature } from "geojson"
-import { Point, LineString, Polygon } from "@turf/turf"
+import { Point, LineString, Polygon, Feature as TurfFeature } from "@turf/turf"
 
 // API
 export interface JAPI {
@@ -173,19 +173,19 @@ export interface JGeometryService {
   checkCircle(circle: JCircle): void
   checkPolygon(polygon: JPolygon): void
   checkLine(line: JLine): void
-  getArea(feature: Feature): number
-  getLineLength(feature: Feature): number
-  getCentroid(feature: Feature): Feature<Point>
-  getLineFromJLine(jmapLine: JLine): Feature<LineString>
-  getPolygonFromJCircle(jmapCircle: JCircle, units?: JGeometryUnit): Feature<Polygon>
-  getPolygonFromJPolygon(jmapPolygon: JPolygon): Feature<Polygon>
-  getBboxFromFeature(polygon: Feature): JBoundaryBox
+  getArea(feature: TurfFeature): number
+  getLineLength(feature: TurfFeature): number
+  getCentroid(feature: TurfFeature): TurfFeature<Point>
+  getLineFromJLine(jmapLine: JLine): TurfFeature<LineString>
+  getPolygonFromJCircle(jmapCircle: JCircle, units?: JGeometryUnit): TurfFeature<Polygon>
+  getPolygonFromJPolygon(jmapPolygon: JPolygon): TurfFeature<Polygon>
+  getBboxFromFeature(polygon: TurfFeature): JBoundaryBox
   getBboxFromJPolygon(polygon: JPolygon): JBoundaryBox
   getBboxFromJLine(line: JLine): JBoundaryBox
   getPolygonFromBoundaryBox(boundaryBox: JBoundaryBox): Polygon
   intersectBoundaryBox(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
-  intersectPolygon(feature1: Feature<Polygon>, feature2: Feature): boolean
-  intersectLine(feature1: Feature<LineString>, feature2: Feature): boolean
+  intersectPolygon(feature1: TurfFeature<Polygon>, feature2: TurfFeature): boolean
+  intersectLine(feature1: TurfFeature<LineString>, feature2: TurfFeature): boolean
 }
 
 // API SERVICE -> MAP
