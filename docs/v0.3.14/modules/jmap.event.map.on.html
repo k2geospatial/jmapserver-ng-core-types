@@ -118,7 +118,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L3018">api.d.ts:3018</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L3018">api.d.ts:3018</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,7 +190,7 @@ JMap.Event.Map.on.click(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L2847">api.d.ts:2847</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L2847">api.d.ts:2847</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -250,7 +250,7 @@ JMap.Event.Map.on.mapDestroy(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L2829">api.d.ts:2829</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L2829">api.d.ts:2829</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -319,7 +319,7 @@ JMap.Event.Map.on.mapLoad(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L2970">api.d.ts:2970</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L2970">api.d.ts:2970</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -397,7 +397,7 @@ JMap.Event.Map.on.mousemouseEnterMoveOnLayer(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L2994">api.d.ts:2994</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L2994">api.d.ts:2994</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -469,7 +469,7 @@ JMap.Event.Map.on.mouseLeave(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L2912">api.d.ts:2912</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L2912">api.d.ts:2912</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -540,7 +540,7 @@ JMap.Event.Map.on.mouseMove(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L2939">api.d.ts:2939</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L2939">api.d.ts:2939</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -615,7 +615,7 @@ JMap.Event.Map.on.mouseMoveOnLayer(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L3119">api.d.ts:3119</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L3119">api.d.ts:3119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -632,7 +632,9 @@ JMap.Event.Map.on.rotate(
    <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
      <span class="hljs-keyword">const</span> location = args.location
      <span class="hljs-built_in">console</span>.log(
-       <span class="hljs-string">`The location is now { x="<span class="hljs-subst">${location.x}</span>, y="<span class="hljs-subst">${location.y}</span>" }"`</span>
+       <span class="hljs-string">`The center of map is now {
+          center="<span class="hljs-subst">${args.map.getCenter()}</span>"
+       }`</span>
      )
    }
 )</code></pre>
@@ -686,7 +688,7 @@ JMap.Event.Map.on.rotate(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L2889">api.d.ts:2889</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L2889">api.d.ts:2889</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -755,7 +757,7 @@ JMap.Event.Map.on.moveEnd(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L2868">api.d.ts:2868</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L2868">api.d.ts:2868</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -824,7 +826,7 @@ JMap.Event.Map.on.moveStart(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L3096">api.d.ts:3096</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L3094">api.d.ts:3094</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -897,7 +899,7 @@ JMap.Event.Map.on.rotate(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L3047">api.d.ts:3047</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L3045">api.d.ts:3045</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -912,11 +914,9 @@ JMap.Event.Map.on.rotate(
 JMap.Event.Map.on.viewChange(
    <span class="hljs-string">"custom-map-view-change"</span>,
    <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
-     <span class="hljs-keyword">const</span> location = args.location
      <span class="hljs-built_in">console</span>.log(
        <span class="hljs-string">`The map view has changed to  {
-         x="<span class="hljs-subst">${location.x}</span>,
-         y="<span class="hljs-subst">${location.y}</span>",
+         center="<span class="hljs-subst">${args.map.getCenter()}</span>"
          bearing="<span class="hljs-subst">${args.map.getBearing()}</span>"
          pitch="<span class="hljs-subst">${args.map.getPitch()}</span>"
          zoom="<span class="hljs-subst">${args.map.getZoom()}</span>"
@@ -974,7 +974,7 @@ JMap.Event.Map.on.viewChange(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/a176f2a/public/api.d.ts#L3071">api.d.ts:3071</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/746a4b5/public/api.d.ts#L3069">api.d.ts:3069</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

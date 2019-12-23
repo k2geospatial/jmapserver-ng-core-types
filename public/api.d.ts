@@ -3030,11 +3030,9 @@ declare namespace JMap {
          * JMap.Event.Map.on.viewChange(
          *    "custom-map-view-change",
          *    args => {
-         *      const location = args.location
          *      console.log(
          *        `The map view has changed to  {
-         *          x="${location.x},
-         *          y="${location.y}",
+         *          center="${args.map.getCenter()}"
          *          bearing="${args.map.getBearing()}"
          *          pitch="${args.map.getPitch()}"
          *          zoom="${args.map.getZoom()}"
@@ -3110,7 +3108,9 @@ declare namespace JMap {
            *    args => {
            *      const location = args.location
            *      console.log(
-           *        `The location is now { x="${location.x}, y="${location.y}" }"`
+           *        `The center of map is now {
+           *           center="${args.map.getCenter()}"
+           *        }`
            *      )
            *    }
            * )
