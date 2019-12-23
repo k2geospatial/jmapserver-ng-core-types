@@ -3016,8 +3016,108 @@ declare namespace JMap {
          * ```
          */
         function click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
-      }
 
+        /**
+         * ***JMap.Event.Map.on.viewChange***
+         * 
+         * This event is triggered when the view of the map change (move, rotation, or zoom)
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the view of the map change, it will display a message in the console
+         * JMap.Event.Map.on.viewChange(
+         *    "custom-map-view-change",
+         *    args => {
+         *      const location = args.location
+         *      console.log(
+         *        `The map view has changed to  {
+         *          x="${location.x},
+         *          y="${location.y}",
+         *          bearing="${args.map.getBearing()}"
+         *          pitch="${args.map.getPitch()}"
+         *          zoom="${args.map.getZoom()}"
+         *        }"`
+         *      )
+         *    }
+         * )
+         * ```
+         */
+        function viewChange(listenerId: string, fn: (params: JMapViewChangeEventParams) => void): void
+
+        /**
+           * ***JMap.Event.Map.on.zoom***
+           * 
+           * This event is triggered when zooming on map
+           * 
+           * @param listenerId Your listener id (must be unique for all map events)
+           * @param fn Your listener function
+           * @example ```ts
+           * 
+           * // When the map zoom change, it will display a message in the console
+           * JMap.Event.Map.on.zoom(
+           *    "custom-map-zoom",
+           *    args => {
+           *      console.log(
+           *        `The map zoom is now {
+           *          zoom="${args.map.getZoom()}"
+           *        }"`
+           *      )
+           *    }
+           * )
+           * ```
+           */
+          function zoom(listenerId: string, fn: (params: JMapEventParams) => void): void
+
+           /**
+           * ***JMap.Event.Map.on.rotate***
+           * 
+           * This event is triggered when rotating the map (2d and 3d)
+           * 
+           * @param listenerId Your listener id (must be unique for all map events)
+           * @param fn Your listener function
+           * @example ```ts
+           * 
+           * // When the rotation of the map change, it will display a message in the console
+           * JMap.Event.Map.on.rotate(
+           *    "custom-map-rotate",
+           *    args => {
+           *      console.log(
+           *        `The map pitch and bearing are now {
+           *          bearing="${args.map.getBearing()}"
+           *          pitch="${args.map.getPitch()}"
+           *        }"`
+           *      )
+           *    }
+           * )
+           * ```
+           */
+          function rotate(listenerId: string, fn: (params: JMapEventParams) => void): void
+
+          /**
+           * ***JMap.Event.Map.on.move***
+           * 
+           * This event is triggered when moving on the map in x, y axis
+           * 
+           * @param listenerId Your listener id (must be unique for all map events)
+           * @param fn Your listener function
+           * @example ```ts
+           * 
+           * // When the position on the map change, it will display a message in the console
+           * JMap.Event.Map.on.rotate(
+           *    "custom-map-move",
+           *    args => {
+           *      const location = args.location
+           *      console.log(
+           *        `The location is now { x="${location.x}, y="${location.y}" }"`
+           *      )
+           *    }
+           * )
+           * ```
+           */
+          function move(listenerId: string, fn: (params: JMapEventParams) => void): void
+      }
       /**
        * ***JMap.Event.Map.activate***
        * 
