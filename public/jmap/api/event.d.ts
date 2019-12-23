@@ -17,6 +17,13 @@ declare interface JMapEventImplementationParams {
   map: any
 }
 
+declare interface JMapViewChangeEventParams {
+  location: JLocation
+  map: any
+  eventType: string
+  mapEvent: any
+}
+
 declare interface JMapEventParams {
   map: any,
   mapEvent: any

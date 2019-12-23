@@ -89,6 +89,10 @@ export interface JMapEventModule extends JEventModule {
     mouseEnter(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
     mouseLeave(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
     click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
+    viewChange(listenerId: string, fn: (params: JMapViewChangeEventParams) => void) : void
+    zoom(listenerId: string, fn: (params: JMapEventParams) => void): void
+    rotate(listenerId: string, fn: (params: JMapEventParams) => void): void
+    move(listenerId: string, fn: (params: JMapEventParams) => void):  void
   }
 }
 
