@@ -17,9 +17,11 @@ declare interface JMapEventImplementationParams {
   map: any
 }
 
+declare type JMapViewChangeEvent = "move" | "zoom" | "rotate"
+
 declare interface JMapViewChangeEventParams {
   map: any
-  eventType: "move" | "zoom" | "rotate"
+  eventType: JMapViewChangeEvent
   mapEvent: any
 }
 
