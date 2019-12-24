@@ -195,6 +195,7 @@ export interface JGeometryService {
 }
 
 // API SERVICE -> MAP
+// API SERVICE -> MAP
 export interface JMapService {
   Interaction: JMapInteractionService
   Filter: JMapFilterService
@@ -219,8 +220,12 @@ export interface JMapService {
   getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): Feature[]
   getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox): JMapFeatureAttributeValues[]
   getAvailableBaseMaps(): string[]
+  getPitch(): number
+  getBearing(): number
   getBaseMap(): string
   setBaseMap(mapName: string): void
+  setPitch(pitch: number): void
+  setBearing(bearing: number): void
   panTo(center: JLocation): void
   zoomTo(zoom: number): void
   panAndZoomTo(center: JLocation, zoom: number): void

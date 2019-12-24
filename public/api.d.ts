@@ -1103,6 +1103,33 @@ declare namespace JMap {
        */
       function getAvailableBaseMaps(): string[]
 
+       /**
+       * ***JMap.Service.Map.getBaseMap***
+       * 
+       * Returns the current map pitch.
+       * 
+       * 
+       * @example ```ts
+       * 
+       * // returns the current map pitch
+       * JMap.Service.Map.getPitch()
+       * ```
+       */
+      function getPitch(): number
+
+      /**
+       * ***JMap.Service.Map.getBaseMap***
+       * 
+       * Returns the current map bearing.
+       * 
+       * 
+       * @example ```ts
+       * 
+       * // returns the current map bearing
+       * JMap.Service.Map.getBearing()
+       * ```
+       */
+      function getBearing(): number
       /**
        * ***JMap.Service.Map.getBaseMap***
        * 
@@ -1136,7 +1163,37 @@ declare namespace JMap {
        * ```
        */
       function setBaseMap(mapName: string): void
-      
+
+       /**
+       * **JMap.Service.Map.setBearing**
+       * 
+       * Set the bearing on the map
+       * 
+       * @throws Error if the bearing is not between -360 to 360 degree
+       * @param bearing te new value of the bearing between 0 to 360
+       * @example ```ts
+       * 
+       * // Set the bearing to 30 degrees
+       * JMap.Service.Map.setBearing(30)
+       * ```
+       */
+      function setBearing(bearing: number): void
+
+      /**
+       * **JMap.Service.Map.setPitch**
+       * 
+       * Set the pitch on the map
+       * 
+       * @throws Error if the pitch is not between 0 to 60 degree
+       * @param pitch te new value of the pitch between 0 to 60
+       * @example ```ts
+       * 
+       * // Set the pitch to 30 degrees
+       * JMap.Service.Map.setPitch(30)
+       * ```
+       */
+      function setPitch(pitch: number): void
+
       /**
        * **JMap.Service.Map.panTo**
        * 
@@ -1150,6 +1207,7 @@ declare namespace JMap {
        * JMap.Service.Map.panTo({ x: 45.34, y: 65.87 })
        * ```
        */
+
       function panTo(center: JLocation): void
       
       /**
