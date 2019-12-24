@@ -113,6 +113,8 @@ export interface JAPIState {
 
 // API DATA -> MAP
 export interface JMapState {
+  pitch: number
+  bearing: number
   implementation: MAP_IMPLEMENTATION
   isLoaded: boolean
   hasFirstLoaded: boolean
