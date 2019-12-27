@@ -90,7 +90,6 @@ export interface JMapEventModule extends JEventModule {
     mouseEnter(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
     mouseLeave(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
     click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
-    viewChange(listenerId: string, fn: (params: JMapViewChangeEventParams) => void) : void
     zoomStart(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
     zoom(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
     zoomEnd(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
@@ -233,9 +232,9 @@ export interface JMapService {
   setBaseMap(mapName: string): void
   setPitch(pitch: number): void
   setBearing(bearing: number): void
-  panTo(center: JLocation): void
-  zoomTo(zoom: number): void
-  panAndZoomTo(center: JLocation, zoom: number): void
+  panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
+  zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
+  panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
 }
 
 export interface JMapInteractionService {

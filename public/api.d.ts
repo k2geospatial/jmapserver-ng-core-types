@@ -1201,6 +1201,7 @@ declare namespace JMap {
        * 
        * @throws Error if no or incorrect center is passed
        * @param center The location where the map will be centered
+       * @param stopJMapEventPropagation if true will prevent JMap events to be fired
        * @example ```ts
        * 
        * // Move the map to the desired location
@@ -1208,8 +1209,8 @@ declare namespace JMap {
        * ```
        */
 
-      function panTo(center: JLocation): void
-      
+      function panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
+
       /**
        * **JMap.Service.Map.zoomTo**
        * 
@@ -1217,13 +1218,14 @@ declare namespace JMap {
        * 
        * @throws Error if no zoom is passed
        * @param zoom The zoom level to apply
+       * @param stopJMapEventPropagation if true will prevent JMap events to be fired
        * @example ```ts
        * 
        * // Zoom or unzoom the map to reach the desired zoom level
        * JMap.Service.Map.zoomTo(4.45)
        * ```
        */
-      function zoomTo(zoom: number): void
+      function zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
       
       /**
        * **JMap.Service.Map.panAndZoomTo**
@@ -1233,13 +1235,14 @@ declare namespace JMap {
        * @throws Error if bad parameters are passed
        * @param center The location where the map will be centered
        * @param zoom The zoom level to apply
+       * @param stopJMapEventPropagation if true will prevent JMap event to be fired
        * @example ```ts
        * 
        * // Move and zoom the map
        * JMap.Service.Map.panAndZoomTo({ x: 45.34, y: 65.87 }, 5)
        * ```
        */
-      function panAndZoomTo(center: JLocation, zoom: number): void
+      function panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
       
       /**
        * **JMap.Service.Map.Interaction**
@@ -3074,33 +3077,6 @@ declare namespace JMap {
          * ```
          */
         function click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
-
-        /**
-         * ***JMap.Event.Map.on.viewChange***
-         * 
-         * This event is triggered when the view of the map change (move, rotation, or zoom)
-         * 
-         * @param listenerId Your listener id (must be unique for all map events)
-         * @param fn Your listener function
-         * @example ```ts
-         * 
-         * // When the view of the map change, it will display a message in the console
-         * JMap.Event.Map.on.viewChange(
-         *    "custom-map-view-change",
-         *    args => {
-         *      console.log(
-         *        `The map view has changed to  {
-         *          center="${args.map.getCenter()}"
-         *          bearing="${args.map.getBearing()}"
-         *          pitch="${args.map.getPitch()}"
-         *          zoom="${args.map.getZoom()}"
-         *        }"`
-         *      )
-         *    }
-         * )
-         * ```
-         */
-        function viewChange(listenerId: string, fn: (params: JMapViewChangeEventParams) => void): void
 
         /**
            * ***JMap.Event.Map.on.zoom***
