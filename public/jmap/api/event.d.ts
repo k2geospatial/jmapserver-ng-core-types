@@ -34,6 +34,18 @@ declare interface JMapEventLocationParams extends JMapEventParams {
   location: JLocation
 }
 
+declare interface JMapEventZoomParams extends JMapEventParams {
+  zoom: number
+}
+
+declare interface JMapEventRotateParams extends JMapEventParams {
+  bearing: number
+}
+
+declare interface JMapEventPitchParams extends JMapEventParams {
+  pitch: number
+}
+
 declare interface JMapEventLayerParams extends JMapEventLocationParams {
   layerId: number
 }

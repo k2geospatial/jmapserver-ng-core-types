@@ -83,6 +83,7 @@ export interface JMapEventModule extends JEventModule {
     mapLoad(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
     mapDestroy(listenerId: string, fn: () => void): void
     moveStart(listenerId: string, fn: (params: JMapEventParams) => void): void
+    move(listenerId: string, fn: (params: JMapEventParams) => void):  void
     moveEnd(listenerId: string, fn: (params: JMapEventParams) => void): void
     mouseMove(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
     mouseMoveOnLayer(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
@@ -90,9 +91,15 @@ export interface JMapEventModule extends JEventModule {
     mouseLeave(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
     click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
     viewChange(listenerId: string, fn: (params: JMapViewChangeEventParams) => void) : void
-    zoom(listenerId: string, fn: (params: JMapEventParams) => void): void
-    rotate(listenerId: string, fn: (params: JMapEventParams) => void): void
-    move(listenerId: string, fn: (params: JMapEventParams) => void):  void
+    zoomStart(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
+    zoom(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
+    zoomEnd(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
+    rotateStart(listenerId: string, fn: (params: JMapEventRotateParams) => void): void
+    rotate(listenerId: string, fn: (params: JMapEventRotateParams) => void): void
+    rotateEnd(listenerId: string, fn: (params: JMapEventRotateParams) => void): void
+    pitchStart(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
+    pitch(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
+    pitchEnd(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
   }
 }
 
