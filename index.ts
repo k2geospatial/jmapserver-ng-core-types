@@ -1,4 +1,4 @@
-import { Action, Store } from "redux"
+import { Store } from "redux"
 import { Feature } from "geojson"
 import { Point, LineString, Polygon, Feature as TurfFeature } from "@turf/turf"
 
@@ -25,6 +25,7 @@ export interface JAPIApi {
   getDataStore(): Store<JAPIState> | undefined
   getRestUrl(): string
   openDocumentation(): void
+  getOS(): JOperatingSystem
 }
 
 // API COMPONENT
@@ -80,7 +81,7 @@ export interface JLayerEventModule extends JEventModule {
 
 export interface JMapEventModule extends JEventModule {
   on: {
-    mapLoad(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
+    mapLoad(listenerId: string, fn: (params: JMapEventLoadedParams) => void): void
     mapDestroy(listenerId: string, fn: () => void): void
     moveStart(listenerId: string, fn: (params: JMapEventParams) => void): void
     move(listenerId: string, fn: (params: JMapEventParams) => void):  void
@@ -121,7 +122,6 @@ export interface JAPIState {
 export interface JMapState {
   pitch: number
   bearing: number
-  implementation: MAP_IMPLEMENTATION
   isLoaded: boolean
   hasFirstLoaded: boolean
   center: JLocation
@@ -186,18 +186,18 @@ export interface JGeometryService {
   checkPolygon(polygon: JPolygon): void
   checkLine(line: JLine): void
   getArea(feature: TurfFeature): number
-  getLineLength(feature: TurfFeature): number
+  getLineLength(feature: TurfFeature, units?: JGeometryUnit): number
   getCentroid(feature: TurfFeature): TurfFeature<Point>
-  getLineFromJLine(jmapLine: JLine): TurfFeature<LineString>
-  getPolygonFromJCircle(jmapCircle: JCircle, units?: JGeometryUnit): TurfFeature<Polygon>
-  getPolygonFromJPolygon(jmapPolygon: JPolygon): TurfFeature<Polygon>
+  getFeatureFromLine(line: JLine): TurfFeature<LineString>
+  getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): TurfFeature<Polygon>
+  getFeatureFromPolygon(polygon: JPolygon): TurfFeature<Polygon>
   getBboxFromFeature(polygon: TurfFeature): JBoundaryBox
-  getBboxFromJPolygon(polygon: JPolygon): JBoundaryBox
-  getBboxFromJLine(line: JLine): JBoundaryBox
-  getPolygonFromBoundaryBox(boundaryBox: JBoundaryBox): Polygon
-  intersectBoundaryBox(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
-  intersectPolygon(feature1: TurfFeature<Polygon>, feature2: TurfFeature): boolean
-  intersectLine(feature1: TurfFeature<LineString>, feature2: TurfFeature): boolean
+  getBboxFromPolygon(polygon: JPolygon): JBoundaryBox
+  getBboxFromLine(line: JLine): JBoundaryBox
+  getPolygonFeatureFromBbox(boundaryBox: JBoundaryBox): Polygon
+  bboxIntersect(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
+  polygonIntersect(feature1: TurfFeature<Polygon>, feature2: TurfFeature): boolean
+  lineIntersect(feature1: TurfFeature<LineString>, feature2: TurfFeature): boolean
 }
 
 // API SERVICE -> MAP
@@ -208,7 +208,6 @@ export interface JMapService {
   Selection: JMapSelectionService
   getMap(): any
   getMapJSLib(): any
-  getImplementation(): MAP_IMPLEMENTATION
   getDomContainerId(): string
   isMapLoaded(): boolean
   getExtent(): JBoundaryBox

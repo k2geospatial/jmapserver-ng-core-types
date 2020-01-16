@@ -12,8 +12,7 @@ declare interface JLayerEventParams {
   layer: JLayerTreeElement
 }
 
-declare interface JMapEventImplementationParams {
-  implementation: MAP_IMPLEMENTATION,
+declare interface JMapEventLoadedParams {
   map: any
 }
 

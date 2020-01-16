@@ -79,8 +79,23 @@ declare namespace JMap {
     * ```
     */
    function openDocumentation(): void
+
+   /**
+    * **JMap.Api.getOS**
+    * 
+    * Return the operating system on witch JMap Api is running client side.
+    * 
+    * Possible values returned are defined here [[JOperatingSystem]].
+    * 
+    * @example ```ts
+    * 
+    * // Return "mac" if the OS is Mac OS
+    * JMap.Api.getOS()
+    * ```
+    */
+   function getOS(): JOperatingSystem
   }
-  
+
   /**
    * **JMap.Service**
    * 
@@ -689,52 +704,323 @@ declare namespace JMap {
        */
       function setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
     }
+
     /**
      * **JMap.Service.Geometry**
      * 
      * This section contains geometry related methods.
      * 
-     * Geometry methods work with turfjs
+     * JMap geometry service is based on turfjs implementation.
      */
     namespace Geometry {
-      // TODO
+
+      /**
+       * **JMap.Service.Geometry.checkLocation**
+       * 
+       * Throw an error if the provided parameter is not a valid location.
+       * 
+       * @param location The location object to check
+       * @example ```ts
+       * 
+       * let location = { x: 10, y: 10 }
+       * // The following instruction will not throw an error
+       * JMap.Service.Geometry.checkLocation(location)
+       * 
+       * location = {} // empty object
+       * // The following instruction will throw an error
+       * JMap.Service.Geometry.checkLocation(location)
+       * ```
+       */
       function checkLocation(location: JLocation): void
+
+      /**
+       * **JMap.Service.Geometry.checkCircle**
+       * 
+       * Throw an error if the provided parameter is not a valid circle.
+       * 
+       * @param circle The circle object to check
+       * @example ```ts
+       * 
+       * let circle = { center: { x: 10, y: 10 }, radius: 10 }
+       * // The following instruction will not throw an error
+       * JMap.Service.Geometry.checkCircle(circle)
+       * 
+       * circle = { radius: 10 } // missing center
+       * // The following instruction will throw an error
+       * JMap.Service.Geometry.checkCircle(circle)
+       * ```
+       */
       function checkCircle(circle: JCircle): void
+
+      /**
+       * **JMap.Service.Geometry.checkPolygon**
+       * 
+       * Throw an error if the provided parameter is not a valid polygon.
+       * 
+       * @param polygon The polygon array to check
+       * @example ```ts
+       * 
+       * let polygon = [[ 10, 10 ], [ 11, 11 ], [ 12, 12 ], [ 10, 10 ]]
+       * // The following instruction will not throw an error
+       * JMap.Service.Geometry.checkPolygon(polygon)
+       * 
+       * polygon = [] // empty array
+       * // The following instruction will throw an error
+       * JMap.Service.Geometry.checkPolygon(polygon)
+       * ```
+       */
       function checkPolygon(polygon: JPolygon): void
+
+      /**
+       * **JMap.Service.Geometry.checkLine**
+       * 
+       * Throw an error if the provided parameter is not a valid polygon.
+       * 
+       * @param line The line object to check
+       * @example ```ts
+       * 
+       * let line = [[ 10, 10 ], [ 11, 11 ], [ 12, 12 ]]
+       * // The following instruction will not throw an error
+       * JMap.Service.Geometry.checkLine(line)
+       * 
+       * line = [] // empty line
+       * // The following instruction will throw an error
+       * JMap.Service.Geometry.checkLine(line)
+       * ```
+       */
       function checkLine(line: JLine): void
+
+      /**
+       * **JMap.Service.Geometry.getArea**
+       * 
+       * Works for feature having geometry equals to Polygon or a MultiPolygon.
+       * 
+       * It returns the area in square meters.
+       * 
+       * Throw an error if the provided feature geometry is not a Polygon or a MultiPolygon.
+       * 
+       * @param feature The Polygon or MultiPolygon feature
+       * @example ```ts
+       * 
+       * const feature = ...
+       * // The method will return the area in m2
+       * JMap.Service.Geometry.getArea(feature)
+       * ```
+       */
       function getArea(feature: any): number
-      function getLineLength(feature: any): number
+
+      /**
+       * **JMap.Service.Geometry.getLineLength**
+       * 
+       * Works for feature having geometry equals to LineString or a MultiLineString.
+       * 
+       * It returns the line length in the desired units (default in kilometers).
+       * 
+       * Throw an error if the provided feature geometry is not a LineString or a MultiLineString.
+       * 
+       * @param feature The LineString or MultiLineString feature to measure.
+       * @param units Can be "degrees", "radians", "miles", or "kilometers" (default)
+       * @example ```ts
+       * 
+       * const line = ...
+       * 
+       * // The method will return the line length in kilometers
+       * JMap.Service.Geometry.getLineLength(line)
+       *
+       * // The method will return the line length in miles
+       * JMap.Service.Geometry.getLineLength(line, "miles")
+       * ```
+       */
+      function getLineLength(feature: any, units?: JGeometryUnit): number
+
+      /**
+       * **JMap.Service.Geometry.getCentroid**
+       * 
+       * Returns a point feature representing the centroid of the provided feature.
+       * 
+       * @param feature The feature
+       * @example ```ts
+       * 
+       * const polygonFeature = ...
+       * // The method will return the centroid of "polygonFeature" as a point feature
+       * JMap.Service.Geometry.getCentroid(polygonFeature)
+       * ```
+       */
       function getCentroid(feature: any): any
-      function getLineFromJLine(jmapLine: JLine): any
-      function getPolygonFromJCircle(jmapCircle: JCircle, units?: JGeometryUnit): any
-      function getPolygonFromJPolygon(jmapPolygon: JPolygon): any
-      function getBboxFromFeature(polygon: any): JBoundaryBox
-      function getBboxFromJPolygon(polygon: JPolygon): JBoundaryBox
-      function getBboxFromJLine(line: JLine): JBoundaryBox
-      function getPolygonFromBoundaryBox(boundaryBox: JBoundaryBox): any
-      function intersectBoundaryBox(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
-      function intersectPolygon(feature1: any, feature2: any): boolean
-      function intersectLine(feature1: any, feature2: any): boolean
+
+      /**
+       * **JMap.Service.Geometry.getFeatureFromLine**
+       * 
+       * Returns a line feature from a line object ([[JLine]]).
+       * 
+       * @param line A line array
+       * @example ```ts
+       * 
+       * const line = [[ 10, 12], [12, 23], [34, 12]]
+       * // The method will return a line feature
+       * const feature = JMap.Service.Geometry.getFeatureFromLine(line)
+       * ```
+       */
+      function getFeatureFromLine(line: JLine): any
+      
+      /**
+       * **JMap.Service.Geometry.getPolygonFeatureFromCircle**
+       * 
+       * Returns a plygon feature from a circle object ([[JCircle]]).
+       * 
+       * @param circle A circle object
+       * @param units unit of the radius
+       * @example ```ts
+       * 
+       * const circle = [[ 10, 12], [12, 23], [34, 12], [ 10, 12]]
+       * // The method will return a polygon feature
+       * const feature = JMap.Service.Geometry.getPolygonFeatureFromCircle(circle)
+       * ```
+       */
+      function getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): any
+      
+      /**
+       * **JMap.Service.Geometry.getFeatureFromPolygon**
+       * 
+       * Returns a polygon feature from a polygon array ([[JPolygon]]).
+       * 
+       * @param polygon A polygon array
+       * @example ```ts
+       * 
+       * const polygon = [[ 10, 12], [12, 23], [34, 12], [ 10, 12]]
+       * // The method will return a polygon feature
+       * const feature = JMap.Service.Geometry.getFeatureFromPolygon(line)
+       * ```
+       */
+      function getFeatureFromPolygon(polygon: JPolygon): any
+      
+      /**
+       * **JMap.Service.Geometry.getBboxFromFeature**
+       * 
+       * Returns the feature geometry boundary box ([[JBoundaryBox]]).
+       * 
+       * @param feature A feature object
+       * @example ```ts
+       * 
+       * const feature = ...
+       * // The method will return the feature geometry boundary box
+       * const bbox = JMap.Service.Geometry.getBboxFromFeature(feature)
+       * ```
+       */
+      function getBboxFromFeature(feature: any): JBoundaryBox
+      
+      /**
+       * **JMap.Service.Geometry.getBboxFromPolygon**
+       * 
+       * Returns the polygon boundary box.
+       * 
+       * @param polygon A polygon array
+       * @example ```ts
+       * 
+       * const polygon = [[ 10, 12], [12, 23], [34, 12], [ 10, 12]]
+       * // The method will return the polygon boundary box
+       * const bbox = JMap.Service.Geometry.getBboxFromPolygon(feature)
+       * ```
+       */
+      function getBboxFromPolygon(polygon: JPolygon): JBoundaryBox
+      
+      /**
+       * **JMap.Service.Geometry.getBboxFromLine**
+       * 
+       * Returns the line boundary box.
+       * 
+       * @param line A line array
+       * @example ```ts
+       * 
+       * const line = [[ 10, 12], [12, 23], [34, 12]]
+       * // The method will return the line boundary box
+       * const bbox = JMap.Service.Geometry.getBboxFromLine(line)
+       * ```
+       */
+      function getBboxFromLine(line: JLine): JBoundaryBox
+      
+      /**
+       * **JMap.Service.Geometry.getPolygonFeatureFromBbox**
+       * 
+       * Returns a polygon feature corresponding to the boundary box.
+       * 
+       * @param boundaryBox A boundary box
+       * @example ```ts
+       * 
+       * const bbox = { sw: { x: 10, 10 }, sw: { x: 10, 10 }}
+       * // The method will return the line boundary box
+       * const bbox = JMap.Service.Geometry.getPolygonFeatureFromBbox(line)
+       * ```
+       */
+      function getPolygonFeatureFromBbox(boundaryBox: JBoundaryBox): any
+      
+      /**
+       * **JMap.Service.Geometry.bboxIntersect**
+       * 
+       * Returns true if the first bbox intersect the second one.
+       * 
+       * @param bbox1 The first boundary box
+       * @param bbox2 The second boundary box
+       * @example ```ts
+       * 
+       * const bbox1 = { sw: { x: 10, 10 }, sw: { x: 20, 20 }}
+       * const bbox2 = { sw: { x: 12, 12 }, sw: { x: 14, 18 }}
+       * // The method will return true
+       * const areIntersecting = JMap.Service.Geometry.bboxIntersect(bbox1, bbox2)
+       * ```
+       */
+      function bboxIntersect(bbox1: JBoundaryBox, bbox2: JBoundaryBox): boolean
+      
+      /**
+       * **JMap.Service.Geometry.polygonIntersect**
+       * 
+       * Returns true if the polygon feature geometry intersects the other feature geometry.
+       * 
+       * @param polygonFeature A polygon feature
+       * @param otherFeature A feature (can be not a polygon)
+       * @example ```ts
+       * 
+       * const polygonFeature = ...
+       * const otherFeature = ...
+       * // The method will return true if otherFeature intersect the polygonFeature
+       * const areIntersecting = JMap.Service.Geometry.polygonIntersect(polygonFeature, otherFeature)
+       * ```
+       */
+      function polygonIntersect(polygonFeature: any, otherFeature: any): boolean
+      
+      /**
+       * **JMap.Service.Geometry.lineIntersect**
+       * 
+       * Returns true if the line feature geometry intersects the other feature geometry.
+       * 
+       * @param lineFeature A line feature
+       * @param otherFeature A feature (can be not a line)
+       * @example ```ts
+       * 
+       * const lineFeature = ...
+       * const otherFeature = ...
+       * // The method will return true if otherFeature intersect the lineFeature
+       * const areIntersecting = JMap.Service.Geometry.lineIntersect(lineFeature, otherFeature)
+       * ```
+       */
+      function lineIntersect(lineFeature: any, otherFeature: any): boolean
     }
+
     /**
      * **JMap.Service.Map**
      * 
-     * This section contains map related methods.
-     * 
-     * JMap support 2 type of map implementations : "MapBox" or "OpenLayers".
-     * 
-     * Sometimes the result of the methods depends on this [[MAP_IMPLEMENTATION]].
+     * This section contains map related methods. 
      */
     namespace Map {
       
       /**
        * **JMap.Service.Map.getMap**
        * 
-       * Returns the map implementation instance, a MapBox or OpenLayer map.
+       * Returns the Mapbox map instance, a MapBox map.
        * 
        * @example ```ts
        * 
-       * // returns the implementation map instance
+       * // returns the Mapbox map instance
        * JMap.Service.Map.getMap()
        * ```
        */
@@ -743,13 +1029,13 @@ declare namespace JMap {
       /**
        * **JMap.Service.Map.getMapJSLib**
        * 
-       * Returns the map implementation JS library : MapBox or OpenLayer.
+       * Returns the MapBox JS library used to create the map.
        * 
-       * Usefull to be able to create a map library object, by example a Mapbox popup.
+       * Usefull to be able to create a map library object, by example a popup.
        * 
        * @example ```ts
        * 
-       * // Create a MapBox popup, require the map implementation to be MapBox
+       * // Create a MapBox popup
        * const myCustomPopup = JMap.Service.Map.getMapJSLib().Popup({
        *   closeButton: false,
        *   closeOnClick: false
@@ -757,19 +1043,6 @@ declare namespace JMap {
        * ```
        */
       function getMapJSLib(): any
-
-      /**
-       * ***JMap.Service.Map.getImplementation***
-       * 
-       * Returns the map implementation ("MapBox" or "OpenLayers")
-       * 
-       * @example ```ts
-       * 
-       * // returns "MapBox" or "OpenLayers"
-       * JMap.Service.Map.getImplementation()
-       * ```
-       */
-      function getImplementation(): MAP_IMPLEMENTATION
 
       /**
        * ***JMap.Service.Map.getDomContainerId***
@@ -944,13 +1217,13 @@ declare namespace JMap {
        * 
        * Returns all layer ids that are displayed by the map.
        * 
-       * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
+       * Mapbox doesn't support all layer types defined in JMap Server.
        * 
        * This function returns all layers ids that are managed by the map.
        * 
        * @example ```ts
        * 
-       * // returns layer ids managed by the map implementation
+       * // returns layer ids supported by the Mapbox
        * JMap.Service.Map.getInUseJMapLayerIds()
        * ```
        */
@@ -961,7 +1234,7 @@ declare namespace JMap {
        * 
        * Returns all vector layer ids that are displayed by the map.
        * 
-       * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
+       * Mapbox doesn't support all layer types defined in JMap Server.
        * 
        * This function returns all vector layers ids that are managed by the map.
        * 
@@ -1010,7 +1283,7 @@ declare namespace JMap {
        * 
        * Returns the ids of the layers that are displayed on the map.
        * 
-       * Some map implementation ([[MAP_IMPLEMENTATION]]) doesn't support all layer types.
+       * Mapbox doesn't support all layer types defined on JMap Server.
        * 
        * This function returns all layers ids that are managed by the map.
        * 
@@ -1088,13 +1361,11 @@ declare namespace JMap {
        * 
        * Returns the available basemap names that can be used with method setBaseMap.
        * 
-       * Depends on the map implementation ([[MAP_IMPLEMENTATION]]).
+       * Possible values are : "light", "streets", "satellite", "dark", "outdoors", or "none"
        * 
-       * For mapbox : [ "light", "streets", "satellite", "dark", "outdoors", "none" ]
+       * Special value "none" means no basemap displayed.
        * 
-       * For openlayers : Not yet implemented
-       * 
-       * @returns an array of string, the available basemap names for map implementation
+       * @returns an array of string, the available basemap names
        * @example ```ts
        * 
        * // returns an array of string comtaining names of available basemaps
@@ -1108,7 +1379,6 @@ declare namespace JMap {
        * 
        * Returns the current map pitch.
        * 
-       * 
        * @example ```ts
        * 
        * // returns the current map pitch
@@ -1120,8 +1390,7 @@ declare namespace JMap {
       /**
        * ***JMap.Service.Map.getBaseMap***
        * 
-       * Returns the current map bearing.
-       * 
+       * Returns the current map bearing (rotation).
        * 
        * @example ```ts
        * 
@@ -1135,11 +1404,9 @@ declare namespace JMap {
        * 
        * Returns the current basemap.
        * 
-       * The basemap depends on the map implementation ([[MAP_IMPLEMENTATION]]).
+       * Possble values are : "light", "streets", "satellite", "dark", "outdoors", or "none"
        * 
-       * For mapbox : [ "light", "streets", "satellite", "dark", "outdoors", "none" ]
-       * 
-       * For openlayers : Not yet implemented
+       * Special value "none" means no basemap is dsplayed.
        * 
        * @example ```ts
        * 
@@ -1167,13 +1434,13 @@ declare namespace JMap {
        /**
        * **JMap.Service.Map.setBearing**
        * 
-       * Set the bearing on the map
+       * Set the bearing on the map (rotation)
        * 
        * @throws Error if the bearing is not between -360 to 360 degree
        * @param bearing te new value of the bearing between 0 to 360
        * @example ```ts
        * 
-       * // Set the bearing to 30 degrees
+       * // Set 30 degrees bearing
        * JMap.Service.Map.setBearing(30)
        * ```
        */
@@ -1188,7 +1455,7 @@ declare namespace JMap {
        * @param pitch te new value of the pitch between 0 to 60
        * @example ```ts
        * 
-       * // Set the pitch to 30 degrees
+       * // Set 30 degrees pitch
        * JMap.Service.Map.setPitch(30)
        * ```
        */
@@ -2881,13 +3148,12 @@ declare namespace JMap {
          * JMap.Event.Map.on.mapLoad(
          *    "custom-map-load",
          *    args => {
-         *      // implementation is "MapBox" or "OpenLayers"
-         *      console.log(`Instance of map "${args.implementation}" ready`, args.map)
+         *      console.log(`The map is ready, map instance = `, args.map)
          *    }
          * )
          * ```
          */
-        function mapLoad(listenerId: string, fn: (params: JMapEventImplementationParams) => void): void
+        function mapLoad(listenerId: string, fn: (params: JMapEventLoadedParams) => void): void
 
         /**
          * ***JMap.Event.Map.on.mapDestroy***
@@ -2921,7 +3187,7 @@ declare namespace JMap {
          *    "custom-map-move-start",
          *    args => {
          *      console.log(`The map start moving`, args.map, args.mapEvent)
-         *      // mapEvent is the map implementation event
+         *      // mapEvent is the Mapbox event
          *    }
          * )
          * ```
@@ -2929,7 +3195,28 @@ declare namespace JMap {
         function moveStart(listenerId: string, fn: (params: JMapEventParams) => void): void
 
         /**
-         * ***JMap.Event.Map.on.moveStart***
+         * ***JMap.Event.Map.on.move***
+         * 
+         * This event is triggered when the map is moving (when user or API pan the map).
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Will map is moving, will display a message in the console
+         * JMap.Event.Map.on.move(
+         *    "custom-map-move",
+         *    args => {
+         *      console.log(`The map is moving`, args.map, args.mapEvent)
+         *      // mapEvent is the Mapbox event
+         *    }
+         * )
+         * ```
+         */
+        function move(listenerId: string, fn: (params: JMapEventParams) => void):  void
+
+        /**
+         * ***JMap.Event.Map.on.moveEnd***
          * 
          * This event is triggered when the map end moving (when user or API pan the map).
          * 
@@ -2942,7 +3229,7 @@ declare namespace JMap {
          *    "custom-map-move-end",
          *    args => {
          *      console.log(`The map stop moving`, args.map, args.mapEvent)
-         *      // mapEvent is the map implementation event
+         *      // mapEvent is the Mapbox event
          *    }
          * )
          * ```
@@ -2964,7 +3251,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse is moving on layer id="${args.layerId}"`, map.location,
-         *          args.map, args.mapEvent // mapEvent is the map implementation event
+         *          args.map, args.mapEvent // mapEvent is the Mapbox event
          *      )
          *    }
          * )
@@ -2987,7 +3274,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse is moving on layer id="${args.layerId}"`,
-         *          args.map, args.mapEvent // the mapEvent is the map implementation event
+         *          args.map, args.mapEvent // the mapEvent is the Mapbox event
          *      )
          *      console.log(
          *        `The mouse cursor is over ${args.features.length} features`,
@@ -3018,7 +3305,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse entered an element of layer id="${args.layerId}"`,
-         *          args.map, args.mapEvent // mapEvent is the map implementation event
+         *          args.map, args.mapEvent // mapEvent is the Mapbox event
          *      )
          *      console.log(
          *        `The mouse cursor is over ${args.features.length} features`,
@@ -3046,7 +3333,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse leaved the layer id="${args.layerId}"`, args.location,
-         *          args.map, args.mapEvent // mapEvent is the map implementation event
+         *          args.map, args.mapEvent // mapEvent is the Mapbox event
          *      )
          *    }
          * )
@@ -3070,13 +3357,31 @@ declare namespace JMap {
          *      const location = args.location
          *      console.log(
          *          `The mouse has been clicked at { x="${location.x}, y="${location.y}" }"`,
-         *          args.map, args.mapEvent // mapEvent is the map implementation event
+         *          args.map, args.mapEvent // mapEvent is the Mapbox event
          *      )
          *    }
          * )
          * ```
          */
         function click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
+
+        /**
+           * ***JMap.Event.Map.on.zoomStart***
+           * 
+           * This event is triggered when zoom start.
+           * 
+           * @param listenerId Your listener id (must be unique for all map events)
+           * @param fn Your listener function
+           * @example ```ts
+           * 
+           * // When the map zoom start, it will display a message in the console
+           * JMap.Event.Map.on.zoomStart(
+           *    "custom-map-zoom-start",
+           *    args => console.log(`The zoom is starting (zoom="${args.zoom}")`)
+           * )
+           * ```
+           */
+        function zoomStart(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
 
         /**
            * ***JMap.Event.Map.on.zoom***
@@ -3090,67 +3395,137 @@ declare namespace JMap {
            * // When the map zoom change, it will display a message in the console
            * JMap.Event.Map.on.zoom(
            *    "custom-map-zoom",
-           *    args => {
-           *      console.log(
-           *        `The map zoom is now {
-           *          zoom="${args.map.getZoom()}"
-           *        }"`
-           *      )
-           *    }
+           *    args => console.log(`The map zoom changed (zoom="${args.zoom}")`)
            * )
            * ```
            */
-          function zoom(listenerId: string, fn: (params: JMapEventParams) => void): void
+        function zoom(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
 
-           /**
-           * ***JMap.Event.Map.on.rotate***
+        /**
+           * ***JMap.Event.Map.on.zoomStop***
            * 
-           * This event is triggered when rotating the map (2d and 3d)
+           * This event is triggered when zoom start.
            * 
            * @param listenerId Your listener id (must be unique for all map events)
            * @param fn Your listener function
            * @example ```ts
            * 
-           * // When the rotation of the map change, it will display a message in the console
-           * JMap.Event.Map.on.rotate(
-           *    "custom-map-rotate",
-           *    args => {
-           *      console.log(
-           *        `The map pitch and bearing are now {
-           *          bearing="${args.map.getBearing()}"
-           *          pitch="${args.map.getPitch()}"
-           *        }"`
-           *      )
-           *    }
+           * // When the map zoom stop, it will display a message in the console
+           * JMap.Event.Map.on.zoomStop(
+           *    "custom-map-zoom-stop",
+           *    args => console.log(`The zoom is finished (zoom="${args.zoom}")`)
            * )
            * ```
            */
-          function rotate(listenerId: string, fn: (params: JMapEventParams) => void): void
+        function zoomStop(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
 
-          /**
-           * ***JMap.Event.Map.on.move***
-           * 
-           * This event is triggered when moving on the map in x, y axis
-           * 
-           * @param listenerId Your listener id (must be unique for all map events)
-           * @param fn Your listener function
-           * @example ```ts
-           * 
-           * // When the position on the map change, it will display a message in the console
-           * JMap.Event.Map.on.rotate(
-           *    "custom-map-move",
-           *    args => {
-           *      const location = args.location
-           *      console.log(
-           *        `The center of map is now {
-           *           center="${args.map.getCenter()}"
-           *        }`
-           *      )
-           *    }
-           * )
-           * ```
-           */
-          function move(listenerId: string, fn: (params: JMapEventParams) => void): void
+        /**
+         * ***JMap.Event.Map.on.rotateStart***
+         * 
+         * This event is triggered when rotation on the map start.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the rotation of the map start, it will display a message in the console
+         * JMap.Event.Map.on.rotateStart(
+         *    "custom-map-rotate-start",
+         *    args => console.log(`The rotation is starting (rotation="${args.bearing})")`
+         * )
+         * ```
+         */
+        function rotateStart(listenerId: string, fn: (params: JMapEventRotateParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.rotate***
+         * 
+         * This event is triggered when the map is rotating
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the rotation of the map change, it will display a message in the console
+         * JMap.Event.Map.on.rotate(
+         *    "custom-map-rotate",
+         *    args => console.log(`The rotation has changed (rotation="${args.bearing})")`
+         * )
+         * ```
+         */
+        function rotate(listenerId: string, fn: (params: JMapEventRotateParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.rotateStop***
+         * 
+         * This event is triggered when rotation on the map stop.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the rotation of the map stop, it will display a message in the console
+         * JMap.Event.Map.on.rotateStop(
+         *    "custom-map-rotate-stop",
+         *    args => console.log(`The rotation is finished (rotation="${args.bearing})")`
+         * )
+         * ```
+         */
+        function rotateStop(listenerId: string, fn: (params: JMapEventRotateParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.pitchStart***
+         * 
+         * This event is triggered when pitch on the map start.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the pitch of the map start, it will display a message in the console
+         * JMap.Event.Map.on.pitchStart(
+         *    "custom-map-pitch-start",
+         *    args => console.log(`The pitch is starting (pitch="${args.pitch})")`
+         * )
+         * ```
+         */
+        function pitchStart(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.pitch***
+         * 
+         * This event is triggered when pitch on the map start.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the map is pitching, it will display a message in the console
+         * JMap.Event.Map.on.pitch(
+         *    "custom-map-pitch",
+         *    args => console.log(`The map is pitching (pitch="${args.pitch})")`
+         * )
+         * ```
+         */
+        function pitch(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.pitchEnd***
+         * 
+         * This event is triggered when pitch on the map end.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the pitch on the map end, it will display a message in the console
+         * JMap.Event.Map.on.pitch(
+         *    "custom-map-pitch-end",
+         *    args => console.log(`The map is pitching (pitch="${args.pitch})")`
+         * )
+         * ```
+         */
+        function pitchEnd(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
       }
       /**
        * ***JMap.Event.Map.activate***

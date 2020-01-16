@@ -111,12 +111,6 @@ declare interface JAPIMapOptions {
    */
   containerId?: string
   /**
-   * The map implementation that the API will use, choose one of them :
-   *  - "MapBox" https://docs.mapbox.com/mapbox-gl-js/api/
-   *  - "OpenLayers" : https://openlayers.org/en/latest/apidoc/
-   */
-  implementation?: MAP_IMPLEMENTATION
-  /**
    * The MapBox token, needed if the map implementation is MapBox.
    */
   mapboxToken?: ""

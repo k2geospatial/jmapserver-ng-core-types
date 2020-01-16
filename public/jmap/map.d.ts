@@ -1,5 +1,3 @@
-declare type MAP_IMPLEMENTATION = "MapBox" | "OpenLayers"
-
 declare interface JMapInteractor {
   init(map: any): void
   activate(): void
