@@ -1121,7 +1121,79 @@ declare namespace JMap {
        * ```
        */
       function getScale(): number
-      
+
+      /**
+       * ***JMap.Service.Map.isScaleControlVisible***
+       * 
+       * Returns true if the scale control panel is visible on the map.
+       * 
+       * @example ```ts
+       * 
+       * // returns true if control is displayed on the map
+       * JMap.Service.Map.isScaleControlVisible()
+       * ```
+       */
+      function isScaleControlVisible(): boolean
+
+      /**
+       * ***JMap.Service.Map.setScaleControlVisibility***
+       * 
+       * Change the scale control panel visibility on the map.
+       * 
+       * @param isVisible true to display the scale control, false to hide
+       * @param position the position on the map where to display the scale control.
+       * @example ```ts
+       * 
+       * // will display the scale control on the map
+       * JMap.Service.Map.setScaleControlVisibility(true)
+       * 
+       * // will hide the scale control on the map
+       * JMap.Service.Map.setScaleControlVisibility(false)
+       * ```
+       */
+      function setScaleControlVisibility(isVisible: boolean, position?: JMapPosition): void
+
+      /**
+       * ***JMap.Service.Map.setScaleControlUnits***
+       * 
+       * Change the scale control units.
+       * 
+       * @param units possible values : "imperial", "metric", or "nautical"
+       * @example ```ts
+       * 
+       * // will change the scale control for imperial units
+       * JMap.Service.Map.setScaleControlUnits("imperial")
+       * ```
+       */
+      function setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void
+
+      /**
+       * ***JMap.Service.Map.setScaleControlPosition***
+       * 
+       * Change the scale control position on the map.
+       * 
+       * @param position the position on the map where to display the scale control.
+       * @example ```ts
+       * 
+       * // will move the scale control on the top-left corner of the map
+       * JMap.Service.Map.setScaleControlPosition("top-left")
+       * ```
+       */
+      function setScaleControlPosition(position: JMapPosition): void
+
+      /**
+       * ***JMap.Service.Map.getScaleControlPosition***
+       * 
+       * Return the current scale control position on the map.
+       * 
+       * @example ```ts
+       * 
+       * // Return the current scale control position
+       * JMap.Service.Map.getScaleControlPosition()
+       * ```
+       */
+      function getScaleControlPosition(): JMapPosition
+
       /**
        * **JMap.Service.Map.isLayerRendered**
        * 

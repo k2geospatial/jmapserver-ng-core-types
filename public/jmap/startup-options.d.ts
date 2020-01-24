@@ -115,17 +115,21 @@ declare interface JAPIMapOptions {
    */
   mapboxToken?: ""
   /**
-   * If true display a scale panel on the bottom left of the map
+   * If true display a scale control panel
    */
-  scalePanelVisible?: boolean
+  scaleControlVisible?: boolean
   /**
-   * If *scalePanelVisible* is true, you can define the *scalePanelUnit*.
+   * Set the position of the scale control panel
+   */
+  scaleControlPosition?: JMapPosition
+  /**
+   * If *scaleControlVisible* is true, you can define the *scaleControlUnit*.
    * 
    * This is the unit in which the scale panel will display the data.
    * 
    * Values "degrees" and "us" are not supported with MapBox
    */
-  scalePanelUnit?: "imperial" |  "metric" |  "nautical" | "degrees" | "us"
+  scaleControlUnit?: "imperial" |  "metric" |  "nautical" | "degrees" | "us"
   /**
    * If set, the map will be centered to this location.
    */

@@ -131,6 +131,8 @@ export interface JMapState {
   baseMap: string
   selection: JMapSelection
   inUseJMapLayerIds: number[]
+  isScaleControlVisible: boolean
+  scaleControlPosition: JMapPosition
 }
 
 // API DATA -> PROJECT
@@ -214,6 +216,11 @@ export interface JMapService {
   getCenter(): { x: number, y: number }
   getZoom(): number
   getScale(): number
+  isScaleControlVisible(): boolean
+  setScaleControlVisibility(isVisible: boolean, position?: JMapPosition): void
+  setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void
+  setScaleControlPosition(position: JMapPosition): void
+  getScaleControlPosition(): JMapPosition
   isLayerRendered(layerId: number): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]

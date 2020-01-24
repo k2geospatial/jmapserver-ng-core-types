@@ -5,6 +5,8 @@ declare interface JMapInteractor {
   terminate(): void
 }
 
+declare type JMapPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right"
+
 declare interface JMapSelection {
   [ layerId: number ]: any[] // any = feature
 }
