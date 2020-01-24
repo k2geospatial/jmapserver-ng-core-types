@@ -73,6 +73,10 @@ declare interface JAPIOptions {
    */
   noSessionExpiration: boolean
   /**
+   * If true and no session data are set, will try to log as an anonymous user
+   */
+  anonymous?: boolean
+  /**
    * The JMap user session data
    * 
    * @example ```ts
@@ -125,11 +129,9 @@ declare interface JAPIMapOptions {
   /**
    * If *scaleControlVisible* is true, you can define the *scaleControlUnit*.
    * 
-   * This is the unit in which the scale panel will display the data.
-   * 
-   * Values "degrees" and "us" are not supported with MapBox
+   * This is the unit in which the scale control panel will display the data.
    */
-  scaleControlUnit?: "imperial" |  "metric" |  "nautical" | "degrees" | "us"
+  scaleControlUnit?: "imperial" | "metric" | "nautical"
   /**
    * If set, the map will be centered to this location.
    */
