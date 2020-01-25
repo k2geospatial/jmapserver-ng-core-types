@@ -1,4 +1,8 @@
-This example below will show you how to start a JMap map in full screen.
+This example below will show you how to start a JMap map in full screen :
+
+![Full screen map](./images/full-screen.png "Full screen map")
+
+For a live demo, click on this [link](http://jsfiddle.net/K2Geospatial/uaksoLm9/16/).
 
 This example will use one of our demo server, but you need to adapt the restBaseUrl parameter to reach your JMap server.
 
@@ -20,14 +24,22 @@ Bellow the example :
   </head>
   <body class="jmap_wrapper">
     <script type="text/javascript">
+      console.log("JMap", window.JMap)
       window.JMAP_API_OPTIONS = {
         projectId: 35,
-        restBaseUrl: "https://jmap7dev.jmaponline.net/services/rest",
+        restBaseUrl: "https://jmap7dev.jmaponline.net/services/rest/v2.0",
         noSessionExpiration: true,
-        anonymous: true
+        anonymous: true,
+        map: {
+          zoom: 9.757829447748511,
+          center: {
+            x: -73.66415865898597,
+            y: 45.53583011032552
+          }
+        }
       }
     </script>
-    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/"></script>
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.6/public/index.js"></script>
   </body>
 </html>
 ```
