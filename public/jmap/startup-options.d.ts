@@ -4,11 +4,62 @@ declare interface Window {
 }
 
 /**
- * The JMAP API startup options.
+ * The JMAP JS Library startup options.
  * 
- * You can customize the JMap Web API by setting startup options.
+ * JMap API JS exexutables are available through a CDN url.
  * 
- * This options has to be defined before evaluating the JMAP Web API js file :
+ * The URL is like "https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/",
+ * but it depends on the version you want to use.
+ * 
+ * First you need to import our JS file in your http file, in order to load our JS API.
+ * It's better to place the CDN import at the end of the body tag, like that :
+ * ```html
+ * ...
+ * <html>
+ *   ...
+ *   <body>
+ *     ...
+ *     <!-- !!! Insert the import at the end of the body tag !!! -->
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/"></script>
+ *   </body>
+ * </html>
+ * ```
+ * To make the API working you need to provide some required information like :
+ * 
+ *   - Your JMap Server Rest API URL
+ *   - The project id to open
+ *   - A valid JMap user session token, **or** set the API to log as "anonymous"
+ * 
+ * It can be passed by setting a global JS variable named "JMAP_API_OPTIONS" :
+ * 
+ * ```html
+ * ...
+ * <html>
+ *   <body>
+ *     <script type="text/javascript">
+ *       window.JMAP_API_OPTIONS = {
+ *         // a valid project id
+ *         projectId: 10,
+ *         // a valid JMap server Rest url
+ *         restBaseUrl: "http://my-jmap-server/services/rest/v2.0",
+ *         session: {
+ *           // a valid session token
+ *           token: 2345677654
+ *         }
+ *         ... // other optional JMAP params
+ *       }
+ *     </script>
+ * 
+ *     ... your web page
+ *     
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/"></script>
+ *   </body>
+ * </html>
+ * ```
+ * 
+ * Below a full example of how to start the JMap librairy in a web page,
+ * where parameters ***token*** and ***projectId*** are get from the url :
+
  * ```html
  * <!DOCTYPE html>
  * <html>
@@ -49,8 +100,6 @@ declare interface Window {
  * </html>
  * ```
  * 
- * This html file gets parameters ***token*** and ***projectId*** from the url.
- * 
  * For example, you can pass this parameters like that :
  *   - **http:// my-company/my-custom-page-using-jmap?sessionId=95423672742&projectId=10**.
  * 
@@ -59,21 +108,70 @@ declare interface Window {
  */
 declare interface JAPIOptions {
   /**
-   * The project id. If not set the API will do noting.
+   * The JMap project id.
+   * 
+   * If not set the API will do noting, you will have a blank page.
    */
   projectId?: number
   /**
    * The JMAp server Rest API url.
    * 
+   * Must be provided if you are a K2 customer.
+   * 
    * Default value is : http://localhost:8080/services/rest/v2.0
    */
   restBaseUrl?: string
   /**
-   * If true will make ping to server every 5 minutes in order to keep the session opened.
+   * You can tell the API to never lost the session after a user inactivity.
+   * For that the JS API will ping the server every 5 minutes if no activity
+   * is done in order to keep the session alive.
+   * 
+   * To activate the option, use the "***noSessionExpiration***" parameter :
+   * 
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         noSessionExpiration: true
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   noSessionExpiration: boolean
   /**
-   * If true and no session data are set, will try to log as an anonymous user
+   * If the project you access can be accessed anonymously,
+   * you are not forced to pass a session token but you have
+   * to explicitly tell the JMap library to log as an anonymous
+   * user by setting the "***anonymous***" parameter like that :
+   * 
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         // a valid project id
+   *         projectId: 10,
+   *         // a valid JMap server Rest url
+   *         restBaseUrl: "http://my-jmap-server/services/rest/v2.0",
+   *         // The anonymous parameter
+   *         anonymous: true
+   *         ... // other optional JMAP params
+   *       }
+   *     </script>
+   * 
+   *     ... your web page
+   *     
+   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/"></script>
+   *   </body>
+   * </html>
+   * ```
    */
   anonymous?: boolean
   /**
@@ -109,39 +207,196 @@ declare interface JAPIOptions {
 
 declare interface JAPIMapOptions {
   /**
-   * The DOM container div id where the map will be inserted.
+   * When the API start it will create or use an existing div container in which the map will be inserted into.
+   *
+   * By default the div container id is "***jmap-map***", but you can set the id of your choice like that :
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         map: {
+   *           containerId: "my-custom-container-id"
+   *         }
+   *       }
+   *     </script>
+   *     <div id="my-custom-container-id"></div>
+   *  </body>
+   * </html>
+   * ```
+   *
+   * In the above example the map will be inserted in the div having "my-custom-container-id" as id. You need to set the width and the height of this div by yourself.
    * 
-   * Default is "jmap-map"
+   * If no container is found in the DOM with the specified id, JMap API will create and append it automatically in the body element of the web page.
    */
   containerId?: string
   /**
-   * The MapBox token, needed if the map implementation is MapBox.
+   * If a mapbox token is set through the JMap Admin server interface,
+   * the API will use it automatically, nothing else to do for you.
+   * 
+   * The Mapbox token is by JMap in order to fully used Mapbox capabilities
+   * like displaying a nice base map by example.
+   * 
+   * But if no token is set in the JMap administration, or if you want to use
+   * the mapbox token of your choice, you have to set the "***mapboxToken***" parameter :
+   * 
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         map: {
+   *           mapboxToken: "dfqwdhjgqdhdh4567sjdvhbh"
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   mapboxToken?: ""
   /**
-   * If true display a scale control panel
+   * By default the scale control panel it is not visible.
+   * 
+   * But if ***scaleControlVisible*** is true, it will be displayed on the map.
+   * 
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         map: {
+   *           scaleControlVisible: true,
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   scaleControlVisible?: boolean
   /**
-   * Set the position of the scale control panel
+   * You can choose the position of the scale control on the map.
+   * 
+   * Use a value in : "**top-left**", "**top-right**", "**bottom-left**", or "**bottom-right**"
+   * 
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         map: {
+   *           scaleControlPosition: "bottom-right"
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   scaleControlPosition?: JMapPosition
   /**
-   * If *scaleControlVisible* is true, you can define the *scaleControlUnit*.
-   * 
    * This is the unit in which the scale control panel will display the data.
+   * 
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         map: {
+   *           scaleControlUnit: "imperial"
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   scaleControlUnit?: "imperial" | "metric" | "nautical"
   /**
-   * If set, the map will be centered to this location.
+   * You can set the location of the center of the map by setting the ***center*** parameter. By exemple if you want to center the map on the city of Ottawa :
+   * 
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         map: {
+   *           center: {
+   *             x: -75.6981200,
+   *             y: 45.4111700
+   *           }
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   center?: JLocation
   /**
-   * If set, the map will be zoomed to that zoom level
+   * You can zoom to a custom level by setting the "***zoom***" variable. Here an example :
+   * 
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         map: {
+   *           zoom: 4.32
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   zoom?: number
   /**
-   * If set, this function will be called after JMap API is ready and the map has been loaded.
+   * You can execute a custom piece of code at runtime, after the map is ready,
+   * and only one time at JMap Js API startup.
+   * 
+   * For that you have to set the "***onStartupMapReadyFn***" parameter which is a function.
+   * Here an example that will display a message "Hello the map is ready !" in the console :
+   * 
+   * ```html
+   * ...
+   * <html>
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         map: {
+   *           onStartupMapReadyFn: map => {
+   *             console.log("Hello the map is ready !", map)
+   *           }
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   onStartupMapReadyFn?: (map: any) => {}
 }
