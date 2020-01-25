@@ -34,7 +34,6 @@ Bellow the example :
   <body class="jmap_wrapper">
   	<div id="my-custom-map"></div>
     <script type="text/javascript">
-      console.log("JMap", window.JMap)
       window.JMAP_API_OPTIONS = {
         projectId: 35,
         restBaseUrl: "https://jmap7dev.jmaponline.net/services/rest/v2.0",

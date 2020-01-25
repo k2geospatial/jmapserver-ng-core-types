@@ -24,7 +24,6 @@ Bellow the example :
   </head>
   <body class="jmap_wrapper">
     <script type="text/javascript">
-      console.log("JMap", window.JMap)
       window.JMAP_API_OPTIONS = {
         projectId: 35,
         restBaseUrl: "https://jmap7dev.jmaponline.net/services/rest/v2.0",
