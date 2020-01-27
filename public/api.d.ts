@@ -1,7 +1,12 @@
 /**
- * The API entry point, in the javascript console, is ***JMap***.
+ * To configure the JMap library in your web page, you can consult the demo pages :
  * 
- * All references to JMAP Web API will start by ***JMap***.
+ *   - [A map embedded in a div in a page of your website](https://github.com/k2geospatial/jmap-api-ng/blob/master/examples/v0.3.34/example-embedded.md)
+ *   - [A map displayed full screen](https://github.com/k2geospatial/jmap-api-ng/blob/master/examples/v0.3.34/example-full-page.md)
+ * 
+ * You can also consult the library startup options [[JAPIOptions]], in order to customize it for you needs.
+ * 
+ * After been loaded, the JMap library is accessible through the nampespace **JMap** in the javascript console.
  * 
  * For example :
  * ```ts
@@ -9,9 +14,9 @@
  * JMap.Api.getVersion()
  * ```
  * 
- * The API is organized in modules, some of them can have sub-modules :
+ * The library is organized in modules, and sub-modules :
  *   - [[JMap.Api]] : Get API information (version, documentation)
- *   - [[JMap.Service]] : Get and manage API state
+ *   - [[JMap.Service]] : Get and manage the library states
  *   - [[JMap.Component]] : Create and destroy your JMap API Component instances
  *   - [[JMap.Event]] : Create, activate, deactivate and remove your own listeners, reacting to JMAP API events
  *   - [[JMap.External]] : Fully integrate your own plugin to JMAP API

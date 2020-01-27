@@ -4,15 +4,15 @@ declare interface Window {
 }
 
 /**
- * The JMAP JS Library startup options.
+ * This section is about the JMAP Library startup options.
  * 
- * JMap API JS exexutables are available through a CDN url.
+ * JMap library executable is available through a CDN url.
  * 
  * The URL is like "https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/",
- * but it depends on the version you want to use.
+ * but it depends on the version you want to use (here version 0.3.5).
  * 
  * First you need to import our JS file in your http file, in order to load our JS API.
- * It's better to place the CDN import at the end of the body tag, like that :
+ * It's recommended to put the CDN import at the end of the body tag, like that :
  * ```html
  * ...
  * <html>
@@ -20,7 +20,7 @@ declare interface Window {
  *   <body>
  *     ...
  *     <!-- !!! Insert the import at the end of the body tag !!! -->
- *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/"></script>
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/"></script>
  *   </body>
  * </html>
  * ```
@@ -33,7 +33,6 @@ declare interface Window {
  * It can be passed by setting a global JS variable named "JMAP_API_OPTIONS" :
  * 
  * ```html
- * ...
  * <html>
  *   <body>
  *     <script type="text/javascript">
@@ -49,17 +48,13 @@ declare interface Window {
  *         ... // other optional JMAP params
  *       }
  *     </script>
- * 
  *     ... your web page
- *     
- *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/"></script>
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/"></script>
  *   </body>
  * </html>
  * ```
  * 
- * Below a full example of how to start the JMap librairy in a web page,
- * where parameters ***token*** and ***projectId*** are get from the url :
-
+ * Below a full example of how to start the JMap library in a web page, where parameters ***token*** and ***projectId*** are get from the url :
  * ```html
  * <!DOCTYPE html>
  * <html>
@@ -85,23 +80,17 @@ declare interface Window {
  *             fullName: "John do",
  *             admin: false
  *           }
- *         },
- *         map: {
- *           mapboxToken: "xx.xxx.xx",
- *           onStartupMapReadyFn: map => console.log("JMap is ready !")
  *         }
  *       }
  *     </script>
- *     <script defer
- *             type="text/javascript"
- *             src="https://cdn.jsdelivr.net/npm/jmap-api-ng@x.x.x/public/index.js">
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-api-ng@x.x.x/public/index.js">
  *     </script>
  *   </body>
  * </html>
  * ```
  * 
- * For example, you can pass this parameters like that :
- *   - **http:// my-company/my-custom-page-using-jmap?sessionId=95423672742&projectId=10**.
+ * To call this page with the parameter you want, you can do like that :
+ *   - **http:// my-company/my-custom-page-using-jmap?token=95423672742&projectId=10**.
  * 
  * When JMAP API starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
  * the **JMap project id=*10***, then load the map in the **div id="*jmap-map*"**.
@@ -110,15 +99,48 @@ declare interface JAPIOptions {
   /**
    * The JMap project id.
    * 
-   * If not set the API will do noting, you will have a blank page.
+   * If the project id is not set, the library will do noting, you will have a blank page.
+   * 
+   * So if you want the library to load the project automatically, you need to set the project id.
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         // a valid project id
+   *         projectId: 12
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   projectId?: number
   /**
-   * The JMAp server Rest API url.
+   * The JMap server Rest API url.
    * 
-   * Must be provided if you are a K2 customer.
+   * Default value is : http://localhost:8080/services/rest/v2.0 (for test only).
    * 
-   * Default value is : http://localhost:8080/services/rest/v2.0
+   * If your are not testing you must provide the url of your JMap REST API :
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         // a valid JMap REST Api url
+   *         restBaseUrl: "http://my-custom-jmap-server-url/services/rest/v2.0"
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
    */
   restBaseUrl?: string
   /**
@@ -129,8 +151,8 @@ declare interface JAPIOptions {
    * To activate the option, use the "***noSessionExpiration***" parameter :
    * 
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
@@ -151,8 +173,8 @@ declare interface JAPIOptions {
    * user by setting the "***anonymous***" parameter like that :
    * 
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
@@ -168,39 +190,110 @@ declare interface JAPIOptions {
    * 
    *     ... your web page
    *     
-   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/"></script>
+   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/"></script>
    *   </body>
    * </html>
    * ```
    */
   anonymous?: boolean
   /**
-   * The JMap user session data
+   * The JMap user session data.
+   *
+   * If you don't use the api logged as an anonymous user (see the ***anonymous*** parameter in this section),
+   * you must provide the JMap session id to the JMap library.
+   *
+   * To get a session id and the user informations, you can use the JMap Rest API on your JMap server. By exemple if your server url is "https://my-jmap-server/", With the [curl tool](https://curl.haxx.se/docs/) you can get for the user "jdo@company.com" a token like that (adapt the username and password ...) :
+   * ```sh
+   * curl -X POST "https://my-jmap-server/services/rest/v2.0/session" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"username\": \"jdo@company.com\", \"password\": \"xxx\", \"type\": \"WEB\"}"
+   * ```
    * 
-   * @example ```ts
-   * 
-   * session: {
-   *  token: "67464654674"
-   *  user: {
-   *    username: "jdo@company.com",
-   *    fullName: "John Do",
-   *    admin: false
-   *  }
+   * If the request is successfull, the response is like that :
+   * ```js
+   * {
+   *   "message": "The result is a WEB session info",
+   *   "status": "OK",
+   *   "result": {
+   *     "sessionId": 1246413767,
+   *     "userFullName": "John Do",
+   *     ...
+   *   }
    * }
    * ```
+   * 
+   * The library "**token**" is the parameter "**sessionId**" in REST the response.
+   * 
+   * The library "**fullName**" is the parameter "**userFullName**" in REST the response.
+   * 
+   * So to start the library you can pass the information like that :
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         session: {
+   *           token: "1246413767"
+   *           user: {
+   *             username: "jdo@company.com",
+   *             fullName: "John Do"
+   *           }
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/"></script>
+   *   </body>
+   * </html>
+   * ```
+   * 
+   * If you don't want to use the REST API, you can use the API to login (and make the AJAX call to the rest API).
+   * 
+   * But you have to wait for the lib to be loaded.
+   * 
+   * To know if the lib has been loaded you can check if the JMAp namespace exist or not. Bellow the example :
+   * 
+   * ```html
+   * <!DOCTYPE html>
+   *   <html>
+   *     ...
+   *     <body class="jmap_wrapper">
+   *       <script type="text/javascript">
+   *         console.log("JMap", window.JMap)
+   *         window.JMAP_API_OPTIONS = {
+   *           projectId: 35,
+   *           restBaseUrl: "https://jmap7dev.jmaponline.net/services/rest/v2.0",
+   *           noSessionExpiration: true,
+   *           map: {
+   *             zoom: 9.757829447748511,
+   *             center: {
+   *               x: -73.66415865898597,
+   *               y: 45.53583011032552
+   *             }
+   *           }
+   *         }
+   *       </script>
+   *       ...
+   *       <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/index.js"></script>
+   *       <script>
+   *         (function jmapLogin() {
+   *           if (window.hasOwnProperty("JMap")) {
+   *             JMap.Service.User.login("jdo@company.com", "xxx")
+   *           } else {
+   *             console.log("Waiting for the JMap lib to be loaded ...")
+   *             setTimeout(() => jmapLogin(), 150) // check every 150 milliseconds
+   *           }
+   *         })()
+   *       </script>
+   *     </body>
+   *   </html>
+   * ```
+   * 
    */
   session?: JSessionData
   /**
-   * The JMap map options.
+   * All map related options.
    * 
-   * @example ```ts
-   * 
-   * map: {
-   *   containerId: "jmap-map",
-   *   mapboxToken: "xx.xxx.xx",
-   *   onStartupMapReadyFn: map => console.log("JMap is ready and map loaded !")
-   * }
-   * ```
+   * Click on [[JAPIMapOptions]] to get details.
    */
   map?: JAPIMapOptions
 }
@@ -211,8 +304,8 @@ declare interface JAPIMapOptions {
    *
    * By default the div container id is "***jmap-map***", but you can set the id of your choice like that :
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
@@ -243,8 +336,8 @@ declare interface JAPIMapOptions {
    * the mapbox token of your choice, you have to set the "***mapboxToken***" parameter :
    * 
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
@@ -266,8 +359,8 @@ declare interface JAPIMapOptions {
    * But if ***scaleControlVisible*** is true, it will be displayed on the map.
    * 
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
@@ -289,8 +382,8 @@ declare interface JAPIMapOptions {
    * Use a value in : "**top-left**", "**top-right**", "**bottom-left**", or "**bottom-right**"
    * 
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
@@ -310,8 +403,8 @@ declare interface JAPIMapOptions {
    * This is the unit in which the scale control panel will display the data.
    * 
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
@@ -331,8 +424,8 @@ declare interface JAPIMapOptions {
    * You can set the location of the center of the map by setting the ***center*** parameter. By exemple if you want to center the map on the city of Ottawa :
    * 
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
@@ -355,8 +448,8 @@ declare interface JAPIMapOptions {
    * You can zoom to a custom level by setting the "***zoom***" variable. Here an example :
    * 
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
@@ -380,8 +473,8 @@ declare interface JAPIMapOptions {
    * Here an example that will display a message "Hello the map is ready !" in the console :
    * 
    * ```html
-   * ...
    * <html>
+   *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
