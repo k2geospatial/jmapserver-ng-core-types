@@ -54,7 +54,9 @@ declare interface Window {
  * </html>
  * ```
  * 
- * Below a full example of how to start the JMap library in a web page, where parameters ***token*** and ***projectId*** are get from the url :
+ * Below a full example of how to start the JMap library in a web page,
+ * where parameters ***token*** and ***projectId*** are get from the url :
+
  * ```html
  * <!DOCTYPE html>
  * <html>
@@ -89,7 +91,7 @@ declare interface Window {
  * </html>
  * ```
  * 
- * To call this page with the parameter you want, you can do like that :
+ * For example, you can pass this parameters like that :
  *   - **http:// my-company/my-custom-page-using-jmap?token=95423672742&projectId=10**.
  * 
  * When JMAP API starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
@@ -246,11 +248,7 @@ declare interface JAPIOptions {
    * </html>
    * ```
    * 
-   * If you don't want to use the REST API, you can use the API to login (and make the AJAX call to the rest API).
-   * 
-   * But you have to wait for the lib to be loaded.
-   * 
-   * To know if the lib has been loaded you can check if the JMAp namespace exist or not. Bellow the example :
+   * If you don't want to make an AJAX call to the REST API, you can use the JMap library to login (JMap will make the AJAX call to the rest API). But you have to wait for the lib to be loaded. To know if the lib has been loaded you can check if the JMAp namespace exist or not. Bellow the example :
    * 
    * ```html
    * <!DOCTYPE html>
