@@ -187,6 +187,7 @@ export interface JGeometryService {
   checkCircle(circle: JCircle): void
   checkPolygon(polygon: JPolygon): void
   checkLine(line: JLine): void
+  checkBbox(bbox: JBoundaryBox): void
   getArea(feature: TurfFeature): number
   getLineLength(feature: TurfFeature, units?: JGeometryUnit): number
   getCentroid(feature: TurfFeature): TurfFeature<Point>
@@ -240,6 +241,7 @@ export interface JMapService {
   setBearing(bearing: number): void
   panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
   zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
+  zoomToRect(bbox: JBoundaryBox, stopJMapEventPropagation?: boolean): void
   panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
 }
 

@@ -796,6 +796,25 @@ declare namespace JMap {
       function checkLine(line: JLine): void
 
       /**
+       * **JMap.Service.Geometry.checkBbox**
+       * 
+       * Throw an error if the provided parameter is not a valid boundary box.
+       * 
+       * @param bbox The bbox object to check
+       * @example ```ts
+       * 
+       * let bbox = { sw: { x: 10, y: 10 }, ne: { x: 12, y: 12 } }
+       * // The following instruction will not throw an error
+       * JMap.Service.Geometry.checkBbox(bbox)
+       * 
+       * bbox = { sw: { x: 10, y: 10 } } // missing "ne" attribute
+       * // The following instruction will throw an error
+       * JMap.Service.Geometry.checkBbox(bbox)
+       * ```
+       */
+      function checkBbox(bbox: JBoundaryBox): void
+
+      /**
        * **JMap.Service.Geometry.getArea**
        * 
        * Works for feature having geometry equals to Polygon or a MultiPolygon.
@@ -1571,6 +1590,22 @@ declare namespace JMap {
        */
       function zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
       
+      /**
+       * **JMap.Service.Map.zoomToRect**
+       * 
+       * Zoom or unzoom to fit exactly the boundary box (animated)
+       * 
+       * @throws Error if an invalid bbox is passed
+       * @param bbox The boundary box to fit
+       * @param stopJMapEventPropagation if true will prevent JMap events to be fired
+       * @example ```ts
+       * 
+       * // Zoom or unzoom to fit exactly the boundary box
+       * JMap.Service.Map.zoomToRect({ sw: { x: 12, y: 34 }, ne: { x: 23, y: 32 }})
+       * ```
+       */
+      function zoomToRect(bbox: JBoundaryBox, stopJMapEventPropagation?: boolean): void
+
       /**
        * **JMap.Service.Map.panAndZoomTo**
        * 
