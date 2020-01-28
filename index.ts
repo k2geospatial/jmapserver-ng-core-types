@@ -145,6 +145,7 @@ export interface JProjectState {
 export interface JLayerState {
   tree: JLayerTree
   allById: { [treeElementId: string]: JLayerTreeElement }
+  orderedLayerIds: number[]
 }
 
 // API DATA -> PHOTO
