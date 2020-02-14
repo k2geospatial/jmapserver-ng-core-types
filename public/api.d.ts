@@ -6,7 +6,7 @@
  * 
  * You can also consult the library startup options [[JAPIOptions]], in order to customize it for you needs.
  * 
- * After been loaded, the JMap library is accessible through the nampespace **JMap** in the javascript console.
+ * After being loaded, the JMap library is accessible through the nampespace **JMap** in the javascript console.
  * 
  * For example :
  * ```ts
@@ -62,7 +62,7 @@ declare namespace JMap {
      * 
      * Returns in use JMap API server rest API.
      *
-     * This is the url on which the JMap API will make all of its ajax call.
+     * This is the url on which the JMap API will make all of its ajax calls.
      * 
      * @example ```ts
      * 
