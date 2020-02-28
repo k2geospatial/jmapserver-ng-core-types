@@ -22,6 +22,7 @@ export interface JStoreGetterPhoto {
 
 export interface JAPIApi {
   getVersion(): string
+  getImplVersion(): string
   getDataStore(): Store<JAPIState> | undefined
   getRestUrl(): string
   openDocumentation(): void
@@ -359,6 +360,10 @@ export interface JUserService {
   getFullName(): string
   getUsername(): string
   getLocale(): string
+  getPreference(name: string): string | null
+  hasPreference(name: string): boolean
+  removePreference(name: string): string | null
+  setPreference(name: string, value: string | undefined): void
   setSession(session: JSessionData): void
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>

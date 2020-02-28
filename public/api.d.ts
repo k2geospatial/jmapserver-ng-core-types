@@ -33,7 +33,7 @@ declare namespace JMap {
     /**
      * **JMap.Api.getVersion**
      * 
-     * Returns the API build version.
+     * Returns the API version (interface version).
      * 
      * @example ```ts
      * 
@@ -42,6 +42,19 @@ declare namespace JMap {
      * ```
      */
     function getVersion(): string
+
+    /**
+     * **JMap.Api.getImplVersion**
+     * 
+     * Returns the API version (implementation version).
+     * 
+     * @example ```ts
+     * 
+     * // returns the build version, for example "1.0.1"
+     * JMap.Api.getImplVersion()
+     * ```
+     */
+    function getImplVersion(): string
 
     /**
      * **JMap.Api.getDataStore**
@@ -2824,6 +2837,64 @@ declare namespace JMap {
        * ```
        */
       function getLocale(): string
+
+      /**
+       * **JMap.Service.User.getPreference**
+       * 
+       * Get a user preference value.
+       * @param name the name of the preference
+       * @example ```ts
+       * 
+       * // return null if no preference has been set, else the value
+       * JMap.Service.User.getPreference("theme")
+       * ```
+       */
+      function getPreference(name: string): string | null
+
+      /**
+       * **JMap.Service.User.hasPreference**
+       * 
+       * Return true if a value has been set for the user preference.
+       * @param name the name of the preference
+       * @example ```ts
+       * 
+       * // return true if a value is set for the preference, else true
+       * JMap.Service.User.hasPreference("theme")
+       * ```
+       */
+      function hasPreference(name: string): boolean
+
+      /**
+       * **JMap.Service.User.removePreference**
+       * 
+       * Remove the user preference, and return the associated value, if no value returns undefined.
+       * @param name the name of the preference
+       * @example ```ts
+       * 
+       * // return the preference value after deletion
+       * JMap.Service.User.removePreference("theme")
+       * ```
+       */
+      function removePreference(name: string): string | null
+
+      /**
+       * **JMap.Service.User.setPreference**
+       * 
+       * Set a user preference value.
+       * 
+       * If value is undefined the value will be removed.
+       * @param name the name of the preference
+       * @param value the value that will be associated to the name
+       * @example ```ts
+       * 
+       * // Set the value "dark" for user preference "theme"
+       * JMap.Service.User.setPreference("theme", "dark")
+       * 
+       * // Remove the value for user preference "theme"
+       * JMap.Service.User.setPreference("theme")
+       * ```
+       */
+      function setPreference(name: string, value: string | undefined): void
 
       /**
        * **JMap.Service.User.login**
