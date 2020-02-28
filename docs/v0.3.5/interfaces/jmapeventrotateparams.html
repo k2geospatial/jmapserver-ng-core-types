@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>JLayerStyle | jmap-api</title>
+	<title>JMapEventRotateParams | jmap-api</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="jlayerstyle.html">JLayerStyle</a>
+					<a href="jmapeventrotateparams.html">JMapEventRotateParams</a>
 				</li>
 			</ul>
-			<h1>Interface JLayerStyle</h1>
+			<h1>Interface JMapEventRotateParams</h1>
 		</div>
 	</div>
 </header>
@@ -68,10 +68,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">JLayerStyle</span>
+						<a href="jmapeventparams.html" class="tsd-signature-type">JMapEventParams</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="jlayerstylevector.html" class="tsd-signature-type">JLayerStyleVector</a>
+								<span class="target">JMapEventRotateParams</span>
 							</li>
 						</ul>
 					</li>
@@ -84,9 +84,9 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="jlayerstyle.html#imagesampleinbase64" class="tsd-kind-icon">image<wbr>Sample<wbr>InBase64</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="jlayerstyle.html#styletype" class="tsd-kind-icon">style<wbr>Type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="jlayerstyle.html#transparencypercent" class="tsd-kind-icon">transparency<wbr>Per<wbr>Cent</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="jmapeventrotateparams.html#bearing" class="tsd-kind-icon">bearing</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="jmapeventrotateparams.html#map" class="tsd-kind-icon">map</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="jmapeventrotateparams.html#mapevent" class="tsd-kind-icon">map<wbr>Event</a></li>
 							</ul>
 						</section>
 					</div>
@@ -95,32 +95,34 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="imagesampleinbase64" class="tsd-anchor"></a>
-					<h3>image<wbr>Sample<wbr>InBase64</h3>
-					<div class="tsd-signature tsd-kind-icon">image<wbr>Sample<wbr>InBase64<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="bearing" class="tsd-anchor"></a>
+					<h3>bearing</h3>
+					<div class="tsd-signature tsd-kind-icon">bearing<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/jmap/layer.d.ts#L74">jmap/layer.d.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/jmap/api/event.d.ts#L33">jmap/api/event.d.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="styletype" class="tsd-anchor"></a>
-					<h3>style<wbr>Type</h3>
-					<div class="tsd-signature tsd-kind-icon">style<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../globals.html#jlayerstyletype" class="tsd-signature-type">JLayerStyleType</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+					<a name="map" class="tsd-anchor"></a>
+					<h3>map</h3>
+					<div class="tsd-signature tsd-kind-icon">map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="jmapeventparams.html">JMapEventParams</a>.<a href="jmapeventparams.html#map">map</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/jmap/layer.d.ts#L73">jmap/layer.d.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/jmap/api/event.d.ts#L20">jmap/api/event.d.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="transparencypercent" class="tsd-anchor"></a>
-					<h3>transparency<wbr>Per<wbr>Cent</h3>
-					<div class="tsd-signature tsd-kind-icon">transparency<wbr>Per<wbr>Cent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+					<a name="mapevent" class="tsd-anchor"></a>
+					<h3>map<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">map<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="jmapeventparams.html">JMapEventParams</a>.<a href="jmapeventparams.html#mapevent">mapEvent</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/jmap/layer.d.ts#L75">jmap/layer.d.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/jmap/api/event.d.ts#L21">jmap/api/event.d.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -139,16 +141,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-is-not-exported">
-						<a href="jlayerstyle.html" class="tsd-kind-icon">JLayer<wbr>Style</a>
+						<a href="jmapeventrotateparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Rotate<wbr>Params</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="jlayerstyle.html#imagesampleinbase64" class="tsd-kind-icon">image<wbr>Sample<wbr>InBase64</a>
+								<a href="jmapeventrotateparams.html#bearing" class="tsd-kind-icon">bearing</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="jlayerstyle.html#styletype" class="tsd-kind-icon">style<wbr>Type</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="jmapeventrotateparams.html#map" class="tsd-kind-icon">map</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="jlayerstyle.html#transparencypercent" class="tsd-kind-icon">transparency<wbr>Per<wbr>Cent</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="jmapeventrotateparams.html#mapevent" class="tsd-kind-icon">map<wbr>Event</a>
 							</li>
 						</ul>
 					</li>

@@ -76,8 +76,6 @@
 						<p><strong>JMap.Service.Map</strong></p>
 					</div>
 					<p>This section contains map related methods.</p>
-					<p>JMap support 2 type of map implementations : &quot;MapBox&quot; or &quot;OpenLayers&quot;.</p>
-					<p>Sometimes the result of the methods depends on this <a href="../globals.html#map_implementation">MAP_IMPLEMENTATION</a>.</p>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -97,10 +95,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getavailablebasemaps" class="tsd-kind-icon">get<wbr>Available<wbr>Base<wbr>Maps</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getbasemap" class="tsd-kind-icon">get<wbr>Base<wbr>Map</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getbearing" class="tsd-kind-icon">get<wbr>Bearing</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getcenter" class="tsd-kind-icon">get<wbr>Center</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getdomcontainerid" class="tsd-kind-icon">get<wbr>Dom<wbr>Container<wbr>Id</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getextent" class="tsd-kind-icon">get<wbr>Extent</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getimplementation" class="tsd-kind-icon">get<wbr>Implementation</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getinusejmaplayerafter" class="tsd-kind-icon">get<wbr>InUseJMap<wbr>Layer<wbr>After</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getinusejmaplayerbefore" class="tsd-kind-icon">get<wbr>InUseJMap<wbr>Layer<wbr>Before</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getinusejmaplayerids" class="tsd-kind-icon">get<wbr>InUseJMap<wbr>Layer<wbr>Ids</a></li>
@@ -109,17 +107,26 @@
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getlayersvisibilitystatusasarray" class="tsd-kind-icon">get<wbr>Layers<wbr>Visibility<wbr>Status<wbr>AsArray</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getmap" class="tsd-kind-icon">get<wbr>Map</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getmapjslib" class="tsd-kind-icon">get<wbr>MapJSLib</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getpitch" class="tsd-kind-icon">get<wbr>Pitch</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getrenderedfeatures" class="tsd-kind-icon">get<wbr>Rendered<wbr>Features</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getrenderedfeaturesattributevalues" class="tsd-kind-icon">get<wbr>Rendered<wbr>Features<wbr>Attribute<wbr>Values</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getrenderedjmaplayerids" class="tsd-kind-icon">get<wbr>RenderedJMap<wbr>Layer<wbr>Ids</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getscale" class="tsd-kind-icon">get<wbr>Scale</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getscalecontrolposition" class="tsd-kind-icon">get<wbr>Scale<wbr>Control<wbr>Position</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#getzoom" class="tsd-kind-icon">get<wbr>Zoom</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#islayerrendered" class="tsd-kind-icon">is<wbr>Layer<wbr>Rendered</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#ismaploaded" class="tsd-kind-icon">is<wbr>Map<wbr>Loaded</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#isscalecontrolvisible" class="tsd-kind-icon">is<wbr>Scale<wbr>Control<wbr>Visible</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#panandzoomto" class="tsd-kind-icon">pan<wbr>And<wbr>Zoom<wbr>To</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#panto" class="tsd-kind-icon">pan<wbr>To</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#setbasemap" class="tsd-kind-icon">set<wbr>Base<wbr>Map</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#setbearing" class="tsd-kind-icon">set<wbr>Bearing</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#setpitch" class="tsd-kind-icon">set<wbr>Pitch</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#setscalecontrolposition" class="tsd-kind-icon">set<wbr>Scale<wbr>Control<wbr>Position</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#setscalecontrolunits" class="tsd-kind-icon">set<wbr>Scale<wbr>Control<wbr>Units</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#setscalecontrolvisibility" class="tsd-kind-icon">set<wbr>Scale<wbr>Control<wbr>Visibility</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#zoomto" class="tsd-kind-icon">zoom<wbr>To</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.service.map.html#zoomtorect" class="tsd-kind-icon">zoom<wbr>ToRect</a></li>
 							</ul>
 						</section>
 					</div>
@@ -137,7 +144,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1078">api.d.ts:1078</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1484">api.d.ts:1484</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -145,9 +152,8 @@
 									<p><strong>JMap.Service.Map.getAvailableBaseMaps</strong></p>
 								</div>
 								<p>Returns the available basemap names that can be used with method setBaseMap.</p>
-								<p>Depends on the map implementation (<a href="../globals.html#map_implementation">MAP_IMPLEMENTATION</a>).</p>
-								<p>For mapbox : [ &quot;light&quot;, &quot;streets&quot;, &quot;satellite&quot;, &quot;dark&quot;, &quot;outdoors&quot;, &quot;none&quot; ]</p>
-								<p>For openlayers : Not yet implemented</p>
+								<p>Possible values are : &quot;light&quot;, &quot;streets&quot;, &quot;satellite&quot;, &quot;dark&quot;, &quot;outdoors&quot;, or &quot;none&quot;</p>
+								<p>Special value &quot;none&quot; means no basemap displayed.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
@@ -157,7 +163,7 @@ JMap.Service.Map.getAvailableBaseMaps()</code></pre>
 								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
-							<p>an array of string, the available basemap names for map implementation</p>
+							<p>an array of string, the available basemap names</p>
 						</li>
 					</ul>
 				</section>
@@ -171,7 +177,7 @@ JMap.Service.Map.getAvailableBaseMaps()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1097">api.d.ts:1097</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1526">api.d.ts:1526</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -179,9 +185,8 @@ JMap.Service.Map.getAvailableBaseMaps()</code></pre>
 									<p><strong><em>JMap.Service.Map.getBaseMap</em></strong></p>
 								</div>
 								<p>Returns the current basemap.</p>
-								<p>The basemap depends on the map implementation (<a href="../globals.html#map_implementation">MAP_IMPLEMENTATION</a>).</p>
-								<p>For mapbox : [ &quot;light&quot;, &quot;streets&quot;, &quot;satellite&quot;, &quot;dark&quot;, &quot;outdoors&quot;, &quot;none&quot; ]</p>
-								<p>For openlayers : Not yet implemented</p>
+								<p>Possble values are : &quot;light&quot;, &quot;streets&quot;, &quot;satellite&quot;, &quot;dark&quot;, &quot;outdoors&quot;, or &quot;none&quot;</p>
+								<p>Special value &quot;none&quot; means no basemap is dsplayed.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
@@ -195,6 +200,36 @@ JMap.Service.Map.getBaseMap()</code></pre>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getbearing" class="tsd-anchor"></a>
+					<h3>get<wbr>Bearing</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Bearing<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1510">api.d.ts:1510</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.getBaseMap</em></strong></p>
+								</div>
+								<p>Returns the current map bearing (rotation).</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the current map bearing</span>
+JMap.Service.Map.getBearing()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 					<a name="getcenter" class="tsd-anchor"></a>
 					<h3>get<wbr>Center</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -204,7 +239,7 @@ JMap.Service.Map.getBaseMap()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L798">api.d.ts:798</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1134">api.d.ts:1134</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -234,7 +269,7 @@ JMap.Service.Map.getCenter()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L759">api.d.ts:759</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1095">api.d.ts:1095</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -264,7 +299,7 @@ JMap.Service.Map.getDomContainerId()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L785">api.d.ts:785</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1121">api.d.ts:1121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -285,36 +320,6 @@ JMap.Service.Map.getExtent()</code></pre>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-					<a name="getimplementation" class="tsd-anchor"></a>
-					<h3>get<wbr>Implementation</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Implementation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#map_implementation" class="tsd-signature-type">MAP_IMPLEMENTATION</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L746">api.d.ts:746</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p><strong><em>JMap.Service.Map.getImplementation</em></strong></p>
-								</div>
-								<p>Returns the map implementation (&quot;MapBox&quot; or &quot;OpenLayers&quot;)</p>
-								<dl class="tsd-comment-tags">
-									<dt>example</dt>
-									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// returns "MapBox" or "OpenLayers"</span>
-JMap.Service.Map.getImplementation()</code></pre>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../globals.html#map_implementation" class="tsd-signature-type">MAP_IMPLEMENTATION</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 					<a name="getinusejmaplayerafter" class="tsd-anchor"></a>
 					<h3>get<wbr>InUseJMap<wbr>Layer<wbr>After</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -324,7 +329,7 @@ JMap.Service.Map.getImplementation()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L980">api.d.ts:980</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1388">api.d.ts:1388</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -370,7 +375,7 @@ JMap.Service.Map.getInUseJMapLayerAfter(<span class="hljs-number">3</span>)</cod
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L964">api.d.ts:964</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1372">api.d.ts:1372</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -416,7 +421,7 @@ JMap.Service.Map.getInUseJMapLayerBefore(<span class="hljs-number">4</span>)</co
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L931">api.d.ts:931</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1339">api.d.ts:1339</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,12 +429,12 @@ JMap.Service.Map.getInUseJMapLayerBefore(<span class="hljs-number">4</span>)</co
 									<p><strong>JMap.Service.Map.getInUseJMapLayerIds</strong></p>
 								</div>
 								<p>Returns all layer ids that are displayed by the map.</p>
-								<p>Some map implementation (<a href="../globals.html#map_implementation">MAP_IMPLEMENTATION</a>) doesn&#39;t support all layer types.</p>
+								<p>Mapbox doesn&#39;t support all layer types defined in JMap Server.</p>
 								<p>This function returns all layers ids that are managed by the map.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// returns layer ids managed by the map implementation</span>
+<span class="hljs-comment">// returns layer ids supported by the Mapbox</span>
 JMap.Service.Map.getInUseJMapLayerIds()</code></pre>
 									</dd>
 								</dl>
@@ -448,7 +453,7 @@ JMap.Service.Map.getInUseJMapLayerIds()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L948">api.d.ts:948</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1356">api.d.ts:1356</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -456,7 +461,7 @@ JMap.Service.Map.getInUseJMapLayerIds()</code></pre>
 									<p><strong>JMap.Service.Map.getInUseJMapVectorLayerIds</strong></p>
 								</div>
 								<p>Returns all vector layer ids that are displayed by the map.</p>
-								<p>Some map implementation (<a href="../globals.html#map_implementation">MAP_IMPLEMENTATION</a>) doesn&#39;t support all layer types.</p>
+								<p>Mapbox doesn&#39;t support all layer types defined in JMap Server.</p>
 								<p>This function returns all vector layers ids that are managed by the map.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
@@ -480,7 +485,7 @@ JMap.Service.Map.getInUseJMapVectorLayerIds()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L879">api.d.ts:879</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1287">api.d.ts:1287</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -534,7 +539,7 @@ JMap.Service.Map.getLayersVisibilityStatus()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L914">api.d.ts:914</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1322">api.d.ts:1322</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -583,18 +588,18 @@ JMap.Service.Map.getLayersVisibilityStatusAsArray()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L715">api.d.ts:715</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1064">api.d.ts:1064</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.Service.Map.getMap</strong></p>
 								</div>
-								<p>Returns the map implementation instance, a MapBox or OpenLayer map.</p>
+								<p>Returns the Mapbox map instance, a MapBox map.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// returns the implementation map instance</span>
+<span class="hljs-comment">// returns the Mapbox map instance</span>
 JMap.Service.Map.getMap()</code></pre>
 									</dd>
 								</dl>
@@ -613,19 +618,19 @@ JMap.Service.Map.getMap()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L733">api.d.ts:733</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1082">api.d.ts:1082</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.Service.Map.getMapJSLib</strong></p>
 								</div>
-								<p>Returns the map implementation JS library : MapBox or OpenLayer.</p>
-								<p>Usefull to be able to create a map library object, by example a Mapbox popup.</p>
+								<p>Returns the MapBox JS library used to create the map.</p>
+								<p>Usefull to be able to create a map library object, by example a popup.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// Create a MapBox popup, require the map implementation to be MapBox</span>
+<span class="hljs-comment">// Create a MapBox popup</span>
 <span class="hljs-keyword">const</span> myCustomPopup = JMap.Service.Map.getMapJSLib().Popup({
   closeButton: <span class="hljs-literal">false</span>,
   closeOnClick: <span class="hljs-literal">false</span>
@@ -634,6 +639,36 @@ JMap.Service.Map.getMap()</code></pre>
 								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getpitch" class="tsd-anchor"></a>
+					<h3>get<wbr>Pitch</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Pitch<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1497">api.d.ts:1497</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.getBaseMap</em></strong></p>
+								</div>
+								<p>Returns the current map pitch.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns the current map pitch</span>
+JMap.Service.Map.getPitch()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -647,7 +682,7 @@ JMap.Service.Map.getMap()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1025">api.d.ts:1025</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1433">api.d.ts:1433</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -709,7 +744,7 @@ JMap.Service.Map.getRenderedFeatures(<span class="hljs-number">4</span>, {
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1058">api.d.ts:1058</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1466">api.d.ts:1466</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -775,7 +810,7 @@ JMap.Service.Map.getRenderedFeaturesAttributeValues(<span class="hljs-number">4<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L997">api.d.ts:997</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1405">api.d.ts:1405</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -783,7 +818,7 @@ JMap.Service.Map.getRenderedFeaturesAttributeValues(<span class="hljs-number">4<
 									<p><strong>JMap.Service.Map.getRenderedJMapLayerIds</strong></p>
 								</div>
 								<p>Returns the ids of the layers that are displayed on the map.</p>
-								<p>Some map implementation (<a href="../globals.html#map_implementation">MAP_IMPLEMENTATION</a>) doesn&#39;t support all layer types.</p>
+								<p>Mapbox doesn&#39;t support all layer types defined on JMap Server.</p>
 								<p>This function returns all layers ids that are managed by the map.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
@@ -807,7 +842,7 @@ JMap.Service.Map.getRenderedJMapLayerIds()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L824">api.d.ts:824</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1160">api.d.ts:1160</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -828,6 +863,36 @@ JMap.Service.Map.getScale()</code></pre>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="getscalecontrolposition" class="tsd-anchor"></a>
+					<h3>get<wbr>Scale<wbr>Control<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Scale<wbr>Control<wbr>Position<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#jmapposition" class="tsd-signature-type">JMapPosition</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1232">api.d.ts:1232</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.getScaleControlPosition</em></strong></p>
+								</div>
+								<p>Return the current scale control position on the map.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// Return the current scale control position</span>
+JMap.Service.Map.getScaleControlPosition()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#jmapposition" class="tsd-signature-type">JMapPosition</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 					<a name="getzoom" class="tsd-anchor"></a>
 					<h3>get<wbr>Zoom</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -837,7 +902,7 @@ JMap.Service.Map.getScale()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L811">api.d.ts:811</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1147">api.d.ts:1147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -867,7 +932,7 @@ JMap.Service.Map.getZoom()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L840">api.d.ts:840</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1248">api.d.ts:1248</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -905,7 +970,7 @@ JMap.Service.Map.isLayerRendered(<span class="hljs-number">4</span>)</code></pre
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L772">api.d.ts:772</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1108">api.d.ts:1108</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -926,16 +991,46 @@ JMap.Service.Map.isMapLoaded()</code></pre>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-					<a name="panandzoomto" class="tsd-anchor"></a>
-					<h3>pan<wbr>And<wbr>Zoom<wbr>To</h3>
+					<a name="isscalecontrolvisible" class="tsd-anchor"></a>
+					<h3>is<wbr>Scale<wbr>Control<wbr>Visible</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">pan<wbr>And<wbr>Zoom<wbr>To<span class="tsd-signature-symbol">(</span>center<span class="tsd-signature-symbol">: </span><a href="../interfaces/jlocation.html" class="tsd-signature-type">JLocation</a>, zoom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Scale<wbr>Control<wbr>Visible<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1158">api.d.ts:1158</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1173">api.d.ts:1173</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.isScaleControlVisible</em></strong></p>
+								</div>
+								<p>Returns true if the scale control panel is visible on the map.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// returns true if control is displayed on the map</span>
+JMap.Service.Map.isScaleControlVisible()</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="panandzoomto" class="tsd-anchor"></a>
+					<h3>pan<wbr>And<wbr>Zoom<wbr>To</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">pan<wbr>And<wbr>Zoom<wbr>To<span class="tsd-signature-symbol">(</span>center<span class="tsd-signature-symbol">: </span><a href="../interfaces/jlocation.html" class="tsd-signature-type">JLocation</a>, zoom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, stopJMapEventPropagation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1637">api.d.ts:1637</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -968,6 +1063,12 @@ JMap.Service.Map.panAndZoomTo({ x: <span class="hljs-number">45.34</span>, y: <s
 										<p>The zoom level to apply</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> stopJMapEventPropagation: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if true will prevent JMap event to be fired</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -977,13 +1078,13 @@ JMap.Service.Map.panAndZoomTo({ x: <span class="hljs-number">45.34</span>, y: <s
 					<a name="panto" class="tsd-anchor"></a>
 					<h3>pan<wbr>To</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">pan<wbr>To<span class="tsd-signature-symbol">(</span>center<span class="tsd-signature-symbol">: </span><a href="../interfaces/jlocation.html" class="tsd-signature-type">JLocation</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">pan<wbr>To<span class="tsd-signature-symbol">(</span>center<span class="tsd-signature-symbol">: </span><a href="../interfaces/jlocation.html" class="tsd-signature-type">JLocation</a>, stopJMapEventPropagation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1127">api.d.ts:1127</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1588">api.d.ts:1588</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1010,6 +1111,12 @@ JMap.Service.Map.panTo({ x: <span class="hljs-number">45.34</span>, y: <span cla
 										<p>The location where the map will be centered</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> stopJMapEventPropagation: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if true will prevent JMap events to be fired</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -1025,7 +1132,7 @@ JMap.Service.Map.panTo({ x: <span class="hljs-number">45.34</span>, y: <span cla
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1112">api.d.ts:1112</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1541">api.d.ts:1541</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1058,16 +1165,226 @@ JMap.Service.Map.setBaseMap(<span class="hljs-string">"streets"</span>)</code></
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-					<a name="zoomto" class="tsd-anchor"></a>
-					<h3>zoom<wbr>To</h3>
+					<a name="setbearing" class="tsd-anchor"></a>
+					<h3>set<wbr>Bearing</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">zoom<wbr>To<span class="tsd-signature-symbol">(</span>zoom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Bearing<span class="tsd-signature-symbol">(</span>bearing<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/5b5fbea/public/api.d.ts#L1142">api.d.ts:1142</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1556">api.d.ts:1556</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Map.setBearing</strong></p>
+								</div>
+								<p>Set the bearing on the map (rotation)</p>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>Error if the bearing is not between -360 to 360 degree</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// Set 30 degrees bearing</span>
+JMap.Service.Map.setBearing(<span class="hljs-number">30</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bearing: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>te new value of the bearing between 0 to 360</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="setpitch" class="tsd-anchor"></a>
+					<h3>set<wbr>Pitch</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Pitch<span class="tsd-signature-symbol">(</span>pitch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1571">api.d.ts:1571</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Map.setPitch</strong></p>
+								</div>
+								<p>Set the pitch on the map</p>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>Error if the pitch is not between 0 to 60 degree</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// Set 30 degrees pitch</span>
+JMap.Service.Map.setPitch(<span class="hljs-number">30</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pitch: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>te new value of the pitch between 0 to 60</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="setscalecontrolposition" class="tsd-anchor"></a>
+					<h3>set<wbr>Scale<wbr>Control<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Scale<wbr>Control<wbr>Position<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="../globals.html#jmapposition" class="tsd-signature-type">JMapPosition</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1219">api.d.ts:1219</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.setScaleControlPosition</em></strong></p>
+								</div>
+								<p>Change the scale control position on the map.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// will move the scale control on the top-left corner of the map</span>
+JMap.Service.Map.setScaleControlPosition(<span class="hljs-string">"top-left"</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="../globals.html#jmapposition" class="tsd-signature-type">JMapPosition</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the position on the map where to display the scale control.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="setscalecontrolunits" class="tsd-anchor"></a>
+					<h3>set<wbr>Scale<wbr>Control<wbr>Units</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Scale<wbr>Control<wbr>Units<span class="tsd-signature-symbol">(</span>units<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"imperial"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"metric"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"nautical"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1205">api.d.ts:1205</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.setScaleControlUnits</em></strong></p>
+								</div>
+								<p>Change the scale control units.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// will change the scale control for imperial units</span>
+JMap.Service.Map.setScaleControlUnits(<span class="hljs-string">"imperial"</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>units: <span class="tsd-signature-type">"imperial"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"metric"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"nautical"</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>possible values : &quot;imperial&quot;, &quot;metric&quot;, or &quot;nautical&quot;</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="setscalecontrolvisibility" class="tsd-anchor"></a>
+					<h3>set<wbr>Scale<wbr>Control<wbr>Visibility</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Scale<wbr>Control<wbr>Visibility<span class="tsd-signature-symbol">(</span>isVisible<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, position<span class="tsd-signature-symbol">?: </span><a href="../globals.html#jmapposition" class="tsd-signature-type">JMapPosition</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1191">api.d.ts:1191</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Service.Map.setScaleControlVisibility</em></strong></p>
+								</div>
+								<p>Change the scale control panel visibility on the map.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// will display the scale control on the map</span>
+JMap.Service.Map.setScaleControlVisibility(<span class="hljs-literal">true</span>)
+
+<span class="hljs-comment">// will hide the scale control on the map</span>
+JMap.Service.Map.setScaleControlVisibility(<span class="hljs-literal">false</span>)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>isVisible: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>true to display the scale control, false to hide</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> position: <a href="../globals.html#jmapposition" class="tsd-signature-type">JMapPosition</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the position on the map where to display the scale control.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="zoomto" class="tsd-anchor"></a>
+					<h3>zoom<wbr>To</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">zoom<wbr>To<span class="tsd-signature-symbol">(</span>zoom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, stopJMapEventPropagation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1604">api.d.ts:1604</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1092,6 +1409,60 @@ JMap.Service.Map.zoomTo(<span class="hljs-number">4.45</span>)</code></pre>
 									<h5>zoom: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The zoom level to apply</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> stopJMapEventPropagation: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if true will prevent JMap events to be fired</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="zoomtorect" class="tsd-anchor"></a>
+					<h3>zoom<wbr>ToRect</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">zoom<wbr>ToRect<span class="tsd-signature-symbol">(</span>bbox<span class="tsd-signature-symbol">: </span><a href="../interfaces/jboundarybox.html" class="tsd-signature-type">JBoundaryBox</a>, stopJMapEventPropagation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/6b896f6/public/api.d.ts#L1620">api.d.ts:1620</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong>JMap.Service.Map.zoomToRect</strong></p>
+								</div>
+								<p>Zoom or unzoom to fit exactly the boundary box (animated)</p>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>Error if an invalid bbox is passed</p>
+									</dd>
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// Zoom or unzoom to fit exactly the boundary box</span>
+JMap.Service.Map.zoomToRect({ sw: { x: <span class="hljs-number">12</span>, y: <span class="hljs-number">34</span> }, ne: { x: <span class="hljs-number">23</span>, y: <span class="hljs-number">32</span> }})</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bbox: <a href="../interfaces/jboundarybox.html" class="tsd-signature-type">JBoundaryBox</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The boundary box to fit</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> stopJMapEventPropagation: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if true will prevent JMap events to be fired</p>
 									</div>
 								</li>
 							</ul>
@@ -1125,6 +1496,9 @@ JMap.Service.Map.zoomTo(<span class="hljs-number">4.45</span>)</code></pre>
 							<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 								<a href="jmap.service.html">Service</a>
 								<ul>
+									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
+										<a href="jmap.service.geometry.html">Geometry</a>
+									</li>
 									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-not-exported">
 										<a href="jmap.service.history.html">History</a>
 									</li>
@@ -1169,6 +1543,9 @@ JMap.Service.Map.zoomTo(<span class="hljs-number">4.45</span>)</code></pre>
 						<a href="jmap.service.map.html#getbasemap" class="tsd-kind-icon">get<wbr>Base<wbr>Map</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#getbearing" class="tsd-kind-icon">get<wbr>Bearing</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.html#getcenter" class="tsd-kind-icon">get<wbr>Center</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -1176,9 +1553,6 @@ JMap.Service.Map.zoomTo(<span class="hljs-number">4.45</span>)</code></pre>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.html#getextent" class="tsd-kind-icon">get<wbr>Extent</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="jmap.service.map.html#getimplementation" class="tsd-kind-icon">get<wbr>Implementation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.html#getinusejmaplayerafter" class="tsd-kind-icon">get<wbr>InUseJMap<wbr>Layer<wbr>After</a>
@@ -1205,6 +1579,9 @@ JMap.Service.Map.zoomTo(<span class="hljs-number">4.45</span>)</code></pre>
 						<a href="jmap.service.map.html#getmapjslib" class="tsd-kind-icon">get<wbr>MapJSLib</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#getpitch" class="tsd-kind-icon">get<wbr>Pitch</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.html#getrenderedfeatures" class="tsd-kind-icon">get<wbr>Rendered<wbr>Features</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -1217,6 +1594,9 @@ JMap.Service.Map.zoomTo(<span class="hljs-number">4.45</span>)</code></pre>
 						<a href="jmap.service.map.html#getscale" class="tsd-kind-icon">get<wbr>Scale</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#getscalecontrolposition" class="tsd-kind-icon">get<wbr>Scale<wbr>Control<wbr>Position</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.html#getzoom" class="tsd-kind-icon">get<wbr>Zoom</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -1224,6 +1604,9 @@ JMap.Service.Map.zoomTo(<span class="hljs-number">4.45</span>)</code></pre>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.html#ismaploaded" class="tsd-kind-icon">is<wbr>Map<wbr>Loaded</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#isscalecontrolvisible" class="tsd-kind-icon">is<wbr>Scale<wbr>Control<wbr>Visible</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.html#panandzoomto" class="tsd-kind-icon">pan<wbr>And<wbr>Zoom<wbr>To</a>
@@ -1235,7 +1618,25 @@ JMap.Service.Map.zoomTo(<span class="hljs-number">4.45</span>)</code></pre>
 						<a href="jmap.service.map.html#setbasemap" class="tsd-kind-icon">set<wbr>Base<wbr>Map</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#setbearing" class="tsd-kind-icon">set<wbr>Bearing</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#setpitch" class="tsd-kind-icon">set<wbr>Pitch</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#setscalecontrolposition" class="tsd-kind-icon">set<wbr>Scale<wbr>Control<wbr>Position</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#setscalecontrolunits" class="tsd-kind-icon">set<wbr>Scale<wbr>Control<wbr>Units</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#setscalecontrolvisibility" class="tsd-kind-icon">set<wbr>Scale<wbr>Control<wbr>Visibility</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.service.map.html#zoomto" class="tsd-kind-icon">zoom<wbr>To</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.service.map.html#zoomtorect" class="tsd-kind-icon">zoom<wbr>ToRect</a>
 					</li>
 				</ul>
 			</nav>
