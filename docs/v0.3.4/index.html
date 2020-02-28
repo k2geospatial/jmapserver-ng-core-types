@@ -63,7 +63,7 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<p><strong>JMap Web API documentation</strong></p>
-				<p>You can explore the API by clicking on this link <strong><em><a href="modules/jmap.html">JMap</a></em></strong>.</p>
+				<p>You can explore the API by clicking on this link <strong>*<a href="modules/jmap.html">JMap</a>*</strong>.</p>
 				<p>The project has been written in Typescript, so this documentation provides information about result types or arguments to pass to the API.</p>
 				<p>If you want, you can have a look at the typescript public interfaces located in our Github project named <a href="https://github.com/k2geospatial/jmap-api-ng">jmap-api-ng</a>.</p>
 				<p>This project is also published on <a href="https://www.npmjs.com/package/jmap-api-ng">NPM</a>.</p>
@@ -94,7 +94,7 @@
 							<li><span style="color:red"><strong>JMap.Data.Layer.getName</strong></span> (instead use <a href="modules/jmap.service.layer.html#getname">JMap.Service.Layer.getName</a>)</li>
 							<li><span style="color:red"><strong>JMap.Data.Layer.getDescription</strong></span> (instead use <a href="modules/jmap.service.layer.html#getdescription">JMap.Service.Layer.getDescription</a>)</li>
 							<li><span style="color:red"><strong>JMap.Data.Layer.isVisible</strong></span> (instead use <a href="modules/jmap.service.layer.html#isvisible">JMap.Service.Layer.isVisible</a>)</li>
-							<li><span style="color:red"><strong>JMap.Data.Api.getMapImplementation</strong></span> (instead use <a href="modules/jmap.service.map.html#getimplementation">JMap.Service.Map.getImplementation</a>)</li>
+							<li><span style="color:red"><strong>JMap.Data.Api.getMapImplementation</strong></span> (instead use [[JMap.Service.Map.getImplementation]])</li>
 							<li><span style="color:red"><strong>JMap.Data.Photo.isPopupOpened</strong></span> (no replacement)</li>
 							<li><span style="color:red"><strong>JMap.Data.Photo.isPopupInfoPanelOpened</strong></span> (no replacement)</li>
 							<li><span style="color:red"><strong>JMap.Data.Photo.getPhotoDescriptors</strong></span> (no replacement)</li>
@@ -139,7 +139,7 @@
 						</ul>
 					</li>
 					<li>Functions renamed :<ul>
-							<li>JMap.Service.Layer.setGroupOpen =&gt; <span style="color:green"><strong>JMap.Service.Layer.set<em>Layer</em>Group<em>Expansion</em></strong></span></li>
+							<li>JMap.Service.Layer.setGroupOpen =&gt; <span style="color:green"><strong>JMap.Service.Layer.set<em>Layer<em>Group</em>Expansion</em></strong></span></li>
 							<li>JMap.Data.User.getLogin =&gt; <span style="color:green"><strong>JMap.Service.User.get<em>Username</em></strong></span></li>
 							<li>JMap.Service.Map.Interaction.getAllInteractorDescriptors() =&gt; <span style="color:green"><strong>JMap.Service.Map.Interaction.getAllInteractor<em>Id</em>s</strong></span></li>
 							<li>JMap.Service.Map.Interaction.getActiveInteractorDescriptor() =&gt; <span style="color:green"><strong>JMap.Service.Map.Interaction.getActiveInteractor<em>Id</em></strong></span></li>
@@ -225,6 +225,65 @@
 					</li>
 					<li>Property added in interface :<ul>
 							<li><strong><a href="interfaces/jexternalmodel.html#startbeforemapisready">JExternalModel.startBeforeMapIsReady</a></strong></li>
+						</ul>
+					</li>
+				</ul>
+				<p><strong>V0.2.9 =&gt; V0.3.5</strong></p>
+				<ul>
+					<li>Function added :<ul>
+							<li><strong><a href="modules/jmap.service.layer.html#isalllayerparentsvisible">JMap.Service.Layer.isAllLayerParentsVisible</a></strong></li>
+							<li><strong><a href="modules/jmap.service.history.html#transformsearchparamsintohashparams">JMap.Service.History.transformSearchParamsIntoHashParams</a></strong></li>
+							<li><strong><a href="modules/jmap.service.history.html#goback">JMap.Service.History.goBack</a></strong></li>
+							<li><strong><a href="modules/jmap.service.history.html#goforward">JMap.Service.History.goForward</a></strong></li>
+							<li><strong><a href="modules/jmap.service.history.html#gethashparameter">JMap.Service.History.getHashParameter</a></strong></li>
+							<li><strong><a href="modules/jmap.service.history.html#pushhashparameters">JMap.Service.History.pushHashParameters</a></strong></li>
+							<li><strong><a href="modules/jmap.service.history.html#pophashparameters">JMap.Service.History.popHashParameters</a></strong></li>
+							<li><strong><a href="modules/jmap.service.history.html#onparameterchange">JMap.Service.History.onParameterChange</a></strong></li>
+							<li><strong><a href="modules/jmap.service.history.html#removepropertychangelistener">JMap.Service.History.removePropertyChangeListener</a></strong></li>
+							<li><strong><a href="modules/jmap.service.project.html#getallprojects">JMap.Service.Project.getAllProjects</a></strong></li>
+							<li><strong><a href="modules/jmap.service.map.html#getlayersvisibilitystatusasarray">JMap.Service.Map.getLayersVisibilityStatusAsArray</a></strong></li>
+							<li><strong><a href="modules/jmap.service.map.selection.html#selectononelayerfromcircle">JMap.Service.Map.Selection.selectOnOneLayerFromCircle</a></strong></li>
+							<li><strong><a href="modules/jmap.service.map.selection.html#selectononelayerfromline">JMap.Service.Map.Selection.selectOnOneLayerFromLine</a></strong></li>
+							<li><strong><a href="modules/jmap.service.map.selection.html#selectononelayerfrompolygon">JMap.Service.Map.Selection.selectOnOneLayerFromPolygon</a></strong></li>
+							<li><strong><a href="modules/jmap.service.map.selection.html#selectonalllayersfromcircle">JMap.Service.Map.Selection.selectOnAllLayersFromCircle</a></strong></li>
+							<li><strong><a href="modules/jmap.service.map.selection.html#selectonalllayersfromline">JMap.Service.Map.Selection.selectOnAllLayersFromLine</a></strong></li>
+							<li><strong><a href="modules/jmap.service.map.selection.html#selectonalllayersfrompolygon">JMap.Service.Map.Selection.selectOnAllLayersFromPolygon</a></strong></li>
+						</ul>
+					</li>
+					<li>Function having result changed :<ul>
+							<li><span style="color:green"><strong>JMap.Service.Map.getLayersVisibilityStatus</strong></span> :<ul>
+									<li>Add properties in each object :<ul>
+											<li>parentVisibility to tell if the parent is checked or not</li>
+											<li>layerId : make easier looping directly on values</li>
+											<li>layerName : make easier looping directly on values</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>Function having an additional parameter :<ul>
+							<li><span style="color:green"><strong>JMap.Service.Map.Selection.selectOnOneLayerAtLocation</strong></span> :</li>
+							<li><span style="color:green"><strong>JMap.Service.Map.Selection.selectOnAllLayersAtLocation</strong></span> :<ul>
+									<li>Add an optional parameter params, see <a href="interfaces/jmapselectionparams.html">JMapSelectionParams</a></li>
+								</ul>
+							</li>
+							<li><span style="color:green"><strong>JMap.Service.Layer.isVisible</strong></span> :<ul>
+									<li>Add an optional parameter checkParentVisibility</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>Interface changed :<ul>
+							<li><span style="color:green"><strong>JProject</strong></span> :<ul>
+									<li>Add &quot;apiKey&quot; property</li>
+								</ul>
+							</li>
+							<li><span style="color:green"><strong>JUserPublicData</strong></span> :</li>
+							<li><span style="color:green"><strong>JUserIdentity</strong></span> :<ul>
+									<li>Add &quot;username&quot; and &quot;email&quot; properties</li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -403,16 +462,25 @@
 						<a href="interfaces/jmapeventfeaturesparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Features<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="interfaces/jmapeventimplementationparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Implementation<wbr>Params</a>
+						<a href="interfaces/jmapeventlayerparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Layer<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
-						<a href="interfaces/jmapeventlayerparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Layer<wbr>Params</a>
+						<a href="interfaces/jmapeventloadedparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Loaded<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/jmapeventlocationparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Location<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/jmapeventparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/jmapeventpitchparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Pitch<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/jmapeventrotateparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Rotate<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/jmapeventzoomparams.html" class="tsd-kind-icon">JMap<wbr>Event<wbr>Zoom<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/jmapfeatureattributevalues.html" class="tsd-kind-icon">JMap<wbr>Feature<wbr>Attribute<wbr>Values</a>
@@ -431,6 +499,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/jmapselection.html" class="tsd-kind-icon">JMap<wbr>Selection</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/jmapselectionparams.html" class="tsd-kind-icon">JMap<wbr>Selection<wbr>Params</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/jmouseovercontent.html" class="tsd-kind-icon">JMouse<wbr>Over<wbr>Content</a>
@@ -487,6 +558,9 @@
 						<a href="globals.html#jformtypes" class="tsd-kind-icon">JForm<wbr>Types</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#jgeometryunit" class="tsd-kind-icon">JGeometry<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#jlayerattributetype" class="tsd-kind-icon">JLayer<wbr>Attribute<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
@@ -505,6 +579,15 @@
 						<a href="globals.html#jlayertree" class="tsd-kind-icon">JLayer<wbr>Tree</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#jline" class="tsd-kind-icon">JLine</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#jmapposition" class="tsd-kind-icon">JMap<wbr>Position</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#joperatingsystem" class="tsd-kind-icon">JOperating<wbr>System</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#jpoint" class="tsd-kind-icon">JPoint</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
@@ -512,9 +595,6 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-is-not-exported">
 						<a href="globals.html#layer_geometry" class="tsd-kind-icon">LAYER_<wbr>GEOMETRY</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-is-not-exported">
-						<a href="globals.html#map_implementation" class="tsd-kind-icon">MAP_<wbr>IMPLEMENTATION</a>
 					</li>
 				</ul>
 			</nav>
@@ -533,6 +613,7 @@
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>

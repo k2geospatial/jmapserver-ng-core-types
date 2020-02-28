@@ -95,8 +95,18 @@
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#mouseleave" class="tsd-kind-icon">mouse<wbr>Leave</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#mousemove" class="tsd-kind-icon">mouse<wbr>Move</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#mousemoveonlayer" class="tsd-kind-icon">mouse<wbr>Move<wbr>OnLayer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#move" class="tsd-kind-icon">move</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#moveend" class="tsd-kind-icon">move<wbr>End</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#movestart" class="tsd-kind-icon">move<wbr>Start</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#pitch" class="tsd-kind-icon">pitch</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#pitchend" class="tsd-kind-icon">pitch<wbr>End</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#pitchstart" class="tsd-kind-icon">pitch<wbr>Start</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#rotate" class="tsd-kind-icon">rotate</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#rotatestart" class="tsd-kind-icon">rotate<wbr>Start</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#rotatestop" class="tsd-kind-icon">rotate<wbr>Stop</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#zoom" class="tsd-kind-icon">zoom</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#zoomstart" class="tsd-kind-icon">zoom<wbr>Start</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-not-exported"><a href="jmap.event.map.on.html#zoomstop" class="tsd-kind-icon">zoom<wbr>Stop</a></li>
 							</ul>
 						</section>
 					</div>
@@ -114,7 +124,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/f9867b5/public/api.d.ts#L2847">api.d.ts:2847</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3549">api.d.ts:3549</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -132,7 +142,7 @@ JMap.Event.Map.on.click(
      <span class="hljs-keyword">const</span> location = args.location
      <span class="hljs-built_in">console</span>.log(
          <span class="hljs-string">`The mouse has been clicked at { x="<span class="hljs-subst">${location.x}</span>, y="<span class="hljs-subst">${location.y}</span>" }"`</span>,
-         args.map, args.mapEvent <span class="hljs-comment">// mapEvent is the map implementation event</span>
+         args.map, args.mapEvent <span class="hljs-comment">// mapEvent is the Mapbox event</span>
      )
    }
 )</code></pre>
@@ -186,7 +196,7 @@ JMap.Event.Map.on.click(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/f9867b5/public/api.d.ts#L2676">api.d.ts:2676</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3357">api.d.ts:3357</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -246,7 +256,7 @@ JMap.Event.Map.on.mapDestroy(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/f9867b5/public/api.d.ts#L2658">api.d.ts:2658</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3339">api.d.ts:3339</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -261,8 +271,7 @@ JMap.Event.Map.on.mapDestroy(
 JMap.Event.Map.on.mapLoad(
    <span class="hljs-string">"custom-map-load"</span>,
    <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
-     <span class="hljs-comment">// implementation is "MapBox" or "OpenLayers"</span>
-     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Instance of map "<span class="hljs-subst">${args.implementation}</span>" ready`</span>, args.map)
+     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The map is ready, map instance = `</span>, args.map)
    }
 )</code></pre>
 									</dd>
@@ -284,14 +293,14 @@ JMap.Event.Map.on.mapLoad(
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventimplementationparams.html" class="tsd-signature-type">JMapEventImplementationParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventloadedparams.html" class="tsd-signature-type">JMapEventLoadedParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
 													<h4 class="tsd-parameters-title">Parameters</h4>
 													<ul class="tsd-parameters">
 														<li>
-															<h5>params: <a href="../interfaces/jmapeventimplementationparams.html" class="tsd-signature-type">JMapEventImplementationParams</a></h5>
+															<h5>params: <a href="../interfaces/jmapeventloadedparams.html" class="tsd-signature-type">JMapEventLoadedParams</a></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -315,7 +324,7 @@ JMap.Event.Map.on.mapLoad(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/f9867b5/public/api.d.ts#L2799">api.d.ts:2799</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3501">api.d.ts:3501</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -335,7 +344,7 @@ JMap.Event.Map.on.mousemouseEnterMoveOnLayer(
    <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
      <span class="hljs-built_in">console</span>.log(
          <span class="hljs-string">`The mouse entered an element of layer id="<span class="hljs-subst">${args.layerId}</span>"`</span>,
-         args.map, args.mapEvent <span class="hljs-comment">// mapEvent is the map implementation event</span>
+         args.map, args.mapEvent <span class="hljs-comment">// mapEvent is the Mapbox event</span>
      )
      <span class="hljs-built_in">console</span>.log(
        <span class="hljs-string">`The mouse cursor is over <span class="hljs-subst">${args.features.length}</span> features`</span>,
@@ -393,7 +402,7 @@ JMap.Event.Map.on.mousemouseEnterMoveOnLayer(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/f9867b5/public/api.d.ts#L2823">api.d.ts:2823</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3525">api.d.ts:3525</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -411,7 +420,7 @@ JMap.Event.Map.on.mouseLeave(
    <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
      <span class="hljs-built_in">console</span>.log(
          <span class="hljs-string">`The mouse leaved the layer id="<span class="hljs-subst">${args.layerId}</span>"`</span>, args.location,
-         args.map, args.mapEvent <span class="hljs-comment">// mapEvent is the map implementation event</span>
+         args.map, args.mapEvent <span class="hljs-comment">// mapEvent is the Mapbox event</span>
      )
    }
 )</code></pre>
@@ -465,7 +474,7 @@ JMap.Event.Map.on.mouseLeave(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/f9867b5/public/api.d.ts#L2741">api.d.ts:2741</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3443">api.d.ts:3443</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -482,7 +491,7 @@ JMap.Event.Map.on.mouseMove(
    <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
      <span class="hljs-built_in">console</span>.log(
          <span class="hljs-string">`The mouse is moving on layer id="<span class="hljs-subst">${args.layerId}</span>"`</span>, map.location,
-         args.map, args.mapEvent <span class="hljs-comment">// mapEvent is the map implementation event</span>
+         args.map, args.mapEvent <span class="hljs-comment">// mapEvent is the Mapbox event</span>
      )
    }
 )</code></pre>
@@ -536,7 +545,7 @@ JMap.Event.Map.on.mouseMove(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/f9867b5/public/api.d.ts#L2768">api.d.ts:2768</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3470">api.d.ts:3470</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -553,7 +562,7 @@ JMap.Event.Map.on.mouseMoveOnLayer(
    <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
      <span class="hljs-built_in">console</span>.log(
          <span class="hljs-string">`The mouse is moving on layer id="<span class="hljs-subst">${args.layerId}</span>"`</span>,
-         args.map, args.mapEvent <span class="hljs-comment">// the mapEvent is the map implementation event</span>
+         args.map, args.mapEvent <span class="hljs-comment">// the mapEvent is the Mapbox event</span>
      )
      <span class="hljs-built_in">console</span>.log(
        <span class="hljs-string">`The mouse cursor is over <span class="hljs-subst">${args.features.length}</span> features`</span>,
@@ -602,6 +611,75 @@ JMap.Event.Map.on.mouseMoveOnLayer(
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="move" class="tsd-anchor"></a>
+					<h3>move</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">move<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3399">api.d.ts:3399</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.move</em></strong></p>
+								</div>
+								<p>This event is triggered when the map is moving (when user or API pan the map).</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// Will map is moving, will display a message in the console</span>
+JMap.Event.Map.on.move(
+   <span class="hljs-string">"custom-map-move"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
+     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The map is moving`</span>, args.map, args.mapEvent)
+     <span class="hljs-comment">// mapEvent is the Mapbox event</span>
+   }
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventparams.html" class="tsd-signature-type">JMapEventParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventparams.html" class="tsd-signature-type">JMapEventParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 					<a name="moveend" class="tsd-anchor"></a>
 					<h3>move<wbr>End</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
@@ -611,12 +689,12 @@ JMap.Event.Map.on.mouseMoveOnLayer(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/f9867b5/public/api.d.ts#L2718">api.d.ts:2718</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3420">api.d.ts:3420</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p><strong><em>JMap.Event.Map.on.moveStart</em></strong></p>
+									<p><strong><em>JMap.Event.Map.on.moveEnd</em></strong></p>
 								</div>
 								<p>This event is triggered when the map end moving (when user or API pan the map).</p>
 								<dl class="tsd-comment-tags">
@@ -627,7 +705,7 @@ JMap.Event.Map.on.moveEnd(
    <span class="hljs-string">"custom-map-move-end"</span>,
    <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The map stop moving`</span>, args.map, args.mapEvent)
-     <span class="hljs-comment">// mapEvent is the map implementation event</span>
+     <span class="hljs-comment">// mapEvent is the Mapbox event</span>
    }
 )</code></pre>
 									</dd>
@@ -680,7 +758,7 @@ JMap.Event.Map.on.moveEnd(
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/f9867b5/public/api.d.ts#L2697">api.d.ts:2697</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3378">api.d.ts:3378</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -696,7 +774,7 @@ JMap.Event.Map.on.moveStart(
    <span class="hljs-string">"custom-map-move-start"</span>,
    <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> {
      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The map start moving`</span>, args.map, args.mapEvent)
-     <span class="hljs-comment">// mapEvent is the map implementation event</span>
+     <span class="hljs-comment">// mapEvent is the Mapbox event</span>
    }
 )</code></pre>
 									</dd>
@@ -726,6 +804,600 @@ JMap.Event.Map.on.moveStart(
 													<ul class="tsd-parameters">
 														<li>
 															<h5>params: <a href="../interfaces/jmapeventparams.html" class="tsd-signature-type">JMapEventParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="pitch" class="tsd-anchor"></a>
+					<h3>pitch</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">pitch<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3693">api.d.ts:3693</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.pitch</em></strong></p>
+								</div>
+								<p>This event is triggered when pitch on the map start.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// When the map is pitching, it will display a message in the console</span>
+JMap.Event.Map.on.pitch(
+   <span class="hljs-string">"custom-map-pitch"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The map is pitching (pitch="<span class="hljs-subst">${args.pitch}</span>)")`</span>
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventpitchparams.html" class="tsd-signature-type">JMapEventPitchParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventpitchparams.html" class="tsd-signature-type">JMapEventPitchParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="pitchend" class="tsd-anchor"></a>
+					<h3>pitch<wbr>End</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">pitch<wbr>End<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3711">api.d.ts:3711</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.pitchEnd</em></strong></p>
+								</div>
+								<p>This event is triggered when pitch on the map end.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// When the pitch on the map end, it will display a message in the console</span>
+JMap.Event.Map.on.pitch(
+   <span class="hljs-string">"custom-map-pitch-end"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The map is pitching (pitch="<span class="hljs-subst">${args.pitch}</span>)")`</span>
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventpitchparams.html" class="tsd-signature-type">JMapEventPitchParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventpitchparams.html" class="tsd-signature-type">JMapEventPitchParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="pitchstart" class="tsd-anchor"></a>
+					<h3>pitch<wbr>Start</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">pitch<wbr>Start<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3675">api.d.ts:3675</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.pitchStart</em></strong></p>
+								</div>
+								<p>This event is triggered when pitch on the map start.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// When the pitch of the map start, it will display a message in the console</span>
+JMap.Event.Map.on.pitchStart(
+   <span class="hljs-string">"custom-map-pitch-start"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The pitch is starting (pitch="<span class="hljs-subst">${args.pitch}</span>)")`</span>
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventpitchparams.html" class="tsd-signature-type">JMapEventPitchParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventpitchparams.html" class="tsd-signature-type">JMapEventPitchParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="rotate" class="tsd-anchor"></a>
+					<h3>rotate</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">rotate<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3639">api.d.ts:3639</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.rotate</em></strong></p>
+								</div>
+								<p>This event is triggered when the map is rotating</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// When the rotation of the map change, it will display a message in the console</span>
+JMap.Event.Map.on.rotate(
+   <span class="hljs-string">"custom-map-rotate"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The rotation has changed (rotation="<span class="hljs-subst">${args.bearing}</span>)")`</span>
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventrotateparams.html" class="tsd-signature-type">JMapEventRotateParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventrotateparams.html" class="tsd-signature-type">JMapEventRotateParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="rotatestart" class="tsd-anchor"></a>
+					<h3>rotate<wbr>Start</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">rotate<wbr>Start<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3621">api.d.ts:3621</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.rotateStart</em></strong></p>
+								</div>
+								<p>This event is triggered when rotation on the map start.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// When the rotation of the map start, it will display a message in the console</span>
+JMap.Event.Map.on.rotateStart(
+   <span class="hljs-string">"custom-map-rotate-start"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The rotation is starting (rotation="<span class="hljs-subst">${args.bearing}</span>)")`</span>
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventrotateparams.html" class="tsd-signature-type">JMapEventRotateParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventrotateparams.html" class="tsd-signature-type">JMapEventRotateParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="rotatestop" class="tsd-anchor"></a>
+					<h3>rotate<wbr>Stop</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">rotate<wbr>Stop<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3657">api.d.ts:3657</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.rotateStop</em></strong></p>
+								</div>
+								<p>This event is triggered when rotation on the map stop.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// When the rotation of the map stop, it will display a message in the console</span>
+JMap.Event.Map.on.rotateStop(
+   <span class="hljs-string">"custom-map-rotate-stop"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The rotation is finished (rotation="<span class="hljs-subst">${args.bearing}</span>)")`</span>
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventrotateparams.html" class="tsd-signature-type">JMapEventRotateParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventrotateparams.html" class="tsd-signature-type">JMapEventRotateParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="zoom" class="tsd-anchor"></a>
+					<h3>zoom</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">zoom<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3585">api.d.ts:3585</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.zoom</em></strong></p>
+								</div>
+								<p>This event is triggered when zooming on map</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// When the map zoom change, it will display a message in the console</span>
+JMap.Event.Map.on.zoom(
+   <span class="hljs-string">"custom-map-zoom"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The map zoom changed (zoom="<span class="hljs-subst">${args.zoom}</span>")`</span>)
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventzoomparams.html" class="tsd-signature-type">JMapEventZoomParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventzoomparams.html" class="tsd-signature-type">JMapEventZoomParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="zoomstart" class="tsd-anchor"></a>
+					<h3>zoom<wbr>Start</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">zoom<wbr>Start<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3567">api.d.ts:3567</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.zoomStart</em></strong></p>
+								</div>
+								<p>This event is triggered when zoom start.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// When the map zoom start, it will display a message in the console</span>
+JMap.Event.Map.on.zoomStart(
+   <span class="hljs-string">"custom-map-zoom-start"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The zoom is starting (zoom="<span class="hljs-subst">${args.zoom}</span>")`</span>)
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventzoomparams.html" class="tsd-signature-type">JMapEventZoomParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventzoomparams.html" class="tsd-signature-type">JMapEventZoomParams</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+					<a name="zoomstop" class="tsd-anchor"></a>
+					<h3>zoom<wbr>Stop</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">zoom<wbr>Stop<span class="tsd-signature-symbol">(</span>listenerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, fn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-api-ng/blob/eea043f/public/api.d.ts#L3603">api.d.ts:3603</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p><strong><em>JMap.Event.Map.on.zoomStop</em></strong></p>
+								</div>
+								<p>This event is triggered when zoom start.</p>
+								<dl class="tsd-comment-tags">
+									<dt>example</dt>
+									<dd><pre><code class="language-ts">
+<span class="hljs-comment">// When the map zoom stop, it will display a message in the console</span>
+JMap.Event.Map.on.zoomStop(
+   <span class="hljs-string">"custom-map-zoom-stop"</span>,
+   <span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The zoom is finished (zoom="<span class="hljs-subst">${args.zoom}</span>")`</span>)
+)</code></pre>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listenerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener id (must be unique for all map events)</p>
+									</div>
+								</li>
+								<li>
+									<h5>fn: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Your listener function</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><a href="../interfaces/jmapeventzoomparams.html" class="tsd-signature-type">JMapEventZoomParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>params: <a href="../interfaces/jmapeventzoomparams.html" class="tsd-signature-type">JMapEventZoomParams</a></h5>
 														</li>
 													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -812,10 +1484,40 @@ JMap.Event.Map.on.moveStart(
 						<a href="jmap.event.map.on.html#mousemoveonlayer" class="tsd-kind-icon">mouse<wbr>Move<wbr>OnLayer</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#move" class="tsd-kind-icon">move</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.event.map.on.html#moveend" class="tsd-kind-icon">move<wbr>End</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
 						<a href="jmap.event.map.on.html#movestart" class="tsd-kind-icon">move<wbr>Start</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#pitch" class="tsd-kind-icon">pitch</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#pitchend" class="tsd-kind-icon">pitch<wbr>End</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#pitchstart" class="tsd-kind-icon">pitch<wbr>Start</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#rotate" class="tsd-kind-icon">rotate</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#rotatestart" class="tsd-kind-icon">rotate<wbr>Start</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#rotatestop" class="tsd-kind-icon">rotate<wbr>Stop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#zoom" class="tsd-kind-icon">zoom</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#zoomstart" class="tsd-kind-icon">zoom<wbr>Start</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
+						<a href="jmap.event.map.on.html#zoomstop" class="tsd-kind-icon">zoom<wbr>Stop</a>
 					</li>
 				</ul>
 			</nav>
@@ -834,6 +1536,7 @@ JMap.Event.Map.on.moveStart(
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
 				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
 				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
