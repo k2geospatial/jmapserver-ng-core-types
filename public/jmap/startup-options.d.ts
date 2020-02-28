@@ -123,7 +123,7 @@ declare interface JAPIOptions {
    */
   projectId?: number
   /**
-   * The JMap server Rest API url.
+   * The JMap Server Rest API url.
    * 
    * Default value is : http://localhost:8080/services/rest/v2.0 (for test only).
    * 
@@ -146,7 +146,7 @@ declare interface JAPIOptions {
    */
   restBaseUrl?: string
   /**
-   * You can tell the API to never lost the session after a user inactivity.
+   * You can tell the API to never close the session after a user inactivity.
    * For that the JS API will ping the server every 5 minutes if no activity
    * is done in order to keep the session alive.
    * 
@@ -182,7 +182,7 @@ declare interface JAPIOptions {
    *       window.JMAP_API_OPTIONS = {
    *         // a valid project id
    *         projectId: 10,
-   *         // a valid JMap server Rest url
+   *         // a valid JMap Server Rest url
    *         restBaseUrl: "http://my-jmap-server/services/rest/v2.0",
    *         // The anonymous parameter
    *         anonymous: true
@@ -204,7 +204,7 @@ declare interface JAPIOptions {
    * If you don't use the api logged as an anonymous user (see the ***anonymous*** parameter in this section),
    * you must provide the JMap session id to the JMap library.
    *
-   * To get a session id and the user informations, you can use the JMap Rest API on your JMap server. By exemple if your server url is "https://my-jmap-server/", With the [curl tool](https://curl.haxx.se/docs/) you can get for the user "jdo@company.com" a token like that (adapt the username and password ...) :
+   * To get a session id and the user informations, you can use the JMap Rest API on your JMap Server. By exemple if your server url is "https://my-jmap-server/", With the [curl tool](https://curl.haxx.se/docs/) you can get for the user "jdo@company.com" a token like that (adapt the username and password ...) :
    * ```sh
    * curl -X POST "https://my-jmap-server/services/rest/v2.0/session" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"username\": \"jdo@company.com\", \"password\": \"xxx\", \"type\": \"WEB\"}"
    * ```
@@ -324,13 +324,13 @@ declare interface JAPIMapOptions {
    */
   containerId?: string
   /**
-   * If a mapbox token is set through the JMap Admin server interface,
+   * If a mapbox token is set through the JMap Admin interface,
    * the API will use it automatically, nothing else to do for you.
    * 
-   * The Mapbox token is by JMap in order to fully used Mapbox capabilities
-   * like displaying a nice base map by example.
+   * The Mapbox token is used by JMap in order to fully use Mapbox capabilities
+   * like displaying a mapbox base maps.
    * 
-   * But if no token is set in the JMap administration, or if you want to use
+   * But if no token is set in JMap Admin, or if you want to use
    * the mapbox token of your choice, you have to set the "***mapboxToken***" parameter :
    * 
    * ```html
