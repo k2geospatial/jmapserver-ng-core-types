@@ -873,9 +873,9 @@ declare namespace JMap {
       /**
        * **JMap.Service.Geometry.getCentroid**
        * 
-       * Returns a point feature representing the centroid of the provided feature.
+       * Returns a point feature representing the centroid of the provided feature or featureCollection.
        * 
-       * @param feature The feature
+       * @param feature a feature or a feature collection
        * @example ```ts
        * 
        * const polygonFeature = ...
@@ -945,6 +945,21 @@ declare namespace JMap {
        * ```
        */
       function getBboxFromFeature(feature: any): JBoundaryBox
+
+      /**
+       * **JMap.Service.Geometry.getBboxFromFeatures**
+       * 
+       * Return the boundary box that contains all features
+       * 
+       * @param features array of features
+       * @example ```ts
+       *
+       * const features = ...
+       * // return the features bbox
+       * const distance = JMap.Service.Geometry.getBboxFromFeatures(features)
+       * ```
+       */
+      function getBboxFromFeatures(features: any[]): JBoundaryBox
       
       /**
        * **JMap.Service.Geometry.getBboxFromPolygon**
@@ -1041,6 +1056,92 @@ declare namespace JMap {
        * ```
        */
       function lineIntersect(lineFeature: any, otherFeature: any): boolean
+
+      /**
+       * **JMap.Service.Geometry.getDistance**
+       * 
+       * Returns the distance in kilometers between 2 points.
+       * 
+       * @param p1 the first point
+       * @param p2 The second point
+       * @example ```ts
+       * 
+       * // returns the distance between the 2 points
+       * const distance = JMap.Service.Geometry.getDistance([ 10, 20 ], [ 30, 30 ])
+       * 
+       * // returns the distance between the 2 points
+       * const distance = JMap.Service.Geometry.getDistance({ x: 10, y: 20 }, { x: 30, y: 30 })
+       * ```
+       */
+      function getDistance(p1: number[] | JLocation, p2: number[] | JLocation): number
+
+      /**
+       * **JMap.Service.Geometry.getLineLength**
+       * 
+       * Returns the length in kilometers of the line.
+       * 
+       * @param lineStringFeature the line string feature
+       * @example ```ts
+       * 
+       * // returns the line length in KM
+       * const lineStringFeature = ...
+       * const distance = JMap.Service.Geometry.getLineLength(lineStringFeature)
+       * ```
+       */
+      function getLineLength(lineStringFeature: any): number
+
+      /**
+       * **JMap.Service.Geometry.getFeatureCollection**
+       * 
+       * Returns a feature collection.
+       * 
+       * @param features could be a turf feature or a JMap location
+       * @example ```ts
+       * 
+       * // returns the feature collection for the 2 points
+       * const distance = JMap.Service.Geometry.getFeatureCollection([ { x: 10, y: 20 }, { x: 30, y: 30 } ])
+       * ```
+       */
+      function getFeatureCollection(features: any[]): any
+
+      /**
+       * **JMap.Service.Geometry.getCircleFeature**
+       * 
+       * Returns a polygon feature equivalent to the circle.
+       * 
+       * @param center Location of circle's center
+       * @param radius The radius in KM
+       * @example ```ts
+       * 
+       * // returns the circle feature
+       * const circle = JMap.Service.Geometry.getCircleFeature([ 10, 20 ], 1.4)
+       * 
+       * // returns the circle feature
+       * const circle = JMap.Service.Geometry.getCircleFeature({ x: 10, y: 20 }, 1.4)
+       * ```
+       */
+      function getCircleFeature(center: number[] | JLocation, radius: number): any
+
+      /**
+       * **JMap.Service.Geometry.getPolygonFeature**
+       * 
+       * Returns a polygon feature from coordinates.
+       * 
+       * If the coordinates are not closed the method will close it automatically.
+       * 
+       * @param coordinates the polygon coordinates (closed or not closed)
+       * @param closeCoordinates if true will close the coordinates (if needed)
+       * @example ```ts
+       * 
+       * // will close the coordinates of the polygon and returns the feature
+       * const distance = JMap.Service.Geometry.getPolygonFeature([
+       *    { x: 10, y: 20 },
+       *    { x: 30, y: 30 },
+       *    { x: 10, y: 60 }
+       * ])
+       * ```
+       */
+      function getPolygonFeature(coordinates: [number, number][], closeCoordinates?: boolean): any
     }
 
     /**

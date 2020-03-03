@@ -1,6 +1,5 @@
 import { Store } from "redux"
-import { Feature } from "geojson"
-import { Point, LineString, Polygon, Feature as TurfFeature } from "@turf/turf"
+import { Point, LineString, Polygon, Feature, FeatureCollection } from "geojson"
 
 // API
 export interface JAPI {
@@ -190,19 +189,24 @@ export interface JGeometryService {
   checkPolygon(polygon: JPolygon): void
   checkLine(line: JLine): void
   checkBbox(bbox: JBoundaryBox): void
-  getArea(feature: TurfFeature): number
-  getLineLength(feature: TurfFeature, units?: JGeometryUnit): number
-  getCentroid(feature: TurfFeature): TurfFeature<Point>
-  getFeatureFromLine(line: JLine): TurfFeature<LineString>
-  getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): TurfFeature<Polygon>
-  getFeatureFromPolygon(polygon: JPolygon): TurfFeature<Polygon>
-  getBboxFromFeature(polygon: TurfFeature): JBoundaryBox
+  getArea(feature: Feature): number
+  getLineLength(feature: Feature, units?: JGeometryUnit): number
+  getCentroid(feature: Feature | FeatureCollection): Feature<Point>
+  getFeatureFromLine(line: JLine): Feature<LineString>
+  getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): Feature<Polygon>
+  getFeatureFromPolygon(polygon: JPolygon): Feature<Polygon>
+  getBboxFromFeature(polygon: Feature): JBoundaryBox
+  getBboxFromFeatures(features: Feature[]): JBoundaryBox
   getBboxFromPolygon(polygon: JPolygon): JBoundaryBox
   getBboxFromLine(line: JLine): JBoundaryBox
   getPolygonFeatureFromBbox(boundaryBox: JBoundaryBox): Polygon
   bboxIntersect(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
-  polygonIntersect(feature1: TurfFeature<Polygon>, feature2: TurfFeature): boolean
-  lineIntersect(feature1: TurfFeature<LineString>, feature2: TurfFeature): boolean
+  polygonIntersect(feature1: Feature<Polygon>, feature2: Feature): boolean
+  lineIntersect(feature1: Feature<LineString>, feature2: Feature): boolean
+  getDistance(p1: number[] | JLocation, p2: number[] | JLocation): number // in km
+  getFeatureCollection(features: Feature[] | JLocation[] | Array<[number, number]>): FeatureCollection
+  getCircleFeature(center: number[] | JLocation, radius: number): Feature<Polygon> // radius in km
+  getPolygonFeature(coordinates: Array<[number, number]>, closeCoordinates?: boolean): Feature<Polygon>
 }
 
 // API SERVICE -> MAP
