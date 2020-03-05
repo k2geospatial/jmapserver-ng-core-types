@@ -236,8 +236,8 @@ export interface JMapService {
   getInUseJMapLayerBefore(layerId: number): number | undefined
   getInUseJMapLayerAfter(layerId: number): number | undefined
   getRenderedJMapLayerIds(): number[]
-  getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): Feature[]
-  getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox): JMapFeatureAttributeValues[]
+  getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): Feature[]
+  getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
   getAvailableBaseMaps(): string[]
   getPitch(): number
   getBearing(): number

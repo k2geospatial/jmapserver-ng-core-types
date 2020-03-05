@@ -1513,7 +1513,7 @@ declare namespace JMap {
        * @throws Error if layer is not found
        * @throws Error if no or incorrect filter is passed
        * @param layerId The JMap layer id
-       * @param filter You can pass a location or a boundary box to get only the features that intersect it
+       * @param filter You can pass a location, a boundary box, or a circle (radius in km). Will returns only features that intersect.
        * @return A features array
        * @example ```ts
        * 
@@ -1523,7 +1523,10 @@ declare namespace JMap {
        * // Returns all rendered geojson features for layer 4 at location x=45.54 and y=65.43
        * JMap.Service.Map.getRenderedFeatures(4, { x: 45.54, y: 65.43 })
        * 
-       * // Returns all rendered geojson features for layer 4 that intersect the boundary box
+       * // Returns all rendered geojson features for layer 4, that intersect the circle (radius in km)
+       * JMap.Service.Map.getRenderedFeatures(4, { center: { x: 45.54, y: 65.43 }, radius: .5 })
+       * 
+       * // Returns all rendered geojson features for layer 4, that intersect the boundary box
        * // having south-west { x=45.54 and y=65.43 } and north-est { x=48.54 and y=70.43 }
        * JMap.Service.Map.getRenderedFeatures(4, {
        *  sw: { x: 45.54, y: 65.43 },
@@ -1531,7 +1534,7 @@ declare namespace JMap {
        * })
        * ```
        */
-      function getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox): any[]
+      function getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): any[]
       
       /**
        * **JMap.Service.Map.getRenderedFeaturesAttributeValues**
@@ -1544,17 +1547,20 @@ declare namespace JMap {
        * @throws Error if layer is not found
        * @throws Error if no or incorrect filter is passed
        * @param layerId The JMap layer id
-       * @param filter You can pass a location or a boundary box to get only the features that intersect it
+       * @param filter You can pass a location, a boundary box, or a circle (radius in km). Will returns only features that intersect.
        * @return An object array
        * @example ```ts
        * 
-       * // Will returns all features attributes for layer 4
+       * // returns all features attributes for layer 4
        * JMap.Service.Map.getRenderedFeaturesAttributeValues(4)
        * 
-       * // Will returns all features attributes for layer 4, that intersect the location
+       * // returns all features attributes for layer 4, that intersect the location
        * JMap.Service.Map.getRenderedFeaturesAttributeValues(4, { x: 45.54, y: 65.43 })
        * 
-       * // Will returns all features attributes for layer 4, that intersect the boundary box
+       * // returns all features attributes for layer 4, that intersect the circle (radius in km)
+       * JMap.Service.Map.getRenderedFeaturesAttributeValues(4, { center: { x: 45.54, y: 65.43 }, radius: .5 })
+       * 
+       * // returns all features attributes for layer 4, that intersect the boundary box
        * JMap.Service.Map.getRenderedFeaturesAttributeValues(4, { sw: { x: 45.54, y: 65.43 }, ne: { x: 48.54, y: 70.43 }})
        * 
        * // Example of result for features that have only 2 attributes "Firestation" and "Nursery" :
@@ -1564,7 +1570,7 @@ declare namespace JMap {
        * ]
        * ```
        */
-      function getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox): JMapFeatureAttributeValues[]
+      function getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
       
       /**
        * **JMap.Service.Map.getAvailableBaseMaps**
