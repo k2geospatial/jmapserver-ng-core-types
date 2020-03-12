@@ -172,7 +172,7 @@ export interface JAPIService {
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
 
 export interface JHistoryService {
-  transformSearchParamsIntoHashParams(): void
+  transformSearchParamsIntoHashParams(paramNames?: string[]): void
   goBack(): void
   goForward(): void
   getHashParameter(parameterName: string): string
@@ -185,10 +185,12 @@ export interface JHistoryService {
 
 export interface JGeometryService {
   checkLocation(location: JLocation): void
+  isValidLocation(location: JLocation | undefined): boolean
   checkCircle(circle: JCircle): void
   checkPolygon(polygon: JPolygon): void
   checkLine(line: JLine): void
   checkBbox(bbox: JBoundaryBox): void
+  isValidBbox(bbox: JBoundaryBox | undefined): boolean
   getArea(feature: Feature): number
   getLineLength(feature: Feature, units?: JGeometryUnit): number
   getCentroid(feature: Feature | FeatureCollection): Feature<Point>

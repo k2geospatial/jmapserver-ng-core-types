@@ -134,6 +134,7 @@ declare namespace JMap {
        * Get all search params in the url and transform them into hash params
        * without refreshing the page.
        * 
+       * @param paramNames list of params to transform, if no params will transform all serach params
        * @example ```ts
        * 
        * // Ex. url is = ***http://localhost:8080/services/jmap?projectId=0&myvar=test***
@@ -143,7 +144,7 @@ declare namespace JMap {
        * // The url is now = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
        * ```
        */
-      function transformSearchParamsIntoHashParams(): void
+      function transformSearchParamsIntoHashParams(paramNames?: string[]): void
       
       /**
        * **JMap.Service.History.goBack**
@@ -752,6 +753,25 @@ declare namespace JMap {
       function checkLocation(location: JLocation): void
 
       /**
+       * **JMap.Service.Geometry.isValidLocation**
+       * 
+       * Return false if the provided parameter is not a valid location.
+       * 
+       * @param location The location object to check
+       * @example ```ts
+       * 
+       * let location = { x: 10, y: 10 }
+       * // The following instruction will return true
+       * JMap.Service.Geometry.isValidLocation(location)
+       * 
+       * location = {} // empty object
+       * // The following instruction will return false
+       * JMap.Service.Geometry.isValidLocation(location)
+       * ```
+       */
+      function isValidLocation(location: JLocation | undefined): boolean
+
+      /**
        * **JMap.Service.Geometry.checkCircle**
        * 
        * Throw an error if the provided parameter is not a valid circle.
@@ -826,6 +846,25 @@ declare namespace JMap {
        * ```
        */
       function checkBbox(bbox: JBoundaryBox): void
+
+      /**
+       * **JMap.Service.Geometry.isValidBbox**
+       * 
+       * Return false if the provided parameter is not a valid boundary box.
+       * 
+       * @param bbox The bbox object to check
+       * @example ```ts
+       * 
+       * let bbox = { sw: { x: 10, y: 10 }, ne: { x: 12, y: 12 } }
+       * // The following instruction will return true
+       * JMap.Service.Geometry.isValidBbox(bbox)
+       * 
+       * bbox = { sw: { x: 10, y: 10 } } // missing "ne" attribute
+       * // The following instruction will return false
+       * JMap.Service.Geometry.isValidBbox(bbox)
+       * ```
+       */
+      function isValidBbox(bbox: JBoundaryBox | undefined): boolean
 
       /**
        * **JMap.Service.Geometry.getArea**

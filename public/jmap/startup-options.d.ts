@@ -123,6 +123,30 @@ declare interface JAPIOptions {
    */
   projectId?: number
   /**
+   * A JMap project name.
+   * 
+   * If the project name is not set, the library will do noting, you will have a blank page.
+   * 
+   * So if you want the library to load the project automatically, you need to set the project name.
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_API_OPTIONS = {
+   *         ...
+   *         // a valid project name
+   *         projectName: "The world"
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+  projectName?: string
+  /**
    * The JMap Server Rest API url.
    * 
    * Default value is : http://localhost:8080/services/rest/v2.0 (for test only).
@@ -294,200 +318,4 @@ declare interface JAPIOptions {
    * Click on [[JAPIMapOptions]] to get details.
    */
   map?: JAPIMapOptions
-}
-
-declare interface JAPIMapOptions {
-  /**
-   * When the API start it will create or use an existing div container in which the map will be inserted into.
-   *
-   * By default the div container id is "***jmap-map***", but you can set the id of your choice like that :
-   * ```html
-   * <html>
-   *   ...
-   *   <body>
-   *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
-   *         ...
-   *         map: {
-   *           containerId: "my-custom-container-id"
-   *         }
-   *       }
-   *     </script>
-   *     <div id="my-custom-container-id"></div>
-   *  </body>
-   * </html>
-   * ```
-   *
-   * In the above example the map will be inserted in the div having "my-custom-container-id" as id. You need to set the width and the height of this div by yourself.
-   * 
-   * If no container is found in the DOM with the specified id, JMap API will create and append it automatically in the body element of the web page.
-   */
-  containerId?: string
-  /**
-   * If a mapbox token is set through the JMap Admin interface,
-   * the API will use it automatically, nothing else to do for you.
-   * 
-   * The Mapbox token is used by JMap in order to fully use Mapbox capabilities
-   * like displaying a mapbox base maps.
-   * 
-   * But if no token is set in JMap Admin, or if you want to use
-   * the mapbox token of your choice, you have to set the "***mapboxToken***" parameter :
-   * 
-   * ```html
-   * <html>
-   *   ...
-   *   <body>
-   *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
-   *         ...
-   *         map: {
-   *           mapboxToken: "dfqwdhjgqdhdh4567sjdvhbh"
-   *         }
-   *       }
-   *     </script>
-   *     ...
-   *   </body>
-   * </html>
-   * ```
-   */
-  mapboxToken?: ""
-  /**
-   * By default the scale control panel it is not visible.
-   * 
-   * But if ***scaleControlVisible*** is true, it will be displayed on the map.
-   * 
-   * ```html
-   * <html>
-   *   ...
-   *   <body>
-   *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
-   *         ...
-   *         map: {
-   *           scaleControlVisible: true,
-   *         }
-   *       }
-   *     </script>
-   *     ...
-   *   </body>
-   * </html>
-   * ```
-   */
-  scaleControlVisible?: boolean
-  /**
-   * You can choose the position of the scale control on the map.
-   * 
-   * Use a value in : "**top-left**", "**top-right**", "**bottom-left**", or "**bottom-right**"
-   * 
-   * ```html
-   * <html>
-   *   ...
-   *   <body>
-   *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
-   *         ...
-   *         map: {
-   *           scaleControlPosition: "bottom-right"
-   *         }
-   *       }
-   *     </script>
-   *     ...
-   *   </body>
-   * </html>
-   * ```
-   */
-  scaleControlPosition?: JMapPosition
-  /**
-   * This is the unit in which the scale control panel will display the data.
-   * 
-   * ```html
-   * <html>
-   *   ...
-   *   <body>
-   *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
-   *         ...
-   *         map: {
-   *           scaleControlUnit: "imperial"
-   *         }
-   *       }
-   *     </script>
-   *     ...
-   *   </body>
-   * </html>
-   * ```
-   */
-  scaleControlUnit?: "imperial" | "metric" | "nautical"
-  /**
-   * You can set the location of the center of the map by setting the ***center*** parameter. By exemple if you want to center the map on the city of Ottawa :
-   * 
-   * ```html
-   * <html>
-   *   ...
-   *   <body>
-   *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
-   *         ...
-   *         map: {
-   *           center: {
-   *             x: -75.6981200,
-   *             y: 45.4111700
-   *           }
-   *         }
-   *       }
-   *     </script>
-   *     ...
-   *   </body>
-   * </html>
-   * ```
-   */
-  center?: JLocation
-  /**
-   * You can zoom to a custom level by setting the "***zoom***" variable. Here an example :
-   * 
-   * ```html
-   * <html>
-   *   ...
-   *   <body>
-   *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
-   *         ...
-   *         map: {
-   *           zoom: 4.32
-   *         }
-   *       }
-   *     </script>
-   *     ...
-   *   </body>
-   * </html>
-   * ```
-   */
-  zoom?: number
-  /**
-   * You can execute a custom piece of code at runtime, after the map is ready,
-   * and only one time at JMap Js API startup.
-   * 
-   * For that you have to set the "***onStartupMapReadyFn***" parameter which is a function.
-   * Here an example that will display a message "Hello the map is ready !" in the console :
-   * 
-   * ```html
-   * <html>
-   *   ...
-   *   <body>
-   *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
-   *         ...
-   *         map: {
-   *           onStartupMapReadyFn: map => {
-   *             console.log("Hello the map is ready !", map)
-   *           }
-   *         }
-   *       }
-   *     </script>
-   *     ...
-   *   </body>
-   * </html>
-   * ```
-   */
-  onStartupMapReadyFn?: (map: any) => {}
 }

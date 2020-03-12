@@ -30,6 +30,7 @@ const DOC_ROOT_DIR = join(__dirname, '../docs')
 const SRC_DIR = join(ROOT_DIR, '/src/public')
 const packageJSON = JSON.parse(fs.readFileSync("../package.json"))
 const newNpmVersion = packageJSON.version
+const DOC_LATEST_DIR = join(ROOT_DIR, "./docs/latest")
 const DOC_DIR = process.env.DOC_DIR ? join(ROOT_DIR, process.env.DOC_DIR) : join(DOC_ROOT_DIR, `v${newNpmVersion}`)
 
 console.log('Directories :')
@@ -63,6 +64,14 @@ gulp.task('copy', cb => {
   gulp.src([ join(ROOT_DIR, 'index.ts') ])
       .pipe(gulp.dest(join(process.env.COPY_DIR, "shared/node_modules/jmap-api-ng")))
 
+  cb()
+})
+
+gulp.task('copy-latest', cb => {
+  if (!DOC_DIR.endsWith('latest')) {
+    gulp.src([ join(DOC_DIR, '/**/*') ])
+      .pipe(gulp.dest(DOC_LATEST_DIR))
+  }
   cb()
 })
 
@@ -115,7 +124,7 @@ gulp.task("typedoc", cb => {
 /********************************** PUBLIC TASKS **********************************/
 
 // Use it when you only want to modify the doc (but not publish)
-gulp.task('commit-doc', gulp.series('typedoc', 'commit'))
+gulp.task('commit-doc', gulp.series('typedoc', 'copy-latest', 'commit'))
 
 // Main task
 gulp.task('publish', gulp.series('commit-doc', 'publish-npm'))
