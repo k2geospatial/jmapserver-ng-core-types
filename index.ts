@@ -137,6 +137,7 @@ export interface JMapState {
 
 // API DATA -> PROJECT
 export interface JProjectState {
+  isLoading: boolean
   allProjects: JProject[]
   selectedProject: JProject
 }

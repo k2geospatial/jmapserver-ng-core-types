@@ -67,12 +67,9 @@ gulp.task('copy', cb => {
   cb()
 })
 
-gulp.task('copy-latest', cb => {
-  if (!DOC_DIR.endsWith('latest')) {
-    gulp.src([ join(DOC_DIR, '/**/*') ])
+gulp.task('copy-latest', () => {
+  return gulp.src([ join(DOC_DIR, '/**/*') ])
       .pipe(gulp.dest(DOC_LATEST_DIR))
-  }
-  cb()
 })
 
 /************************************* PUBLISH ************************************/

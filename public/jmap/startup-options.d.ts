@@ -101,7 +101,9 @@ declare interface JAPIOptions {
   /**
    * The JMap project id.
    * 
-   * If the project id is not set, the library will do noting, you will have a blank page.
+   * If both a project id and a project name are provided, project id will be used.
+   * 
+   * If no project name or id are set, the library will do noting, you will have a blank page.
    * 
    * So if you want the library to load the project automatically, you need to set the project id.
    * 
@@ -122,12 +124,17 @@ declare interface JAPIOptions {
    * ```
    */
   projectId?: number
+
   /**
    * A JMap project name.
    * 
-   * If the project name is not set, the library will do noting, you will have a blank page.
+   * If you can prefer using the project id over the name.
    * 
-   * So if you want the library to load the project automatically, you need to set the project name.
+   * If both a project id and a project name are provided, project id will be used.
+   * 
+   * If no project name or id are set, the library will do noting, you will have a blank page.
+   * 
+   * So if you want the library to load the project automatically, you need to set the project name (or id).
    * 
    * ```html
    * <html>
@@ -146,6 +153,7 @@ declare interface JAPIOptions {
    * ```
    */
   projectName?: string
+
   /**
    * The JMap Server Rest API url.
    * 
@@ -169,6 +177,7 @@ declare interface JAPIOptions {
    * ```
    */
   restBaseUrl?: string
+
   /**
    * You can tell the API to never close the session after a user inactivity.
    * For that the JS API will ping the server every 5 minutes if no activity
@@ -192,6 +201,7 @@ declare interface JAPIOptions {
    * ```
    */
   noSessionExpiration: boolean
+
   /**
    * If the project you access can be accessed anonymously,
    * you are not forced to pass a session token but you have
@@ -222,8 +232,9 @@ declare interface JAPIOptions {
    * ```
    */
   anonymous?: boolean
+
   /**
-   * The JMap user session data.
+   * The JMap user's session token.
    *
    * If you don't use the api logged as an anonymous user (see the ***anonymous*** parameter in this section),
    * you must provide the JMap session id to the JMap library.
@@ -240,7 +251,6 @@ declare interface JAPIOptions {
    *   "status": "OK",
    *   "result": {
    *     "sessionId": 1246413767,
-   *     "userFullName": "John Do",
    *     ...
    *   }
    * }
@@ -248,22 +258,14 @@ declare interface JAPIOptions {
    * 
    * The library "**token**" is the parameter "**sessionId**" in REST the response.
    * 
-   * The library "**fullName**" is the parameter "**userFullName**" in REST the response.
-   * 
-   * So to start the library you can pass the information like that :
+   * So to start the library using the token you can do like that :
    * ```html
    * <html>
    *   ...
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_API_OPTIONS = {
-   *         session: {
-   *           token: "1246413767"
-   *           user: {
-   *             username: "jdo@company.com",
-   *             fullName: "John Do"
-   *           }
-   *         }
+   *         token: "1246413767"
    *       }
    *     </script>
    *     ...
@@ -311,7 +313,8 @@ declare interface JAPIOptions {
    * ```
    * 
    */
-  session?: JSessionData
+  token?: string
+
   /**
    * All map related options.
    * 

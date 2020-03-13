@@ -22,18 +22,12 @@ declare interface JUserPublicData {
   username: string
   fullName: string
   email: string
-  admin: boolean
 }
 
 declare interface JUserIdentity {
   username: string
   fullName: string
   email: string
-}
-
-declare interface JLoginData {
-  token: string
-  user: JUserPublicData
 }
 
 declare interface JUserState {

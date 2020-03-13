@@ -241,8 +241,8 @@ declare interface JAPIMapOptions {
   extent?: JBoundaryBox
 
   /**
-   * Will search features having the property equals to the value,
-   * and if we have result it will pan and zoom to display on the map :
+   * Will execute a search by attribute on the layer, then pan and zoom to display the result.
+   * Check for features having the property equals to the value.
    * 
    * ```html
    * <html>
