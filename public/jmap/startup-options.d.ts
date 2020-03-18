@@ -8,8 +8,8 @@ declare interface Window {
  * 
  * JMap library executable is available through a CDN url.
  * 
- * The URL is like "https://cdn.jsdelivr.net/npm/jmap-js-core@0.3.5/public/",
- * but it depends on the version you want to use (here version 0.3.5).
+ * The URL is like "https://cdn.jsdelivr.net/npm/jmap-core-js@0.5.0/public/",
+ * but it depends on the version you want to use.
  * 
  * First you need to import our JS file in your http file, in order to load the JMap Core library.
  * It's recommended to put the CDN import at the end of the body tag, like that :
@@ -20,7 +20,7 @@ declare interface Window {
  *   <body>
  *     ...
  *     <!-- !!! Insert the import at the end of the body tag !!! -->
- *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/"></script>
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/"></script>
  *   </body>
  * </html>
  * ```
@@ -49,7 +49,7 @@ declare interface Window {
  *       }
  *     </script>
  *     ... your web page
- *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/"></script>
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/"></script>
  *   </body>
  * </html>
  * ```
@@ -85,7 +85,7 @@ declare interface Window {
  *         }
  *       }
  *     </script>
- *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/index.js">
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/index.js">
  *     </script>
  *   </body>
  * </html>
@@ -226,7 +226,7 @@ declare interface JCoreOptions {
    * 
    *     ... your web page
    *     
-   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/"></script>
+   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/"></script>
    *   </body>
    * </html>
    * ```
@@ -269,7 +269,7 @@ declare interface JCoreOptions {
    *       }
    *     </script>
    *     ...
-   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/"></script>
+   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/"></script>
    *   </body>
    * </html>
    * ```
@@ -297,7 +297,7 @@ declare interface JCoreOptions {
    *         }
    *       </script>
    *       ...
-   *       <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/index.js"></script>
+   *       <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/index.js"></script>
    *       <script>
    *         (function jmapLogin() {
    *           if (window.hasOwnProperty("JMap")) {

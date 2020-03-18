@@ -2,7 +2,7 @@ This example below will show you how to start a JMap map in full screen :
 
 ![Full screen map](./images/full-screen.png "Full screen map")
 
-For a live demo, click on this [link](http://jsfiddle.net/K2Geospatial/uaksoLm9/16/).
+For a live demo, click on this [link](http://jsfiddle.net/K2Geospatial/uaksoLm9/52/).
 
 This example will use one of our demo server, but you need to adapt the restBaseUrl parameter to reach your JMap server.
 
@@ -38,7 +38,7 @@ Bellow the example :
         }
       }
     </script>
-    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@0.3.6/public/index.js"></script>
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@0.5.0/public/index.js"></script>
   </body>
 </html>
 ```
