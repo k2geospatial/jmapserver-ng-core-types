@@ -1,34 +1,34 @@
 /**
- * We introduce the notion of External Model in order to let you adding you own JMap plugin.
+ * We introduce the notion of extension in order to let you adding you own JMap plugin.
  * 
  * Your plugin is an object that has to implement this interface.
  * 
- * Then you have to register your external model like that :
+ * Then you have to register your extension like that :
  * 
  * @example ```ts
  * // This a minimal model
  * // You need to provide an id and an initFn function at least
  * // This model is useless, but just for the example
- * JMap.External.register({
-  *  id: "MyExternalModule", // Unique id
+ * JMap.Extension.register({
+  *  id: "MyExtension", // Unique id
   *  initFn: () => {
   *    // here you can start your UI component if needed
-  *    console.log("JMap is started and my external extension has been successfuly started")
+  *    console.log("JMap is started and my extension has been successfuly started")
   *  }
   * })
  * ```
  */
-declare interface JExternalModel {
+declare interface JCoreExtension {
   /**
-   * The unique external model identifier
+   * The unique extension identifier
    */
   id: string
   /**
    * If you want you can expose a service.
    * 
-   * If your external model id is "MyCustomPlugin", your service will be accessible like that :
+   * If your extension id is "MyExtension", your service will be accessible like that :
    * ```ts
-   * JMap.External.MyCustomPlugin
+   * JMap.Extension.MyExtension.doSomething()
    * ```
    */
   serviceToExpose?: any
@@ -48,39 +48,36 @@ declare interface JExternalModel {
    */
   startBeforeMapIsReady?: boolean
   /**
-   * The init function of your external model.
+   * The init function of your extension.
    * 
    * Here you can start initialize your plugin.
    */
-  initFn: (options: any) => void
+  initFn: () => void
   /**
-   * You can provide you own Redux store reducer : https://redux.js.org/basics/reducers.
-   * 
-   * // TODO example of reducer
+   * You can provide your own Redux store reducer : https://redux.js.org/basics/reducers.
    * 
    * Like that you can develop UI component that react to the redux state changes.
    * 
    * You can get the data store using this function : [[JMap.Api.getDataStore]], and then dispatch
    * your own actions.
    * 
-   * // TODO example of dispatch
+   * A redux reducer is a pure JS function that take the current reducer state (can be undefined first time)
+   * and an action, and return the new state (the same if no changes has been made for the action).
    */
-  storeReducer?: (reducerState: any, action: any) => any
+  storeReducer?: (currentReducerState: any, action: any) => any
   /**
    * You can provide a renderMouseOver function.
    * 
-   * If set, this function has to return a [[JExternalMouseOver]], and it will be displayed
-   * at the end of the "normal" mouseover.
-   * 
-   * // TODO add example
+   * If set, this function has to return a [[JExtensionMouseOver]], and it will be displayed
+   * at the end of the standard mouseover.
    * 
    * @param layer The JMap layer object
    * @param feature  The mouseovered feature (having all its properties filled)
    */
-  renderMouseOver?(layer: JLayer, feature: any): JExternalMouseOver
+  renderMouseOver?: (layer: JLayer, feature: any) => JExtensionMouseOver
 }
 
-declare interface JExternalMouseOver {
+declare interface JExtensionMouseOver {
   html: string  // static html content
   js?: string   // javascript that will be evaluated after html rendered
 }

@@ -7,7 +7,7 @@ export interface JAPI {
   Service: JAPIService
   Component: JAPIComponent
   Event: JAPIEvent
-  External: JAPIExternal
+  Extension: JExtensionService
 }
 
 export interface JStoreGetterPhoto {
@@ -384,13 +384,13 @@ export interface JMouseOverService {
   processJSAndPhotosForContent(content: JMouseOverContent): void
 }
 
-// API EXTERNAL
-export interface JAPIExternal {
+// API EXTENSION
+export interface JExtensionService {
   Document?: JDocumentService
-  register(externalModel: JExternalModel): void
-  isRegistered(externalId: string): boolean
-  getAllRegistered(): string[]
-  renderMouseOver(layer: JLayer, feature: Feature): JExternalMouseOver[]
+  register(extension: JCoreExtension): void
+  isRegistered(extensionId: string): boolean
+  getAllRegisteredIds(): string[]
+  renderMouseOver(layer: JLayer, feature: Feature): JExtensionMouseOver[]
 }
 
 export interface JDocumentService {

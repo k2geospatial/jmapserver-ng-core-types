@@ -19,7 +19,7 @@
  *   - [[JMap.Service]] : Get and manage the library states
  *   - [[JMap.Component]] : Create and destroy your JMap API Component instances
  *   - [[JMap.Event]] : Create, activate, deactivate and remove your own listeners, reacting to JMAP API events
- *   - [[JMap.External]] : Fully integrate your own plugin to JMAP API
+ *   - [[JMap.Extension]] : Fully integrate your own extension to JMAP API
  */
 declare namespace JMap {
 
@@ -2677,7 +2677,7 @@ declare namespace JMap {
        * 
        * You can call this function after having inserted the mouseover html in the DOM.
        * 
-       * The function will eval the mouseover javascript (from the external mouseover), and if needed make
+       * The function will eval the mouseover javascript (from the extension mouseover), and if needed make
        * a call to the server to get the features photos and display it (so we need the mouseover content to be 
        * exist in the DOM.
        * 
@@ -4015,54 +4015,54 @@ declare namespace JMap {
   }
 
   /**
-   * **JMap.External**
+   * **JMap.Extension**
    * 
-   * We introduced the notion of "external" in JMap.
+   * We introduced the notion of extension in JMap.
    * 
    * We designed a mecanism for our needs, that could loads optional plugins for JMap.
    * 
-   * This mecanism provide a clean way to integrate in JMap your own external plugin.
+   * This mecanism provide a clean way to integrate in JMap your own extension plugin.
    * 
-   * You can create an object that implement the interface [[JExternalModel]], and register it
+   * You can create an object that implement the interface [[JCoreExtension]], and register it
    * from this section.
    * 
-   * By example you register an external extension with id="***MyCompany***"".
+   * By example you register an extension with id="***MyCompany***"".
    * 
    * You can defined your own Redux reducer that will react to all actions trigerred. In the store
    * your data will be located at ***external.MyCompany***.
    * 
    * You can defined your own JMap related services, that will be accessible at
-   * this location : ***JMap.External.MyCompany***
+   * this location : ***JMap.Extension.MyCompany***
    * 
    * And you also can integrate your own mouseover (for more details look in JMap.Service.MouseOver
    * documentation).
    */
-  namespace External {
+  namespace Extension {
 
     /**
-     * ***JMap.External.register***
+     * ***JMap.Extension.register***
      * 
-     * Register your own external extension.
+     * Register your own extension extension.
      * 
      * @throws Error if a parameter is not correct
      * @param extensionModel The extension model
      * @example ```ts
      * 
-     * JMap.External.register({
-     *  id: "MyExternalModule", // Unique id
+     * JMap.Extension.register({
+     *  id: "MyExtension", // Unique id
      *  initFn: () => {
      *    // here you can start your UI component if needed
-     *    console.log("JMap is started and my external extension has been successfuly started")
+     *    console.log("JMap is started and my extension has been successfuly started")
      *  }
      * })
      * ```
      */
-    function register(extensionModel: JExternalModel): void
+    function register(extension: JCoreExtension): void
 
     /**
-     * ***JMap.External.isRegistered***
+     * ***JMap.Extension.isRegistered***
      * 
-     * Tell if an external extension has been registered or not.
+     * Tell if an extension has been registered or not.
      * 
      * It can be usefull to know if a JMap extension is in use or not.
      * 
@@ -4071,44 +4071,39 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // returns true if the JMap Document extension is in use or not for the project
-     * JMap.External.isRegistered("Document")
+     * JMap.Extension.isRegistered("Document")
      * ```
      */
     function isRegistered(extensionId: string): boolean
 
     /**
-     * ***JMap.External.getAllRegistered***
+     * ***JMap.Extension.getAllRegisteredIds***
      * 
      * Returns all registered extension ids.
      * 
      * @example ```ts
      * 
      * // Could returns [ "Document", "MyCustomExtension" ]
-     * JMap.External.getAllRegistered()
+     * JMap.Extension.getAllRegisteredIds()
      * ```
      */
-    function getAllRegistered(): string[]
+    function getAllRegisteredIds(): string[]
 
     /**
-     * ***JMap.External.getAllRegistered***
+     * ***JMap.Extension.renderMouseOver***
      * 
-     * *You should not need to use this function. It is usefull for the API itself.*
-     * 
-     * Returns all external mouseovers for a specific layer feature.
-     * 
-     * Each result elements are the result of calling method [[JExternalModel.renderMouseOver]]
-     * 
-     * You can have a look at ***[[JMap.Service.MouseOver]]***.
+     * It returns all extension mouseover data for a specific layer and feature.
      * 
      * @param layer The JMap layer
      * @param feature A geoJSON feature
-     * @returns an empty array if no external registered
+     * @returns an empty array if no extension is registered
      * @example ```ts
      * 
-     * // Could returns [ "Document", "MyCustomExtension" ]
-     * JMap.External.getAllRegistered()
+     * const feature = ...
+     * // returns all extension mouseover data for the feature
+     * JMap.Extension.renderMouseOver(2, feature)
      * ```
      */
-    function renderMouseOver(layer: JLayer, feature: any): JExternalMouseOver[]
+    function renderMouseOver(layer: JLayer, feature: any): JExtensionMouseOver[]
   }
 }
