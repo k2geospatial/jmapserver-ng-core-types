@@ -1,12 +1,15 @@
 import { Store } from "redux"
 import { Point, LineString, Polygon, Feature, FeatureCollection } from "geojson"
 
-// API
-export interface JAPI {
-  Api: JAPIApi
-  Service: JAPIService
-  Component: JAPIComponent
-  Event: JAPIEvent
+export interface JCoreService extends JCoreMainService {
+  Project: JProjectService
+  Layer: JLayerService
+  User: JUserService
+  Map: JMapService
+  Geometry: JGeometryService,
+  MouseOver: JMouseOverService
+  History: JHistoryService
+  Event: JEventService
   Extension: JExtensionService
 }
 
@@ -17,31 +20,16 @@ export interface JStoreGetterPhoto {
   getSelectedPhotoId(): number | undefined
 }
 
-// API Api
-
-export interface JAPIApi {
+export interface JCoreMainService {
   getVersion(): string
   getImplVersion(): string
-  getDataStore(): Store<JAPIState> | undefined
+  getDataStore(): Store<JCoreState> | undefined
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
 }
 
-// API COMPONENT
-
-export interface JAPIComponent {
-  User: JAPIComponentItem<{}>
-}
-
-export interface JAPIComponentItem<P> {
-  create(containerId: string, options?: P): void
-  destroy(containerId: string): void
-}
-
-// API EVENT
-
-export interface JAPIEvent {
+export interface JEventService {
   Layer: JLayerEventModule
   Map: JMapEventModule
   Project: JProjectEventModule
@@ -109,7 +97,7 @@ export interface JUserEventModule extends JEventModule {
   }
 }
 
-export interface JAPIState {
+export interface JCoreState {
   map: JMapState
   project: JProjectState
   layer: JLayerState
@@ -118,7 +106,6 @@ export interface JAPIState {
   external?: any
 }
 
-// API DATA -> MAP
 export interface JMapState {
   pitch: number
   bearing: number
@@ -135,21 +122,18 @@ export interface JMapState {
   scaleControlPosition: JMapPosition
 }
 
-// API DATA -> PROJECT
 export interface JProjectState {
   isLoading: boolean
   allProjects: JProject[]
   selectedProject: JProject
 }
 
-// API DATA -> LAYER
 export interface JLayerState {
   tree: JLayerTree
   allById: { [treeElementId: string]: JLayerTreeElement }
   orderedLayerIds: number[]
 }
 
-// API DATA -> PHOTO
 export interface JPhotoState {
   selectedPhoto: number | undefined
   photoDescriptors: JPhotoDescriptor[]
@@ -157,19 +141,6 @@ export interface JPhotoState {
   isPopupInfoPanelOpened: boolean
 }
 
-// API SERVICE
-export interface JAPIService {
-  History: JHistoryService
-  Popup: JPopupService
-  Project: JProjectService
-  Layer: JLayerService
-  User: JUserService
-  Map: JMapService
-  Geometry: JGeometryService,
-  MouseOver: JMouseOverService
-}
-
-// API SERVICE -> HISTORY
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
 
 export interface JHistoryService {
@@ -212,8 +183,6 @@ export interface JGeometryService {
   getPolygonFeature(coordinates: Array<[number, number]>, closeCoordinates?: boolean): Feature<Polygon>
 }
 
-// API SERVICE -> MAP
-// API SERVICE -> MAP
 export interface JMapService {
   Interaction: JMapInteractionService
   Filter: JMapFilterService
@@ -297,22 +266,6 @@ export interface JMapFilterService {
   removeAllFilters(layerId: number): void
 }
 
-// API SERVICE -> LANGUAGE
-export interface JAPILanguageService {
-  getLocale(): string
-  setLocale(locale: string): void
-  translate(key: string, params?: string | string[], locale?: string): string
-}
-
-// API SERVICE -> POPUP
-export interface JPopupService {
-  popInfo(message: string): void
-  popWarning(message: string): void
-  popError(message: string): void
-  popConfirm(message: string, confirmCallback: (() => any), cancelCallback?: (() => any)): void
-}
-
-// API SERVICE -> PROJECT
 export interface JProjectService {
   getAllProjects(): Promise<JProject[]>
   getId(): number
@@ -329,7 +282,6 @@ export interface JProjectService {
   unload(): void
 }
 
-// API SERVICE -> LAYER
 export interface JLayerService {
   getLayerTree(): JLayerTree
   getLayerTreeElementsById(): { [treeElementId: number]: JLayerTreeElement }
@@ -361,7 +313,6 @@ export interface JLayerGroup extends JLayerTreeElement {
   children: JLayerTreeElement[]
 }
 
-// API SERVICE -> USER
 export interface JUserService {
   getToken(): string
   getFullName(): string
@@ -376,7 +327,6 @@ export interface JUserService {
   logout(): Promise<void>
 }
 
-// API SERVICE -> MOUSE_OVER
 export interface JMouseOverService {
   renderForFeaturesAtLocation(containerId: string, location: JLocation): boolean // return true if has mouseover
   renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
@@ -384,7 +334,6 @@ export interface JMouseOverService {
   processJSAndPhotosForContent(content: JMouseOverContent): void
 }
 
-// API EXTENSION
 export interface JExtensionService {
   Document?: JDocumentService
   register(extension: JCoreExtension): void

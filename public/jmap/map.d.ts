@@ -41,9 +41,9 @@ declare interface JMapAttributeSearch {
   attributeValue: any
 }
 
-declare interface JAPIMapOptions {
+declare interface JCoreMapOptions {
   /**
-   * When the API start it will create or use an existing div container in which the map will be inserted into.
+   * When the JMap Core library start it will create or use an existing div container in which the map will be inserted into.
    *
    * By default the div container id is "***jmap-map***", but you can set the id of your choice like that :
    * ```html
@@ -51,7 +51,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           containerId: "my-custom-container-id"
@@ -65,13 +65,13 @@ declare interface JAPIMapOptions {
    *
    * In the above example the map will be inserted in the div having "my-custom-container-id" as id. You need to set the width and the height of this div by yourself.
    * 
-   * If no container is found in the DOM with the specified id, JMap API will create and append it automatically in the body element of the web page.
+   * If no container is found in the DOM with the specified id, JMap Core library will create and append it automatically in the body element of the web page.
    */
   containerId?: string
 
   /**
    * If a mapbox token is set through the JMap Admin interface,
-   * the API will use it automatically, nothing else to do for you.
+   * the JMap Core library will use it automatically, nothing else to do for you.
    * 
    * The Mapbox token is used by JMap in order to fully use Mapbox capabilities
    * like displaying a mapbox base maps.
@@ -84,7 +84,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           mapboxToken: "dfqwdhjgqdhdh4567sjdvhbh"
@@ -108,7 +108,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           scaleControlVisible: true,
@@ -132,7 +132,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           scaleControlPosition: "bottom-right"
@@ -154,7 +154,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           scaleControlUnit: "imperial"
@@ -176,7 +176,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           center: {
@@ -201,7 +201,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           zoom: 4.32
@@ -223,7 +223,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           extent: {
@@ -249,7 +249,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           search: {
@@ -269,7 +269,7 @@ declare interface JAPIMapOptions {
 
   /**
    * You can execute a custom piece of code at runtime, after the map is ready,
-   * and only one time at JMap Js API startup.
+   * and only one time at JMap Core library startup.
    * 
    * For that you have to set the "***onStartupMapReadyFn***" parameter which is a function.
    * Here an example that will display a message "Hello the map is ready !" in the console :
@@ -279,7 +279,7 @@ declare interface JAPIMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           onStartupMapReadyFn: map => {

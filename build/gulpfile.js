@@ -45,24 +45,24 @@ gulp.task('copy', cb => {
   }
   
   gulp.src([ join(ROOT_DIR, 'public/**/*') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "api/node_modules/jmap-api-ng/public")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "core/node_modules/jmap-core/public")))
   gulp.src([ join(ROOT_DIR, 'index.ts') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "api/node_modules/jmap-api-ng")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "core/node_modules/jmap-core")))
   
   gulp.src([ join(ROOT_DIR, 'public/**/*') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "app/node_modules/jmap-api-ng/public")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "app/node_modules/jmap-core/public")))
   gulp.src([ join(ROOT_DIR, 'index.ts') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "app/node_modules/jmap-api-ng")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "app/node_modules/jmap-core")))
   
   gulp.src([ join(ROOT_DIR, 'public/**/*') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "view/node_modules/jmap-api-ng/public")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "view/node_modules/jmap-core/public")))
   gulp.src([ join(ROOT_DIR, 'index.ts') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "view/node_modules/jmap-api-ng")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "view/node_modules/jmap-core")))
   
   gulp.src([ join(ROOT_DIR, 'public/**/*') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "shared/node_modules/jmap-api-ng/public")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "shared/node_modules/jmap-core/public")))
   gulp.src([ join(ROOT_DIR, 'index.ts') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "shared/node_modules/jmap-api-ng")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "shared/node_modules/jmap-core")))
 
   cb()
 })
@@ -111,7 +111,7 @@ gulp.task("typedoc", cb => {
           tsconfig: "./tsconfig.json",
           includeDeclarations: true,
           out: DOC_DIR,
-          name: "jmap-api",
+          name: "jmap-core",
           hideGenerator: true,
           version: false,
           ignoreCompilerErrors: false,

@@ -1,4 +1,4 @@
-# jmap-api-ng
+# jmap-core
 
 Don't rename the NPM script named ***pub*** for ***publish***.
 

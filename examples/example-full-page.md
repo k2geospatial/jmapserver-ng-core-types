@@ -24,7 +24,7 @@ Bellow the example :
   </head>
   <body class="jmap_wrapper">
     <script type="text/javascript">
-      window.JMAP_API_OPTIONS = {
+      window.JMAP_OPTIONS = {
         projectId: 35,
         restBaseUrl: "https://jmap7dev.jmaponline.net/services/rest/v2.0",
         noSessionExpiration: true,
@@ -38,7 +38,7 @@ Bellow the example :
         }
       }
     </script>
-    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.6/public/index.js"></script>
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@0.3.6/public/index.js"></script>
   </body>
 </html>
 ```

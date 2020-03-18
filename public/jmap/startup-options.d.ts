@@ -1,5 +1,5 @@
 declare interface Window {
-  JMAP_API_OPTIONS?: JAPIOptions
+  JMAP_OPTIONS?: JCoreOptions
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: any
 }
 
@@ -8,10 +8,10 @@ declare interface Window {
  * 
  * JMap library executable is available through a CDN url.
  * 
- * The URL is like "https://cdn.jsdelivr.net/npm/jmap-js-api@0.3.5/public/",
+ * The URL is like "https://cdn.jsdelivr.net/npm/jmap-js-core@0.3.5/public/",
  * but it depends on the version you want to use (here version 0.3.5).
  * 
- * First you need to import our JS file in your http file, in order to load our JS API.
+ * First you need to import our JS file in your http file, in order to load the JMap Core library.
  * It's recommended to put the CDN import at the end of the body tag, like that :
  * ```html
  * ...
@@ -20,23 +20,23 @@ declare interface Window {
  *   <body>
  *     ...
  *     <!-- !!! Insert the import at the end of the body tag !!! -->
- *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/"></script>
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/"></script>
  *   </body>
  * </html>
  * ```
- * To make the API working you need to provide some required information like :
+ * To make the JMap Core library working you need to provide some required information like :
  * 
  *   - Your JMap Server Rest API URL
  *   - The project id to open
- *   - A valid JMap user session token, **or** set the API to log as "anonymous"
+ *   - A valid JMap user session token, **or** set the JMap Core library to log as "anonymous"
  * 
- * It can be passed by setting a global JS variable named "JMAP_API_OPTIONS" :
+ * It can be passed by setting a global JS variable named "JMAP_OPTIONS" :
  * 
  * ```html
  * <html>
  *   <body>
  *     <script type="text/javascript">
- *       window.JMAP_API_OPTIONS = {
+ *       window.JMAP_OPTIONS = {
  *         // a valid project id
  *         projectId: 10,
  *         // a valid JMap server Rest url
@@ -49,7 +49,7 @@ declare interface Window {
  *       }
  *     </script>
  *     ... your web page
- *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/"></script>
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/"></script>
  *   </body>
  * </html>
  * ```
@@ -72,7 +72,7 @@ declare interface Window {
  *       if (isNaN(projectId)) {
  *         projectId = 0
  *       }
- *       window.JMAP_API_OPTIONS = {
+ *       window.JMAP_OPTIONS = {
  *         projectId: Number(projectId),
  *         restBaseUrl: "http://your-jmap-server-url/services/rest/v2.0",
  *         session: {
@@ -85,7 +85,7 @@ declare interface Window {
  *         }
  *       }
  *     </script>
- *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-api-ng@x.x.x/public/index.js">
+ *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/index.js">
  *     </script>
  *   </body>
  * </html>
@@ -94,10 +94,10 @@ declare interface Window {
  * For example, you can pass this parameters like that :
  *   - **http:// my-company/my-custom-page-using-jmap?token=95423672742&projectId=10**.
  * 
- * When JMAP API starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
+ * When JMAP Core library starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
  * the **JMap project id=*10***, then load the map in the **div id="*jmap-map*"**.
  */
-declare interface JAPIOptions {
+declare interface JCoreOptions {
   /**
    * The JMap project id.
    * 
@@ -112,7 +112,7 @@ declare interface JAPIOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         // a valid project id
    *         projectId: 12
@@ -141,7 +141,7 @@ declare interface JAPIOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         // a valid project name
    *         projectName: "The world"
@@ -165,7 +165,7 @@ declare interface JAPIOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         // a valid JMap REST Api url
    *         restBaseUrl: "http://my-custom-jmap-server-url/services/rest/v2.0"
@@ -179,8 +179,8 @@ declare interface JAPIOptions {
   restBaseUrl?: string
 
   /**
-   * You can tell the API to never close the session after a user inactivity.
-   * For that the JS API will ping the server every 5 minutes if no activity
+   * You can tell the JMap Core library to never close the session after a user inactivity.
+   * For that the library will ping the server every 5 minutes if no activity
    * is done in order to keep the session alive.
    * 
    * To activate the option, use the "***noSessionExpiration***" parameter :
@@ -190,7 +190,7 @@ declare interface JAPIOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         noSessionExpiration: true
    *       }
@@ -213,7 +213,7 @@ declare interface JAPIOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         // a valid project id
    *         projectId: 10,
    *         // a valid JMap Server Rest url
@@ -226,7 +226,7 @@ declare interface JAPIOptions {
    * 
    *     ... your web page
    *     
-   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/"></script>
+   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/"></script>
    *   </body>
    * </html>
    * ```
@@ -236,7 +236,7 @@ declare interface JAPIOptions {
   /**
    * The JMap user's session token.
    *
-   * If you don't use the api logged as an anonymous user (see the ***anonymous*** parameter in this section),
+   * If you don't use the library logged as an anonymous user (see the ***anonymous*** parameter in this section),
    * you must provide the JMap session id to the JMap library.
    *
    * To get a session id and the user informations, you can use the JMap Rest API on your JMap Server. By exemple if your server url is "https://my-jmap-server/", With the [curl tool](https://curl.haxx.se/docs/) you can get for the user "jdo@company.com" a token like that (adapt the username and password ...) :
@@ -264,12 +264,12 @@ declare interface JAPIOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_API_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         token: "1246413767"
    *       }
    *     </script>
    *     ...
-   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/"></script>
+   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/"></script>
    *   </body>
    * </html>
    * ```
@@ -283,7 +283,7 @@ declare interface JAPIOptions {
    *     <body class="jmap_wrapper">
    *       <script type="text/javascript">
    *         console.log("JMap", window.JMap)
-   *         window.JMAP_API_OPTIONS = {
+   *         window.JMAP_OPTIONS = {
    *           projectId: 35,
    *           restBaseUrl: "https://jmap7dev.jmaponline.net/services/rest/v2.0",
    *           noSessionExpiration: true,
@@ -297,7 +297,7 @@ declare interface JAPIOptions {
    *         }
    *       </script>
    *       ...
-   *       <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-api@x.x.x/public/index.js"></script>
+   *       <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-js-core@x.x.x/public/index.js"></script>
    *       <script>
    *         (function jmapLogin() {
    *           if (window.hasOwnProperty("JMap")) {
@@ -318,7 +318,7 @@ declare interface JAPIOptions {
   /**
    * All map related options.
    * 
-   * Click on [[JAPIMapOptions]] to get details.
+   * Click on [[JCoreMapOptions]] to get details.
    */
-  map?: JAPIMapOptions
+  map?: JCoreMapOptions
 }

@@ -33,7 +33,7 @@ declare interface JCoreExtension {
    */
   serviceToExpose?: any
   /**
-   * you can set this property to true and your initFn will be called as soon JMap API is
+   * you can set this property to true and your initFn will be called as soon JMap Core library is
    * loaded. By default the initFn of your plugin is called only after the map has been loaded.
    * 
    * The map is loaded when a project has been loaded, and the project is loaded only if
@@ -58,7 +58,7 @@ declare interface JCoreExtension {
    * 
    * Like that you can develop UI component that react to the redux state changes.
    * 
-   * You can get the data store using this function : [[JMap.Api.getDataStore]], and then dispatch
+   * You can get the data store using this function : [[JMap.getDataStore]], and then dispatch
    * your own actions.
    * 
    * A redux reducer is a pure JS function that take the current reducer state (can be undefined first time)
