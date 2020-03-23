@@ -1,16 +1,15 @@
 /**
- * To configure the JMap library in your web page, you can consult the demo pages :
+ * This is the JMap Web Core library API documentation.
  * 
- *   - [A map embedded in a div in a page of your website](https://github.com/k2geospatial/jmap-core/blob/master/examples/example-embedded.md)
- *   - [A map displayed full screen](https://github.com/k2geospatial/jmap-core/blob/master/examples/example-full-page.md)
+ * Examples are availables [here](https://doc.k2geospatial.com/jmap/doc/ng_dev/examples/core_start.html)
  * 
- * You can also consult the library startup options [[JCoreOptions]], in order to customize it for you needs.
+ * You can customize JMap Web Core library by providing startup options : [[JCoreOptions]].
  * 
- * After being loaded, the JMap library is accessible through the nampespace **JMap** in the javascript console.
+ * After being loaded, the JMap Web Core library is accessible through the nampespace **JMap** in the javascript console.
  * 
  * For example :
  * ```ts
- * // returns the JMap Core library build version.
+ * // returns the JMap Web Core library build version.
  * JMap.getVersion()
  * ```
  */
@@ -19,7 +18,7 @@ declare namespace JMap {
   /**
    * **JMap.getVersion**
    * 
-   * Returns the JMap Core library interface version.
+   * Returns the JMap Web Core library interface version.
    * 
    * @example ```ts
    * 
@@ -32,7 +31,7 @@ declare namespace JMap {
   /**
    * **JMap.getImplVersion**
    * 
-   * Returns the JMap Core library build version.
+   * Returns the JMap Web Core library build version.
    * 
    * @example ```ts
    * 
@@ -49,7 +48,7 @@ declare namespace JMap {
    *
    * @example ```ts
    * 
-   * // returns the JMap Core library Redux store
+   * // returns the JMap Web Core library Redux store
    * const reduxStore = JMap.getDataStore()
    * reduxStore.dispatch(...)
    * ```
@@ -61,7 +60,7 @@ declare namespace JMap {
    * 
    * Returns the in use JMap server Rest API url.
    *
-   * This is the url on which the JMap Core library makes all of its ajax calls.
+   * This is the url on which the JMap Web Core library makes all of its ajax calls.
    * 
    * @example ```ts
    * 
@@ -74,11 +73,11 @@ declare namespace JMap {
   /**
   * **JMap.openDocumentation**
   * 
-  * Open JMap Core library interface online documentation, in a new tab.
+  * Open JMap Web Core library interface online documentation, in a new tab.
   * 
   * @example ```ts
   * 
-  * // open JMap Core library online documentation, in a new tab
+  * // open JMap Web Core library online documentation, in a new tab
   * JMap.openDocumentation()
   * ```
   */
@@ -87,7 +86,7 @@ declare namespace JMap {
   /**
   * **JMap.getOS**
   * 
-  * Return the operating system on witch JMap Core library is running client side.
+  * Return the operating system on witch JMap Web Core library is running client side.
   * 
   * Possible values returned are defined here [[JOperatingSystem]].
   * 
@@ -476,7 +475,7 @@ declare namespace JMap {
      * Returns the tree element visibility property.
      * 
      * The visibility property is initialy defined on the project, and can be
-     * changed by the user through the JMap Core library.
+     * changed by the user through the JMap Web Core library.
      * 
      * If this property is false, the layer cannot be displayed on the map.
      * 
@@ -628,7 +627,7 @@ declare namespace JMap {
      * If it's a JMap layer, it apply the visibility to it.
      * 
      * The visibility property is initialy defined on the project, and can be
-     * changed by the user through the JMap Core library.
+     * changed by the user through the JMap Web Core library.
      * 
      * If this property is false, the layer cannot be displayed on the map.
      * 
@@ -1793,7 +1792,7 @@ declare namespace JMap {
      * 
      * When you activate an interactor, the previous one is deactivated, and the new one activated on the map.
      * 
-     * When you don't need anymore an interactor you can terminate it, and it will not exist anymore in the JMap Core library.
+     * When you don't need anymore an interactor you can terminate it, and it will not exist anymore in the JMap Web Core library.
      */
     namespace Interaction {
       
@@ -1833,7 +1832,7 @@ declare namespace JMap {
        * 
        * Terminate the map interactor.
        * 
-       * After being terminated, the interactor doesn't exist anymore in JMAp Core library.
+       * After being terminated, the interactor doesn't exist anymore in JMap Web Core library.
        * 
        * You cannot activate it anymore.
        * 
@@ -2677,7 +2676,7 @@ declare namespace JMap {
   /**
    * **JMap.Project**
    * 
-   * From this section you can manage the project that is in use in the JMap Core library.
+   * From this section you can manage the project that is in use in the JMap Web Core library.
    */
   namespace Project {
     
@@ -2869,7 +2868,7 @@ declare namespace JMap {
      * User session rigths are checked server side and an error is thrown if user doesn't have
      * the access right for the project.
      * 
-     * If no projectId is provided, the one defined in JMap Core options ([[JCoreOptions]]) will be used.
+     * If no projectId is provided, the one defined in JMap Web Core options ([[JCoreOptions]]) will be used.
      * If no project id has been defined, an error is thrown.
      * 
      * @throws Error if project not found
@@ -3098,7 +3097,7 @@ declare namespace JMap {
   /**
    * **JMap.Event**
    * 
-   * From this section you can manage your own event listeners reacting to JMap Core library events.
+   * From this section you can manage your own event listeners reacting to JMap Web Core library events.
    * 
    * For all your listener you need provide a listener id. We introduced this notion of listener ids in order
    * to be able to know what's the problem if something goes wrong in a listener.
@@ -3114,7 +3113,7 @@ declare namespace JMap {
    * 
    * Listeners can be deactivated and reactivated.
    * 
-   * Deactivating a listener keep it in the JMap Core library, but ignore it when an event is emitted.
+   * Deactivating a listener keep it in the JMap Web Core library, but ignore it when an event is emitted.
    */
   namespace Event {
 
@@ -3198,7 +3197,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -3362,7 +3361,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -3827,7 +3826,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -3927,7 +3926,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts

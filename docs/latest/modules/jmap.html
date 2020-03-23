@@ -67,16 +67,13 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>To configure the JMap library in your web page, you can consult the demo pages :</p>
+						<p>This is the JMap Web Core library API documentation.</p>
 					</div>
-					<ul>
-						<li><a href="https://github.com/k2geospatial/jmap-core/blob/master/examples/example-embedded.md">A map embedded in a div in a page of your website</a></li>
-						<li><a href="https://github.com/k2geospatial/jmap-core/blob/master/examples/example-full-page.md">A map displayed full screen</a></li>
-					</ul>
-					<p>You can also consult the library startup options <a href="../interfaces/jcoreoptions.html">JCoreOptions</a>, in order to customize it for you needs.</p>
-					<p>After being loaded, the JMap library is accessible through the nampespace <strong>JMap</strong> in the javascript console.</p>
+					<p>Examples are availables <a href="https://doc.k2geospatial.com/jmap/doc/ng_dev/examples/core_start.html">here</a></p>
+					<p>You can customize JMap Web Core library by providing startup options : <a href="../interfaces/jcoreoptions.html">JCoreOptions</a>.</p>
+					<p>After being loaded, the JMap Web Core library is accessible through the nampespace <strong>JMap</strong> in the javascript console.</p>
 					<p>For example :</p>
-					<pre><code class="language-ts"><span class="hljs-comment">// returns the JMap Core library build version.</span>
+					<pre><code class="language-ts"><span class="hljs-comment">// returns the JMap Web Core library build version.</span>
 JMap.getVersion()</code></pre>
 				</div>
 			</section>
@@ -125,7 +122,7 @@ JMap.getVersion()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/7821740/public/core.d.ts#L57">core.d.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/6a5ba55/public/core.d.ts#L56">core.d.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -136,7 +133,7 @@ JMap.getVersion()</code></pre>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// returns the JMap Core library Redux store</span>
+<span class="hljs-comment">// returns the JMap Web Core library Redux store</span>
 <span class="hljs-keyword">const</span> reduxStore = JMap.getDataStore()
 reduxStore.dispatch(...)</code></pre>
 									</dd>
@@ -159,14 +156,14 @@ reduxStore.dispatch(...)</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/7821740/public/core.d.ts#L43">core.d.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/6a5ba55/public/core.d.ts#L42">core.d.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.getImplVersion</strong></p>
 								</div>
-								<p>Returns the JMap Core library build version.</p>
+								<p>Returns the JMap Web Core library build version.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
@@ -189,14 +186,14 @@ JMap.getImplVersion()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/7821740/public/core.d.ts#L100">core.d.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/6a5ba55/public/core.d.ts#L99">core.d.ts:99</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.getOS</strong></p>
 								</div>
-								<p>Return the operating system on witch JMap Core library is running client side.</p>
+								<p>Return the operating system on witch JMap Web Core library is running client side.</p>
 								<p>Possible values returned are defined here <a href="../globals.html#joperatingsystem">JOperatingSystem</a>.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
@@ -220,7 +217,7 @@ JMap.getOS()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/7821740/public/core.d.ts#L72">core.d.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/6a5ba55/public/core.d.ts#L71">core.d.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -228,7 +225,7 @@ JMap.getOS()</code></pre>
 									<p><strong>JMap.getRestUrl</strong></p>
 								</div>
 								<p>Returns the in use JMap server Rest API url.</p>
-								<p>This is the url on which the JMap Core library makes all of its ajax calls.</p>
+								<p>This is the url on which the JMap Web Core library makes all of its ajax calls.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
@@ -251,14 +248,14 @@ JMap.getRestUrl()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/7821740/public/core.d.ts#L30">core.d.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/6a5ba55/public/core.d.ts#L29">core.d.ts:29</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.getVersion</strong></p>
 								</div>
-								<p>Returns the JMap Core library interface version.</p>
+								<p>Returns the JMap Web Core library interface version.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
@@ -281,18 +278,18 @@ JMap.getVersion()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/7821740/public/core.d.ts#L85">core.d.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/6a5ba55/public/core.d.ts#L84">core.d.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.openDocumentation</strong></p>
 								</div>
-								<p>Open JMap Core library interface online documentation, in a new tab.</p>
+								<p>Open JMap Web Core library interface online documentation, in a new tab.</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// open JMap Core library online documentation, in a new tab</span>
+<span class="hljs-comment">// open JMap Web Core library online documentation, in a new tab</span>
 JMap.openDocumentation()</code></pre>
 									</dd>
 								</dl>
