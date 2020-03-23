@@ -1,15 +1,13 @@
 /**
  * This is the JMap Web Core library API documentation.
  * 
- * Examples are availables [here](https://doc.k2geospatial.com/jmap/doc/ng_dev/examples/core_start.html)
+ * Examples are availables <a href="https://doc.k2geospatial.com/jmap/doc/ng_dev/examples/core_start.html" target="_blank">here</a>.
  * 
- * You can customize JMap Web Core library by providing startup options : [[JCoreOptions]].
+ * You can customize JMap Web Core library by providing startup options ([[JCoreOptions]]).
  * 
- * After being loaded, the JMap Web Core library is accessible through the nampespace **JMap** in the javascript console.
- * 
- * For example :
+ * After being loaded, the **JMap Web Core** library is accessible through the namespace **JMap** in the javascript console. For example :
  * ```ts
- * // returns the JMap Web Core library build version.
+ * // returns the JMap Web Core version.
  * JMap.getVersion()
  * ```
  */
