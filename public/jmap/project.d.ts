@@ -6,6 +6,10 @@ declare interface JProjectEventParams {
   project: JProject
 }
 
+declare interface JProjectAllEventParams {
+  projects: JProject[]
+}
+
 declare interface JProject {
   id: number
   name: string
@@ -21,5 +25,7 @@ declare interface JProject {
     google: string | null
     bing: string | null
     mapBox: string | null
-  }
+  },
+  queryGroups: JQueryGroup[]
+  base64ImageThumbnail: string
 }

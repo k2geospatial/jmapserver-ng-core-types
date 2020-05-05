@@ -75,14 +75,7 @@ declare interface Window {
  *       window.JMAP_OPTIONS = {
  *         projectId: Number(projectId),
  *         restBaseUrl: "http://your-jmap-server-url/services/rest/v2.0",
- *         session: {
- *           token: Number(token),
- *           user: {
- *             username: "jdo@mycompany.com",
- *             fullName: "John do",
- *             admin: false
- *           }
- *         }
+ *         token: token
  *       }
  *     </script>
  *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/index.js">
@@ -153,6 +146,40 @@ declare interface JCoreOptions {
    * ```
    */
   projectName?: string
+
+  /**
+   * By default project thumbnails are not loaded, because they are not usefull if JMap Core lib is used alone.
+   * 
+   * To load asynchronously project thumbnails, set startup option "loadProjectThumbnails" to true.
+   * 
+   * JMap Core lib will load all project thumbnails (or preview) in project objects (property "base64ImageThumbnail").
+   * 
+   * The thumbnail is stored as a base64 string image, that you can use to set an img src attribute directly.
+   * 
+   * For a project object, if thumbnail is not loaded, default value of its property "base64ImageThumbnail" is "" (empty string).
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         loadProjectThumbnails: true
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   * 
+   * Then you will be able to get a project and use its thumbnail  :
+   * ```javascript
+   * JMap.Project.getBase64ImageThumbnail() // return loaded project image, "" if no image loaded
+   * JMap.Project.getById(3).base64ImageThumbnail // return project id=3 image, "" if no image loaded
+   * ```
+   */
+  loadProjectThumbnails?: boolean
 
   /**
    * The JMap Server Rest API url.
@@ -239,7 +266,7 @@ declare interface JCoreOptions {
    * If you don't use the library logged as an anonymous user (see the ***anonymous*** parameter in this section),
    * you must provide the JMap session id to the JMap library.
    *
-   * To get a session id and the user informations, you can use the JMap Rest API on your JMap Server. By exemple if your server url is "https://my-jmap-server/", With the [curl tool](https://curl.haxx.se/docs/) you can get for the user "jdo@company.com" a token like that (adapt the username and password ...) :
+   * To get a session token, you can use the JMap Rest API on your JMap Server. By exemple if your server url is "https://my-jmap-server/", With the [curl tool](https://curl.haxx.se/docs/) you can get for the user "jdo@company.com" his token like that (adapt the username and password ...) :
    * ```sh
    * curl -X POST "https://my-jmap-server/services/rest/v2.0/session" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"username\": \"jdo@company.com\", \"password\": \"xxx\", \"type\": \"WEB\"}"
    * ```
@@ -250,7 +277,7 @@ declare interface JCoreOptions {
    *   "message": "The result is a WEB session info",
    *   "status": "OK",
    *   "result": {
-   *     "sessionId": 1246413767,
+   *     "sessionId": 23558109,
    *     ...
    *   }
    * }
@@ -265,7 +292,7 @@ declare interface JCoreOptions {
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_OPTIONS = {
-   *         token: "1246413767"
+   *         token: "23558109"
    *       }
    *     </script>
    *     ...

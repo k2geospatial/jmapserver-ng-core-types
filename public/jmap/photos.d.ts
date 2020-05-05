@@ -1,4 +1,4 @@
-declare interface JPhotoDescriptor {
+declare interface JPhoto {
   id: number
   url: string
   title: string

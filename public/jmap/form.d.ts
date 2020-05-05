@@ -1,25 +1,144 @@
-declare interface JFormDescriptor {
+declare type JFormType =
+  "DEPRECATED_FORM"
+  | "LAYER_ATTRIBUTES_FORM"
+  | "LAYER_ATTRIBUTES_SUB_FORM"
+  | "EXTERNAL_ATTRIBUTES_FORM"
+  | "EXTERNAL_ATTRIBUTES_SUB_FORM"
+
+declare type JFormUIControlAlignment =
+  "LEFT"
+  | "CENTER"
+  | "RIGHT"
+
+declare type JFormWidgetType =
+  "input"
+  | "range"
+  | "switch"
+  | "select"
+  | "date"
+  | "photo"
+  | "tree"
+  | "label"
+  | "span"
+  | "table"
+
+declare type JSONSchemaTypes =
+  "string"
+  | "number"
+  | "integer"
+  | "boolean"
+  | "array"
+  | "object"
+
+declare interface JForm {
   id: number
-  type: JFormTypes
+  type: JFormType
   name: string
-  readOnly: boolean
-  canInsert: boolean
-  canUpdate: boolean
-  canDelete: boolean
-  sections: JFormSection[]
-  permissions: { [key: string]: boolean }
+  schema: JFormSchema
+  uiSchema: JFormUISchema
   idAttributeName: string | null
 }
 
+declare interface JFormSchema {
+  $id: string,
+  type: "object",
+  $schema: "http://json-schema.org/draft-07/schema#",
+  definitions: {},
+  properties: JFormSchemaProperties
+  required: string[]
+}
+
+declare interface JFormSchemaProperties {
+  [ name: string ]: JFormSchemaProperty
+}
+
+declare interface JFormSchemaProperty {
+  title: string
+  type: JSONSchemaTypes
+  description: string
+  items?: { // used if property type = "array"
+    type: JSONSchemaTypes // only number or string
+  }
+  readOnly?: boolean
+  format?: string
+  pattern?: string
+  minimum?: number
+  maximum?: number
+  minLength?: number // used for required (because required check only if object has attribute)
+  maxLength?: number
+  enum?: string[] | number[]
+  enumNames?: string[]
+  parents?: Array<string | undefined> | Array<string | undefined>
+  default?: any
+}
+
+declare type JFormUISchema = JFormUITab[]
+
+declare interface JFormUITab {
+  type: "Tab",
+  title: string
+  controls: JFormUIControl[]
+}
+
+declare interface JFormUIControl {
+  type: "Control"
+  id: string
+  widget: JFormWidgetType
+  colSpan: number // the layout grid has 12 columns
+  scope?: string // use with attribute related controls. Ex of scope : "#/properties/done"
+  multi?: boolean // for select control
+  align?: JFormUIControlAlignment
+  rows?: number // for multiline input control
+  label?: string
+  tooltip?: string
+  date?: boolean
+  dateNow?: boolean // for date control : current date as default value
+  dateTime?: boolean // for date control
+  dateFormat?: string // for date control
+  tree?: JFormUIControlTreeElement[]
+  entries?: JFormUIControlEntry[]
+  mask?: string
+}
+
+declare interface JFormUIControlEntry {
+  label: string
+  value: number | string
+  parentValue: string | undefined
+}
+
+declare interface JFormUIControlTreeElement extends JFormUIControlEntry {
+  children: undefined | JFormUIControlTreeElement[]
+}
+
+// BELOW ALL OLD FORM TYPES RECEIVED FROM SERVERS IN JMAP 7
+
+declare type JFormFieldType =
+  "TYPE_EMPTY"
+  | "TYPE_COLUMN_SPAN"
+  | "TYPE_LABEL"
+  | "TYPE_INPUT_TEXT"
+  | "TYPE_INPUT_RANGE"
+  | "TYPE_SELECT_ONE"
+  | "TYPE_SELECT_MANY"
+  | "TYPE_INPUT_DATE"
+  | "TYPE_SELECT_BOOLEAN"
+  | "TYPE_GROUP_PANEL"
+  | "TYPE_DOCUMENT"
+  | "TYPE_TREE"
+  | "TYPE_TABLE"
+
 declare interface JFormSection {
   name: string
+  index: number
   nbCol: number
   rows: JFormRow[]
 }
 
 declare interface JFormRow {
-  row: number
-  cells: JFormField[]
+  sectionIndex: number
+  sectionName: string
+  index: number
+  fields: JFormField[]
 }
 
 declare type JFormField =
@@ -35,20 +154,14 @@ declare type JFormField =
   | JFormFieldSelectTree
 
 declare interface JFormFieldBase {
-  uuid?: string
-  type: JFormFieldTypes
+  id: string
+  type: JFormFieldType
   tooltip: string
-  display: {
-    width: number
-    row: number
-    colSpan: number
-    col: number
-    align: JFormFieldAlignments
-  }
+  align: JFormUIControlAlignment
 }
 
 declare interface JFormFieldEmpty extends JFormFieldBase {
-  type: JFormFieldTypes
+  type: JFormFieldType
 }
 
 declare interface JFormFieldLabel extends JFormFieldBase {
@@ -86,7 +199,7 @@ declare interface JFormFieldInputText extends JFormFieldInput {
 }
 
 declare interface JFormFieldRange extends JFormFieldInput {
-  type: JFormFieldTypes
+  type: JFormFieldType
 }
 
 declare interface JFormFieldCheckBox extends JFormFieldInput {
@@ -112,30 +225,3 @@ declare interface JFormFieldSelectOne extends JFormFieldSelectBase {
 declare interface JFormFieldSelectTree extends JFormFieldSelectBase {
   onlyLeafSelection: boolean
 }
-
-declare type JFormTypes =
-  "DEPRECATED_FORM"
-  | "LAYER_ATTRIBUTES_FORM"
-  | "LAYER_ATTRIBUTES_SUB_FORM"
-  | "EXTERNAL_ATTRIBUTES_FORM"
-  | "EXTERNAL_ATTRIBUTES_SUB_FORM"
-
-declare type JFormFieldTypes =
-  "TYPE_EMPTY"
-  | "TYPE_COLUMN_SPAN"
-  | "TYPE_LABEL"
-  | "TYPE_INPUT_TEXT"
-  | "TYPE_INPUT_RANGE"
-  | "TYPE_SELECT_ONE"
-  | "TYPE_SELECT_MANY"
-  | "TYPE_INPUT_DATE"
-  | "TYPE_SELECT_BOOLEAN"
-  | "TYPE_GROUP_PANEL"
-  | "TYPE_DOCUMENT"
-  | "TYPE_TREE"
-  | "TYPE_TABLE"
-
-declare type JFormFieldAlignments =
-  "LEFT"
-  | "CENTER"
-  | "RIGHT"

@@ -8,16 +8,11 @@ export interface JCoreService extends JCoreMainService {
   Map: JMapService
   Geometry: JGeometryService,
   MouseOver: JMouseOverService
-  History: JHistoryService
+  Form: JFormService
+  Query: JQueryService
   Event: JEventService
+  History: JHistoryService
   Extension: JExtensionService
-}
-
-export interface JStoreGetterPhoto {
-  isPopupOpened(): boolean
-  isPopupInfoPanelOpened(): boolean
-  getPhotoDescriptors(): JPhotoDescriptor[]
-  getSelectedPhotoId(): number | undefined
 }
 
 export interface JCoreMainService {
@@ -27,6 +22,17 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
+}
+
+export interface JQueryService {
+  getAllGroups(): JQueryGroup[]
+  groupExist(groupId: number): boolean
+  getQueriesByLayerId(layerId: number): JQuery[]
+  getQueryByLayerId(layerId: number, queryId: number): JQuery
+  getQueriesByGroupId(groupId: number): JQuery[]
+  getQueryByGroupId(groupId: number, queryId: number): JQuery
+  queryExist(groupId: number, queryId: number): boolean
+  fetchFeatures(layerId: number, queryId: number, data: any): Promise<Feature[]>
 }
 
 export interface JEventService {
@@ -55,6 +61,7 @@ export interface JEventModule {
 export interface JProjectEventModule extends JEventModule {
   on: {
     projectChange(listenerId: string, fn: (params: JProjectEventParams) => void): void
+    projectsChange(listenerId: string, fn: (params: JProjectAllEventParams) => void): void
   }
 }
 
@@ -103,6 +110,7 @@ export interface JCoreState {
   layer: JLayerState
   user: JUserState
   photo: JPhotoState
+  query: JQueryState
   external?: any
 }
 
@@ -136,12 +144,23 @@ export interface JLayerState {
 
 export interface JPhotoState {
   selectedPhoto: number | undefined
-  photoDescriptors: JPhotoDescriptor[]
+  photos: JPhoto[]
   isPopupOpened: boolean
   isPopupInfoPanelOpened: boolean
 }
 
+export interface JQueryState {
+  groups: JQueryGroup[]
+  queriesByLayerId: { [ layerId: number ]: JQuery[] }
+}
+
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
+
+export interface JFormService {
+  getDefaultValues(form: JForm): { [ id: string ]: any }
+  getPreparedData(form: JForm, data: any): any
+  validateData(form: JForm, data: { [id: string]: any }): { [key: string]: string }
+}
 
 export interface JHistoryService {
   transformSearchParamsIntoHashParams(paramNames?: string[]): void
@@ -234,7 +253,7 @@ export interface JMapInteractionService {
 export interface JMapSelectionService {
   getSelectedFeatures(): JMapSelection
   getSelectedFeaturesForLayer(layerId: number): Feature[]
-  getSelectedFeatureIdsForLayer(layerId: number): number[]
+  getSelectedFeatureIdsForLayer(layerId: number): string[]
   selectOnOneLayerAtLocation(layerId: number, location: JLocation, params?: JMapSelectionParams | undefined): Feature[]
   selectOnOneLayerFromCircle(layerId: number, circle: JCircle, params?: JMapSelectionParams | undefined): Feature[]
   selectOnOneLayerFromLine(layerId: number, line: JLine, params?: JMapSelectionParams | undefined): Feature[]
@@ -245,7 +264,7 @@ export interface JMapSelectionService {
   selectOnAllLayersFromPolygon(polygon: JPolygon, params?: JMapSelectionParams | undefined): JMapSelection
   setLayerSelection(layerId: number, features: Feature | Feature[]): void
   addFeaturesToLayerSelection(layerId: number, features: Feature | Feature[]): void
-  removeFeaturesFromLayerSelection(layerId: number, featureIds: number | number[]): void
+  removeFeaturesFromLayerSelection(layerId: number, featureIds: string | string[]): void
   clearSelection(layerId?: number): void
 }
 
@@ -268,6 +287,9 @@ export interface JMapFilterService {
 
 export interface JProjectService {
   getAllProjects(): Promise<JProject[]>
+  existProject(projectId: number): boolean
+  getById(projectId: number): JProject
+  projectIsLoaded(): boolean
   getId(): number
   getName(): string
   getDescription(): string
@@ -278,8 +300,10 @@ export interface JProjectService {
   getSelectionColor(): string
   getBackgroundColor(): string
   getInitialExtent(): JBounds | null
-  load(project?: number): Promise<void>
+  getBase64ImageThumbnail(): string
+  load(projectId?: number): Promise<JProject>
   unload(): void
+  loadAllProjectThumbnails(): Promise<void>
 }
 
 export interface JLayerService {
@@ -322,7 +346,7 @@ export interface JUserService {
   hasPreference(name: string): boolean
   removePreference(name: string): string | null
   setPreference(name: string, value: string | undefined): void
-  setSession(session: JSessionData): void
+  setToken(token: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>
 }

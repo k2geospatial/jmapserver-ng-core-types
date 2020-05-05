@@ -2232,7 +2232,7 @@ declare namespace JMap {
        * JMap.Map.Selection.getSelectedFeatureIdsForLayer(3)
        * ```
        */
-      function getSelectedFeatureIdsForLayer(layerId: number): number[]
+      function getSelectedFeatureIdsForLayer(layerId: number): string[]
 
       /**
        * **JMap.Map.Selection.selectOnOneLayerAtLocation**
@@ -2506,14 +2506,14 @@ declare namespace JMap {
        * @param featureIds The feature id(s) that will be remove from the layer selection
        * @example ```ts
        * 
-       * // Remove one feature (id = 234) from layer 4 selection
-       * JMap.Map.Selection.removeFeaturesFromLayerSelection(4, 234)
+       * // Remove one feature (id = "234") from layer 4 selection
+       * JMap.Map.Selection.removeFeaturesFromLayerSelection(4, "234")
        * 
-       * // Remove 2 features (id = 234 and 567) from layer 4 selection
-       * JMap.Map.Selection.removeFeaturesFromLayerSelection(4, [ 234, 567 ])
+       * // Remove 2 features (id = "234" and "567") from layer 4 selection
+       * JMap.Map.Selection.removeFeaturesFromLayerSelection(4, [ "234", "567" ])
        * ```
        */
-      function removeFeaturesFromLayerSelection(layerId: number, featureIds: number | number[]): void
+      function removeFeaturesFromLayerSelection(layerId: number, featureIds: string | string[]): void
 
       /**
        * **JMap.Map.Selection.removeFeaturesFromLayerSelection**
@@ -2677,7 +2677,7 @@ declare namespace JMap {
    * From this section you can manage the project that is in use in the JMap Web Core library.
    */
   namespace Project {
-    
+
     /**
      * **JMap.Project.getAllProjects**
      * 
@@ -2700,163 +2700,216 @@ declare namespace JMap {
     function getAllProjects(): Promise<JProject[]>
 
     /**
-    * **JMap.Project.getId**
-    * 
-    * Returns selected JMap project id.
-    * 
-    * If no project is loaded, returns -1.
-    * 
-    * @example ```ts
-    * 
-    * // returns the currently loaded project id
-    * JMap.Project.getId()
-    * ```
-    */
+     * **JMap.Project.existProject**
+     * 
+     * Returns true if project exist for the given project id.
+     * 
+     * @param projectId The JMap project id
+     * @example ```ts
+     * 
+     * // returns true if the project id = 2 exists, else false
+     * JMap.Project.existProject(2)
+     * ```
+     */
+    function existProject(projectId: number): boolean
+
+    /**
+     * **JMap.Project.getById**
+     * 
+     * Returns the project for the given project id.
+     * 
+     * Throws an error if no project found.
+     * 
+     * @param projectId The JMap project id
+     * @throws error if the project doesn't exists
+     * @example ```ts
+     * 
+     * // returns true if the project id = 2 exists
+     * JMap.Project.getById(2)
+     * ```
+     */
+    function getById(projectId: number): JProject
+
+    /**
+     * **JMap.Project.projectIsLoaded**
+     * 
+     * Returns true if a JMap project is loaded, that means a project is selected and displayed on the map.
+     *
+     * @example ```ts
+     * 
+     * // returns true if a project is loaded
+     *  JMap.Project.projectIsLoaded()
+     *  ```
+     */
+    function projectIsLoaded(): boolean
+
+    /**
+     * **JMap.Project.getId**
+     * 
+     * Returns loaded JMap project id.
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the currently loaded project id
+     * JMap.Project.getId()
+     * ```
+     */
     function getId(): number
 
     /**
-    * **JMap.Project.getName**
-    * 
-    * Returns selected JMap project name.
-    * 
-    * If no project is loaded, returns "".
-    * 
-    * @example ```ts
-    * 
-    * // returns the currently loaded project name
-    * JMap.Project.getName()
-    * ```
-    */
+     * **JMap.Project.getName**
+     * 
+     * Returns loaded JMap project name.
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the currently loaded project name
+     * JMap.Project.getName()
+     * ```
+     */
     function getName(): string
 
     /**
-    * **JMap.Project.getDescription**
-    * 
-    * Returns selected JMap project description.
-    * 
-    * If no project is loaded, returns "".
-    * 
-    * @example ```ts
-    * 
-    * // returns the currently loaded project description
-    * JMap.Project.getDescription()
-    * ```
-    */
+     * **JMap.Project.getDescription**
+     * 
+     * Returns loaded JMap project description.
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the currently loaded project description
+     * JMap.Project.getDescription()
+     * ```
+     */
     function getDescription(): string
 
     /**
-    * **JMap.Project.getProjection**
-    * 
-    * Returns selected JMap project projection.
-    * 
-    * If no project is selected, returns an empty projection : { code: "", name: "" }.
-    * 
-    * In MapBox, projection is always "***EPSG:3857***", but that function returns the project
-    * defined projection (so it can be different than ***ESPG:3857***).
-    * 
-    * @example ```ts
-    * 
-    * // returns the project projection
-    * JMap.Project.getProjection()
-    * ```
-    */
+     * **JMap.Project.getProjection**
+     * 
+     * Returns loaded JMap project projection.
+     * 
+     * In MapBox, projection is always "***EPSG:3857***", but that function returns the project
+     * defined projection (so it can be different than ***ESPG:3857***).
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the project projection
+     * JMap.Project.getProjection()
+     * ```
+     */
     function getProjection(): JProjection
 
     /**
-    * **JMap.Project.getInitialRotation**
-    * 
-    * Returns selected JMap project initial map rotation.
-    * This rotation is the one applied when the project is opened.
-    * 
-    * If no project is selected, returns 0.
-    * 
-    * @example ```ts
-    * 
-    * // returns the project initial rotation
-    * JMap.Project.getInitialRotation()
-    * ```
-    */
+     * **JMap.Project.getInitialRotation**
+     * 
+     * Returns loaded JMap project initial map rotation.
+     * This rotation is the one applied when the project is opened.
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the project initial rotation
+     * JMap.Project.getInitialRotation()
+     * ```
+     */
     function getInitialRotation(): number
 
     /**
-    * **JMap.Project.getMinScale**
-    * 
-    * Returns selected JMap project min scale.
-    * 
-    * If no project is selected, returns 0.
-    * 
-    * @example ```ts
-    * 
-    * // returns the project min scale
-    * JMap.Project.getMinScale()
-    * ```
+     * **JMap.Project.getMinScale**
+     * 
+     * Returns loaded JMap project min scale.
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the project min scale
+     * JMap.Project.getMinScale()
+     * ```
     */
     function getMinScale(): number
 
     /**
-    * **JMap.Project.getMaxScale**
-    * 
-    * Returns selected JMap project max scale.
-    * 
-    * If no project is selected, returns 0.
-    * 
-    * @example ```ts
-    * 
-    * // returns the project max scale
-    * JMap.Project.getMaxScale()
-    * ```
-    */
+     * **JMap.Project.getMaxScale**
+     * 
+     * Returns loaded JMap project max scale.
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the project max scale
+     * JMap.Project.getMaxScale()
+     * ```
+     */
     function getMaxScale(): number
 
     /**
-    * **JMap.Project.getSelectionColor**
-    * 
-    * Returns selected JMap project selection color in html hexa format.
-    * 
-    * This is the color that is used for selected features of layers that
-    * don't have a specific selection style defined.
-    * 
-    * If no project is selected, returns "#ffffff".
-    * 
-    * @example ```ts
-    * 
-    * // returns the project selection color as a html hexa color
-    * JMap.Project.getSelectionColor()
-    * ```
-    */
+     * **JMap.Project.getSelectionColor**
+     * 
+     * Returns loaded JMap project selection color in html hexa format.
+     * 
+     * This is the color that is used for selected features of layers that
+     * don't have a specific selection style defined.
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the project selection color as a html hexa color
+     * JMap.Project.getSelectionColor()
+     * ```
+     */
     function getSelectionColor(): string
 
     /**
-    * **JMap.Project.getBackgroundColor**
-    * 
-    * Returns selected JMap project background color in html hexa format.
-    * This color is used as the background of the map.
-    * 
-    * If no project is selected, returns "#ffe4c4".
-    * 
-    * @example ```ts
-    * 
-    * // returns the project background color as a html hexa color
-    * JMap.Project.getBackgroundColor()
-    * ```
-    */
+     * **JMap.Project.getBackgroundColor**
+     * 
+     * Returns loaded JMap project background color in html hexa format.
+     * This color is used as the background of the map.
+     *
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the project background color as a html hexa color
+     * JMap.Project.getBackgroundColor()
+     * ```
+     */
     function getBackgroundColor(): string
 
     /**
-    * **JMap.Project.getInitialExtent**
-    * 
-    * Returns selected JMap project initial extent.
-    * This is the extent that is automatically displayed when the project is opened.
-    * 
-    * If no project is selected, returns null.
-    * 
-    * @example ```ts
-    * 
-    * // returns the project initial extent if exists
-    * JMap.Project.getInitialExtent()
-    * ```
-    */
+     * **JMap.Project.getInitialExtent**
+     * 
+     * Returns loaded JMap project initial extent.
+     * This is the extent that is automatically displayed when the project is opened.
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the project initial extent if exists
+     * JMap.Project.getInitialExtent()
+     * ```
+     */
     function getInitialExtent(): JBounds | null
+
+    /**
+     * **JMap.Project.getBase64ImageThumbnail**
+     * 
+     * Returns loaded JMap project base64 image thumbnail.
+     * 
+     * When JMap Web Core lib is started, it doesn't load projects thumbnails, but you can load it
+     * by setting the startup option "loadAllProjectThumbnails" as true.
+     *
+     * If no thumbnail has been loaded it returns an empty string.
+     * 
+     * @throws If no project is loaded
+     * @example ```ts
+     * 
+     * // returns the project initial extent if exists
+     * JMap.Project.getInitialExtent()
+     * ```
+     */
+    function getBase64ImageThumbnail(): string
 
     /**
      * **JMap.Project.load**
@@ -2876,12 +2929,14 @@ declare namespace JMap {
      * 
      * // Load data and display map of project id=2
      * JMap.Project.load(2)
+     *    .then(project => console.info("Project id=2 has been loaded.", project)
+     *    .catch(error => console.error(`Canno't load the project : ${error}`)
      * ```
      */
-    function load(projectId?: number): Promise<void>
+    function load(projectId?: number): Promise<JProject>
 
     /**
-     * **JMap.Project.load**
+     * **JMap.Project.unload**
      * 
      * Unload the current displayed project.
      * 
@@ -2894,6 +2949,29 @@ declare namespace JMap {
      * ```
      */
     function unload(): void
+
+    /**
+     * **JMap.Project.loadAllProjectThumbnails**
+     * 
+     * Set the project image in the data store.
+     * 
+     * Image is a base 64 formatted string.
+     * 
+     * @example ```ts
+     * 
+     * // Will load all projects thumbnail images
+     * JMap.Project.loadAllProjectThumbnails()
+     *    .then(() => console.info("All project images has been loaded"))
+     *    .catch(error => console.error("Cannot load project images"))
+     * 
+     * // Then you can get current project thumnail like that
+     * const thumbnail = JMap.Project.getBase64ImageThumbnail()
+     * 
+     * // Or you can get the project id=3 thumbnail like this
+     * const otherThumbnail = JMap.Project.getById(3).base64ImageThumbnail
+     * ```
+     */
+    function loadAllProjectThumbnails(): Promise<void>
   }
 
   /**
@@ -3068,28 +3146,193 @@ declare namespace JMap {
     function logout(): Promise<void>
 
     /**
-     * **JMap.User.setSession**
+     * **JMap.User.setToken**
      * 
      * Set the user session data. Usefull if you have made a call to our Rest API and get by yourself
-     * the session data.
+     * the session token.
      * 
-     * @throws Error if session data are not good
-     * @param session The user session data
+     * @param session The user session token
      * @example ```ts
      * 
-     * // Set the user session data
-     * JMap.User.setSession({
-     *  token: "2355810917",
-     *  user: {
-     *    login: "jdo@mycompany.com",
-     *    firstname: "John",
-     *    lastname: "Do",
-     *    admin: false
-     *  }
-     * })
+     * To get a JMap session token, you can use the JMap Rest API on your JMap Server. By exemple if your server url is "https://my-jmap-server/", With the [curl tool](https://curl.haxx.se/docs/) you can get for the user "jdo@company.com" his token like that (adapt the username and password ...) :
+     * ```sh
+     * curl -X POST "https://my-jmap-server/services/rest/v2.0/session" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"username\": \"jdo@company.com\", \"password\": \"xxx\", \"type\": \"WEB\"}"
+     * ```
+     * 
+     * If the request is successfull, the response is like that :
+     * ```js
+     * {
+     *   "message": "The result is a WEB session info",
+     *   "status": "OK",
+     *   "result": {
+     *     "sessionId": 23558109, // session id in the Rest API response is the session token.
+     *     ...
+     *   }
+     * }
+     * ```
+     * 
+     * // Set the user session token
+     * JMap.User.setToken("23558109")
+     *  .then(userData => {
+     *    console.log(`Session token = "${userData.token}""`)
+     *    console.log(`The session belongs to ${userData.user.fullName}`)
+     *  })
+     *  .then(error => {
+     *    if (error === "user.token.invalid") {
+     *      console.log(`Invalid token`)
+     *    } else {
+     *      console.log(`Server error`)
+     *    }
+     *  })
      * ```
      */
-    function setSession(session: JSessionData): void
+    function setToken(token: string): Promise<JSessionData>
+  }
+
+  /**
+   * **JMap.Query**
+   * 
+   * A feature query mecanism has been set in JMap to get filtered features.
+   * 
+   * By example we can get all features that have an attribute equals to a given value.
+   * 
+   * A query concerns a single layer, and it set a data form that will be filled by users to make a search.
+   * 
+   * For a given project, a JMap administrator can create query groups and put inside
+   * all queries he wants, not depending on a particular layers.
+   * 
+   * You can get queries definitions (including the form definition) and process a query from this section.
+   */
+  namespace Query {
+
+    /**
+     * ***JMap.Query.getAllGroups***
+     * 
+     * Returns all query groups defined by JMap administrator.
+     * 
+     * @example ```ts
+     * 
+     * // returns all query groups defined by JMap administrator
+     * JMap.Query.getAllGroups()
+     * ```
+     */
+    function getAllGroups(): JQueryGroup[]
+
+    /**
+     * ***JMap.Query.groupExist***
+     * 
+     * Returns true if group exists, else false, for the given group id.
+     * 
+     * @throws if group id is not correct (invalid format or no resource exists)
+     * @param groupId The JMap query group id
+     * @example ```ts
+     * 
+     * // returns true if group exists
+     * JMap.Query.groupExist(21)
+     * ```
+     */
+    function groupExist(groupId: number): boolean
+
+    /**
+     * ***JMap.Query.queryExist***
+     * 
+     * Returns true if the query exists for a given query group and a given query id.
+     * 
+     * @param groupId The JMap query group id
+     * @param queryId The JMap query id
+     * @example ```ts
+     * 
+     * // returns true if query id=5 of group id=10 exists
+     * JMap.Query.queryExist(10, 5)
+     * ```
+     */
+    function queryExist(groupId: number, queryId: number): boolean
+
+    /**
+     * ***JMap.Query.getQueriesByLayerId***
+     * 
+     * Returns all queries defined for a given layer id.
+     * 
+     * @param layerId The JMap layer id
+     * @throws if layer id is not correct (invalid format or no resource exists)
+     * @example ```ts
+     * 
+     * // returns all queries of layer id=12
+     * JMap.Query.getQueriesByLayerId(12)
+     * ```
+     */
+    function getQueriesByLayerId(layerId: number): JQuery[]
+
+    /**
+     * ***JMap.Query.getQueryByLayerId***
+     * 
+     * Returns a query for a given query id, and a given layer id.
+     * 
+     * @throws if layer or query ids are not correct (invalid format or no resource exists)
+     * @param layerId The JMap layer id
+     * @param queryId The JMap query id
+     * @example ```ts
+     * 
+     * // returns query id=3 of layer id=12
+     * JMap.Query.getQueryByLayerId(12, 3)
+     * ```
+     */
+    function getQueryByLayerId(layerId: number, queryId: number): JQuery
+
+    /**
+     * ***JMap.Query.getQueriesByGroupId***
+     * 
+     * Returns all queries for a given query group id.
+     * 
+     * @throws if group id is not correct (invalid format or no resource exists)
+     * @param groupId The JMap query group id
+     * @example ```ts
+     * 
+     * // returns all queries of group id=10
+     * JMap.Query.getQueriesByGroupId(10)
+     * ```
+     */
+    function getQueriesByGroupId(groupId: number): JQuery[]
+
+    /**
+     * ***JMap.Query.getQueryByGroupId***
+     * 
+     * Returns the query for a given query group and a given query id.
+     * 
+     * @throws if group or query ids are not correct (invalid format or no resource exists)
+     * @param groupId The JMap query group id
+     * @param queryId The JMap query id
+     * @example ```ts
+     * 
+     * // returns the query id=5 of group id=10
+     * JMap.Query.getQueryByGroupId(10, 5)
+     * ```
+     */
+    function getQueryByGroupId(groupId: number, queryId: number): JQuery
+
+    /**
+     * ***JMap.Query.fetchFeatures***
+     * 
+     * Process a query request to the JMap server, for given layer and query ids, and provided form data
+     * 
+     * @throws if group or query ids are not correct (invalid format or no resource exists)
+     * @param layerId The JMap layer id
+     * @param queryId The JMap query id
+     * @param data The form data (values mapping the query form definition)
+     * @example ```ts
+     * 
+     * // returns a promise that when resolved returns the result of the search,
+     * // an array of features, for layer id=3 and query id=5.
+     * JMap.Query
+     *   .fetchFeatures(3, 5, {
+     *    "$PARAM1": "test",
+     *    "$PARAM2": 35
+     *   })
+     *   .then(features => console.info(`Found ${features.length} features.`))
+     *   .catch(error => console.error("Error while processing query request.", error))
+     * ```
+     */
+    function fetchFeatures(layerId: number, queryId: number, data: any): Promise<any[]> // features
   }
 
   /**
@@ -3148,6 +3391,26 @@ declare namespace JMap {
          * ```
          */
         function projectChange(listenerId: string, fn: (params: JProjectEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Project.on.projectsChange***
+         * 
+         * This event is triggered after the entire project list has been fetched from server.
+         * 
+         * It happens once after the user session has been validated and set.
+         * 
+         * @param listenerId Your listener id (must be unique for all project events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a new project is loaded will display the new project id in the console
+         * JMap.Event.Project.on.projectsChange(
+         *    "custom-projects-change",
+         *    params => console.log(`Project count = "${params.projects.length}"`)
+         * )
+         * ```
+         */
+        function projectsChange(listenerId: string, fn: (params: JProjectAllEventParams) => void): void
       }
 
       /**
@@ -4028,5 +4291,85 @@ declare namespace JMap {
      * ```
      */
     function renderMouseOver(layer: JLayer, feature: any): JExtensionMouseOver[]
+  }
+
+  /**
+   * **JMap.Form**
+   * 
+   * Here you'll find all form related methods
+   */
+  namespace Form {
+    
+    /**
+     * ***JMap.Form.getDefaultValues***
+     * 
+     * Returns the default data values of the form.
+     * 
+     * The result is an object where :
+     *  - key is the attribute id
+     *  - value the default value
+     * 
+     * @param form A JMap form
+     * @returns a key/value object
+     * @example ```ts
+     * 
+     * const form = ...
+     * const defaultValues = JMap.Form.getDefaultValues(form)
+     * ```
+     */
+    function getDefaultValues(form: JForm): { [ id: string ]: any }
+
+    /**
+     * ***JMap.Form.getPreparedData***
+     * 
+     * This function prepare the data, it returns a copy object containing the values formatted in a way that fit the server needs.
+     * 
+     * It's not mandatory to use this function but it's highly recommended to use it before :
+     * - sending them to the server ()
+     * - validating them using JMap.Form.getPreparedData (change values to fit the )
+     * 
+     * It returns another object without modifing the passed object.
+     * 
+     * 
+     * Use to set the correct type (number if a string number is passed), and many other things.
+     * 
+     * @param form A JMap form
+     * @param data The form data
+     * @returns the prepared data
+     * @example ```ts
+     * 
+     * const data = ...
+     * const form = ...
+     * const preparedData = JMap.Form.getPreparedData(form, data)
+     * const errors = JMap.Form.validateData(form, preparedData)
+     * ```
+     */
+    function getPreparedData(form: JForm, data: any): any
+
+    /**
+     * ***JMap.Form.validateData***
+     * 
+     * Return errors for the given form id and data.
+     * 
+     * If no error validation, it returns an empty object.
+     * 
+     * The result is an object where :
+     *  - key is the attribute id
+     *  - value is the validation error message, translated in the user locale
+     * 
+     * @param form A JMap form
+     * @param data The form data
+     * @returns an empty object if no validation error, else an object containing error messages grouped by attribute id.
+     * @example ```ts
+     * 
+     * const form = ...
+     *  const data = {
+     *   name: "Jack"
+     * }
+     * // return {} if no error, else could returns { age: "required field" }
+     * const errors = JMap.Form.validateData(form, data)
+     * ```
+     */
+    function validateData(form: JForm, data: { [id: string]: any }): { [key: string]: string }
   }
 }
