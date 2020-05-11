@@ -132,11 +132,14 @@ export interface JMapState {
 
 export interface JProjectState {
   isLoading: boolean
+  loadingError: boolean
   allProjects: JProject[]
   selectedProject: JProject
 }
 
 export interface JLayerState {
+  isLoading: boolean
+  loadingError: boolean
   tree: JLayerTree
   allById: { [treeElementId: string]: JLayerTreeElement }
   orderedLayerIds: number[]
@@ -209,6 +212,7 @@ export interface JMapService {
   getMap(): any
   getMapJSLib(): any
   getDomContainerId(): string
+  isMapCreated(): boolean
   isMapLoaded(): boolean
   getExtent(): JBoundaryBox
   getCenter(): { x: number, y: number }
@@ -301,7 +305,7 @@ export interface JProjectService {
   getBackgroundColor(): string
   getInitialExtent(): JBounds | null
   getBase64ImageThumbnail(): string
-  load(projectId?: number): Promise<JProject>
+  load(projectIdOrName?: number | string): Promise<JProject>
   unload(): void
   loadAllProjectThumbnails(): Promise<void>
 }

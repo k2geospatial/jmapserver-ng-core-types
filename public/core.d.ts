@@ -31,6 +31,8 @@ declare namespace JMap {
    * 
    * Returns the JMap Web Core library build version.
    * 
+   * For the same interface version we can have multiple implementation version.
+   * 
    * @example ```ts
    * 
    * // returns the build version, for example "1.0.1"
@@ -75,7 +77,7 @@ declare namespace JMap {
   * 
   * @example ```ts
   * 
-  * // open JMap Web Core library online documentation, in a new tab
+  * // open JMap Web Core library online JS API documentation, in a new tab
   * JMap.openDocumentation()
   * ```
   */
@@ -1208,6 +1210,19 @@ declare namespace JMap {
      * ```
      */
     function getDomContainerId(): string
+
+    /**
+     * ***JMap.Map.isMapCreated***
+     * 
+     * Returns true if the map has been created.
+     * 
+     * @example ```ts
+     * 
+     * // returns true or false
+     * JMap.Map.isMapCreated()
+     * ```
+     */
+    function isMapCreated(): boolean
 
     /**
      * ***JMap.Map.isMapLoaded***
@@ -2914,26 +2929,37 @@ declare namespace JMap {
     /**
      * **JMap.Project.load**
      * 
-     * You can display another project by calling this method.
+     * Load and display a project data on the map.
      * 
      * User session rigths are checked server side and an error is thrown if user doesn't have
      * the access right for the project.
      * 
-     * If no projectId is provided, the one defined in JMap Web Core options ([[JCoreOptions]]) will be used.
-     * If no project id has been defined, an error is thrown.
+     * If no project id or name is provided : get the projectId or projectName in startup options or url parameters ([[JCoreOptions]])
+     * 
+     * If a project id or name is provided : try to load the project given the project id or name.
      * 
      * @throws Error if project not found
-     * @param projectId The JMap project id
+     * @param projectIdOrName The JMap project id or name
      * @return a promise that is resolved when the project has been loaded successfully
      * @example ```ts
      * 
-     * // Load data and display map of project id=2
-     * JMap.Project.load(2)
+     * // Load the project defined in stratup option or url parameter
+     * JMap.Project.load()
+     *    .then(project => console.info(`Project id=${project.id} has been loaded.`, project)
+     *    .catch(error => console.error(`Cannot load the project : ${error}`)
+     * 
+     * // Load project id=2
+     * JMap.Project.load(2) // project id=2
      *    .then(project => console.info("Project id=2 has been loaded.", project)
-     *    .catch(error => console.error(`Canno't load the project : ${error}`)
+     *    .catch(error => console.error(`Cannot load the project : ${error}`)
+     * 
+     * // Load project name="My city"
+     * JMap.Project.load("My city") // project name="My city"
+     *    .then(project => console.info(`Project id=${project.id} has been loaded.`, project)
+     *    .catch(error => console.error(`Cannot load the project : ${error}`)
      * ```
      */
-    function load(projectId?: number): Promise<JProject>
+    function load(projectIdOrName?: number | string): Promise<JProject>
 
     /**
      * **JMap.Project.unload**
