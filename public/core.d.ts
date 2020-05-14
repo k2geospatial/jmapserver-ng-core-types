@@ -1867,7 +1867,7 @@ declare namespace JMap {
      * })
      * ```
      */
-    function fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
+    function fitFeatures(features: any[], options?: JPanAndZoomOptions): void
 
     /**
      * **JMap.Map.Interaction**
