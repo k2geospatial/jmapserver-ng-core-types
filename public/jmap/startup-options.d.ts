@@ -343,6 +343,28 @@ declare interface JCoreOptions {
   token?: string
 
   /**
+   * By default the geolocation service is enabled.
+   * 
+   * But you can disable the geolocation service by setting the "***geolocationEnabled***" parameter to false :
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         geolocationEnabled: false
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+  geolocationEnabled?: boolean
+
+  /**
    * All map related options.
    * 
    * Click on [[JCoreMapOptions]] to get details.

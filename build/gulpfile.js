@@ -41,28 +41,18 @@ console.log(`  Src dir => ${SRC_DIR}`)
 
 gulp.task('copy', cb => {
   if (!process.env.COPY_DIR) {
-    throw Error("Missing COPY_DIR env variable. Ex : set COPY_DIR='/K2/JMap/7.0/web_ng/'")
+    throw Error("Missing COPY_DIR env variable. Ex : set COPY_DIR='/Users/lmignonat/Desktop/'")
   }
   
   gulp.src([ join(ROOT_DIR, 'public/**/*') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "core/node_modules/jmap-core/public")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "jmap-core-js/node_modules/jmap-core/public")))
   gulp.src([ join(ROOT_DIR, 'index.ts') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "core/node_modules/jmap-core")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "jmap-core-js/node_modules/jmap-core")))
   
   gulp.src([ join(ROOT_DIR, 'public/**/*') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "app/node_modules/jmap-core/public")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "jmap-app-js/node_modules/jmap-core/public")))
   gulp.src([ join(ROOT_DIR, 'index.ts') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "app/node_modules/jmap-core")))
-  
-  gulp.src([ join(ROOT_DIR, 'public/**/*') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "view/node_modules/jmap-core/public")))
-  gulp.src([ join(ROOT_DIR, 'index.ts') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "view/node_modules/jmap-core")))
-  
-  gulp.src([ join(ROOT_DIR, 'public/**/*') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "shared/node_modules/jmap-core/public")))
-  gulp.src([ join(ROOT_DIR, 'index.ts') ])
-      .pipe(gulp.dest(join(process.env.COPY_DIR, "shared/node_modules/jmap-core")))
+      .pipe(gulp.dest(join(process.env.COPY_DIR, "jmap-app-js/node_modules/jmap-core")))
 
   cb()
 })

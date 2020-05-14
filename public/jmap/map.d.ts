@@ -41,6 +41,15 @@ declare interface JMapAttributeSearch {
   attributeValue: any
 }
 
+declare interface JPanAndZoomOptions {
+  animate?: boolean
+  paddingTop?: number
+  paddingLeft?: number
+  paddingRight?: number
+  paddingBottom?: number
+  maxZoom?: number
+}
+
 declare interface JCoreMapOptions {
   /**
    * When the JMap Core library start it will create or use an existing div container in which the map will be inserted into.

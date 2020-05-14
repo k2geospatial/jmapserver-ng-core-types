@@ -6,6 +6,7 @@ export interface JCoreService extends JCoreMainService {
   Layer: JLayerService
   User: JUserService
   Map: JMapService
+  Geolocation: JGeolocationService,
   Geometry: JGeometryService,
   MouseOver: JMouseOverService
   Form: JFormService
@@ -22,6 +23,13 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
+}
+
+export interface JGeolocationService {
+  isSupportedByBrowser(): boolean
+  isEnabled(): boolean
+  getMyLocation(): Promise<JLocation>
+  goToMyLocation(options?: JPanAndZoomOptions): Promise<JLocation>
 }
 
 export interface JQueryService {
@@ -244,6 +252,7 @@ export interface JMapService {
   zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
   zoomToRect(bbox: JBoundaryBox, stopJMapEventPropagation?: boolean): void
   panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
+  fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
 }
 
 export interface JMapInteractionService {

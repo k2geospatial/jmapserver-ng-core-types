@@ -99,6 +99,75 @@ declare namespace JMap {
   function getOS(): JOperatingSystem
 
   /**
+   * **JMap.Geolocation**
+   * 
+   * This is where you can find geolocation relative methods
+   */
+  namespace Geolocation {
+    
+    /**
+     * **JMap.Geolocation.isSupportedByBrowser**
+     * 
+     * Returns true if the browser support the geolocation
+     * 
+     * @example ```ts
+     * 
+     * // return true if the browser supports the geolocation
+     * JMap.Geolocation.isSupportedByBrowser()
+     * ```
+     */
+    function isSupportedByBrowser(): boolean
+    
+    /**
+     * **JMap.Geolocation.isEnabled**
+     * 
+     * Returns false if the JMap Web Core library has been started with option that disable the geolocation.
+     * 
+     * See startup parameter [[JCoreOption.geolocationEnabled]].
+     * 
+     * @example ```ts
+     * 
+     * // return false if geolocation is disabled
+     * JMap.Geolocation.isEnabled()
+     * ```
+     */
+    function isEnabled(): boolean
+    
+    /**
+     * **JMap.Geolocation.getMyLocation**
+     * 
+     * Returns the user current location if promise succeed.
+     * 
+     * @throws if browser doesn't support geolocation, if geolocation is disabled, if an unexpected error occurs while getting location from browser
+     * @example ```ts
+     * 
+     * // return a promise that return the user current location if succeed
+     * JMap.Geolocation.getMyLocation()
+     *    .then(location => console.info("My location is ", location))
+     *    .error(error => console.error("Cannot get my location : ", error))
+     * ```
+     */
+    function getMyLocation(): Promise<JLocation>
+    
+    /**
+     * **JMap.Geolocation.goToMyLocation**
+     * 
+     * Returns the user current location if promise succeed, and pan and zoom to this location.
+     * 
+     * @throws if browser doesn't support geolocation, if geolocation is disabled, if an unexpected error occurs while getting location from browser
+     * @param options pan and zoom options
+     * @example ```ts
+     * 
+     * // pan and zoom to the user location
+     * JMap.Geolocation.goToMyLocation()
+     *    .then(location => console.info("Paned and zommed to user location ", location))
+     *    .error(error => console.error("Cannot get my location : ", error))
+     * ```
+     */
+    function goToMyLocation(options?: JPanAndZoomOptions): Promise<JLocation>
+  }
+
+  /**
    * **JMap.History**
    * 
    * This is where you can find browser history relative methods
@@ -1771,7 +1840,35 @@ declare namespace JMap {
      * ```
      */
     function panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
-    
+
+    /**
+     * **JMap.Map.fitFeatures**
+     * 
+     * Move and zoom (or unzoom) to display the given features.
+     * 
+     * @throws Error if bad parameters are passed
+     * @param features The location where the map will be centered
+     * @param options parameter to customize the animation, padding, and/or maxZoomLevel
+     * @example ```ts
+     * 
+     * // first select some features on layer id=3
+     * const features = JMap.Map.Selection.getSelectedFeaturesForLayer(3) // return layer id=3 selected features
+     * // Move and zoom to display the features
+     * JMap.Map.fitFeatures(features)
+     * 
+     * // The same with optional parameters
+     * JMap.Map.fitFeatures(features, {
+     *  animate: false, // default true
+     *  paddingTop: 120, // default 50
+     *  paddingLeft: 100, // default 50
+     *  paddingRight: 100, // default 50
+     *  paddingBottom: 120, // default 50
+     *  maxZoom: 10 // default the current zoom
+     * })
+     * ```
+     */
+    function fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
+
     /**
      * **JMap.Map.Interaction**
      * 
