@@ -119,7 +119,14 @@ export interface JCoreState {
   user: JUserState
   photo: JPhotoState
   query: JQueryState
+  geolocation: JGeolocationState
   external?: any
+}
+
+export interface JGeolocationState {
+  isEnabled: boolean
+  isSupported: boolean
+  currentLocation: JLocation | undefined
 }
 
 export interface JMapState {
