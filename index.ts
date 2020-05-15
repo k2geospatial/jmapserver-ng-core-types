@@ -124,6 +124,7 @@ export interface JCoreState {
 }
 
 export interface JGeolocationState {
+  isLocationDisplayed: boolean
   isEnabled: boolean
   isSupported: boolean
   currentLocation: JLocation | undefined

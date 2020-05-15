@@ -48,6 +48,7 @@ declare interface JPanAndZoomOptions {
   paddingRight?: number
   paddingBottom?: number
   maxZoom?: number
+  avoidEvent?: boolean
 }
 
 declare interface JCoreMapOptions {
