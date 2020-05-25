@@ -1,5 +1,6 @@
-declare namespace JMap.Service.Project {
-  function setId(projectId: string): void
+declare interface JProjectLoadThumbnailsParams {
+  width: number
+  height: number
 }
 
 declare interface JProjectEventParams {

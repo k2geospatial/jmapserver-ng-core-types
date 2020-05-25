@@ -324,7 +324,7 @@ export interface JProjectService {
   getBase64ImageThumbnail(): string
   load(projectIdOrName?: number | string): Promise<JProject>
   unload(): void
-  loadAllProjectThumbnails(): Promise<void>
+  loadAllProjectThumbnails(params?: JProjectLoadThumbnailsParams): Promise<void>
 }
 
 export interface JLayerService {

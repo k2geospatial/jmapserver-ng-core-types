@@ -734,20 +734,23 @@ declare namespace JMap {
     function setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
     
     /**
-     * **JMap.Layer.removeLayer**
+     * **JMap.Layer.deleteLayer**
      * 
-     * Remove the layer in the data store and in the map.
-     * It is not deleted server side, only in the browser.
+     * Delete the layer in the data store and in the map.
+     * 
+     * The layer is not deleted server side, but only in the browser.
+     * 
+     * Use this function if you want to dynamically remove a layer.
      * 
      * @throws Error if layer is not found
      * @param layerId The JMap layer id
      * @example ```ts
      * 
      * // Remove layer 4 (only client side)
-     * JMap.Layer.removeLayer(4)
+     * JMap.Layer.deleteLayer(4)
      * ```
      */
-    function removeLayer(layerId: number): void
+    function deleteLayer(layerId: number): void
     
     /**
      * **JMap.Layer.setThematicVisibility**
@@ -3076,14 +3079,22 @@ declare namespace JMap {
     /**
      * **JMap.Project.loadAllProjectThumbnails**
      * 
-     * Set the project image in the data store.
+     * Load all project thumbnails in the data store.
+     * 
+     * Default width is 348 and height 190.
      * 
      * Image is a base 64 formatted string.
      * 
+     * @throws if params are not correct
+     * @param params width (0 < width < 1280) and height (0 < height < 720) for the thumbnails
      * @example ```ts
      * 
      * // Will load all projects thumbnail images
-     * JMap.Project.loadAllProjectThumbnails()
+     * JMap.Project
+     *    .loadAllProjectThumbnails({
+     *      width: 200,
+     *      height: 200
+     *    })
      *    .then(() => console.info("All project images has been loaded"))
      *    .catch(error => console.error("Cannot load project images"))
      * 
@@ -3094,7 +3105,7 @@ declare namespace JMap {
      * const otherThumbnail = JMap.Project.getById(3).base64ImageThumbnail
      * ```
      */
-    function loadAllProjectThumbnails(): Promise<void>
+    function loadAllProjectThumbnails(params?: JProjectLoadThumbnailsParams): Promise<void>
   }
 
   /**
