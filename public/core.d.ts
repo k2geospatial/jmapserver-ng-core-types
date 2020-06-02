@@ -956,7 +956,7 @@ declare namespace JMap {
      * JMap.Geometry.getLineLength(line, "miles")
      * ```
      */
-    function getLineLength(feature: any, units?: JGeometryUnit): number
+    function getLineLength(feature: any, units?: JGeometryUnit | JDistanceUnit ): number
 
     /**
      * **JMap.Geometry.getCentroid**

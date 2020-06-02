@@ -202,10 +202,10 @@ export interface JGeometryService {
   checkBbox(bbox: JBoundaryBox): void
   isValidBbox(bbox: JBoundaryBox | undefined): boolean
   getArea(feature: Feature): number
-  getLineLength(feature: Feature, units?: JGeometryUnit): number
+  getLineLength(feature: Feature, units?: JGeometryUnit | JDistanceUnit): number
   getCentroid(feature: Feature | FeatureCollection): Feature<Point>
   getFeatureFromLine(line: JLine): Feature<LineString>
-  getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): Feature<Polygon>
+  getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit | JDistanceUnit): Feature<Polygon>
   getFeatureFromPolygon(polygon: JPolygon): Feature<Polygon>
   getBboxFromFeature(polygon: Feature): JBoundaryBox
   getBboxFromFeatures(features: Feature[]): JBoundaryBox
