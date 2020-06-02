@@ -205,7 +205,7 @@ export interface JGeometryService {
   getLineLength(feature: Feature, units?: JGeometryUnit | JDistanceUnit): number
   getCentroid(feature: Feature | FeatureCollection): Feature<Point>
   getFeatureFromLine(line: JLine): Feature<LineString>
-  getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit | JDistanceUnit): Feature<Polygon>
+  getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): Feature<Polygon>
   getFeatureFromPolygon(polygon: JPolygon): Feature<Polygon>
   getBboxFromFeature(polygon: Feature): JBoundaryBox
   getBboxFromFeatures(features: Feature[]): JBoundaryBox
