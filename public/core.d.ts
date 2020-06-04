@@ -3196,21 +3196,6 @@ declare namespace JMap {
     function getPreference(name: string): string | null
 
     /**
-     * **JMap.User.getDistanceUnit**
-     *
-     * Get the project distance unit.
-     *
-     * If unit is undefined the unit will default to "meters".
-     * @param projectId the id of the project
-     * @example ```ts
-     *
-     * // return null if no distance unit, else the value
-     * JMap.User.getDistanceUnit(35)
-     * ```
-     */
-    function getDistanceUnit(projectId: number): JDistanceUnit | null
-
-    /**
      * **JMap.User.hasPreference**
      * 
      * Return true if a value has been set for the user preference.
@@ -3249,12 +3234,25 @@ declare namespace JMap {
      * // Set the value "dark" for user preference "theme"
      * JMap.User.setPreference("theme", "dark")
      * 
-     * 
      * // Remove the value for user preference "theme"
      * JMap.User.setPreference("theme")
      * ```
      */
     function setPreference(name: string, value: string | undefined): void
+
+    /**
+     * **JMap.User.getDistanceUnit**
+     *
+     * Get the project distance unit.
+     *
+     * If unit is undefined the unit will default to "meters".
+     * @example ```ts
+     *
+     * // return undefined if no distance unit, else the value
+     * JMap.User.getDistanceUnit()
+     * ```
+     */
+    function getDistanceUnit(): JDistanceUnit
 
     /**
      * **JMap.User.setDistanceUnit**

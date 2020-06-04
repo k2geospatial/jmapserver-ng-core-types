@@ -366,9 +366,9 @@ export interface JUserService {
   getLocale(): string
   getPreference(name: string): string | null
   hasPreference(name: string): boolean
-  getDistanceUnit(projectId: number): JDistanceUnit | null
   removePreference(name: string): string | null
   setPreference(name: string, value: string | undefined): void
+  getDistanceUnit(): JDistanceUnit
   setDistanceUnit(projectId: number, distanceUnit: JDistanceUnit): void
   setToken(token: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
