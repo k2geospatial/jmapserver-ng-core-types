@@ -23,8 +23,6 @@ declare type JPolygon = Array<JPoint>
 
 declare type JGeometryUnit = "kilometers" | "miles" | "degrees" | "radians"
 
-declare type JDistanceUnit = "millimeters" | "centimeters" | "meters" | "kilometers" | "inches" | "feet" | "yards" | "miles" | "nauticalmiles"
-
 declare interface JCircle {
   center: JLocation,
   /**

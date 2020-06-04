@@ -30,8 +30,11 @@ declare interface JUserIdentity {
   email: string
 }
 
+declare type JDistanceUnit = "millimeters" | "centimeters" | "meters" | "kilometers" | "inches" | "feet" | "yards" | "miles" | "nauticalmiles"
+
 declare interface JUserState {
   identity: JUserIdentity
   token: string
   locale: string
+  distanceUnit: JDistanceUnit
 }

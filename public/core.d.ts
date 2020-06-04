@@ -2886,6 +2886,19 @@ declare namespace JMap {
      */
     function getName(): string
 
+        /**
+     * **JMap.Project.getDistanceUnit**
+     *
+     * Get the project distance unit.
+     *
+     * @example ```ts
+     *
+     * // return "meters", or "kilometers", or "miles", or "yards"...
+     * JMap.Project.getDistanceUnit()
+     * ```
+     */
+    function getDistanceUnit(): JDistanceUnit
+
     /**
      * **JMap.Project.getDescription**
      * 
@@ -3221,11 +3234,30 @@ declare namespace JMap {
      * // Set the value "dark" for user preference "theme"
      * JMap.User.setPreference("theme", "dark")
      * 
+     * // Set the value "kilometers" for the user preference "unit"
+     * JMap.User.setPreference("unit", "kilometers")
+     * 
      * // Remove the value for user preference "theme"
      * JMap.User.setPreference("theme")
      * ```
      */
     function setPreference(name: string, value: string | undefined): void
+
+    /**
+     * **JMap.User.setDistanceUnit**
+     *
+     * Set a user distance unit preference.
+     *
+     * If unit is undefined the unit will default to "meters".
+     * @param projectId the id of the project
+     * @param distanceUnit the unit that will be associated to the project
+     * @example ```ts
+     *
+     * // Set the project id 35 unit to "miles"
+     * JMap.User.setDistanceUnit(35, "miles")
+     * ```
+     */
+    function setDistanceUnit(projectId: number, distanceUnit: JDistanceUnit): void
 
     /**
      * **JMap.User.login**
