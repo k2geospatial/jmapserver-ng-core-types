@@ -3380,7 +3380,7 @@ declare namespace JMap {
      * JMap.Query.queryExist(10, 5)
      * ```
      */
-    function queryExist(groupId: number, queryId: number): boolean
+    function queryExist(groupId: number, queryId: string): boolean
 
     /**
      * ***JMap.Query.getQueriesByLayerId***
@@ -3411,7 +3411,7 @@ declare namespace JMap {
      * JMap.Query.getQueryByLayerId(12, 3)
      * ```
      */
-    function getQueryByLayerId(layerId: number, queryId: number): JQuery
+    function getQueryByLayerId(layerId: number, queryId: string): JQuery
 
     /**
      * ***JMap.Query.getQueriesByGroupId***
@@ -3442,7 +3442,7 @@ declare namespace JMap {
      * JMap.Query.getQueryByGroupId(10, 5)
      * ```
      */
-    function getQueryByGroupId(groupId: number, queryId: number): JQuery
+    function getQueryByGroupId(groupId: number, queryId: string): JQuery
 
     /**
      * ***JMap.Query.fetchFeatures***
@@ -3466,7 +3466,7 @@ declare namespace JMap {
      *   .catch(error => console.error("Error while processing query request.", error))
      * ```
      */
-    function fetchFeatures(layerId: number, queryId: number, data: any): Promise<any[]> // features
+    function fetchFeatures(layerId: number, queryId: string, data: any): Promise<any[]> // features
   }
 
   /**
