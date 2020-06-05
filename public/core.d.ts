@@ -1284,6 +1284,19 @@ declare namespace JMap {
     function getDomContainerId(): string
 
     /**
+     * **JMap.Map.getAllDistanceUnits**
+     *
+     * Returns a list of all available distance units.
+     * @example ```ts
+     *
+     * // return list of all distance units
+     * // ["millimeters", "centimeters", "meters", "kilometers", "inches", "feet", "yards", "miles", "nauticalmiles" ]
+     * JMap.Map.getAllDistanceUnits()
+     * ```
+     */
+    function getAllDistanceUnits(): JDistanceUnit[]
+
+    /**
      * ***JMap.Map.isMapCreated***
      * 
      * Returns true if the map has been created.
@@ -3257,18 +3270,17 @@ declare namespace JMap {
     /**
      * **JMap.User.setDistanceUnit**
      *
-     * Set a user distance unit preference.
+     * Set the distance unit.
      *
      * If unit is undefined the unit will default to "meters".
-     * @param projectId the id of the project
-     * @param distanceUnit the unit that will be associated to the project
+     * @param distanceUnit the unit that will be associated to the user
      * @example ```ts
      *
-     * // Set the project id 35 unit to "miles"
-     * JMap.User.setDistanceUnit(35, "miles")
+     * // Set the distance unit to "miles"
+     * JMap.User.setDistanceUnit("miles")
      * ```
      */
-    function setDistanceUnit(projectId: number, distanceUnit: JDistanceUnit): void
+    function setDistanceUnit(distanceUnit: JDistanceUnit): void
 
     /**
      * **JMap.User.login**

@@ -228,6 +228,7 @@ export interface JMapService {
   getMap(): any
   getMapJSLib(): any
   getDomContainerId(): string
+  getAllDistanceUnits(): JDistanceUnit[]
   isMapCreated(): boolean
   isMapLoaded(): boolean
   getExtent(): JBoundaryBox
@@ -369,7 +370,7 @@ export interface JUserService {
   removePreference(name: string): string | null
   setPreference(name: string, value: string | undefined): void
   getDistanceUnit(): JDistanceUnit
-  setDistanceUnit(projectId: number, distanceUnit: JDistanceUnit): void
+  setDistanceUnit(distanceUnit: JDistanceUnit): void
   setToken(token: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>
