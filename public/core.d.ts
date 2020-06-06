@@ -4190,7 +4190,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // activate the listener "my-map-listener"
-       * JMap.Event.Layer.activate("my-map-listener")
+       * JMap.Event.Map.activate("my-map-listener")
        * ```
        */
       function activate(listenerId: string): void
