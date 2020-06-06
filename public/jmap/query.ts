@@ -5,7 +5,7 @@ declare interface JQueryGroup {
 }
 
 declare interface JQuery {
-  id: number
+  id: string
   groupId: number
   name: string
   layerId: number

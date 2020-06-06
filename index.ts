@@ -36,11 +36,11 @@ export interface JQueryService {
   getAllGroups(): JQueryGroup[]
   groupExist(groupId: number): boolean
   getQueriesByLayerId(layerId: number): JQuery[]
-  getQueryByLayerId(layerId: number, queryId: number): JQuery
+  getQueryByLayerId(layerId: number, queryId: string): JQuery
   getQueriesByGroupId(groupId: number): JQuery[]
-  getQueryByGroupId(groupId: number, queryId: number): JQuery
-  queryExist(groupId: number, queryId: number): boolean
-  fetchFeatures(layerId: number, queryId: number, data: any): Promise<Feature[]>
+  getQueryByGroupId(groupId: number, queryId: string): JQuery
+  queryExist(groupId: number, queryId: string): boolean
+  fetchFeatures(layerId: number, queryId: string, data: any): Promise<Feature[]>
 }
 
 export interface JEventService {
