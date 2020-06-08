@@ -28,6 +28,6 @@ declare interface JProject {
     mapBox: string | null
   },
   queryGroups: JQueryGroup[]
-  distanceUnit: JDistanceUnit
+  defaultDistanceUnit: JDistanceUnit
   base64ImageThumbnail: string
 }

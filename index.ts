@@ -144,6 +144,7 @@ export interface JMapState {
   inUseJMapLayerIds: number[]
   isScaleControlVisible: boolean
   scaleControlPosition: JMapPosition
+  distanceUnit: JDistanceUnit
 }
 
 export interface JProjectState {
@@ -229,6 +230,8 @@ export interface JMapService {
   getMapJSLib(): any
   getDomContainerId(): string
   getAllDistanceUnits(): JDistanceUnit[]
+  getDistanceUnit(): JDistanceUnit
+  setDistanceUnit(distanceUnit: JDistanceUnit): void
   isMapCreated(): boolean
   isMapLoaded(): boolean
   getExtent(): JBoundaryBox
@@ -316,7 +319,7 @@ export interface JProjectService {
   getName(): string
   getDescription(): string
   getProjection(): JProjection
-  getDistanceUnit(): JDistanceUnit
+  getDefaultDistanceUnit(): JDistanceUnit
   getInitialRotation(): number
   getMinScale(): number
   getMaxScale(): number
@@ -369,8 +372,6 @@ export interface JUserService {
   hasPreference(name: string): boolean
   removePreference(name: string): string | null
   setPreference(name: string, value: string | undefined): void
-  getDistanceUnit(): JDistanceUnit
-  setDistanceUnit(distanceUnit: JDistanceUnit): void
   setToken(token: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>

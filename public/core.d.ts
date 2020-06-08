@@ -1297,6 +1297,35 @@ declare namespace JMap {
     function getAllDistanceUnits(): JDistanceUnit[]
 
     /**
+     * **JMap.Map.getDistanceUnit**
+     *
+     * Get the map defined distance unit.
+     *
+     * If unit is undefined the unit will default to "meters".
+     * @example ```ts
+     *
+     * // return undefined if no distance unit, else the value
+     * JMap.Map.getDistanceUnit()
+     * ```
+     */
+    function getDistanceUnit(): JDistanceUnit
+
+    /**
+     * **JMap.Map.setDistanceUnit**
+     *
+     * Set the distance unit.
+     *
+     * If unit is undefined the unit will default to project distance unit
+     * @param distanceUnit the unit that will be associated to the user
+     * @example ```ts
+     *
+     * // Set the distance unit to "miles"
+     * JMap.Map.setDistanceUnit("miles")
+     * ```
+     */
+    function setDistanceUnit(distanceUnit: JDistanceUnit): void
+
+    /**
      * ***JMap.Map.isMapCreated***
      * 
      * Returns true if the map has been created.
@@ -3252,35 +3281,6 @@ declare namespace JMap {
      * ```
      */
     function setPreference(name: string, value: string | undefined): void
-
-    /**
-     * **JMap.User.getDistanceUnit**
-     *
-     * Get the project distance unit.
-     *
-     * If unit is undefined the unit will default to "meters".
-     * @example ```ts
-     *
-     * // return undefined if no distance unit, else the value
-     * JMap.User.getDistanceUnit()
-     * ```
-     */
-    function getDistanceUnit(): JDistanceUnit
-
-    /**
-     * **JMap.User.setDistanceUnit**
-     *
-     * Set the distance unit.
-     *
-     * If unit is undefined the unit will default to "meters".
-     * @param distanceUnit the unit that will be associated to the user
-     * @example ```ts
-     *
-     * // Set the distance unit to "miles"
-     * JMap.User.setDistanceUnit("miles")
-     * ```
-     */
-    function setDistanceUnit(distanceUnit: JDistanceUnit): void
 
     /**
      * **JMap.User.login**
