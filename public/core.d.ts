@@ -956,7 +956,7 @@ declare namespace JMap {
      * JMap.Geometry.getLineLength(line, "miles")
      * ```
      */
-    function getLineLength(feature: any, units?: JGeometryUnit): number
+    function getLineLength(feature: any, units?: JGeometryUnit | JDistanceUnit ): number
 
     /**
      * **JMap.Geometry.getCentroid**
@@ -1282,6 +1282,54 @@ declare namespace JMap {
      * ```
      */
     function getDomContainerId(): string
+
+    /**
+     * **JMap.Map.getAllDistanceUnits**
+     *
+     * Returns a list of all available distance units.
+     * 
+     * @example ```ts
+     *
+     * // return list of all distance units
+     * // ["millimeters", "centimeters", "meters", "kilometers", "inches", "feet", "yards", "miles", "nauticalmiles" ]
+     * JMap.Map.getAllDistanceUnits()
+     * ```
+     */
+    function getAllDistanceUnits(): JDistanceUnit[]
+
+    /**
+     * **JMap.Map.getDistanceUnit**
+     *
+     * Get the map defined distance unit.
+     *
+     * If no distance unit has been set by user, it returns the project distance unit,
+     * if no distance unit is set on the project, it returns "meters" by default.
+     * 
+     * @throws if no project is loaded
+     * @example ```ts
+     *
+     * // return undefined if no distance unit, else the value
+     * JMap.Map.getDistanceUnit()
+     * ```
+     */
+    function getDistanceUnit(): JDistanceUnit
+
+    /**
+     * **JMap.Map.setDistanceUnit**
+     *
+     * Set the distance unit, for the current project.
+     * 
+     * Save this preference in local storage.
+     * 
+     * @throws if bad distance unit is provided, or no project is loaded
+     * @param distanceUnit the distance unit
+     * @example ```ts
+     *
+     * // Set the distance unit to "miles"
+     * JMap.Map.setDistanceUnit("miles")
+     * ```
+     */
+    function setDistanceUnit(distanceUnit: JDistanceUnit): void
 
     /**
      * ***JMap.Map.isMapCreated***
@@ -2885,6 +2933,20 @@ declare namespace JMap {
      * ```
      */
     function getName(): string
+
+    /**
+     * **JMap.Project.getDefaultDistanceUnit**
+     *
+     * Returns the project distance unit, or "meters" if no distance unit is set on the project.
+     *
+     * @throws if no project is loaded
+     * @example ```ts
+     *
+     * // return "meters", or "kilometers", or "miles", or "yards"...
+     * JMap.Project.getDefaultDistanceUnit()
+     * ```
+     */
+    function getDefaultDistanceUnit(): JDistanceUnit
 
     /**
      * **JMap.Project.getDescription**

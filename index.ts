@@ -144,6 +144,7 @@ export interface JMapState {
   inUseJMapLayerIds: number[]
   isScaleControlVisible: boolean
   scaleControlPosition: JMapPosition
+  distanceUnit: JDistanceUnit
 }
 
 export interface JProjectState {
@@ -202,7 +203,7 @@ export interface JGeometryService {
   checkBbox(bbox: JBoundaryBox): void
   isValidBbox(bbox: JBoundaryBox | undefined): boolean
   getArea(feature: Feature): number
-  getLineLength(feature: Feature, units?: JGeometryUnit): number
+  getLineLength(feature: Feature, units?: JGeometryUnit | JDistanceUnit): number
   getCentroid(feature: Feature | FeatureCollection): Feature<Point>
   getFeatureFromLine(line: JLine): Feature<LineString>
   getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): Feature<Polygon>
@@ -228,6 +229,9 @@ export interface JMapService {
   getMap(): any
   getMapJSLib(): any
   getDomContainerId(): string
+  getAllDistanceUnits(): JDistanceUnit[]
+  getDistanceUnit(): JDistanceUnit
+  setDistanceUnit(distanceUnit: JDistanceUnit): void
   isMapCreated(): boolean
   isMapLoaded(): boolean
   getExtent(): JBoundaryBox
@@ -315,6 +319,7 @@ export interface JProjectService {
   getName(): string
   getDescription(): string
   getProjection(): JProjection
+  getDefaultDistanceUnit(): JDistanceUnit
   getInitialRotation(): number
   getMinScale(): number
   getMaxScale(): number
