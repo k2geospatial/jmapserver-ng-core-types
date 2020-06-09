@@ -1287,6 +1287,7 @@ declare namespace JMap {
      * **JMap.Map.getAllDistanceUnits**
      *
      * Returns a list of all available distance units.
+     * 
      * @example ```ts
      *
      * // return list of all distance units
@@ -1301,7 +1302,10 @@ declare namespace JMap {
      *
      * Get the map defined distance unit.
      *
-     * If unit is undefined the unit will default to "meters".
+     * If no distance unit has been set by user, it returns the project distance unit,
+     * if no distance unit is set on the project, it returns "meters" by default.
+     * 
+     * @throws if no project is loaded
      * @example ```ts
      *
      * // return undefined if no distance unit, else the value
@@ -1313,10 +1317,12 @@ declare namespace JMap {
     /**
      * **JMap.Map.setDistanceUnit**
      *
-     * Set the distance unit.
-     *
-     * If unit is undefined the unit will default to project distance unit
-     * @param distanceUnit the unit that will be associated to the user
+     * Set the distance unit, for the current project.
+     * 
+     * Save this preference in local storage.
+     * 
+     * @throws if bad distance unit is provided, or no project is loaded
+     * @param distanceUnit the distance unit
      * @example ```ts
      *
      * // Set the distance unit to "miles"
@@ -2928,18 +2934,19 @@ declare namespace JMap {
      */
     function getName(): string
 
-        /**
-     * **JMap.Project.getDistanceUnit**
+    /**
+     * **JMap.Project.getDefaultDistanceUnit**
      *
-     * Get the project distance unit.
+     * Returns the project distance unit, or "meters" if no distance unit is set on the project.
      *
+     * @throws if no project is loaded
      * @example ```ts
      *
      * // return "meters", or "kilometers", or "miles", or "yards"...
-     * JMap.Project.getDistanceUnit()
+     * JMap.Project.getDefaultDistanceUnit()
      * ```
      */
-    function getDistanceUnit(): JDistanceUnit
+    function getDefaultDistanceUnit(): JDistanceUnit
 
     /**
      * **JMap.Project.getDescription**
