@@ -40,7 +40,7 @@ declare interface JMapFeatureAttributeValues {
 declare interface JMapAttributeSearch {
   layerId: number
   attributeName: string
-  attributeValue: any
+  attributeValue: any | any[]
 }
 
 declare interface JPanAndZoomOptions {

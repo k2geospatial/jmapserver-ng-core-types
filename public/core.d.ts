@@ -362,6 +362,33 @@ declare namespace JMap {
   namespace Layer {
 
     /**
+     *  **JMap.Layer.Search**
+     * 
+     * methods used to query a layer by attribute, spatial extent or geometry type
+     */
+    namespace Search{
+
+      /**
+       * 
+       * @param layerId The id of the layer in the project
+       * @param attributeName name of the Feature attribute to search
+       * @param attributeValue can be a single value or an array of values (will search for value1 OR value2 OR ...)
+       * 
+       * @returns a Promise that will return all the features of the Layer corresponding to the search criteria
+       *
+       * @throws Error if Promise fails
+       * 
+       * @example ```ts
+       * 
+       * 
+       * ```
+       * 
+       */
+      function byAttribute(layerId: Number, attributeName: string, attributeValue: any | any[]):Promise<any>
+
+    }
+
+    /**
      * **JMap.Layer.getLayerTree**
      * 
      * Returns project's layer tree.

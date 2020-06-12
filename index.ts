@@ -333,6 +333,7 @@ export interface JProjectService {
 }
 
 export interface JLayerService {
+  Search: JLayerSearchService
   getLayerTree(): JLayerTree
   getLayerTreeElementsById(): { [treeElementId: number]: JLayerTreeElement }
   getLayers(): JLayer[]
@@ -356,6 +357,10 @@ export interface JLayerService {
   setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
   deleteLayer(layerId: number): void
   setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
+}
+
+export interface JLayerSearchService{
+  byAttribute(layerId: number, attributeName: string, attributeValue: any | any[]): Promise<Feature[]>
 }
 
 export interface JLayerGroup extends JLayerTreeElement {
