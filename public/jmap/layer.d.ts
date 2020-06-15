@@ -59,6 +59,14 @@ declare interface JLayerThematic {
   subTitle: string
 }
 
+declare interface JLayerSearchByAttributesParams {
+  layerId: number
+  attributeName: string
+  attributeValue: any | any[]
+  projectionCode?: string
+}
+
+
 declare interface JLayerStyleScaled {
   minScale: number
   style: JLayerStyle

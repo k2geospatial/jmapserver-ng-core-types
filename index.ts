@@ -339,7 +339,9 @@ export interface JLayerService {
   getLayers(): JLayer[]
   getLayerIds(): number[]
   getLayerAttributes(layerId: number): JLayerAttribute[]
+  getLayerAttribute(layerId: number, attributeName: string): JLayerAttribute
   exists(layerId: number): boolean
+  attributeExists(layerId: number, attributeName: string): boolean
   getById(layerId: number): JLayerTreeElement
   getSelfOrChildren(layerId: number): JLayer[]
   getName(layerId: number): string
@@ -360,7 +362,7 @@ export interface JLayerService {
 }
 
 export interface JLayerSearchService{
-  byAttribute(layerId: number, attributeName: string, attributeValue: any | any[]): Promise<Feature[]>
+  byAttribute(params: JLayerSearchByAttributesParams): Promise<Feature[]>
 }
 
 export interface JLayerGroup extends JLayerTreeElement {

@@ -370,21 +370,33 @@ declare namespace JMap {
 
       /**
        * 
-       * @param layerId The id of the layer in the project
-       * @param attributeName name of the Feature attribute to search
-       * @param attributeValue can be a single value or an array of values (will search for value1 OR value2 OR ...)
-       * 
+       * @param params the search params passed to the method :
+       * layerId: string | number
+       * attributeName: string
+       * attributeValue: any | any[]
+       * projectionCode?: string)
+        * 
        * @returns a Promise that will return all the features of the Layer corresponding to the search criteria
        *
        * @throws Error if Promise fails
        * 
        * @example ```ts
        * 
-       * 
+       * JMap.Layer.Search
+       * .byAttribute({layerId: 99, attributeName:"ESPECE",attributeValue: ["Cerisier","Bouleau"]})
+       * .then((features: Feature[]) => {
+       *               // do things with the feature
+      *            })
+      * 
        * ```
        * 
        */
-      function byAttribute(layerId: Number, attributeName: string, attributeValue: any | any[]):Promise<any>
+
+       /**
+        * 
+        * @param params 
+        */
+      function byAttribute(params :JLayerSearchByAttributesParams ):Promise<any>
 
     }
 
