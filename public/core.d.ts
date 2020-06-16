@@ -362,6 +362,38 @@ declare namespace JMap {
   namespace Layer {
 
     /**
+     *  **JMap.Layer.Search**
+     * 
+     * Methods used to search features for a layer.
+     */
+    namespace Search {
+
+      /**
+       * **JMap.Layer.Search.byAttribute**
+       * 
+       * Returns features, for a given layer, having attribute value equals to the given value(s).
+       * 
+       * @param params search parameters
+       * @returns a promise that will return all the features of the Layer corresponding to the search criteria
+       * @throws Error if promise fails
+       *
+       * @example ```ts
+       * 
+       * // returns all features that have the attribute "E"
+       * JMap.Layer.Search
+       *   .byAttribute({
+       *      layerId: 99,
+       *      attributeName: "TREE",
+       *      attributeValue: [ "Cherry", "Birch" ] // here an array for multipe values, but could be a single value like a string
+       *   })
+       *   .then(features => console.info(`Total ${features.length} feature(s) found`, features))
+       *   .catch(error => console.error(error))
+       * ```
+       */
+      function byAttribute(params: JLayerSearchByAttributesParams): Promise<any> // any is Feature[]
+    }
+
+    /**
      * **JMap.Layer.getLayerTree**
      * 
      * Returns project's layer tree.
