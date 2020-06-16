@@ -66,7 +66,6 @@ declare interface JLayerSearchByAttributesParams {
   projectionCode?: string
 }
 
-
 declare interface JLayerStyleScaled {
   minScale: number
   style: JLayerStyle

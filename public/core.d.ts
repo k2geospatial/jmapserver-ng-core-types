@@ -364,40 +364,33 @@ declare namespace JMap {
     /**
      *  **JMap.Layer.Search**
      * 
-     * methods used to query a layer by attribute, spatial extent or geometry type
+     * Methods used to search features for a layer.
      */
-    namespace Search{
+    namespace Search {
 
       /**
+       * **JMap.Layer.Search.byAttribute**
        * 
-       * @param params the search params passed to the method :
-       * layerId: string | number
-       * attributeName: string
-       * attributeValue: any | any[]
-       * projectionCode?: string)
-        * 
-       * @returns a Promise that will return all the features of the Layer corresponding to the search criteria
+       * Returns features, for a given layer, having attribute value equals to the given value(s).
+       * 
+       * @param params search parameters
+       * @returns a promise that will return all the features of the Layer corresponding to the search criteria
+       * @throws Error if promise fails
        *
-       * @throws Error if Promise fails
-       * 
        * @example ```ts
        * 
+       * // returns all features that have the attribute "E"
        * JMap.Layer.Search
-       * .byAttribute({layerId: 99, attributeName:"ESPECE",attributeValue: ["Cerisier","Bouleau"]})
-       * .then((features: Feature[]) => {
-       *               // do things with the feature
-      *            })
-      * 
+       *   .byAttribute({
+       *      layerId: 99,
+       *      attributeName: "TREE",
+       *      attributeValue: [ "Cherry", "Birch" ] // here an array for multipe values, but could be a single value like a string
+       *   })
+       *   .then(features => console.info(`Total ${features.length} feature(s) found`, features))
+       *   .catch(error => console.error(error))
        * ```
-       * 
        */
-
-       /**
-        * 
-        * @param params 
-        */
-      function byAttribute(params :JLayerSearchByAttributesParams ):Promise<any>
-
+      function byAttribute(params: JLayerSearchByAttributesParams): Promise<any> // any is Feature[]
     }
 
     /**

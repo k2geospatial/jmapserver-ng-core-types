@@ -361,7 +361,7 @@ export interface JLayerService {
   setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
 }
 
-export interface JLayerSearchService{
+export interface JLayerSearchService {
   byAttribute(params: JLayerSearchByAttributesParams): Promise<Feature[]>
 }
 
