@@ -1772,6 +1772,23 @@ declare namespace JMap {
     function getAvailableBaseMaps(): string[]
 
       /**
+       * 
+       * step back in the navigation history recorded in the current map session
+       * 
+       * Will apply the necessary pan, zoom, bearing and pitch to get back to the last
+       * Map view. Maximum number of recorded steps is 64 (older steps get erased)
+       * 
+      * @example ```ts
+      * 
+      * // navigate to the previous recorded map view
+      * JMap.Map.backtrackNavigationHistory()
+      * ```
+       * 
+       * 
+       */
+    function backtrackNavigationHistory(): void
+
+      /**
      * ***JMap.Map.getBaseMap***
      * 
      * Returns the current map pitch.
@@ -1923,6 +1940,26 @@ declare namespace JMap {
      * ```
      */
     function panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
+
+    /**
+     * **JMap.Map.navigateTo**
+     * 
+     * Navigate to a location on the map (animated)
+     * 
+     * @throws Error if bad parameters are passed
+     * @param center The location where the map will be centered
+     * @param zoom The zoom level to apply
+     * @param bearing The bearing to apply
+     * @param pitch The pitch to apply
+     * @param stopJMapEventPropagation if true will prevent JMap event to be fired
+     * @example ```ts
+     * 
+     * // Navigate to a location on the map
+     * JMap.Map.navigateTo({ x: 45.34, y: 65.87 }, 5, 170, 30)
+     * ```
+     */
+    function navigateTo(center: JLocation, zoom: number, bearing: number, pitch: number, stopJMapEventPropagation?: boolean): void
+
 
     /**
      * **JMap.Map.fitFeatures**

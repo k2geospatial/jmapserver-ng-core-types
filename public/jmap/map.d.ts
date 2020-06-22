@@ -42,6 +42,12 @@ declare interface JMapAttributeSearch {
   attributeName: string
   attributeValue: any | any[]
 }
+declare interface JMapNavigationStep{
+  center: JLocation
+  zoom: number
+  bearing: number
+  pitch: number
+}
 
 declare interface JPanAndZoomOptions {
   animate?: boolean

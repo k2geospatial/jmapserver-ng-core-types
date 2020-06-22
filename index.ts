@@ -135,6 +135,7 @@ export interface JMapState {
   bearing: number
   isLoaded: boolean
   hasFirstLoaded: boolean
+  navigationHistory: JMapNavigationStep[]
   center: JLocation
   zoom: number
   scale: number
@@ -258,12 +259,14 @@ export interface JMapService {
   getBearing(): number
   getBaseMap(): string
   setBaseMap(mapName: string): void
+  backtrackNavigationHistory(): void
   setPitch(pitch: number): void
   setBearing(bearing: number): void
   panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
   zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
   zoomToRect(bbox: JBoundaryBox, stopJMapEventPropagation?: boolean): void
   panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
+  navigateTo(center: JLocation, zoom: number, bearing: number, pitch: number, stopJMapEventPropagation?: boolean): void
   fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
 }
 
