@@ -1801,22 +1801,40 @@ declare namespace JMap {
      */
     function getAvailableBaseMaps(): string[]
 
-      /**
-       * 
-       * step back in the navigation history recorded in the current map session
-       * 
-       * Will apply the necessary pan, zoom, bearing and pitch to get back to the last
-       * Map view. Maximum number of recorded steps is 64 (older steps get erased)
-       * 
-      * @returns The last JMapNavigationStep, or undefined if the stack is not rewindable anymore
-      * @example ```ts
-      * 
-      * // navigate to the previous recorded map view
-      * const lastStep: JMapNavigationStep | undefined = JMap.Map.undoLastNavigationStep()
-      * ```
-       * 
-       * 
-       */
+    /**
+     * **JMap.Map.getNavigationHistoryStack**
+     * 
+     * returns the complete stack of navigation steps recorded in the session (stack is limited to 64 entries, older ones are discarded)
+     * 
+     * @returns an array of JMapNavigationStep
+     * 
+     * @example ```ts
+     * 
+     * // get the navigation stack
+     * const navStack: JMapNavigationStep[] = JMap.Map.getNavigationHistoryStack()
+     * ```
+     * 
+     * 
+     */
+    function getNavigationHistoryStack():JMapNavigationStep[]
+
+    /**
+    * **JMap.Map.undoLastNavigationStep**
+    * 
+    * step back in the navigation history recorded in the current map session
+    * 
+    * Will apply the necessary pan, zoom, bearing and pitch to get back to the last
+    * Map view. Maximum number of recorded steps is 64 (older steps get erased)
+    * 
+    * @returns The last JMapNavigationStep, or undefined if the stack is not rewindable anymore
+    * @example ```ts
+    * 
+    * // navigate to the previous recorded map view
+    * const lastStep: JMapNavigationStep | undefined = JMap.Map.undoLastNavigationStep()
+    * ```
+    * 
+    * 
+    */
     function undoLastNavigationStep(): JMapNavigationStep | undefined
 
       /**
