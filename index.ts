@@ -144,6 +144,7 @@ export interface JMapState {
   selection: JMapSelection
   inUseJMapLayerIds: number[]
   isScaleControlVisible: boolean
+  isNavigationHistoryControlVisible:boolean
   scaleControlPosition: JMapPosition
   distanceUnit: JDistanceUnit
 }
@@ -239,6 +240,8 @@ export interface JMapService {
   getCenter(): { x: number, y: number }
   getZoom(): number
   getScale(): number
+  isNavigationHistoryControlVisible():boolean
+  setNavigationHistoryControlVisibility(isVisible:boolean):void
   isScaleControlVisible(): boolean
   setScaleControlVisibility(isVisible: boolean, position?: JMapPosition): void
   setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void

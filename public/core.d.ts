@@ -1442,6 +1442,36 @@ declare namespace JMap {
     function getScale(): number
 
     /**
+     * ***JMap.Map.isNavigationHistoryControlVisible***
+     * 
+     * Returns true if the Navigation History control is visible on the map.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if control is displayed on the map
+     * JMap.Map.isNavigationHistoryControlVisible()
+     * ```
+     */
+    function isNavigationHistoryControlVisible(): boolean
+
+    /**
+     * ***JMap.Map.setNavigationHistoryControlVisibility***
+     * 
+     * Change the Navigation History control visibility on the map.
+     * 
+     * @param isVisible true to display the Navigation History control, false to hide
+     * @example ```ts
+     * 
+     * // will display the Navigation History control on the map
+     * JMap.Map.setNavigationHistoryControlVisibility(true)
+     * 
+     * // will hide the Navigation History control on the map
+     * JMap.Map.setNavigationHistoryControlVisibility(false)
+     * ```
+     */
+    function setNavigationHistoryControlVisibility(isVisible: boolean): void
+
+    /**
      * ***JMap.Map.isScaleControlVisible***
      * 
      * Returns true if the scale control panel is visible on the map.
