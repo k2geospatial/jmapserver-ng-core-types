@@ -48,6 +48,14 @@ declare interface JMapNavigationStep{
   bearing: number
   pitch: number
 }
+declare interface JMapNavigateToParams {
+  center: JLocation
+  zoom: number
+  bearing: number
+  pitch: number
+  stopJMapEventPropagation?: boolean
+}
+
 
 declare interface JPanAndZoomOptions {
   animate?: boolean

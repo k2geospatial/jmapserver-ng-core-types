@@ -1996,18 +1996,15 @@ declare namespace JMap {
      * Navigate to a location on the map (animated)
      * 
      * @throws Error if bad parameters are passed
-     * @param center The location where the map will be centered
-     * @param zoom The zoom level to apply
-     * @param bearing The bearing to apply
-     * @param pitch The pitch to apply
-     * @param stopJMapEventPropagation if true will prevent JMap event to be fired
+     * @param params the naviagtion params
+     * @param params.stopJMapEventPropagation if true will prevent JMap event to be fired
      * @example ```ts
      * 
      * // Navigate to a location on the map
-     * JMap.Map.navigateTo({ x: 45.34, y: 65.87 }, 5, 170, 30)
+     * JMap.Map.navigateTo({center: { x: 45.34, y: 65.87 }, zoom: 5, bearing: 170, pitch: 30,stopJMapEventPropagation: true})
      * ```
      */
-    function navigateTo(center: JLocation, zoom: number, bearing: number, pitch: number, stopJMapEventPropagation?: boolean): void
+    function navigateTo(params:JMapNavigateToParams): void
 
 
     /**

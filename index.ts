@@ -270,7 +270,7 @@ export interface JMapService {
   zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
   zoomToRect(bbox: JBoundaryBox, stopJMapEventPropagation?: boolean): void
   panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
-  navigateTo(center: JLocation, zoom: number, bearing: number, pitch: number, stopJMapEventPropagation?: boolean): void
+  navigateTo(params: JMapNavigateToParams): void
   fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
 }
 
