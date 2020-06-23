@@ -1808,15 +1808,16 @@ declare namespace JMap {
        * Will apply the necessary pan, zoom, bearing and pitch to get back to the last
        * Map view. Maximum number of recorded steps is 64 (older steps get erased)
        * 
+      * @returns The last JMapNavigationStep, or undefined if the stack is not rewindable anymore
       * @example ```ts
       * 
       * // navigate to the previous recorded map view
-      * JMap.Map.backtrackNavigationHistory()
+      * const lastStep: JMapNavigationStep | undefined = JMap.Map.undoLastNavigationStep()
       * ```
        * 
        * 
        */
-    function backtrackNavigationHistory(): void
+    function undoLastNavigationStep(): JMapNavigationStep | undefined
 
       /**
      * ***JMap.Map.getBaseMap***

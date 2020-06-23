@@ -262,7 +262,7 @@ export interface JMapService {
   getBearing(): number
   getBaseMap(): string
   setBaseMap(mapName: string): void
-  backtrackNavigationHistory(): void
+  undoLastNavigationStep(): JMapNavigationStep | undefined
   setPitch(pitch: number): void
   setBearing(bearing: number): void
   panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
