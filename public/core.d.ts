@@ -1442,6 +1442,36 @@ declare namespace JMap {
     function getScale(): number
 
     /**
+     * ***JMap.Map.isNavigationHistoryControlVisible***
+     * 
+     * Returns true if the Navigation History control is visible on the map.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if control is displayed on the map
+     * JMap.Map.isNavigationHistoryControlVisible()
+     * ```
+     */
+    function isNavigationHistoryControlVisible(): boolean
+
+    /**
+     * ***JMap.Map.setNavigationHistoryControlVisibility***
+     * 
+     * Change the Navigation History control visibility on the map.
+     * 
+     * @param isVisible true to display the Navigation History control, false to hide
+     * @example ```ts
+     * 
+     * // will display the Navigation History control on the map
+     * JMap.Map.setNavigationHistoryControlVisibility(true)
+     * 
+     * // will hide the Navigation History control on the map
+     * JMap.Map.setNavigationHistoryControlVisibility(false)
+     * ```
+     */
+    function setNavigationHistoryControlVisibility(isVisible: boolean): void
+
+    /**
      * ***JMap.Map.isScaleControlVisible***
      * 
      * Returns true if the scale control panel is visible on the map.
@@ -1771,7 +1801,40 @@ declare namespace JMap {
      */
     function getAvailableBaseMaps(): string[]
 
-      /**
+    /**
+     * **JMap.Map.getNavigationHistoryStack**
+     * 
+     * Returns the complete stack of navigation steps recorded in the session (stack is limited to 64 entries, older ones are discarded)
+     * 
+     * @returns an array of JMapNavigationStep
+     * 
+     * @example ```ts
+     * 
+     * // get the navigation stack
+     * const navStack: JMapNavigationStep[] = JMap.Map.getNavigationHistoryStack()
+     * ```
+     */
+    function getNavigationHistoryStack():JMapNavigationStep[]
+
+    /**
+     * **JMap.Map.undoLastNavigationStep**
+     * 
+     * Step back in the navigation history recorded in the current map session
+     * 
+     * Will apply the necessary pan, zoom, bearing and pitch to get back to the last
+     * Map view. Maximum number of recorded steps is 64 (older steps get erased)
+     * 
+     * @returns The last JMapNavigationStep, or undefined if the stack is not rewindable anymore
+     * 
+     * @example ```ts
+     * 
+     * // navigate to the previous recorded map view
+     * const lastStep: JMapNavigationStep | undefined = JMap.Map.undoLastNavigationStep()
+     * ```
+     */
+    function undoLastNavigationStep(): JMapNavigationStep | undefined
+
+    /**
      * ***JMap.Map.getBaseMap***
      * 
      * Returns the current map pitch.
@@ -1796,6 +1859,7 @@ declare namespace JMap {
      * ```
      */
     function getBearing(): number
+
     /**
      * ***JMap.Map.getBaseMap***
      * 
@@ -1828,7 +1892,7 @@ declare namespace JMap {
      */
     function setBaseMap(mapName: string): void
 
-      /**
+    /**
      * **JMap.Map.setBearing**
      * 
      * Set the bearing on the map (rotation)
@@ -1872,7 +1936,6 @@ declare namespace JMap {
      * JMap.Map.panTo({ x: 45.34, y: 65.87 })
      * ```
      */
-
     function panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
 
     /**
@@ -1923,6 +1986,23 @@ declare namespace JMap {
      * ```
      */
     function panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
+
+    /**
+     * **JMap.Map.navigateTo**
+     * 
+     * Navigate to a location on the map (animated)
+     * 
+     * @throws Error if bad parameters are passed
+     * @param params the naviagtion params
+     * @param params.stopJMapEventPropagation if true will prevent JMap event to be fired
+     * 
+     * @example ```ts
+     * 
+     * // Navigate to a location on the map
+     * JMap.Map.navigateTo({center: { x: 45.34, y: 65.87 }, zoom: 5, bearing: 170, pitch: 30,stopJMapEventPropagation: true})
+     * ```
+     */
+    function navigateTo(params: JMapNavigateToParams): void
 
     /**
      * **JMap.Map.fitFeatures**

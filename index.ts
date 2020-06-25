@@ -135,6 +135,7 @@ export interface JMapState {
   bearing: number
   isLoaded: boolean
   hasFirstLoaded: boolean
+  navigationHistory: JMapNavigationStep[]
   center: JLocation
   zoom: number
   scale: number
@@ -143,6 +144,7 @@ export interface JMapState {
   selection: JMapSelection
   inUseJMapLayerIds: number[]
   isScaleControlVisible: boolean
+  isNavigationHistoryControlVisible:boolean
   scaleControlPosition: JMapPosition
   distanceUnit: JDistanceUnit
 }
@@ -238,6 +240,8 @@ export interface JMapService {
   getCenter(): { x: number, y: number }
   getZoom(): number
   getScale(): number
+  isNavigationHistoryControlVisible():boolean
+  setNavigationHistoryControlVisibility(isVisible:boolean):void
   isScaleControlVisible(): boolean
   setScaleControlVisibility(isVisible: boolean, position?: JMapPosition): void
   setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void
@@ -258,12 +262,15 @@ export interface JMapService {
   getBearing(): number
   getBaseMap(): string
   setBaseMap(mapName: string): void
+  getNavigationHistoryStack(): JMapNavigationStep[]
+  undoLastNavigationStep(): JMapNavigationStep | undefined
   setPitch(pitch: number): void
   setBearing(bearing: number): void
   panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
   zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
   zoomToRect(bbox: JBoundaryBox, stopJMapEventPropagation?: boolean): void
   panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
+  navigateTo(params: JMapNavigateToParams): void
   fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
 }
 

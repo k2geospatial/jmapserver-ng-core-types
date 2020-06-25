@@ -43,6 +43,21 @@ declare interface JMapAttributeSearch {
   attributeValue: any | any[]
 }
 
+declare interface JMapNavigationStep{
+  center: JLocation
+  zoom: number
+  bearing: number
+  pitch: number
+}
+
+declare interface JMapNavigateToParams {
+  center: JLocation
+  zoom: number
+  bearing: number
+  pitch: number
+  stopJMapEventPropagation?: boolean
+}
+
 declare interface JPanAndZoomOptions {
   animate?: boolean
   paddingTop?: number
@@ -109,6 +124,30 @@ declare interface JCoreMapOptions {
    * ```
    */
   mapboxToken?: string
+
+  /**
+   * By default the Navigation History control is not visible.
+   * 
+   * But if ***navigationHistoryControlVisible*** is true, it will be displayed on the map.
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         map: {
+   *           navigationHistoryControlVisible: true,
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+  navigationHistoryControlVisible?: boolean
 
   /**
    * By default the scale control panel it is not visible.
