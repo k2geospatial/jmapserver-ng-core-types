@@ -2026,7 +2026,6 @@ declare namespace JMap {
      * 
      * @throws Error if bad parameters are passed
      * @param params the naviagtion params
-     * @param params.stopJMapEventPropagation if true will prevent JMap event to be fired
      * 
      * @example ```ts
      * 

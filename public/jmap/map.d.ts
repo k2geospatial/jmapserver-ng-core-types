@@ -50,12 +50,38 @@ declare interface JMapNavigationStep{
   pitch: number
 }
 
+/**
+ *  **JMapBoxEventData**
+ * 
+ * This interface describe optionnal data we can pass to MapBox events
+ * in order to transport usefull information while consuming the events in your application
+ * 
+ * 
+ */
+declare interface JMapBoxEventData {
+  /**
+   * **stopJMapEventPropagation**
+   * 
+   * if true will prevent JMap event to be fired
+   * 
+   */
+  stopJMapEventPropagation?: boolean
+  /**
+   * **preventNavigationStepPush**
+   * 
+   * Used in the context of programmatic navigation (ex: while stepping back in the navigation history)
+   * if true it will prevent navigation destination to be pushed in the Navigation History stack
+   * 
+   */
+  preventNavigationStepPush?: boolean
+}
+
 declare interface JMapNavigateToParams {
   center: JLocation
   zoom: number
   bearing: number
   pitch: number
-  stopJMapEventPropagation?: boolean
+  mapBoxEventData?: JMapBoxEventData
 }
 
 declare interface JPanAndZoomOptions {
@@ -65,7 +91,7 @@ declare interface JPanAndZoomOptions {
   paddingRight?: number
   paddingBottom?: number
   maxZoom?: number
-  avoidEvent?: boolean
+  mapBoxEventData?: JMapBoxEventData
 }
 
 declare interface JCoreMapOptions {
