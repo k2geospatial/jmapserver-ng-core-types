@@ -1472,6 +1472,38 @@ declare namespace JMap {
     function setNavigationHistoryControlVisibility(isVisible: boolean): void
 
     /**
+     * ***JMap.Map.isMapRotationControlVisible***
+     * 
+     * Returns true if the Map Rotation control is visible on the map.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if control is displayed on the map
+     * JMap.Map.isMapRotationControlVisible()
+     * ```
+     * 
+     */
+    function isMapRotationControlVisible(): boolean
+  
+    /**
+     * ***JMap.Map.setMapRotationControlVisibility***
+     * 
+     * Change the Map Rotation control visibility on the map.
+     * 
+     * @param isVisible true to display the Map Rotation control, false to hide
+     * 
+     * @example ```ts
+     * 
+     * // will display the Map Rotation control on the map
+     * JMap.Map.setMapRotationControlVisibility(true)
+     * 
+     * // will hide the Map Rotation control on the map
+     * JMap.Map.setMapRotationControlVisibility(false)
+     * ```
+     */
+    function setMapRotationControlVisibility(isVisible:boolean):void
+  
+    /**
      * ***JMap.Map.isScaleControlVisible***
      * 
      * Returns true if the scale control panel is visible on the map.

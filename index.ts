@@ -143,10 +143,11 @@ export interface JMapState {
   baseMap: string
   selection: JMapSelection
   inUseJMapLayerIds: number[]
-  isScaleControlVisible: boolean
   isNavigationHistoryControlVisible:boolean
   scaleControlPosition: JMapPosition
   distanceUnit: JDistanceUnit
+  isScaleControlVisible: boolean
+  isMapRotationControlVisible: boolean
 }
 
 export interface JProjectState {
@@ -240,13 +241,15 @@ export interface JMapService {
   getCenter(): { x: number, y: number }
   getZoom(): number
   getScale(): number
-  isNavigationHistoryControlVisible():boolean
-  setNavigationHistoryControlVisibility(isVisible:boolean):void
   isScaleControlVisible(): boolean
   setScaleControlVisibility(isVisible: boolean, position?: JMapPosition): void
   setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void
   setScaleControlPosition(position: JMapPosition): void
   getScaleControlPosition(): JMapPosition
+  isNavigationHistoryControlVisible():boolean
+  setNavigationHistoryControlVisibility(isVisible:boolean):void
+  isMapRotationControlVisible(): boolean
+  setMapRotationControlVisibility(isVisible:boolean):void
   isLayerRendered(layerId: number): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
