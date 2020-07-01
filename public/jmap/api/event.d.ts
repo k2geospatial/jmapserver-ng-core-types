@@ -8,8 +8,13 @@ declare interface JLayerEventThematicVisibilityParams {
   visibility: boolean
 }
 
+declare interface JLayerEventVisibilityParams {
+  layerId: number
+  visibility: boolean
+}
+
 declare interface JLayerEventParams {
-  layer: JLayerTreeElement
+  layerId: number
 }
 
 declare interface JMapEventLoadedParams {

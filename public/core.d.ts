@@ -1472,6 +1472,38 @@ declare namespace JMap {
     function setNavigationHistoryControlVisibility(isVisible: boolean): void
 
     /**
+     * ***JMap.Map.isMapRotationControlVisible***
+     * 
+     * Returns true if the Map Rotation control is visible on the map.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if control is displayed on the map
+     * JMap.Map.isMapRotationControlVisible()
+     * ```
+     * 
+     */
+    function isMapRotationControlVisible(): boolean
+  
+    /**
+     * ***JMap.Map.setMapRotationControlVisibility***
+     * 
+     * Change the Map Rotation control visibility on the map.
+     * 
+     * @param isVisible true to display the Map Rotation control, false to hide
+     * 
+     * @example ```ts
+     * 
+     * // will display the Map Rotation control on the map
+     * JMap.Map.setMapRotationControlVisibility(true)
+     * 
+     * // will hide the Map Rotation control on the map
+     * JMap.Map.setMapRotationControlVisibility(false)
+     * ```
+     */
+    function setMapRotationControlVisibility(isVisible:boolean):void
+  
+    /**
      * ***JMap.Map.isScaleControlVisible***
      * 
      * Returns true if the scale control panel is visible on the map.
@@ -1993,8 +2025,7 @@ declare namespace JMap {
      * Navigate to a location on the map (animated)
      * 
      * @throws Error if bad parameters are passed
-     * @param params the naviagtion params
-     * @param params.stopJMapEventPropagation if true will prevent JMap event to be fired
+     * @param params the navigation params
      * 
      * @example ```ts
      * 
@@ -3833,12 +3864,12 @@ declare namespace JMap {
          * JMap.Event.Layer.on.visibilityChange(
          *    "custom-visibility-change",
          *    params => {
-         *      console.log(`Layer element id="${params.layer.id}" visible="${params.layer.visible}"`)
+         *      console.log(`Layer element id="${params.layerId}" visible="${params.visibility}"`)
          *    }
          * )
          * ```
          */
-        function visibilityChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
+        function visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
 
         /**
          * ***JMap.Event.Layer.on.thematicVisibilityChange***
@@ -3877,7 +3908,7 @@ declare namespace JMap {
          * JMap.Event.Layer.on.layerDeletion(
          *    "custom-layer-deletion",
          *    params => {
-         *      console.log(`Layer id="${params.layer.id}" has been deleted client side`)
+         *      console.log(`Layer id="${params.layerId}" has been deleted client side`)
          *    }
          * )
          * ```
