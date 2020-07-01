@@ -3864,12 +3864,12 @@ declare namespace JMap {
          * JMap.Event.Layer.on.visibilityChange(
          *    "custom-visibility-change",
          *    params => {
-         *      console.log(`Layer element id="${params.layer.id}" visible="${params.layer.visible}"`)
+         *      console.log(`Layer element id="${params.layerId}" visible="${params.visibility}"`)
          *    }
          * )
          * ```
          */
-        function visibilityChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
+        function visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
 
         /**
          * ***JMap.Event.Layer.on.thematicVisibilityChange***
@@ -3908,7 +3908,7 @@ declare namespace JMap {
          * JMap.Event.Layer.on.layerDeletion(
          *    "custom-layer-deletion",
          *    params => {
-         *      console.log(`Layer id="${params.layer.id}" has been deleted client side`)
+         *      console.log(`Layer id="${params.layerId}" has been deleted client side`)
          *    }
          * )
          * ```
