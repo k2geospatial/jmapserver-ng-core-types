@@ -2025,7 +2025,7 @@ declare namespace JMap {
      * Navigate to a location on the map (animated)
      * 
      * @throws Error if bad parameters are passed
-     * @param params the naviagtion params
+     * @param params the navigation params
      * 
      * @example ```ts
      * 
