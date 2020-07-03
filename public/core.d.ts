@@ -2030,7 +2030,7 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // Navigate to a location on the map
-     * JMap.Map.navigateTo({center: { x: 45.34, y: 65.87 }, zoom: 5, bearing: 170, pitch: 30,stopJMapEventPropagation: true})
+     * JMap.Map.navigateTo({center: { x: 45.34, y: 65.87 }, zoom: 5, bearing: 170, pitch: 30, mapBoxEventData: { stopJMapEventPropagation: true }})
      * ```
      */
     function navigateTo(params: JMapNavigateToParams): void
