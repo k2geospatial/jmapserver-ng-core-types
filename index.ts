@@ -385,10 +385,10 @@ export interface JUserService {
   getFullName(): string
   getUsername(): string
   getLocale(): string
-  getPreference(name: string): string | null
-  hasPreference(name: string): boolean
-  removePreference(name: string): string | null
-  setPreference(name: string, value: string | undefined): void
+  getPreference(name: string): Promise<string | null>
+  hasPreference(name: string): Promise<boolean>
+  removePreference(name: string): Promise<string | null>
+  setPreference(name: string, value: string | undefined): Promise<void>
   setToken(token: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>

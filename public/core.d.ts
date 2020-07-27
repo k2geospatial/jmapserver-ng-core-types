@@ -3377,38 +3377,64 @@ declare namespace JMap {
     /**
      * **JMap.User.getPreference**
      * 
-     * Get a user preference value.
+     * Get a user preference value from user storage. The returned Promise resolves to the value, else null if no preference has been set. Rejects with a reason if not successful
+     * 
      * @param name the name of the preference
+     * @returns a Promise that resolves with the value from the user storage (or null).
+     * @throws Error if name parameter is not string or empty string, or if no user is logged in
      * @example ```ts
      * 
-     * // return null if no preference has been set, else the value
-     * JMap.User.getPreference("theme")
+     * let prefName = "jmap-core-basemap"
+     * JMap.User
+     *      .getPreference(prefName)
+     *      .then(preferenceValue=>{
+     *        console.log(`Preference item "${prefName}" value is "${preferenceValue}"`) 
+     *      }).catch(reason=>{
+     *        console.log(`Cannot get the preference value of param "${prefName}". Reason: ${reason}`) 
+     *      })
      * ```
      */
-    function getPreference(name: string): string | null
+    function getPreference(name: string): Promise<string | null>
 
     /**
      * **JMap.User.hasPreference**
      * 
-     * Return true if a value has been set for the user preference.
+     * Check for a user preference existence. The returned Promise resolves with true if a value has been set for the user preference, else false. Promise never rejects.
+     * 
+     * @returns a Promise that resolves with true if a value has been set for the user preference, else false
      * @param name the name of the preference
+     * @throws Error if name parameter is not string or empty string, or if no user is logged in
      * @example ```ts
      * 
-     * // return true if a value is set for the preference, else true
-     * JMap.User.hasPreference("theme")
+     * let prefName = "jmap-core-basemap"
+     * JMap.User
+     *      .hasPreference(prefName)
+     *      .then(hasPreferenceValue=>{
+     *        console.log(`Preference item "${prefName}" exists: ${hasPreferenceValue.toString()}`) 
+     *      })
      * ```
      */
-    function hasPreference(name: string): boolean
+    function hasPreference(name: string): Promise<boolean>
 
     /**
      * **JMap.User.removePreference**
      * 
-     * Remove the user preference, and return the associated value, if no value returns undefined.
-     * @param name the name of the preference
-     * @example ```ts
+     * Remove a user preference from user storage. The returned Promise resolves with the value of the removed preference, or null if the preference does not exist, or if an error occured. Promise never rejects.
      * 
-     * // return the preference value after deletion
-     * JMap.User.removePreference("theme")
+     * @returns a Promise that removes the user preference, and resolves with the value of the removed preference, or null if the preference does not exist, or if an error occured
+     * @param name the name of the preference
+     * @throws Error if name parameter is not string or empty string, or if no user is logged in
+     * 
+     * let prefName = "jmap-core-basemap"
+     * JMap.User
+     *      .removePreference(prefName)
+     *      .then(removedPreferenceValue=>{
+     *        if(removedPreferenceValue === null){
+     *          console.log(`Preference item "${prefName}" did not exist or was not removed`) 
+     *        }else{
+     *          console.log(`Preference item "${prefName}" has been removed. Value was: ${removedPreferenceValue}`) 
+     *        }
+     *      })
      * ```
      */
     function removePreference(name: string): string | null
@@ -3416,18 +3442,37 @@ declare namespace JMap {
     /**
      * **JMap.User.setPreference**
      * 
-     * Set a user preference value.
+     * Set a user preference in user storage. The returned Promise resolves without value on success, or rejects with a reason if not successfull.
+     * If passed value is undefined, the preference is removed
      * 
-     * If value is undefined the value will be removed.
+     * @returns a Promise that sets the user preference, and resolves with no value, or rejects with a reason
+     * @param name the name of the preference
+     * @param value the value that will be associated to the name
+     * @throws Error if name parameter is not string or empty string, or if no user is logged in
+     * 
      * @param name the name of the preference
      * @param value the value that will be associated to the name
      * @example ```ts
      * 
-     * // Set the value "dark" for user preference "theme"
-     * JMap.User.setPreference("theme", "dark")
+     * let prefName = "jmap-core-basemap"
+     * 
+     * // Set the value "light" for user preference "jmap-core-basemap"
+     * JMap.User
+     *      .setPreference(prefName, "light")
+     *      .then(preferenceValue=>{
+     *        console.log(`Preference item "${prefName}" has been set`) 
+     *      }).catch(reason=>{
+     *        console.log(`Cannot set the preference value of param "${prefName}". Reason: ${reason}`) 
+     *      })
      * 
      * // Remove the value for user preference "theme"
-     * JMap.User.setPreference("theme")
+     * JMap.User
+     *      .setPreference(prefName)
+     *      .then(preferenceValue=>{
+     *        console.log(`Preference item "${prefName}" has been removed`) 
+     *      }).catch(reason=>{
+     *        console.log(`Cannot remove the preference "${prefName}". Reason: ${reason}`) 
+     *      })
      * ```
      */
     function setPreference(name: string, value: string | undefined): void
