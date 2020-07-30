@@ -3437,7 +3437,7 @@ declare namespace JMap {
      *      })
      * ```
      */
-    function removePreference(name: string): string | null
+    function removePreference(name: string): Promise<string | null>
 
     /**
      * **JMap.User.setPreference**
@@ -3475,7 +3475,7 @@ declare namespace JMap {
      *      })
      * ```
      */
-    function setPreference(name: string, value: string | undefined): void
+    function setPreference(name: string, value: string | undefined): Promise<void>
 
     /**
      * **JMap.User.login**
