@@ -3377,11 +3377,11 @@ declare namespace JMap {
     /**
      * **JMap.User.getPreference**
      * 
-     * Get a user preference value from user storage. The returned Promise resolves to the value, else null if no preference has been set. Rejects with a reason if not successful
+     * Get a user preference value from user storage. The returned Promise resolves to the value, else null if no preference has been set. 
+     * Rejects on error, or if name parameter is not string or empty string, or if no user is logged in
      * 
      * @param name the name of the preference
-     * @returns a Promise that resolves with the value from the user storage (or null).
-     * @throws Error if name parameter is not string or empty string, or if no user is logged in
+     * @returns a Promise that resolves with the value from the user storage (or null if the preference is not set).
      * @example ```ts
      * 
      * let prefName = "jmap-core-basemap"
@@ -3392,6 +3392,7 @@ declare namespace JMap {
      *      }).catch(reason=>{
      *        console.log(`Cannot get the preference value of param "${prefName}". Reason: ${reason}`) 
      *      })
+     * 
      * ```
      */
     function getPreference(name: string): Promise<string | null>
@@ -3399,11 +3400,11 @@ declare namespace JMap {
     /**
      * **JMap.User.hasPreference**
      * 
-     * Check for a user preference existence. The returned Promise resolves with true if a value has been set for the user preference, else false. Promise never rejects.
+     * Check for a user preference existence. The returned Promise resolves with true if a value has been set for the user preference, else false. 
+     * Rejects on error, or if name parameter is not string or empty string, or if no user is logged in
      * 
      * @returns a Promise that resolves with true if a value has been set for the user preference, else false
      * @param name the name of the preference
-     * @throws Error if name parameter is not string or empty string, or if no user is logged in
      * @example ```ts
      * 
      * let prefName = "jmap-core-basemap"
@@ -3412,6 +3413,7 @@ declare namespace JMap {
      *      .then(hasPreferenceValue=>{
      *        console.log(`Preference item "${prefName}" exists: ${hasPreferenceValue.toString()}`) 
      *      })
+     * 
      * ```
      */
     function hasPreference(name: string): Promise<boolean>
@@ -3419,11 +3421,12 @@ declare namespace JMap {
     /**
      * **JMap.User.removePreference**
      * 
-     * Remove a user preference from user storage. The returned Promise resolves with the value of the removed preference, or null if the preference does not exist, or if an error occured. Promise never rejects.
+     * Remove a user preference from user storage. The returned Promise resolves with the value of the removed preference, or null if the preference does not exist.
      * 
-     * @returns a Promise that removes the user preference, and resolves with the value of the removed preference, or null if the preference does not exist, or if an error occured
+     * Rejects on error, or if name parameter is not string or empty string, or if no user is logged in
+     * 
+     * @returns a Promise that removes the user preference, and resolves with the value of the removed preference, or null if the preference does not exist
      * @param name the name of the preference
-     * @throws Error if name parameter is not string or empty string, or if no user is logged in
      * 
      * let prefName = "jmap-core-basemap"
      * JMap.User
@@ -3435,6 +3438,7 @@ declare namespace JMap {
      *          console.log(`Preference item "${prefName}" has been removed. Value was: ${removedPreferenceValue}`) 
      *        }
      *      })
+     * 
      * ```
      */
     function removePreference(name: string): Promise<string | null>
@@ -3442,16 +3446,14 @@ declare namespace JMap {
     /**
      * **JMap.User.setPreference**
      * 
-     * Set a user preference in user storage. The returned Promise resolves without value on success, or rejects with a reason if not successfull.
+     * Set a user preference in user storage. The returned Promise resolves without value on success.
+     * Rejects with a reason on error, or if name parameter is not string or empty string, or if no user is logged in
      * If passed value is undefined, the preference is removed
      * 
      * @returns a Promise that sets the user preference, and resolves with no value, or rejects with a reason
      * @param name the name of the preference
      * @param value the value that will be associated to the name
-     * @throws Error if name parameter is not string or empty string, or if no user is logged in
      * 
-     * @param name the name of the preference
-     * @param value the value that will be associated to the name
      * @example ```ts
      * 
      * let prefName = "jmap-core-basemap"
@@ -3473,6 +3475,7 @@ declare namespace JMap {
      *      }).catch(reason=>{
      *        console.log(`Cannot remove the preference "${prefName}". Reason: ${reason}`) 
      *      })
+     * 
      * ```
      */
     function setPreference(name: string, value: string | undefined): Promise<void>
