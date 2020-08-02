@@ -112,6 +112,12 @@ export interface JUserEventModule extends JEventModule {
   }
 }
 
+export interface JCoreEventModule extends JEventModule {
+  on: {
+    coreReady(listenerId: string, fn: () => void): void
+  }
+}
+
 export interface JCoreState {
   map: JMapState
   project: JProjectState
