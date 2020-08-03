@@ -44,7 +44,7 @@ export interface JQueryService {
 }
 
 export interface JEventService {
-  Core: JCoreEventModule
+  Main: JCoreEventModule
   Layer: JLayerEventModule
   Map: JMapEventModule
   Project: JProjectEventModule
