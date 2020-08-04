@@ -44,6 +44,7 @@ export interface JQueryService {
 }
 
 export interface JEventService {
+  Main: JCoreEventModule
   Layer: JLayerEventModule
   Map: JMapEventModule
   Project: JProjectEventModule
@@ -109,6 +110,12 @@ export interface JMapEventModule extends JEventModule {
 export interface JUserEventModule extends JEventModule {
   on: {
     sessionChanged(listenerId: string, fn: (params: JUserEventSessionChangedParams) => void): void
+  }
+}
+
+export interface JCoreEventModule extends JEventModule {
+  on: {
+    coreReady(listenerId: string, fn: () => void): void
   }
 }
 
@@ -385,10 +392,10 @@ export interface JUserService {
   getFullName(): string
   getUsername(): string
   getLocale(): string
-  getPreference(name: string): string | null
-  hasPreference(name: string): boolean
-  removePreference(name: string): string | null
-  setPreference(name: string, value: string | undefined): void
+  getPreference(name: string): Promise<string | null>
+  hasPreference(name: string): Promise<boolean>
+  removePreference(name: string): Promise<string | null>
+  setPreference(name: string, value: string | undefined): Promise<void>
   setToken(token: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>
