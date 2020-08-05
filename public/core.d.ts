@@ -2063,12 +2063,53 @@ declare namespace JMap {
      */
     function fitFeatures(features: any[], options?: JPanAndZoomOptions): void
     
-    // TODO: write documentation
+    /**
+     * **JMap.Map.flashLocation**
+     * 
+     * Display a pulsing dot on the map to hilite a location, with options
+     * 
+     * @param location 
+     * @param options 
+     * @example ```ts
+     * 
+     * // define a location in lat-lon coordinates
+     * const locationToFlash = {x:-74.178, y:46.0455}
+     * // define options
+     * const flashOptions = {
+     *  dotColor: { // default { red: 165, green: 165, blue: 255, alpha: 1 }
+     *    red:100 , // 0-255
+     *    green:100 , // 0-255
+     *    blue:255 , // 0-255
+     *    alpha: 1.0 // 0-1
+     * },  
+     *  haloColor: { // default { red: 105, green: 105, blue: 255, alpha: 1 }
+     *    red:0 ,  // 0-255
+     *    reen:255 , // 0-255
+     *    blue:100 , // 0-255
+     *    alpha: 1 // 0-1
+     * },
+     *  size: 100,
+     *  delay: 3000, // in milliseconds. default no expiration delay (flash indefinitely)
+     *  fitFeatures: true, // default: false
+     *  panAndZoomOptions: { // optionnal
+     *    animate: false, // default true
+     *    paddingTop: 120, // default 50
+     *    paddingLeft: 100, // default 50
+     *    paddingRight: 100, // default 50
+     *    paddingBottom: 120, // default 50
+     *    maxZoom: 10 // default the current zoom
+     *  }
+     * }
+     * ```
+     */
     function flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
     
     // TODO: write documentation
     function flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   
+    // TODO: write documentation
+    function clearFlashedLocations():void
+
     /**
      * **JMap.Map.Interaction**
      * 

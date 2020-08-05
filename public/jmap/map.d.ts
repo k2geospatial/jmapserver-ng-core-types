@@ -92,9 +92,9 @@ declare interface JMapPulsingDotColor{
 }
 
 declare interface JMapFlashLocationParams{
-  dotColor: JMapPulsingDotColor
-  haloColor: JMapPulsingDotColor
-  size: number
+  dotColor?: JMapPulsingDotColor
+  haloColor?: JMapPulsingDotColor
+  size?: number
   delay?: number
   fitFeatures?: boolean
   panAndZoomOptions?: JPanAndZoomOptions
