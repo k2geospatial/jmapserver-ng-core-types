@@ -2062,7 +2062,13 @@ declare namespace JMap {
      * ```
      */
     function fitFeatures(features: any[], options?: JPanAndZoomOptions): void
-
+    
+    // TODO: write documentation
+    function flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
+    
+    // TODO: write documentation
+    function flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
+  
     /**
      * **JMap.Map.Interaction**
      * 
@@ -3744,6 +3750,53 @@ declare namespace JMap {
    * Deactivating a listener keep it in the JMap Web Core library, but ignore it when an event is emitted.
    */
   namespace Event {
+
+    /**
+     * ***JMap.Event.Main***
+     * 
+     * Here you can manage all high level event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Main.on]]***. 
+     */
+    namespace Main{
+      /**
+       * ***JMap.Event.Main.on***
+       * 
+       * Here you have all available high level events on which you can attach a listener.
+       */
+      namespace on {
+
+
+        /**
+         * ***JMap.Event.Main.on.coreReady***
+         * 
+         * This event is triggered once: 
+         * * the jmap-core library is loaded, 
+         * * the redux store and its reducers are also loaded,
+         * * The initial session validation has been run. At thas point if the session has successfully been validated, the logged-in user will also be available
+         * 
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * // log a message in the console once the core library is loaded
+         * JMap.Event.Main.on.coreReady(
+         *    "custom-core-ready", 
+         *     () => {
+         *      if(JMap.User.getToken() !== "-1"){
+         *        console.log(`Logged in username is: "${JMap.User.getUsername()}"`)
+         *      }else{
+         *        console.log(`No user logged in`)
+         *      }
+         * })
+         * ```
+         */
+        function coreReady(listenerId: string, fn: () => void): void
+
+      }
+
+
+    }
 
     /**
      * ***JMap.Event.Project***

@@ -84,6 +84,22 @@ declare interface JMapNavigateToParams {
   mapBoxEventData?: JMapBoxEventData
 }
 
+declare interface JMapPulsingDotColor{
+  red: number
+  green: number
+  blue: number
+  alpha?: number
+}
+
+declare interface JMapFlashLocationParams{
+  dotColor: JMapPulsingDotColor
+  haloColor: JMapPulsingDotColor
+  size: number
+  delay?: number
+  fitFeatures?: boolean
+  panAndZoomOptions?: JPanAndZoomOptions
+}
+
 declare interface JPanAndZoomOptions {
   animate?: boolean
   paddingTop?: number

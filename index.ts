@@ -282,6 +282,8 @@ export interface JMapService {
   panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
   navigateTo(params: JMapNavigateToParams): void
   fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
+  flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
+  flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
 }
 
 export interface JMapInteractionService {
