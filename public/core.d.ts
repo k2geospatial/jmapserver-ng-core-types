@@ -2062,6 +2062,112 @@ declare namespace JMap {
      * ```
      */
     function fitFeatures(features: any[], options?: JPanAndZoomOptions): void
+    
+    /**
+     * **JMap.Map.flashLocation**
+     * 
+     * Display a pulsing dot on the map to hilite a location, with options
+     * 
+     * Flashed feature can be immediatly removed using [[JMap.Map.clearFlashedLocations]]
+     * 
+     * @param location a JLocation
+     * @param options (see example)
+     * @example ```ts
+     * 
+     * // define a location in lat-lon coordinates
+     * const locationToFlash = {x:-74.178, y:46.0455}
+     * // define options
+     * const flashOptions = { // Optional. 
+     *  dotColor: { // Optional. Default { red: 165, green: 165, blue: 255, alpha: 1 }
+     *    red:100 , // 0-255
+     *    green:100 , // 0-255
+     *    blue:255 , // 0-255
+     *    alpha: 1.0 // 0-1
+     * },  
+     *  haloColor: { // Optional. Default { red: 105, green: 105, blue: 255, alpha: 1 }
+     *    red:0 ,  // 0-255
+     *    reen:255 , // 0-255
+     *    blue:100 , // 0-255
+     *    alpha: 1 // 0-1
+     * },
+     *  size: 100, // Optional, in pixels, default 100
+     *  delay: 5000, // Optional, in milliseconds. default no expiration delay (flash indefinitely)
+     *  fitFeatures: true, // Optional, will pan and zoom to display all flashed features. Default: false
+     *  panAndZoomOptions: { // optionnal
+     *    animate: false, // default true
+     *    paddingTop: 120, // default 50
+     *    paddingLeft: 100, // default 50
+     *    paddingRight: 100, // default 50
+     *    paddingBottom: 120, // default 50
+     *    maxZoom: 10 // default the current zoom
+     *  }
+     * }
+     * 
+     * JMap.Map.flashLocation(locationToFlash,flashOptions)
+     * ```
+     */
+    function flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
+    
+    /**
+     * **JMap.Map.flashLocations**
+     * 
+     * Display a collection of pulsing dots on the map to hilite several locations, with options
+     * 
+     * Flashed features can be immediatly removed using [[JMap.Map.clearFlashedLocations]]
+     * 
+     * @param locations an array of JLocations
+     * @param options (see example)
+     * @example ```ts
+     * 
+     * // define locations in lat-lon coordinates
+     * const locationsToFlash = [{x:-74.178, y:46.0455}, {x:-74.3, y:46.2}, {x:-74, y:46.2}]
+     * // define options
+     * const flashOptions = { // Optional. 
+     *  dotColor: { // Optional. Default { red: 165, green: 165, blue: 255, alpha: 1 }
+     *    red:100 , // 0-255
+     *    green:100 , // 0-255
+     *    blue:255 , // 0-255
+     *    alpha: 1.0 // 0-1
+     * },  
+     *  haloColor: { // Optional. Default { red: 105, green: 105, blue: 255, alpha: 1 }
+     *    red:0 ,  // 0-255
+     *    reen:255 , // 0-255
+     *    blue:100 , // 0-255
+     *    alpha: 1 // 0-1
+     * },
+     *  size: 100, // Optional, in pixels, default 100
+     *  delay: 5000, // Optional, in milliseconds. default no expiration delay (flash indefinitely)
+     *  fitFeatures: true, // Optional, will pan and zoom to display all flashed features. Default: false
+     *  panAndZoomOptions: { // optionnal
+     *    animate: false, // default true
+     *    paddingTop: 120, // default 50
+     *    paddingLeft: 100, // default 50
+     *    paddingRight: 100, // default 50
+     *    paddingBottom: 120, // default 50
+     *    maxZoom: 10 // default the current zoom
+     *  }
+     * }
+     * 
+     * JMap.Map.flashLocations(locationsToFlash,flashOptions)
+     * ```
+     */
+    function flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
+  
+    /**
+     * **JMap.Map.clearFlashedLocations**
+     * 
+     * Immediatly remove all flashed locations on the map that have been displyed using [[JMap.Map.flashLocation]] or [[JMap.Map.flashLocations]]
+     * 
+     * @example ```ts
+     * 
+     * // flash a location indefinetly
+     * JMap.Map.flashLocation({x:-74.178, y:46.0455})
+     * 
+     * // clear all flashed locations after a timeout of 30 seconds
+     * setTimeout(()=>JMap.Map.clearFlashedLocations(), 30000)
+     * ```     
+     * */
+    function clearFlashedLocations():void
 
     /**
      * **JMap.Map.Interaction**
@@ -3744,6 +3850,53 @@ declare namespace JMap {
    * Deactivating a listener keep it in the JMap Web Core library, but ignore it when an event is emitted.
    */
   namespace Event {
+
+    /**
+     * ***JMap.Event.Main***
+     * 
+     * Here you can manage all high level event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Main.on]]***. 
+     */
+    namespace Main{
+      /**
+       * ***JMap.Event.Main.on***
+       * 
+       * Here you have all available high level events on which you can attach a listener.
+       */
+      namespace on {
+
+
+        /**
+         * ***JMap.Event.Main.on.coreReady***
+         * 
+         * This event is triggered once: 
+         * * the jmap-core library is loaded, 
+         * * the redux store and its reducers are also loaded,
+         * * The initial session validation has been run. At thas point if the session has successfully been validated, the logged-in user will also be available
+         * 
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * // log a message in the console once the core library is loaded
+         * JMap.Event.Main.on.coreReady(
+         *    "custom-core-ready", 
+         *     () => {
+         *      if(JMap.User.getToken() !== "-1"){
+         *        console.log(`Logged in username is: "${JMap.User.getUsername()}"`)
+         *      }else{
+         *        console.log(`No user logged in`)
+         *      }
+         * })
+         * ```
+         */
+        function coreReady(listenerId: string, fn: () => void): void
+
+      }
+
+
+    }
 
     /**
      * ***JMap.Event.Project***
