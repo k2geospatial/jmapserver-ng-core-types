@@ -2068,29 +2068,31 @@ declare namespace JMap {
      * 
      * Display a pulsing dot on the map to hilite a location, with options
      * 
-     * @param location 
-     * @param options 
+     * Flashed feature can be immediatly removed using [[JMap.Map.clearFlashedLocations]]
+     * 
+     * @param location a JLocation
+     * @param options (see example)
      * @example ```ts
      * 
      * // define a location in lat-lon coordinates
      * const locationToFlash = {x:-74.178, y:46.0455}
      * // define options
-     * const flashOptions = {
-     *  dotColor: { // default { red: 165, green: 165, blue: 255, alpha: 1 }
+     * const flashOptions = { // Optional. 
+     *  dotColor: { // Optional. Default { red: 165, green: 165, blue: 255, alpha: 1 }
      *    red:100 , // 0-255
      *    green:100 , // 0-255
      *    blue:255 , // 0-255
      *    alpha: 1.0 // 0-1
      * },  
-     *  haloColor: { // default { red: 105, green: 105, blue: 255, alpha: 1 }
+     *  haloColor: { // Optional. Default { red: 105, green: 105, blue: 255, alpha: 1 }
      *    red:0 ,  // 0-255
      *    reen:255 , // 0-255
      *    blue:100 , // 0-255
      *    alpha: 1 // 0-1
      * },
-     *  size: 100,
-     *  delay: 3000, // in milliseconds. default no expiration delay (flash indefinitely)
-     *  fitFeatures: true, // default: false
+     *  size: 100, // Optional, in pixels, default 100
+     *  delay: 5000, // Optional, in milliseconds. default no expiration delay (flash indefinitely)
+     *  fitFeatures: true, // Optional, will pan and zoom to display all flashed features. Default: false
      *  panAndZoomOptions: { // optionnal
      *    animate: false, // default true
      *    paddingTop: 120, // default 50
@@ -2100,14 +2102,71 @@ declare namespace JMap {
      *    maxZoom: 10 // default the current zoom
      *  }
      * }
+     * 
+     * JMap.Map.flashLocation(locationToFlash,flashOptions)
      * ```
      */
     function flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
     
-    // TODO: write documentation
+    /**
+     * **JMap.Map.flashLocations**
+     * 
+     * Display a collection of pulsing dots on the map to hilite several locations, with options
+     * 
+     * Flashed features can be immediatly removed using [[JMap.Map.clearFlashedLocations]]
+     * 
+     * @param locations an array of JLocations
+     * @param options (see example)
+     * @example ```ts
+     * 
+     * // define locations in lat-lon coordinates
+     * const locationsToFlash = [{x:-74.178, y:46.0455}, {x:-74.3, y:46.2}, {x:-74, y:46.2}]
+     * // define options
+     * const flashOptions = { // Optional. 
+     *  dotColor: { // Optional. Default { red: 165, green: 165, blue: 255, alpha: 1 }
+     *    red:100 , // 0-255
+     *    green:100 , // 0-255
+     *    blue:255 , // 0-255
+     *    alpha: 1.0 // 0-1
+     * },  
+     *  haloColor: { // Optional. Default { red: 105, green: 105, blue: 255, alpha: 1 }
+     *    red:0 ,  // 0-255
+     *    reen:255 , // 0-255
+     *    blue:100 , // 0-255
+     *    alpha: 1 // 0-1
+     * },
+     *  size: 100, // Optional, in pixels, default 100
+     *  delay: 5000, // Optional, in milliseconds. default no expiration delay (flash indefinitely)
+     *  fitFeatures: true, // Optional, will pan and zoom to display all flashed features. Default: false
+     *  panAndZoomOptions: { // optionnal
+     *    animate: false, // default true
+     *    paddingTop: 120, // default 50
+     *    paddingLeft: 100, // default 50
+     *    paddingRight: 100, // default 50
+     *    paddingBottom: 120, // default 50
+     *    maxZoom: 10 // default the current zoom
+     *  }
+     * }
+     * 
+     * JMap.Map.flashLocations(locationsToFlash,flashOptions)
+     * ```
+     */
     function flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   
-    // TODO: write documentation
+    /**
+     * **JMap.Map.clearFlashedLocations**
+     * 
+     * Immediatly remove all flashed locations on the map that have been displyed using [[JMap.Map.flashLocation]] or [[JMap.Map.flashLocations]]
+     * 
+     * @example ```ts
+     * 
+     * // flash a location indefinetly
+     * JMap.Map.flashLocation({x:-74.178, y:46.0455})
+     * 
+     * // clear all flashed locations after a timeout of 30 seconds
+     * setTimeout(()=>JMap.Map.clearFlashedLocations(), 30000)
+     * ```     
+     * */
     function clearFlashedLocations():void
 
     /**

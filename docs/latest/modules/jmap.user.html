@@ -110,7 +110,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3349">core.d.ts:3349</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3455">core.d.ts:3455</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -140,7 +140,7 @@ JMap.User.getFullName()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3375">core.d.ts:3375</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3481">core.d.ts:3481</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -164,25 +164,33 @@ JMap.User.getLocale()</code></pre>
 					<a name="getpreference" class="tsd-anchor"></a>
 					<h3>get<wbr>Preference</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Preference<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Preference<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3388">core.d.ts:3388</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3504">core.d.ts:3504</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.User.getPreference</strong></p>
 								</div>
-								<p>Get a user preference value.</p>
+								<p>Get a user preference value from user storage. The returned Promise resolves to the value, else null if no preference has been set.
+								Rejects on error, or if name parameter is not string or empty string, or if no user is logged in</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// return null if no preference has been set, else the value</span>
-JMap.User.getPreference(<span class="hljs-string">"theme"</span>)</code></pre>
+<span class="hljs-keyword">let</span> prefName = <span class="hljs-string">"jmap-core-basemap"</span>
+JMap.User
+     .getPreference(prefName)
+     .then(<span class="hljs-function"><span class="hljs-params">preferenceValue</span>=&gt;</span>{
+       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Preference item "<span class="hljs-subst">${prefName}</span>" value is "<span class="hljs-subst">${preferenceValue}</span>"`</span>)
+     }).catch(<span class="hljs-function"><span class="hljs-params">reason</span>=&gt;</span>{
+       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Cannot get the preference value of param "<span class="hljs-subst">${prefName}</span>". Reason: <span class="hljs-subst">${reason}</span>`</span>)
+     })
+</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -195,10 +203,8 @@ JMap.User.getPreference(<span class="hljs-string">"theme"</span>)</code></pre>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">null</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a Promise that resolves with the value from the user storage (or null if the preference is not set).</p>
 						</li>
 					</ul>
 				</section>
@@ -212,7 +218,7 @@ JMap.User.getPreference(<span class="hljs-string">"theme"</span>)</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3336">core.d.ts:3336</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3442">core.d.ts:3442</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -243,7 +249,7 @@ JMap.User.getToken()</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3362">core.d.ts:3362</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3468">core.d.ts:3468</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -267,25 +273,31 @@ JMap.User.getUsername()</code></pre>
 					<a name="haspreference" class="tsd-anchor"></a>
 					<h3>has<wbr>Preference</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">has<wbr>Preference<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Preference<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3401">core.d.ts:3401</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3525">core.d.ts:3525</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.User.hasPreference</strong></p>
 								</div>
-								<p>Return true if a value has been set for the user preference.</p>
+								<p>Check for a user preference existence. The returned Promise resolves with true if a value has been set for the user preference, else false.
+								Rejects on error, or if name parameter is not string or empty string, or if no user is logged in</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// return true if a value is set for the preference, else true</span>
-JMap.User.hasPreference(<span class="hljs-string">"theme"</span>)</code></pre>
+<span class="hljs-keyword">let</span> prefName = <span class="hljs-string">"jmap-core-basemap"</span>
+JMap.User
+     .hasPreference(prefName)
+     .then(<span class="hljs-function"><span class="hljs-params">hasPreferenceValue</span>=&gt;</span>{
+       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Preference item "<span class="hljs-subst">${prefName}</span>" exists: <span class="hljs-subst">${hasPreferenceValue.toString()}</span>`</span>)
+     })
+</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -298,7 +310,8 @@ JMap.User.hasPreference(<span class="hljs-string">"theme"</span>)</code></pre>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a Promise that resolves with true if a value has been set for the user preference, else false</p>
 						</li>
 					</ul>
 				</section>
@@ -312,7 +325,7 @@ JMap.User.hasPreference(<span class="hljs-string">"theme"</span>)</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3464">core.d.ts:3464</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3618">core.d.ts:3618</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -371,7 +384,7 @@ JMap.User
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3485">core.d.ts:3485</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3639">core.d.ts:3639</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -404,27 +417,21 @@ JMap.User
 					<a name="removepreference" class="tsd-anchor"></a>
 					<h3>remove<wbr>Preference</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Preference<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Preference<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3414">core.d.ts:3414</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3550">core.d.ts:3550</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.User.removePreference</strong></p>
 								</div>
-								<p>Remove the user preference, and return the associated value, if no value returns undefined.</p>
-								<dl class="tsd-comment-tags">
-									<dt>example</dt>
-									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// return the preference value after deletion</span>
-JMap.User.removePreference(<span class="hljs-string">"theme"</span>)</code></pre>
-									</dd>
-								</dl>
+								<p>Remove a user preference from user storage. The returned Promise resolves with the value of the removed preference, or null if the preference does not exist.</p>
+								<p>Rejects on error, or if name parameter is not string or empty string, or if no user is logged in</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -432,13 +439,22 @@ JMap.User.removePreference(<span class="hljs-string">"theme"</span>)</code></pre
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>the name of the preference</p>
+										<p>let prefName = &quot;jmap-core-basemap&quot;
+											JMap.User
+											.removePreference(prefName)
+											.then(removedPreferenceValue=&gt;{
+											if(removedPreferenceValue === null){
+											console.log(<code>Preference item &quot;${prefName}&quot; did not exist or was not removed</code>)
+											}else{
+											console.log(<code>Preference item &quot;${prefName}&quot; has been removed. Value was: ${removedPreferenceValue}</code>)
+											}
+										})</p>
+										<pre><code></code></pre>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">null</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a Promise that removes the user preference, and resolves with the value of the removed preference, or null if the preference does not exist</p>
 						</li>
 					</ul>
 				</section>
@@ -446,29 +462,45 @@ JMap.User.removePreference(<span class="hljs-string">"theme"</span>)</code></pre
 					<a name="setpreference" class="tsd-anchor"></a>
 					<h3>set<wbr>Preference</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Preference<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Preference<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3433">core.d.ts:3433</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3587">core.d.ts:3587</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p><strong>JMap.User.setPreference</strong></p>
 								</div>
-								<p>Set a user preference value.</p>
-								<p>If value is undefined the value will be removed.</p>
+								<p>Set a user preference in user storage. The returned Promise resolves without value on success.
+									Rejects with a reason on error, or if name parameter is not string or empty string, or if no user is logged in
+								If passed value is undefined, the preference is removed</p>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><pre><code class="language-ts">
-<span class="hljs-comment">// Set the value "dark" for user preference "theme"</span>
-JMap.User.setPreference(<span class="hljs-string">"theme"</span>, <span class="hljs-string">"dark"</span>)
+<span class="hljs-keyword">let</span> prefName = <span class="hljs-string">"jmap-core-basemap"</span>
+
+<span class="hljs-comment">// Set the value "light" for user preference "jmap-core-basemap"</span>
+JMap.User
+     .setPreference(prefName, <span class="hljs-string">"light"</span>)
+     .then(<span class="hljs-function"><span class="hljs-params">preferenceValue</span>=&gt;</span>{
+       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Preference item "<span class="hljs-subst">${prefName}</span>" has been set`</span>)
+     }).catch(<span class="hljs-function"><span class="hljs-params">reason</span>=&gt;</span>{
+       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Cannot set the preference value of param "<span class="hljs-subst">${prefName}</span>". Reason: <span class="hljs-subst">${reason}</span>`</span>)
+     })
 
 <span class="hljs-comment">// Remove the value for user preference "theme"</span>
-JMap.User.setPreference(<span class="hljs-string">"theme"</span>)</code></pre>
+JMap.User
+     .setPreference(prefName)
+     .then(<span class="hljs-function"><span class="hljs-params">preferenceValue</span>=&gt;</span>{
+       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Preference item "<span class="hljs-subst">${prefName}</span>" has been removed`</span>)
+     }).catch(<span class="hljs-function"><span class="hljs-params">reason</span>=&gt;</span>{
+       <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Cannot remove the preference "<span class="hljs-subst">${prefName}</span>". Reason: <span class="hljs-subst">${reason}</span>`</span>)
+     })
+</code></pre>
 									</dd>
 								</dl>
 							</div>
@@ -487,7 +519,8 @@ JMap.User.setPreference(<span class="hljs-string">"theme"</span>)</code></pre>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>a Promise that sets the user preference, and resolves with no value, or rejects with a reason</p>
 						</li>
 					</ul>
 				</section>
@@ -501,7 +534,7 @@ JMap.User.setPreference(<span class="hljs-string">"theme"</span>)</code></pre>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/f27ae3a/public/core.d.ts#L3528">core.d.ts:3528</a></li>
+									<li>Defined in <a href="https://github.com/k2geospatial/jmap-core/blob/807ecfc/public/core.d.ts#L3682">core.d.ts:3682</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
