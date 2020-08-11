@@ -1246,7 +1246,7 @@ declare namespace JMap {
      * ])
      * ```
      */
-    function getPolygonFeature(coordinates: [number, number][], closeCoordinates?: boolean): GeoJSON.FeatureCollection<GeoJSON.Polygon>
+    function getPolygonFeature(coordinates: [number, number][], closeCoordinates?: boolean): GeoJSON.Feature<GeoJSON.Polygon>
   }
 
   /**
