@@ -964,7 +964,7 @@ declare namespace JMap {
      * JMap.Geometry.getArea(feature)
      * ```
      */
-    function getArea(feature: any): number
+    function getArea(feature: GeoJSON.Feature): number
 
     /**
      * **JMap.Geometry.getLineLength**
@@ -988,7 +988,7 @@ declare namespace JMap {
      * JMap.Geometry.getLineLength(line, "miles")
      * ```
      */
-    function getLineLength(feature: any, units?: JGeometryUnit | JDistanceUnit ): number
+    function getLineLength(feature: GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.Feature<GeoJSON.MultiLineString>, units?: JGeometryUnit | JDistanceUnit ): number
 
     /**
      * **JMap.Geometry.getCentroid**
@@ -1003,7 +1003,7 @@ declare namespace JMap {
      * JMap.Geometry.getCentroid(polygonFeature)
      * ```
      */
-    function getCentroid(feature: any): any
+    function getCentroid(feature: GeoJSON.Feature | GeoJSON.FeatureCollection): GeoJSON.Feature<GeoJSON.Point>
 
     /**
      * **JMap.Geometry.getFeatureFromLine**
@@ -1018,7 +1018,7 @@ declare namespace JMap {
      * const feature = JMap.Geometry.getFeatureFromLine(line)
      * ```
      */
-    function getFeatureFromLine(line: JLine): any
+    function getFeatureFromLine(line: JLine): GeoJSON.Feature<GeoJSON.LineString>
     
     /**
      * **JMap.Geometry.getPolygonFeatureFromCircle**
@@ -1034,7 +1034,7 @@ declare namespace JMap {
      * const feature = JMap.Geometry.getPolygonFeatureFromCircle(circle)
      * ```
      */
-    function getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): any
+    function getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): GeoJSON.Feature<GeoJSON.Polygon>
     
     /**
      * **JMap.Geometry.getFeatureFromPolygon**
@@ -1049,7 +1049,7 @@ declare namespace JMap {
      * const feature = JMap.Geometry.getFeatureFromPolygon(line)
      * ```
      */
-    function getFeatureFromPolygon(polygon: JPolygon): any
+    function getFeatureFromPolygon(polygon: JPolygon): GeoJSON.Feature<GeoJSON.Polygon>
     
     /**
      * **JMap.Geometry.getBboxFromFeature**
@@ -1064,7 +1064,7 @@ declare namespace JMap {
      * const bbox = JMap.Geometry.getBboxFromFeature(feature)
      * ```
      */
-    function getBboxFromFeature(feature: any): JBoundaryBox
+    function getBboxFromFeature(feature: GeoJSON.Feature): JBoundaryBox
 
     /**
      * **JMap.Geometry.getBboxFromFeatures**
@@ -1079,7 +1079,7 @@ declare namespace JMap {
      * const distance = JMap.Geometry.getBboxFromFeatures(features)
      * ```
      */
-    function getBboxFromFeatures(features: any[]): JBoundaryBox
+    function getBboxFromFeatures(features: GeoJSON.Feature[]): JBoundaryBox
     
     /**
      * **JMap.Geometry.getBboxFromPolygon**
@@ -1112,19 +1112,19 @@ declare namespace JMap {
     function getBboxFromLine(line: JLine): JBoundaryBox
     
     /**
-     * **JMap.Geometry.getPolygonFeatureFromBbox**
+     * **JMap.Geometry.getPolygonFromBbox**
      * 
-     * Returns a polygon feature corresponding to the boundary box.
+     * Returns a polygon corresponding to the boundary box.
      * 
      * @param boundaryBox A boundary box
      * @example ```ts
      * 
      * const bbox = { sw: { x: 10, 10 }, sw: { x: 10, 10 }}
      * // The method will return the line boundary box
-     * const bbox = JMap.Geometry.getPolygonFeatureFromBbox(line)
+     * const bbox = JMap.Geometry.getPolygonFromBbox(line)
      * ```
      */
-    function getPolygonFeatureFromBbox(boundaryBox: JBoundaryBox): any
+    function getPolygonFromBbox(boundaryBox: JBoundaryBox): GeoJSON.Polygon
     
     /**
      * **JMap.Geometry.bboxIntersect**
@@ -1158,7 +1158,7 @@ declare namespace JMap {
      * const areIntersecting = JMap.Geometry.polygonIntersect(polygonFeature, otherFeature)
      * ```
      */
-    function polygonIntersect(polygonFeature: any, otherFeature: any): boolean
+    function polygonIntersect(polygonFeature: GeoJSON.Feature<GeoJSON.Polygon> , otherFeature: GeoJSON.Feature): boolean
     
     /**
      * **JMap.Geometry.lineIntersect**
@@ -1175,7 +1175,7 @@ declare namespace JMap {
      * const areIntersecting = JMap.Geometry.lineIntersect(lineFeature, otherFeature)
      * ```
      */
-    function lineIntersect(lineFeature: any, otherFeature: any): boolean
+    function lineIntersect(lineFeature: GeoJSON.Feature<GeoJSON.LineString>, otherFeature: GeoJSON.Feature): boolean
 
     /**
      * **JMap.Geometry.getDistance**
@@ -1196,21 +1196,6 @@ declare namespace JMap {
     function getDistance(p1: number[] | JLocation, p2: number[] | JLocation): number
 
     /**
-     * **JMap.Geometry.getLineLength**
-     * 
-     * Returns the length in kilometers of the line.
-     * 
-     * @param lineStringFeature the line string feature
-     * @example ```ts
-     * 
-     * // returns the line length in KM
-     * const lineStringFeature = ...
-     * const distance = JMap.Geometry.getLineLength(lineStringFeature)
-     * ```
-     */
-    function getLineLength(lineStringFeature: any): number
-
-    /**
      * **JMap.Geometry.getFeatureCollection**
      * 
      * Returns a feature collection.
@@ -1222,7 +1207,7 @@ declare namespace JMap {
      * const distance = JMap.Geometry.getFeatureCollection([ { x: 10, y: 20 }, { x: 30, y: 30 } ])
      * ```
      */
-    function getFeatureCollection(features: any[]): any
+    function getFeatureCollection(features: GeoJSON.Feature[] | JLocation[] | Array<[number, number]>): GeoJSON.FeatureCollection
 
     /**
      * **JMap.Geometry.getCircleFeature**
@@ -1240,7 +1225,7 @@ declare namespace JMap {
      * const circle = JMap.Geometry.getCircleFeature({ x: 10, y: 20 }, 1.4)
      * ```
      */
-    function getCircleFeature(center: number[] | JLocation, radius: number): any
+    function getCircleFeature(center: number[] | JLocation, radius: number): GeoJSON.Feature<GeoJSON.Polygon>
 
     /**
      * **JMap.Geometry.getPolygonFeature**
@@ -1261,7 +1246,7 @@ declare namespace JMap {
      * ])
      * ```
      */
-    function getPolygonFeature(coordinates: [number, number][], closeCoordinates?: boolean): any
+    function getPolygonFeature(coordinates: [number, number][], closeCoordinates?: boolean): GeoJSON.FeatureCollection<GeoJSON.Polygon>
   }
 
   /**
@@ -1777,7 +1762,7 @@ declare namespace JMap {
      * })
      * ```
      */
-    function getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): any[]
+    function getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): GeoJSON.Feature[]
     
     /**
      * **JMap.Map.getRenderedFeaturesAttributeValues**
@@ -2041,7 +2026,7 @@ declare namespace JMap {
      * Move and zoom (or unzoom) to display the given features.
      * 
      * @throws Error if bad parameters are passed
-     * @param features The location where the map will be centered
+     * @param features The features where the map will be centered
      * @param options parameter to customize the animation, padding, and/or maxZoomLevel
      * @example ```ts
      * 
@@ -2061,7 +2046,7 @@ declare namespace JMap {
      * })
      * ```
      */
-    function fitFeatures(features: any[], options?: JPanAndZoomOptions): void
+    function fitFeatures(features: GeoJSON.Feature[], options?: JPanAndZoomOptions): void
     
     /**
      * **JMap.Map.flashLocation**
@@ -2623,7 +2608,7 @@ declare namespace JMap {
        * JMap.Map.Selection.getSelectedFeaturesForLayer(3)
        * ```
        */
-      function getSelectedFeaturesForLayer(layerId: number): any[]
+      function getSelectedFeaturesForLayer(layerId: number): GeoJSON.Feature[]
 
       /**
        * ***JMap.Map.Selection.getSelectedFeatureIdsForLayer***
@@ -2664,7 +2649,7 @@ declare namespace JMap {
        * JMap.Map.Selection.selectOnOneLayerAtLocation(4, { x: 34.23, y: 55.5 })
        * ```
        */
-      function selectOnOneLayerAtLocation(layerId: number, location: JLocation, params?: JMapSelectionParams): any[]
+      function selectOnOneLayerAtLocation(layerId: number, location: JLocation, params?: JMapSelectionParams): GeoJSON.Feature[]
 
       /**
        * **JMap.Map.Selection.selectOnOneLayerFromCircle**
@@ -2689,7 +2674,7 @@ declare namespace JMap {
        * )
        * ```
        */
-      function selectOnOneLayerFromCircle(layerId: number, circle: JCircle, params?: JMapSelectionParams): any[]
+      function selectOnOneLayerFromCircle(layerId: number, circle: JCircle, params?: JMapSelectionParams): GeoJSON.Feature[]
 
       /**
        * **JMap.Map.Selection.selectOnOneLayerFromLine**
@@ -2715,7 +2700,7 @@ declare namespace JMap {
        * )
        * ```
        */
-      function selectOnOneLayerFromLine(layerId: number, line: JLine, params?: JMapSelectionParams): any[]
+      function selectOnOneLayerFromLine(layerId: number, line: JLine, params?: JMapSelectionParams): GeoJSON.Feature[]
 
       /**
        * **JMap.Map.Selection.selectOnOneLayerFromPolygon**
@@ -2741,7 +2726,7 @@ declare namespace JMap {
        * )
        * ```
        */
-      function selectOnOneLayerFromPolygon(layerId: number, polygon: JPolygon, params?: JMapSelectionParams): any[]
+      function selectOnOneLayerFromPolygon(layerId: number, polygon: JPolygon, params?: JMapSelectionParams): GeoJSON.Feature[]
 
       /**
        * **JMap.Map.Selection.selectOnAllLayersAtLocation**
@@ -2865,7 +2850,7 @@ declare namespace JMap {
        * ])
        * ```
        */
-      function setLayerSelection(layerId: number, features: any | any[]): void
+      function setLayerSelection(layerId: number, features: GeoJSON.Feature | GeoJSON.Feature[]): void
 
       /**
        * **JMap.Map.Selection.addFeaturesToLayerSelection**
@@ -2904,7 +2889,7 @@ declare namespace JMap {
        * ])
        * ```
        */
-      function addFeaturesToLayerSelection(layerId: number, features: any | any[]): void
+      function addFeaturesToLayerSelection(layerId: number, features: GeoJSON.Feature | GeoJSON.Feature[]): void
 
       /**
        * **JMap.Map.Selection.removeFeaturesFromLayerSelection**
@@ -4830,7 +4815,7 @@ declare namespace JMap {
      * JMap.Extension.renderMouseOver(2, feature)
      * ```
      */
-    function renderMouseOver(layer: JLayer, feature: any): JExtensionMouseOver[]
+    function renderMouseOver(layer: JLayer, feature: GeoJSON.Feature): JExtensionMouseOver[]
   }
 
   /**
