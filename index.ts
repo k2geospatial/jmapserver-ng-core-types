@@ -1,5 +1,5 @@
 import { Store } from "redux"
-import { Point, LineString, Polygon, Feature, FeatureCollection } from "geojson"
+import { Point, LineString, Polygon, Feature, FeatureCollection, MultiLineString } from "geojson"
 
 export interface JCoreService extends JCoreMainService {
   Project: JProjectService
@@ -213,7 +213,7 @@ export interface JGeometryService {
   checkBbox(bbox: JBoundaryBox): void
   isValidBbox(bbox: JBoundaryBox | undefined): boolean
   getArea(feature: Feature): number
-  getLineLength(feature: Feature, units?: JGeometryUnit | JDistanceUnit): number
+  getLineLength(feature: Feature<LineString> | Feature<MultiLineString>, units?: JGeometryUnit | JDistanceUnit): number
   getCentroid(feature: Feature | FeatureCollection): Feature<Point>
   getFeatureFromLine(line: JLine): Feature<LineString>
   getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): Feature<Polygon>
@@ -222,7 +222,7 @@ export interface JGeometryService {
   getBboxFromFeatures(features: Feature[]): JBoundaryBox
   getBboxFromPolygon(polygon: JPolygon): JBoundaryBox
   getBboxFromLine(line: JLine): JBoundaryBox
-  getPolygonFeatureFromBbox(boundaryBox: JBoundaryBox): Polygon
+  getPolygonFromBbox(boundaryBox: JBoundaryBox): Polygon
   bboxIntersect(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
   polygonIntersect(feature1: Feature<Polygon>, feature2: Feature): boolean
   lineIntersect(feature1: Feature<LineString>, feature2: Feature): boolean
