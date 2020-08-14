@@ -1112,19 +1112,19 @@ declare namespace JMap {
     function getBboxFromLine(line: JLine): JBoundaryBox
     
     /**
-     * **JMap.Geometry.getPolygonFromBbox**
+     * **JMap.Geometry.getPolygonFeatureFromBbox**
      * 
-     * Returns a polygon corresponding to the boundary box.
+     * Returns a polygon feature corresponding to the boundary box.
      * 
      * @param boundaryBox A boundary box
      * @example ```ts
      * 
      * const bbox = { sw: { x: 10, 10 }, sw: { x: 10, 10 }}
-     * // The method will return the line boundary box
-     * const bbox = JMap.Geometry.getPolygonFromBbox(line)
+     * // The method will return the polygon corresponding to the bbox
+     * const polygonFeature = JMap.Geometry.getPolygonFeatureFromBbox(bbox)
      * ```
      */
-    function getPolygonFromBbox(boundaryBox: JBoundaryBox): GeoJSON.Polygon
+    function getPolygonFeatureFromBbox(boundaryBox: JBoundaryBox): GeoJSON.Feature<GeoJSON.Polygon>
     
     /**
      * **JMap.Geometry.bboxIntersect**

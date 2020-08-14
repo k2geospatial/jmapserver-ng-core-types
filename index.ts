@@ -222,7 +222,7 @@ export interface JGeometryService {
   getBboxFromFeatures(features: Feature[]): JBoundaryBox
   getBboxFromPolygon(polygon: JPolygon): JBoundaryBox
   getBboxFromLine(line: JLine): JBoundaryBox
-  getPolygonFromBbox(boundaryBox: JBoundaryBox): Polygon
+  getPolygonFeatureFromBbox(boundaryBox: JBoundaryBox): Feature<Polygon>
   bboxIntersect(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
   polygonIntersect(feature1: Feature<Polygon>, feature2: Feature): boolean
   lineIntersect(feature1: Feature<LineString>, feature2: Feature): boolean
