@@ -15,11 +15,11 @@ declare interface JLocation {
   y: number
 }
 
-declare type JPoint = [ number, number ]
+declare type JPoint = [ number, number ] | [ number, number , number]
 
-declare type JLine = Array<JPoint>
+declare type JLine = JPoint[]
 
-declare type JPolygon = Array<JPoint>
+declare type JPolygon = JPoint[]
 
 declare type JGeometryUnit = "kilometers" | "miles" | "degrees" | "radians"
 
