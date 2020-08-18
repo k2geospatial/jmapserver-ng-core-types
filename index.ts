@@ -226,10 +226,10 @@ export interface JGeometryService {
   bboxIntersect(bb1: JBoundaryBox, bb2: JBoundaryBox): boolean
   polygonIntersect(feature1: Feature<Polygon>, feature2: Feature): boolean
   lineIntersect(feature1: Feature<LineString>, feature2: Feature): boolean
-  getDistance(p1: number[] | JLocation, p2: number[] | JLocation): number // in km
-  getFeatureCollection(features: Feature[] | JLocation[] | Array<[number, number]>): FeatureCollection
-  getCircleFeature(center: number[] | JLocation, radius: number): Feature<Polygon> // radius in km
-  getPolygonFeature(coordinates: Array<[number, number]>, closeCoordinates?: boolean): Feature<Polygon>
+  getDistance(p1: JPoint | JLocation, p2: JPoint | JLocation): number // in km
+  getFeatureCollection(features: Feature[] | JLocation[] | JPoint[]): FeatureCollection
+  getCircleFeature(center: JPoint | JLocation, radius: number): Feature<Polygon> // radius in km
+  getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): Feature<Polygon>
 }
 
 export interface JMapService {

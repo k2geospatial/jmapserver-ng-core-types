@@ -1193,21 +1193,21 @@ declare namespace JMap {
      * const distance = JMap.Geometry.getDistance({ x: 10, y: 20 }, { x: 30, y: 30 })
      * ```
      */
-    function getDistance(p1: number[] | JLocation, p2: number[] | JLocation): number
+    function getDistance(p1: JPoint | JLocation, p2: JPoint | JLocation): number
 
     /**
      * **JMap.Geometry.getFeatureCollection**
      * 
      * Returns a feature collection.
      * 
-     * @param features could be a turf feature or a JMap location
+     * @param features could be a collection of turf features, JMap locations, or JMap points
      * @example ```ts
      * 
      * // returns the feature collection for the 2 points
      * const distance = JMap.Geometry.getFeatureCollection([ { x: 10, y: 20 }, { x: 30, y: 30 } ])
      * ```
      */
-    function getFeatureCollection(features: GeoJSON.Feature[] | JLocation[] | Array<[number, number]>): GeoJSON.FeatureCollection
+    function getFeatureCollection(features: GeoJSON.Feature[] | JLocation[] | JPoint[]): GeoJSON.FeatureCollection
 
     /**
      * **JMap.Geometry.getCircleFeature**
@@ -1225,7 +1225,7 @@ declare namespace JMap {
      * const circle = JMap.Geometry.getCircleFeature({ x: 10, y: 20 }, 1.4)
      * ```
      */
-    function getCircleFeature(center: number[] | JLocation, radius: number): GeoJSON.Feature<GeoJSON.Polygon>
+    function getCircleFeature(center: JPoint | JLocation, radius: number): GeoJSON.Feature<GeoJSON.Polygon>
 
     /**
      * **JMap.Geometry.getPolygonFeature**
@@ -1240,13 +1240,13 @@ declare namespace JMap {
      * 
      * // will close the coordinates of the polygon and returns the feature
      * const distance = JMap.Geometry.getPolygonFeature([
-     *    { x: 10, y: 20 },
-     *    { x: 30, y: 30 },
-     *    { x: 10, y: 60 }
+     *    [ 10, 20 ],
+     *    [ 30, 30 ],
+     *    [ 10, 60 ]
      * ])
      * ```
      */
-    function getPolygonFeature(coordinates: [number, number][], closeCoordinates?: boolean): GeoJSON.Feature<GeoJSON.Polygon>
+    function getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): GeoJSON.Feature<GeoJSON.Polygon>
   }
 
   /**
