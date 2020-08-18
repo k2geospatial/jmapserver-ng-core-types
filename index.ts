@@ -1,5 +1,6 @@
 import { Store } from "redux"
 import { Point, LineString, Polygon, Feature, FeatureCollection, MultiLineString } from "geojson"
+import { Map } from "mapbox-gl"
 
 export interface JCoreService extends JCoreMainService {
   Project: JProjectService
@@ -236,7 +237,7 @@ export interface JMapService {
   Interaction: JMapInteractionService
   Filter: JMapFilterService
   Selection: JMapSelectionService
-  getMap(): any
+  getMap(): Map
   getMapJSLib(): any
   getDomContainerId(): string
   getAllDistanceUnits(): JDistanceUnit[]

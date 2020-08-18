@@ -1267,7 +1267,7 @@ declare namespace JMap {
      * JMap.Map.getMap()
      * ```
      */
-    function getMap(): any
+    function getMap(): mapboxgl.Map
     
     /**
      * **JMap.Map.getMapJSLib**
