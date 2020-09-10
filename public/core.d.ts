@@ -571,6 +571,21 @@ declare namespace JMap {
     function getDescription(layerId: number): string
 
     /**
+     * **JMap.Layer.getEPSG4326Extent**
+     * 
+     * Returns the extent of the layer in ESPG:4326 coordinates
+     * @example ```ts
+     * 
+     * // returns the bounding box (JBoundaryBox) of the layer ID 3 in decimal degrees
+     * JMap.Layer.getEPSG4326Extent(3)
+     * ```
+     * 
+     * @throws Error if no layer found for the id
+     * @param layerId The JMap layer id
+     */
+    function getEPSG4326Extent(layerId: number):JBoundaryBox | null
+
+    /**
      * **JMap.Layer.isVisible**
      * 
      * Returns the tree element visibility property.
