@@ -367,6 +367,7 @@ export interface JLayerService {
   getSelfOrChildren(layerId: number): JLayer[]
   getName(layerId: number): string
   getDescription(layerId: number): string
+  getEPSG4326Extent(layerId: number):JBoundaryBox | null
   isVisible(layerId: number, checkParentVisibility?: boolean): boolean
   isAllLayerParentsVisible(layerId: number): boolean
   getStyle(layerId: number): JLayerStyle

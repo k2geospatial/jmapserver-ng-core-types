@@ -328,7 +328,7 @@ declare interface JCoreOptions {
    *       <script>
    *         (function jmapLogin() {
    *           if (window.hasOwnProperty("JMap")) {
-   *             JMap.Service.User.login("jdo@company.com", "xxx")
+   *             JMap.User.login("jdo@company.com", "xxx")
    *           } else {
    *             console.log("Waiting for the JMap lib to be loaded ...")
    *             setTimeout(() => jmapLogin(), 150) // check every 150 milliseconds
