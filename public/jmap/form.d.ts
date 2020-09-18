@@ -95,6 +95,7 @@ declare interface JFormUIControl {
   dateNow?: boolean // for date control : current date as default value
   dateTime?: boolean // for date control
   dateFormat?: string // for date control
+  onlyLeafSelection?: boolean // for tree control
   tree?: JFormUIControlTreeElement[]
   entries?: JFormUIControlEntry[]
   mask?: string
