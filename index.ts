@@ -150,7 +150,7 @@ export interface JMapState {
   boundaryBox: JBoundaryBox
   baseMap: string
   selection: JMapSelection
-  inUseJMapLayerIds: number[]
+  jmapLayerIdsSupportedByMapbox: number[]
   isNavigationHistoryControlVisible:boolean
   scaleControlPosition: JMapPosition
   distanceUnit: JDistanceUnit
