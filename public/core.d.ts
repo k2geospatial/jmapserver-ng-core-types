@@ -1666,7 +1666,7 @@ declare namespace JMap {
     function getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
 
     /**
-     * **JMap.Map.getInUseJMapLayerIds**
+     * **JMap.Map.getMapboxSupportedJMapLayerIds**
      * 
      * Returns all layer ids that are displayed by the map.
      * 
@@ -1677,13 +1677,13 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // returns layer ids supported by the Mapbox
-     * JMap.Map.getInUseJMapLayerIds()
+     * JMap.Map.getMapboxSupportedJMapLayerIds()
      * ```
      */
-    function getInUseJMapLayerIds(): number[]
+    function getMapboxSupportedJMapLayerIds(): number[]
     
     /**
-     * **JMap.Map.getInUseJMapVectorLayerIds**
+     * **JMap.Map.getMapboxSupportedJMapVectorLayerIds**
      * 
      * Returns all vector layer ids that are displayed by the map.
      * 
@@ -1694,15 +1694,15 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // returns vector layer ids managed by the map implementation
-     * JMap.Map.getInUseJMapVectorLayerIds()
+     * JMap.Map.getMapboxSupportedJMapVectorLayerIds()
      * ```
      */
-    function getInUseJMapVectorLayerIds(): number[]
+    function getMapboxSupportedJMapVectorLayerIds(): number[]
     
     /**
-     * **JMap.Map.getInUseJMapLayerBefore**
+     * **JMap.Map.getMapboxSupportedJMapLayerBefore**
      * 
-     * Returns the layer id that is ordered before the layer id provided in argument.
+     * Returns the Mapbox supported JMap layer id that is ordered before the JMap layer id provided in argument.
      * 
      * @throws Error if layer is not found
      * @param layerId The JMap layer id
@@ -1710,15 +1710,15 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // Returns the layer id that is located before layer id=4
-     * JMap.Map.getInUseJMapLayerBefore(4)
+     * JMap.Map.getMapboxSupportedJMapLayerBefore(4)
      * ```
      */
-    function getInUseJMapLayerBefore(layerId: number): number | undefined
+    function getMapboxSupportedJMapLayerBefore(layerId: number): number | undefined
     
     /**
-     * **JMap.Map.getInUseJMapLayerAfter**
+     * **JMap.Map.getMapboxSupportedJMapLayerAfter**
      * 
-     * Returns the layer id that is ordered after the layer id provided in argument.
+     * Returns the Mapbox supported JMap layer id that is ordered after the JMap layer id provided in argument.
      * 
      * @throws Error if layer is not found
      * @param layerId The JMap layer id
@@ -1726,10 +1726,45 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // Returns the layer id that is located after layer id=3
-     * JMap.Map.getInUseJMapLayerAfter(3)
+     * JMap.Map.getMapboxSupportedJMapLayerAfter(3)
      * ```
      */
-    function getInUseJMapLayerAfter(layerId: number): number | undefined
+    function getMapboxSupportedJMapLayerAfter(layerId: number): number | undefined
+
+    /**
+     * **JMap.Map.addMapboxLayerConfigurationForJmapLayer**
+     * 
+     * Add a JMap layer to the Mapbox supported layer configuration. This method will enable a JMap Layer that would otherwise not 
+     * be displayed on the map, and that would otherwise be disabled in the layer tree panel.
+     *  
+     * @throws Error if layer is not found, or if layer is already displayed on the map
+     * @param params a  JMapAddMapboxLayerConfigurationForJmapLayerParams object
+     * 
+     * @example ```ts
+     * 
+     * // Add Jmap layer id 118 to the mapbox supported layer configuration, before layer id 147
+     * 
+     *   JMap.Map.addMapboxLayerConfigurationForJmapLayer({
+     *    jmapLayerId: 118,
+     *    beforeJmapLayerId: 147,
+     *    baseStyle: {
+     *      styleLayer: {
+     *        "id": "this-id-will-be-normalized",
+     *        "type": "fill",
+     *        "paint": {
+     *          "fill-color": "#FF0000"
+     *        },
+     *        "layout": {
+     *          visibility: "visible" // visibility will be normalized
+     *        },
+     *        "source": "pre-existing-source-id-or-embeded-source",
+     *        "source-layer": "needed-if-adding-a-vector-tile-source"
+     *      }
+     *    }
+     *  })
+     * ```
+     */
+    function addMapboxLayerConfigurationForJmapLayer(params: JMapAddMapboxLayerConfigurationForJmapLayerParams): void
 
     /**
      * **JMap.Map.getRenderedJMapLayerIds**

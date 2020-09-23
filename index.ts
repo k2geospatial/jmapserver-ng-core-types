@@ -261,10 +261,11 @@ export interface JMapService {
   isLayerRendered(layerId: number): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
-  getInUseJMapLayerIds(): number[]
-  getInUseJMapVectorLayerIds(): number[]
-  getInUseJMapLayerBefore(layerId: number): number | undefined
-  getInUseJMapLayerAfter(layerId: number): number | undefined
+  getMapboxSupportedJMapLayerIds(): number[]
+  getMapboxSupportedJMapVectorLayerIds(): number[]
+  getMapboxSupportedJMapLayerBefore(layerId: number): number | undefined
+  getMapboxSupportedJMapLayerAfter(layerId: number): number | undefined
+  addMapboxLayerConfigurationForJmapLayer(params: JMapAddMapboxLayerConfigurationForJmapLayerParams): void
   getRenderedJMapLayerIds(): number[]
   getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): Feature[]
   getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]

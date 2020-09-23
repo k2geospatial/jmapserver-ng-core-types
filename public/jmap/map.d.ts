@@ -76,6 +76,18 @@ declare interface JMapBoxEventData {
   preventNavigationStepPush?: boolean
 }
 
+declare interface JMapMapboxLayerStyleDefinition {
+  styleLayer: mapboxgl.Layer
+  borderStyleLayer?: mapboxgl.Layer
+}
+
+declare interface JMapAddMapboxLayerConfigurationForJmapLayerParams {
+  jmapLayerId: number
+  beforeJmapLayerId?: number
+  baseStyle: JMapMapboxLayerStyleDefinition
+  // TODO: add support for thematics, selections, etc
+}
+
 declare interface JMapNavigateToParams {
   center: JLocation
   zoom: number
