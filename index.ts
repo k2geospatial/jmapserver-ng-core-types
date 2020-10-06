@@ -390,6 +390,7 @@ export interface JLayerSearchService {
 
 export interface JLayerGroup extends JLayerTreeElement {
   open: boolean
+  image: string | null
   children: JLayerTreeElement[]
 }
 
