@@ -1,7 +1,7 @@
 /**
  * This is the JMap Web Core library API documentation.
  * 
- * Examples are availables <a href="https://doc.k2geospatial.com/jmap/doc/ng_dev/examples/core_start.html" target="_blank">here</a>.
+ * Examples are availables <a href="https://doc.k2geospatial.com/jmap/doc/ng_dev/examples.html" target="_blank">here</a>.
  * 
  * You can customize JMap Web Core library by providing startup options ([[JCoreOptions]]).
  * 

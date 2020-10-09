@@ -206,30 +206,6 @@ declare interface JCoreOptions {
   restBaseUrl?: string
 
   /**
-   * You can tell the JMap Core library to never close the session after a user inactivity.
-   * For that the library will ping the server every 5 minutes if no activity
-   * is done in order to keep the session alive.
-   * 
-   * To activate the option, use the "***noSessionExpiration***" parameter :
-   * 
-   * ```html
-   * <html>
-   *   ...
-   *   <body>
-   *     <script type="text/javascript">
-   *       window.JMAP_OPTIONS = {
-   *         ...
-   *         noSessionExpiration: true
-   *       }
-   *     </script>
-   *     ...
-   *   </body>
-   * </html>
-   * ```
-   */
-  noSessionExpiration: boolean
-
-  /**
    * If the project you access can be accessed anonymously,
    * you are not forced to pass a session token but you have
    * to explicitly tell the JMap library to log as an anonymous
@@ -313,7 +289,6 @@ declare interface JCoreOptions {
    *         window.JMAP_OPTIONS = {
    *           projectId: 35,
    *           restBaseUrl: "https://jmap7dev.jmaponline.net/services/rest/v2.0",
-   *           noSessionExpiration: true,
    *           map: {
    *             zoom: 9.757829447748511,
    *             center: {
