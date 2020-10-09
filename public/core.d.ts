@@ -1134,7 +1134,7 @@ declare namespace JMap {
      * @param boundaryBox A boundary box
      * @example ```ts
      * 
-     * const bbox = { sw: { x: 10, 10 }, sw: { x: 10, 10 }}
+     * const bbox = { sw: { x: 10, y: 10 }, ne: { x: 20, y: 20 }}
      * // The method will return the polygon corresponding to the bbox
      * const polygonFeature = JMap.Geometry.getPolygonFeatureFromBbox(bbox)
      * ```

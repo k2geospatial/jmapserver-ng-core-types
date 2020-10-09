@@ -177,7 +177,6 @@ export interface JPhotoState {
   selectedPhoto: number | undefined
   photos: JPhoto[]
   isPopupOpened: boolean
-  isPopupInfoPanelOpened: boolean
 }
 
 export interface JQueryState {

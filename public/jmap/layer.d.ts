@@ -100,12 +100,28 @@ declare interface JLayerStylePoint extends JLayerStyleVector {
   symbolImage: JLayerStyleSymbolImage | null
 }
 
+declare type JLayerStyleLineStrokeCap = "BUTT" | "ROUND" | "SQUARE"
+declare type JLayerStyleLineStrokeJoin = "MITER" | "ROUND" | "BEVEL"
+
+declare interface JLayerStyleLineStroke {
+  width: number
+  cap: JLayerStyleLineStrokeCap
+  join: JLayerStyleLineStrokeJoin
+}
+
+declare interface JLayerStyleLineStrokeBasic extends JLayerStyleLineStroke {
+  miterLimit: number
+  dash: number[]
+  dash_phase: number
+}
+
 declare interface JLayerStyleLine extends JLayerStyleVector {
   styleType: "LINE"
   lineColor: JRGBColor
   lineThickness: number
   arrowType: JLayerStyleArrow
   arrowPositionFromLeftInPerCent: number
+  stroke: JLayerStyleLineStroke
 }
 
 declare interface JLayerStyleSurface extends JLayerStyleVector {
