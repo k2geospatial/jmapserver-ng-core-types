@@ -345,4 +345,11 @@ declare interface JCoreOptions {
    * Click on [[JCoreMapOptions]] to get details.
    */
   map?: JCoreMapOptions
+
+  /**
+   * Optional extensions.
+   * 
+   * Click [[JCoreExtension]] to get details about how defining an extension.
+   */
+  extensions?: JCoreExtension[]
 }
