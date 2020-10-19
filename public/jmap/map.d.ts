@@ -84,6 +84,7 @@ declare interface JMapMapboxLayerStyleDefinition {
 declare interface JMapAddMapboxLayerConfigurationForJmapLayerParams {
   jmapLayerId: number
   beforeJmapLayerId?: number
+  beforeMapboxLayerId?: string
   baseStyle: JMapMapboxLayerStyleDefinition
   // TODO: add support for thematics, selections, etc
 }
