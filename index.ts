@@ -378,6 +378,7 @@ export interface JLayerService {
   hasVisibleThematics(layerId: number): boolean
   getVisibleThematics(layerId: number): JLayerThematic[]
   setVisible(layerId: number, visible: boolean): void
+  ensureLayerIsVisible(layerId: number): void
   setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
   deleteLayer(layerId: number): void
   setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
