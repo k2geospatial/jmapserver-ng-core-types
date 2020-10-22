@@ -765,6 +765,22 @@ declare namespace JMap {
     function setVisible(layerId: number, isVisible: boolean): void
 
     /**
+     * **JMap.Layer.ensureLayerIsVisible**
+     * 
+     * Make sure a layer is visible on the Map. All parent layers will also be made visible 
+     * 
+     * @param layerId The JMap layer id
+     * 
+     * @example ```ts
+     * 
+     * // show layer id=5 (and all parent layers)
+     * JMap.Layer.ensureLayerIsVisible(5)
+     * 
+     * ```
+     */
+    function ensureLayerIsVisible(layerId: number): void
+
+    /**
      * **JMap.Layer.setLayerGroupExpansion**
      * 
      * Set the layer group expended or not.
