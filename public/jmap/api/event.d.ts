@@ -11,6 +11,7 @@ declare interface JLayerEventThematicVisibilityParams {
 declare interface JLayerEventVisibilityParams {
   layerId: number
   visibility: boolean
+  areAllParentsVisible: boolean
 }
 
 declare interface JLayerEventParams {
