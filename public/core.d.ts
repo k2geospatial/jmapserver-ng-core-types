@@ -2648,6 +2648,21 @@ declare namespace JMap {
     namespace Selection {
 
       /**
+       * ***JMap.Map.Selection.isEmpty***
+       * 
+       * Returns true if no selection is made for all layers.
+       * 
+       * If at least one feature is selected on one layer, returns false.
+       * 
+       * @example ```ts
+       * 
+       * // Returns true if no selection is made for all layers.
+       * JMap.Map.Selection.isEmpty()
+       * ```
+       */
+      function isEmpty(): boolean
+
+      /**
        * ***JMap.Map.Selection.getSelectedFeatures***
        * 
        * Returns the current map selection as a javascript map (= a javascript object) where :
