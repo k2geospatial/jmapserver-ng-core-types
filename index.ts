@@ -19,7 +19,7 @@ export interface JCoreService extends JCoreMainService {
 
 export interface JCoreMainService {
   getVersion(): string
-  getImplVersion(): string
+  getApiVersion(): string
   getDataStore(): Store<JCoreState> | undefined
   getRestUrl(): string
   openDocumentation(): void

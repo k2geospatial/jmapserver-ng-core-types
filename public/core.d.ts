@@ -16,30 +16,30 @@ declare namespace JMap {
   /**
    * **JMap.getVersion**
    * 
-   * Returns the JMap Web Core library interface version.
+   * Returns the JMap Web Core library build version.
    * 
    * @example ```ts
    * 
-   * // returns the interface version, for example "1.0.1"
+   * // returns the build version, for example "1.0.1"
    * JMap.getVersion()
    * ```
    */
   function getVersion(): string
 
   /**
-   * **JMap.getImplVersion**
+   * **JMap.getApiVersion**
    * 
-   * Returns the JMap Web Core library build version.
+   * Returns the JMap Web Core library API (typescript interfaces) version.
    * 
-   * For the same interface version we can have multiple implementation version.
+   * For the same API version, multiple implementation versions can exist.
    * 
    * @example ```ts
    * 
-   * // returns the build version, for example "1.0.1"
-   * JMap.getImplVersion()
+   * // returns the API version, for example "1.0.1"
+   * JMap.getApiVersion()
    * ```
    */
-  function getImplVersion(): string
+  function getApiVersion(): string
 
   /**
    * **JMap.getDataStore**
