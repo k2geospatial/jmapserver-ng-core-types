@@ -297,6 +297,7 @@ export interface JMapInteractionService {
 }
 
 export interface JMapSelectionService {
+  isEmpty(): boolean
   getSelectedFeatures(): JMapSelection
   getSelectedFeaturesForLayer(layerId: number): Feature[]
   getSelectedFeatureIdsForLayer(layerId: number): string[]
