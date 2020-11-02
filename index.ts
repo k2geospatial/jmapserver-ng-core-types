@@ -278,9 +278,9 @@ export interface JMapService {
   setPitch(pitch: number): void
   setBearing(bearing: number): void
   panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
-  zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
-  zoomToRect(bbox: JBoundaryBox, stopJMapEventPropagation?: boolean): void
-  panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
+  zoomTo(zoom: number, options?: JPanAndZoomOptions): void
+  zoomToRect(bbox: JBoundaryBox, options?: JPanAndZoomOptions): void
+  panAndZoomTo(center: JLocation, zoom: number, options?: JPanAndZoomOptions): void
   navigateTo(params: JMapNavigateToParams): void
   fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
