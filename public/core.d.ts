@@ -2028,14 +2028,14 @@ declare namespace JMap {
      * 
      * @throws Error if no zoom is passed
      * @param zoom The zoom level to apply
-     * @param stopJMapEventPropagation if true will prevent JMap events to be fired
+     * @param options animation, zoom padding, stop event, etc ...
      * @example ```ts
      * 
      * // Zoom or unzoom the map to reach the desired zoom level
      * JMap.Map.zoomTo(4.45)
      * ```
      */
-    function zoomTo(zoom: number, stopJMapEventPropagation?: boolean): void
+    function zoomTo(zoom: number, options?: JPanAndZoomOptions): void
     
     /**
      * **JMap.Map.zoomToRect**
@@ -2044,14 +2044,14 @@ declare namespace JMap {
      * 
      * @throws Error if an invalid bbox is passed
      * @param bbox The boundary box to fit
-     * @param stopJMapEventPropagation if true will prevent JMap events to be fired
+     * @param options animation, zoom padding, stop event, etc ...
      * @example ```ts
      * 
      * // Zoom or unzoom to fit exactly the boundary box
      * JMap.Map.zoomToRect({ sw: { x: 12, y: 34 }, ne: { x: 23, y: 32 }})
      * ```
      */
-    function zoomToRect(bbox: JBoundaryBox, stopJMapEventPropagation?: boolean): void
+    function zoomToRect(bbox: JBoundaryBox, options?: JPanAndZoomOptions): void
 
     /**
      * **JMap.Map.panAndZoomTo**
@@ -2061,14 +2061,14 @@ declare namespace JMap {
      * @throws Error if bad parameters are passed
      * @param center The location where the map will be centered
      * @param zoom The zoom level to apply
-     * @param stopJMapEventPropagation if true will prevent JMap event to be fired
+     * @param options animation, zoom padding, stop event, etc ...
      * @example ```ts
      * 
      * // Move and zoom the map
      * JMap.Map.panAndZoomTo({ x: 45.34, y: 65.87 }, 5)
      * ```
      */
-    function panAndZoomTo(center: JLocation, zoom: number, stopJMapEventPropagation?: boolean): void
+    function panAndZoomTo(center: JLocation, zoom: number, options?: JPanAndZoomOptions): void
 
     /**
      * **JMap.Map.navigateTo**

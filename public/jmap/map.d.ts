@@ -89,7 +89,7 @@ declare interface JMapAddMapboxLayerConfigurationForJmapLayerParams {
   // TODO: add support for thematics, selections, etc
 }
 
-declare interface JMapNavigateToParams {
+declare interface JMapNavigateToParams extends JPanAndZoomOptions {
   center: JLocation
   zoom: number
   bearing: number
@@ -97,14 +97,14 @@ declare interface JMapNavigateToParams {
   mapBoxEventData?: JMapBoxEventData
 }
 
-declare interface JMapPulsingDotColor{
+declare interface JMapPulsingDotColor {
   red: number
   green: number
   blue: number
   alpha?: number
 }
 
-declare interface JMapFlashLocationParams{
+declare interface JMapFlashLocationParams {
   dotColor?: JMapPulsingDotColor
   haloColor?: JMapPulsingDotColor
   size?: number
@@ -114,12 +114,33 @@ declare interface JMapFlashLocationParams{
 }
 
 declare interface JPanAndZoomOptions {
+  /**
+   * If true will animate the change
+   */
   animate?: boolean
+  /**
+   * Zoom padding top in pixel
+   */
   paddingTop?: number
+  /**
+   * Zoom padding left in pixel
+   */
   paddingLeft?: number
+  /**
+   * Zoom padding right in pixel
+   */
   paddingRight?: number
+  /**
+   * Zoom padding bottom in pixel
+   */
   paddingBottom?: number
+  /**
+   * Zoom max zoom level
+   */
   maxZoom?: number
+  /**
+   * Event related options
+   */
   mapBoxEventData?: JMapBoxEventData
 }
 
