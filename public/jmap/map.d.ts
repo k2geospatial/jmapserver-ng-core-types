@@ -94,7 +94,6 @@ declare interface JMapNavigateToParams extends JPanAndZoomOptions {
   zoom: number
   bearing: number
   pitch: number
-  mapBoxEventData?: JMapBoxEventData
 }
 
 declare interface JMapPulsingDotColor {
