@@ -383,7 +383,7 @@ export interface JLayerService {
   ensureLayerIsVisible(layerId: number): void
   ensureLayersAreVisible(layerIds: number[]): void
   setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
-  setLayerGroupsExpansion(params: JLayerSetGroupsExpansionParams[]): void
+  setLayerGroupsExpansion(params: JLayerSetLayerGroupsExpansionParams[]): void
   deleteLayer(layerId: number): void
   setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
   setThematicsVisibility(params: JLayerSetThematicsVisibilityParams[]): void
