@@ -21,6 +21,10 @@ declare interface JLayer extends JLayerTreeElement {
   mouseOver: JMapMouseOver
   simpleSelectionStyle: JLayerSimpleStyle
   selectionStyle: JLayerStyle
+  minimumVisibleScale: number | undefined
+  maximumVisibleScale: number | undefined
+  minimumVisibleMapboxZoom: number | undefined
+  maximumVisibleMapboxZoom: number | undefined
   baseStyles: JLayerStyleScaled[]
   thematics: JLayerThematic[]
   queries: JQuery[]
