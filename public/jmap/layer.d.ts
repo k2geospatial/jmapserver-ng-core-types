@@ -207,3 +207,19 @@ declare interface JRGBColor {
   alpha: number
   hexa: string
 }
+
+declare interface JLayerSetLayersVisibilityParams {
+  layerId: number, 
+  visibility: boolean
+}
+
+declare interface JLayerSetThematicsVisibilityParams {
+  layerId: number, 
+  thematicId: number, 
+  visibility: boolean
+}
+
+declare interface JLayerSetLayerGroupsExpansionParams {
+  layerGroupId: number, 
+  open: boolean
+}

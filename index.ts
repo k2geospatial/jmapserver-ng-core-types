@@ -379,10 +379,14 @@ export interface JLayerService {
   hasVisibleThematics(layerId: number): boolean
   getVisibleThematics(layerId: number): JLayerThematic[]
   setVisible(layerId: number, visible: boolean): void
+  setLayersVisibility(params: JLayerSetLayersVisibilityParams[]): void
   ensureLayerIsVisible(layerId: number): void
+  ensureLayersAreVisible(layerIds: number[]): void
   setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
+  setLayerGroupsExpansion(params: JLayerSetGroupsExpansionParams[]): void
   deleteLayer(layerId: number): void
   setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
+  setThematicsVisibility(params: JLayerSetThematicsVisibilityParams[]): void
 }
 
 export interface JLayerSearchService {
