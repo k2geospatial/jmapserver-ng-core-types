@@ -898,7 +898,6 @@ declare namespace JMap {
      * ```
      */
     function setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
-  }
 
     /**
      * **JMap.Layer.setThematicsVisibility**
