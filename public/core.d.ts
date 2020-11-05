@@ -2071,6 +2071,36 @@ declare namespace JMap {
     function panAndZoomTo(center: JLocation, zoom: number, options?: JPanAndZoomOptions): void
 
     /**
+     * **JMap.Map.setDefaultZoomOptions**
+     * 
+     * Set zoom default values in JMap Core.
+     * 
+     * This default values will be used in all methods that use zoom options.
+     * 
+     * If zoom options are passed in methods, this default values will be overriden by passed values.
+     * 
+     * If no object is passed, default values are reset with JMap Core default values.
+     * 
+     * @param options animation, paddings, and maxZoom
+     * @example ```ts
+     * 
+     * // Set default values used by JMap Core
+     * JMap.Map.setDefaultZoomOptions({
+     *  animate: false,
+     *  paddingTop: 20,
+     *  paddingLeft: 20,
+     *  paddingRight: 20,
+     *  paddingBottom: 20
+     * })
+     * 
+     * // Reset default values with JMap Core default values
+     * // animate=true, and paddings are all 50.
+     * JMap.Map.setDefaultZoomOptions()
+     * ```
+     */
+    function setDefaultZoomOptions(options?: Partial<JZoomOptions>): void
+
+    /**
      * **JMap.Map.navigateTo**
      * 
      * Navigate to a location on the map (animated)
@@ -3705,6 +3735,19 @@ declare namespace JMap {
     function logout(): Promise<void>
 
     /**
+     * ***JMap.User.isLoggedIn***
+     * 
+     * Returns true if a user is logged in.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if a user is logged in
+     * JMap.User.isLoggedIn()
+     * ```
+     */
+    function isLoggedIn(): boolean
+
+    /**
      * **JMap.User.setToken**
      * 
      * Set the user session data. Usefull if you have made a call to our Rest API and get by yourself
@@ -3924,14 +3967,14 @@ declare namespace JMap {
      * 
      * List of events are located in ***[[JMap.Event.Main.on]]***. 
      */
-    namespace Main{
+    namespace Main {
+
       /**
        * ***JMap.Event.Main.on***
        * 
        * Here you have all available high level events on which you can attach a listener.
        */
       namespace on {
-
 
         /**
          * ***JMap.Event.Main.on.coreReady***
@@ -3958,10 +4001,63 @@ declare namespace JMap {
          * ```
          */
         function coreReady(listenerId: string, fn: () => void): void
-
       }
 
+      /**
+       * ***JMap.Event.Main.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-main-listener"
+       * JMap.Event.Main.activate("my-main-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
 
+      /**
+       * ***JMap.Event.Main.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-main-listener"
+       * JMap.Event.Main.deactivate("my-main-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Main.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-main-listener"
+       * JMap.Event.Main.remove("my-main-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
     }
 
     /**
