@@ -156,6 +156,7 @@ export interface JMapState {
   distanceUnit: JDistanceUnit
   isScaleControlVisible: boolean
   isMapRotationControlVisible: boolean
+  defaultZoomOptions: JZoomOptions
 }
 
 export interface JProjectState {
@@ -281,6 +282,7 @@ export interface JMapService {
   zoomTo(zoom: number, options?: JPanAndZoomOptions): void
   zoomToRect(bbox: JBoundaryBox, options?: JPanAndZoomOptions): void
   panAndZoomTo(center: JLocation, zoom: number, options?: JPanAndZoomOptions): void
+  setDefaultZoomOptions(options?: Partial<JZoomOptions>): void
   navigateTo(params: JMapNavigateToParams): void
   fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
@@ -411,6 +413,7 @@ export interface JUserService {
   setToken(token: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>
+  isLoggedIn(): boolean
 }
 
 export interface JMouseOverService {

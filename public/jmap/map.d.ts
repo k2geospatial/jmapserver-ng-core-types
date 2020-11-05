@@ -112,31 +112,34 @@ declare interface JMapFlashLocationParams {
   panAndZoomOptions?: JPanAndZoomOptions
 }
 
-declare interface JPanAndZoomOptions {
+declare interface JZoomOptions {
   /**
    * If true will animate the change
    */
-  animate?: boolean
+  animate: boolean
   /**
    * Zoom padding top in pixel
    */
-  paddingTop?: number
+  paddingTop: number
   /**
    * Zoom padding left in pixel
    */
-  paddingLeft?: number
+  paddingLeft: number
   /**
    * Zoom padding right in pixel
    */
-  paddingRight?: number
+  paddingRight: number
   /**
    * Zoom padding bottom in pixel
    */
-  paddingBottom?: number
+  paddingBottom: number
   /**
    * Zoom max zoom level
    */
   maxZoom?: number
+}
+
+declare interface JPanAndZoomOptions extends Partial<JZoomOptions> {
   /**
    * Event related options
    */
