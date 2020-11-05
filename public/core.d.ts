@@ -765,6 +765,38 @@ declare namespace JMap {
     function setVisible(layerId: number, isVisible: boolean): void
 
     /**
+     * **JMap.Layer.setLayersVisibility**
+     * 
+     * Set the visibility property of multiple layers.
+     * 
+     * _For each layer:_
+     * 
+     * If it's a JMap layer, it apply the visibility to it.
+     * 
+     * The visibility property is initialy defined on the project, and can be
+     * changed by the user through the JMap Web Core library.
+     * 
+     * If this property is false, the layer cannot be displayed on the map.
+     * 
+     * If it's true, the layer can be rendered on the map. The layer is rendered depending
+     * on the current map scale of the map, and the min / max scale defined for this layer.
+     * 
+     * @throws Error if any layer is not found for any of the ids
+     * @param params an array of JLayerSetLayersVisibilityParams
+     * @example ```ts
+     * 
+     * // show layers id=5 and 6, hide layer 3
+     * JMap.Layer.setLayersVisibility([
+     *    {layerId: 5, visibility: true}, 
+     *    {layerId: 6, visibility: true}, 
+     *    {layerId: 3, visibility: false}
+     * ])
+     * 
+     * ```
+     */
+    function setLayersVisibility(params: JLayerSetLayersVisibilityParams[]): void
+
+    /**
      * **JMap.Layer.ensureLayerIsVisible**
      * 
      * Make sure a layer is visible on the Map. All parent layers will also be made visible 
@@ -781,20 +813,52 @@ declare namespace JMap {
     function ensureLayerIsVisible(layerId: number): void
 
     /**
+     * **JMap.Layer.ensureLayersAreVisible**
+     * 
+     * Make sure that all specified layers are visible on the Map. 
+     * All parent layers of all Layers will also be made visible 
+     * 
+     * @param layerIds An array of JMap layer ids
+     * 
+     * @example ```ts
+     * 
+     * // show layer ids 5, 6 and 7 (and all parent layers)
+     * JMap.Layer.ensureLayersAreVisible([5, 6, 7])
+     * 
+     * ```
+     */
+    function ensureLayersAreVisible(layerIds: number[]): void
+
+    /**
      * **JMap.Layer.setLayerGroupExpansion**
      * 
-     * Set the layer group expended or not.
+     * Set the layer group expansion state.
      * 
      * @throws Error if layer group is not found, or is not a layer group but a layer
      * @param layerGroupId The JMap layer group id
      * @param isExpanded if true will expand, if false will collapse the layer group
      * @example ```ts
      * 
-     * // Expand the layer group 4
-     * JMap.Layer.setLayerGroupExpansion(4, false)
+     * // Expand the layer group id -4
+     * JMap.Layer.setLayerGroupExpansion(-4, true)
      * ```
      */
     function setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
+    
+    /**
+     * **JMap.Layer.setLayerGroupsExpansion**
+     * 
+     * Set the group expansion state of multiple layer groups.
+     * 
+     * @throws Error if any layer group is not found for any group id, or if any group found is not a layer group but a layer
+     * @param params An array of JLayerSetLayerGroupsExpansionParams
+     * @example ```ts
+     * 
+     * // Expand the layer group id -4, collapse group id -5 
+     * JMap.Layer.setLayerGroupsExpansion([{layerGroupId: -4, open: true}, {layerGroupId: -5, open: false}])
+     * ```
+     */
+    function setLayerGroupsExpansion(params: JLayerSetLayerGroupsExpansionParams[]): void
     
     /**
      * **JMap.Layer.deleteLayer**
@@ -834,6 +898,24 @@ declare namespace JMap {
      * ```
      */
     function setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
+
+    /**
+     * **JMap.Layer.setThematicsVisibility**
+     * 
+     * Show or hide multiple layer thematics on the map
+     * 
+     * @throws Error if any layer or thematic are not found
+     * @param params An array of JLayerSetThematicsVisibilityParams
+     * @example ```ts
+     * 
+     * // Display the thematic id=3 of layer id=7, and hide the thematic id=1 of layer id=14
+     * JMap.Layer.Thematic.setThematicsVisibility([
+     *    {layerId: 7, thematicId: 3, visibility: true},
+     *    {layerId: 14, thematicId: 1, visibility: false}
+     * ])
+     * ```
+     */
+    function setThematicsVisibility(params: JLayerSetThematicsVisibilityParams[]): void
   }
 
   /**
