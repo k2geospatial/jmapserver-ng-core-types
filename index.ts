@@ -287,7 +287,7 @@ export interface JMapService {
   fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
-  clearFlashedLocations():void
+  clearFlashingLocations():void
 }
 
 export interface JMapInteractionService {

@@ -2263,7 +2263,7 @@ declare namespace JMap {
      * 
      * Display a pulsing dot on the map to hilite a location, with options
      * 
-     * Flashed feature can be immediatly removed using [[JMap.Map.clearFlashedLocations]]
+     * Flashed feature can be immediatly removed using [[JMap.Map.clearFlashingLocations]]
      * 
      * @param location a JLocation
      * @param options (see example)
@@ -2308,7 +2308,7 @@ declare namespace JMap {
      * 
      * Display a collection of pulsing dots on the map to hilite several locations, with options
      * 
-     * Flashed features can be immediatly removed using [[JMap.Map.clearFlashedLocations]]
+     * Flashed features can be immediatly removed using [[JMap.Map.clearFlashingLocations]]
      * 
      * @param locations an array of JLocations
      * @param options (see example)
@@ -2349,7 +2349,7 @@ declare namespace JMap {
     function flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   
     /**
-     * **JMap.Map.clearFlashedLocations**
+     * **JMap.Map.clearFlashingLocations**
      * 
      * Immediatly remove all flashed locations on the map that have been displyed using [[JMap.Map.flashLocation]] or [[JMap.Map.flashLocations]]
      * 
@@ -2359,10 +2359,10 @@ declare namespace JMap {
      * JMap.Map.flashLocation({x:-74.178, y:46.0455})
      * 
      * // clear all flashed locations after a timeout of 30 seconds
-     * setTimeout(()=>JMap.Map.clearFlashedLocations(), 30000)
+     * setTimeout(()=>JMap.Map.clearFlashingLocations(), 30000)
      * ```     
      * */
-    function clearFlashedLocations():void
+    function clearFlashingLocations():void
 
     /**
      * **JMap.Map.Interaction**
