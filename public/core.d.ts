@@ -477,7 +477,39 @@ declare namespace JMap {
      * ```
      */
     function getLayerIds(): number[]
-    
+
+    /**
+     * **JMap.Layer.attributeExists**
+     * 
+     * Returns true if the layer has the given attribute.
+     * 
+     * @throws Error if layer is not found
+     * @param layerId The JMap layer id
+     * @param attributeName The JMap attribute name
+     * @example ```ts
+     * 
+     *  // return true if the attribute named "SPECIES" exist on layer id=4
+     *  JMap.Layer.attributeExists(4, "SPECIES")
+     * ```
+     */
+    function attributeExists(layerId: number, attributeName: string): boolean
+
+    /**
+     * **JMap.Layer.getLayerAttribute**
+     * 
+     * Returns the attribute descriptor for a given layer and attribute
+     * 
+     * @throws Error if layer or attribute not found
+     * @param layerId The JMap layer id
+     * @param attributeName The JMap attribute name
+     * @example ```ts
+     * 
+     *  // return the layer attribute descriptor
+     *  JMap.Layer.getLayerAttribute(4, "SPECIES")
+     * ```
+     */
+    function getLayerAttribute(layerId: number, attributeName: string): JLayerAttribute
+
     /**
      * **JMap.Layer.getLayerAttributes**
      * 
