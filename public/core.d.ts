@@ -3322,7 +3322,7 @@ declare namespace JMap {
     function getAllProjects(): Promise<JProject[]>
 
     /**
-     * **JMap.Project.existProject**
+     * **JMap.Project.existsById**
      * 
      * Returns true if project exist for the given project id.
      * 
@@ -3330,27 +3330,58 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // returns true if the project id = 2 exists, else false
-     * JMap.Project.existProject(2)
+     * JMap.Project.existsById(2)
      * ```
      */
-    function existProject(projectId: number): boolean
+    function existsById(projectId: number): boolean
+
+
+    /**
+     * **JMap.Project.existsByName**
+     * 
+     * Returns true if project exist for the given project name.
+     * 
+     * @param projectName The JMap project name
+     * @example ```ts
+     * 
+     * // returns true if the project "My Project" exists, else false
+     * JMap.Project.existsByName("My Project")
+     * ```
+     */
+    function existsByName(projectName: string): boolean
+
 
     /**
      * **JMap.Project.getById**
      * 
      * Returns the project for the given project id.
      * 
-     * Throws an error if no project found.
-     * 
      * @param projectId The JMap project id
-     * @throws error if the project doesn't exists
+     * @throws error if the project doesn't exists or if projectId is not a valid JMap Id.
      * @example ```ts
      * 
-     * // returns true if the project id = 2 exists
-     * JMap.Project.getById(2)
+     * // Get Project id 2
+     * const project = JMap.Project.getById(2)
+     * console.log("Project '" + project.name + "' is loaded")
      * ```
      */
     function getById(projectId: number): JProject
+
+    /**
+     * **JMap.Project.getByName**
+     * 
+     * Returns the project for the given project name.
+     * 
+     * @param projectName The JMap project name
+     * @throws error if the project doesn't exists or if projectName is not a string.
+     * @example ```ts
+     * 
+     * // Get project "My Project"
+     * const project = JMap.Project.getByName("My Project")
+     * console.log("Project id '" + project.id + "' is loaded")
+     * ```
+     */
+    function getByName(projectName: string): JProject
 
     /**
      * **JMap.Project.projectIsLoaded**
