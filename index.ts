@@ -336,8 +336,10 @@ export interface JMapFilterService {
 
 export interface JProjectService {
   getAllProjects(): Promise<JProject[]>
-  existProject(projectId: number): boolean
+  existsById(projectId: number): boolean
+  existsByName(projectName: string): boolean
   getById(projectId: number): JProject
+  getByName(projectName: string): JProject
   projectIsLoaded(): boolean
   getId(): number
   getName(): string

@@ -148,6 +148,31 @@ declare interface JCoreOptions {
   projectName?: string
 
   /**
+   * If provided this function will be processed when the list of projects is received from the server :
+   * 
+   * the event receives a JProjectAllEventParams object
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *           onProjectsChange: (params) => {
+   *              params.projects.forEach(project => console.log("project name: " + project.name))
+   *           },
+   *         ...
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+  onProjectsChange?(params: JProjectAllEventParams): void
+  
+  /**
    * By default project thumbnails are not loaded, because they are not usefull if JMap Core lib is used alone.
    * 
    * To load asynchronously project thumbnails, set startup option "loadProjectThumbnails" to true.
