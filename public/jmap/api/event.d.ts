@@ -19,11 +19,11 @@ declare interface JLayerEventParams {
 }
 
 declare interface JMapEventLoadedParams {
-  map: any
+  map: mapboxgl.Map
 }
 
 declare interface JMapEventParams {
-  map: any,
+  map: mapboxgl.Map,
   mapEvent: any
 }
 

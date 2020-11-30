@@ -1,5 +1,5 @@
 declare interface JMapInteractor {
-  init(map: any): void
+  init(map: mapboxgl.Map): void
   activate(): void
   deactivate(): void
   terminate(): void
@@ -446,5 +446,5 @@ declare interface JCoreMapOptions {
    * </html>
    * ```
    */
-  onStartupMapReadyFn?: (map: any) => void
+  onStartupMapReadyFn?: (map: mapboxgl.Map) => void
 }
