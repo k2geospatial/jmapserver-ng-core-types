@@ -3384,17 +3384,35 @@ declare namespace JMap {
     function getByName(projectName: string): JProject
 
     /**
-     * **JMap.Project.projectIsLoaded**
+     * **JMap.Project.hasProjectActivated**
      * 
-     * Returns true if a JMap project is loaded, that means a project is selected and displayed on the map.
+     * Returns true if a JMap project is active, that means a project is selected and displayed on the map.
      *
      * @example ```ts
      * 
-     * // returns true if a project is loaded
-     *  JMap.Project.projectIsLoaded()
+     * // returns true if a project is active
+     *  JMap.Project.hasProjectActivated()
      *  ```
      */
-    function projectIsLoaded(): boolean
+    function hasProjectActivated(): boolean
+
+    /**
+     * **JMap.Project.getActiveProject**
+     * 
+     * Returns the active project (the one displayed on the map), undefined if no project is active.
+     *
+     * @example ```ts
+     * 
+     * // returns the active project
+     * const activeProject = JMap.Project.getActiveProject()
+     * if (!activeProject) {
+     *   console.info("No active project")
+     * } else {
+     *   console.info(`Active project is "${activeProject.name}"`)
+     * }
+     *  ```
+     */
+    function getActiveProject(): JProject | undefined
 
     /**
      * **JMap.Project.getId**
