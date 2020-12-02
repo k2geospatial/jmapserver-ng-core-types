@@ -3579,54 +3579,67 @@ declare namespace JMap {
     function getBase64ImageThumbnail(): string
 
     /**
-     * **JMap.Project.load**
+     * **JMap.Project.activateById**
      * 
-     * Load and display a project data on the map.
+     * Activate a project on the map, for a given project id.
      * 
-     * User session rigths are checked server side and an error is thrown if user doesn't have
-     * the access right for the project.
+     * User session rigths are checked server side and an error is thrown if user doesn't have the access right for the project.
      * 
-     * If no project id or name is provided : get the projectId or projectName in startup options or url parameters ([[JCoreOptions]])
-     * 
-     * If a project id or name is provided : try to load the project given the project id or name.
-     * 
-     * @throws Error if project not found
-     * @param projectIdOrName The JMap project id or name
+     * @throws Error missing project id or if project is not found
+     * @param projectId The JMap project id
      * @return a promise that is resolved when the project has been loaded successfully
      * @example ```ts
      * 
-     * // Load the project defined in stratup option or url parameter
-     * JMap.Project.load()
-     *    .then(project => console.info(`Project id=${project.id} has been loaded.`, project)
-     *    .catch(error => console.error(`Cannot load the project : ${error}`)
-     * 
-     * // Load project id=2
-     * JMap.Project.load(2) // project id=2
-     *    .then(project => console.info("Project id=2 has been loaded.", project)
-     *    .catch(error => console.error(`Cannot load the project : ${error}`)
-     * 
-     * // Load project name="My city"
-     * JMap.Project.load("My city") // project name="My city"
-     *    .then(project => console.info(`Project id=${project.id} has been loaded.`, project)
-     *    .catch(error => console.error(`Cannot load the project : ${error}`)
+     * try {
+     *   // activate project id=2
+     *   const project = JMap.Project.activateById(2)
+     *   console.info(`Project id=${project.id} has been loaded.`, project)
+     * } catch (error) {
+     *   console.error(`Cannot load the project : ${error}`)
+     * }
      * ```
      */
-    function load(projectIdOrName?: number | string): Promise<JProject>
+    function activateById(projectId: number): JProject
 
     /**
-     * **JMap.Project.unload**
+     * **JMap.Project.activateByName**
      * 
-     * Unload the current displayed project.
+     * Activate a project on the map, for a given project name.
      * 
-     * The map is destroyed, and nothing is displayed on screen.
+     * User session rigths are checked server side and an error is thrown if user doesn't have the access right for the project.
      * 
+     * @throws if missing project name or if project not found
+     * @param projectIdOrName The JMap project name
+     * @return the project
      * @example ```ts
      * 
-     * // Unload the current project.
-     * JMap.Project.unload()
+     * try {
+     *   // activate project name="My city"
+     *   const project = JMap.Project.activateByName("My city")
+     *   console.info(`Project id=${project.id} has been loaded.`, project)
+     * } catch (error) {
+     *   console.error(`Cannot load the project : ${error}`)
+     * }
      * ```
      */
-    function unload(): void
+    function activateByName(projectName: string): JProject
+
+    /**
+     * **JMap.Project.deactivate**
+     * 
+     * Deactivate the current displayed project. The map is destroyed.
+     * 
+     * After calling this method :
+     *  - In JMap Core : nothing is displayed on screen.
+     *  - In JMap App : project list selection is displayed.
+     *
+     * @example ```ts
+     * 
+     * // Deactivate the current project.
+     * JMap.Project.deactivate()
+     * ```
+     */
+    function deactivate(): void
 
     /**
      * **JMap.Project.loadAllProjectThumbnails**
@@ -3658,6 +3671,33 @@ declare namespace JMap {
      * ```
      */
     function loadAllProjectThumbnails(params?: JProjectLoadThumbnailsParams): Promise<void>
+
+    /**
+     * **JMap.Project.isChangeAvoided**
+     * 
+     * Returns true if the project change has been avoided by startup option "avoidProjectChange" (see [[JCoreOptions]]).
+     * 
+     * Notice that as long the first project has not been loaded, this method returns false even if the parameter is true.
+     * 
+     * It becomes true, if option "avoidProjectChange" is set to true, and a project has been activated.
+     * 
+     * @example ```ts
+     * 
+     * // We assert that :
+     * //  - the option "avoidProjectChange" is true
+     * //  - no project is yet activated, no map is displayed.
+     * 
+     * // returns false
+     * JMap.Project.isChangeAvoided()
+     * 
+     * // first time a project is activated
+     * JMap.Project.activateByName("My project")
+     * 
+     * // returns true
+     * JMap.Project.isChangeAvoided()
+     * ```
+     */
+    function isChangeAvoided(): boolean
   }
 
   /**

@@ -164,6 +164,7 @@ export interface JProjectState {
   loadingError: boolean
   allProjects: JProject[]
   selectedProject: JProject
+  avoidProjectChange: boolean
 }
 
 export interface JLayerState {
@@ -353,9 +354,11 @@ export interface JProjectService {
   getBackgroundColor(): string
   getInitialExtent(): JBounds | null
   getBase64ImageThumbnail(): string
-  load(projectIdOrName?: number | string): Promise<JProject>
-  unload(): void
+  activateById(projectId: number): JProject
+  activateByName(projectName: string): JProject
+  deactivate(): void
   loadAllProjectThumbnails(params?: JProjectLoadThumbnailsParams): Promise<void>
+  isChangeAvoided(): boolean
 }
 
 export interface JLayerService {
