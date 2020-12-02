@@ -3611,9 +3611,9 @@ declare namespace JMap {
      * try {
      *   // activate project id=2
      *   const project = JMap.Project.activateById(2)
-     *   console.info(`Project id=${project.id} has been loaded.`, project)
+     *   console.info(`Project id=${project.id} has been activated.`, project)
      * } catch (error) {
-     *   console.error(`Cannot load the project : ${error}`)
+     *   console.error(`Cannot activate the project : ${error}`)
      * }
      * ```
      */
@@ -3634,9 +3634,9 @@ declare namespace JMap {
      * try {
      *   // activate project name="My city"
      *   const project = JMap.Project.activateByName("My city")
-     *   console.info(`Project id=${project.id} has been loaded.`, project)
+     *   console.info(`Project id=${project.id} has been activated.`, project)
      * } catch (error) {
-     *   console.error(`Cannot load the project : ${error}`)
+     *   console.error(`Cannot activate the project : ${error}`)
      * }
      * ```
      */
@@ -3653,7 +3653,7 @@ declare namespace JMap {
      *
      * @example ```ts
      * 
-     * // Deactivate the current project.
+     * // deactivate the current project.
      * JMap.Project.deactivate()
      * ```
      */
