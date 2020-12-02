@@ -337,7 +337,7 @@ export interface JMapFilterService {
 
 export interface JProjectService {
   hasProjectActivated(): boolean
-  getActiveProject(): JProject | undefined
+  getActiveProject(): JProject
   activateById(projectId: number): JProject
   activateByName(projectName: string): JProject
   deactivate(): void

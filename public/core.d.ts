@@ -3399,20 +3399,22 @@ declare namespace JMap {
     /**
      * **JMap.Project.getActiveProject**
      * 
-     * Returns the active project (the one displayed on the map), undefined if no project is active.
+     * Returns the active project (the one displayed on the map).
+     * 
+     * If no project is active, the object returned has an id equals to "-1".
      *
      * @example ```ts
      * 
      * // returns the active project
      * const activeProject = JMap.Project.getActiveProject()
-     * if (!activeProject) {
+     * if (activeProject.id === "-1") {
      *   console.info("No active project")
      * } else {
      *   console.info(`Active project is "${activeProject.name}"`)
      * }
      *  ```
      */
-    function getActiveProject(): JProject | undefined
+    function getActiveProject(): JProject
 
     /**
      * **JMap.Project.getId**
