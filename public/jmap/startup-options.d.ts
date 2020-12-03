@@ -377,4 +377,9 @@ declare interface JCoreOptions {
    * Click [[JCoreExtension]] to get details about how defining an extension.
    */
   extensions?: JCoreExtension[]
+
+  /**
+   * If true, changing project after one has been loaded will be avoided.
+   */
+  avoidProjectChange?: boolean
 }

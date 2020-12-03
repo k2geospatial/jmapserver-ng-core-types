@@ -164,6 +164,7 @@ export interface JProjectState {
   loadingError: boolean
   allProjects: JProject[]
   selectedProject: JProject
+  avoidProjectChange: boolean
 }
 
 export interface JLayerState {
@@ -335,12 +336,16 @@ export interface JMapFilterService {
 }
 
 export interface JProjectService {
+  hasProjectActivated(): boolean
+  getActiveProject(): JProject
+  activateById(projectId: number): JProject
+  activateByName(projectName: string): JProject
+  deactivate(): void
   getAllProjects(): Promise<JProject[]>
   existsById(projectId: number): boolean
   existsByName(projectName: string): boolean
   getById(projectId: number): JProject
   getByName(projectName: string): JProject
-  projectIsLoaded(): boolean
   getId(): number
   getName(): string
   getDescription(): string
@@ -353,9 +358,8 @@ export interface JProjectService {
   getBackgroundColor(): string
   getInitialExtent(): JBounds | null
   getBase64ImageThumbnail(): string
-  load(projectIdOrName?: number | string): Promise<JProject>
-  unload(): void
   loadAllProjectThumbnails(params?: JProjectLoadThumbnailsParams): Promise<void>
+  isChangeAvoided(): boolean
 }
 
 export interface JLayerService {
