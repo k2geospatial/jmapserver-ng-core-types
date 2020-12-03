@@ -1,6 +1,6 @@
 {
   "name": "jmap-core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "JMap Core library Typescript API",
   "main": "index.js",
   "scripts": {
