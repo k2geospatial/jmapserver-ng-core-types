@@ -168,6 +168,75 @@ declare namespace JMap {
   }
 
   /**
+   * **JMap.Feature**
+   * 
+   * This is where you can find feature related methods
+   */
+  namespace Feature {
+
+    /**
+     * **JMap.Feature.getById**
+     * 
+     * Returns the feature (EPSG:4326 projection) for the given layer and feature id.
+     * 
+     * @param layerId the JMap layer id
+     * @param featureId the JMap feature id
+     * @throws if layer or feature not found
+     * @example ```ts
+     * 
+     * // returns the feature of layer id="3" and feature id="4"
+     * JMap.Feature
+     *  .getById(3, 4)
+     *  .then(feature => console.info("Feature has been fetched", feature))
+     *  .catch(error => console.error("An error occured", error))
+     * ```
+     */
+    function getById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
+
+    /**
+     * **JMap.Feature.updateGeometry**
+     * 
+     * Change the feature geometry for the given layer id, feature id and geometry (projection EPSG:4326).
+     * 
+     * @param params contains the JMap layer id, the JMap feature id, and the geojson geometry
+     * @throws if layer or feature not found, or if feature is invalid (undefined, wrong geometry type, etc ...)
+     * @example ```ts
+     * 
+     * const newGeometry = { ... }
+     * // change the geometry of feature id="4" on layer id="3"
+     * JMap.Feature
+     *  .updateGeometry({
+     *    layerId: 3,
+     *    featureId: 4,
+     *    geometry: newGeometry
+     *  })
+     *  .then(feature => console.info("Feature geometry has been changed", feature))
+     *  .catch(error => console.error("An error occured", error))
+     * ```
+     */
+    function updateGeometry(params: JFeatureGeometryUpdateParams): Promise<GeoJSON.Feature>
+
+    /**
+     * **JMap.Feature.deleteById**
+     * 
+     * Delete the feature for the given layer and feature id.
+     * 
+     * @param layerId the JMap layer id
+     * @param featureId the JMap feature id
+     * @throws if layer or feature not found
+     * @example ```ts
+     * 
+     * // delete the feature id="4" on layer id="3"
+     * JMap.Feature
+     *  .deleteById(3, 4)
+     *  .then(() => console.info("Feature has been deleted"))
+     *  .catch(error => console.error("An error occured", error))
+     * ```
+     */
+    function deleteById(layerId: JId, featureId: JId): Promise<void>
+  }
+
+  /**
    * **JMap.History**
    * 
    * This is where you can find browser history relative methods
@@ -5001,6 +5070,119 @@ declare namespace JMap {
        * 
        * // remove the listener "my-map-listener"
        * JMap.Event.Map.remove("my-map-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
+     * ***JMap.Event.Feature***
+     * 
+     * Here you can manage all feature related event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Feature.on]]***. 
+     */
+    namespace Feature {
+
+      /**
+       * ***JMap.Event.Feature.on***
+       * 
+       * Here you have all available feature events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Feature.on.deletion***
+         * 
+         * This event is triggered when a feature has been deleted.
+         * 
+         * @param listenerId Your listener id (must be unique for all user events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a layer feature is deleted, this method is processed
+         * JMap.Event.Feature.on.deletion(
+         *    "custom-feature-deletion",
+         *    params => console.info(`For layer id="${params.layerId}", feature id="${params.featureId}" has been deleted`)
+         * )
+         * ```
+         */
+        function deletion(listenerId: string, fn: (params: JFeatureEventDeleteParams) => void): void
+
+        /**
+         * ***JMap.Event.Feature.on.geometryChanged***
+         * 
+         * This event is triggered when a feature geometry has been changed.
+         * 
+         * @param listenerId Your listener id (must be unique for all user events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a layer feature geometry has been changed, this method is processed
+         * JMap.Event.Feature.on.geometryChanged(
+         *    "custom-feature-geometry-changed",
+         *    params => console.info(
+         *      `For layer id="${params.layerId}", feature id="${params.featureId}" geometry has been changed`,
+         *      params.geometry
+         *    )
+         * )
+         * ```
+         */
+        function geometryChanged(listenerId: string, fn: (params: JFeatureEventGeometryChangedParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Feature.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-feature-listener"
+       * JMap.Event.Feature.activate("my-feature-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Feature.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-feature-listener"
+       * JMap.Event.Feature.deactivate("my-feature-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Feature.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-feature-listener"
+       * JMap.Event.Feature.remove("my-feature-listener")
        * ```
        */
       function remove(listenerId: string): void

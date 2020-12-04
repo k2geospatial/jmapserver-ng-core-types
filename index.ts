@@ -6,6 +6,7 @@ export interface JCoreService extends JCoreMainService {
   Project: JProjectService
   Layer: JLayerService
   User: JUserService
+  Feature: JFeatureService
   Map: JMapService
   Geolocation: JGeolocationService,
   Geometry: JGeometryService,
@@ -15,6 +16,12 @@ export interface JCoreService extends JCoreMainService {
   Event: JEventService
   History: JHistoryService
   Extension: JExtensionService
+}
+
+export interface JFeatureService {
+  getById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
+  geometryUpdateById(params: JFeatureGeometryUpdateParams): Promise<GeoJSON.Feature>
+  deleteById(layerId: JId, featureId: JId): Promise<void>
 }
 
 export interface JCoreMainService {
@@ -50,6 +57,7 @@ export interface JEventService {
   Map: JMapEventModule
   Project: JProjectEventModule
   User: JUserEventModule
+  Feature: JFeatureEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -105,6 +113,13 @@ export interface JMapEventModule extends JEventModule {
     pitchStart(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
     pitch(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
     pitchEnd(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
+  }
+}
+
+export interface JFeatureEventModule extends JEventModule {
+  on: {
+    deletion(listenerId: string, fn: (params: JFeatureEventDeleteParams) => void): void
+    geometryChanged(listenerId: string, fn: (params: JFeatureEventGeometryChangedParams) => void): void
   }
 }
 
