@@ -6155,6 +6155,10 @@ declare namespace JMap {
    * Here you'll find all form related methods
    */
   namespace Form {
+<<<<<<< HEAD
+=======
+
+>>>>>>> JWNG-60 - form service
     function getLayerFormsById(layerId: number): Promise<JForm[]>
     function createAttributeFormElement(params: JFormCreateAttributeElementParams): Promise<GeoJSON.Feature>
     function createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
@@ -6165,6 +6169,7 @@ declare namespace JMap {
     function deleteElements(params: JFormElementIds): Promise<void>
     function hasActiveForm(): boolean
     function getActiveForm(): JForm
+<<<<<<< HEAD
     function activateLayerById(layerId: number): Promise<JForm[]>
     function deactivateLayer(): void
     function getActiveLayerForms(): JForm[]
@@ -6174,6 +6179,13 @@ declare namespace JMap {
     function getSelectedElementIdsForActiveForm(): JId[]
     function selectElementsForActiveForm(elementIds: JId): Promise<void>
     function unSelectElementsForActiveForm(elementIds: JId): void
+=======
+    function activateForm(params: JFormOpenParams): Promise<void>
+    function deactivateForm(): void
+    function getCurrentSelectionForActiveForm(): JFormElementIds
+    function selectElementOnActiveForm(elementIds: JId): Promise<void>
+    function unSelectElementOnActiveForm(elementIds: JId): Promise<void>
+>>>>>>> JWNG-60 - form service
 
     /**
      * ***JMap.Form.getDefaultValues***

@@ -74,7 +74,10 @@ declare interface JLayer extends JLayerTreeElement {
   canEditGeometry: boolean
   hasAttributeForm: boolean
   hasExternalForms: boolean
+<<<<<<< HEAD
   selectable: boolean
+=======
+>>>>>>> JWNG-60 - form service
 }
 
 declare interface JLayerAttribute {
