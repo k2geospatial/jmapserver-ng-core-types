@@ -153,7 +153,16 @@ export interface JCoreState {
   photo: JPhotoState
   query: JQueryState
   geolocation: JGeolocationState
+  form: JFormState
   external?: any
+}
+
+export interface JFormState {
+  isLoadingLayer: boolean
+  hasLoadingLayerError: boolean
+  layerId: JId | undefined
+  formById: JFormById
+  tree: JFormTreeElement | undefined
 }
 
 export interface JGeolocationState {
@@ -218,6 +227,21 @@ export interface JQueryState {
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
 
 export interface JFormService {
+  getLayerFormsById(layerId: number): Promise<JForm[]>
+  createAttributeFormElement(params: JFormCreateAttributeElementParams): Promise<GeoJSON.Feature>
+  createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
+  getElement(params: JFormElementId): Promise<JFormElement | undefined>
+  getElements(params: JFormElementIds): Promise<JFormElement[]>
+  updateAttributeElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
+  updateExternalElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+  deleteElements(params: JFormElementIds): Promise<void>
+  hasActiveForm(): boolean
+  getActiveForm(): JForm
+  activateForm(params: JFormOpenParams): Promise<void>
+  deactivateForm(): void
+  getCurrentSelectionForActiveForm(): JFormElementIds
+  selectElementOnActiveForm(elementIds: JId): Promise<void>
+  unSelectElementOnActiveForm(elementIds: JId): Promise<void>
   getDefaultValues(form: JForm): { [ id: string ]: any }
   getPreparedData(form: JForm, data: any): any
   validateData(form: JForm, data: { [id: string]: any }): { [key: string]: string }

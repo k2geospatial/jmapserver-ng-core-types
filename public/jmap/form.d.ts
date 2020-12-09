@@ -226,3 +226,60 @@ declare interface JFormFieldSelectOne extends JFormFieldSelectBase {
 declare interface JFormFieldSelectTree extends JFormFieldSelectBase {
   onlyLeafSelection: boolean
 }
+
+declare interface JFormElement {
+  elementId: JId
+  attributeValuesByName: JAttributeValueByName
+}
+
+declare interface JFormById {
+  [formId: string]: JForm
+}
+
+declare interface JFormId {
+  layerId: JId
+  formId: JId
+}
+
+declare interface JFormElementId extends JFormId {
+  elementId: JId
+}
+
+declare interface JFormElementIds extends JFormId {
+  elementIds: JId[]
+}
+
+declare interface JFormElementData extends JFormId {
+  attributesValuesByName: JAttributeValueByName
+}
+
+declare interface JFormCreateAttributeElementParams extends JFormElementData {
+  geometry: GeoJSON.Geometry
+}
+
+declare interface JFormCreateExternalOrSubFormElementParams extends JFormElementData {
+  layerElementId: JId
+}
+
+declare interface JFormUpdateElementsParams extends JFormId {
+  elements: JFormElement[]
+}
+
+declare interface JFormResult {
+  elementId: JId
+  success: boolean
+}
+
+declare interface JFormOpenParams {
+  layerId: JId
+  formId: JId
+  elements: JFormElement[]
+}
+
+declare interface JFormTreeElement {
+  layerId: JId
+  form: JForm
+  elements: JFormElement[]
+  selectedElements: JId[] | undefined
+  openedSubFormSelection: JFormTreeElement | undefined
+}
