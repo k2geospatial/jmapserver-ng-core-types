@@ -1,3 +1,5 @@
+declare type LAYER_TYPE = "POINT" | "LINE" | "POLYGON" | "TEXT" | "IMAGE" | "LABEL" | "ELLIPSE" | "MIXED"
+
 declare type LAYER_GEOMETRY = "ANNOTATION" | "CURVE" | "COMPLEX" | "POINT" | "RASTER" | "SURFACE" | "ELLIPSE" | "NONE"
 
 declare type JLayerAttributeType = "string" | "number" | "date" | "datetime" | "boolean" | "binary"
@@ -15,8 +17,18 @@ declare interface JLayerGeometry {
   editable: boolean
 }
 
+declare interface JLayerPermissions {
+  ADD: boolean
+  DELETE: boolean
+  DUPLICATE: boolean
+  EDIT_ATTRIBUTE_VALUES: boolean
+  EDIT_GEOMETRY: boolean
+  EDIT_ONLY_OWN: boolean
+}
+
 declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
+  type: LAYER_TYPE
   attributes: JLayerAttribute[]
   mouseOver: JMapMouseOver
   simpleSelectionStyle: JLayerSimpleStyle
@@ -29,6 +41,10 @@ declare interface JLayer extends JLayerTreeElement {
   thematics: JLayerThematic[]
   queries: JQuery[]
   extent: JBoundaryBox | null
+  permissions: JLayerPermissions
+  canEditGeometry: boolean
+  hasAttributeForm: boolean
+  hasExternalForms: boolean
 }
 
 declare interface JLayerAttribute {

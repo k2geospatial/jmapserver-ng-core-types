@@ -5564,7 +5564,23 @@ declare namespace JMap {
    * Here you'll find all form related methods
    */
   namespace Form {
-    
+
+    function getLayerFormsById(layerId: number): Promise<JForm[]>
+    function createAttributeFormElement(params: JFormCreateAttributeElementParams): Promise<GeoJSON.Feature>
+    function createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
+    function getElement(params: JFormElementId): Promise<JFormElement | undefined>
+    function getElements(params: JFormElementIds): Promise<JFormElement[]>
+    function updateAttributeElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
+    function updateExternalElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+    function deleteElements(params: JFormElementIds): Promise<void>
+    function hasActiveForm(): boolean
+    function getActiveForm(): JForm
+    function activateForm(params: JFormOpenParams): Promise<void>
+    function deactivateForm(): void
+    function getCurrentSelectionForActiveForm(): JFormElementIds
+    function selectElementOnActiveForm(elementIds: JId): Promise<void>
+    function unSelectElementOnActiveForm(elementIds: JId): Promise<void>
+
     /**
      * ***JMap.Form.getDefaultValues***
      * 
