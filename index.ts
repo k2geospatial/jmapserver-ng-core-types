@@ -310,6 +310,7 @@ export interface JMapBasemapService {
   isActive(): boolean
   isMapboxId(basemapId: string): boolean
   getActiveId(): string | undefined
+  existsById(basemapId: string): boolean
   getById(basemapId: string): JBasemap
   activateById(basemapId: string | undefined): void
   deactivate(): void

@@ -3262,6 +3262,21 @@ declare namespace JMap {
       function activateById(basemapId: string): void
 
       /**
+       * **JMap.Map.Basemap.existsById**
+       * 
+       * Returs true if basemap exist for the given id.
+       * 
+       * @throws Error if basemap not found for the given id
+       * @param basemapId The basemap id, use JMap.Map.Basemap.getAllId() to get available basemap ids
+       * @example ```ts
+       * 
+       * // returns true if "streets" basemap exist
+       * JMap.Map.Basemap.existsById("streets")
+       * ```
+       */
+      function existsById(basemapId: string): boolean
+
+      /**
        * **JMap.Map.Basemap.getById**
        * 
        * Returs the basemap descriptor for the given id.
