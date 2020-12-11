@@ -3266,7 +3266,6 @@ declare namespace JMap {
        * 
        * Returs true if basemap exist for the given id.
        * 
-       * @throws Error if basemap not found for the given id
        * @param basemapId The basemap id, use JMap.Map.Basemap.getAllId() to get available basemap ids
        * @example ```ts
        * 
