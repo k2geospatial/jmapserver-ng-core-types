@@ -2048,24 +2048,6 @@ declare namespace JMap {
      * ```
      */
     function getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
-    
-    /**
-     * **JMap.Map.getAvailableBaseMaps**
-     * 
-     * Returns the available basemap names that can be used with method setBaseMap.
-     * 
-     * Possible values are : "light", "streets", "satellite", "dark", "outdoors", or "none"
-     * 
-     * Special value "none" means no basemap displayed.
-     * 
-     * @returns an array of string, the available basemap names
-     * @example ```ts
-     * 
-     * // returns an array of string comtaining names of available basemaps
-     * JMap.Map.getAvailableBaseMaps()
-     * ```
-     */
-    function getAvailableBaseMaps(): string[]
 
     /**
      * **JMap.Map.getNavigationHistoryStack**
@@ -2125,38 +2107,6 @@ declare namespace JMap {
      * ```
      */
     function getBearing(): number
-
-    /**
-     * ***JMap.Map.getBaseMap***
-     * 
-     * Returns the current basemap.
-     * 
-     * Possble values are : "light", "streets", "satellite", "dark", "outdoors", or "none"
-     * 
-     * Special value "none" means no basemap is dsplayed.
-     * 
-     * @example ```ts
-     * 
-     * // returns the current basemap
-     * JMap.Map.getBaseMap()
-     * ```
-     */
-    function getBaseMap(): string
-    
-    /**
-     * **JMap.Map.setBaseMap**
-     * 
-     * Apply the basemap on the map.
-     * 
-     * @throws Error if mapName is not supported
-     * @param mapName The name of the basemap, use JMap.Map.getAvailableBaseMaps() to get available basemap names
-     * @example ```ts
-     * 
-     * // Set the basemap as "streets"
-     * JMap.Map.setBaseMap("streets")
-     * ```
-     */
-    function setBaseMap(mapName: string): void
 
     /**
      * **JMap.Map.setBearing**
@@ -3225,6 +3175,183 @@ declare namespace JMap {
        * ```
        */
       function clearSelection(layerId?: number): void
+    }
+
+    namespace Basemap {
+      /**
+       * **JMap.Map.Basemap.getAllIds**
+       * 
+       * Returns the available basemap ids that can be used with method activateById.
+       * 
+       * Mapbox values are : "light", "streets", "satellite", "dark", or "outdoors"
+       * 
+       * @returns an array of string, the available basemap ids
+       * @example ```ts
+       * 
+       * // returns an array of string containing all available basemap ids
+       * JMap.Map.Basemap.getAllIds()
+       * ```
+       */
+      function getAllIds(): string[]
+
+      /**
+       * ***JMap.Map.Basemap.isActive***
+       * 
+       * Returns true if a basemap is active on the map.
+       * 
+       * @example ```ts
+       * 
+       * JMap.Map.Basemap.activateById("streets")
+       * 
+       * // returns true
+       * JMap.Map.Basemap.isActive()
+       * 
+       * JMap.Map.Basemap.deactivate()
+       * 
+       * // returns false
+       * JMap.Map.Basemap.isActive()
+       * ```
+       */
+      function isActive(): boolean
+
+      /**
+       * ***JMap.Map.Basemap.isMapboxId***
+       * 
+       * Returns true if the basemap id is a mapbox basemap.
+       * 
+       * @example ```ts
+       * 
+       * // returns true
+       * JMap.Map.Basemap.isMapboxId("streets")
+       * 
+       * // returns false
+       * JMap.Map.Basemap.isMapboxId("stremy-custom-basemap")
+       * ```
+       */
+      function isMapboxId(basemapId: string): boolean
+
+      /**
+       * ***JMap.Map.Basemap.getActiveId***
+       * 
+       * Returns the active basemap id, undefined is no basemap is activated.
+       * 
+       * @example ```ts
+       * 
+       * // returns the active basemap id, undefined is no basemap is activated
+       * JMap.Map.Basemap.getActiveId()
+       * ```
+       */
+      function getActiveId(): string | undefined
+      
+      /**
+       * **JMap.Map.Basemap.activateById**
+       * 
+       * Apply the basemap on the map.
+       * 
+       * @throws Error if basemap not found for the given id
+       * @param basemapId The basemap id, use JMap.Map.Basemap.getAllId() to get available basemap ids
+       * @example ```ts
+       * 
+       * // Activate the basemap "streets"
+       * JMap.Map.Basemap.activateById("streets")
+       * 
+       * // Deactivate current basemap
+       * JMap.Map.Basemap.deactivate()
+       * ```
+       */
+      function activateById(basemapId: string): void
+
+      /**
+       * **JMap.Map.Basemap.getById**
+       * 
+       * Returs the basemap descriptor for the given id.
+       * 
+       * @throws Error if basemap not found for the given id
+       * @param basemapId The basemap id, use JMap.Map.Basemap.getAllId() to get available basemap ids
+       * @example ```ts
+       * 
+       * // returns the "streets" basemap
+       * JMap.Map.Basemap.getById("streets")
+       * ```
+       */
+      function getById(basemapId: string): JBasemap
+
+      /**
+       * **JMap.Map.Basemap.deactivate**
+       * 
+       * Deactivate the current active basemap on the map.
+       * 
+       * Do nothing if no map is active.
+       * 
+       * @example ```ts
+       * 
+       * // Deactivate current basemap
+       * JMap.Map.Basemap.deactivate()
+       * ```
+       */
+      function deactivate(): void
+
+      /**
+       * **JMap.Map.Basemap.add**
+       * 
+       * Add a new basemap on the map.
+       * 
+       * @throws if invalid parameters
+       * @param basemap The basemap descriptor
+       * @param activate if true create the basemap and activate it
+       * @param beforeId if provided, add the basemap before the given id
+       * @example ```ts
+       * 
+       * // Add a new basemap and activate it
+       * JMap.Map.Basemap.add(
+       *  {
+       *    id: "My custom map",
+       *    label: "My map",
+       *    tileUrls: [ "https://t.ssl.ak.dynamic.tiles.virtualearth.net/comp/ch/{quadkey}?mkt=fr-CA&it=G,LC,BX,RL&shading=hill&n=z&og=1226&cstl=vb&src=o" ],
+       *    previewImageAsUrlOrBase64: "http://www.toxel.com/wp-content/uploads/2008/08/creativelogos11.jpg"
+       *  },
+       *  true // = activate the new basemap
+       * )
+       * ```
+       */
+      function add(basemap: JBasemap, activate?: boolean, beforeId?: string): void
+
+      /**
+       * **JMap.Map.Basemap.removeById**
+       * 
+       * Remove a basemap for a given id.
+       * 
+       * If id doesn't exist do nothing.
+       * 
+       * If the active basemap is removed, no basemap will be displayed anymore.
+       * 
+       * @throws if missing basemap parameter
+       * @param basemapId the basemap id
+       * @example ```ts
+       * 
+       * // Remove the "streets" basemap
+       * JMap.Map.Basemap.removeById("streets")
+       * ```
+       */
+      function removeById(basemapId: string): void
+
+      /**
+       * **JMap.Map.Basemap.removeByIds**
+       * 
+       * Remove basemaps for the given ids.
+       * 
+       * If an id doesn't exist it is ignored.
+       * 
+       * If the active basemap is removed, no basemap will be displayed anymore.
+       * 
+       * @param basemapId the basemap id
+       * @example ```ts
+       * 
+       * // Remove two basemaps
+       * JMap.Map.Basemap.removeByIds([ "streets", "lights" ])
+       * ```
+       */
+      function removeByIds(basemapIds: string[]): void
     }
   }
 

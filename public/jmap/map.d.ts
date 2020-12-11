@@ -112,6 +112,13 @@ declare interface JMapFlashLocationParams {
   panAndZoomOptions?: JPanAndZoomOptions
 }
 
+declare interface JBasemap {
+  id: string
+  label: string
+  tileUrls: string[]
+  previewImageAsUrlOrBase64?: string
+}
+
 declare interface JZoomOptions {
   /**
    * If true will animate the change
