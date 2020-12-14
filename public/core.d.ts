@@ -3183,7 +3183,7 @@ declare namespace JMap {
        * 
        * Returns the available basemap ids that can be used with method activateById.
        * 
-       * Mapbox values are : "light", "streets", "satellite", "dark", or "outdoors"
+       * Mapbox values are : "light", "streets", "satellite", "satellite-streets", "dark", or "outdoors"
        * 
        * @returns an array of string, the available basemap ids
        * @example ```ts
@@ -3310,18 +3310,35 @@ declare namespace JMap {
        * 
        * Add a new basemap on the map.
        * 
+       * You can find tile servers here : https://wiki.openstreetmap.org/wiki/Tile_servers
+       * 
        * @throws if invalid parameters
        * @param basemap The basemap descriptor
        * @param activate if true create the basemap and activate it
        * @param beforeId if provided, add the basemap before the given id
        * @example ```ts
        * 
-       * // Add a new basemap and activate it
+       * // add an osm basemap
+       * JMap.Map.Basemap.add({
+       *   id: "osm",
+       *   label: "Open Street Map",
+       *   tileUrls: [
+       *     "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+       *     "https://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
+       *     "https://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
+       *   ],
+       *   previewImageAsUrlOrBase64: "https://searchengineland.com/figz/wp-content/seloads/2013/11/Screen-Shot-2013-11-22-at-3.41.27-PM.png",
+       *   true // = activate the new basemap
+       * })
+       * 
+       * // Add a quadkey (not x/y/z) basemap
        * JMap.Map.Basemap.add(
        *  {
        *    id: "My custom map",
        *    label: "My map",
-       *    tileUrls: [ "https://t.ssl.ak.dynamic.tiles.virtualearth.net/comp/ch/{quadkey}?mkt=fr-CA&it=G,LC,BX,RL&shading=hill&n=z&og=1226&cstl=vb&src=o" ],
+       *    tileUrls: [
+       *      "https://t.ssl.ak.dynamic.tiles.virtualearth.net/comp/ch/{quadkey}?mkt=fr-CA&it=G,LC,BX,RL&shading=hill&n=z&og=1226&cstl=vb&src=o"
+       *    ],
        *    previewImageAsUrlOrBase64: "http://www.toxel.com/wp-content/uploads/2008/08/creativelogos11.jpg"
        *  },
        *  true // = activate the new basemap

@@ -117,6 +117,7 @@ declare interface JBasemap {
   label: string
   tileUrls: string[]
   previewImageAsUrlOrBase64?: string
+  scheme?: "tms" | "xyz"
 }
 
 declare interface JZoomOptions {
