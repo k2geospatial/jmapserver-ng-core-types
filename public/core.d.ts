@@ -3183,7 +3183,9 @@ declare namespace JMap {
        * 
        * Returns the available basemap ids that can be used with method activateById.
        * 
-       * Mapbox values are : "light", "streets", "satellite", "satellite-streets", "dark", or "outdoors"
+       * Mapbox values are : "mapbox-light", "mapbox-streets", "mapbox-satellite", "mapbox-satellite-streets", "mapbox-dark", or "mapbox-outdoors"
+       * 
+       * OSM value is : "osm-standard"
        * 
        * @returns an array of string, the available basemap ids
        * @example ```ts
@@ -3222,13 +3224,29 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // returns true
-       * JMap.Map.Basemap.isMapboxId("streets")
+       * JMap.Map.Basemap.isMapboxId("mapbox-streets")
        * 
        * // returns false
-       * JMap.Map.Basemap.isMapboxId("stremy-custom-basemap")
+       * JMap.Map.Basemap.isMapboxId("my-custom-basemap")
        * ```
        */
       function isMapboxId(basemapId: string): boolean
+
+      /**
+       * ***JMap.Map.Basemap.isOSMId***
+       * 
+       * Returns true if the basemap id is an Open Street Map basemap.
+       * 
+       * @example ```ts
+       * 
+       * // returns true
+       * JMap.Map.Basemap.isOSMId("osm-standard")
+       * 
+       * // returns false
+       * JMap.Map.Basemap.isOSMId("mapbox-streets")
+       * ```
+       */
+      function isOSMId(basemapId: string): boolean
 
       /**
        * ***JMap.Map.Basemap.getActiveId***
