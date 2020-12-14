@@ -9,6 +9,8 @@ declare type JMapPosition = "top-left" | "top-right" | "bottom-left" | "bottom-r
 
 declare type JDistanceUnit = "millimeters" | "centimeters" | "meters" | "kilometers" | "inches" | "feet" | "yards" | "miles" | "nauticalmiles"
 
+declare type JMapRasterSchemeType = "tms" | "xyz"
+
 declare interface JMapSelection {
   [ layerId: number ]: any[] // any = feature
 }
@@ -117,7 +119,7 @@ declare interface JBasemap {
   label: string
   tileUrls: string[]
   previewImageAsUrlOrBase64?: string
-  scheme?: "tms" | "xyz"
+  scheme?: JMapRasterSchemeType
 }
 
 declare interface JZoomOptions {
