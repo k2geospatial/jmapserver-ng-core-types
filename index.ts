@@ -163,7 +163,8 @@ export interface JMapState {
   zoom: number
   scale: number
   boundaryBox: JBoundaryBox
-  baseMap: string
+  activeBasemapId: string | undefined
+  basemaps: JBasemap[]
   selection: JMapSelection
   jmapLayerIdsSupportedByMapbox: number[]
   isNavigationHistoryControlVisible:boolean
@@ -253,6 +254,7 @@ export interface JMapService {
   Interaction: JMapInteractionService
   Filter: JMapFilterService
   Selection: JMapSelectionService
+  Basemap: JMapBasemapService
   getMap(): Map
   getMapJSLib(): any
   getDomContainerId(): string
@@ -285,11 +287,8 @@ export interface JMapService {
   getRenderedJMapLayerIds(): number[]
   getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): Feature[]
   getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
-  getAvailableBaseMaps(): string[]
   getPitch(): number
   getBearing(): number
-  getBaseMap(): string
-  setBaseMap(mapName: string): void
   getNavigationHistoryStack(): JMapNavigationStep[]
   undoLastNavigationStep(): JMapNavigationStep | undefined
   setPitch(pitch: number): void
@@ -304,6 +303,21 @@ export interface JMapService {
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   clearFlashingLocations():void
+}
+
+export interface JMapBasemapService {
+  getAllIds(): string[]
+  isActive(): boolean
+  isMapboxId(basemapId: string): boolean
+  isOSMId(basemapId: string): boolean
+  getActiveId(): string | undefined
+  existsById(basemapId: string): boolean
+  getById(basemapId: string): JBasemap
+  activateById(basemapId: string | undefined): void
+  deactivate(): void
+  add(basemap: JBasemap, activate?: boolean, beforeId?: string): void
+  removeById(basemapId: string): void
+  removeByIds(basemapIds: string[]): void
 }
 
 export interface JMapInteractionService {
