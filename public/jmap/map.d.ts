@@ -120,6 +120,9 @@ declare interface JBasemap {
   tileUrls: string[]
   previewImageAsUrlOrBase64?: string
   scheme?: JMapRasterSchemeType
+  minzoom?: number
+  maxzoom?: number
+  tileSize?: number
 }
 
 declare interface JZoomOptions {
