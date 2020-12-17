@@ -123,6 +123,7 @@ declare interface JBasemap {
   minzoom?: number
   maxzoom?: number
   tileSize?: number
+  extent?: JBoundaryBox
 }
 
 declare interface JZoomOptions {
