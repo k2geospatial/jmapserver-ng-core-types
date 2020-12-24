@@ -279,6 +279,7 @@ export interface JMapService {
   isLayerRendered(layerId: number): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
+  isLayerVectorById(layerId: number):boolean
   getMapboxSupportedJMapLayerIds(): number[]
   getMapboxSupportedJMapVectorLayerIds(): number[]
   getMapboxSupportedJMapLayerBefore(layerId: number): number | undefined
@@ -330,6 +331,7 @@ export interface JMapInteractionService {
 
 export interface JMapSelectionService {
   isEmpty(): boolean
+  isEmptyByLayerId(layerId: JId): boolean
   getSelectedFeatures(): JMapSelection
   getSelectedFeaturesForLayer(layerId: number): Feature[]
   getSelectedFeatureIdsForLayer(layerId: number): string[]
@@ -342,9 +344,11 @@ export interface JMapSelectionService {
   selectOnAllLayersFromLine(line: JLine, params?: JMapSelectionParams | undefined): JMapSelection
   selectOnAllLayersFromPolygon(polygon: JPolygon, params?: JMapSelectionParams | undefined): JMapSelection
   setLayerSelection(layerId: number, features: Feature | Feature[]): void
+  setLayersSelection(params: JSelectionSetLayersSelectionParams[]): void
   addFeaturesToLayerSelection(layerId: number, features: Feature | Feature[]): void
   removeFeaturesFromLayerSelection(layerId: number, featureIds: string | string[]): void
   clearSelection(layerId?: number): void
+  clearLayersSelection(layerIds: JId[]): void
 }
 
 export interface JMapFilterService {
@@ -397,6 +401,8 @@ export interface JLayerService {
   getLayerTreeElementsById(): { [treeElementId: number]: JLayerTreeElement }
   getLayers(): JLayer[]
   getLayerIds(): number[]
+  getVectorLayers(): JLayer[]
+  getVectorLayerIds(): number[]
   getLayerAttributes(layerId: number): JLayerAttribute[]
   getLayerAttribute(layerId: number, attributeName: string): JLayerAttribute
   exists(layerId: number): boolean
@@ -407,6 +413,9 @@ export interface JLayerService {
   getDescription(layerId: number): string
   getEPSG4326Extent(layerId: number):JBoundaryBox | null
   isVisible(layerId: number, checkParentVisibility?: boolean): boolean
+  isSelectableById(layerId: JId): boolean
+  setSelectabilityById(layerId: JId, selectability:boolean):void
+  setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: number): boolean
   getStyle(layerId: number): JLayerStyle
   getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle

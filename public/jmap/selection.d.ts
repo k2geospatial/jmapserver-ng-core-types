@@ -8,6 +8,11 @@ declare interface JElementSelectionWithAttribute {
   elementIds: string[]
 }
 
+declare interface JSelectionSetLayersSelectionParams{
+  layerId: JId
+  features: GeoJSON.Feature[]
+}
+
 declare interface JMapSelectionParams {
   /**
    * true by default.

@@ -29,6 +29,7 @@ declare interface JLayer extends JLayerTreeElement {
   thematics: JLayerThematic[]
   queries: JQuery[]
   extent: JBoundaryBox | null
+  selectable: boolean
 }
 
 declare interface JLayerAttribute {
@@ -211,6 +212,11 @@ declare interface JRGBColor {
 declare interface JLayerSetLayersVisibilityParams {
   layerId: number, 
   visibility: boolean
+}
+
+declare interface JLayerSetLayersSelectabilityParams {
+  layerId: JId, 
+  selectability: boolean
 }
 
 declare interface JLayerSetThematicsVisibilityParams {
