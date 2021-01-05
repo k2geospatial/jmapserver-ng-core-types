@@ -3247,6 +3247,29 @@ declare namespace JMap {
       function setLayerSelection(layerId: number, features: GeoJSON.Feature | GeoJSON.Feature[]): void
 
       /**
+       * **JMap.Layer.setLayersSelection**
+       * 
+       * Set the selection for multiple layers.
+       * 
+       * _For each layer:_
+       * 
+       * sets the selection of the specified layer with the new selection. Previous selection will be cleared.
+       * 
+       * @throws Error if any layer is not found for any of the ids, or if any of the layers is not a vector layer or if the params array is either not an array or an empty array
+       * @param params an array of JSelectionSetLayersSelectionParams
+       * @example ```ts
+       * 
+       * // set selection on layers id=5 and 6. Layer 6 selection will be emptied (empty array passed)
+       * JMap.Layer.setLayersSelection([
+       *    {layerId: 5, selectability: [...features...]}, 
+       *    {layerId: 6, selectability: []}
+       * ])
+       * 
+       * ```
+       */
+      function setLayersSelection(params: JSelectionSetLayersSelectionParams[]): void
+
+      /**
        * **JMap.Map.Selection.addFeaturesToLayerSelection**
        * 
        * Add to the current layer selection the provided feature(s).
