@@ -189,6 +189,7 @@ export interface JLayerState {
   tree: JLayerTree
   allById: { [treeElementId: string]: JLayerTreeElement }
   orderedLayerIds: number[]
+  vectorLayerIds: JId[]
 }
 
 export interface JPhotoState {
@@ -281,7 +282,6 @@ export interface JMapService {
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
   isLayerVectorById(layerId: number):boolean
   getMapboxSupportedJMapLayerIds(): number[]
-  getMapboxSupportedJMapVectorLayerIds(): number[]
   getMapboxSupportedJMapLayerBefore(layerId: number): number | undefined
   getMapboxSupportedJMapLayerAfter(layerId: number): number | undefined
   addMapboxLayerConfigurationForJmapLayer(params: JMapAddMapboxLayerConfigurationForJmapLayerParams): void

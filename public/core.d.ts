@@ -2015,24 +2015,7 @@ declare namespace JMap {
      * ```
      */
     function getMapboxSupportedJMapLayerIds(): number[]
-    
-    /**
-     * **JMap.Map.getMapboxSupportedJMapVectorLayerIds**
-     * 
-     * Returns all vector layer ids that are displayed by the map.
-     * 
-     * Mapbox doesn't support all layer types defined in JMap Server.
-     * 
-     * This function returns all vector layers ids that are managed by the map.
-     * 
-     * @example ```ts
-     * 
-     * // returns vector layer ids managed by the map implementation
-     * JMap.Map.getMapboxSupportedJMapVectorLayerIds()
-     * ```
-     */
-    function getMapboxSupportedJMapVectorLayerIds(): number[]
-    
+        
     /**
      * **JMap.Map.getMapboxSupportedJMapLayerBefore**
      * 
