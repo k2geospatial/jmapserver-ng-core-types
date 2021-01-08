@@ -280,7 +280,6 @@ export interface JMapService {
   isLayerRendered(layerId: number): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
-  isLayerVectorById(layerId: number):boolean
   getMapboxSupportedJMapLayerIds(): number[]
   getMapboxSupportedJMapLayerBefore(layerId: number): number | undefined
   getMapboxSupportedJMapLayerAfter(layerId: number): number | undefined
@@ -413,6 +412,7 @@ export interface JLayerService {
   getDescription(layerId: number): string
   getEPSG4326Extent(layerId: number):JBoundaryBox | null
   isVisible(layerId: number, checkParentVisibility?: boolean): boolean
+  isVectorLayerById(layerId: JId):boolean
   isSelectableById(layerId: JId): boolean
   setSelectabilityById(layerId: JId, selectability:boolean):void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void

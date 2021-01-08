@@ -553,7 +553,7 @@ declare namespace JMap {
      * Returns an array with vector JMap layers.
      * 
      * Vector Layers are layers that can be selected on the map 
-     * and served via Vector Tiles or geoJSON, as opposed to raster layers for instance
+     * and served via Vector Tiles or geoJSON, as opposed to raster layers for instance.
      * 
      * The array order is not garanteed to be the same as the one in the tree.
      * 
@@ -573,7 +573,7 @@ declare namespace JMap {
      * Returns an array with vector JMap layer ids.
      * 
      * Vector Layers are layers that can be selected on the map 
-     * and served via Vector Tiles or geoJSON, as opposed to raster layers for instance
+     * and served via Vector Tiles or geoJSON, as opposed to raster layers for instance.
      * 
      * The array order is not garanteed to be the same as the one in the tree.
      * 
@@ -592,6 +592,22 @@ declare namespace JMap {
      */
     function getVectorLayerIds(): number[]   
   
+    /**
+     * **JMap.Layer.isVectorLayerById**
+     * 
+     * returns true if specified layer is a vector layer
+     * 
+     * @param layerId the JMap layer Id
+     * 
+     * @example ```ts
+     * 
+     * // returns true if layer id 5 is a vector layer
+     * JMap.Layer.isVectorLayerById(5)
+     * ```
+     * 
+     */
+    function isVectorLayerById(layerId: JId):boolean
+
     /**
      * **JMap.Layer.attributeExists**
      * 
@@ -812,7 +828,6 @@ declare namespace JMap {
      * 
      * If this property is true, the layer's features can be selected on the map.
      * 
-     * 
      * @throws Error if any layer is not found for any of the ids, or if any of the layers is not a vector layer
      * @param params an array of JLayerSetLayersSelectabilityParams
      * @example ```ts
@@ -827,7 +842,6 @@ declare namespace JMap {
      * ```
      */
     function setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
-
 
     /**
      * **JMap.Layer.isAllLayerParentsVisible**
@@ -1982,22 +1996,6 @@ declare namespace JMap {
      * ```
      */
     function getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
-
-    /**
-     * **JMap.Map.isLayerVectorById**
-     * 
-     * returns true if specified layer is a vector layer
-     * 
-     * @param layerId the JMap layer Id
-     * 
-     * @example ```ts
-     * 
-     * // returns true if layer id 5 is a vector layer
-     * JMap.Map.isLayerVectorById(5)
-     * ```
-     * 
-     */
-    function isLayerVectorById(layerId: number):boolean
 
     /**
      * **JMap.Map.getMapboxSupportedJMapLayerIds**
