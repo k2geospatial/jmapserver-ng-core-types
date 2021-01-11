@@ -547,6 +547,67 @@ declare namespace JMap {
      */
     function getLayerIds(): number[]
 
+     /**
+     * **JMap.Layer.getVectorLayers**
+     * 
+     * Returns an array with vector JMap layers.
+     * 
+     * Vector Layers are layers that can be selected on the map 
+     * and served via Vector Tiles or geoJSON, as opposed to raster layers for instance.
+     * 
+     * The array order is not garanteed to be the same as the one in the tree.
+     * 
+     * If no project is loaded, returns en empty array.
+     * 
+     * @example ```ts
+     * 
+     * // returns all vector JMap layers
+     * JMap.Layer.getVectorLayers()
+     * ```
+     */
+    function getVectorLayers(): JLayer[]
+
+    /**
+     * **JMap.Layer.getVectorLayerIds**
+     * 
+     * Returns an array with vector JMap layer ids.
+     * 
+     * Vector Layers are layers that can be selected on the map 
+     * and served via Vector Tiles or geoJSON, as opposed to raster layers for instance.
+     * 
+     * The array order is not garanteed to be the same as the one in the tree.
+     * 
+     * If no project is loaded, returns en empty array.
+     * 
+     * This function is equivalent to :
+     * ```ts
+     * JMap.Layer.getVectorLayers().map(layer => layer.id)
+     * ```
+     * 
+     * @example ```ts
+     * 
+     * // returns all vector JMap layer ids
+     * JMap.Layer.getVectorLayerIds()
+     * ```
+     */
+    function getVectorLayerIds(): number[]   
+  
+    /**
+     * **JMap.Layer.isVectorLayerById**
+     * 
+     * returns true if specified layer is a vector layer
+     * 
+     * @param layerId the JMap layer Id
+     * 
+     * @example ```ts
+     * 
+     * // returns true if layer id 5 is a vector layer
+     * JMap.Layer.isVectorLayerById(5)
+     * ```
+     * 
+     */
+    function isVectorLayerById(layerId: JId):boolean
+
     /**
      * **JMap.Layer.attributeExists**
      * 
@@ -709,6 +770,78 @@ declare namespace JMap {
      * ```
      */
     function isVisible(layerId: number, checkParentVisibility?: boolean): boolean
+
+    /**
+     * **JMap.Layer.isSelectableById**
+     * 
+     * Returns the tree element selectable property.
+     * 
+     * The selectable property is initialy defined on the project, and can be
+     * changed by the user through the JMap Web Core library.
+     * 
+     * If this property is false, the layer's features can't be selected on the map by user interaction, or by API calls.
+     * 
+     * If this property is true, the layer's features can be selected.
+     * 
+     * @throws Error if no layer found for the id or of layer is not a vector layer
+     * @param layerId The JMap layer id
+     * @example ```ts
+     * 
+     * // returns false if layer id=3 is not selectable
+     * JMap.Layer.isSelectableById(3)
+     * ```
+     */
+    function isSelectableById(layerId: JId): boolean
+
+    /**
+     * **JMap.Layer.setSelectabilityById**
+     * 
+     * Set the selectability property of the layer.
+     * 
+     * If it's true, the layer's features can be selected on the map. 
+     * 
+     * @throws Error if no layer found for the id or if it is not a vector layer
+     * @param layerId The JMap layer id
+     * @param selectability The new selectability property value for the layer
+     * @example ```ts
+     * 
+     * // make layer id=5 selectable
+     * JMap.Layer.setSelectabilityById(5, true)
+     * 
+     * // make layer id=3 unselectable (will clear the pre-existing selection if present)
+     * JMap.Layer.setSelectabilityById(3, false)
+     * ```
+     */
+    function setSelectabilityById(layerId: JId, selectability:boolean): void
+
+    /**
+     * **JMap.Layer.setLayersSelectability**
+     * 
+     * Set the selectability property of multiple layers.
+     * 
+     * _For each layer:_
+     * 
+     * If it's a JMap layer, it applies the selectability to it.
+     * 
+     * The selectability property is initialy defined on the project, and can be
+     * changed by the user through the JMap Web Core library.
+     * 
+     * If this property is true, the layer's features can be selected on the map.
+     * 
+     * @throws Error if any layer is not found for any of the ids, or if any of the layers is not a vector layer
+     * @param params an array of JLayerSetLayersSelectabilityParams
+     * @example ```ts
+     * 
+     * // show layers id=5 and 6, hide layer 3
+     * JMap.Layer.setLayersSelectability([
+     *    {layerId: 5, selectability: true}, 
+     *    {layerId: 6, selectability: true}, 
+     *    {layerId: 3, selectability: false}
+     * ])
+     * 
+     * ```
+     */
+    function setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
 
     /**
      * **JMap.Layer.isAllLayerParentsVisible**
@@ -1880,24 +2013,7 @@ declare namespace JMap {
      * ```
      */
     function getMapboxSupportedJMapLayerIds(): number[]
-    
-    /**
-     * **JMap.Map.getMapboxSupportedJMapVectorLayerIds**
-     * 
-     * Returns all vector layer ids that are displayed by the map.
-     * 
-     * Mapbox doesn't support all layer types defined in JMap Server.
-     * 
-     * This function returns all vector layers ids that are managed by the map.
-     * 
-     * @example ```ts
-     * 
-     * // returns vector layer ids managed by the map implementation
-     * JMap.Map.getMapboxSupportedJMapVectorLayerIds()
-     * ```
-     */
-    function getMapboxSupportedJMapVectorLayerIds(): number[]
-    
+        
     /**
      * **JMap.Map.getMapboxSupportedJMapLayerBefore**
      * 
@@ -2826,6 +2942,21 @@ declare namespace JMap {
       function isEmpty(): boolean
 
       /**
+       * ***JMap.Map.Selection.isEmptyByLayerId***
+       * 
+       * Returns true if no selection is made for the specified layer.
+       * 
+       * If at least one feature is selected on the layer, returns false.
+       * 
+       * @example ```ts
+       * 
+       * // Returns true if no selection is made for layer id 5.
+       * JMap.Map.Selection.isEmptyByLayerId(5)
+       * ```
+       */
+      function isEmptyByLayerId(layerId: JId): boolean
+
+      /**
        * ***JMap.Map.Selection.getSelectedFeatures***
        * 
        * Returns the current map selection as a javascript map (= a javascript object) where :
@@ -3097,6 +3228,29 @@ declare namespace JMap {
       function setLayerSelection(layerId: number, features: GeoJSON.Feature | GeoJSON.Feature[]): void
 
       /**
+       * **JMap.Layer.setLayersSelection**
+       * 
+       * Set the selection for multiple layers.
+       * 
+       * _For each layer:_
+       * 
+       * sets the selection of the specified layer with the new selection. Previous selection will be cleared.
+       * 
+       * @throws Error if any layer is not found for any of the ids, or if any of the layers is not a vector layer or if the params array is either not an array or an empty array
+       * @param params an array of JSelectionSetLayersSelectionParams
+       * @example ```ts
+       * 
+       * // set selection on layers id=5 and 6. Layer 6 selection will be emptied (empty array passed)
+       * JMap.Layer.setLayersSelection([
+       *    {layerId: 5, selectability: [...features...]}, 
+       *    {layerId: 6, selectability: []}
+       * ])
+       * 
+       * ```
+       */
+      function setLayersSelection(params: JSelectionSetLayersSelectionParams[]): void
+
+      /**
        * **JMap.Map.Selection.addFeaturesToLayerSelection**
        * 
        * Add to the current layer selection the provided feature(s).
@@ -3157,7 +3311,7 @@ declare namespace JMap {
       function removeFeaturesFromLayerSelection(layerId: number, featureIds: string | string[]): void
 
       /**
-       * **JMap.Map.Selection.removeFeaturesFromLayerSelection**
+       * **JMap.Map.Selection.clearSelection**
        * 
        * Clear all selection.
        * 
@@ -3175,6 +3329,21 @@ declare namespace JMap {
        * ```
        */
       function clearSelection(layerId?: number): void
+
+      /**
+       * **JMap.Map.Selection.clearLayersSelection**
+       * 
+       * Clear selection for all specified layers.
+       * 
+       * @throws Error if a layer id is provided but not found
+       * @param layerIds The JMap layer ids passed as an array
+       * @example ```ts
+       * 
+       * // Clear selection of layer 4, 5 and 6
+       * JMap.Map.Selection.clearLayersSelection([4, 5, 6])
+       * ```
+       */
+      function clearLayersSelection(layerIds: JId[]): void
     }
 
     namespace Basemap {
