@@ -14,6 +14,11 @@ declare interface JLayerEventVisibilityParams {
   areAllParentsVisible: boolean
 }
 
+declare interface JLayerEventSelectabilityParams {
+  layerId: number
+  selectability: boolean
+}
+
 declare interface JLayerEventParams {
   layerId: number
 }

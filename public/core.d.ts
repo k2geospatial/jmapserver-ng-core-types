@@ -4851,7 +4851,29 @@ declare namespace JMap {
          * )
          * ```
          */
-        function visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
+        function visibilityChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void): void
+
+        /**
+         * ***JMap.Event.Layer.on.selectabilityWillChange***
+         * 
+         * This event is triggered just before a vector layer selectability is changed. This
+         * permits to act on selection before the layer selectability property is effectively changed
+         * 
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a vector layer selectability will change, it will display the next selectability
+         * // in the console
+         * JMap.Event.Layer.on.selectabilityWillChange(
+         *    "custom-selectability-will-change",
+         *    params => {
+         *      console.log(`Vector layer id="${params.layerId}" next selectability="${params.selectability}"`)
+         *    }
+         * )
+         * ```
+         */
+        function selectabilityWillChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
 
         /**
          * ***JMap.Event.Layer.on.thematicVisibilityChange***

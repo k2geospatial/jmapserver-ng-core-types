@@ -87,7 +87,8 @@ export interface JLayerEventModule extends JEventModule {
   on: {
     layersChange(listenerId: string, fn: (params: JLayerEventChangeParams) => void): void
     thematicVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicVisibilityParams) => void): void
-    visibilityChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
+    visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
+    selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void):void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
   }
 }
