@@ -6155,7 +6155,6 @@ declare namespace JMap {
    * Here you'll find all form related methods
    */
   namespace Form {
-
     function getLayerFormsById(layerId: number): Promise<JForm[]>
     function createAttributeFormElement(params: JFormCreateAttributeElementParams): Promise<GeoJSON.Feature>
     function createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
@@ -6166,11 +6165,15 @@ declare namespace JMap {
     function deleteElements(params: JFormElementIds): Promise<void>
     function hasActiveForm(): boolean
     function getActiveForm(): JForm
-    function activateForm(params: JFormOpenParams): Promise<void>
-    function deactivateForm(): void
-    function getCurrentSelectionForActiveForm(): JFormElementIds
-    function selectElementOnActiveForm(elementIds: JId): Promise<void>
-    function unSelectElementOnActiveForm(elementIds: JId): Promise<void>
+    function activateLayerById(layerId: number): Promise<JForm[]>
+    function deactivateLayer(): void
+    function getActiveLayerForms(): JForm[]
+    function openCreationElementDialog(params: JFormCreateParams): Promise<void>
+    function openEditElementDialog(params: JFormEditParams): Promise<void>
+    function closeCurrentForm(): void
+    function getSelectedElementIdsForActiveForm(): JId[]
+    function selectElementsForActiveForm(elementIds: JId): Promise<void>
+    function unSelectElementsForActiveForm(elementIds: JId): void
 
     /**
      * ***JMap.Form.getDefaultValues***
@@ -6182,6 +6185,7 @@ declare namespace JMap {
      *  - value the default value
      * 
      * @param form A JMap form
+     * @param initialData Initial data. If provided, it will set the default data then overwrite with initial values.
      * @returns a key/value object
      * @example ```ts
      * 
@@ -6189,7 +6193,7 @@ declare namespace JMap {
      * const defaultValues = JMap.Form.getDefaultValues(form)
      * ```
      */
-    function getDefaultValues(form: JForm): { [ id: string ]: any }
+    function getDefaultValues(form: JForm, initialData?: JFormData): JFormData
 
     /**
      * ***JMap.Form.getPreparedData***
@@ -6201,7 +6205,6 @@ declare namespace JMap {
      * - validating them using JMap.Form.getPreparedData (change values to fit the )
      * 
      * It returns another object without modifing the passed object.
-     * 
      * 
      * Use to set the correct type (number if a string number is passed), and many other things.
      * 
@@ -6216,7 +6219,7 @@ declare namespace JMap {
      * const errors = JMap.Form.validateData(form, preparedData)
      * ```
      */
-    function getPreparedData(form: JForm, data: any): any
+    function getPreparedData(form: JForm, data: JFormData): JFormData
 
     /**
      * ***JMap.Form.validateData***
@@ -6242,6 +6245,6 @@ declare namespace JMap {
      * const errors = JMap.Form.validateData(form, data)
      * ```
      */
-    function validateData(form: JForm, data: { [id: string]: any }): { [key: string]: string }
+    function validateData(form: JForm, data: JFormData): { [key: string]: string }
   }
 }

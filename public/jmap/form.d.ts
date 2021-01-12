@@ -98,7 +98,10 @@ declare interface JFormUIControl {
   onlyLeafSelection?: boolean // for tree control
   tree?: JFormUIControlTreeElement[]
   entries?: JFormUIControlEntry[]
+  parentAttributeName?: string // used for select that change following parent value
   mask?: string
+  subFormId?: JId // for table control
+  tableAttributes?: JFormAttribute[] // for table control
 }
 
 declare interface JFormUIControlEntry {
@@ -227,6 +230,24 @@ declare interface JFormFieldSelectTree extends JFormFieldSelectBase {
   onlyLeafSelection: boolean
 }
 
+declare interface JFormAttribute {
+  name: string
+  title: string
+  sqlType: number
+  readOnly: boolean
+  nullable: boolean
+  isSystem: boolean
+  displayFormat: string
+  isShowInTable: boolean
+  formatPattern: string
+}
+
+declare interface JFormFieldTable extends JFormFieldBase {
+  label: string
+  subFormId: JId
+  attributes: JFormAttribute[]
+}
+
 declare interface JFormElement {
   elementId: JId
   attributeValuesByName: JAttributeValueByName
@@ -270,9 +291,11 @@ declare interface JFormResult {
   success: boolean
 }
 
-declare interface JFormOpenParams {
-  layerId: JId
-  formId: JId
+declare interface JFormCreateParams extends JFormId {
+  geometry?: GeoJSON.Geometry
+}
+
+declare interface JFormEditParams extends JFormId {
   elements: JFormElement[]
 }
 
@@ -280,6 +303,10 @@ declare interface JFormTreeElement {
   layerId: JId
   form: JForm
   elements: JFormElement[]
-  selectedElements: JId[] | undefined
+  selectedElementIds: JId[]
   openedSubFormSelection: JFormTreeElement | undefined
+}
+
+declare interface JFormData {
+  [id: string]: any
 }
