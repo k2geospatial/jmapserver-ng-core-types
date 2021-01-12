@@ -30,8 +30,15 @@ declare interface JUserIdentity {
   email: string
 }
 
+declare interface JUserInfo {
+  id: string
+  label: string
+  value: undefined | null | string | number | Date
+}
+
 declare interface JUserState {
   identity: JUserIdentity
   token: string
   locale: string
+  informations: JUserInfo[]
 }
