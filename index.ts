@@ -152,6 +152,8 @@ export interface JFormState {
   hasLoadingLayerError: boolean
   layerId: JId | undefined
   formById: JFormById
+  isCreation: boolean
+  creationGeometry: GeoJSON.Geometry | undefined
   tree: JFormTreeElement | undefined
 }
 
@@ -224,14 +226,18 @@ export interface JFormService {
   deleteElements(params: JFormElementIds): Promise<void>
   hasActiveForm(): boolean
   getActiveForm(): JForm
-  activateForm(params: JFormOpenParams): Promise<void>
-  deactivateForm(): void
-  getCurrentSelectionForActiveForm(): JFormElementIds
-  selectElementOnActiveForm(elementIds: JId): Promise<void>
-  unSelectElementOnActiveForm(elementIds: JId): Promise<void>
-  getDefaultValues(form: JForm): { [ id: string ]: any }
-  getPreparedData(form: JForm, data: any): any
-  validateData(form: JForm, data: { [id: string]: any }): { [key: string]: string }
+  activateLayerById(layerId: number): Promise<JForm[]>
+  deactivateLayer(): void
+  getActiveLayerForms(): JForm[]
+  openCreationElementDialog(params: JFormCreateParams): Promise<void>
+  openEditElementDialog(params: JFormEditParams): Promise<void>
+  closeCurrentForm(): void
+  getSelectedElementIdsForActiveForm(): JId[]
+  selectElementsForActiveForm(elementIds: JId): Promise<void>
+  unSelectElementsForActiveForm(elementIds: JId): void
+  getDefaultValues(form: JForm, initialData?: JFormData): JFormData
+  getPreparedData(form: JForm, data: JFormData): JFormData
+  validateData(form: JForm, data: JFormData): { [key: string]: string }
 }
 
 export interface JHistoryService {
