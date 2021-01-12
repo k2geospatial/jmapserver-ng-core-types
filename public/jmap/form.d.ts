@@ -230,7 +230,6 @@ declare interface JFormFieldSelectTree extends JFormFieldSelectBase {
   onlyLeafSelection: boolean
 }
 
-<<<<<<< HEAD
 declare interface JFormAttribute {
   name: string
   title: string
@@ -249,8 +248,6 @@ declare interface JFormFieldTable extends JFormFieldBase {
   attributes: JFormAttribute[]
 }
 
-=======
->>>>>>> JWNG-60 - form service
 declare interface JFormElement {
   elementId: JId
   attributeValuesByName: JAttributeValueByName
@@ -294,17 +291,11 @@ declare interface JFormResult {
   success: boolean
 }
 
-<<<<<<< HEAD
 declare interface JFormCreateParams extends JFormId {
   geometry?: GeoJSON.Geometry
 }
 
 declare interface JFormEditParams extends JFormId {
-=======
-declare interface JFormOpenParams {
-  layerId: JId
-  formId: JId
->>>>>>> JWNG-60 - form service
   elements: JFormElement[]
 }
 
@@ -312,7 +303,6 @@ declare interface JFormTreeElement {
   layerId: JId
   form: JForm
   elements: JFormElement[]
-<<<<<<< HEAD
   selectedElementIds: JId[]
   openedSubFormSelection: JFormTreeElement | undefined
 }
@@ -320,8 +310,3 @@ declare interface JFormTreeElement {
 declare interface JFormData {
   [id: string]: any
 }
-=======
-  selectedElements: JId[] | undefined
-  openedSubFormSelection: JFormTreeElement | undefined
-}
->>>>>>> JWNG-60 - form service
