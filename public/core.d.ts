@@ -4408,6 +4408,54 @@ declare namespace JMap {
      * ```
      */
     function setToken(token: string): Promise<JSessionData>
+
+    /**
+     * ***JMap.User.getAllInfos***
+     * 
+     * Returns all user informations. It is possible to add custom user information, available in the redux store and displayed in the user panel.
+     * 
+     * This function returns all custom informations.
+     * 
+     * @example ```ts
+     * 
+     * // return all user infos
+     * JMap.User.getAllInfos()
+     * ```
+     */
+    function getAllInfos(): JUserInfo[]
+
+    /**
+     * ***JMap.User.addInfo***
+     * 
+     * Add a custom user info, stored in the redux store (JMap Core), and displayed in the user panel (JMap App).
+     * 
+     * @param info The user info
+     * @throws if info is not an object, if an attribute is missing or invalid type, if "id" already exists
+     * @example ```ts
+     * 
+     * // add a user information
+     * JMap.User.addInfo({
+     *  id: "role",
+     *  label: "Role",
+     *  value: "Inspector"
+     * })
+     * ```
+     */
+    function addInfo(info: JUserInfo): void
+
+    /**
+     * ***JMap.User.removeInfo***
+     * 
+     * Remove a user info, from the redux store (JMap Core) and in the user panel (JMap App).
+     * 
+     * @param infoId The user info id
+     * @example ```ts
+     * 
+     * // remove the user information "role"
+     * JMap.User.removeInfo("role")
+     * ```
+     */
+    function removeInfo(infoId: string): void
   }
 
   /**

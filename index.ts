@@ -459,6 +459,9 @@ export interface JUserService {
   login(login: string, password: string): Promise<JSessionData>
   logout(): Promise<void>
   isLoggedIn(): boolean
+  getAllInfos(): JUserInfo[]
+  addInfo(info: JUserInfo): void
+  removeInfo(infoId: string): void
 }
 
 export interface JMouseOverService {
