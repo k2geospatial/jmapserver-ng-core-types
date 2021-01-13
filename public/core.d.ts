@@ -4899,7 +4899,7 @@ declare namespace JMap {
          * )
          * ```
          */
-        function visibilityChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void): void
+        function visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
 
         /**
          * ***JMap.Event.Layer.on.selectabilityWillChange***
@@ -4921,7 +4921,7 @@ declare namespace JMap {
          * )
          * ```
          */
-        function selectabilityWillChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
+        function selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void): void
 
         /**
          * ***JMap.Event.Layer.on.thematicVisibilityChange***
