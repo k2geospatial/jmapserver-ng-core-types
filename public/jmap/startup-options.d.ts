@@ -382,4 +382,11 @@ declare interface JCoreOptions {
    * If true, changing project after one has been loaded will be avoided.
    */
   avoidProjectChange?: boolean
+
+  /**
+   * If set to any of the locales supported by JMap, wil define the default locale, bypassing browser or user preference.
+   * 
+   * Supported locales are: "en", "fr", "es", "pt"
+   */
+  forcedLocale?: string
 }
