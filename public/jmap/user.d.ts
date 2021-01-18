@@ -39,6 +39,5 @@ declare interface JUserInfo {
 declare interface JUserState {
   identity: JUserIdentity
   token: string
-  locale: string
   informations: JUserInfo[]
 }

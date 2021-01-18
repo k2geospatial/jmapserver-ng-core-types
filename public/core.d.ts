@@ -4189,11 +4189,25 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return "EN", or "FR", or "ES", or "PT"
+     * // return "en", or "fr", or "es", or "pt"
      * JMap.User.getLocale()
      * ```
      */
     function getLocale(): string
+
+    /**
+     * **JMap.User.setLocale**
+     * 
+     * Sets the user locale. JMap will automatically reload.
+     * 
+     * @example ```ts
+     * 
+     * // can be one of "en", or "fr", or "es", or "pt"
+     * const locale = "fr"
+     * JMap.User.setLocale(locale)
+     * ```
+     */
+    function setLocale(locale: string): void
 
     /**
      * **JMap.User.getPreference**
