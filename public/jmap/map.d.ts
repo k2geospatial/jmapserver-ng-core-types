@@ -410,8 +410,9 @@ declare interface JCoreMapOptions {
 
   /**
    * Will execute a search by attribute on the layer, then pan and zoom to display the result.
-   * Check for features having the property equals to the value. If showMapPopup is true and that only one
-   * feature is found, the feature's Mouseover info will be displayed if defined
+   * Check for features having the property equals to the value. If showMapPopup is true and that
+   * only one __attributeValue__ is specified and that only __one__ feature is found,
+   * the feature's Mouseover info will be displayed if defined
    * 
    * ```html
    * <html>
