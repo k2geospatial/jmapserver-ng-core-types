@@ -4655,16 +4655,18 @@ declare namespace JMap {
          * @param listenerId Your listener id (must be unique)
          * @param fn Your listener function
          * @example ```ts
+         * 
          * // log a message in the console once the core library is loaded
          * JMap.Event.Main.on.coreReady(
-         *    "custom-core-ready", 
-         *     () => {
-         *      if(JMap.User.getToken() !== "-1"){
-         *        console.log(`Logged in username is: "${JMap.User.getUsername()}"`)
-         *      }else{
-         *        console.log(`No user logged in`)
-         *      }
-         * })
+         *   "custom-core-ready", 
+         *   () => {
+         *     if (JMap.User.getToken() !== "-1") {
+         *       console.log(`Logged in username is: "${JMap.User.getUsername()}"`)
+         *     } else {
+         *       console.log(`No user logged in`)
+         *     }
+         *   }
+         * )
          * ```
          */
         function coreReady(listenerId: string, fn: () => void): void
@@ -5432,6 +5434,45 @@ declare namespace JMap {
          * ```
          */
         function pitchEnd(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.containerReady***
+         * 
+         * This event is triggered when the map container is ready to use.
+         * 
+         * Triggered just before the first time the map is created, when JMap Core check
+         * if the map container exist or not (and create it if needed).
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the map container is ready, will display a message in the console
+         * JMap.Event.Map.on.containerReady(
+         *    "custom-map-container-ready",
+         *    params => console.log("Map container ready", params)
+         * )
+         * ```
+         */
+        function containerReady(listenerId: string, fn: (params: JMapEventContainerCreatedParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.containerResized***
+         * 
+         * This event is triggered when the map container is resized.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the map container is resized, it will display a message in the console
+         * JMap.Event.Map.on.containerResized(
+         *    "custom-map-container-resized",
+         *    params => console.log("Map container resized", params)
+         * )
+         * ```
+         */
+        function containerResized(listenerId: string, fn: (params: JMapEventContainerResizedParams) => void): void
       }
       /**
        * ***JMap.Event.Map.activate***
@@ -5485,6 +5526,100 @@ declare namespace JMap {
        * 
        * // remove the listener "my-map-listener"
        * JMap.Event.Map.remove("my-map-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
+     * ***JMap.Event.Photo***
+     * 
+     * Here you can manage all photo event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Photo.on]]***. 
+     */
+    namespace Photo {
+
+      /**
+       * ***JMap.Event.Photo.on***
+       * 
+       * Here you have all available high level events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Photo.on.containerCreated***
+         * 
+         * This event is triggered once when the photo container has been created in the dom.
+         * 
+         * You should not need to use this event, it's a technical one required by JMap App.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once the photo container is created
+         * JMap.Event.Main.on.containerCreated(
+         *   "custom-photo-div-created", 
+         *   params => console.log("Photo container created", params.container)
+         * )
+         * ```
+         */
+        function containerCreated(listenerId: string, fn: (params: JPhotoEventContainerCreatedParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Photo.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-photo-listener"
+       * JMap.Event.Photo.activate("my-photo-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Photo.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-photo-listener"
+       * JMap.Event.Photo.deactivate("my-photo-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Photo.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-photo-listener"
+       * JMap.Event.Photo.remove("my-photo-listener")
        * ```
        */
       function remove(listenerId: string): void
