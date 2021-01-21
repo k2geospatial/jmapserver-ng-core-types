@@ -42,14 +42,12 @@ declare interface JMapEventFeaturesParams extends JMapEventLayerParams {
 
 declare interface JMapEventContainerReadyParams {
   container: HTMLElement
-  parentContainer: HTMLElement
 }
 
 declare interface JMapEventContainerResizedParams {
   width: number
   height: number
   container: HTMLElement
-  parentContainer: HTMLElement
 }
 
 declare interface JMapSelection {

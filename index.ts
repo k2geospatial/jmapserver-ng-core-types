@@ -422,9 +422,9 @@ export interface JLayerService {
   getSelfOrChildren(layerId: number): JLayer[]
   getName(layerId: number): string
   getDescription(layerId: number): string
-  getEPSG4326Extent(layerId: number):JBoundaryBox | null
+  getEPSG4326Extent(layerId: number): JBoundaryBox | null
   isVisible(layerId: number, checkParentVisibility?: boolean): boolean
-  isVectorLayerById(layerId: JId):boolean
+  isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
   setSelectabilityById(layerId: JId, selectability:boolean):void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
