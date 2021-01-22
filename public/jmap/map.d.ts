@@ -11,8 +11,47 @@ declare type JDistanceUnit = "millimeters" | "centimeters" | "meters" | "kilomet
 
 declare type JMapRasterSchemeType = "tms" | "xyz"
 
+declare interface JMapEventParams {
+  map: mapboxgl.Map,
+  mapEvent: any
+}
+
+declare interface JMapEventLocationParams extends JMapEventParams {
+  location: JLocation
+}
+
+declare interface JMapEventZoomParams extends JMapEventParams {
+  zoom: number
+}
+
+declare interface JMapEventRotateParams extends JMapEventParams {
+  bearing: number
+}
+
+declare interface JMapEventPitchParams extends JMapEventParams {
+  pitch: number
+}
+
+declare interface JMapEventLayerParams extends JMapEventLocationParams {
+  layerId: number
+}
+
+declare interface JMapEventFeaturesParams extends JMapEventLayerParams {
+  features: any[]
+}
+
+declare interface JMapEventContainerReadyParams {
+  container: HTMLElement
+}
+
+declare interface JMapEventContainerResizedParams {
+  width: number
+  height: number
+  container: HTMLElement
+}
+
 declare interface JMapSelection {
-  [ layerId: number ]: any[] // any = feature
+  [ layerId: number ]: GeoJSON.Feature[]
 }
 
 declare interface JMapLayerVisibilityStatus {

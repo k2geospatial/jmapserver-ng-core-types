@@ -55,6 +55,7 @@ export interface JEventService {
   Main: JCoreEventModule
   Layer: JLayerEventModule
   Map: JMapEventModule
+  Photo: JPhotoEventModule
   Project: JProjectEventModule
   User: JUserEventModule
   Feature: JFeatureEventModule
@@ -114,6 +115,14 @@ export interface JMapEventModule extends JEventModule {
     pitchStart(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
     pitch(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
     pitchEnd(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
+    containerReady(listenerId: string, fn: (params: JMapEventContainerReadyParams) => void): void
+    containerResized(listenerId: string, fn: (params: JMapEventContainerResizedParams) => void): void
+  }
+}
+
+export interface JPhotoEventModule extends JEventModule {
+  on: {
+    containerCreated(listenerId: string, fn: (params: JPhotoEventContainerCreatedParams) => void): void
   }
 }
 
@@ -174,6 +183,8 @@ export interface JMapState {
   isScaleControlVisible: boolean
   isMapRotationControlVisible: boolean
   defaultZoomOptions: JZoomOptions
+  containerWidth: number
+  containerHeight: number
 }
 
 export interface JProjectState {
@@ -411,9 +422,9 @@ export interface JLayerService {
   getSelfOrChildren(layerId: number): JLayer[]
   getName(layerId: number): string
   getDescription(layerId: number): string
-  getEPSG4326Extent(layerId: number):JBoundaryBox | null
+  getEPSG4326Extent(layerId: number): JBoundaryBox | null
   isVisible(layerId: number, checkParentVisibility?: boolean): boolean
-  isVectorLayerById(layerId: JId):boolean
+  isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
   setSelectabilityById(layerId: JId, selectability:boolean):void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void

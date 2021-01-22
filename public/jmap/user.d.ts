@@ -1,3 +1,7 @@
+declare interface JUserEventSessionChangedParams {
+  session: JSessionData
+}
+
 declare interface JSessionData {
   /**
    * The JMap user session token.

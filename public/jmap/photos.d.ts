@@ -6,3 +6,7 @@ declare interface JPhoto {
   comment: string
   imageBase64: string
 }
+
+declare interface JPhotoEventContainerCreatedParams {
+  container: HTMLElement
+}

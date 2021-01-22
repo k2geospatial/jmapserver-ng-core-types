@@ -10,6 +10,35 @@ declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "I
 
 declare type JLayerStyleArrow = "NONE" | "FORWARD" | "BACKWARD"
 
+declare interface JLayerEventChangeParams {
+  layerTree: JLayerTree
+}
+
+declare interface JLayerEventThematicVisibilityParams {
+  layerId: number
+  thematicId: number
+  visibility: boolean
+}
+
+declare interface JLayerEventVisibilityParams {
+  layerId: number
+  visibility: boolean
+  areAllParentsVisible: boolean
+}
+
+declare interface JLayerEventSelectabilityParams {
+  layerId: number
+  selectability: boolean
+}
+
+declare interface JLayerEventParams {
+  layerId: number
+}
+
+declare interface JMapEventLoadedParams {
+  map: mapboxgl.Map
+}
+
 declare interface JLayerGeometry {
   type: LAYER_GEOMETRY
   editable: boolean
