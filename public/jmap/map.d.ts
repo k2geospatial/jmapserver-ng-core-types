@@ -82,6 +82,7 @@ declare interface JMapAttributeSearch {
   layerId: number
   attributeName: string
   attributeValue: any | any[]
+  showMapPopup?: boolean
 }
 
 declare interface JMapNavigationStep{
@@ -448,7 +449,9 @@ declare interface JCoreMapOptions {
 
   /**
    * Will execute a search by attribute on the layer, then pan and zoom to display the result.
-   * Check for features having the property equals to the value.
+   * Check for features having the property equals to the value. If showMapPopup is true and that
+   * only one __attributeValue__ is specified and that only __one__ feature is found,
+   * the feature's Mouseover info will be displayed if defined
    * 
    * ```html
    * <html>
@@ -461,7 +464,8 @@ declare interface JCoreMapOptions {
    *           search: {
    *             layerId: 2,
    *             attributeName: "PEC",
-   *             attributeValue: "RT 2012"
+   *             attributeValue: "RT 2012",
+   *             showMapPopup: true
    *           }
    *         }
    *       }
