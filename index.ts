@@ -463,7 +463,7 @@ export interface JUserService {
   getUsername(): string
   getLocales(): string[]
   getLocale(): string
-  setLocale(locale: string):void
+  setLocale(locale: string): void
   getPreference(name: string): Promise<string | null>
   hasPreference(name: string): Promise<boolean>
   removePreference(name: string): Promise<string | null>

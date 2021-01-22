@@ -4215,7 +4215,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // Supported locales  can be retrieved by calling [[JMap.User.getLocales()]]
+     * // Supported locales can be retrieved by calling [[JMap.User.getLocales()]]
      * const locale = "fr"
      * JMap.User.setLocale(locale)
      * ```
