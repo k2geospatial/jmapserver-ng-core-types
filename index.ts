@@ -490,7 +490,7 @@ export interface JLanguageService {
   setLocale(locale: JLocale): void
   translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
   isAmPm(): boolean
-  isValidLocale(locale: JLocale):boolean
+  isValidLocale(locale: JLocale): boolean
   getDateFormat(): string
 }
 
