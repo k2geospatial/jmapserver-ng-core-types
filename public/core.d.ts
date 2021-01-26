@@ -4512,7 +4512,7 @@ declare namespace JMap {
      * 
      * This method lets you add you own translations into JMap NG translation engine (for instance, all translations needed for one of your extensions)
      * 
-     * Once added, a bundle cannont be overriden, and it's identity must be unique (its id). You can specify a default locale for your bundle, in wich case
+     * Once added, a bundle cannot be overriden, and its identity must be unique (its id). You can specify a default locale for your bundle, in wich case
      * the NG translation engine will fall back to your bundle's default locale instead of on the system's default locale if a translation is not found 
      * in your bundle for the current locale.
      * 
