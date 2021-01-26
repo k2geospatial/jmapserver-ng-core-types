@@ -6,6 +6,7 @@ export interface JCoreService extends JCoreMainService {
   Project: JProjectService
   Layer: JLayerService
   User: JUserService
+  Language: JLanguageService
   Feature: JFeatureService
   Map: JMapService
   Geolocation: JGeolocationService,
@@ -461,9 +462,6 @@ export interface JUserService {
   getToken(): string
   getFullName(): string
   getUsername(): string
-  getLocales(): string[]
-  getLocale(): string
-  setLocale(locale: string): void
   getPreference(name: string): Promise<string | null>
   hasPreference(name: string): Promise<boolean>
   removePreference(name: string): Promise<string | null>
@@ -475,6 +473,17 @@ export interface JUserService {
   getAllInfos(): JUserInfo[]
   addInfo(info: JUserInfo): void
   removeInfo(infoId: string): void
+}
+
+export interface JLanguageService {
+  addBundle(bundle: JTranslationBundle): void
+  getLocales(): JLocale[]
+  getLocale(): JLocale
+  getDefaultLocale(): JLocale 
+  setLocale(locale: JLocale): void
+  translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
+  isAmPm(): boolean
+  getDateFormat(): string
 }
 
 export interface JMouseOverService {

@@ -4183,46 +4183,6 @@ declare namespace JMap {
     function getUsername(): string
 
     /**
-     * **JMap.User.getLocale**
-     * 
-     * Get the user locale.
-     * 
-     * @example ```ts
-     * 
-     * // return the current locale
-     * JMap.User.getLocale()
-     * ```
-     */
-    function getLocale(): string
-
-    /**
-     * **JMap.User.getLocales**
-     * 
-     * Get the list list of all available locales as an array.
-     * 
-     * @example ```ts
-     * 
-     * JMap.User.getLocales()
-     * // ["fr", "en", ......]
-     * ```
-     */
-    function getLocales(): string[]
-
-    /**
-     * **JMap.User.setLocale**
-     * 
-     * Sets the user locale. JMap will automatically reload.
-     * 
-     * @example ```ts
-     * 
-     * // Supported locales can be retrieved by calling [[JMap.User.getLocales()]]
-     * const locale = "fr"
-     * JMap.User.setLocale(locale)
-     * ```
-     */
-    function setLocale(locale: string): void
-
-    /**
      * **JMap.User.getPreference**
      * 
      * Get a user preference value from user storage. The returned Promise resolves to the value, else null if no preference has been set. 
@@ -4483,6 +4443,135 @@ declare namespace JMap {
      * ```
      */
     function removeInfo(infoId: string): void
+  }
+
+  /**
+   * **JMap.Language**
+   * 
+   * From this section you can manage the locale and translations used in JMap NG.
+   */
+  namespace Language {
+
+    /**
+     * **JMap.Language.getLocales**
+     * 
+     * Get the list list of all available locales as an array of string.
+     * 
+     * @example ```ts
+     * 
+     * JMap.Language.getLocales()
+     * // ["fr", "en", ......]
+     * ```
+     */
+    function getLocales(): JLocale[]
+
+    /**
+     * **JMap.Language.getLocale**
+     * 
+     * Get the current locale.
+     * 
+     * @example ```ts
+     * 
+     * // return the current locale
+     * JMap.Language.getLocale()
+     * ```
+     */
+    function getLocale(): JLocale
+
+    /**
+     * **JMap.Language.getDefaultLocale**
+     * 
+     * Get the default locale used by JMap NG. This locale can be used when a translation is not available in the current locale, for instance.
+     * 
+     * @example ```ts
+     * 
+     * // return the default locale
+     * JMap.Language.getDefaultLocale()
+     * ```
+     */
+    function getDefaultLocale(): JLocale
+
+    /**
+     * **JMap.Language.setLocale**
+     * 
+     * Sets the current locale. JMap NG will automatically reload.
+     * 
+     * @example ```ts
+     * 
+     * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
+     * const locale = "fr"
+     * JMap.Language.setLocale(locale)
+     * ```
+     */
+    function setLocale(locale: JLocale): void
+
+    /**
+     * **JMap.Language.addBundle**
+     * 
+     * This method lets you add you own translations into JMap NG translation engine (for instance, all translations needed for one of your extensions)
+     * 
+     * Once added, a bundle cannont be overriden, and it's identity must be unique (its id). You can specify a default locale for your bundle, in wich case
+     * the NG translation engine will fall back to your bundle's default locale instead of on the system's default locale if a translation is not found 
+     * in your bundle for the current locale.
+     * 
+     * @example ```ts
+     * 
+     * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
+     * 
+     * const bundle = {
+     *  id: "my-custom-bundle",
+     *  defaultLocale: "fr",
+     *  translationsByLocale: {
+     *    "fr" : {
+     *      "my-custom-label": "Ceci est ma traduction personnalisée en français"
+     *    },
+     *    "en" : {
+     *      "my-custom-label": "This is my custom translation in English"
+     *    }
+     *  }
+     * }
+     * JMap.Language.addBundle(bundle)
+     * JMap.Language.setLocale("fr")
+     * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label"))
+     * // "Ceci est ma traduction en français"
+     * ```
+     * 
+     * @param bundle a [[JTranslationBundle]] object
+     */
+    function addBundle(bundle: JTranslationBundle): void
+
+    /**
+     * 
+     * TODO: document
+     * 
+     * @param bundleId 
+     * @param key 
+     * @param params 
+     * @param paramLocale 
+     */
+    function translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
+
+    /**
+     * **JMap.Language.isAmPm**
+     * 
+     * Returns true if the current locale has a AM/PM setting for time format (08:00 PM), as opposed to a 24 hours format (20:00)
+     * 
+     * @example ```ts
+     * 
+     * // return the default locale
+     * JMap.Language.setLocale("fr")
+     * console.log(JMap.Language.isAmPm())
+     * // false
+     * ```
+     */
+    function isAmPm(): boolean
+
+    /**
+     * 
+     * TODO: document
+     * 
+     */
+    function getDateFormat(): string
   }
 
   /**
