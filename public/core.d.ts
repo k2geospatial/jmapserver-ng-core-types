@@ -4541,13 +4541,44 @@ declare namespace JMap {
     function addBundle(bundle: JTranslationBundle): void
 
     /**
+     * **JMap.Language.translate**
      * 
-     * TODO: document
+     * Returns a translated string from the speficied bundle, for the current local, or for a specified locale.
      * 
-     * @param bundleId 
-     * @param key 
-     * @param params 
-     * @param paramLocale 
+     * Parameters are supported, and must be passed as an array (or a single param) which must have the same length as the number of
+     * parameters in the translated string. Parameters must be identified by numbers starting at zero, corresponding
+     * to the index of the param in the array supplied
+     * 
+     * @example ```ts
+     * 
+     * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
+     * 
+     * const bundle = {
+     *  id: "my-custom-bundle",
+     *  defaultLocale: "fr",
+     *  translationsByLocale: {
+     *    "fr" : {
+     *      "my-custom-label": "Je parles {0} langues"
+     *    },
+     *    "en" : {
+     *      "my-custom-label": "I speak {0} languages"
+     *    }
+     *  }
+     * }
+     * JMap.Language.addBundle(bundle)
+     * JMap.Language.setLocale("fr")
+     * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label", ["2"]))
+     * // "Je parles 2 langues"
+     * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label", ["2"], "en"))
+     * // "I speak 2 languages"
+     * ```
+     * 
+     * @param bundleId the bundle id
+     * @param key the translation key
+     * @param params an optionnal param, or array of param
+     * @param paramLocale the optional locale (allow overriding the current locale)
+     * 
+     * 
      */
     function translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
 
@@ -4565,11 +4596,39 @@ declare namespace JMap {
      * ```
      */
     function isAmPm(): boolean
-
+    
     /**
+     * **JMap.Language.isValidLocale**
      * 
-     * TODO: document
+     * return true is the passed locale is supported by JMap NG, false otherwise
      * 
+     * @param locale the locale to be tested
+     * 
+     * @example ```ts
+     * 
+     * console.log(JMap.Language.isValidLocale("fr"))
+     * // true
+     * console.log(JMap.Language.isValidLocale("ch"))
+     * // false
+     * ```
+     */
+    function isValidLocale(locale: JLocale):boolean
+    
+    /**
+     * **JMap.Language.getDateFormat**
+     * 
+     * returns the date format associated with the current locale
+     * 
+     * @example ```ts
+     * 
+     * // return the default locale
+     * JMap.Language.setLocale("fr")
+     * console.log(JMap.Language.getDateFormat())
+     * // "DD/MM/YYYY"
+     * JMap.Language.setLocale("en")
+     * console.log(JMap.Language.getDateFormat())
+     * // "MM/DD/YYYY"
+     * ```
      */
     function getDateFormat(): string
   }

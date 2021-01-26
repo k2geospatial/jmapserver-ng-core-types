@@ -55,6 +55,7 @@ export interface JQueryService {
 export interface JEventService {
   Main: JCoreEventModule
   Layer: JLayerEventModule
+  Language: JLanguageEventModule
   Map: JMapEventModule
   Photo: JPhotoEventModule
   Project: JProjectEventModule
@@ -82,6 +83,12 @@ export interface JProjectEventModule extends JEventModule {
   on: {
     projectChange(listenerId: string, fn: (params: JProjectEventParams) => void): void
     projectsChange(listenerId: string, fn: (params: JProjectAllEventParams) => void): void
+  }
+}
+
+export interface JLanguageEventModule extends JEventModule {
+  on: {
+    localeChange(listenerId: string, fn: (params: JLanguageEventLocaleChangeParams) => void): void
   }
 }
 
@@ -483,6 +490,7 @@ export interface JLanguageService {
   setLocale(locale: JLocale): void
   translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
   isAmPm(): boolean
+  isValidLocale(locale: JLocale):boolean
   getDateFormat(): string
 }
 

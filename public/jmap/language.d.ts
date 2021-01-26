@@ -1,4 +1,4 @@
-declare type JLocale = "fr" | "en" | "es" | "pt"
+declare type JLocale = "fr" | "en" 
 
 declare interface JLocaleTranslation {    
   [key: string]: string
@@ -10,10 +10,14 @@ declare interface JTranslationsByLocale {
 
 declare interface JTranslationBundle {
   id: string
-  defaultLocale: JLocale
   translationsByLocale: JTranslationsByLocale
+  defaultLocale?: JLocale
 }
 
 declare interface JTranslationBundleById {
   [bundleId: string]: JTranslationBundle
+}
+
+declare interface JLanguageEventLocaleChangeParams {
+  locale: JLocale
 }
