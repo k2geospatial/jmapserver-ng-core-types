@@ -4474,6 +4474,7 @@ declare namespace JMap {
      * 
      * // return the current locale
      * JMap.Language.getLocale()
+     * // "fr"
      * ```
      */
     function getLocale(): JLocale
@@ -4487,6 +4488,7 @@ declare namespace JMap {
      * 
      * // return the default locale
      * JMap.Language.getDefaultLocale()
+     * // "en"
      * ```
      */
     function getDefaultLocale(): JLocale
