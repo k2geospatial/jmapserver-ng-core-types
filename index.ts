@@ -6,6 +6,7 @@ export interface JCoreService extends JCoreMainService {
   Project: JProjectService
   Layer: JLayerService
   User: JUserService
+  Language: JLanguageService
   Feature: JFeatureService
   Map: JMapService
   Geolocation: JGeolocationService,
@@ -54,6 +55,7 @@ export interface JQueryService {
 export interface JEventService {
   Main: JCoreEventModule
   Layer: JLayerEventModule
+  Language: JLanguageEventModule
   Map: JMapEventModule
   Photo: JPhotoEventModule
   Project: JProjectEventModule
@@ -81,6 +83,12 @@ export interface JProjectEventModule extends JEventModule {
   on: {
     projectChange(listenerId: string, fn: (params: JProjectEventParams) => void): void
     projectsChange(listenerId: string, fn: (params: JProjectAllEventParams) => void): void
+  }
+}
+
+export interface JLanguageEventModule extends JEventModule {
+  on: {
+    localeChange(listenerId: string, fn: (params: JLanguageEventLocaleChangeParams) => void): void
   }
 }
 
@@ -461,9 +469,6 @@ export interface JUserService {
   getToken(): string
   getFullName(): string
   getUsername(): string
-  getLocales(): string[]
-  getLocale(): string
-  setLocale(locale: string): void
   getPreference(name: string): Promise<string | null>
   hasPreference(name: string): Promise<boolean>
   removePreference(name: string): Promise<string | null>
@@ -475,6 +480,21 @@ export interface JUserService {
   getAllInfos(): JUserInfo[]
   addInfo(info: JUserInfo): void
   removeInfo(infoId: string): void
+}
+
+export interface JLanguageService {
+  addBundle(bundle: JTranslationBundle): void
+  bundleExitsById(bundleId: string): boolean
+  getBundleById(bundleId: string): JTranslationBundle
+  getBundles(): JTranslationBundleById
+  getLocales(): JLocale[]
+  getLocale(): JLocale
+  getDefaultLocale(): JLocale 
+  setLocale(locale: JLocale): void
+  translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
+  is12HoursTimeFormat(): boolean
+  isValidLocale(locale: JLocale): boolean
+  getDateFormat(): string
 }
 
 export interface JMouseOverService {

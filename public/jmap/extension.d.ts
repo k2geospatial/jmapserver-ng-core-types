@@ -75,6 +75,12 @@ declare interface JCoreExtension {
    * @param feature  The mouseovered feature (having all its properties filled)
    */
   renderMouseOver?: (layer: JLayer, feature: any) => JExtensionMouseOver
+  
+  /**
+   * You can provide a translation bundle for your extesion. All translations will be handled by the JMap NG
+   * translation engine. See [[JMap.Language.addBundle]] for more details on bundles
+   */
+  translationBundle?: JTranslationBundle
 }
 
 declare interface JExtensionMouseOver {
