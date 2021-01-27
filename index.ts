@@ -484,12 +484,15 @@ export interface JUserService {
 
 export interface JLanguageService {
   addBundle(bundle: JTranslationBundle): void
+  bundleExitsById(bundleId: string): boolean
+  getBundleById(bundleId: string): JTranslationBundle
+  getBundles(): JTranslationBundleById
   getLocales(): JLocale[]
   getLocale(): JLocale
   getDefaultLocale(): JLocale 
   setLocale(locale: JLocale): void
   translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
-  isAmPm(): boolean
+  is12HoursTimeFormat(): boolean
   isValidLocale(locale: JLocale): boolean
   getDateFormat(): string
 }

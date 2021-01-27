@@ -4497,6 +4497,9 @@ declare namespace JMap {
      * **JMap.Language.setLocale**
      * 
      * Sets the current locale. JMap NG will automatically reload.
+
+     * @throws if locale is invalid
+     * @param locale the new locale to use
      * 
      * @example ```ts
      * 
@@ -4515,6 +4518,9 @@ declare namespace JMap {
      * Once added, a bundle cannot be overriden, and its identity must be unique (its id). You can specify a default locale for your bundle, in wich case
      * the NG translation engine will fall back to your bundle's default locale instead of on the system's default locale if a translation is not found 
      * in your bundle for the current locale.
+     * 
+     * @throws if bundle is invalid or already defined
+     * @param bundle a [[JTranslationBundle]] object
      * 
      * @example ```ts
      * 
@@ -4537,11 +4543,47 @@ declare namespace JMap {
      * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label"))
      * // "Ceci est ma traduction en français"
      * ```
-     * 
-     * @param bundle a [[JTranslationBundle]] object
      */
     function addBundle(bundle: JTranslationBundle): void
 
+    /**
+     * **JMap.Language.bundleExitsById**
+     * 
+     * Returns true if the bundle exists in the JMap NG translation engine, false otherwise
+     * 
+     * @param bundleId 
+     */
+    function bundleExitsById(bundleId: string): boolean
+
+    /**
+     * **JMap.Language.getBundleById**
+     * 
+     * Returns the translation bundle identified by the id
+     * 
+     * @throws if bundle id is not correct or if bundle not found
+     * @param bundleId the id of the bundle to retrieve
+     * 
+     * @example ```ts
+     * 
+     * JMap.Language.getBundleById("my-custom-bundle")
+     * // {id: "my-custom-bundle", defaultLocale: "fr",   ...}
+     * ```
+     */
+    function getBundleById(bundleId: string): JTranslationBundle
+
+    /**
+     * **JMap.Language.getBundles**
+     * 
+     * Returns an bbject of all the translation bundles loaded in JMap NG at the moment of the call, indexed by id
+     * 
+     * @example ```ts
+     * 
+     * JMap.Language.getBundles()
+     * // { "my-custom-bundle": {id: "my-custom-bundle", defaultLocale: "fr",   ...}, ....}
+     * ```
+     */
+    function getBundles(): JTranslationBundleById
+  
     /**
      * **JMap.Language.translate**
      * 
@@ -4550,6 +4592,11 @@ declare namespace JMap {
      * Parameters are supported, and must be passed as an array (or a single param) which must have the same length as the number of
      * parameters in the translated string. Parameters must be identified by numbers starting at zero, corresponding
      * to the index of the param in the array supplied
+     * 
+     * @param bundleId the bundle id
+     * @param key the translation key
+     * @param params an optionnal param, or array of param
+     * @param paramLocale the optional locale (allow overriding the current locale)
      * 
      * @example ```ts
      * 
@@ -4574,18 +4621,11 @@ declare namespace JMap {
      * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label", ["2"], "en"))
      * // "I speak 2 languages"
      * ```
-     * 
-     * @param bundleId the bundle id
-     * @param key the translation key
-     * @param params an optionnal param, or array of param
-     * @param paramLocale the optional locale (allow overriding the current locale)
-     * 
-     * 
      */
     function translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
 
     /**
-     * **JMap.Language.isAmPm**
+     * **JMap.Language.is12HoursTimeFormat**
      * 
      * Returns true if the current locale has a AM/PM setting for time format (08:00 PM), as opposed to a 24 hours format (20:00)
      * 
@@ -4593,11 +4633,11 @@ declare namespace JMap {
      * 
      * // return the default locale
      * JMap.Language.setLocale("fr")
-     * console.log(JMap.Language.isAmPm())
+     * console.log(JMap.Language.is12HoursTimeFormat())
      * // false
      * ```
      */
-    function isAmPm(): boolean
+    function is12HoursTimeFormat(): boolean
     
     /**
      * **JMap.Language.isValidLocale**
