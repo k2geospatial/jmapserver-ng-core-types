@@ -4642,7 +4642,7 @@ declare namespace JMap {
     /**
      * **JMap.Language.isValidLocale**
      * 
-     * return true is the passed locale is supported by JMap NG, false otherwise
+     * returns true is the passed locale is supported by JMap NG, false otherwise
      * 
      * @param locale the locale to be tested
      * 
