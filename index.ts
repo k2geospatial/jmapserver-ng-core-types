@@ -168,11 +168,14 @@ export interface JCoreState {
 export interface JFormState {
   isLoadingLayer: boolean
   hasLoadingLayerError: boolean
+  isLoadingElement: boolean
+  hasLoadingElementError: boolean
   layerId: JId | undefined
   formById: JFormById
   isCreation: boolean
   creationGeometry: GeoJSON.Geometry | undefined
   tree: JFormTreeElement | undefined
+  defaultFormValuesByFormId: { [formId: string ] : JFormData }
 }
 
 export interface JGeolocationState {
@@ -257,6 +260,7 @@ export interface JFormService {
   selectElementsForActiveForm(elementIds: JId): Promise<void>
   unSelectElementsForActiveForm(elementIds: JId): void
   getDefaultValues(form: JForm, initialData?: JFormData): JFormData
+  setDefaultValues(formId: JId, defaultData: JFormData | undefined): void
   getPreparedData(form: JForm, data: JFormData): JFormData
   validateData(form: JForm, data: JFormData): { [key: string]: string }
 }

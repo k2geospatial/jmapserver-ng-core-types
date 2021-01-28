@@ -6174,6 +6174,7 @@ declare namespace JMap {
     function getSelectedElementIdsForActiveForm(): JId[]
     function selectElementsForActiveForm(elementIds: JId): Promise<void>
     function unSelectElementsForActiveForm(elementIds: JId): void
+    function setDefaultValues(formId: JId, defaultData: JFormData | undefined): void
 
     /**
      * ***JMap.Form.getDefaultValues***
