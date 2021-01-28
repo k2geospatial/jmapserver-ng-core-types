@@ -5671,7 +5671,7 @@ declare namespace JMap {
          * )
          * ```
          */
-        function containerReady(listenerId: string, fn: (params: JMapEventContainerCreatedParams) => void): void
+        function containerReady(listenerId: string, fn: (params: JMapEventContainerReadyParams) => void): void
 
         /**
          * ***JMap.Event.Map.on.containerResized***
