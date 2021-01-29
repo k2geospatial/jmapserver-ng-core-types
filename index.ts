@@ -200,7 +200,7 @@ export interface JProjectState {
   loadingError: boolean
   allProjects: JProject[]
   selectedProject: JProject
-  avoidProjectChange: boolean
+  disableProjectChange: boolean
 }
 
 export interface JLayerState {
@@ -411,7 +411,7 @@ export interface JProjectService {
   getInitialExtent(): JBounds | null
   getBase64ImageThumbnail(): string
   loadAllProjectThumbnails(params?: JProjectLoadThumbnailsParams): Promise<void>
-  isChangeAvoided(): boolean
+  isChangeDisabled(): boolean
 }
 
 export interface JLayerService {
