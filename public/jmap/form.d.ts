@@ -31,7 +31,7 @@ declare type JSONSchemaTypes =
   | "object"
 
 declare interface JForm {
-  id: number
+  id: JId
   type: JFormType
   name: string
   schema: JFormSchema
@@ -250,7 +250,8 @@ declare interface JFormFieldTable extends JFormFieldBase {
 
 declare interface JFormElement {
   elementId: JId
-  attributeValuesByName: JAttributeValueByName
+  attributeValueByName: JAttributeValueByName
+  geometry?: GeoJSON.Geometry // required for/in attribute forms
 }
 
 declare interface JFormById {
@@ -271,11 +272,16 @@ declare interface JFormElementIds extends JFormId {
 }
 
 declare interface JFormElementData extends JFormId {
-  attributesValuesByName: JAttributeValueByName
+  attributeValueByName: JAttributeValueByName
 }
 
-declare interface JFormCreateAttributeElementParams extends JFormElementData {
+declare interface JFormCreateAttributeElementsParams extends JFormId {
+  elements: JFormCreateAttributeElement[]
+}
+
+declare interface JFormCreateAttributeElement {
   geometry: GeoJSON.Geometry
+  attributeValueByName: JAttributeValueByName
 }
 
 declare interface JFormCreateExternalOrSubFormElementParams extends JFormElementData {

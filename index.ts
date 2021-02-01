@@ -173,9 +173,8 @@ export interface JFormState {
   layerId: JId | undefined
   formById: JFormById
   isCreation: boolean
-  creationGeometry: GeoJSON.Geometry | undefined
   tree: JFormTreeElement | undefined
-  defaultFormValuesByFormId: { [formId: string ] : JFormData }
+  activeFormValuesByFormId: { [formId: string ] : JFormData }
 }
 
 export interface JGeolocationState {
@@ -241,10 +240,10 @@ export type JHistoryListener = (oldValue: string | undefined, newValue: string |
 
 export interface JFormService {
   getLayerFormsById(layerId: number): Promise<JForm[]>
-  createAttributeFormElement(params: JFormCreateAttributeElementParams): Promise<GeoJSON.Feature>
-  createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
   getElement(params: JFormElementId): Promise<JFormElement | undefined>
   getElements(params: JFormElementIds): Promise<JFormElement[]>
+  createAttributeFormElements(params: JFormCreateAttributeElementsParams): Promise<GeoJSON.Feature>
+  createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
   updateAttributeElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
   updateExternalElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
   deleteElements(params: JFormElementIds): Promise<void>
@@ -253,14 +252,15 @@ export interface JFormService {
   activateLayerById(layerId: number): Promise<JForm[]>
   deactivateLayer(): void
   getActiveLayerForms(): JForm[]
-  openCreationElementDialog(params: JFormCreateParams): Promise<void>
-  openEditElementDialog(params: JFormEditParams): Promise<void>
-  closeCurrentForm(): void
+  activateCreationForm(params: JFormCreateParams): Promise<void>
+  activateEditForm(params: JFormEditParams): Promise<void>
+  setActiveFormData(data: JFormData | undefined): void
+  submitActiveForm(): Promise<void>
+  closeActiveForm(): void
   getSelectedElementIdsForActiveForm(): JId[]
   selectElementsForActiveForm(elementIds: JId): Promise<void>
   unSelectElementsForActiveForm(elementIds: JId): void
   getDefaultValues(form: JForm, initialData?: JFormData): JFormData
-  setDefaultValues(formId: JId, defaultData: JFormData | undefined): void
   getPreparedData(form: JForm, data: JFormData): JFormData
   validateData(form: JForm, data: JFormData): { [key: string]: string }
 }

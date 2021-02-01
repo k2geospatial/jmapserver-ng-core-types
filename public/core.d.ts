@@ -5671,7 +5671,7 @@ declare namespace JMap {
          * )
          * ```
          */
-        function containerReady(listenerId: string, fn: (params: JMapEventContainerCreatedParams) => void): void
+        function containerReady(listenerId: string, fn: (params: JMapEventContainerReadyParams) => void): void
 
         /**
          * ***JMap.Event.Map.on.containerResized***
@@ -6156,10 +6156,10 @@ declare namespace JMap {
    */
   namespace Form {
     function getLayerFormsById(layerId: number): Promise<JForm[]>
-    function createAttributeFormElement(params: JFormCreateAttributeElementParams): Promise<GeoJSON.Feature>
-    function createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
     function getElement(params: JFormElementId): Promise<JFormElement | undefined>
     function getElements(params: JFormElementIds): Promise<JFormElement[]>
+    function createAttributeFormElements(params: JFormCreateAttributeElementsParams): Promise<GeoJSON.Feature>
+    function createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
     function updateAttributeElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
     function updateExternalElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
     function deleteElements(params: JFormElementIds): Promise<void>
@@ -6168,13 +6168,14 @@ declare namespace JMap {
     function activateLayerById(layerId: number): Promise<JForm[]>
     function deactivateLayer(): void
     function getActiveLayerForms(): JForm[]
-    function openCreationElementDialog(params: JFormCreateParams): Promise<void>
-    function openEditElementDialog(params: JFormEditParams): Promise<void>
-    function closeCurrentForm(): void
+    function activateCreationForm(params: JFormCreateParams): Promise<void>
+    function activateEditForm(params: JFormEditParams): Promise<void>
+    function setActiveFormData(data: JFormData | undefined): void
+    function submitActiveForm(): Promise<void>
+    function closeActiveForm(): void
     function getSelectedElementIdsForActiveForm(): JId[]
     function selectElementsForActiveForm(elementIds: JId): Promise<void>
     function unSelectElementsForActiveForm(elementIds: JId): void
-    function setDefaultValues(formId: JId, defaultData: JFormData | undefined): void
 
     /**
      * ***JMap.Form.getDefaultValues***
