@@ -232,7 +232,7 @@ export interface JFormService {
 }
 
 export interface JHistoryService {
-  transformSearchParamsIntoHashParams(paramNames?: string[]): void
+  transformSearchParamsIntoHashParams(paramNames: string | string[]): void
   goBack(): void
   goForward(): void
   getHashParameter(parameterName: string): string

@@ -246,20 +246,20 @@ declare namespace JMap {
     /**
      * **JMap.History.transformSearchParamsIntoHashParams**
      * 
-     * Get all search params in the url and transform them into hash params
+     * Get all specified search params in the url and transform them into hash params
      * without refreshing the page.
      * 
-     * @param paramNames list of params to transform, if no params will transform all search params
+     * @param paramNames list of params to transform.
      * @example ```ts
      * 
-     * // Ex. url is = ***http://localhost:8080/services/ng?ngProjectId=0&myvar=test***
+     * // Ex. url is = ***http://localhost:8080/services/ng?foreign=true&ngProjectId=0&myvar=test***
      *
-     * JMap.History.transformSearchParamsIntoHashParams()
+     * JMap.History.transformSearchParamsIntoHashParams(["ngProjectId", "myvar"])
      * 
-     * // The url is now = ***http://localhost:8080/services/ng#ngProjectId=0&myvar=test***
+     * // The url is now = ***http://localhost:8080/services/ng?foreign=true#ngProjectId=0&myvar=test***
      * ```
      */
-    function transformSearchParamsIntoHashParams(paramNames?: string[]): void
+    function transformSearchParamsIntoHashParams(paramNames: string | string[]): void
     
     /**
      * **JMap.History.goBack**
