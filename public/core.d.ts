@@ -246,20 +246,20 @@ declare namespace JMap {
     /**
      * **JMap.History.transformSearchParamsIntoHashParams**
      * 
-     * Get all search params in the url and transform them into hash params
+     * Get all specified search params in the url and transform them into hash params
      * without refreshing the page.
      * 
-     * @param paramNames list of params to transform, if no params will transform all serach params
+     * @param paramNames list of params to transform.
      * @example ```ts
      * 
-     * // Ex. url is = ***http://localhost:8080/services/jmap?projectId=0&myvar=test***
+     * // Ex. url is = ***http://localhost:8080/services/ng?foreign=true&ngProjectId=0&myvar=test***
      *
-     * JMap.History.transformSearchParamsIntoHashParams()
+     * JMap.History.transformSearchParamsIntoHashParams(["ngProjectId", "myvar"])
      * 
-     * // The url is now = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+     * // The url is now = ***http://localhost:8080/services/ng?foreign=true#ngProjectId=0&myvar=test***
      * ```
      */
-    function transformSearchParamsIntoHashParams(paramNames?: string[]): void
+    function transformSearchParamsIntoHashParams(paramNames: string | string[]): void
     
     /**
      * **JMap.History.goBack**
@@ -299,7 +299,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // Ex. url = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+     * // Ex. url = ***http://localhost:8080/services/ng#ngProjectId=0&myvar=test***
      * 
      * JMap.History.getHashParameter("myvar")
      * // return "test"
@@ -321,10 +321,10 @@ declare namespace JMap {
      * // get all parameters in the url hash
      * JMap.History.getHashParameters()
      * 
-     * // Ex. url = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+     * // Ex. url = ***http://localhost:8080/services/ng#ngProjectId=0&myvar=test***
      * // Will return this object :
      * {
-     *    projectId: 0,
+     *    ngProjectId: 0,
      *    myvar: "test"
      * }
      * ```
@@ -343,11 +343,11 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // Ex. url is = ***http://localhost:8080/services/jmap#?projectId=0***
+     * // Ex. url is = ***http://localhost:8080/services/ng#ngProjectId=0***
      *
      * JMap.History.pushHashParameters("myvar", "test")
      * 
-     * // The url is now = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+     * // The url is now = ***http://localhost:8080/services/ng#ngProjectId=0&myvar=test***
      * ```
      */
     function pushHashParameters(parameterName: string, parameterValue: string): void
@@ -365,11 +365,11 @@ declare namespace JMap {
      *  
      * @example ```ts
      * 
-     * // Ex. url is = ***http://localhost:8080/services/jmap#?projectId=0&myvar=test***
+     * // Ex. url is = ***http://localhost:8080/services/ng#ngProjectId=0&myvar=test***
      *
      * JMap.History.popHashParameters("myvar")
      * 
-     * // The url is now = ***http://localhost:8080/services/jmap#?projectId=0***
+     * // The url is now = ***http://localhost:8080/services/ng#ngProjectId=0***
      * ```
      */
     function popHashParameters(parameterName: string): void
@@ -390,8 +390,8 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * const listenerId = JMap.History.onParameterChange("projectId", (oldValue, newValue) => {
-     *    console.log(`In the url hash the parameter "projectId" has changed from "${oldValue}" to "${newValue}"`)
+     * const listenerId = JMap.History.onParameterChange("ngProjectId", (oldValue, newValue) => {
+     *    console.log(`In the url hash the parameter "ngProjectId" has changed from "${oldValue}" to "${newValue}"`)
      * })
      * ```
      */
@@ -4107,31 +4107,31 @@ declare namespace JMap {
     function loadAllProjectThumbnails(params?: JProjectLoadThumbnailsParams): Promise<void>
 
     /**
-     * **JMap.Project.isChangeAvoided**
+     * **JMap.Project.isChangeDisabled**
      * 
-     * Returns true if the project change has been avoided by startup option "avoidProjectChange" (see [[JCoreOptions]]).
+     * Returns true if the project change has been disabled by startup option "disableProjectChange" (see [[JCoreOptions]]).
      * 
      * Notice that as long the first project has not been loaded, this method returns false even if the parameter is true.
      * 
-     * It becomes true, if option "avoidProjectChange" is set to true, and a project has been activated.
+     * It becomes true, if option "disableProjectChange" is set to true, and a project has been activated.
      * 
      * @example ```ts
      * 
      * // We assert that :
-     * //  - the option "avoidProjectChange" is true
+     * //  - the option "disableProjectChange" is true
      * //  - no project is yet activated, no map is displayed.
      * 
      * // returns false
-     * JMap.Project.isChangeAvoided()
+     * JMap.Project.isChangeDisabled()
      * 
      * // first time a project is activated
      * JMap.Project.activateByName("My project")
      * 
      * // returns true
-     * JMap.Project.isChangeAvoided()
+     * JMap.Project.isChangeDisabled()
      * ```
      */
-    function isChangeAvoided(): boolean
+    function isChangeDisabled(): boolean
   }
 
   /**

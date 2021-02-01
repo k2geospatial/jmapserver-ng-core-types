@@ -55,7 +55,7 @@ declare interface Window {
  * ```
  * 
  * Below a full example of how to start the JMap library in a web page,
- * where parameters ***token*** and ***projectId*** are get from the url :
+ * where parameters ***ngToken*** and ***ngProjectId*** are get from the url :
 
  * ```html
  * <!DOCTYPE html>
@@ -67,8 +67,8 @@ declare interface Window {
  *   <body class="jmap_wrapper">
  *    <script type="text/javascript">
  *       const url = new URL(window.location.href)
- *       const token = url.searchParams.get("token")
- *       let projectId = Number(url.searchParams.get("projectId"))
+ *       const token = url.searchParams.get("ngToken")
+ *       let projectId = Number(url.searchParams.get("ngProjectId"))
  *       if (isNaN(projectId)) {
  *         projectId = 0
  *       }
@@ -85,7 +85,7 @@ declare interface Window {
  * ```
  * 
  * For example, you can pass this parameters like that :
- *   - **http:// my-company/my-custom-page-using-jmap?token=95423672742&projectId=10**.
+ *   - **http:// my-company/my-custom-page-using-jmap?ngToken=95423672742&ngProjectId=10**.
  * 
  * When JMAP Core library starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
  * the **JMap project id=*10***, then load the map in the **div id="*jmap-map*"**.
@@ -233,7 +233,7 @@ declare interface JCoreOptions {
   /**
    * If the project you access can be accessed anonymously,
    * you are not forced to pass a session token but you have
-   * to explicitly tell the JMap library to log as an anonymous
+   * to explicitly tell the JMap NG library to log as an anonymous
    * user by setting the "***anonymous***" parameter like that :
    * 
    * ```html
@@ -379,14 +379,14 @@ declare interface JCoreOptions {
   extensions?: JCoreExtension[]
 
   /**
-   * If true, changing project after one has been loaded will be avoided.
+   * If true, changing project after one has been loaded will be disabled.
    */
-  avoidProjectChange?: boolean
+  disableProjectChange?: boolean
 
   /**
    * If set to any of the locales supported by JMap, will define the default locale, bypassing browser or user-defined locale.
    * 
    * Supported locales  can be retrieved by calling [[JMap.User.getLocales()]]
    */
-  jmapLocale?: string
+  locale?: string
 }
