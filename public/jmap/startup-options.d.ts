@@ -389,4 +389,9 @@ declare interface JCoreOptions {
    * Supported locales  can be retrieved by calling [[JMap.User.getLocales()]]
    */
   locale?: string
+
+  /**
+   * Call when the JMap library is loaded
+   */
+  onReady?: () => void
 }

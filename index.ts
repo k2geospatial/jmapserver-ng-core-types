@@ -32,6 +32,7 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
+  loadJSFile(fileUrl: string): Promise<void>
 }
 
 export interface JGeolocationService {
@@ -254,6 +255,7 @@ export interface JFormService {
   getActiveLayerForms(): JForm[]
   activateCreationForm(params: JFormCreateParams): Promise<void>
   activateEditForm(params: JFormEditParams): Promise<void>
+  getActiveFormData(form: JForm, initialData?: JFormData): JFormData
   setActiveFormData(data: JFormData | undefined): void
   submitActiveForm(): Promise<void>
   closeActiveForm(): void

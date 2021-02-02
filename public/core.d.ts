@@ -99,6 +99,19 @@ declare namespace JMap {
   function getOS(): JOperatingSystem
 
   /**
+  * **JMap.loadJSFile**
+  * 
+  * Load an external JS File then resolve when file has been loaded.
+  * 
+  * @example ```ts
+  * 
+  * // load your custom JS file dynamically
+  * JMap.loadJSFile("https://mysever/toLoadFile.js")
+  * ```
+  */
+  function loadJSFile(fileUrl: string): Promise<void>
+
+  /**
    * **JMap.Geolocation**
    * 
    * This is where you can find geolocation relative methods
@@ -6170,6 +6183,7 @@ declare namespace JMap {
     function getActiveLayerForms(): JForm[]
     function activateCreationForm(params: JFormCreateParams): Promise<void>
     function activateEditForm(params: JFormEditParams): Promise<void>
+    function getActiveFormData(form: JForm, initialData?: JFormData): JFormData
     function setActiveFormData(data: JFormData | undefined): void
     function submitActiveForm(): Promise<void>
     function closeActiveForm(): void
