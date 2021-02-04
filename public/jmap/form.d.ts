@@ -30,7 +30,9 @@ declare type JSONSchemaTypes =
   | "array"
   | "object"
 
-declare interface JForm {
+// FORM METADATA
+
+declare interface JFormMetaData {
   id: JId
   type: JFormType
   name: string
@@ -71,6 +73,8 @@ declare interface JFormSchemaProperty {
   parents?: Array<string | undefined> | Array<string | undefined>
   default?: any
 }
+
+// FORM METADATA UI
 
 declare type JFormUISchema = JFormUITab[]
 
@@ -248,14 +252,59 @@ declare interface JFormFieldTable extends JFormFieldBase {
   attributes: JFormAttribute[]
 }
 
-declare interface JFormElement {
-  elementId: JId
+// FORM DATA
+
+declare interface JFormElementData {
   attributeValueByName: JAttributeValueByName
-  geometry?: GeoJSON.Geometry // required for/in attribute forms
 }
 
-declare interface JFormById {
-  [formId: string]: JForm
+declare interface JFormElement extends JFormElementData {
+  /**
+   * The element id
+   * In attribute form => layer attribute id
+   * In external form => related layer attribute id
+   * In sub form (and sub sub forms) => related parent element id
+   */
+  elementId: JId
+  /**
+   * Only used by external and subform.
+   * At runtime this value is undefined for an attribute form.
+   * In external and sub forms elements don't have any specific id, it's just values.
+   */
+  externalElements: JAttributeValueByName[]
+  // at runtime attributeValueByName is undefined when form is not an attribute form
+}
+
+// Used only for JMap 7 Rest API
+declare interface JFormExternalAttribute {
+  type: number
+  name: string
+}
+
+declare interface JForm extends JFormElementData {
+  id: JId
+  metaData: JFormMetaData
+  parent: JForm | undefined
+  elements: JFormElement[]
+  fetchElementsFromServerFailed: boolean
+  submitErrors: { [attributeName: string]: any }
+  hasChange: boolean
+  isMultiple: boolean
+  isCreation: boolean
+  isAttributeForm: boolean
+  isExternalForm: boolean
+  isSubForm: boolean
+  /**
+   * In JMap 7 server we get it in the get elements query, but we need to keep it because
+   * it's required to pass in update queries the external attributes.
+   * It's because the server is not abale to know which attribute exists ...
+   */
+  externalAttributes: JFormExternalAttribute[]
+  geometry?: GeoJSON.Geometry // required for attribute forms
+}
+
+declare interface JFormMetaDataById {
+  [formId: string]: JFormMetaData
 }
 
 declare interface JFormId {
@@ -271,25 +320,20 @@ declare interface JFormElementIds extends JFormId {
   elementIds: JId[]
 }
 
-declare interface JFormElementData extends JFormId {
-  attributeValueByName: JAttributeValueByName
+declare interface JFormElements extends JFormId {
+  elements: JFormElement[]
 }
 
-declare interface JFormCreateAttributeElementsParams extends JFormId {
-  elements: JFormCreateAttributeElement[]
-}
-
-declare interface JFormCreateAttributeElement {
+declare interface JFormCreateAttributeFormElementParams extends JFormElementData, JFormId {
   geometry: GeoJSON.Geometry
-  attributeValueByName: JAttributeValueByName
 }
 
-declare interface JFormCreateExternalOrSubFormElementParams extends JFormElementData {
+declare interface JFormCreateElementParams extends JFormElementData, JFormId {
   layerElementId: JId
 }
 
-declare interface JFormUpdateElementsParams extends JFormId {
-  elements: JFormElement[]
+declare interface JFormUpdateElementsParams extends JFormElements {
+  // nothing
 }
 
 declare interface JFormResult {
@@ -305,14 +349,3 @@ declare interface JFormEditParams extends JFormId {
   elements: JFormElement[]
 }
 
-declare interface JFormTreeElement {
-  layerId: JId
-  form: JForm
-  elements: JFormElement[]
-  selectedElementIds: JId[]
-  openedSubFormSelection: JFormTreeElement | undefined
-}
-
-declare interface JFormData {
-  [id: string]: any
-}

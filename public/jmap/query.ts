@@ -11,5 +11,5 @@ declare interface JQuery {
   layerId: number
   maxScale: number
   maxResults: number,
-  form: JForm
+  formMetaData: JFormMetaData
 }

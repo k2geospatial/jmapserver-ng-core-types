@@ -1213,6 +1213,47 @@ declare namespace JMap {
     function isValidLocation(location: JLocation | undefined): boolean
 
     /**
+     * **JMap.Geometry.isValidBbox**
+     * 
+     * Return false if the provided parameter is not a valid boundary box.
+     * 
+     * @param bbox The bbox object to check
+     * @example ```ts
+     * 
+     * let bbox = { sw: { x: 10, y: 10 }, ne: { x: 12, y: 12 } }
+     * // The following instruction will return true
+     * JMap.Geometry.isValidBbox(bbox)
+     * 
+     * bbox = { sw: { x: 10, y: 10 } } // missing "ne" attribute
+     * // The following instruction will return false
+     * JMap.Geometry.isValidBbox(bbox)
+     * ```
+     */
+    function isValidBbox(bbox: JBoundaryBox | undefined): boolean
+
+    /**
+     * **JMap.Geometry.isValidGeometry**
+     * 
+     * Return true if the provided geometry is valid.
+     * 
+     * @param geometry The given geometry object to test
+     * @example ```ts
+     * 
+     * // return true
+     * JMap.Geometry.isValidGeometry({
+     *   "type": "Point",
+     *   "coordinates": [43.6, 10.1]
+     * })
+     * 
+     * // return false
+     * JMap.Geometry.isValidGeometry({
+     *  "coordinates": [43.6, 10.1]
+     * })
+     * ```
+     */
+    function isValidGeometry(geometry: any): boolean
+
+    /**
      * **JMap.Geometry.checkCircle**
      * 
      * Throw an error if the provided parameter is not a valid circle.
@@ -1287,25 +1328,6 @@ declare namespace JMap {
      * ```
      */
     function checkBbox(bbox: JBoundaryBox): void
-
-    /**
-     * **JMap.Geometry.isValidBbox**
-     * 
-     * Return false if the provided parameter is not a valid boundary box.
-     * 
-     * @param bbox The bbox object to check
-     * @example ```ts
-     * 
-     * let bbox = { sw: { x: 10, y: 10 }, ne: { x: 12, y: 12 } }
-     * // The following instruction will return true
-     * JMap.Geometry.isValidBbox(bbox)
-     * 
-     * bbox = { sw: { x: 10, y: 10 } } // missing "ne" attribute
-     * // The following instruction will return false
-     * JMap.Geometry.isValidBbox(bbox)
-     * ```
-     */
-    function isValidBbox(bbox: JBoundaryBox | undefined): boolean
 
     /**
      * **JMap.Geometry.getArea**
@@ -6168,29 +6190,29 @@ declare namespace JMap {
    * Here you'll find all form related methods
    */
   namespace Form {
-    function getLayerFormsById(layerId: number): Promise<JForm[]>
+    function getFormsMetaDataByLayerId(layerId: number): Promise<JFormMetaData[]>
     function getElement(params: JFormElementId): Promise<JFormElement | undefined>
     function getElements(params: JFormElementIds): Promise<JFormElement[]>
-    function createAttributeFormElements(params: JFormCreateAttributeElementsParams): Promise<GeoJSON.Feature>
-    function createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
-    function updateAttributeElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
-    function updateExternalElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
-    function deleteElements(params: JFormElementIds): Promise<void>
-    function hasActiveForm(): boolean
-    function getActiveForm(): JForm
-    function activateLayerById(layerId: number): Promise<JForm[]>
-    function deactivateLayer(): void
-    function getActiveLayerForms(): JForm[]
-    function activateCreationForm(params: JFormCreateParams): Promise<void>
-    function activateEditForm(params: JFormEditParams): Promise<void>
-    function getActiveFormData(form: JForm, initialData?: JFormData): JFormData
-    function setActiveFormData(data: JFormData | undefined): void
-    function submitActiveForm(): Promise<void>
-    function closeActiveForm(): void
-    function getSelectedElementIdsForActiveForm(): JId[]
-    function selectElementsForActiveForm(elementIds: JId): Promise<void>
-    function unSelectElementsForActiveForm(elementIds: JId): void
-
+    function createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
+    function createExternalFormElement(params: JFormCreateElementParams): Promise<JFormResult>
+    function createSubFormElement(params: JFormCreateElementParams): Promise<JFormResult>
+    function updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
+    function updateExternalFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+    function updateSubFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+    function deleteAttributeFormElements(params: JFormElementIds): Promise<void>
+    function deleteExternalFormElements(params: JFormElements): Promise<void>
+    function deleteSubFormElements(params: JFormElements): Promise<void>
+    function hasDisplayedForm(): boolean
+    function getDisplayedForm(): JForm
+    function openCreationDialogForLayer(layerId: number): Promise<JFormMetaData[]>
+    function openUpdateDialogForLayer(layerId: number, elements: JFormElement[]): Promise<JFormMetaData[]>
+    function openCreationDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm): void
+    function openUpdateDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm, elements: JFormElements[]): void
+    function closeCurrentDisplayedDialog(): void
+    function getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
+    function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName | undefined): void
+    function reset(): void
+    function submitForm(form: JForm): Promise<void>
     /**
      * ***JMap.Form.getDefaultValues***
      * 
@@ -6209,7 +6231,7 @@ declare namespace JMap {
      * const defaultValues = JMap.Form.getDefaultValues(form)
      * ```
      */
-    function getDefaultValues(form: JForm, initialData?: JFormData): JFormData
+    function getDefaultValues(formMetaData: JFormMetaData, initialData?: JAttributeValueByName): JAttributeValueByName
 
     /**
      * ***JMap.Form.getPreparedData***
@@ -6235,7 +6257,7 @@ declare namespace JMap {
      * const errors = JMap.Form.validateData(form, preparedData)
      * ```
      */
-    function getPreparedData(form: JForm, data: JFormData): JFormData
+    function getPreparedData(formMetaData: JFormMetaData, data: JAttributeValueByName): JAttributeValueByName
 
     /**
      * ***JMap.Form.validateData***
@@ -6261,6 +6283,6 @@ declare namespace JMap {
      * const errors = JMap.Form.validateData(form, data)
      * ```
      */
-    function validateData(form: JForm, data: JFormData): { [key: string]: string }
+    function validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): { [key: string]: string }
   }
 }

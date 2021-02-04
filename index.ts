@@ -167,15 +167,16 @@ export interface JCoreState {
 }
 
 export interface JFormState {
+  layerId: JId
+  formMetaDataById: JFormMetaDataById
   isLoadingLayer: boolean
   hasLoadingLayerError: boolean
-  isLoadingElement: boolean
-  hasLoadingElementError: boolean
-  layerId: JId | undefined
-  formById: JFormById
-  isCreation: boolean
-  tree: JFormTreeElement | undefined
-  activeFormValuesByFormId: { [formId: string ] : JFormData }
+  isSubmitting: boolean
+  submitErrors: string[]
+  activeTabIndex: number
+  attributeForm: JForm | undefined
+  externalForms: JForm[]
+  subForms: JForm[]
 }
 
 export interface JGeolocationState {
@@ -240,31 +241,37 @@ export interface JQueryState {
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
 
 export interface JFormService {
-  getLayerFormsById(layerId: number): Promise<JForm[]>
+  // REPO METHODS
+  getFormsMetaDataByLayerId(layerId: number): Promise<JFormMetaData[]>
   getElement(params: JFormElementId): Promise<JFormElement | undefined>
   getElements(params: JFormElementIds): Promise<JFormElement[]>
-  createAttributeFormElements(params: JFormCreateAttributeElementsParams): Promise<GeoJSON.Feature>
-  createExternalOrSubFormElement(params: JFormCreateExternalOrSubFormElementParams): Promise<JFormResult>
-  updateAttributeElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
-  updateExternalElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
-  deleteElements(params: JFormElementIds): Promise<void>
-  hasActiveForm(): boolean
-  getActiveForm(): JForm
-  activateLayerById(layerId: number): Promise<JForm[]>
-  deactivateLayer(): void
-  getActiveLayerForms(): JForm[]
-  activateCreationForm(params: JFormCreateParams): Promise<void>
-  activateEditForm(params: JFormEditParams): Promise<void>
-  getActiveFormData(form: JForm, initialData?: JFormData): JFormData
-  setActiveFormData(data: JFormData | undefined): void
-  submitActiveForm(): Promise<void>
-  closeActiveForm(): void
-  getSelectedElementIdsForActiveForm(): JId[]
-  selectElementsForActiveForm(elementIds: JId): Promise<void>
-  unSelectElementsForActiveForm(elementIds: JId): void
-  getDefaultValues(form: JForm, initialData?: JFormData): JFormData
-  getPreparedData(form: JForm, data: JFormData): JFormData
-  validateData(form: JForm, data: JFormData): { [key: string]: string }
+  createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
+  createExternalFormElement(params: JFormCreateElementParams): Promise<JFormResult>
+  createSubFormElement(params: JFormCreateElementParams): Promise<JFormResult>
+  updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
+  updateExternalFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+  updateSubFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+  deleteAttributeFormElements(params: JFormElementIds): Promise<void>
+  deleteExternalFormElements(params: JFormElements): Promise<void>
+  deleteSubFormElements(params: JFormElements): Promise<void>
+  // DIALOG METHODS (UI)
+  hasDisplayedForm(): boolean
+  getDisplayedForm(): JForm
+  openCreationDialogForLayer(layerId: number): Promise<JFormMetaData[]>
+  openUpdateDialogForLayer(layerId: number, elements: JFormElement[]): Promise<JFormMetaData[]>
+  // openCreationSubForm need hasDisplayedForm to be true
+  openCreationDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm): void
+  // openUpdateSubForm need hasDisplayedForm to be true
+  openUpdateDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm, elements: JFormElements[]): void
+  closeCurrentDisplayedDialog(): void
+  getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
+  setFormValues(form: JForm, attributeValueByName: JAttributeValueByName | undefined): void
+  reset(): void
+  submitForm(form: JForm): Promise<void>
+  // PURE FORM METHODS (not integrated, also used by query service)
+  getDefaultValues(formMetaData: JFormMetaData, initialData?: JAttributeValueByName): JAttributeValueByName
+  getPreparedData(formMetaData: JFormMetaData, data: JAttributeValueByName): JAttributeValueByName
+  validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): { [key: string]: string }
 }
 
 export interface JHistoryService {
@@ -282,11 +289,12 @@ export interface JHistoryService {
 export interface JGeometryService {
   checkLocation(location: JLocation): void
   isValidLocation(location: JLocation | undefined): boolean
+  isValidBbox(bbox: JBoundaryBox | undefined): boolean
+  isValidGeometry(geometry: any): boolean
   checkCircle(circle: JCircle): void
   checkPolygon(polygon: JPolygon): void
   checkLine(line: JLine): void
   checkBbox(bbox: JBoundaryBox): void
-  isValidBbox(bbox: JBoundaryBox | undefined): boolean
   getArea(feature: Feature): number
   getLineLength(feature: Feature<LineString> | Feature<MultiLineString>, units?: JGeometryUnit | JDistanceUnit): number
   getCentroid(feature: Feature | FeatureCollection): Feature<Point>
