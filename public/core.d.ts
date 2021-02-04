@@ -5955,6 +5955,100 @@ declare namespace JMap {
       function remove(listenerId: string): void
     }
 
+    
+    /**
+     * ***JMap.Event.Language***
+     * 
+     * Here you can manage all language related event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Language.on]]***. 
+     */
+    namespace Language {
+
+      /**
+       * ***JMap.Event.Language.on***
+       * 
+       * Here you have all available user events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Language.on.localeChange***
+         * 
+         * This event is triggered when the current locale is changed in JMap NG translation engine.
+         * 
+         * @param listenerId Your listener id (must be unique for all user events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the current locale is changed, this method is processed
+         * JMap.Event.Language.on.localeChange(
+         *    "custom-language-locale-change",
+         *    params => console.info(`The current locale has changed, it is now "${params.locale}"`)
+         * )
+         * ```
+         */
+        function localeChange(listenerId: string, fn: (params: JLanguageEventLocaleChangeParams) => void): void
+      }
+
+
+      /**
+       * ***JMap.Event.Language.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-language-listener"
+       * JMap.Event.Language.activate("my-language-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Language.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-language-listener"
+       * JMap.Event.Language.deactivate("my-language-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Language.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-language-listener"
+       * JMap.Event.Language.remove("my-language-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
     /**
      * ***JMap.Event.User***
      * 
