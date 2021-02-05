@@ -158,6 +158,7 @@ export interface JCoreState {
   project: JProjectState
   layer: JLayerState
   user: JUserState
+  language: JLanguageState
   photo: JPhotoState
   query: JQueryState
   geolocation: JGeolocationState
@@ -221,6 +222,16 @@ export interface JPhotoState {
 export interface JQueryState {
   groups: JQueryGroup[]
   queriesByLayerId: { [ layerId: number ]: JQuery[] }
+}
+
+export interface JUserState {
+  identity: JUserIdentity
+  token: string
+  informations: JUserInfo[]
+}
+
+export interface JLanguageState {
+  locale: JLocale
 }
 
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
@@ -491,7 +502,7 @@ export interface JLanguageService {
   getLocale(): JLocale
   getDefaultLocale(): JLocale 
   setLocale(locale: JLocale): void
-  translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
+  translate(params: JTranslateParams): string
   is12HoursTimeFormat(): boolean
   isValidLocale(locale: JLocale): boolean
   getDateFormat(): string

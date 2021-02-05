@@ -4527,21 +4527,22 @@ declare namespace JMap {
      * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
      * 
      * const bundle = {
-     *  id: "my-custom-bundle",
+     *  id: "my-custom-bundle-id",
      *  defaultLocale: "fr",
      *  translationsByLocale: {
      *    "fr" : {
-     *      "my-custom-label": "Ceci est ma traduction personnalisée en français"
+     *      "my-custom-key": "Ceci est ma traduction personnalisée en français"
      *    },
      *    "en" : {
-     *      "my-custom-label": "This is my custom translation in English"
+     *      "my-custom-key": "This is my custom translation in English"
      *    }
      *  }
      * }
      * JMap.Language.addBundle(bundle)
      * JMap.Language.setLocale("fr")
-     * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label"))
-     * // "Ceci est ma traduction en français"
+     * let params = {key: "my-custom-key", bundleId: "my-custom-bundle-id"}
+     * console.log(JMap.Language.translate(params))
+     * // "Ceci est ma traduction personnalisée en français"
      * ```
      */
     function addBundle(bundle: JTranslationBundle): void
@@ -4593,36 +4594,36 @@ declare namespace JMap {
      * parameters in the translated string. Parameters must be identified by numbers starting at zero, corresponding
      * to the index of the param in the array supplied
      * 
-     * @param bundleId the bundle id
-     * @param key the translation key
-     * @param params an optionnal param, or array of param
-     * @param paramLocale the optional locale (allow overriding the current locale)
+     * @param params a JTranslateParams object
      * 
      * @example ```ts
      * 
      * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
      * 
      * const bundle = {
-     *  id: "my-custom-bundle",
+     *  id: "my-custom-bundle-id",
      *  defaultLocale: "fr",
      *  translationsByLocale: {
      *    "fr" : {
-     *      "my-custom-label": "Je parles {0} langues"
+     *      "my-custom-key": "Je parles {0} langues"
      *    },
      *    "en" : {
-     *      "my-custom-label": "I speak {0} languages"
+     *      "my-custom-key": "I speak {0} languages"
      *    }
      *  }
      * }
      * JMap.Language.addBundle(bundle)
      * JMap.Language.setLocale("fr")
-     * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label", ["2"]))
+     * let params = {key: "my-custom-key", bundleId: "my-custom-bundle-id", params: ["2"] }
+     * console.log(JMap.Language.translate(params))
      * // "Je parles 2 langues"
-     * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label", ["2"], "en"))
+     * params = {key: "my-custom-key", bundleId: "my-custom-bundle-id", params: ["2"], locale: "en" } 
+     * console.log(JMap.Language.translate(params))
      * // "I speak 2 languages"
+     * 
      * ```
      */
-    function translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
+    function translate(params: JTranslateParams): string
 
     /**
      * **JMap.Language.is12HoursTimeFormat**
