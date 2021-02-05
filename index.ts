@@ -242,7 +242,7 @@ export type JHistoryListener = (oldValue: string | undefined, newValue: string |
 
 export interface JFormService {
   // REPO METHODS
-  getFormsMetaDataByLayerId(layerId: number): Promise<JFormMetaData[]>
+  getFormsMetaDataByLayerId(layerId: JId): Promise<JFormMetaData[]>
   getElement(params: JFormElementId): Promise<JFormElement | undefined>
   getElements(params: JFormElementIds): Promise<JFormElement[]>
   createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
@@ -257,8 +257,8 @@ export interface JFormService {
   // DIALOG METHODS (UI)
   hasDisplayedForm(): boolean
   getDisplayedForm(): JForm
-  openCreationDialogForLayer(layerId: number): Promise<JFormMetaData[]>
-  openUpdateDialogForLayer(layerId: number, elements: JFormElement[]): Promise<JFormMetaData[]>
+  openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
+  openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
   // openCreationSubForm need hasDisplayedForm to be true
   openCreationDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm): void
   // openUpdateSubForm need hasDisplayedForm to be true

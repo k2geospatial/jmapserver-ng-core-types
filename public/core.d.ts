@@ -6190,7 +6190,7 @@ declare namespace JMap {
    * Here you'll find all form related methods
    */
   namespace Form {
-    function getFormsMetaDataByLayerId(layerId: number): Promise<JFormMetaData[]>
+    function getFormsMetaDataByLayerId(layerId: JId): Promise<JFormMetaData[]>
     function getElement(params: JFormElementId): Promise<JFormElement | undefined>
     function getElements(params: JFormElementIds): Promise<JFormElement[]>
     function createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
@@ -6204,8 +6204,8 @@ declare namespace JMap {
     function deleteSubFormElements(params: JFormElements): Promise<void>
     function hasDisplayedForm(): boolean
     function getDisplayedForm(): JForm
-    function openCreationDialogForLayer(layerId: number): Promise<JFormMetaData[]>
-    function openUpdateDialogForLayer(layerId: number, elements: JFormElement[]): Promise<JFormMetaData[]>
+    function openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
+    function openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
     function openCreationDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm): void
     function openUpdateDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm, elements: JFormElements[]): void
     function closeCurrentDisplayedDialog(): void
