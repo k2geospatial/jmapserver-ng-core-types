@@ -4573,17 +4573,17 @@ declare namespace JMap {
     function getBundleById(bundleId: string): JTranslationBundle
 
     /**
-     * **JMap.Language.getBundleIds**
+     * **JMap.Language.getAllBundleIds**
      * 
      * Returns the list of bundle ids used by the JMap NG translation engine
      * 
      * @example ```ts
      * 
-     * JMap.Language.getBundleIds()
+     * JMap.Language.getAllBundleIds()
      * // ["jmap-core-js", "jmap-app-js", "my-custom-bundle", ...]
      * ```
      */
-    function getBundleIds(): string[]
+    function getAllBundleIds(): string[]
 
     /**
      * **JMap.Language.getBundles**
