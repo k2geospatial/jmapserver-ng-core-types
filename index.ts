@@ -497,6 +497,7 @@ export interface JLanguageService {
   addBundle(bundle: JTranslationBundle): void
   bundleExitsById(bundleId: string): boolean
   getBundleById(bundleId: string): JTranslationBundle
+  getBundleIds(): string[]
   getBundles(): JTranslationBundleById
   getLocales(): JLocale[]
   getLocale(): JLocale
