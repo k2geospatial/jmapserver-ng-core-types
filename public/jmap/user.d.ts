@@ -39,9 +39,3 @@ declare interface JUserInfo {
   label: string
   value: undefined | null | string | number | Date
 }
-
-declare interface JUserState {
-  identity: JUserIdentity
-  token: string
-  informations: JUserInfo[]
-}

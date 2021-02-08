@@ -4,6 +4,16 @@ declare interface JLocaleTranslation {
   [key: string]: string
 }
 
+declare interface JTranslationItem {
+  key: string
+  bundleId: string
+}
+
+interface JTranslateParams extends JTranslationItem {
+  params?: string | string[] | number | number[]
+  locale?: JLocale
+}
+
 declare interface JTranslationsByLocale {
   [locale: string]: JLocaleTranslation
 }
