@@ -5992,7 +5992,6 @@ declare namespace JMap {
         function localeChange(listenerId: string, fn: (params: JLanguageEventLocaleChangeParams) => void): void
       }
 
-
       /**
        * ***JMap.Event.Language.activate***
        * 

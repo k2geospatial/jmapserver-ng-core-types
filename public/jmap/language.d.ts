@@ -4,7 +4,7 @@ declare interface JLocaleTranslation {
   [key: string]: string
 }
 
-declare interface JTranslationItem{
+declare interface JTranslationItem {
   key: string
   bundleId: string
 }
