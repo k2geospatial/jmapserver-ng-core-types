@@ -232,7 +232,7 @@ declare namespace JMap {
     /**
      * **JMap.Feature.deleteById**
      * 
-     * Delete the feature for the given layer and feature id.
+     * Delete the feature for the given layer and feature ids.
      * 
      * @param layerId the JMap layer id
      * @param featureId the JMap feature id
@@ -247,6 +247,25 @@ declare namespace JMap {
      * ```
      */
     function deleteById(layerId: JId, featureId: JId): Promise<void>
+
+    /**
+     * **JMap.Feature.deleteByIds**
+     * 
+     * Delete the features for the given layer and features ids.
+     * 
+     * @param layerId the JMap layer id
+     * @param featureIds the JMap feature ids to delete
+     * @throws if layer or feature not found
+     * @example ```ts
+     * 
+     * // delete 3 features on layer id="3"
+     * JMap.Feature
+     *  .deleteByIds(3, [4, 5, 16])
+     *  .then(() => console.info("Features have been deleted"))
+     *  .catch(error => console.error("An error occured", error))
+     * ```
+     */
+    function deleteByIds(layerId: JId, featureIds: JId[]): Promise<JFeatureDeleteByIdsResult>
   }
 
   /**
@@ -6199,11 +6218,17 @@ declare namespace JMap {
     function updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
     function updateExternalFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
     function updateSubFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
-    function deleteAttributeFormElements(params: JFormElementIds): Promise<void>
+    function deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
     function deleteExternalFormElements(params: JFormElements): Promise<void>
     function deleteSubFormElements(params: JFormElements): Promise<void>
     function hasDisplayedForm(): boolean
     function getDisplayedForm(): JForm
+    function setActiveTabIndex(tabIndex: number): void
+    function getActiveTabIndex(): number
+    function hasAttributeForm(): boolean
+    function getAttributeForm(): JForm
+    function getExternalForms(): JForm[]
+    function getSubForms(): JForm[]
     function openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
     function openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
     function openCreationDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm): void
@@ -6212,7 +6237,10 @@ declare namespace JMap {
     function getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
     function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName | undefined): void
     function reset(): void
-    function submitForm(form: JForm): Promise<void>
+    function submit(): Promise<JFormSubmitResult>
+    function canDeleteCurrentElements(): boolean
+    function deleteCurrentElements(): Promise<JFormDeleteResult>
+
     /**
      * ***JMap.Form.getDefaultValues***
      * 

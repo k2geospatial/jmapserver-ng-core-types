@@ -10,9 +10,14 @@ declare interface JFeatureGeometryUpdateParams {
 
 declare interface JFeatureEventDeleteParams {
   layerId: JId
-  featureId: JId
+  featureIds: JId[]
 }
 
 declare interface JFeatureEventGeometryChangedParams extends JFeatureGeometryUpdateParams {
   // nothing to add
+}
+
+declare interface JFeatureDeleteByIdsResult {
+  success: JId[]
+  error: JId[]
 }

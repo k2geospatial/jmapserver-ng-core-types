@@ -39,6 +39,13 @@ declare interface JFormMetaData {
   schema: JFormSchema
   uiSchema: JFormUISchema
   idAttributeName: string | null
+  readOnly: boolean
+  canDelete: boolean
+  canInsert: boolean
+  canUpdate: boolean
+  permissions: {
+    EDIT_LAYER_ATTRIBUTE_VALUES: boolean
+  }
 }
 
 declare interface JFormSchema {
@@ -349,3 +356,13 @@ declare interface JFormEditParams extends JFormId {
   elements: JFormElement[]
 }
 
+declare interface JFormSubmitResult {
+  success: string[]
+  error: string[]
+  createdFeatureId?: JId
+}
+
+declare interface JFormDeleteResult {
+  success: JId[]
+  error: JId[]
+}

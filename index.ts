@@ -23,6 +23,7 @@ export interface JFeatureService {
   getById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
   geometryUpdateById(params: JFeatureGeometryUpdateParams): Promise<GeoJSON.Feature>
   deleteById(layerId: JId, featureId: JId): Promise<void>
+  deleteByIds(layerId: JId, featureIds: JId[]): Promise<JFeatureDeleteByIdsResult>
 }
 
 export interface JCoreMainService {
@@ -171,6 +172,7 @@ export interface JFormState {
   formMetaDataById: JFormMetaDataById
   isLoadingLayer: boolean
   hasLoadingLayerError: boolean
+  isDeletingElement: boolean
   isSubmitting: boolean
   submitErrors: string[]
   activeTabIndex: number
@@ -251,12 +253,18 @@ export interface JFormService {
   updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
   updateExternalFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
   updateSubFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
-  deleteAttributeFormElements(params: JFormElementIds): Promise<void>
+  deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
   deleteExternalFormElements(params: JFormElements): Promise<void>
   deleteSubFormElements(params: JFormElements): Promise<void>
   // DIALOG METHODS (UI)
   hasDisplayedForm(): boolean
   getDisplayedForm(): JForm
+  setActiveTabIndex(tabIndex: number): void
+  getActiveTabIndex(): number
+  hasAttributeForm(): boolean
+  getAttributeForm(): JForm
+  getExternalForms(): JForm[]
+  getSubForms(): JForm[]
   openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
   openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
   // openCreationSubForm need hasDisplayedForm to be true
@@ -267,7 +275,9 @@ export interface JFormService {
   getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
   setFormValues(form: JForm, attributeValueByName: JAttributeValueByName | undefined): void
   reset(): void
-  submitForm(form: JForm): Promise<void>
+  submit(): Promise<JFormSubmitResult>
+  canDeleteCurrentElements(): boolean
+  deleteCurrentElements(): Promise<JFormDeleteResult>
   // PURE FORM METHODS (not integrated, also used by query service)
   getDefaultValues(formMetaData: JFormMetaData, initialData?: JAttributeValueByName): JAttributeValueByName
   getPreparedData(formMetaData: JFormMetaData, data: JAttributeValueByName): JAttributeValueByName
