@@ -59,7 +59,7 @@ declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
   type: LAYER_TYPE
   attributes: JLayerAttribute[]
-  mouseOver: JMapMouseOver
+  mouseOver: JMapMouseOver | null
   simpleSelectionStyle: JLayerSimpleStyle
   selectionStyle: JLayerStyle
   minimumVisibleScale: number | undefined

@@ -4581,21 +4581,22 @@ declare namespace JMap {
      * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
      * 
      * const bundle = {
-     *  id: "my-custom-bundle",
+     *  id: "my-custom-bundle-id",
      *  defaultLocale: "fr",
      *  translationsByLocale: {
      *    "fr" : {
-     *      "my-custom-label": "Ceci est ma traduction personnalisée en français"
+     *      "my-custom-key": "Ceci est ma traduction personnalisée en français"
      *    },
      *    "en" : {
-     *      "my-custom-label": "This is my custom translation in English"
+     *      "my-custom-key": "This is my custom translation in English"
      *    }
      *  }
      * }
      * JMap.Language.addBundle(bundle)
      * JMap.Language.setLocale("fr")
-     * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label"))
-     * // "Ceci est ma traduction en français"
+     * let params = {key: "my-custom-key", bundleId: "my-custom-bundle-id"}
+     * console.log(JMap.Language.translate(params))
+     * // "Ceci est ma traduction personnalisée en français"
      * ```
      */
     function addBundle(bundle: JTranslationBundle): void
@@ -4626,6 +4627,19 @@ declare namespace JMap {
     function getBundleById(bundleId: string): JTranslationBundle
 
     /**
+     * **JMap.Language.getAllBundleIds**
+     * 
+     * Returns the list of bundle ids used by the JMap NG translation engine
+     * 
+     * @example ```ts
+     * 
+     * JMap.Language.getAllBundleIds()
+     * // ["jmap-core-js", "jmap-app-js", "my-custom-bundle", ...]
+     * ```
+     */
+    function getAllBundleIds(): string[]
+
+    /**
      * **JMap.Language.getBundles**
      * 
      * Returns an bbject of all the translation bundles loaded in JMap NG at the moment of the call, indexed by id
@@ -4647,36 +4661,36 @@ declare namespace JMap {
      * parameters in the translated string. Parameters must be identified by numbers starting at zero, corresponding
      * to the index of the param in the array supplied
      * 
-     * @param bundleId the bundle id
-     * @param key the translation key
-     * @param params an optionnal param, or array of param
-     * @param paramLocale the optional locale (allow overriding the current locale)
+     * @param params a JTranslateParams object
      * 
      * @example ```ts
      * 
      * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
      * 
      * const bundle = {
-     *  id: "my-custom-bundle",
+     *  id: "my-custom-bundle-id",
      *  defaultLocale: "fr",
      *  translationsByLocale: {
      *    "fr" : {
-     *      "my-custom-label": "Je parles {0} langues"
+     *      "my-custom-key": "Je parles {0} langues"
      *    },
      *    "en" : {
-     *      "my-custom-label": "I speak {0} languages"
+     *      "my-custom-key": "I speak {0} languages"
      *    }
      *  }
      * }
      * JMap.Language.addBundle(bundle)
      * JMap.Language.setLocale("fr")
-     * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label", ["2"]))
+     * let params = {key: "my-custom-key", bundleId: "my-custom-bundle-id", params: ["2"] }
+     * console.log(JMap.Language.translate(params))
      * // "Je parles 2 langues"
-     * console.log(JMap.Language.translate("my-custom-bundle", "my-custom-label", ["2"], "en"))
+     * params = {key: "my-custom-key", bundleId: "my-custom-bundle-id", params: ["2"], locale: "en" } 
+     * console.log(JMap.Language.translate(params))
      * // "I speak 2 languages"
+     * 
      * ```
      */
-    function translate(bundleId: string, key: string, params?: string | string[] | number | number[], paramLocale?: JLocale): string
+    function translate(params: JTranslateParams): string
 
     /**
      * **JMap.Language.is12HoursTimeFormat**
@@ -6004,6 +6018,99 @@ declare namespace JMap {
        * 
        * // remove the listener "my-feature-listener"
        * JMap.Event.Feature.remove("my-feature-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    
+    /**
+     * ***JMap.Event.Language***
+     * 
+     * Here you can manage all language related event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Language.on]]***. 
+     */
+    namespace Language {
+
+      /**
+       * ***JMap.Event.Language.on***
+       * 
+       * Here you have all available user events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Language.on.localeChange***
+         * 
+         * This event is triggered when the current locale is changed in JMap NG translation engine.
+         * 
+         * @param listenerId Your listener id (must be unique for all user events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the current locale is changed, this method is processed
+         * JMap.Event.Language.on.localeChange(
+         *    "custom-language-locale-change",
+         *    params => console.info(`The current locale has changed, it is now "${params.locale}"`)
+         * )
+         * ```
+         */
+        function localeChange(listenerId: string, fn: (params: JLanguageEventLocaleChangeParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Language.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-language-listener"
+       * JMap.Event.Language.activate("my-language-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Language.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-language-listener"
+       * JMap.Event.Language.deactivate("my-language-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Language.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-language-listener"
+       * JMap.Event.Language.remove("my-language-listener")
        * ```
        */
       function remove(listenerId: string): void

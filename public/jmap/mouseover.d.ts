@@ -1,5 +1,5 @@
 declare interface JMapMouseOver {
-  text: string | null
+  text: string
   preventTextDuplication: boolean
   backgroundColor: string
   visible: boolean
