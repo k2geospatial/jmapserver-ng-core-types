@@ -65,6 +65,7 @@ declare interface JFormSchemaProperty {
   title: string
   type: JSONSchemaTypes
   description: string
+  isRequired: boolean
   items?: { // used if property type = "array"
     type: JSONSchemaTypes // only number or string
   }
@@ -278,7 +279,7 @@ declare interface JFormElement extends JFormElementData {
    * At runtime this value is undefined for an attribute form.
    * In external and sub forms elements don't have any specific id, it's just values.
    */
-  externalElements: JAttributeValueByName[]
+  entries: JAttributeValueByName[]
   // at runtime attributeValueByName is undefined when form is not an attribute form
 }
 
@@ -294,7 +295,7 @@ declare interface JForm extends JFormElementData {
   parent: JForm | undefined
   elements: JFormElement[]
   fetchElementsFromServerFailed: boolean
-  submitErrors: { [attributeName: string]: any }
+  errors: { [attributeName: string]: any }
   hasChange: boolean
   isMultiple: boolean
   isCreation: boolean
@@ -365,4 +366,8 @@ declare interface JFormSubmitResult {
 declare interface JFormDeleteResult {
   success: JId[]
   error: JId[]
+}
+
+declare interface JFormErrors {
+  [key: string]: string
 }

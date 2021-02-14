@@ -284,7 +284,7 @@ export interface JFormService {
   openUpdateDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm, elements: JFormElements[]): void
   closeCurrentDisplayedDialog(): void
   getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
-  setFormValues(form: JForm, attributeValueByName: JAttributeValueByName | undefined): void
+  setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
   reset(): void
   submit(): Promise<JFormSubmitResult>
   canDeleteCurrentElements(): boolean
@@ -292,7 +292,7 @@ export interface JFormService {
   // PURE FORM METHODS (not integrated, also used by query service)
   getDefaultValues(formMetaData: JFormMetaData, initialData?: JAttributeValueByName): JAttributeValueByName
   getPreparedData(formMetaData: JFormMetaData, data: JAttributeValueByName): JAttributeValueByName
-  validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): { [key: string]: string }
+  validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): JFormErrors
 }
 
 export interface JHistoryService {

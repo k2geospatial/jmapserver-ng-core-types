@@ -6342,7 +6342,7 @@ declare namespace JMap {
     function openUpdateDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm, elements: JFormElements[]): void
     function closeCurrentDisplayedDialog(): void
     function getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
-    function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName | undefined): void
+    function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
     function reset(): void
     function submit(): Promise<JFormSubmitResult>
     function canDeleteCurrentElements(): boolean
@@ -6418,6 +6418,6 @@ declare namespace JMap {
      * const errors = JMap.Form.validateData(form, data)
      * ```
      */
-    function validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): { [key: string]: string }
+    function validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): JFormErrors
   }
 }
