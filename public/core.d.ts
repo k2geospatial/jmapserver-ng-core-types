@@ -99,6 +99,56 @@ declare namespace JMap {
   function getOS(): JOperatingSystem
 
   /**
+   * **JMap.Server**
+   * 
+   * This is where you can find JMap Server relative methods
+   */
+  namespace Server{
+
+    /**
+     * **JMap.Server.getInfo**
+     * 
+     * Returns information about the JMap Server to which JMap Ng is currently connected to. There is no need to be logged in to call this method
+     * 
+     * @example ```ts
+     * 
+     * console.log(JMap.Server.getInfo())
+     * // {identityProviders: [...], standardLoginAvailable: true, version: "7.0 Jakarta build 168"}
+     * ```
+     */
+    function getInfo(): JServerInfo
+
+    /**
+     * **JMap.Server.getIdentityProviderById**
+     * 
+     * Returns the specified Identity Provider. Provider Ids can be derived from [[JMap.Server.getAllIdentityProvidersById]]
+     * 
+     * @throws if specified provider id is not valid or not found
+     * @param providerId 
+     * @example ```ts
+     * 
+     * console.log(JMap.Server.getIdentityProviderById("idp-1"))
+     * // {id: "idp-0", loginUrl: "https:// ....", ......}
+     * ```
+     */
+    function getIdentityProviderById(providerId: string): JServerIdentityProvider
+    
+    /**
+     * **JMap.Server.getAllIdentityProvidersById**
+     * 
+     * Return all the Identity Provider supported by the system, in an object keyed by provider Id
+     * 
+     * @example ```ts
+     * 
+     * console.log(JMap.Server.getAllIdentityProvidersById())
+     * // {idp-0: {id: "idp-0", loginUrl: "https://[...]", ...}, ... }
+     * ```
+     */
+    function getAllIdentityProvidersById(): JServerIdentityProviderById
+  
+  }
+
+  /**
    * **JMap.Geolocation**
    * 
    * This is where you can find geolocation relative methods
@@ -4318,6 +4368,25 @@ declare namespace JMap {
      * ```
      */
     function login(login: string, password: string): Promise<JSessionData>
+
+    /**
+     * **JMap.User.loginWithIdentityProvider**
+     * 
+     * Logs in the user using the specified Identity Provider. See [[JMap.Server.getAllIdentityProvidersById]] for info about Identity providers
+     * 
+     * @example ```ts
+     * 
+     * // fetch all Identity Providers
+     * const allProviders = JMap.Server.getAllIdentityProvidersById()
+     * // {idp-1: {id: "idp-1", type: "sso", ..... }}
+     * 
+     * // Open a new user session using the first provider received
+     * JMap.User.loginWithIdentityProvider("idp-1")
+     * // will redirect the browser to the identity provider for authentication
+     * ```
+     * @param providerId the JServerIdentityProvider id
+     */
+    function loginWithIdentityProvider(providerId: string): void
 
     /**
      * **JMap.User.logout**

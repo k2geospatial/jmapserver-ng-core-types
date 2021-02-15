@@ -17,6 +17,7 @@ export interface JCoreService extends JCoreMainService {
   Event: JEventService
   History: JHistoryService
   Extension: JExtensionService
+  Server: JServerService
 }
 
 export interface JFeatureService {
@@ -162,6 +163,7 @@ export interface JCoreState {
   photo: JPhotoState
   query: JQueryState
   geolocation: JGeolocationState
+  server: JServerState
   external?: any
 }
 
@@ -232,6 +234,12 @@ export interface JUserState {
 
 export interface JLanguageState {
   locale: JLocale
+}
+
+export interface JServerState {
+  isLoading: boolean
+  loadingError: boolean
+  serverInfo: JServerInfo
 }
 
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
@@ -486,6 +494,7 @@ export interface JUserService {
   setPreference(name: string, value: string | undefined): Promise<void>
   setToken(token: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
+  loginWithIdentityProvider(providerId: string): void
   logout(): Promise<void>
   isLoggedIn(): boolean
   getAllInfos(): JUserInfo[]
@@ -530,6 +539,12 @@ export interface JDocumentService {
   selectDocuments(descriptors: JAllDocumentDescriptors): void
   filter(filterValue: string | undefined): void
   getRichPreview(webSiteUrl: string): void
+}
+
+export interface JServerService {
+  getInfo(): Promise<JServerInfo>
+  getIdentityProviderById(providerId: string): JServerIdentityProvider
+  getAllIdentityProvidersById(): JServerIdentityProviderById
 }
 
 export interface JAllDocumentDescriptors {
