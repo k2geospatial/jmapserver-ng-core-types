@@ -103,7 +103,7 @@ declare namespace JMap {
    * 
    * This is where you can find JMap Server relative methods
    */
-  namespace Server{
+  namespace Server {
 
     /**
      * **JMap.Server.getInfo**
@@ -145,7 +145,6 @@ declare namespace JMap {
      * ```
      */
     function getAllIdentityProvidersById(): JServerIdentityProviderById
-  
   }
 
   /**
