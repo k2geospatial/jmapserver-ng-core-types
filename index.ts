@@ -237,8 +237,8 @@ export interface JLanguageState {
 }
 
 export interface JServerState {
-  isLoading: boolean
-  loadingError: boolean
+  serverInfoIsLoading: boolean
+  serverInfoLoadingError: boolean
   serverInfo: JServerInfo
 }
 
