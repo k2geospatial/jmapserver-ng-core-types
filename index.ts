@@ -236,7 +236,7 @@ export interface JLanguageState {
   locale: JLocale
 }
 
-export interface JServerState extends JServerInfo{
+export interface JServerState extends JServerInfo {
   isLoading: boolean
   hasLoadingError: boolean
 }
