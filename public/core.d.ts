@@ -106,17 +106,30 @@ declare namespace JMap {
   namespace Server {
 
     /**
-     * **JMap.Server.getInfo**
+     * **JMap.Server.getVersion**
      * 
-     * Returns information about the JMap Server to which JMap Ng is currently connected to. There is no need to be logged in to call this method
+     * Returns a string identifying the version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
+
+     * @example ```ts
+     * 
+     * console.log(JMap.Server.getVersion())
+     * // "7.0 Jakarta build 174"
+     * ```
+     */
+    function getVersion(): string
+    
+    /**
+     * **JMap.Server.isStandardLoginAvailable**
+     * 
+     * Returns true is the standard JMap User Manager is available for authentication, false otherwise.
      * 
      * @example ```ts
      * 
-     * console.log(JMap.Server.getInfo())
-     * // {identityProviders: [...], standardLoginAvailable: true, version: "7.0 Jakarta build 168"}
+     * console.log(JMap.Server.isStandardLoginAvailable())
+     * // true
      * ```
      */
-    function getInfo(): JServerInfo
+    function isStandardLoginAvailable(): boolean
 
     /**
      * **JMap.Server.getIdentityProviderById**

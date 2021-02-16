@@ -200,7 +200,7 @@ export interface JMapState {
 
 export interface JProjectState {
   isLoading: boolean
-  loadingError: boolean
+  hasLoadingError: boolean
   allProjects: JProject[]
   selectedProject: JProject
   disableProjectChange: boolean
@@ -208,7 +208,7 @@ export interface JProjectState {
 
 export interface JLayerState {
   isLoading: boolean
-  loadingError: boolean
+  hasLoadingError: boolean
   tree: JLayerTree
   allById: { [treeElementId: string]: JLayerTreeElement }
   orderedLayerIds: number[]
@@ -236,10 +236,9 @@ export interface JLanguageState {
   locale: JLocale
 }
 
-export interface JServerState {
-  serverInfoIsLoading: boolean
-  serverInfoLoadingError: boolean
-  serverInfo: JServerInfo
+export interface JServerState extends JServerInfo{
+  isLoading: boolean
+  hasLoadingError: boolean
 }
 
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
@@ -542,7 +541,8 @@ export interface JDocumentService {
 }
 
 export interface JServerService {
-  getInfo(): Promise<JServerInfo>
+  getVersion(): string
+  isStandardLoginAvailable(): boolean
   getIdentityProviderById(providerId: string): JServerIdentityProvider
   getAllIdentityProvidersById(): JServerIdentityProviderById
 }
