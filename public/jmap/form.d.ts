@@ -30,6 +30,8 @@ declare type JSONSchemaTypes =
   | "array"
   | "object"
 
+  declare type JFormOperationType = "creation" | "update" | "delete"
+
 // FORM METADATA
 
 declare interface JFormMetaData {
@@ -357,10 +359,19 @@ declare interface JFormEditParams extends JFormId {
   elements: JFormElement[]
 }
 
+declare interface JFormOperation {
+  formType: JFormType
+  operationType: JFormOperationType
+  isSuccess: boolean
+  elementsOrEntries: JFormElement[] | JId[]
+}
+
 declare interface JFormSubmitResult {
-  success: string[]
-  error: string[]
+  successMessages: string[]
+  errorMessages: string[]
+  operations: JFormOperation[]
   createdFeatureId?: JId
+  deletedFeatureIds?: JId[]
 }
 
 declare interface JFormDeleteResult {
@@ -370,4 +381,8 @@ declare interface JFormDeleteResult {
 
 declare interface JFormErrors {
   [key: string]: string
+}
+
+declare interface JFormSubmitEventParams extends JFormSubmitResult {
+
 }

@@ -4917,7 +4917,7 @@ declare namespace JMap {
      * 
      * Here you can manage all high level event listeners.
      * 
-     * List of events are located in ***[[JMap.Event.Main.on]]***. 
+     * Click to see all events available: ***[[JMap.Event.Main.on]]***. 
      */
     namespace Main {
 
@@ -5015,11 +5015,107 @@ declare namespace JMap {
     }
 
     /**
+     * ***JMap.Event.Form***
+     * 
+     * Here you can manage all form event listeners.
+     * 
+     * Click to see all events available: ***[[JMap.Event.Form.on]]***. 
+     */
+    namespace Form {
+
+      /**
+       * ***JMap.Event.Form.on***
+       * 
+       * Here you have all available high level events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Form.on.coreReady***
+         * 
+         * This event is triggered once: 
+         * * the jmap-core library is loaded, 
+         * * the redux store and its reducers are also loaded,
+         * * The initial session validation has been run. At thas point if the session has successfully been validated, the logged-in user will also be available
+         * 
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once the core library is loaded
+         * JMap.Event.Form.on.submit(
+         *   "custom-form-submit", 
+         *   params => console.info(`A form has been submitted`, params)
+         * )
+         * ```
+         */
+        function submit(listenerId: string, fn: (params: JFormSubmitEventParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Form.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-form-listener"
+       * JMap.Event.Form.activate("my-form-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Form.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-form-listener"
+       * JMap.Event.Form.deactivate("my-form-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Form.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-form-listener"
+       * JMap.Event.Form.remove("my-form-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
      * ***JMap.Event.Project***
      * 
      * Here you can manage all project related event listeners.
      * 
-     * List of events are located in ***[[JMap.Event.Project.on]]***. 
+     * Click to see all events available: ***[[JMap.Event.Project.on]]***. 
      */
     namespace Project {
 
@@ -5131,7 +5227,7 @@ declare namespace JMap {
      * 
      * Here you can manage all layer related event listeners.
      * 
-     * List of events are located in ***[[JMap.Event.Layer.on]]***. 
+     * Click to see all events available: ***[[JMap.Event.Layer.on]]***. 
      */
     namespace Layer {
 
@@ -5317,7 +5413,7 @@ declare namespace JMap {
      * 
      * Here you can manage all map related event listeners.
      * 
-     * List of events are located in ***[[JMap.Event.Map.on]]***. 
+     * Click to see all events available: ***[[JMap.Event.Map.on]]***. 
      */
     namespace Map {
 
@@ -5821,7 +5917,7 @@ declare namespace JMap {
      * 
      * Here you can manage all photo event listeners.
      * 
-     * List of events are located in ***[[JMap.Event.Photo.on]]***. 
+     * Click to see all events available: ***[[JMap.Event.Photo.on]]***. 
      */
     namespace Photo {
 
@@ -5915,7 +6011,7 @@ declare namespace JMap {
      * 
      * Here you can manage all feature related event listeners.
      * 
-     * List of events are located in ***[[JMap.Event.Feature.on]]***. 
+     * Click to see all events available: ***[[JMap.Event.Feature.on]]***. 
      */
     namespace Feature {
 
@@ -6029,7 +6125,7 @@ declare namespace JMap {
      * 
      * Here you can manage all language related event listeners.
      * 
-     * List of events are located in ***[[JMap.Event.Language.on]]***. 
+     * Click to see all events available: ***[[JMap.Event.Language.on]]***. 
      */
     namespace Language {
 
@@ -6121,7 +6217,7 @@ declare namespace JMap {
      * 
      * Here you can manage all user related event listeners.
      * 
-     * List of events are located in ***[[JMap.Event.User.on]]***. 
+     * Click to see all events available: ***[[JMap.Event.User.on]]***. 
      */
     namespace User {
 

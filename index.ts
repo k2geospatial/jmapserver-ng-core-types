@@ -63,6 +63,7 @@ export interface JEventService {
   Project: JProjectEventModule
   User: JUserEventModule
   Feature: JFeatureEventModule
+  Form: JFormEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -79,6 +80,12 @@ export interface JEventModule {
   activate(listenerId: string): void
   deactivate(listenerId: string): void
   remove(listenerId: string): void
+}
+
+export interface JFormEventModule extends JEventModule {
+  on: {
+    submit(listenerId: string, fn: (params: JFormSubmitEventParams) => void): void
+  }
 }
 
 export interface JProjectEventModule extends JEventModule {
