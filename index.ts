@@ -17,6 +17,7 @@ export interface JCoreService extends JCoreMainService {
   Event: JEventService
   History: JHistoryService
   Extension: JExtensionService
+  Server: JServerService
 }
 
 export interface JFeatureService {
@@ -172,6 +173,7 @@ export interface JCoreState {
   query: JQueryState
   geolocation: JGeolocationState
   form: JFormState
+  server: JServerState
   external?: any
 }
 
@@ -222,7 +224,7 @@ export interface JMapState {
 
 export interface JProjectState {
   isLoading: boolean
-  loadingError: boolean
+  hasLoadingError: boolean
   allProjects: JProject[]
   selectedProject: JProject
   disableProjectChange: boolean
@@ -230,7 +232,7 @@ export interface JProjectState {
 
 export interface JLayerState {
   isLoading: boolean
-  loadingError: boolean
+  hasLoadingError: boolean
   tree: JLayerTree
   allById: { [treeElementId: string]: JLayerTreeElement }
   orderedLayerIds: number[]
@@ -256,6 +258,11 @@ export interface JUserState {
 
 export interface JLanguageState {
   locale: JLocale
+}
+
+export interface JServerState extends JServerInfo {
+  isLoading: boolean
+  hasLoadingError: boolean
 }
 
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
@@ -547,6 +554,7 @@ export interface JUserService {
   setPreference(name: string, value: string | undefined): Promise<void>
   setToken(token: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
+  loginWithIdentityProvider(providerId: string): void
   logout(): Promise<void>
   isLoggedIn(): boolean
   getAllInfos(): JUserInfo[]
@@ -591,6 +599,13 @@ export interface JDocumentService {
   selectDocuments(descriptors: JAllDocumentDescriptors): void
   filter(filterValue: string | undefined): void
   getRichPreview(webSiteUrl: string): void
+}
+
+export interface JServerService {
+  getVersion(): string
+  isStandardLoginAvailable(): boolean
+  getIdentityProviderById(providerId: string): JServerIdentityProvider
+  getAllIdentityProvidersById(): JServerIdentityProviderById
 }
 
 export interface JAllDocumentDescriptors {
