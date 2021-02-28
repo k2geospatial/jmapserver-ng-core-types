@@ -304,12 +304,6 @@ declare interface JForm extends JFormElementData {
   isAttributeForm: boolean
   isExternalForm: boolean
   isSubForm: boolean
-  /**
-   * In JMap 7 server we get it in the get elements query, but we need to keep it because
-   * it's required to pass in update queries the external attributes.
-   * It's because the server is not abale to know which attribute exists ...
-   */
-  externalAttributes: JFormExternalAttribute[]
   geometry?: GeoJSON.Geometry // required for attribute forms
 }
 
@@ -324,6 +318,11 @@ declare interface JFormId {
 
 declare interface JFormElementId extends JFormId {
   elementId: JId
+}
+
+declare interface JFormGetEntriesParams extends JFormId {
+  elementId: JId
+  parentFormAttributesValuesByName: JAttributeValueByName
 }
 
 declare interface JFormElementIds extends JFormId {
@@ -346,6 +345,7 @@ declare interface JFormUpdateElementsParams extends JFormElements {
   // nothing
 }
 
+// TODO REMOVE !!!
 declare interface JFormResult {
   elementId: JId
   success: boolean
@@ -384,5 +384,5 @@ declare interface JFormErrors {
 }
 
 declare interface JFormSubmitEventParams extends JFormSubmitResult {
-
+  // nothing to add
 }

@@ -6495,9 +6495,10 @@ declare namespace JMap {
     function getFormsMetaDataByLayerId(layerId: JId): Promise<JFormMetaData[]>
     function getElement(params: JFormElementId): Promise<JFormElement | undefined>
     function getElements(params: JFormElementIds): Promise<JFormElement[]>
+    function getEntries(params: JFormGetEntriesParams): Promise<JFormElement[]>
     function createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
-    function createExternalFormElement(params: JFormCreateElementParams): Promise<JFormResult>
-    function createSubFormElement(params: JFormCreateElementParams): Promise<JFormResult>
+    function createExternalFormElement(params: JFormCreateElementParams): Promise<JFormElement>
+    function createSubFormElement(params: JFormCreateElementParams): Promise<JFormElement>
     function updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
     function updateExternalFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
     function updateSubFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>

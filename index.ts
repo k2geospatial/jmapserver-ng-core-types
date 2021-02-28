@@ -272,9 +272,10 @@ export interface JFormService {
   getFormsMetaDataByLayerId(layerId: JId): Promise<JFormMetaData[]>
   getElement(params: JFormElementId): Promise<JFormElement | undefined>
   getElements(params: JFormElementIds): Promise<JFormElement[]>
+  getEntries(params: JFormGetEntriesParams): Promise<JFormElement[]>
   createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
-  createExternalFormElement(params: JFormCreateElementParams): Promise<JFormResult>
-  createSubFormElement(params: JFormCreateElementParams): Promise<JFormResult>
+  createExternalFormElement(params: JFormCreateElementParams): Promise<JFormElement>
+  createSubFormElement(params: JFormCreateElementParams): Promise<JFormElement>
   updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
   updateExternalFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
   updateSubFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
