@@ -274,14 +274,14 @@ export interface JFormService {
   getElements(params: JFormElementIds): Promise<JFormElement[]>
   getEntries(params: JFormGetEntriesParams): Promise<JFormElement[]>
   createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
-  createExternalFormElement(params: JFormCreateElementParams): Promise<JFormElement>
-  createSubFormElement(params: JFormCreateElementParams): Promise<JFormElement>
+  createExternalFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
+  createSubFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
   updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
-  updateExternalFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
-  updateSubFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+  updateExternalFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+  updateSubFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
   deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
-  deleteExternalFormElements(params: JFormElements): Promise<void>
-  deleteSubFormElements(params: JFormElements): Promise<void>
+  deleteExternalFormEntries(params: JFormElements): Promise<void>
+  deleteSubFormEntries(params: JFormElements): Promise<void>
   // DIALOG METHODS (UI)
   hasDisplayedForm(): boolean
   getDisplayedForm(): JForm

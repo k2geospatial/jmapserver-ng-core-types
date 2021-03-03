@@ -6497,14 +6497,14 @@ declare namespace JMap {
     function getElements(params: JFormElementIds): Promise<JFormElement[]>
     function getEntries(params: JFormGetEntriesParams): Promise<JFormElement[]>
     function createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
-    function createExternalFormElement(params: JFormCreateElementParams): Promise<JFormElement>
-    function createSubFormElement(params: JFormCreateElementParams): Promise<JFormElement>
+    function createExternalFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
+    function createSubFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
     function updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
-    function updateExternalFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
-    function updateSubFormElements(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+    function updateExternalFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+    function updateSubFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
     function deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
-    function deleteExternalFormElements(params: JFormElements): Promise<void>
-    function deleteSubFormElements(params: JFormElements): Promise<void>
+    function deleteExternalFormEntries(params: JFormElements): Promise<void>
+    function deleteSubFormEntries(params: JFormElements): Promise<void>
     function hasDisplayedForm(): boolean
     function getDisplayedForm(): JForm
     function setActiveTabIndex(tabIndex: number): void
