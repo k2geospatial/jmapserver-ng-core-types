@@ -11,6 +11,13 @@ declare interface JProjectAllEventParams {
   projects: JProject[]
 }
 
+declare interface JProjectServerExtension {
+  id: string,
+  jsUrl: string
+  data: any | null
+  version: string
+}
+
 declare interface JProject {
   id: number
   name: string
@@ -29,5 +36,6 @@ declare interface JProject {
   },
   queryGroups: JQueryGroup[]
   defaultDistanceUnit: JDistanceUnit
-  base64ImageThumbnail: string
+  base64ImageThumbnail: string,
+  extensions: JProjectServerExtension[]
 }

@@ -5042,6 +5042,116 @@ declare namespace JMap {
     }
 
     /**
+     * ***JMap.Event.Extension***
+     * 
+     * Here you can manage all extension event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Extension.on]]***. 
+     */
+    namespace Extension {
+
+      /**
+       * ***JMap.Event.Extension.on***
+       * 
+       * Here you have all available high level events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Extension.on.registration***
+         * 
+         * This event is triggered when an extension is registered.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console each time an extension has been registered
+         * JMap.Event.Extension.on.registration(
+         *   "custom-core-extension-registration", 
+         *   params => console.log(`Extension id="${params.extensionId}" has been registered`)
+         * )
+         * ```
+         */
+        function registration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Extension.on.unregistration***
+         * 
+         * This event is triggered when an extension is unregistered.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console each time an extension has been unregistered
+         * JMap.Event.Extension.on.unregistration(
+         *   "custom-core-extension-unregistration", 
+         *   params => console.log(`Extension id="${params.extensionId}" has been unregistered`)
+         * )
+         * ```
+         */
+        function unregistration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Extension.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If listener was already activated, do nothing.
+       * 
+       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-extension-listener"
+       * JMap.Event.Extension.activate("my-extension-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Extension.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If listener id doesn't exist or is already deactivated, do nothing.
+       * 
+       * If the listener was active, it state is turn to deactivate, and it will be ignore
+       * when en event is emitted.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-extension-listener"
+       * JMap.Event.Extension.deactivate("my-extension-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Extension.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-extension-listener"
+       * JMap.Event.Extension.remove("my-extension-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
      * ***JMap.Event.Project***
      * 
      * Here you can manage all project related event listeners.
@@ -5094,6 +5204,50 @@ declare namespace JMap {
          * ```
          */
         function projectsChange(listenerId: string, fn: (params: JProjectAllEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Project.on.preDeactivation***
+         * 
+         * This event is triggered when current active project will be deactived.
+         * 
+         * When this event is triggered, the project is still loaded (the map, the redux state, etc...).
+         * 
+         * You can do anything normally.
+         * 
+         * @param listenerId Your listener id (must be unique for all project events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the current active project will be deactivated it will display the project id in the console
+         * JMap.Event.Project.on.preDeactivation(
+         *    "custom-project-pre-deactivation",
+         *    params => console.log(`Project id="${params.project.id}" will be deactivate`)
+         * )
+         * ```
+         */
+        function preDeactivation(listenerId: string, fn: (params: JProjectEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Project.on.postDeactivation***
+         * 
+         * This event is triggered when current active project has been deactived.
+         * 
+         * When this event is triggered, the project has been deactivated.
+         * 
+         * Project's data on the map, in the redux state, etc... should not be available anymore.
+         * 
+         * @param listenerId Your listener id (must be unique for all project events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the current active project will be deactivated it will display the project id in the console
+         * JMap.Event.Project.on.postDeactivation(
+         *    "custom-project-post-deactivation",
+         *    params => console.log(`Project id="${params.project.id}" is now deactivated`)
+         * )
+         * ```
+         */
+        function postDeactivation(listenerId: string, fn: (params: JProjectEventParams) => void): void
       }
 
       /**
