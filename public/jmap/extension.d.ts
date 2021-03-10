@@ -7,15 +7,23 @@ declare interface JExtensionServerOverride {
   jsUrl: string
 }
 
-declare interface JCoreExtensionParams {
+declare interface JCoreServerExtensionInfo {
+  /**
+   * The extension server id. The server extension id could be different of the JS version.
+   */
+  id: string
   /**
    * The extension server version. The server extension version could be different of the JS version.
    */
-  extensionServerVersion: string
+  version: string
   /**
    * The data depends on the extension. Some extensions could have an empty params object.
    */
-  data: { [key: string]: any }
+  data: any
+}
+
+declare interface JCoreExtensionParams {
+  serverInfo?: JCoreServerExtensionInfo
 }
 
 /**
@@ -92,10 +100,10 @@ declare interface JCoreExtension {
    * 
    * Here you can start initialize your extension.
    * 
-   * By default no param are returned. For project server extensions only, some params can be passed,
+   * By default param is an empty object, but for project server extensions only, a parameter "serverInfo" is passed,
    * fetched from the project configuration that is defined in the admininistration.
    */
-  initFn: (params?: JCoreExtensionParams) => void
+  initFn: (params: JCoreExtensionParams) => void
   /**
    * The destroy function.
    * 
