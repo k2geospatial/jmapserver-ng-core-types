@@ -4989,10 +4989,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5008,10 +5007,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5099,10 +5097,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5118,10 +5115,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5255,10 +5251,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5274,10 +5269,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5441,9 +5435,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * when en event is emitted.
        * 
        * @param listenerId The listener id
@@ -5460,10 +5454,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5945,10 +5938,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5964,10 +5956,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6039,10 +6030,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6058,10 +6048,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6152,10 +6141,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6171,10 +6159,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6245,10 +6232,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6264,10 +6250,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6345,10 +6330,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6364,10 +6348,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
