@@ -1,3 +1,31 @@
+declare interface JExtensionEventParams {
+  extensionId: string
+}
+
+declare interface JExtensionServerOverride {
+  id: string,
+  jsUrl: string
+}
+
+declare interface JCoreServerExtensionInfo {
+  /**
+   * The extension server id. The server extension id could be different of the JS version.
+   */
+  id: string
+  /**
+   * The extension server version. The server extension version could be different of the JS version.
+   */
+  version: string
+  /**
+   * The data depends on the extension. Some extensions could have an empty params object.
+   */
+  data: any
+}
+
+declare interface JCoreExtensionParams {
+  serverInfo?: JCoreServerExtensionInfo
+}
+
 /**
  * We introduce the notion of extension in order to let you adding you own JMap plugin.
  * 
@@ -24,6 +52,26 @@ declare interface JCoreExtension {
    */
   id: string
   /**
+   * By default an extension is "application" scoped. But you can set the extension as "project" scoped.
+   * 
+   * If an extension is application scoped, it will be loaded one time, and never destroyed.
+   * 
+   * If it's set as project scoped :
+   *  - The extension will be registered each time a project is activated (= initFn will be called).
+   *  - When a project is deactivated, the extension function destroyFn is called (if defined), then the
+   *    extension is unregistered (redux store, service, etc... will be destroyed).
+   */
+  isProjectExtension?: boolean
+  /**
+   * If your extensions is depending on a server extension, you have to set this parameter.
+   * 
+   * This parameter is used to determine if an extension is a backend extension or not, and also used
+   * in order to provide the parameter to the extension (initFn params).
+   * 
+   * It should be the same id as the JS extension id, it but could be different.
+   */
+  serverExtensionId?: string
+  /**
    * If you want you can expose a service.
    * 
    * If your extension id is "MyExtension", your service will be accessible like that :
@@ -33,26 +81,46 @@ declare interface JCoreExtension {
    */
   serviceToExpose?: any
   /**
-   * you can set this property to true and your initFn will be called as soon JMap Core library is
-   * loaded. By default the initFn of your plugin is called only after the map has been loaded.
+   * By default :
+   *  - "application" scoped extensions are initialized (= initFn called) the first time the map is loaded
+   *  - "project" scoped extensions are initialized after a project has changed and the new map is loaded
    * 
-   * The map is loaded when a project has been loaded, and the project is loaded only if
-   * we have we have a valid user session token.
-   * 
-   * So if you don't provide user sesion data in JMap startup options, your plugin function will
-   * be called only when you will have a valid session token, and loaded a project.
-   * 
-   * You can make a custom autentication using the method [[JMap.User.login]]).
-   * 
-   * You can load a a project using the method [[JMap.Project.load]]).
+   * If you set this parameter to true :
+   *  - "application" scoped extensions will be initialized as soon the extension is registered
+   *  - "project" scoped extensions will be initialized as soon the project has changed
    */
   startBeforeMapIsReady?: boolean
   /**
+   * You can provide a translation bundle for your extesion. All translations will be handled by the JMap NG
+   * translation engine. See [[JMap.Language.addBundle]] for more details on bundles
+   */
+  translationBundle?: JTranslationBundle
+  /**
    * The init function of your extension.
    * 
-   * Here you can start initialize your plugin.
+   * Here you can start initialize your extension.
+   * 
+   * By default param is an empty object, but for project server extensions only, a parameter "serverInfo" is passed,
+   * fetched from the project configuration that is defined in the admininistration.
    */
-  initFn: () => void
+  initFn: (params: JCoreExtensionParams) => void
+  /**
+   * The destroy function.
+   * 
+   * Only used for "project" scoped extensions (useless for "application" scoped extension).
+   * 
+   * For "project" scoped extensions, when a project will be deactivated, all project's extensions are unregistered.
+   * 
+   * Before unregister those extensions, this function is called.
+   * 
+   * For example, when this function is called you should clean all your event listeners.
+   * 
+   * Don't mind about cleaning the redux state, because it will be destroyed by the register function.
+   * 
+   * Then the redux state will be created again when the next project will be loaded,
+   * and the extension will be registered again.
+   */
+  destroyFn?: () => void
   /**
    * You can provide your own Redux store reducer : https://redux.js.org/basics/reducers.
    * 
@@ -75,12 +143,6 @@ declare interface JCoreExtension {
    * @param feature  The mouseovered feature (having all its properties filled)
    */
   renderMouseOver?: (layer: JLayer, feature: any) => JExtensionMouseOver
-  
-  /**
-   * You can provide a translation bundle for your extesion. All translations will be handled by the JMap NG
-   * translation engine. See [[JMap.Language.addBundle]] for more details on bundles
-   */
-  translationBundle?: JTranslationBundle
 }
 
 declare interface JExtensionMouseOver {

@@ -389,4 +389,21 @@ declare interface JCoreOptions {
    * Supported locales  can be retrieved by calling [[JMap.User.getLocales()]]
    */
   locale?: string
+
+  /**
+   * For developpers, you can ovveride the project's extensions url here
+   * 
+   * Ex: the extension having id="custom-extension" is set on the project.
+   * It's url is "https://cdn.jsdelivr.net/npm/custom-extension@1.0.10/public/index.js"
+   * 
+   * But in development, to test your changes you want to load your dev file, that is located
+   * for example at this location : "https://localhost:8083/build/index.js".
+   * 
+   * In order to change the extension jsUrl dynamically, you can override like this :
+   * [{
+   *  id: "custom-extension",
+   *  jsUrl: "https://localhost:8083/build/index.js"
+   * }]
+   */
+  extensionsUrlOverride?: JExtensionServerOverride[]
 }

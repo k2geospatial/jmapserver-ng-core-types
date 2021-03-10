@@ -63,6 +63,7 @@ export interface JEventService {
   Project: JProjectEventModule
   User: JUserEventModule
   Feature: JFeatureEventModule
+  Extension: JExtensionEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -81,10 +82,19 @@ export interface JEventModule {
   remove(listenerId: string): void
 }
 
+export interface JExtensionEventModule extends JEventModule {
+  on: {
+    registration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+    unregistration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+  }
+}
+
 export interface JProjectEventModule extends JEventModule {
   on: {
     projectChange(listenerId: string, fn: (params: JProjectEventParams) => void): void
     projectsChange(listenerId: string, fn: (params: JProjectAllEventParams) => void): void
+    preDeactivation(listenerId: string, fn: (params: JProjectEventParams) => void): void
+    postDeactivation(listenerId: string, fn: (params: JProjectEventParams) => void): void
   }
 }
 
