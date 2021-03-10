@@ -256,6 +256,25 @@ declare namespace JMap {
     function getById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
 
     /**
+     * **JMap.Feature.getByIds**
+     * 
+     * Returns the features (EPSG:4326 projection) for the given layer and feature ids.
+     * 
+     * @param layerId the JMap layer id
+     * @param featureIds the array of JMap feature ids
+     * @throws if layer or any of the features  not found
+     * @example ```ts
+     * 
+     * // returns the features of layer id="3" and feature id="4", "5" and "6"
+     * JMap.Feature
+     *  .getByIds(3, [4, 5, 6])
+     *  .then(features => console.info("Features has been fetched", features))
+     *  .catch(error => console.error("An error occured", error))
+     * ```
+     */
+    function getByIds(layerId: JId, featureIds: JId[]): Promise<GeoJSON.Feature[]>
+
+    /**
      * **JMap.Feature.updateGeometry**
      * 
      * Change the feature geometry for the given layer id, feature id and geometry (projection EPSG:4326).
