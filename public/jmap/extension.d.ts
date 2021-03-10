@@ -2,6 +2,11 @@ declare interface JExtensionEventParams {
   extensionId: string
 }
 
+declare interface JExtensionServerOverride {
+  id: string,
+  jsUrl: string
+}
+
 declare interface JCoreExtensionParams {
   /**
    * The extension server version. The server extension version could be different of the JS version.
