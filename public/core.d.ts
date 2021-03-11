@@ -4358,9 +4358,9 @@ declare namespace JMap {
      * 
      * // Remove the value for user preference "theme"
      * JMap.User
-     *      .setPreference(prefName)
+     *      .removePreference(prefName)
      *      .then(preferenceValue=>{
-     *        console.log(`Preference item "${prefName}" has been removed`) 
+     *        console.log(`Preference item "${prefName}" has been removed, and its value were "${preferenceValue}""`) 
      *      }).catch(reason=>{
      *        console.log(`Cannot remove the preference "${prefName}". Reason: ${reason}`) 
      *      })
