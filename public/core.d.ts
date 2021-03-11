@@ -5093,6 +5093,24 @@ declare namespace JMap {
         function registration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
 
         /**
+         * ***JMap.Event.Extension.on.beforeUnregistration***
+         * 
+         * This event is triggered just before an extension will be unregistered.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console each time an extension will be unregistered
+         * JMap.Event.Extension.on.beforeUnregistration(
+         *   "custom-core-extension-beforeUnregistration", 
+         *   params => console.log(`Extension id="${params.extensionId}" will be unregistered`)
+         * )
+         * ```
+         */
+        function beforeUnregistration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+
+        /**
          * ***JMap.Event.Extension.on.unregistration***
          * 
          * This event is triggered when an extension is unregistered.

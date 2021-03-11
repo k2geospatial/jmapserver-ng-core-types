@@ -85,6 +85,7 @@ export interface JEventModule {
 export interface JExtensionEventModule extends JEventModule {
   on: {
     registration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+    beforeUnregistration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
     unregistration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
   }
 }
