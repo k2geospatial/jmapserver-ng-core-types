@@ -1044,7 +1044,7 @@ declare namespace JMap {
      * @param layerId The JMap layer id
      * @example ```ts
      * 
-     * // returns false if no thematic is displayed for layer id=4
+     * // returns layer's id=4 thematic(s) that are displayed
      * JMap.Layer.getVisibleThematics(4)
      * ```
      */
