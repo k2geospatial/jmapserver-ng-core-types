@@ -3,8 +3,8 @@ declare interface JMapMouseOver {
   preventTextDuplication: boolean
   backgroundColor: string
   visible: boolean
-  minimumScale: number
-  maximumScale: number
+  maximumVisibleMapboxZoom: number
+  minimumVisibleMapboxZoom: number
 }
 
 declare interface JMouseOverContent {

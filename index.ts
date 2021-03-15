@@ -541,6 +541,7 @@ export interface JExtensionService {
   register(extension: JCoreExtension): void
   isRegistered(extensionId: string): boolean
   getAllRegisteredIds(): string[]
+  hasMouseOver():boolean
   renderMouseOver(layer: JLayer, feature: Feature): JExtensionMouseOver[]
 }
 

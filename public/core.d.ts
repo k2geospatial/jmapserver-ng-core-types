@@ -6494,6 +6494,23 @@ declare namespace JMap {
     function getAllRegisteredIds(): string[]
 
     /**
+     * ***JMap.Extension.hasMouseOver***
+     * 
+     * Returns true if any of the currently registered extension has defined a "renderMouseOver" method.
+     * 
+     * @example ```ts
+     * 
+     * const hasMouseOver = JMap.Extension.hasMouseOver()
+     * if(hasMouseOver){
+     *    console.log("some extensions have defined mouseOvers")
+     * }else{
+     *    console.log("there is currently no extension defining mouseOvers")
+     * }
+     * ```
+     */
+    function hasMouseOver():boolean
+
+    /**
      * ***JMap.Extension.renderMouseOver***
      * 
      * It returns all extension mouseover data for a specific layer and feature.
