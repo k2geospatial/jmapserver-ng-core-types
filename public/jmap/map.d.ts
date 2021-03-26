@@ -50,6 +50,11 @@ declare interface JMapEventContainerResizedParams {
   container: HTMLElement
 }
 
+declare interface JMapEventSelectionChangedParams {
+  oldSelection: JMapSelection
+  newSelection: JMapSelection
+}
+
 declare interface JMapSelection {
   [ layerId: number ]: GeoJSON.Feature[]
 }
