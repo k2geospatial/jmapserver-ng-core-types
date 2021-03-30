@@ -64,6 +64,7 @@ export interface JEventService {
   User: JUserEventModule
   Feature: JFeatureEventModule
   Extension: JExtensionEventModule
+  MouseOver: JMouseOverEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -80,6 +81,15 @@ export interface JEventModule {
   activate(listenerId: string): void
   deactivate(listenerId: string): void
   remove(listenerId: string): void
+}
+
+export interface JMouseOverEventModule extends JEventModule {
+  on: {
+    beforeContentProcessed(listenerId: string, fn: (params: JMouseOverBeforeEventParams) => void): void
+    afterContentProcessed(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+    popupOpened(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+    popupClosed(listenerId: string): void
+  }
 }
 
 export interface JExtensionEventModule extends JEventModule {
