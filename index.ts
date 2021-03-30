@@ -88,7 +88,7 @@ export interface JMouseOverEventModule extends JEventModule {
     beforeContentProcessed(listenerId: string, fn: (params: JMouseOverBeforeEventParams) => void): void
     afterContentProcessed(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
     popupOpened(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
-    popupClosed(listenerId: string): void
+    popupClosed(listenerId: string, fn: () => void): void
   }
 }
 

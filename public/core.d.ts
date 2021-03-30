@@ -6557,7 +6557,7 @@ declare namespace JMap {
          * })
          * ```
          */
-        function popupClosed(listenerId: string): void
+        function popupClosed(listenerId: string, fn: () => void): void
       }
 
       /**
