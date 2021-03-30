@@ -6417,14 +6417,6 @@ declare namespace JMap {
       function remove(listenerId: string): void
     }
 
-
-
-
-
-
-
-
-
     /**
      * ***JMap.Event.MouseOver***
      * 
