@@ -6416,6 +6416,204 @@ declare namespace JMap {
        */
       function remove(listenerId: string): void
     }
+
+    /**
+     * ***JMap.Event.MouseOver***
+     * 
+     * Here you can manage all mouseover related event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.MouseOver.on]]***. 
+     */
+    namespace MouseOver {
+
+      /**
+       * ***JMap.Event.MouseOver.on***
+       * 
+       * Here you have all available user events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.MouseOver.on.beforeContentProcessed***
+         * 
+         * This event is triggered each time the map is clicked, and before the mouseover content is calculated or popup opened.
+         * 
+         * This event is a special on, as it offers 2 methods which can change the mouseover behavior:
+         *  - addFeaturesToLayerSelection : add custom features to the mouseover
+         *  - removeFeaturesFromLayerSelection: used to remove a clicked feature from the mouseover (will not be displayed in the mouseover)
+         * 
+         * You can test the event function addFeaturesToLayerSelection, by pasting the following code in the console (adapt for your configuration):
+         * 
+         * ```ts
+         * JMap.Event.MouseOver.on.beforeContentProcessed(
+         *   "my-listener",
+         *   params => {
+         *     console.log("Mouseover selection before", params.selection[4])
+         *     params.addFeaturesToLayerSelection(4, [{
+         *       id: 58,
+         *       properties: {JMAP_FID: 58, NOM_QR: "Bois-Francs"},
+         *       type: "Feature",
+         *       geometry: {coordinates: [],type: "Polygon"}
+         *     }])
+         *     console.log("Mouseover selection after", params.selection[4])
+         *   }
+         * )
+         * ```
+         * 
+         * This listener adds a feature on every click on the map, so no matter where you click,
+         * the mouseover will contains at least one feature (the one dynamically added by the listener)
+         * 
+         * Then paste this in the console to remove the previous listener:
+         * 
+         * ```ts
+         * JMap.Event.MouseOver.remove(“my-listener“)
+         * ```
+         * 
+         * You can test that now no mouseover is displayed anymore when we click on an empty area.
+         * 
+         * Finally you can test the event function removeFeaturesFromLayerSelection 
+         * by pasting the following code snippet:
+         * 
+         * ```ts
+         * JMap.Event.MouseOver.on.beforeContentProcessed(
+         *   "my-listener",
+         *   params => {
+         *     console.log("Mouseover selection before", params.selection[4])
+         *     params.removeFeaturesFromLayerSelection(4, [58])
+         *     console.log("Mouseover selection after", params.selection[4])
+         *   }
+         * )
+         * ```
+         * 
+         * Now you can click on the feature id=58, but no mouseover will display for if, as it is automatically removed by the listener.
+         * 
+         * @param listenerId Your listener id (must be unique for all mouseover events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the map is clicked and "layer" interactor is active
+         * JMap.Event.MouseOver.on.beforeContentProcessed("my-listener", params => {
+         *   // mouseover "clicked" features for layer id="3"
+         *   let features = params.getFeaturesByLayerId(3) // returns an array copy
+         *   // remove feature id=17
+         *   params.removeFeaturesByLayerId(3, [123, 432])
+         *   features = params.getFeaturesByLayerId(3)
+         *   // now features id=123 and 432 are not anymore in features array
+         *   const newFeature = { id="24553", ...etc } // a geojson feature
+         *   params.addFeatureByLayerId(3, newFeature)
+         *   features = params.getFeaturesByLayerId(3)
+         *   // features contains the new feature and will display it in the mouseover
+         * })
+         * ```
+         */
+        function beforeContentProcessed(listenerId: string, fn: (params: JMouseOverBeforeEventParams) => void): void
+        
+        /**
+         * ***JMap.Event.MouseOver.on.afterContentProcessed***
+         * 
+         * This event is triggered when the map has been clicked, after the mouseover content has been calculated.
+         * 
+         * @param listenerId Your listener id (must be unique for all mouseover events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time map is clicked, and the mousover content has been calculated
+         * JMap.Event.MouseOver.on.afterContentProcessed("my-listener", params => {
+         *   console.log("Mouseover content has been processed", params.content)
+         * })
+         * ```
+         */
+        function afterContentProcessed(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+        
+        /**
+         * ***JMap.Event.MouseOver.on.popupOpened***
+         * 
+         * This event is triggered when the popup has been opened.
+         * 
+         * @param listenerId Your listener id (must be unique for all mouseover events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the mouseover popup is displayed
+         * JMap.Event.MouseOver.on.popupOpened("my-listener", params => {
+         *   console.log("Mouseover popup has been opened", params.content)
+         * })
+         * ```
+         */
+        function popupOpened(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+        
+        /**
+         * ***JMap.Event.MouseOver.on.popupClosed***
+         * 
+         * This event is triggered when the popup has been closed.
+         * 
+         * @param listenerId Your listener id (must be unique for all mouseover events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the mouseover popup is hidden
+         * JMap.Event.MouseOver.on.popupClosed("my-listener", () => {
+         *   console.log("Mouseover popup has been closed", params.content)
+         * })
+         * ```
+         */
+        function popupClosed(listenerId: string, fn: () => void): void
+      }
+
+      /**
+       * ***JMap.Event.MouseOver.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If the listener is already active, do nothing.
+       * 
+       * If the listener is inactive, it will be reactivated and will be called again ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-mouseover-listener"
+       * JMap.Event.MouseOver.activate("my-mouseover-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.MouseOver.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
+       * 
+       * If the listener is active, it will be deactivated and will be ignored ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-mouseover-listener"
+       * JMap.Event.MouseOver.deactivate("my-mouseover-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.MouseOver.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-mouseover-listener"
+       * JMap.Event.MouseOver.remove("my-mouseover-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
   }
 
   /**
