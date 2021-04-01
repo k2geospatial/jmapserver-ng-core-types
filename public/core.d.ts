@@ -5969,6 +5969,27 @@ declare namespace JMap {
          * ```
          */
         function containerResized(listenerId: string, fn: (params: JMapEventContainerResizedParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.selectionChanged***
+         * 
+         * This event is triggered when the map selection has changed.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the selection changed, will display old and new selections in the console
+         * JMap.Event.Map.on.selectionChanged(
+         *    "custom-selection-changed",
+         *    params => {
+         *      console.log("Old selection:", params.oldSelection)
+         *      console.log("New selection:", params.newSelection)
+         *    }
+         * )
+         * ```
+         */
+        function selectionChanged(listenerId: string, fn: (params: JMapEventSelectionChangedParams) => void): void
       }
       /**
        * ***JMap.Event.Map.activate***
