@@ -6440,7 +6440,7 @@ declare namespace JMap {
          * 
          * This event is a special on, as it offers 2 methods which can change the mouseover behavior:
          *  - addFeaturesToLayerSelection : add custom features to the mouseover
-         *  - removeFeaturesFromLayerSelection: used to remove a click feature from the mouseover (will not be displayed in the mouseover)
+         *  - removeFeaturesFromLayerSelection: used to remove a clicked feature from the mouseover (will not be displayed in the mouseover)
          * 
          * You can test the event function addFeaturesToLayerSelection, by pasting the following code in the console (adapt for your configuration):
          * 
@@ -6460,8 +6460,8 @@ declare namespace JMap {
          * )
          * ```
          * 
-         * This listener add in every click on the map the feature, so everywhere you click
-         * on the map the mouseover will display on the map, even on an area having no feature.
+         * This listener adds a feature on every click on the map, so no matter where you click,
+         * the mouseover will contains at least one feature (the one dynamically added by the listener)
          * 
          * Then paste this in the console to remove the previous listener:
          * 
@@ -6511,7 +6511,7 @@ declare namespace JMap {
         /**
          * ***JMap.Event.MouseOver.on.afterContentProcessed***
          * 
-         * This event is triggered when the map has been clicked, before the mouseover content is calculated.
+         * This event is triggered when the map has been clicked, after the mouseover content has been calculated.
          * 
          * @param listenerId Your listener id (must be unique for all mouseover events)
          * @param fn Your listener function
