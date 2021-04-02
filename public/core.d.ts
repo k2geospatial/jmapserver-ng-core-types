@@ -6544,7 +6544,7 @@ declare namespace JMap {
          * })
          * ```
          */
-        function afterContentProcessed(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+        function afterContentProcessed(listenerId: string, fn: (params: JMouseOverAfterEventParams) => void): void
         
         /**
          * ***JMap.Event.MouseOver.on.popupOpened***
@@ -6744,7 +6744,7 @@ declare namespace JMap {
      * JMap.Extension.renderMouseOver(2, feature)
      * ```
      */
-    function renderMouseOver(layer: JLayer, feature: GeoJSON.Feature): JExtensionMouseOver[]
+    function renderMouseOver(layer: JLayer, feature: GeoJSON.Feature): Array<JExtensionMouseOver | undefined>
   }
 
   /**
