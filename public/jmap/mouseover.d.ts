@@ -37,6 +37,8 @@ declare interface JMouseOverBeforeEventParams extends JMouseOverBeforeAfterConte
   addHtmlContentAtTheBeginning(html: string): void
   // you can add some html at the end of the mouseover
   addHtmlContentAtTheEnd(html: string): void
+  // by default html content added at the beginning or the end are displayed only if a mouseover is found.
+  // By calling this method it will display even if no mouseover found
   displayHtmlContentEvenIfNoMouseOver(): void
 }
 
