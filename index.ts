@@ -22,6 +22,7 @@ export interface JCoreService extends JCoreMainService {
 
 export interface JFeatureService {
   getById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
+  getByIds(layerId: JId, featureIds: JId[]): Promise<GeoJSON.Feature[]>
   geometryUpdateById(params: JFeatureGeometryUpdateParams): Promise<GeoJSON.Feature>
   deleteById(layerId: JId, featureId: JId): Promise<void>
   deleteByIds(layerId: JId, featureIds: JId[]): Promise<JFeatureDeleteByIdsResult>
@@ -65,6 +66,8 @@ export interface JEventService {
   User: JUserEventModule
   Feature: JFeatureEventModule
   Form: JFormEventModule
+  Extension: JExtensionEventModule
+  MouseOver: JMouseOverEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -89,10 +92,29 @@ export interface JFormEventModule extends JEventModule {
   }
 }
 
+export interface JMouseOverEventModule extends JEventModule {
+  on: {
+    beforeContentProcessed(listenerId: string, fn: (params: JMouseOverBeforeEventParams) => void): void
+    afterContentProcessed(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+    popupOpened(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+    popupClosed(listenerId: string, fn: () => void): void
+  }
+}
+
+export interface JExtensionEventModule extends JEventModule {
+  on: {
+    registration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+    beforeUnregistration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+    unregistration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+  }
+}
+
 export interface JProjectEventModule extends JEventModule {
   on: {
     projectChange(listenerId: string, fn: (params: JProjectEventParams) => void): void
     projectsChange(listenerId: string, fn: (params: JProjectAllEventParams) => void): void
+    preDeactivation(listenerId: string, fn: (params: JProjectEventParams) => void): void
+    postDeactivation(listenerId: string, fn: (params: JProjectEventParams) => void): void
   }
 }
 
@@ -135,6 +157,7 @@ export interface JMapEventModule extends JEventModule {
     pitchEnd(listenerId: string, fn: (params: JMapEventPitchParams) => void): void
     containerReady(listenerId: string, fn: (params: JMapEventContainerReadyParams) => void): void
     containerResized(listenerId: string, fn: (params: JMapEventContainerResizedParams) => void): void
+    selectionChanged(listenerId: string, fn: (params: JMapEventSelectionChangedParams) => void): void
   }
 }
 
@@ -591,6 +614,7 @@ export interface JExtensionService {
   register(extension: JCoreExtension): void
   isRegistered(extensionId: string): boolean
   getAllRegisteredIds(): string[]
+  hasMouseOver():boolean
   renderMouseOver(layer: JLayer, feature: Feature): JExtensionMouseOver[]
 }
 

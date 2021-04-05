@@ -268,6 +268,25 @@ declare namespace JMap {
     function getById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
 
     /**
+     * **JMap.Feature.getByIds**
+     * 
+     * Returns the features (EPSG:4326 projection) for the given layer and feature ids.
+     * 
+     * @param layerId the JMap layer id
+     * @param featureIds the array of JMap feature ids
+     * @throws if layer or any of the features  not found
+     * @example ```ts
+     * 
+     * // returns the features of layer id="3" and feature id="4", "5" and "6"
+     * JMap.Feature
+     *  .getByIds(3, [4, 5, 6])
+     *  .then(features => console.info("Features has been fetched", features))
+     *  .catch(error => console.error("An error occured", error))
+     * ```
+     */
+    function getByIds(layerId: JId, featureIds: JId[]): Promise<GeoJSON.Feature[]>
+
+    /**
      * **JMap.Feature.updateGeometry**
      * 
      * Change the feature geometry for the given layer id, feature id and geometry (projection EPSG:4326).
@@ -1056,7 +1075,7 @@ declare namespace JMap {
      * @param layerId The JMap layer id
      * @example ```ts
      * 
-     * // returns false if no thematic is displayed for layer id=4
+     * // returns layer's id=4 thematic(s) that are displayed
      * JMap.Layer.getVisibleThematics(4)
      * ```
      */
@@ -4392,9 +4411,9 @@ declare namespace JMap {
      * 
      * // Remove the value for user preference "theme"
      * JMap.User
-     *      .setPreference(prefName)
+     *      .removePreference(prefName)
      *      .then(preferenceValue=>{
-     *        console.log(`Preference item "${prefName}" has been removed`) 
+     *        console.log(`Preference item "${prefName}" has been removed, and its value were "${preferenceValue}""`) 
      *      }).catch(reason=>{
      *        console.log(`Cannot remove the preference "${prefName}". Reason: ${reason}`) 
      *      })
@@ -5042,10 +5061,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5061,10 +5079,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5095,6 +5112,132 @@ declare namespace JMap {
     }
 
     /**
+     * ***JMap.Event.Extension***
+     * 
+     * Here you can manage all extension event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.Extension.on]]***. 
+     */
+    namespace Extension {
+
+      /**
+       * ***JMap.Event.Extension.on***
+       * 
+       * Here you have all available high level events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Extension.on.registration***
+         * 
+         * This event is triggered when an extension is registered.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console each time an extension has been registered
+         * JMap.Event.Extension.on.registration(
+         *   "custom-core-extension-registration", 
+         *   params => console.log(`Extension id="${params.extensionId}" has been registered`)
+         * )
+         * ```
+         */
+        function registration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Extension.on.beforeUnregistration***
+         * 
+         * This event is triggered just before an extension will be unregistered.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console each time an extension will be unregistered
+         * JMap.Event.Extension.on.beforeUnregistration(
+         *   "custom-core-extension-beforeUnregistration", 
+         *   params => console.log(`Extension id="${params.extensionId}" will be unregistered`)
+         * )
+         * ```
+         */
+        function beforeUnregistration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Extension.on.unregistration***
+         * 
+         * This event is triggered when an extension is unregistered.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console each time an extension has been unregistered
+         * JMap.Event.Extension.on.unregistration(
+         *   "custom-core-extension-unregistration", 
+         *   params => console.log(`Extension id="${params.extensionId}" has been unregistered`)
+         * )
+         * ```
+         */
+        function unregistration(listenerId: string, fn: (params: JExtensionEventParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Extension.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If the listener is already active, do nothing.
+       * 
+       * If the listener is inactive, it will be reactivated and will be called again ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-extension-listener"
+       * JMap.Event.Extension.activate("my-extension-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Extension.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
+       * 
+       * If the listener is active, it will be deactivated and will be ignored ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-extension-listener"
+       * JMap.Event.Extension.deactivate("my-extension-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Extension.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-extension-listener"
+       * JMap.Event.Extension.remove("my-extension-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
      * ***JMap.Event.Form***
      * 
      * Here you can manage all form event listeners.
@@ -5111,19 +5254,15 @@ declare namespace JMap {
       namespace on {
 
         /**
-         * ***JMap.Event.Form.on.coreReady***
+         * ***JMap.Event.Form.on.submit***
          * 
-         * This event is triggered once: 
-         * * the jmap-core library is loaded, 
-         * * the redux store and its reducers are also loaded,
-         * * The initial session validation has been run. At thas point if the session has successfully been validated, the logged-in user will also be available
-         * 
+         * This event is triggered each time a form (or subform) is submitted.
          * 
          * @param listenerId Your listener id (must be unique)
          * @param fn Your listener function
          * @example ```ts
          * 
-         * // log a message in the console once the core library is loaded
+         * // log a message in the console once a form has been submitted
          * JMap.Event.Form.on.submit(
          *   "custom-form-submit", 
          *   params => console.info(`A form has been submitted`, params)
@@ -5243,6 +5382,50 @@ declare namespace JMap {
          * ```
          */
         function projectsChange(listenerId: string, fn: (params: JProjectAllEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Project.on.preDeactivation***
+         * 
+         * This event is triggered when current active project will be deactived.
+         * 
+         * When this event is triggered, the project is still loaded (the map, the redux state, etc...).
+         * 
+         * You can do anything normally.
+         * 
+         * @param listenerId Your listener id (must be unique for all project events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the current active project will be deactivated it will display the project id in the console
+         * JMap.Event.Project.on.preDeactivation(
+         *    "custom-project-pre-deactivation",
+         *    params => console.log(`Project id="${params.project.id}" will be deactivate`)
+         * )
+         * ```
+         */
+        function preDeactivation(listenerId: string, fn: (params: JProjectEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Project.on.postDeactivation***
+         * 
+         * This event is triggered when current active project has been deactived.
+         * 
+         * When this event is triggered, the project has been deactivated.
+         * 
+         * Project's data on the map, in the redux state, etc... should not be available anymore.
+         * 
+         * @param listenerId Your listener id (must be unique for all project events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the current active project will be deactivated it will display the project id in the console
+         * JMap.Event.Project.on.postDeactivation(
+         *    "custom-project-post-deactivation",
+         *    params => console.log(`Project id="${params.project.id}" is now deactivated`)
+         * )
+         * ```
+         */
+        function postDeactivation(listenerId: string, fn: (params: JProjectEventParams) => void): void
       }
 
       /**
@@ -5250,10 +5433,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5269,10 +5451,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5436,9 +5617,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * when en event is emitted.
        * 
        * @param listenerId The listener id
@@ -5455,10 +5636,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5934,16 +6114,36 @@ declare namespace JMap {
          * ```
          */
         function containerResized(listenerId: string, fn: (params: JMapEventContainerResizedParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.selectionChanged***
+         * 
+         * This event is triggered when the map selection has changed.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the selection changed, will display old and new selections in the console
+         * JMap.Event.Map.on.selectionChanged(
+         *    "custom-selection-changed",
+         *    params => {
+         *      console.log("Old selection:", params.oldSelection)
+         *      console.log("New selection:", params.newSelection)
+         *    }
+         * )
+         * ```
+         */
+        function selectionChanged(listenerId: string, fn: (params: JMapEventSelectionChangedParams) => void): void
       }
       /**
        * ***JMap.Event.Map.activate***
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5959,10 +6159,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6034,10 +6233,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6053,10 +6251,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6147,10 +6344,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6166,10 +6362,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6240,10 +6435,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6259,10 +6453,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6340,10 +6533,9 @@ declare namespace JMap {
        * 
        * Activate the listener.
        * 
-       * If listener was already activated, do nothing.
+       * If the listener is already active, do nothing.
        * 
-       * If the listener was deactivated, it state is turn to activate and it will be called again
-       * when en event is emitted.
+       * If the listener is inactive, it will be reactivated and will be called again ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6359,10 +6551,9 @@ declare namespace JMap {
        * 
        * Deactivate the listener.
        * 
-       * If listener id doesn't exist or is already deactivated, do nothing.
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
        * 
-       * If the listener was active, it state is turn to deactivate, and it will be ignore
-       * when en event is emitted.
+       * If the listener is active, it will be deactivated and will be ignored ...
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6387,6 +6578,204 @@ declare namespace JMap {
        * 
        * // remove the listener "my-user-listener"
        * JMap.Event.User.remove("my-user-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
+     * ***JMap.Event.MouseOver***
+     * 
+     * Here you can manage all mouseover related event listeners.
+     * 
+     * List of events are located in ***[[JMap.Event.MouseOver.on]]***. 
+     */
+    namespace MouseOver {
+
+      /**
+       * ***JMap.Event.MouseOver.on***
+       * 
+       * Here you have all available user events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.MouseOver.on.beforeContentProcessed***
+         * 
+         * This event is triggered each time the map is clicked, and before the mouseover content is calculated or popup opened.
+         * 
+         * This event is a special on, as it offers 2 methods which can change the mouseover behavior:
+         *  - addFeaturesToLayerSelection : add custom features to the mouseover
+         *  - removeFeaturesFromLayerSelection: used to remove a clicked feature from the mouseover (will not be displayed in the mouseover)
+         * 
+         * You can test the event function addFeaturesToLayerSelection, by pasting the following code in the console (adapt for your configuration):
+         * 
+         * ```ts
+         * JMap.Event.MouseOver.on.beforeContentProcessed(
+         *   "my-listener",
+         *   params => {
+         *     console.log("Mouseover selection before", params.selection[4])
+         *     params.addFeaturesToLayerSelection(4, [{
+         *       id: 58,
+         *       properties: {JMAP_FID: 58, NOM_QR: "Bois-Francs"},
+         *       type: "Feature",
+         *       geometry: {coordinates: [],type: "Polygon"}
+         *     }])
+         *     console.log("Mouseover selection after", params.selection[4])
+         *   }
+         * )
+         * ```
+         * 
+         * This listener adds a feature on every click on the map, so no matter where you click,
+         * the mouseover will contains at least one feature (the one dynamically added by the listener)
+         * 
+         * Then paste this in the console to remove the previous listener:
+         * 
+         * ```ts
+         * JMap.Event.MouseOver.remove(“my-listener“)
+         * ```
+         * 
+         * You can test that now no mouseover is displayed anymore when we click on an empty area.
+         * 
+         * Finally you can test the event function removeFeaturesFromLayerSelection 
+         * by pasting the following code snippet:
+         * 
+         * ```ts
+         * JMap.Event.MouseOver.on.beforeContentProcessed(
+         *   "my-listener",
+         *   params => {
+         *     console.log("Mouseover selection before", params.selection[4])
+         *     params.removeFeaturesFromLayerSelection(4, [58])
+         *     console.log("Mouseover selection after", params.selection[4])
+         *   }
+         * )
+         * ```
+         * 
+         * Now you can click on the feature id=58, but no mouseover will display for if, as it is automatically removed by the listener.
+         * 
+         * @param listenerId Your listener id (must be unique for all mouseover events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the map is clicked and "layer" interactor is active
+         * JMap.Event.MouseOver.on.beforeContentProcessed("my-listener", params => {
+         *   // mouseover "clicked" features for layer id="3"
+         *   let features = params.getFeaturesByLayerId(3) // returns an array copy
+         *   // remove feature id=17
+         *   params.removeFeaturesByLayerId(3, [123, 432])
+         *   features = params.getFeaturesByLayerId(3)
+         *   // now features id=123 and 432 are not anymore in features array
+         *   const newFeature = { id="24553", ...etc } // a geojson feature
+         *   params.addFeatureByLayerId(3, newFeature)
+         *   features = params.getFeaturesByLayerId(3)
+         *   // features contains the new feature and will display it in the mouseover
+         * })
+         * ```
+         */
+        function beforeContentProcessed(listenerId: string, fn: (params: JMouseOverBeforeEventParams) => void): void
+        
+        /**
+         * ***JMap.Event.MouseOver.on.afterContentProcessed***
+         * 
+         * This event is triggered when the map has been clicked, after the mouseover content has been calculated.
+         * 
+         * @param listenerId Your listener id (must be unique for all mouseover events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time map is clicked, and the mousover content has been calculated
+         * JMap.Event.MouseOver.on.afterContentProcessed("my-listener", params => {
+         *   console.log("Mouseover content has been processed", params.content)
+         * })
+         * ```
+         */
+        function afterContentProcessed(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+        
+        /**
+         * ***JMap.Event.MouseOver.on.popupOpened***
+         * 
+         * This event is triggered when the popup has been opened.
+         * 
+         * @param listenerId Your listener id (must be unique for all mouseover events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the mouseover popup is displayed
+         * JMap.Event.MouseOver.on.popupOpened("my-listener", params => {
+         *   console.log("Mouseover popup has been opened", params.content)
+         * })
+         * ```
+         */
+        function popupOpened(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+        
+        /**
+         * ***JMap.Event.MouseOver.on.popupClosed***
+         * 
+         * This event is triggered when the popup has been closed.
+         * 
+         * @param listenerId Your listener id (must be unique for all mouseover events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the mouseover popup is hidden
+         * JMap.Event.MouseOver.on.popupClosed("my-listener", () => {
+         *   console.log("Mouseover popup has been closed", params.content)
+         * })
+         * ```
+         */
+        function popupClosed(listenerId: string, fn: () => void): void
+      }
+
+      /**
+       * ***JMap.Event.MouseOver.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If the listener is already active, do nothing.
+       * 
+       * If the listener is inactive, it will be reactivated and will be called again ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-mouseover-listener"
+       * JMap.Event.MouseOver.activate("my-mouseover-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.MouseOver.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
+       * 
+       * If the listener is active, it will be deactivated and will be ignored ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-mouseover-listener"
+       * JMap.Event.MouseOver.deactivate("my-mouseover-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.MouseOver.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-mouseover-listener"
+       * JMap.Event.MouseOver.remove("my-mouseover-listener")
        * ```
        */
       function remove(listenerId: string): void
@@ -6467,6 +6856,23 @@ declare namespace JMap {
      * ```
      */
     function getAllRegisteredIds(): string[]
+
+    /**
+     * ***JMap.Extension.hasMouseOver***
+     * 
+     * Returns true if any of the currently registered extension has defined a "renderMouseOver" method.
+     * 
+     * @example ```ts
+     * 
+     * const hasMouseOver = JMap.Extension.hasMouseOver()
+     * if(hasMouseOver){
+     *    console.log("some extensions have defined mouseOvers")
+     * }else{
+     *    console.log("there is currently no extension defining mouseOvers")
+     * }
+     * ```
+     */
+    function hasMouseOver():boolean
 
     /**
      * ***JMap.Extension.renderMouseOver***
