@@ -4627,10 +4627,23 @@ declare namespace JMap {
      * 
      * // return the current locale
      * JMap.Language.getLocale()
-     * // "fr"
+     * // ex: "fr"
      * ```
      */
     function getLocale(): JLocale
+
+    /**
+     * **JMap.Language.getDateFnsLocale**
+     * 
+     * Get the current locale as a "dateFns" locale.
+     * 
+     * @example ```ts
+     * 
+     * // return the current dateFns locale
+     * JMap.Language.getDateFnsLocale()
+     * ```
+     */
+    function getDateFnsLocale(): any
 
     /**
      * **JMap.Language.getDefaultLocale**

@@ -594,6 +594,7 @@ export interface JLanguageService {
   getBundles(): JTranslationBundleById
   getLocales(): JLocale[]
   getLocale(): JLocale
+  getDateFnsLocale(): any
   getDefaultLocale(): JLocale 
   setLocale(locale: JLocale): void
   translate(params: JTranslateParams): string
