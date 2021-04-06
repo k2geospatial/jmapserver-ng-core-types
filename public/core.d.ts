@@ -6617,7 +6617,8 @@ declare namespace JMap {
          * 
          * This event is triggered each time the map is clicked, and before the mouseover content is calculated or popup opened.
          * 
-         * This event is a special on, as it offers 2 methods which can change the mouseover behavior:
+         * This event is a special on, as it offers 3 methods which can change the mouseover behavior:
+         *  - getFeaturesByLayerId: it returns the feature that will be used to display the mouseover
          *  - addFeaturesToLayerSelection : add custom features to the mouseover
          *  - removeFeaturesFromLayerSelection: used to remove a clicked feature from the mouseover (will not be displayed in the mouseover)
          * 
