@@ -84,6 +84,19 @@ declare namespace JMap {
   function openDocumentation(): void
 
   /**
+  * **JMap.openUserManual**
+  * 
+  * Open the JMap NG online user manual, in a new tab.
+  * 
+  * @example ```ts
+  * 
+  * // Open the JMap NG online user manual, in a new tab
+  * JMap.openUserManual()
+  * ```
+  */
+  function openUserManual(): void
+
+  /**
   * **JMap.getOS**
   * 
   * Return the operating system on witch JMap Web Core library is running client side.
@@ -108,7 +121,7 @@ declare namespace JMap {
     /**
      * **JMap.Server.getVersion**
      * 
-     * Returns a string identifying the version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
+     * Returns a string identifying the full version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
 
      * @example ```ts
      * 
@@ -117,6 +130,19 @@ declare namespace JMap {
      * ```
      */
     function getVersion(): string
+    
+    /**
+     * **JMap.Server.getShortVersion**
+     * 
+     * Returns a normalized string identifying the major version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
+
+     * @example ```ts
+     * 
+     * console.log(JMap.Server.getShortVersion())
+     * // "7_jakarta"
+     * ```
+     */
+    function getShortVersion(): string
     
     /**
      * **JMap.Server.isStandardLoginAvailable**
