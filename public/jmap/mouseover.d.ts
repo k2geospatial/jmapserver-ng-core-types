@@ -24,12 +24,12 @@ declare interface JMouseOverEventParams {
   content: JMouseOverContent
 }
 
-declare interface JMouseOverBeforeAfterContentParams extends JMouseOverSelectionParams {
+declare interface JMouseOverContentEventParams extends JMouseOverSelectionParams {
   // if called will stop the current mouse over to be displayed
   cancelMouseOver(): void
 }
 
-declare interface JMouseOverBeforeEventParams extends JMouseOverBeforeAfterContentParams {
+declare interface JMouseOverBeforeEventParams extends JMouseOverContentEventParams {
   addFeaturesToLayerSelection(layerId: JId, features: GeoJSON.Feature[]): void
   removeFeaturesFromLayerSelection(layerId: JId, featureIds: string[]): void
   getFeaturesByLayerId(layerId: JId): GeoJSON.Feature[]
@@ -42,6 +42,6 @@ declare interface JMouseOverBeforeEventParams extends JMouseOverBeforeAfterConte
   displayHtmlContentEvenIfNoMouseOver(): void
 }
 
-declare interface JMouseOverAfterEventParams extends JMouseOverBeforeAfterContentParams, JMouseOverEventParams {
+declare interface JMouseOverAfterEventParams extends JMouseOverContentEventParams, JMouseOverEventParams {
   // nothing to add
 }
