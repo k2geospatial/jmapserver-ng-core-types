@@ -84,19 +84,6 @@ declare namespace JMap {
   function openDocumentation(): void
 
   /**
-  * **JMap.openUserManual**
-  * 
-  * Open the JMap NG online user manual, in a new tab.
-  * 
-  * @example ```ts
-  * 
-  * // Open the JMap NG online user manual, in a new tab
-  * JMap.openUserManual()
-  * ```
-  */
-  function openUserManual(): void
-
-  /**
   * **JMap.getOS**
   * 
   * Return the operating system on witch JMap Web Core library is running client side.

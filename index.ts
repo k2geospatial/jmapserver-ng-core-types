@@ -33,7 +33,6 @@ export interface JCoreMainService {
   getDataStore(): Store<JCoreState> | undefined
   getRestUrl(): string
   openDocumentation(): void
-  openUserManual(): void
   getOS(): JOperatingSystem
 }
 
