@@ -569,6 +569,7 @@ export interface JDocumentService {
 
 export interface JServerService {
   getVersion(): string
+  getShortVersion(): string
   isStandardLoginAvailable(): boolean
   getIdentityProviderById(providerId: string): JServerIdentityProvider
   getAllIdentityProvidersById(): JServerIdentityProviderById
