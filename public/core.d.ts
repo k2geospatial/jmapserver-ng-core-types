@@ -3684,6 +3684,22 @@ declare namespace JMap {
   namespace MouseOver {
 
     /**
+     * **JMap.MouseOver.isPopupOpened**
+     */
+    function isPopupOpened(): boolean
+
+    /**
+     * **JMap.MouseOver.closePopup**
+     */
+    function closePopup(): void
+    
+    
+    /**
+     * **JMap.MouseOver.openPopup**
+     */
+    function openPopup(location: JLocation, html: string): void
+  
+    /**
      * **JMap.MouseOver.renderForFeaturesAtLocation**
      * 
      * Get the feature selection at the location, and process the mouseover for it,
