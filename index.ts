@@ -18,6 +18,12 @@ export interface JCoreService extends JCoreMainService {
   History: JHistoryService
   Extension: JExtensionService
   Server: JServerService
+  Photo: JPhotoService
+}
+
+export interface JPhotoService {
+  displayFeaturePhotosPopup(layerId: number, featureId: number): Promise<void>
+  displayPhotosPopup(photos: JPhoto[], selectedPhotoId?: JId): Promise<void>
 }
 
 export interface JFeatureService {
@@ -263,9 +269,10 @@ export interface JLayerState {
 }
 
 export interface JPhotoState {
-  selectedPhoto: number | undefined
+  selectedPhotoId: JId | undefined
   photos: JPhoto[]
   isPopupOpened: boolean
+  isLoading: boolean
 }
 
 export interface JQueryState {
@@ -327,6 +334,11 @@ export interface JFormService {
   submit(): Promise<JFormSubmitResult>
   canDeleteCurrentElements(): boolean
   deleteCurrentElements(): Promise<JFormDeleteResult>
+  // PHOTOS
+  hasDisplayedFormAPhotoField(): boolean
+  getDisplayedFormPhotos(): JPhoto[]
+  addDisplayedFormPhoto(photo: JPhoto): JId
+  removeDisplayedFormPhotoById(photoId: JId): void
   // PURE FORM METHODS (not integrated, also used by query service)
   getDefaultValues(formMetaData: JFormMetaData, initialData?: JAttributeValueByName): JAttributeValueByName
   getPreparedData(formMetaData: JFormMetaData, data: JAttributeValueByName): JAttributeValueByName

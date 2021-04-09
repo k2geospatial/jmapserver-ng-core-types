@@ -41,6 +41,7 @@ declare interface JFormMetaData {
   schema: JFormSchema
   uiSchema: JFormUISchema
   idAttributeName: string | null
+  hasPhoto: boolean
   readOnly: boolean
   canDelete: boolean
   canInsert: boolean
@@ -116,6 +117,7 @@ declare interface JFormUIControl {
   mask?: string
   subFormId?: JId // for table control
   tableAttributes?: JFormAttribute[] // for table control
+  deleteWithElement?: boolean // for photo control
 }
 
 declare interface JFormUIControlEntry {
@@ -170,6 +172,7 @@ declare type JFormField =
   | JFormFieldSelectOne
   | JFormFieldSelectBase
   | JFormFieldSelectTree
+  | JFormFieldPhoto
 
 declare interface JFormFieldBase {
   id: string
@@ -180,6 +183,11 @@ declare interface JFormFieldBase {
 
 declare interface JFormFieldEmpty extends JFormFieldBase {
   type: JFormFieldType
+}
+
+declare interface JFormFieldPhoto extends JFormFieldBase {
+  label: string
+  deleteWithElement: boolean
 }
 
 declare interface JFormFieldLabel extends JFormFieldBase {
@@ -291,8 +299,15 @@ declare interface JFormExternalAttribute {
   name: string
 }
 
+declare interface JFormPhoto {
+  isLoading: boolean
+  hasLoadingError: boolean
+  photos: JPhoto[]
+}
+
 declare interface JForm extends JFormElementData {
   id: JId
+  layerId: JId
   metaData: JFormMetaData
   parent: JForm | undefined
   elements: JFormElement[]
@@ -305,6 +320,7 @@ declare interface JForm extends JFormElementData {
   isExternalForm: boolean
   isSubForm: boolean
   geometry?: GeoJSON.Geometry // required for attribute forms
+  photo: JFormPhoto
 }
 
 declare interface JFormMetaDataById {

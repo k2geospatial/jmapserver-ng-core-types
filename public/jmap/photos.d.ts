@@ -8,6 +8,9 @@ declare interface JPhoto {
   comment: string
   metadata: JPhotoMetadata
   imageBase64: string
+  isFormUrl?: boolean
+  isNewPhoto?: boolean
+  isRemoved?: boolean
 }
 
 declare interface JPhotoEventContainerCreatedParams {

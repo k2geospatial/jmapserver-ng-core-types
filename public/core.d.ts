@@ -149,7 +149,7 @@ declare namespace JMap {
      * Returns the specified Identity Provider. Provider Ids can be derived from [[JMap.Server.getAllIdentityProvidersById]]
      * 
      * @throws if specified provider id is not valid or not found
-     * @param providerId 
+     * @param providerId the provider identity id
      * @example ```ts
      * 
      * console.log(JMap.Server.getIdentityProviderById("idp-1"))
@@ -170,6 +170,43 @@ declare namespace JMap {
      * ```
      */
     function getAllIdentityProvidersById(): JServerIdentityProviderById
+  }
+
+  /* **JMap.Photo**
+   * 
+   * This is where you can find JMap photo relative methods
+   */
+  namespace Photo {
+
+    /**
+     * **JMap.Photo.displayFeaturePhotosPopup**
+     * 
+     * Display the photos of a given feature of a given layer.
+     * 
+     * @param layerId the JMap layer id
+     * @param featureId the JMap feature id
+     * @example ```ts
+     * 
+     * // Display the photos of feature id="345" in layer id="4"
+     * JMap.Photo.displayFeaturePhotosPopup(4, 345)
+     * ```
+     */
+    function displayFeaturePhotosPopup(layerId: number, featureId: number): Promise<void>
+
+    /**
+     * **JMap.Photo.displayPhotosPopup**
+     * 
+     * Display your custom photos.
+     * 
+     * @param photos your custom photos
+     * @param selectedPhotoId The photo id to display at first
+     * @example ```ts
+     * 
+     * // Display the photos of feature id="345" in layer id="4"
+     * JMap.Photo.displayPhotosPopup(4, 345)
+     * ```
+     */
+    function displayPhotosPopup(photos: JPhoto[], selectedPhotoId?: JId): Promise<void>
   }
 
   /**
@@ -6733,7 +6770,7 @@ declare namespace JMap {
          * 
          * // Each time the mouseover popup is hidden
          * JMap.Event.MouseOver.on.popupClosed("my-listener", () => {
-         *   console.log("Mouseover popup has been closed", params.content)
+         *   console.log("Mouseover popup has been closed")
          * })
          * ```
          */
@@ -6944,6 +6981,10 @@ declare namespace JMap {
     function submit(): Promise<JFormSubmitResult>
     function canDeleteCurrentElements(): boolean
     function deleteCurrentElements(): Promise<JFormDeleteResult>
+    function hasDisplayedFormAPhotoField(): boolean
+    function getDisplayedFormPhotos(): JPhoto[]
+    function addDisplayedFormPhoto(photo: JPhoto): JId
+    function removeDisplayedFormPhotoById(photoId: JId): void
 
     /**
      * ***JMap.Form.getDefaultValues***
