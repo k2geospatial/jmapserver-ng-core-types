@@ -377,9 +377,44 @@ declare interface JFormEditParams extends JFormId {
 
 declare interface JFormOperation {
   formType: JFormType
+  layerId: JId
+  formId: JId
+  formName: string
+  isAttributeForm: boolean
   operationType: JFormOperationType
-  isSuccess: boolean
-  elementsOrEntries: JFormElement[] | JId[]
+  elementId: JId
+}
+
+declare interface JFormAttributeOperation extends JFormOperation {
+  formType: "LAYER_ATTRIBUTES_FORM"
+  isAttributeForm: true
+  attributeValueByName: JAttributeValueByName
+}
+
+declare interface JFormExternalOperation extends JFormOperation {
+  formType: "EXTERNAL_ATTRIBUTES_FORM"
+  isAttributeForm: false
+  idAttributeName: string
+  entry: JAttributeValueByName
+}
+
+declare interface JFormSubFormOperation extends JFormOperation {
+  formType: "LAYER_ATTRIBUTES_SUB_FORM" | "EXTERNAL_ATTRIBUTES_SUB_FORM"
+  isAttributeForm: false
+  idAttributeName: string
+  entry: JAttributeValueByName
+}
+
+declare interface JFormPhotoOperation extends JFormOperation {
+  photo: JPhoto
+}
+
+declare interface JFormAttributePhotoOperation extends JFormPhotoOperation {
+  // nothing to add
+}
+
+declare interface JFormDatabasePhotoOperation extends JFormPhotoOperation {
+  objectId: string
 }
 
 declare interface JFormSubmitResult {

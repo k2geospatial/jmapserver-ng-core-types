@@ -273,6 +273,7 @@ export interface JPhotoState {
   photos: JPhoto[]
   isPopupOpened: boolean
   isLoading: boolean
+  hasLoadingError: boolean
 }
 
 export interface JQueryState {

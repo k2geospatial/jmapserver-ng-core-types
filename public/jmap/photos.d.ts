@@ -8,7 +8,7 @@ declare interface JPhoto {
   comment: string
   metadata: JPhotoMetadata
   imageBase64: string
-  isFormUrl?: boolean
+  isFormUrl?: boolean // TODO remove when endpoint that returns directly the image will exist
   isNewPhoto?: boolean
   isRemoved?: boolean
 }
