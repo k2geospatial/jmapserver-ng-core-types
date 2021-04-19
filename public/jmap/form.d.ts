@@ -361,7 +361,6 @@ declare interface JFormUpdateElementsParams extends JFormElements {
   // nothing
 }
 
-// TODO REMOVE !!!
 declare interface JFormResult {
   elementId: JId
   success: boolean

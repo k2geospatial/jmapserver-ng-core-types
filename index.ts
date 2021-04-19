@@ -324,9 +324,7 @@ export interface JFormService {
   getSubForms(): JForm[]
   openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
   openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
-  // openCreationSubForm need hasDisplayedForm to be true
   openCreationDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm): void
-  // openUpdateSubForm need hasDisplayedForm to be true
   openUpdateDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm, elements: JFormElements[]): void
   closeCurrentDisplayedDialog(): void
   getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
