@@ -12,7 +12,8 @@ declare interface JProjectAllEventParams {
 }
 
 declare interface JProjectServerExtension {
-  id: string,
+  id: string
+  name: string
   jsUrl: string
   data: any | null
   version: string

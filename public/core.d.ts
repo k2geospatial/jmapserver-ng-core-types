@@ -120,7 +120,7 @@ declare namespace JMap {
     /**
      * **JMap.Server.getVersion**
      * 
-     * Returns a string identifying the version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
+     * Returns a string identifying the full version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
 
      * @example ```ts
      * 
@@ -129,6 +129,19 @@ declare namespace JMap {
      * ```
      */
     function getVersion(): string
+    
+    /**
+     * **JMap.Server.getShortVersion**
+     * 
+     * Returns a normalized string identifying the major version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
+
+     * @example ```ts
+     * 
+     * console.log(JMap.Server.getShortVersion())
+     * // "7_jakarta"
+     * ```
+     */
+    function getShortVersion(): string
     
     /**
      * **JMap.Server.isStandardLoginAvailable**
@@ -3761,6 +3774,22 @@ declare namespace JMap {
   namespace MouseOver {
 
     /**
+     * **JMap.MouseOver.isPopupOpened**
+     */
+    function isPopupOpened(): boolean
+
+    /**
+     * **JMap.MouseOver.closePopup**
+     */
+    function closePopup(): void
+    
+    
+    /**
+     * **JMap.MouseOver.openPopup**
+     */
+    function openPopup(location: JLocation, html: string): void
+  
+    /**
      * **JMap.MouseOver.renderForFeaturesAtLocation**
      * 
      * Get the feature selection at the location, and process the mouseover for it,
@@ -6740,7 +6769,7 @@ declare namespace JMap {
          * })
          * ```
          */
-        function afterContentProcessed(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+        function afterContentProcessed(listenerId: string, fn: (params: JMouseOverAfterEventParams) => void): void
         
         /**
          * ***JMap.Event.MouseOver.on.popupOpened***
@@ -6940,7 +6969,7 @@ declare namespace JMap {
      * JMap.Extension.renderMouseOver(2, feature)
      * ```
      */
-    function renderMouseOver(layer: JLayer, feature: GeoJSON.Feature): JExtensionMouseOver[]
+    function renderMouseOver(layer: JLayer, feature: GeoJSON.Feature): Array<JExtensionMouseOver | undefined>
   }
 
   /**

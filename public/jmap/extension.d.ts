@@ -142,7 +142,7 @@ declare interface JCoreExtension {
    * @param layer The JMap layer object
    * @param feature  The mouseovered feature (having all its properties filled)
    */
-  renderMouseOver?: (layer: JLayer, feature: any) => JExtensionMouseOver
+  renderMouseOver?: (layer: JLayer, feature: any) => JExtensionMouseOver | undefined
 }
 
 declare interface JExtensionMouseOver {

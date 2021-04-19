@@ -101,7 +101,7 @@ export interface JFormEventModule extends JEventModule {
 export interface JMouseOverEventModule extends JEventModule {
   on: {
     beforeContentProcessed(listenerId: string, fn: (params: JMouseOverBeforeEventParams) => void): void
-    afterContentProcessed(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
+    afterContentProcessed(listenerId: string, fn: (params: JMouseOverAfterEventParams) => void): void
     popupOpened(listenerId: string, fn: (params: JMouseOverEventParams) => void): void
     popupClosed(listenerId: string, fn: () => void): void
   }
@@ -615,6 +615,9 @@ export interface JLanguageService {
 }
 
 export interface JMouseOverService {
+  isPopupOpened(): boolean
+  closePopup(): void
+  openPopup(location: JLocation, html: string): void
   renderForFeaturesAtLocation(containerId: string, location: JLocation): boolean // return true if has mouseover
   renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
   getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined
@@ -627,7 +630,7 @@ export interface JExtensionService {
   isRegistered(extensionId: string): boolean
   getAllRegisteredIds(): string[]
   hasMouseOver():boolean
-  renderMouseOver(layer: JLayer, feature: Feature): JExtensionMouseOver[]
+  renderMouseOver(layer: JLayer, feature: Feature): Array<JExtensionMouseOver | undefined>
 }
 
 export interface JDocumentService {
@@ -640,6 +643,7 @@ export interface JDocumentService {
 
 export interface JServerService {
   getVersion(): string
+  getShortVersion(): string
   isStandardLoginAvailable(): boolean
   getIdentityProviderById(providerId: string): JServerIdentityProvider
   getAllIdentityProvidersById(): JServerIdentityProviderById
