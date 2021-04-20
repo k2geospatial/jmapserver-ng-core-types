@@ -3831,7 +3831,6 @@ declare namespace JMap {
      * const myLocation = {x:-73, y:46}
      * JMap.MouseOver.openPopupForSelection({ selection: currentSelection, location: myLocation, panToLocation: true })
      * ```
-     * 
      */
     function openPopupForSelection(params: JMouseOverOpenPopupForSelectionParams): void
   
