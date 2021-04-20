@@ -465,6 +465,7 @@ export interface JMapInteractionService {
 export interface JMapSelectionService {
   isEmpty(): boolean
   isEmptyByLayerId(layerId: JId): boolean
+  getSelectionCentroid(selection: JMapSelection): JLocation
   getSelectedFeatures(): JMapSelection
   getSelectedFeaturesForLayer(layerId: number): Feature[]
   getSelectedFeatureIdsForLayer(layerId: number): string[]
@@ -617,7 +618,8 @@ export interface JLanguageService {
 export interface JMouseOverService {
   isPopupOpened(): boolean
   closePopup(): void
-  openPopup(location: JLocation, html: string): void
+  openPopup(params: JMouseOverOpenPopupParams): void
+  openPopupForSelection(params: JMouseOverOpenPopupForSelectionParams): void
   renderForFeaturesAtLocation(containerId: string, location: JLocation): boolean // return true if has mouseover
   renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
   getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined

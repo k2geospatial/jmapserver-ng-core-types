@@ -3141,6 +3141,26 @@ declare namespace JMap {
       function isEmptyByLayerId(layerId: JId): boolean
 
       /**
+       * ***JMap.Map.Selection.getSelectionCentroid***
+       * 
+       * @throws Error if selection is empty
+       * @param selection a JMapSelection object
+       * @returns a JLocation representing the centroid of the selection
+       * 
+       * @example ```ts
+       * 
+       * // get the current selected features by layer id
+       * const selection = JMap.Map.Selection.getSelectedFeatures()
+       * 
+       * // compute the centroid of the selection
+       * const centroid = JMap.Map.Selection.getSelectionCentroid(selection)
+       * 
+       * console.log(`centroid of selection is located at: LAT: ${centroid.y}, LON: ${centroid.x}`)
+       * ```
+       */
+      function getSelectionCentroid(selection: JMapSelection): JLocation
+
+      /**
        * ***JMap.Map.Selection.getSelectedFeatures***
        * 
        * Returns the current map selection as a javascript map (= a javascript object) where :
@@ -3786,8 +3806,34 @@ declare namespace JMap {
     
     /**
      * **JMap.MouseOver.openPopup**
+     * 
+     * Displays an arbitrary popup at an arbitrary location on the map
+     * 
+     * @example ```ts
+     * 
+     * JMap.MouseOver.openPopup({ html: "<br /><div style='background-color:#ff8888'><br /><br />this is a simple mouseOver<br /><br /></div>", location: { y: 45.5, x:-73.5 }, toEvalJS: ["alert('This is a test');"] })
+     * ```
      */
-    function openPopup(location: JLocation, html: string): void
+    function openPopup(params: JMouseOverOpenPopupParams): void
+  
+    /**
+     * **JMap.MouseOver.openPopupForSelection**
+     * 
+     * Displays a standard MouseOver popup, based on a selection of features. You can specify an optional location to display 
+     * the popup on the map, as well as an option to specify if the map shoud pan to the popup's location
+     * 
+     * @throws Error if the user-defined location is invalid or if the pan-to option is not a boolean
+     * @param params A JMouseOverOpenPopupForSelectionParams object
+     * @example ```ts
+     * 
+     * // display a MouseOver popup using the current selection and a custom location
+     * const currentSelection = JMap.Map.Selection.getSelectedFeatures()
+     * const myLocation = {x:-73, y:46}
+     * JMap.MouseOver.openPopupForSelection({ selection: currentSelection, location: myLocation, panToLocation: true })
+     * ```
+     * 
+     */
+    function openPopupForSelection(params: JMouseOverOpenPopupForSelectionParams): void
   
     /**
      * **JMap.MouseOver.renderForFeaturesAtLocation**
