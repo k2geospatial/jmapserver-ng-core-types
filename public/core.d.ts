@@ -5394,6 +5394,24 @@ declare namespace JMap {
          * ```
          */
         function submit(listenerId: string, fn: (params: JFormSubmitEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Form.on.deleteElements***
+         * 
+         * This event is triggered each time we delete elements in a form.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console each time element(s) has/have been deleted in a form
+         * JMap.Event.Form.on.deleteElements(
+         *   "custom-form-delete-element", 
+         *   params => console.info(`Element(s) in a form has/have been deleted`, params)
+         * )
+         * ```
+         */
+        function deleteElements(listenerId: string, fn: (params: JFormDeleteEventParams) => void): void
       }
 
       /**

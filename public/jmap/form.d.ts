@@ -433,8 +433,8 @@ declare interface JFormSubmitResult {
 }
 
 declare interface JFormDeleteResult {
-  success: JId[]
-  error: JId[]
+  inSuccessIds: JId[]
+  inErrorIds: JId[]
 }
 
 declare interface JFormErrors {
@@ -442,5 +442,9 @@ declare interface JFormErrors {
 }
 
 declare interface JFormSubmitEventParams extends JFormSubmitResult {
+  // nothing to add
+}
+
+declare interface JFormDeleteEventParams extends JFormDeleteResult {
   // nothing to add
 }

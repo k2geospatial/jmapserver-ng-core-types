@@ -95,6 +95,7 @@ export interface JEventModule {
 export interface JFormEventModule extends JEventModule {
   on: {
     submit(listenerId: string, fn: (params: JFormSubmitEventParams) => void): void
+    deleteElements(listenerId: string, fn: (params: JFormDeleteEventParams) => void): void
   }
 }
 
