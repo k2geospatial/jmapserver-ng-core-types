@@ -380,6 +380,8 @@ declare interface JFormOperation {
   formId: JId
   formName: string
   isAttributeForm: boolean
+  isExternalForm: boolean
+  isSubForm: boolean
   operationType: JFormOperationType
   elementId: JId
 }
@@ -387,12 +389,16 @@ declare interface JFormOperation {
 declare interface JFormAttributeOperation extends JFormOperation {
   formType: "LAYER_ATTRIBUTES_FORM"
   isAttributeForm: true
+  isExternalForm: false
+  isSubForm: false
   attributeValueByName: JAttributeValueByName
 }
 
 declare interface JFormExternalOperation extends JFormOperation {
   formType: "EXTERNAL_ATTRIBUTES_FORM"
   isAttributeForm: false
+  isExternalForm: true
+  isSubForm: false
   idAttributeName: string
   entry: JAttributeValueByName
 }
@@ -400,6 +406,8 @@ declare interface JFormExternalOperation extends JFormOperation {
 declare interface JFormSubFormOperation extends JFormOperation {
   formType: "LAYER_ATTRIBUTES_SUB_FORM" | "EXTERNAL_ATTRIBUTES_SUB_FORM"
   isAttributeForm: false
+  isExternalForm: false
+  isSubForm: true
   idAttributeName: string
   entry: JAttributeValueByName
 }
