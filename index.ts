@@ -325,8 +325,6 @@ export interface JFormService {
   getSubForms(): JForm[]
   openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
   openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
-  openCreationDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm): void
-  openUpdateDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm, elements: JFormElements[]): void
   closeCurrentDisplayedDialog(): void
   getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
   setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
@@ -338,6 +336,7 @@ export interface JFormService {
   hasDisplayedFormAPhotoField(): boolean
   getDisplayedFormPhotos(): JPhoto[]
   addDisplayedFormPhoto(photo: JPhoto): JId
+  updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
   removeDisplayedFormPhotoById(photoId: JId): void
   // PURE FORM METHODS (not integrated, also used by query service)
   getDefaultValues(formMetaData: JFormMetaData, initialData?: JAttributeValueByName): JAttributeValueByName

@@ -75,6 +75,7 @@ declare interface JLayer extends JLayerTreeElement {
   hasAttributeForm: boolean
   hasExternalForms: boolean
   selectable: boolean
+  authorPropertyName: string
 }
 
 declare interface JLayerAttribute {
