@@ -7064,8 +7064,6 @@ declare namespace JMap {
     function getSubForms(): JForm[]
     function openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
     function openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
-    function openCreationDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm): void
-    function openUpdateDialogSubForm(formMetaData: JFormMetaData, parentForm: JForm, elements: JFormElements[]): void
     function closeCurrentDisplayedDialog(): void
     function getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
     function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
@@ -7076,6 +7074,7 @@ declare namespace JMap {
     function hasDisplayedFormAPhotoField(): boolean
     function getDisplayedFormPhotos(): JPhoto[]
     function addDisplayedFormPhoto(photo: JPhoto): JId
+    function updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
     function removeDisplayedFormPhotoById(photoId: JId): void
 
     /**

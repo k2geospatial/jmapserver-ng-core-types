@@ -43,11 +43,14 @@ declare interface JFormMetaData {
   idAttributeName: string | null
   hasPhoto: boolean
   readOnly: boolean
-  canDelete: boolean
-  canInsert: boolean
-  canUpdate: boolean
+  isDeleteSupported: boolean
+  isCreateSupported: boolean
+  isUpdateSupported: boolean
   permissions: {
-    EDIT_LAYER_ATTRIBUTE_VALUES: boolean
+    EDIT_LAYER_ATTRIBUTE_VALUES?: boolean,
+    ADD_EXTERNAL_FORM_ATTRIBUTE_VALUES?: boolean,
+    DELETE_EXTERNAL_FORM_ATTRIBUTE_VALUES?: boolean,
+    EDIT_EXTERNAL_FORM_ATTRIBUTE_VALUES?: boolean
   }
 }
 
@@ -305,6 +308,12 @@ declare interface JFormPhoto {
   photos: JPhoto[]
 }
 
+declare interface JFormPhotoUpdate {
+  photoId: JId
+  title?: string
+  comment?: string
+}
+
 declare interface JForm extends JFormElementData {
   id: JId
   layerId: JId
@@ -319,6 +328,11 @@ declare interface JForm extends JFormElementData {
   isAttributeForm: boolean
   isExternalForm: boolean
   isSubForm: boolean
+  isReadOnly: boolean
+  isReadOnlyEditOwn: boolean
+  canCreate: boolean
+  canUpdate: boolean
+  canDelete: boolean
   geometry?: GeoJSON.Geometry // required for attribute forms
   photo: JFormPhoto
 }
