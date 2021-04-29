@@ -212,14 +212,27 @@ declare namespace JMap {
      * Display your custom photos.
      * 
      * @param photos your custom photos
-     * @param selectedPhotoId The photo id to display at first
+     * @param params optional parameters
      * @example ```ts
      * 
      * // Display the photos of feature id="345" in layer id="4"
      * JMap.Photo.displayPhotosPopup(4, 345)
      * ```
      */
-    function displayPhotosPopup(photos: JPhoto[], selectedPhotoId?: JId): Promise<void>
+    function displayPhotosPopup(photos: JPhoto[], params?: JPhotoOpenPopupParams): Promise<void>
+
+    /**
+     * **JMap.Photo.closePhotoPopup**
+     * 
+     * If displayed, close the photo popup
+     * 
+     * @example ```ts
+     * 
+     * // Close the photo popup
+     * JMap.Photo.closePhotoPopup()
+     * ```
+     */
+    function closePhotoPopup(): void
   }
 
   /**

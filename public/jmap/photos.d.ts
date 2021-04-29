@@ -16,6 +16,13 @@ declare interface JPhoto {
   canUpdate?: boolean
 }
 
+declare interface JPhotoOpenPopupParams {
+  selectedPhotoId?: JId
+  keepSameSelectedPhotoId?: boolean
+  onDelete?: (photo: JPhoto, selectedPhotoId: JId) => boolean
+  onUpdate?: (photo: JPhoto, title: string, comment: string | undefined) => boolean
+}
+
 declare interface JPhotoEventContainerCreatedParams {
   container: HTMLElement
 }

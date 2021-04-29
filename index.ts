@@ -23,7 +23,8 @@ export interface JCoreService extends JCoreMainService {
 
 export interface JPhotoService {
   displayFeaturePhotosPopup(layerId: number, featureId: number): Promise<void>
-  displayPhotosPopup(photos: JPhoto[], selectedPhotoId?: JId): Promise<void>
+  displayPhotosPopup(photos: JPhoto[], params?: JPhotoOpenPopupParams): Promise<void>
+  closePhotoPopup(): void
 }
 
 export interface JFeatureService {
