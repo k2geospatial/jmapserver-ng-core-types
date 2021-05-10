@@ -5,7 +5,7 @@ declare interface JPhoto {
   url: string
   title: string
   fileName: string
-  comment: string
+  comment: string | undefined
   metadata: JPhotoMetadata
   imageBase64: string
   hasChanged?: boolean
@@ -14,6 +14,8 @@ declare interface JPhoto {
   isRemoved?: boolean
   canDelete?: boolean
   canUpdate?: boolean
+  initialTitle?: string
+  initialComment?: string | undefined
 }
 
 declare interface JPhotoOpenPopupParams {

@@ -318,6 +318,7 @@ export interface JFormService {
   // DIALOG METHODS (UI)
   hasDisplayedForm(): boolean
   getDisplayedForm(): JForm
+  resetDisplayedForm(): void
   setActiveTabIndex(tabIndex: number): void
   getActiveTabIndex(): number
   hasAttributeForm(): boolean
@@ -329,7 +330,6 @@ export interface JFormService {
   closeCurrentDisplayedDialog(): void
   getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
   setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
-  reset(): void
   submit(): Promise<JFormSubmitResult>
   canDeleteCurrentElements(): boolean
   deleteCurrentElements(): Promise<JFormDeleteResult>
