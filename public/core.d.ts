@@ -2697,6 +2697,26 @@ declare namespace JMap {
     function clearFlashingLocations():void
 
     /**
+     * **JMap.Map.activateHover**
+     * 
+     * By default when mouse cursor pass hover a feature, it is not highlighted on the map.
+     * 
+     * But you can activate the feature hover.
+     * 
+     * @param isActive true or false, if undefined will activate
+     * @example ```ts
+     * 
+     * // Activate feature hover highlight
+     * JMap.Map.activateHover()
+     * JMap.Map.activateHover(true)
+     * 
+     * // Deactivate feature hover highlight
+     * JMap.Map.activateHover(false)
+     * ```     
+     * */
+    function activateHover(isActive?: boolean): void
+
+    /**
      * **JMap.Map.Interaction**
      * 
      * We introduced a notion of map interactor in JMap.
