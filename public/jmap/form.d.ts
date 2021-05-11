@@ -46,6 +46,7 @@ declare interface JFormMetaData {
   isDeleteSupported: boolean
   isCreateSupported: boolean
   isUpdateSupported: boolean
+  isFakeAttributeForm?: boolean // in JMap7 attribute form is optional
   permissions: {
     EDIT_LAYER_ATTRIBUTE_VALUES?: boolean,
     ADD_EXTERNAL_FORM_ATTRIBUTE_VALUES?: boolean,
@@ -317,6 +318,7 @@ declare interface JFormPhotoUpdate {
 declare interface JForm extends JFormElementData {
   id: JId
   layerId: JId
+  initialAttributeValueByName: JAttributeValueByName
   metaData: JFormMetaData
   parent: JForm | undefined
   elements: JFormElement[]

@@ -7069,6 +7069,7 @@ declare namespace JMap {
     function deleteSubFormEntries(params: JFormElements): Promise<void>
     function hasDisplayedForm(): boolean
     function getDisplayedForm(): JForm
+    function resetDisplayedForm(): void
     function setActiveTabIndex(tabIndex: number): void
     function getActiveTabIndex(): number
     function hasAttributeForm(): boolean
@@ -7080,7 +7081,6 @@ declare namespace JMap {
     function closeCurrentDisplayedDialog(): void
     function getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
     function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
-    function reset(): void
     function submit(): Promise<JFormSubmitResult>
     function canDeleteCurrentElements(): boolean
     function deleteCurrentElements(): Promise<JFormDeleteResult>
