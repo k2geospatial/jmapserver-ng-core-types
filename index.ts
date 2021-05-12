@@ -438,7 +438,9 @@ export interface JMapService {
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   clearFlashingLocations():void
-  activateHover(isActive?: boolean): void
+  isHoverActive(): boolean
+  activateHover(): void
+  deactivateHover(): void
 }
 
 export interface JMapBasemapService {
