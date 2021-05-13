@@ -1,13 +1,13 @@
 /**
- * This is the JMap Web Core library API documentation.
+ * This is the NG Core library API documentation.
  * 
  * Examples are availables <a href="https://doc.k2geospatial.com/jmap/doc/ng_dev/examples.html" target="_blank">here</a>.
  * 
- * You can customize JMap Web Core library by providing startup options ([[JCoreOptions]]).
+ * You can customize NG Core library by providing startup options ([[JCoreOptions]]).
  * 
- * After being loaded, the **JMap Web Core** library is accessible through the namespace **JMap** in the javascript console. For example :
+ * After being loaded, the **NG Core** library is accessible through the namespace **JMap** in the javascript console. For example :
  * ```ts
- * // returns the JMap Web Core version.
+ * // returns the NG Core version.
  * JMap.getVersion()
  * ```
  */
@@ -16,7 +16,7 @@ declare namespace JMap {
   /**
    * **JMap.getVersion**
    * 
-   * Returns the JMap Web Core library build version.
+   * Returns the NG Core library build version.
    * 
    * @example ```ts
    * 
@@ -29,7 +29,7 @@ declare namespace JMap {
   /**
    * **JMap.getApiVersion**
    * 
-   * Returns the JMap Web Core library API (typescript interfaces) version.
+   * Returns the NG Core library API (typescript interfaces) version.
    * 
    * For the same API version, multiple implementation versions can exist.
    * 
@@ -48,7 +48,7 @@ declare namespace JMap {
    *
    * @example ```ts
    * 
-   * // returns the JMap Web Core library Redux store
+   * // returns the NG Core library Redux store
    * const reduxStore = JMap.getDataStore()
    * reduxStore.dispatch(...)
    * ```
@@ -60,7 +60,7 @@ declare namespace JMap {
    * 
    * Returns the in use JMap server Rest API url.
    *
-   * This is the url on which the JMap Web Core library makes all of its ajax calls.
+   * This is the url on which the NG Core library makes all of its ajax calls.
    * 
    * @example ```ts
    * 
@@ -73,11 +73,11 @@ declare namespace JMap {
   /**
   * **JMap.openDocumentation**
   * 
-  * Open JMap Web Core library interface online documentation, in a new tab.
+  * Open NG Core library interface online documentation, in a new tab.
   * 
   * @example ```ts
   * 
-  * // open JMap Web Core library online JS API documentation, in a new tab
+  * // open NG Core library online JS API documentation, in a new tab
   * JMap.openDocumentation()
   * ```
   */
@@ -86,7 +86,7 @@ declare namespace JMap {
   /**
   * **JMap.getOS**
   * 
-  * Return the operating system on witch JMap Web Core library is running client side.
+  * Return the operating system on witch NG Core library is running client side.
   * 
   * Possible values returned are defined here [[JOperatingSystem]].
   * 
@@ -258,7 +258,7 @@ declare namespace JMap {
     /**
      * **JMap.Geolocation.isEnabled**
      * 
-     * Returns false if the JMap Web Core library has been started with option that disable the geolocation.
+     * Returns false if the NG Core library has been started with option that disable the geolocation.
      * 
      * See startup parameter [[JCoreOption.geolocationEnabled]].
      * 
@@ -928,7 +928,7 @@ declare namespace JMap {
      * Returns the tree element visibility property.
      * 
      * The visibility property is initialy defined on the project, and can be
-     * changed by the user through the JMap Web Core library.
+     * changed by the user through the NG Core library.
      * 
      * If this property is false, the layer cannot be displayed on the map.
      * 
@@ -952,7 +952,7 @@ declare namespace JMap {
      * Returns the tree element selectable property.
      * 
      * The selectable property is initialy defined on the project, and can be
-     * changed by the user through the JMap Web Core library.
+     * changed by the user through the NG Core library.
      * 
      * If this property is false, the layer's features can't be selected on the map by user interaction, or by API calls.
      * 
@@ -999,7 +999,7 @@ declare namespace JMap {
      * If it's a JMap layer, it applies the selectability to it.
      * 
      * The selectability property is initialy defined on the project, and can be
-     * changed by the user through the JMap Web Core library.
+     * changed by the user through the NG Core library.
      * 
      * If this property is true, the layer's features can be selected on the map.
      * 
@@ -1152,7 +1152,7 @@ declare namespace JMap {
      * If it's a JMap layer, it apply the visibility to it.
      * 
      * The visibility property is initialy defined on the project, and can be
-     * changed by the user through the JMap Web Core library.
+     * changed by the user through the NG Core library.
      * 
      * If this property is false, the layer cannot be displayed on the map.
      * 
@@ -1183,7 +1183,7 @@ declare namespace JMap {
      * If it's a JMap layer, it apply the visibility to it.
      * 
      * The visibility property is initialy defined on the project, and can be
-     * changed by the user through the JMap Web Core library.
+     * changed by the user through the NG Core library.
      * 
      * If this property is false, the layer cannot be displayed on the map.
      * 
@@ -2772,7 +2772,7 @@ declare namespace JMap {
      * 
      * When you activate an interactor, the previous one is deactivated, and the new one activated on the map.
      * 
-     * When you don't need anymore an interactor you can terminate it, and it will not exist anymore in the JMap Web Core library.
+     * When you don't need anymore an interactor you can terminate it, and it will not exist anymore in the NG Core library.
      */
     namespace Interaction {
       
@@ -2812,7 +2812,7 @@ declare namespace JMap {
        * 
        * Terminate the map interactor.
        * 
-       * After being terminated, the interactor doesn't exist anymore in JMap Web Core library.
+       * After being terminated, the interactor doesn't exist anymore in NG Core library.
        * 
        * You cannot activate it anymore.
        * 
@@ -3851,11 +3851,26 @@ declare namespace JMap {
 
     /**
      * **JMap.MouseOver.isPopupOpened**
+     * 
+     * Return true if the mouseover popup is visible on the map.
+     * 
+     * @example ```ts
+     * 
+     * // return true if the mouseover popup is visible on the map
+     * JMap.MouseOver.openPopup()
+     * ```
      */
     function isPopupOpened(): boolean
 
     /**
      * **JMap.MouseOver.closePopup**
+     * 
+     * Close the mouseover popup if it's visible on the map, else do nothing.
+     * 
+     * @example ```ts
+     * 
+     * // close the mouseover popup if it's visible on the map.
+     * JMap.MouseOver.closePopup()
      */
     function closePopup(): void
     
@@ -3863,11 +3878,15 @@ declare namespace JMap {
     /**
      * **JMap.MouseOver.openPopup**
      * 
-     * Displays an arbitrary popup at an arbitrary location on the map
+     * Displays a given html content in a popup at a given location on the map
      * 
      * @example ```ts
      * 
-     * JMap.MouseOver.openPopup({ html: "<br /><div style='background-color:#ff8888'><br /><br />this is a simple mouseOver<br /><br /></div>", location: { y: 45.5, x:-73.5 }, toEvalJS: ["alert('This is a test');"] })
+     * // open a popup at location lon=45.5 & lat=-73.5, that display the message "This is an example"
+     * JMap.MouseOver.openPopup({
+     *  html: "<div style='margin-top: 1rem; background-color:#ff8888'>This is an example</div>",
+     *  location: { y: 45.5, x:-73.5 }
+     * })
      * ```
      */
     function openPopup(params: JMouseOverOpenPopupParams): void
@@ -4011,7 +4030,7 @@ declare namespace JMap {
   /**
    * **JMap.Project**
    * 
-   * From this section you can manage the project that is in use in the JMap Web Core library.
+   * From this section you can manage the project that is in use in the NG Core library.
    */
   namespace Project {
 
@@ -4299,7 +4318,7 @@ declare namespace JMap {
      * 
      * Returns loaded JMap project base64 image thumbnail.
      * 
-     * When JMap Web Core lib is started, it doesn't load projects thumbnails, but you can load it
+     * When NG Core lib is started, it doesn't load projects thumbnails, but you can load it
      * by setting the startup option "loadAllProjectThumbnails" as true.
      *
      * If no thumbnail has been loaded it returns an empty string.
@@ -5171,7 +5190,7 @@ declare namespace JMap {
   /**
    * **JMap.Event**
    * 
-   * From this section you can manage your own event listeners reacting to JMap Web Core library events.
+   * From this section you can manage your own event listeners reacting to NG Core library events.
    * 
    * For all your listener you need provide a listener id. We introduced this notion of listener ids in order
    * to be able to know what's the problem if something goes wrong in a listener.
@@ -5187,14 +5206,14 @@ declare namespace JMap {
    * 
    * Listeners can be deactivated and reactivated.
    * 
-   * Deactivating a listener keep it in the JMap Web Core library, but ignore it when an event is emitted.
+   * Deactivating a listener keep it in the NG Core library, but ignore it when an event is emitted.
    */
   namespace Event {
 
     /**
      * ***JMap.Event.Main***
      * 
-     * Here you can manage all high level event listeners.
+     * Here you can manage all NG Core high level event listeners.
      * 
      * Click to see all events available: ***[[JMap.Event.Main.on]]***. 
      */
@@ -5203,7 +5222,7 @@ declare namespace JMap {
       /**
        * ***JMap.Event.Main.on***
        * 
-       * Here you have all available high level events on which you can attach a listener.
+       * Here you have all NG Core high level available events on which you can attach a listener.
        */
       namespace on {
 
@@ -5279,7 +5298,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5405,7 +5424,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5515,7 +5534,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5669,7 +5688,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -5854,7 +5873,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6377,7 +6396,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6469,7 +6488,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6580,7 +6599,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6671,7 +6690,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6769,7 +6788,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -6968,7 +6987,7 @@ declare namespace JMap {
        * 
        * If the listener doesn't exist, do nothing.
        * 
-       * Remove the listener from JMap Web Core library. The listener is deleted and never called again after that.
+       * Remove the listener from NG Core library. The listener is deleted and never called again after that.
        * 
        * @param listenerId The listener id
        * @example ```ts
@@ -7009,7 +7028,7 @@ declare namespace JMap {
     /**
      * ***JMap.Extension.register***
      * 
-     * Register your own extension extension.
+     * Register your own extension.
      * 
      * @throws Error if a parameter is not correct
      * @param extensionModel The extension model
@@ -7037,7 +7056,7 @@ declare namespace JMap {
      * @param extensionId The extension id
      * @example ```ts
      * 
-     * // returns true if the JMap Document extension is in use or not for the project
+     * // returns true if the JMap Document extension is in use or not
      * JMap.Extension.isRegistered("Document")
      * ```
      */
