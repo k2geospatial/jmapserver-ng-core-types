@@ -2279,6 +2279,24 @@ declare namespace JMap {
     function addMapboxLayerConfigurationForJmapLayer(params: JMapAddMapboxLayerConfigurationForJmapLayerParams): void
 
     /**
+     * **JMap.Map.refreshLayerById**
+     * 
+     * This method only works with editable layers
+     * 
+     * Refreshes the specified layer data on the Map. Can be called for instance after a feature has been added, deleted, or modified in the layer content server-side
+     * 
+     * @throws Error if layer is not found
+     * @param layerId The JMap layer id
+     * 
+     * @example ```ts
+     * 
+     * // Refreshes layer id 4 on the map 
+     * JMap.Map.refreshLayerById(4)
+     * ```
+     */
+    function refreshLayerById(layerId: JId): void
+
+    /**
      * **JMap.Map.getRenderedJMapLayerIds**
      * 
      * Returns the ids of the layers that are displayed on the map.
