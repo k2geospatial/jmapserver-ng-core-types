@@ -419,6 +419,7 @@ export interface JMapService {
   getMapboxSupportedJMapLayerBefore(layerId: number): number | undefined
   getMapboxSupportedJMapLayerAfter(layerId: number): number | undefined
   addMapboxLayerConfigurationForJmapLayer(params: JMapAddMapboxLayerConfigurationForJmapLayerParams): void
+  refreshLayerById(layerId: JId): void
   getRenderedJMapLayerIds(): number[]
   getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): Feature[]
   getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
