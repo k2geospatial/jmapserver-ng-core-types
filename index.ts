@@ -532,6 +532,8 @@ export interface JProjectService {
   getBase64ImageThumbnail(): string
   loadAllProjectThumbnails(params?: JProjectLoadThumbnailsParams): Promise<void>
   isChangeDisabled(): boolean
+  setChangeEnabled(): void
+  setChangeDisabled(): void
 }
 
 export interface JLayerService {
