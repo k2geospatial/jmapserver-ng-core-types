@@ -350,7 +350,7 @@ declare namespace JMap {
     function getByIds(layerId: JId, featureIds: JId[]): Promise<GeoJSON.Feature[]>
 
     /**
-     * **JMap.Feature.updateGeometry**
+     * **JMap.Feature.geometryUpdateById**
      * 
      * Change the feature geometry for the given layer id, feature id and geometry (projection EPSG:4326).
      * 
@@ -361,7 +361,7 @@ declare namespace JMap {
      * const newGeometry = { ... }
      * // change the geometry of feature id="4" on layer id="3"
      * JMap.Feature
-     *  .updateGeometry({
+     *  .geometryUpdateById({
      *    layerId: 3,
      *    featureId: 4,
      *    geometry: newGeometry
@@ -370,7 +370,7 @@ declare namespace JMap {
      *  .catch(error => console.error("An error occured", error))
      * ```
      */
-    function updateGeometry(params: JFeatureGeometryUpdateParams): Promise<GeoJSON.Feature>
+    function geometryUpdateById(params: JFeatureGeometryUpdateParams): Promise<GeoJSON.Feature>
 
     /**
      * **JMap.Feature.deleteById**
