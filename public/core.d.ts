@@ -1791,6 +1791,22 @@ declare namespace JMap {
      * ```
      */
     function getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): GeoJSON.Feature<GeoJSON.Polygon>
+
+    /**
+     * **JMap.Geometry.getPolygonFeature**
+     * 
+     * Returns true if the geometry type match the Layer geometry type, else false.
+     * 
+     * @param layerId the JMap layer id
+     * @param closeCoordinates the geometry type
+     * @throws if layer not found or layer is a layer group
+     * @example ```ts
+     * 
+     * // returns true if the layer id=3 has "Polygon" features, else false
+     * const distance = JMap.Geometry.isGeometryTypeValidForLayer(3, "Polygon")
+     * ```
+     */
+    function isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
   }
 
   /**

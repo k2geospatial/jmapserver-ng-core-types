@@ -384,6 +384,7 @@ export interface JGeometryService {
   getFeatureCollection(features: Feature[] | JLocation[] | JPoint[]): FeatureCollection
   getCircleFeature(center: JPoint | JLocation, radius: number): Feature<Polygon> // radius in km
   getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): Feature<Polygon>
+  isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
 }
 
 export interface JMapService {
