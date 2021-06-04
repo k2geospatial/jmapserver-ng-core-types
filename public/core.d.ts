@@ -4470,6 +4470,40 @@ declare namespace JMap {
      * ```
      */
     function isChangeDisabled(): boolean
+
+    /**
+     * **JMap.Project.setChangeEnabled**
+     * 
+     * Enables project change.
+     * 
+     * Can be used in a project extention for instance, to override the behaviour of this parameter inherited from startup options for the current user session.
+     * 
+     * @example ```ts
+     * 
+     * // enable project change
+     * if(JMap.Project.isChangeDisabled()){
+     *    JMap.Project.setChangeEnabled()
+     * }
+     * ```
+     */
+    function setChangeEnabled(): void
+
+    /**
+     * **JMap.Project.setChangeDisabled**
+     * 
+     * Disables project change.
+     * 
+     * Can be used in a project extention for instance, to override the behaviour of this parameter inherited from startup options for the current user session.
+     * 
+     * @example ```ts
+     * 
+     * // disable project change
+     * if(!JMap.Project.isChangeDisabled()){
+     *    JMap.Project.setChangeDisabled()
+     * }
+     * ```
+     */
+    function setChangeDisabled(): void
   }
 
   /**
