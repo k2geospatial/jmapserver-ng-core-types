@@ -34,12 +34,27 @@ declare type JSONSchemaTypes =
 
 // FORM METADATA
 
+declare interface JFormValidationRule {
+  id: string
+  expression: string
+  name: string
+  message: string
+}
+
+declare interface JFormPermissions {
+  editLayerAttributeValues: boolean,
+  addExternalFormAttributeValues: boolean,
+  deleteExternalFormAttributeValues: boolean,
+  editExternalFormAttributeValues: boolean
+}
+
 declare interface JFormMetaData {
   id: JId
   type: JFormType
   name: string
   schema: JFormSchema
   uiSchema: JFormUISchema
+  validationRules: JFormValidationRule[],
   idAttributeName: string | null
   hasPhoto: boolean
   readOnly: boolean
@@ -47,12 +62,7 @@ declare interface JFormMetaData {
   isCreateSupported: boolean
   isUpdateSupported: boolean
   isFakeAttributeForm?: boolean // in JMap7 attribute form is optional
-  permissions: {
-    EDIT_LAYER_ATTRIBUTE_VALUES?: boolean,
-    ADD_EXTERNAL_FORM_ATTRIBUTE_VALUES?: boolean,
-    DELETE_EXTERNAL_FORM_ATTRIBUTE_VALUES?: boolean,
-    EDIT_EXTERNAL_FORM_ATTRIBUTE_VALUES?: boolean
-  }
+  permissions: JFormPermissions
 }
 
 declare interface JFormSchema {
@@ -104,6 +114,10 @@ declare interface JFormUIControl {
   id: string
   widget: JFormWidgetType
   colSpan: number // the layout grid has 12 columns
+  ruleCalculated?: string
+  ruleReadOnly?: string
+  ruleRequired?: string
+  ruleVisible?: string
   scope?: string // use with attribute related controls. Ex of scope : "#/properties/done"
   multi?: boolean // for select control
   align?: JFormUIControlAlignment
@@ -210,6 +224,10 @@ declare interface JFormFieldInput extends JFormFieldBase {
   labelSuffix: string
   attribute: JFormFieldAttribute
   parentAttribute: string
+  ruleCalculated?: string
+  ruleReadOnly?: string
+  ruleRequired?: string
+  ruleVisible?: string
 }
 
 declare interface JFormFieldAttribute {
