@@ -7185,6 +7185,9 @@ declare namespace JMap {
     function addDisplayedFormPhoto(photo: JPhoto): JId
     function updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
     function removeDisplayedFormPhotoById(photoId: JId): void
+    function getNextViewId(): number
+    function incrementNextViewId(): void
+    function processRule(rule: any, data: any): any
 
     /**
      * ***JMap.Form.getDefaultValues***

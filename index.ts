@@ -333,6 +333,9 @@ export interface JFormService {
   submit(): Promise<JFormSubmitResult>
   canDeleteCurrentElements(): boolean
   deleteCurrentElements(): Promise<JFormDeleteResult>
+  getNextViewId(): number
+  incrementNextViewId(): void
+  processRule(rule: any, data: any): any
   // PHOTOS
   hasDisplayedFormAPhotoField(): boolean
   getDisplayedFormPhotos(): JPhoto[]

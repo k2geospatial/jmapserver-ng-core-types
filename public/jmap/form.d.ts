@@ -34,9 +34,21 @@ declare type JSONSchemaTypes =
 
 // FORM METADATA
 
-declare interface JFormValidationRule {
+declare interface JFormFieldValidationRuleByAttributeName {
+  [ fieldName: string ]: any
+}
+
+declare interface JFormValidationRules {
+  globalRules: JFormGlobalValidationRule[]
+  requiredRuleByAttributeName?: JFormFieldValidationRuleByAttributeName
+  readonlyRuleByAttributeName?: JFormFieldValidationRuleByAttributeName
+  calculatedRuleByAttributeName?: JFormFieldValidationRuleByAttributeName
+  visibleRuleByAttributeName?: JFormFieldValidationRuleByAttributeName
+}
+
+declare interface JFormGlobalValidationRule {
   id: string
-  expression: string
+  expression: any
   name: string
   message: string
 }
@@ -54,7 +66,7 @@ declare interface JFormMetaData {
   name: string
   schema: JFormSchema
   uiSchema: JFormUISchema
-  validationRules: JFormValidationRule[],
+  validationRules: JFormValidationRules,
   idAttributeName: string | null
   hasPhoto: boolean
   readOnly: boolean
@@ -114,10 +126,10 @@ declare interface JFormUIControl {
   id: string
   widget: JFormWidgetType
   colSpan: number // the layout grid has 12 columns
-  ruleCalculated?: string
-  ruleReadOnly?: string
-  ruleRequired?: string
-  ruleVisible?: string
+  ruleCalculated?: object
+  ruleReadOnly?: object
+  ruleRequired?: object
+  ruleVisible?: object // not yet implemented server side
   scope?: string // use with attribute related controls. Ex of scope : "#/properties/done"
   multi?: boolean // for select control
   align?: JFormUIControlAlignment
