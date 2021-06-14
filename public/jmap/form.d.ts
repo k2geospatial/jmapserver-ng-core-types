@@ -336,6 +336,7 @@ declare interface JFormExternalAttribute {
 declare interface JFormPhoto {
   isLoading: boolean
   hasLoadingError: boolean
+  hasChange: boolean
   photos: JPhoto[]
 }
 
