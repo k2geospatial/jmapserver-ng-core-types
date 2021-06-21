@@ -1325,6 +1325,49 @@ declare namespace JMap {
      * ```
      */
     function setThematicsVisibility(params: JLayerSetThematicsVisibilityParams[]): void
+
+    /**
+     * **JMap.Layer.isHoverActive**
+     * 
+     * Return true if the hover is active on the map.
+     * 
+     * @example ```ts
+     * 
+     * // hover is false by default, but can be activated
+     * JMap.Layer.isHoverActive()
+     * ```
+     * */
+    function isHoverActive(): boolean
+
+    /**
+     * **JMap.Layer.activateHover**
+     * 
+     * By default when mouse cursor pass hover a feature, it is not highlighted on the map.
+     * 
+     * But you can activate the feature hover.
+     * 
+     * @example ```ts
+     * 
+     * // Activate feature hover highlight
+     * JMap.Layer.activateHover()
+     * ```
+     * */
+    function activateHover(): void
+
+    /**
+     * **JMap.Layer.deactivateHover**
+     * 
+     * By default when mouse cursor pass hover a feature, it is not highlighted on the map.
+     * 
+     * But you can activate it and deactivate as you like
+     * 
+     * @example ```ts
+     * 
+     * // Deactivate feature hover highlight
+     * JMap.Layer.deactivateHover()
+     * ```
+     * */
+    function deactivateHover(): void
   }
 
   /**
@@ -2731,49 +2774,6 @@ declare namespace JMap {
     function clearFlashingLocations():void
 
     /**
-     * **JMap.Map.isHoverActive**
-     * 
-     * Return true if the hover is active on the map.
-     * 
-     * @example ```ts
-     * 
-     * // hover is false by default, but can be activated
-     * JMap.Map.isHoverActive()
-     * ```     
-     * */
-    function isHoverActive(): boolean
-
-    /**
-     * **JMap.Map.activateHover**
-     * 
-     * By default when mouse cursor pass hover a feature, it is not highlighted on the map.
-     * 
-     * But you can activate the feature hover.
-     * 
-     * @example ```ts
-     * 
-     * // Activate feature hover highlight
-     * JMap.Map.activateHover()
-     * ```     
-     * */
-    function activateHover(): void
-
-    /**
-     * **JMap.Map.deactivateHover**
-     * 
-     * By default when mouse cursor pass hover a feature, it is not highlighted on the map.
-     * 
-     * But you can activate it and deactivate as you like
-     * 
-     * @example ```ts
-     * 
-     * // Deactivate feature hover highlight
-     * JMap.Map.deactivateHover()
-     * ```     
-     * */
-    function deactivateHover(): void
-
-    /**
      * **JMap.Map.Interaction**
      * 
      * We introduced a notion of map interactor in JMap.
@@ -3522,7 +3522,7 @@ declare namespace JMap {
       function setLayerSelection(layerId: number, features: GeoJSON.Feature | GeoJSON.Feature[]): void
 
       /**
-       * **JMap.Layer.setLayersSelection**
+       * **JMap.Map.Selection.setLayersSelection**
        * 
        * Set the selection for multiple layers.
        * 
@@ -3535,7 +3535,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // set selection on layers id=5 and 6. Layer 6 selection will be emptied (empty array passed)
-       * JMap.Layer.setLayersSelection([
+       * JMap.Map.Selection.setLayersSelection([
        *    {layerId: 5, selectability: [...features...]}, 
        *    {layerId: 6, selectability: []}
        * ])

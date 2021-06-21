@@ -443,9 +443,6 @@ export interface JMapService {
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   clearFlashingLocations():void
-  isHoverActive(): boolean
-  activateHover(): void
-  deactivateHover(): void
 }
 
 export interface JMapBasemapService {
@@ -577,6 +574,9 @@ export interface JLayerService {
   deleteLayer(layerId: number): void
   setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
   setThematicsVisibility(params: JLayerSetThematicsVisibilityParams[]): void
+  isHoverActive(): boolean
+  activateHover(): void
+  deactivateHover(): void
 }
 
 export interface JLayerSearchService {
