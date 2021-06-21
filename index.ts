@@ -333,6 +333,9 @@ export interface JFormService {
   submit(): Promise<JFormSubmitResult>
   canDeleteCurrentElements(): boolean
   deleteCurrentElements(): Promise<JFormDeleteResult>
+  getNextViewId(): number
+  incrementNextViewId(): void
+  processRule(rule: any, data: any): any
   // PHOTOS
   hasDisplayedFormAPhotoField(): boolean
   getDisplayedFormPhotos(): JPhoto[]
@@ -384,6 +387,7 @@ export interface JGeometryService {
   getFeatureCollection(features: Feature[] | JLocation[] | JPoint[]): FeatureCollection
   getCircleFeature(center: JPoint | JLocation, radius: number): Feature<Polygon> // radius in km
   getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): Feature<Polygon>
+  isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
 }
 
 export interface JMapService {
@@ -439,9 +443,6 @@ export interface JMapService {
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   clearFlashingLocations():void
-  isHoverActive(): boolean
-  activateHover(): void
-  deactivateHover(): void
 }
 
 export interface JMapBasemapService {
@@ -575,6 +576,9 @@ export interface JLayerService {
   deleteLayer(layerId: number): void
   setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
   setThematicsVisibility(params: JLayerSetThematicsVisibilityParams[]): void
+  isHoverActive(): boolean
+  activateHover(): void
+  deactivateHover(): void
 }
 
 export interface JLayerSearchService {
