@@ -264,7 +264,7 @@ export interface JProjectState {
 export interface JLayerState {
   isLoading: boolean
   hasLoadingError: boolean
-  metadataSchema: JLayerMetadataItem[]
+  metadataSchema: JLayerMetadataSchemaItem[]
   tree: JLayerTree
   allById: { [treeElementId: string]: JLayerTreeElement }
   orderedLayerIds: number[]
@@ -539,7 +539,7 @@ export interface JProjectService {
 
 export interface JLayerService {
   Search: JLayerSearchService
-  getMetadataSchema(): JLayerMetadataItem[]
+  getMetadataSchema(): JLayerMetadataSchemaItem[]
   getLayerTree(): JLayerTree
   getLayerTreeElementsById(): { [treeElementId: number]: JLayerTreeElement }
   getLayers(): JLayer[]

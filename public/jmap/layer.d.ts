@@ -20,14 +20,14 @@ declare interface JLayerBaseMetadata {
   id: number
 }
 
-declare interface JLayerMetadataItem extends JLayerBaseMetadata{
+declare interface JLayerMetadataSchemaItem extends JLayerBaseMetadata{
   type: JLayerMetadataType
   label: string
   allowMultiple: boolean
 }
 
 declare interface JLayersConfiguration {
-  metadataSchema: JLayerMetadataItem[]
+  metadataSchema: JLayerMetadataSchemaItem[]
   layerTree: JLayerTree
 }
 
@@ -81,7 +81,7 @@ declare interface JLayerPermissions {
 declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
   type: LAYER_TYPE
-  metadata: JLayerMetadata[]
+  metadatas: JLayerMetadata[]
   attributes: JLayerAttribute[]
   mouseOver: JMapMouseOver
   simpleSelectionStyle: JLayerSimpleStyle

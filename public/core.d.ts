@@ -665,7 +665,7 @@ declare namespace JMap {
      * 
      * Returns the metadata schema associated with the current project's layers.
      * 
-     * The layer metadata schema is an array of JLayerMetadataItem.
+     * The layer metadata schema is an array of JLayerMetadataSchemaItem.
      * 
      * If no project is loaded, returns an empty array.
      * 
@@ -675,7 +675,7 @@ declare namespace JMap {
      * JMap.Layer.getMetadataSchema()
      * ```
      */
-    function getMetadataSchema(): JLayerMetadataItem[]
+    function getMetadataSchema(): JLayerMetadataSchemaItem[]
 
     /**
      * **JMap.Layer.getLayerTreeElementsById**
