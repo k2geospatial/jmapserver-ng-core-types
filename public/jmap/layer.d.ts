@@ -12,6 +12,29 @@ declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "I
 
 declare type JLayerStyleArrow = "NONE" | "FORWARD" | "BACKWARD"
 
+declare type JLayerMetadataType = "date" | "text" | "number"
+
+declare type JLayerMetaDataValue =  string | number | Date
+
+declare interface JLayerBaseMetadata {
+  id: number
+}
+
+declare interface JLayerMetadataItem extends JLayerBaseMetadata{
+  type: JLayerMetadataType
+  label: string
+  allowMultiple: boolean
+}
+
+declare interface JLayersConfiguration {
+  metadataSchema: JLayerMetadataItem[]
+  layerTree: JLayerTree
+}
+
+declare interface JLayerMetadata extends JLayerBaseMetadata {
+  value: JLayerMetaDataValue
+}
+
 declare interface JLayerEventChangeParams {
   layerTree: JLayerTree
 }
@@ -58,6 +81,7 @@ declare interface JLayerPermissions {
 declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
   type: LAYER_TYPE
+  metadata: JLayerMetadata[]
   attributes: JLayerAttribute[]
   mouseOver: JMapMouseOver
   simpleSelectionStyle: JLayerSimpleStyle
