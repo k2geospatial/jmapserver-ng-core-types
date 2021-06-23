@@ -75,6 +75,7 @@ declare interface JLayer extends JLayerTreeElement {
   hasAttributeForm: boolean
   hasExternalForms: boolean
   selectable: boolean
+  listed: boolean // should or should not be displayed in TOC
   authorPropertyName: string
 }
 
