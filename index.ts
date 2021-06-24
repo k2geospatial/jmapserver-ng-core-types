@@ -264,6 +264,7 @@ export interface JProjectState {
 export interface JLayerState {
   isLoading: boolean
   hasLoadingError: boolean
+  metadataSchema: JLayerMetadataSchemaItem[]
   tree: JLayerTree
   allById: { [treeElementId: string]: JLayerTreeElement }
   orderedLayerIds: number[]
@@ -539,6 +540,7 @@ export interface JProjectService {
 
 export interface JLayerService {
   Search: JLayerSearchService
+  getMetadataSchema(): JLayerMetadataSchemaItem[]
   getLayerTree(): JLayerTree
   getLayerTreeElementsById(): { [treeElementId: number]: JLayerTreeElement }
   getLayers(): JLayer[]
@@ -624,6 +626,7 @@ export interface JLanguageService {
   is12HoursTimeFormat(): boolean
   isValidLocale(locale: JLocale): boolean
   getDateFormat(): string
+  getDateFnsDateFormat(): string
 }
 
 export interface JMouseOverService {
