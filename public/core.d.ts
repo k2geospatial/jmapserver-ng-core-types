@@ -650,7 +650,7 @@ declare namespace JMap {
      * 
      * A layer has a positive id.
      * 
-     * If no project is loaded, returns en empty array.
+     * If no project is loaded, returns an empty array.
      * 
      * @example ```ts
      * 
@@ -659,6 +659,23 @@ declare namespace JMap {
      * ```
      */
     function getLayerTree(): JLayerTree
+
+    /**
+     * **JMap.Layer.getMetadataSchema**
+     * 
+     * Returns the metadata schema associated with the current project's layers.
+     * 
+     * The layer metadata schema is an array of JLayerMetadataSchemaItem.
+     * 
+     * If no project is loaded, returns an empty array.
+     * 
+     * @example ```ts
+     * 
+     * // returns the metadata schema
+     * JMap.Layer.getMetadataSchema()
+     * ```
+     */
+    function getMetadataSchema(): JLayerMetadataSchemaItem[]
 
     /**
      * **JMap.Layer.getLayerTreeElementsById**
@@ -5107,6 +5124,24 @@ declare namespace JMap {
      * ```
      */
     function getDateFormat(): string
+
+    /**
+     * **JMap.Language.getDateFnsDateFormat**
+     * 
+     * returns the date format associated with the current locale (specific to the date-fns JS library)
+     * 
+     * @example ```ts
+     * 
+     * // return the default locale
+     * JMap.Language.setLocale("fr")
+     * console.log(JMap.Language.getDateFnsDateFormat())
+     * // "dd/MM/yyyy"
+     * JMap.Language.setLocale("en")
+     * console.log(JMap.Language.getDateFnsDateFormat())
+     * // "MM/dd/yyyy"
+     * ```
+     */
+    function getDateFnsDateFormat(): string
   }
 
   /**
