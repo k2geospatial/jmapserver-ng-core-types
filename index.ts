@@ -178,7 +178,7 @@ export interface JPhotoEventModule extends JEventModule {
 export interface JFeatureEventModule extends JEventModule {
   on: {
     deletion(listenerId: string, fn: (params: JFeatureEventDeleteParams) => void): void
-    geometryChanged(listenerId: string, fn: (params: JFeatureEventGeometryChangedParams) => void): void
+    geometryChanged(listenerId: string, fn: (params: JFeatureEventGeometryUpdateParams) => void): void
   }
 }
 
@@ -407,7 +407,6 @@ export interface JMapService {
   getExtent(): JBoundaryBox
   getCenter(): { x: number, y: number }
   getZoom(): number
-  getScale(): number
   isScaleControlVisible(): boolean
   setScaleControlVisibility(isVisible: boolean, position?: JMapPosition): void
   setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void
@@ -444,6 +443,12 @@ export interface JMapService {
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   clearFlashingLocations():void
+  getScreenDPI(usePixelRatio?: boolean): JScreenDPI
+  getResolution(params?: JLatitudeAndZoom): number
+  getScale(params?: JLatitudeAndZoom): string
+  getScaleDenominator(params?: JLatitudeAndZoom): number
+  setScale(scaleDenominator: number): number
+  getZoomFromScale(scaleDenominator: number, latitude?: number): number
 }
 
 export interface JMapBasemapService {

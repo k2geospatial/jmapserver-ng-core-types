@@ -8,13 +8,14 @@ declare interface JFeatureGeometryUpdateParams {
   geometry: GeoJSON.Geometry
 }
 
+declare interface JFeatureEventGeometryUpdateParams {
+  layerId: JId
+  updatedFeature: GeoJSON.Feature
+}
+
 declare interface JFeatureEventDeleteParams {
   layerId: JId
   featureIds: JId[]
-}
-
-declare interface JFeatureEventGeometryChangedParams extends JFeatureGeometryUpdateParams {
-  // nothing to add
 }
 
 declare interface JFeatureDeleteByIdsResult {

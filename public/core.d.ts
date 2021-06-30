@@ -2034,19 +2034,6 @@ declare namespace JMap {
     function getZoom(): number
 
     /**
-     * ***JMap.Map.getScale***
-     * 
-     * Returns the current map scale.
-     * 
-     * @example ```ts
-     * 
-     * // returns the current map scale
-     * JMap.Map.getScale()
-     * ```
-     */
-    function getScale(): number
-
-    /**
      * ***JMap.Map.isNavigationHistoryControlVisible***
      * 
      * Returns true if the Navigation History control is visible on the map.
@@ -2789,6 +2776,127 @@ declare namespace JMap {
      * ```     
      * */
     function clearFlashingLocations():void
+
+    /**
+     * **JMap.Map.getScreenDPI**
+     * 
+     * Return the screen DPI (dot per inch) for abscissa (x/longitude) and ordinate (y/latitude).
+     * 
+     * @param usePixelRatio if true will return the DPI using the window.pixelRatio
+     * @example ```ts
+     * 
+     * // return the screen DPI
+     * const screenDPI = JMap.Map.getScreenDPI()
+     * // display the screen DPI (x and y should always be the same in most cases)
+     * console.log(`Screen DPI = ${screenDPI.x}`)
+     * ```     
+     * */
+    function getScreenDPI(usePixelRatio?: boolean): JScreenDPI
+
+    /**
+     * **JMap.Map.getResolution**
+     * 
+     * Return the screen resolution, depending on screen DPI, latitude, and zoom level.
+     * 
+     * if params is passed will use the given values for latitude (center of the map) and zoom, else use map current ones.
+     * 
+     * Note: screen DPI is fixed.
+     * 
+     * @param params if passed will use the given values for latitude and zoom, else use map current values
+     * @example ```ts
+     * 
+     * // return the current resolution for current map latitude (center of the map) and zoom level
+     * JMap.Map.getResolution()
+     * 
+     * // return the resolution for given map latitude=45.5 and zoom level = 4
+     * JMap.Map.getResolution({
+     *   latitude: 45.5,
+     *   zoom: 4
+     * })
+     * ```     
+     * */
+    function getResolution(params?: JLatitudeAndZoom): number
+
+    /**
+     * ***JMap.Map.getScale***
+     * 
+     * Returns the map scale, depending on screen DPI, latitude, and zoom level.
+     * 
+     * if params is passed will use the given values for latitude (center of the map) and zoom, else use map current ones.
+     * 
+     * Note: screen DPI is fixed.
+     * 
+     * @param params if passed will use the given values for latitude and zoom, else use map current values
+     * @example ```ts
+     * 
+     * // returns the current map scale
+     * // for instance : "1 / 12959346"
+     * JMap.Map.getScale()
+     * 
+     * // returns the map scale for given map latitude=45.5 and zoom level = 4
+     * // for instance : "1 / 12959346"
+     * JMap.Map.getScale({
+     *   latitude: 45.5,
+     *   zoom: 4
+     * })
+     * ```
+     */
+    function getScale(params?: JLatitudeAndZoom): string
+
+    /**
+     * ***JMap.Map.getScaleDenominator***
+     * 
+     * Returns the map scale denominator, depending on screen DPI, latitude, and zoom level.
+     * 
+     * For instance if the scale is "1 / 12959346", the denominator is the number 12959346.
+     * 
+     * if params is passed will use the given values for latitude (center of the map) and zoom, else use map current ones.
+     * 
+     * Note: screen DPI is fixed.
+     * 
+     * @param params if passed will use the given values for latitude and zoom, else use map current values
+     * @example ```ts
+     * 
+     * // returns the current map scale
+     * JMap.Map.getScaleDenominator()
+     * 
+     * // returns the map scale for given map latitude=45.5 and zoom level = 4
+     * JMap.Map.getScaleDenominator({
+     *   latitude: 45.5,
+     *   zoom: 4
+     * })
+     * ```
+     */
+    function getScaleDenominator(params?: JLatitudeAndZoom): number
+
+    /**
+     * ***JMap.Map.setScale***
+     * 
+     * Zoom or unzoom the map to reach the given map scale
+     * 
+     * @param scaleDenominator must be greater than 0
+     * @example ```ts
+     * 
+     * // zoom or unzoom the map to reach the given map scale
+     * JMap.Map.setScale(2344)
+     * ```
+     */
+    function setScale(scaleDenominator: number): number
+
+    /**
+     * ***JMap.Map.getZoomFromScale***
+     * 
+     * returns the zoom corresponding to the given scale.
+     * 
+     * @param scaleDenominator must be greater than 0
+     * @param latitude must be greater than 0
+     * @example ```ts
+     * 
+     * // returns the corresponding zoom level for the given scale 2344
+     * JMap.Map.getZoomFromScale(2344)
+     * ```
+     */
+    function getZoomFromScale(scaleDenominator: number, latitude?: number): number
 
     /**
      * **JMap.Map.Interaction**
@@ -6650,13 +6758,13 @@ declare namespace JMap {
          * JMap.Event.Feature.on.geometryChanged(
          *    "custom-feature-geometry-changed",
          *    params => console.info(
-         *      `For layer id="${params.layerId}", feature id="${params.featureId}" geometry has been changed`,
-         *      params.geometry
+         *      `For layer id="${params.layerId}", feature id="${params.newFeature.id}" geometry has been changed`,
+         *      params.newFeature
          *    )
          * )
          * ```
          */
-        function geometryChanged(listenerId: string, fn: (params: JFeatureEventGeometryChangedParams) => void): void
+        function geometryChanged(listenerId: string, fn: (params: JFeatureEventGeometryUpdateParams) => void): void
       }
 
       /**

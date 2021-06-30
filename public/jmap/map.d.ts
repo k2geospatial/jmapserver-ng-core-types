@@ -11,6 +11,16 @@ declare type JDistanceUnit = "millimeters" | "centimeters" | "meters" | "kilomet
 
 declare type JMapRasterSchemeType = "tms" | "xyz"
 
+declare interface JLatitudeAndZoom {
+  zoom?: number
+  latitude?: number
+}
+
+declare interface JScreenDPI {
+  x: number
+  y: number
+}
+
 declare interface JMapEventParams {
   map: mapboxgl.Map,
   mapEvent: any
