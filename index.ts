@@ -443,7 +443,6 @@ export interface JMapService {
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   clearFlashingLocations():void
-  getScreenDPI(usePixelRatio?: boolean): JScreenDPI
   getResolution(params?: JLatitudeAndZoom): number
   getScale(params?: JLatitudeAndZoom): string
   getScaleDenominator(params?: JLatitudeAndZoom): number

@@ -2764,7 +2764,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.clearFlashingLocations**
      * 
-     * Immediatly remove all flashed locations on the map that have been displyed using [[JMap.Map.flashLocation]] or [[JMap.Map.flashLocations]]
+     * Immediatly remove all flashed locations on the map that have been displayed using [[JMap.Map.flashLocation]] or [[JMap.Map.flashLocations]]
      * 
      * @example ```ts
      * 
@@ -2776,22 +2776,6 @@ declare namespace JMap {
      * ```     
      * */
     function clearFlashingLocations():void
-
-    /**
-     * **JMap.Map.getScreenDPI**
-     * 
-     * Return the screen DPI (dot per inch) for abscissa (x/longitude) and ordinate (y/latitude).
-     * 
-     * @param usePixelRatio if true will return the DPI using the window.pixelRatio
-     * @example ```ts
-     * 
-     * // return the screen DPI
-     * const screenDPI = JMap.Map.getScreenDPI()
-     * // display the screen DPI (x and y should always be the same in most cases)
-     * console.log(`Screen DPI = ${screenDPI.x}`)
-     * ```     
-     * */
-    function getScreenDPI(usePixelRatio?: boolean): JScreenDPI
 
     /**
      * **JMap.Map.getResolution**
@@ -2830,11 +2814,11 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // returns the current map scale
-     * // for instance : "1 / 12959346"
+     * // for instance : "1 : 12959346"
      * JMap.Map.getScale()
      * 
      * // returns the map scale for given map latitude=45.5 and zoom level = 4
-     * // for instance : "1 / 12959346"
+     * // for instance: "1 : 12959346"
      * JMap.Map.getScale({
      *   latitude: 45.5,
      *   zoom: 4
@@ -2848,7 +2832,7 @@ declare namespace JMap {
      * 
      * Returns the map scale denominator, depending on screen DPI, latitude, and zoom level.
      * 
-     * For instance if the scale is "1 / 12959346", the denominator is the number 12959346.
+     * For instance if the scale is "1 : 12959346", the denominator is the number 12959346.
      * 
      * if params is passed will use the given values for latitude (center of the map) and zoom, else use map current ones.
      * 
@@ -2872,12 +2856,12 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setScale***
      * 
-     * Zoom or unzoom the map to reach the given map scale
+     * Zooms or unzooms the map to reach the given map scale
      * 
      * @param scaleDenominator must be greater than 0
      * @example ```ts
      * 
-     * // zoom or unzoom the map to reach the given map scale
+     * // zooms or unzooms the map to reach the given map scale
      * JMap.Map.setScale(2344)
      * ```
      */
