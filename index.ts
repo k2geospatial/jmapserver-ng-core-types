@@ -88,6 +88,7 @@ export interface JEventModule {
   on: {
     [method: string]: (listenerId: string, fn: JEventFunction) => void
   }
+  existById(listenerId: string): boolean
   activate(listenerId: string): void
   deactivate(listenerId: string): void
   remove(listenerId: string): void
@@ -243,11 +244,13 @@ export interface JMapState {
   basemaps: JBasemap[]
   selection: JMapSelection
   jmapLayerIdsSupportedByMapbox: number[]
-  isNavigationHistoryControlVisible:boolean
   scaleControlPosition: JMapPosition
   distanceUnit: JDistanceUnit
+  isNavigationHistoryControlVisible:boolean
   isScaleControlVisible: boolean
   isMapRotationControlVisible: boolean
+  isInfoControlVisible: boolean
+  isInfoControlExpanded: boolean
   defaultZoomOptions: JZoomOptions
   containerWidth: number
   containerHeight: number
@@ -412,10 +415,14 @@ export interface JMapService {
   setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void
   setScaleControlPosition(position: JMapPosition): void
   getScaleControlPosition(): JMapPosition
-  isNavigationHistoryControlVisible():boolean
-  setNavigationHistoryControlVisibility(isVisible:boolean):void
+  isNavigationHistoryControlVisible(): boolean
+  setNavigationHistoryControlVisibility(isVisible: boolean): void
   isMapRotationControlVisible(): boolean
-  setMapRotationControlVisibility(isVisible:boolean):void
+  setMapRotationControlVisibility(isVisible: boolean): void
+  isMapInfoControlVisible(): boolean
+  setMapInfoControlVisibility(isVisible: boolean): void
+  isMapInfoControlExpanded(): boolean
+  setMapInfoControlExpansion(isExpanded: boolean):void
   isLayerRendered(layerId: number): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]

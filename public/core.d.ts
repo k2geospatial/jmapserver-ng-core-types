@@ -2093,8 +2093,70 @@ declare namespace JMap {
      * JMap.Map.setMapRotationControlVisibility(false)
      * ```
      */
-    function setMapRotationControlVisibility(isVisible:boolean):void
+    function setMapRotationControlVisibility(isVisible: boolean): void
+
+    /**
+     * ***JMap.Map.isMapInfoControlVisible***
+     * 
+     * Returns true if the Map Info control is visible on the map.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if control is displayed on the map
+     * JMap.Map.isMapInfoControlVisible()
+     * ```
+     */
+    function isMapInfoControlVisible(): boolean
   
+    /**
+     * ***JMap.Map.setMapInfoControlVisibility***
+     * 
+     * Change the Map Info control visibility on the map.
+     * 
+     * @param isVisible true to display the Map Info control, false to hide
+     * 
+     * @example ```ts
+     * 
+     * // will display the Map Info control on the map
+     * JMap.Map.setMapInfoControlVisibility(true)
+     * 
+     * // will hide the Map Info control on the map
+     * JMap.Map.setMapInfoControlVisibility(false)
+     * ```
+     */
+    function setMapInfoControlVisibility(isVisible: boolean): void
+
+    /**
+     * ***JMap.Map.isMapInfoControlExpanded***
+     * 
+     * Returns true if the Map Info control is expanded.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if control is expanded
+     * JMap.Map.isMapInfoControlExpanded()
+     * ```
+     */
+    function isMapInfoControlExpanded(): boolean
+  
+    /**
+     * ***JMap.Map.setMapInfoControlExpansion***
+     * 
+     * Change the Map Info control visibility on the map.
+     * 
+     * @param isExpanded true to expand the control, false to minimise
+     * 
+     * @example ```ts
+     * 
+     * // will expand the Map Info control
+     * JMap.Map.setMapInfoControlExpansion(true)
+     * 
+     * // will minimise the Map Info control
+     * JMap.Map.setMapInfoControlExpansion(false)
+     * ```
+     */
+    function setMapInfoControlExpansion(isExpanded: boolean):void
+
     /**
      * ***JMap.Map.isScaleControlVisible***
      * 
