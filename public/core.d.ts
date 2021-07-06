@@ -2049,15 +2049,15 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setNavigationHistoryControlVisibility***
      * 
-     * Change the Navigation History control visibility on the map.
+     * Changes the Navigation History control visibility on the map.
      * 
      * @param isVisible true to display the Navigation History control, false to hide
      * @example ```ts
      * 
-     * // will display the Navigation History control on the map
+     * // displays the Navigation History control on the map
      * JMap.Map.setNavigationHistoryControlVisibility(true)
      * 
-     * // will hide the Navigation History control on the map
+     * // hides the Navigation History control on the map
      * JMap.Map.setNavigationHistoryControlVisibility(false)
      * ```
      */
@@ -2080,21 +2080,83 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setMapRotationControlVisibility***
      * 
-     * Change the Map Rotation control visibility on the map.
+     * Changes the Map Rotation control visibility on the map.
      * 
      * @param isVisible true to display the Map Rotation control, false to hide
      * 
      * @example ```ts
      * 
-     * // will display the Map Rotation control on the map
+     * // displays the Map Rotation control on the map
      * JMap.Map.setMapRotationControlVisibility(true)
      * 
-     * // will hide the Map Rotation control on the map
+     * // hides the Map Rotation control on the map
      * JMap.Map.setMapRotationControlVisibility(false)
      * ```
      */
-    function setMapRotationControlVisibility(isVisible:boolean):void
+    function setMapRotationControlVisibility(isVisible: boolean): void
+
+    /**
+     * ***JMap.Map.isMapInfoControlVisible***
+     * 
+     * Returns true if the Map Info control is visible on the map.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if control is displayed on the map
+     * JMap.Map.isMapInfoControlVisible()
+     * ```
+     */
+    function isMapInfoControlVisible(): boolean
   
+    /**
+     * ***JMap.Map.setMapInfoControlVisibility***
+     * 
+     * Changes the Map Info control visibility on the map.
+     * 
+     * @param isVisible true to display the Map Info control, false to hide
+     * 
+     * @example ```ts
+     * 
+     * // displays the Map Info control on the map
+     * JMap.Map.setMapInfoControlVisibility(true)
+     * 
+     * // hides the Map Info control on the map
+     * JMap.Map.setMapInfoControlVisibility(false)
+     * ```
+     */
+    function setMapInfoControlVisibility(isVisible: boolean): void
+
+    /**
+     * ***JMap.Map.isMapInfoControlExpanded***
+     * 
+     * Returns true if the Map Info control is expanded.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if control is expanded
+     * JMap.Map.isMapInfoControlExpanded()
+     * ```
+     */
+    function isMapInfoControlExpanded(): boolean
+  
+    /**
+     * ***JMap.Map.setMapInfoControlExpansion***
+     * 
+     * Changes the Map Info control visibility on the map.
+     * 
+     * @param isExpanded true to expand the control, false to minimise
+     * 
+     * @example ```ts
+     * 
+     * // expands the Map Info control
+     * JMap.Map.setMapInfoControlExpansion(true)
+     * 
+     * // minimises the Map Info control
+     * JMap.Map.setMapInfoControlExpansion(false)
+     * ```
+     */
+    function setMapInfoControlExpansion(isExpanded: boolean):void
+
     /**
      * ***JMap.Map.isScaleControlVisible***
      * 
@@ -2111,16 +2173,16 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setScaleControlVisibility***
      * 
-     * Change the scale control panel visibility on the map.
+     * Changes the scale control panel visibility on the map.
      * 
      * @param isVisible true to display the scale control, false to hide
      * @param position the position on the map where to display the scale control.
      * @example ```ts
      * 
-     * // will display the scale control on the map
+     * // Displays the scale control on the map
      * JMap.Map.setScaleControlVisibility(true)
      * 
-     * // will hide the scale control on the map
+     * // Hides the scale control on the map
      * JMap.Map.setScaleControlVisibility(false)
      * ```
      */
@@ -2129,12 +2191,12 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setScaleControlUnits***
      * 
-     * Change the scale control units.
+     * Changes the scale control units.
      * 
      * @param units possible values : "imperial", "metric", or "nautical"
      * @example ```ts
      * 
-     * // will change the scale control for imperial units
+     * // Changes the scale control for imperial units
      * JMap.Map.setScaleControlUnits("imperial")
      * ```
      */
@@ -2143,12 +2205,12 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setScaleControlPosition***
      * 
-     * Change the scale control position on the map.
+     * Changes the scale control position on the map.
      * 
      * @param position the position on the map where to display the scale control.
      * @example ```ts
      * 
-     * // will move the scale control on the top-left corner of the map
+     * // Moves the scale control on the top-left corner of the map
      * JMap.Map.setScaleControlPosition("top-left")
      * ```
      */
@@ -2157,7 +2219,7 @@ declare namespace JMap {
     /**
      * ***JMap.Map.getScaleControlPosition***
      * 
-     * Return the current scale control position on the map.
+     * Returns the current scale control position on the map.
      * 
      * @example ```ts
      * 
