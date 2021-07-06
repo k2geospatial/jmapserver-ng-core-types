@@ -2049,15 +2049,15 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setNavigationHistoryControlVisibility***
      * 
-     * Change the Navigation History control visibility on the map.
+     * Changes the Navigation History control visibility on the map.
      * 
      * @param isVisible true to display the Navigation History control, false to hide
      * @example ```ts
      * 
-     * // will display the Navigation History control on the map
+     * // displays the Navigation History control on the map
      * JMap.Map.setNavigationHistoryControlVisibility(true)
      * 
-     * // will hide the Navigation History control on the map
+     * // hides the Navigation History control on the map
      * JMap.Map.setNavigationHistoryControlVisibility(false)
      * ```
      */
@@ -2080,16 +2080,16 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setMapRotationControlVisibility***
      * 
-     * Change the Map Rotation control visibility on the map.
+     * Changes the Map Rotation control visibility on the map.
      * 
      * @param isVisible true to display the Map Rotation control, false to hide
      * 
      * @example ```ts
      * 
-     * // will display the Map Rotation control on the map
+     * // displays the Map Rotation control on the map
      * JMap.Map.setMapRotationControlVisibility(true)
      * 
-     * // will hide the Map Rotation control on the map
+     * // hides the Map Rotation control on the map
      * JMap.Map.setMapRotationControlVisibility(false)
      * ```
      */
@@ -2111,16 +2111,16 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setMapInfoControlVisibility***
      * 
-     * Change the Map Info control visibility on the map.
+     * Changes the Map Info control visibility on the map.
      * 
      * @param isVisible true to display the Map Info control, false to hide
      * 
      * @example ```ts
      * 
-     * // will display the Map Info control on the map
+     * // displays the Map Info control on the map
      * JMap.Map.setMapInfoControlVisibility(true)
      * 
-     * // will hide the Map Info control on the map
+     * // hides the Map Info control on the map
      * JMap.Map.setMapInfoControlVisibility(false)
      * ```
      */
@@ -2142,16 +2142,16 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setMapInfoControlExpansion***
      * 
-     * Change the Map Info control visibility on the map.
+     * Changes the Map Info control visibility on the map.
      * 
      * @param isExpanded true to expand the control, false to minimise
      * 
      * @example ```ts
      * 
-     * // will expand the Map Info control
+     * // expands the Map Info control
      * JMap.Map.setMapInfoControlExpansion(true)
      * 
-     * // will minimise the Map Info control
+     * // minimises the Map Info control
      * JMap.Map.setMapInfoControlExpansion(false)
      * ```
      */
