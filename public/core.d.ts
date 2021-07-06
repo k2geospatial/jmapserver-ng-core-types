@@ -2173,16 +2173,16 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setScaleControlVisibility***
      * 
-     * Change the scale control panel visibility on the map.
+     * Changes the scale control panel visibility on the map.
      * 
      * @param isVisible true to display the scale control, false to hide
      * @param position the position on the map where to display the scale control.
      * @example ```ts
      * 
-     * // will display the scale control on the map
+     * // Displays the scale control on the map
      * JMap.Map.setScaleControlVisibility(true)
      * 
-     * // will hide the scale control on the map
+     * // Hides the scale control on the map
      * JMap.Map.setScaleControlVisibility(false)
      * ```
      */
@@ -2191,12 +2191,12 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setScaleControlUnits***
      * 
-     * Change the scale control units.
+     * Changes the scale control units.
      * 
      * @param units possible values : "imperial", "metric", or "nautical"
      * @example ```ts
      * 
-     * // will change the scale control for imperial units
+     * // Changes the scale control for imperial units
      * JMap.Map.setScaleControlUnits("imperial")
      * ```
      */
@@ -2205,12 +2205,12 @@ declare namespace JMap {
     /**
      * ***JMap.Map.setScaleControlPosition***
      * 
-     * Change the scale control position on the map.
+     * Changes the scale control position on the map.
      * 
      * @param position the position on the map where to display the scale control.
      * @example ```ts
      * 
-     * // will move the scale control on the top-left corner of the map
+     * // Moves the scale control on the top-left corner of the map
      * JMap.Map.setScaleControlPosition("top-left")
      * ```
      */
@@ -2219,7 +2219,7 @@ declare namespace JMap {
     /**
      * ***JMap.Map.getScaleControlPosition***
      * 
-     * Return the current scale control position on the map.
+     * Returns the current scale control position on the map.
      * 
      * @example ```ts
      * 
