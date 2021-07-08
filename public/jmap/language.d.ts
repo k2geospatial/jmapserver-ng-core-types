@@ -1,4 +1,4 @@
-declare type JLocale = "fr" | "en" 
+declare type JLocale = "fr" | "en" | "es"
 
 declare interface JLocaleTranslation {    
   [key: string]: string
