@@ -73,6 +73,7 @@ declare interface JFormMetaData {
   isDeleteSupported: boolean
   isCreateSupported: boolean
   isUpdateSupported: boolean
+  areAllInputControlsReadOnly: boolean
   isFakeAttributeForm?: boolean // in JMap7 attribute form is optional
   permissions: JFormPermissions
 }
