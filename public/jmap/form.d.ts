@@ -105,7 +105,7 @@ declare interface JFormSchemaProperty {
   maximum?: number
   minLength?: number // used for required (because required check only if object has attribute)
   maxLength?: number
-  enum?: string[] | number[]
+  enum?: string[] | number[] | boolean[]
   enumNames?: string[]
   parents?: Array<string | undefined> | Array<string | undefined>
   default?: any
