@@ -2973,7 +2973,7 @@ declare namespace JMap {
      * JMap.Map.setMouseCursor("move")
      * 
      * // set the map mouse cursor as "default"
-     * JMap.Map.setMouseCursor("move")
+     * JMap.Map.setMouseCursor("default")
      * 
      * // unset map mouse cursor (a hand will be displayed)
      * JMap.Map.setMouseCursor("")
