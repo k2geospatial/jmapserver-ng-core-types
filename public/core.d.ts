@@ -2945,6 +2945,43 @@ declare namespace JMap {
     function getZoomFromScale(scaleDenominator: number, latitude?: number): number
 
     /**
+     * ***JMap.Map.getMouseCursor***
+     * 
+     * Returns the current map mouse cursor.
+     * 
+     * @throws if the map is not ready
+     * @example ```ts
+     * 
+     * // returns the current map mouse cursor
+     * JMap.Map.getMouseCursor()
+     * ```
+     */
+    function getMouseCursor(): string
+
+    /**
+     * ***JMap.Map.setMouseCursor***
+     * 
+     * Set the map mouse cursor.
+     * 
+     * If cursor is an empty string will unset the cursor (the mapbox default will be used).
+     * 
+     * @throws if the map is not ready
+     * @param cursor the mouse cursor
+     * @example ```ts
+     * 
+     * // set the map mouse cursor as "move"
+     * JMap.Map.setMouseCursor("move")
+     * 
+     * // set the map mouse cursor as "default"
+     * JMap.Map.setMouseCursor("default")
+     * 
+     * // unset map mouse cursor (a hand will be displayed)
+     * JMap.Map.setMouseCursor("")
+     * ```
+     */
+    function setMouseCursor(cursor: string): void
+
+    /**
      * **JMap.Map.Interaction**
      * 
      * We introduced a notion of map interactor in JMap.

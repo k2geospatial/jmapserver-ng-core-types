@@ -455,6 +455,8 @@ export interface JMapService {
   getScaleDenominator(params?: JLatitudeAndZoom): number
   setScale(scaleDenominator: number): number
   getZoomFromScale(scaleDenominator: number, latitude?: number): number
+  getMouseCursor(): string
+  setMouseCursor(cursor: string): void
 }
 
 export interface JMapBasemapService {
