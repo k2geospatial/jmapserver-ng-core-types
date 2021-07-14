@@ -254,6 +254,7 @@ export interface JMapState {
   defaultZoomOptions: JZoomOptions
   containerWidth: number
   containerHeight: number
+  modificationType: JMapModificationTypes
 }
 
 export interface JProjectState {
@@ -457,6 +458,9 @@ export interface JMapService {
   getZoomFromScale(scaleDenominator: number, latitude?: number): number
   getMouseCursor(): string
   setMouseCursor(cursor: string): void
+  openChangePopupForCenter(): void
+  openChangePopupForScale(): void
+  closeChangePopup(): void
 }
 
 export interface JMapBasemapService {

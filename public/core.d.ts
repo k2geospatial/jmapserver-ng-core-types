@@ -2982,6 +2982,45 @@ declare namespace JMap {
     function setMouseCursor(cursor: string): void
 
     /**
+     * ***JMap.Map.openChangePopupForCenter***
+     * 
+     * Opens a popup in order to change the current map center.
+     * 
+     * @example ```ts
+     * 
+     * // opens a popup in order to change the current map center.
+     * JMap.Map.openChangePopupForCenter()
+     * ```
+     */
+    function openChangePopupForCenter(): void
+
+    /**
+     * ***JMap.Map.openChangePopupForScale***
+     * 
+     * Opens a popup in order to change the current map scale.
+     * 
+     * @example ```ts
+     * 
+     * // opens a popup in order to change the current map scale.
+     * JMap.Map.openChangePopupForScale()
+     * ```
+     */
+    function openChangePopupForScale(): void
+
+    /**
+     * ***JMap.Map.closeChangePopup***
+     * 
+     * If opened, close the map change popup (for center/scale), else do nothing.
+     * 
+     * @example ```ts
+     * 
+     * // if opened, close the map change popup (for center/scale), else do nothing
+     * JMap.Map.closeChangePopup()
+     * ```
+     */
+    function closeChangePopup(): void
+
+    /**
      * **JMap.Map.Interaction**
      * 
      * We introduced a notion of map interactor in JMap.
