@@ -2982,43 +2982,43 @@ declare namespace JMap {
     function setMouseCursor(cursor: string): void
 
     /**
-     * ***JMap.Map.openChangePopupForCenter***
+     * ***JMap.Map.openModificationPopupForCenter***
      * 
      * Opens a popup in order to change the current map center.
      * 
      * @example ```ts
      * 
      * // opens a popup in order to change the current map center.
-     * JMap.Map.openChangePopupForCenter()
+     * JMap.Map.openModificationPopupForCenter()
      * ```
      */
-    function openChangePopupForCenter(): void
+    function openModificationPopupForCenter(): void
 
     /**
-     * ***JMap.Map.openChangePopupForScale***
+     * ***JMap.Map.openModificationPopupForScale***
      * 
      * Opens a popup in order to change the current map scale.
      * 
      * @example ```ts
      * 
      * // opens a popup in order to change the current map scale.
-     * JMap.Map.openChangePopupForScale()
+     * JMap.Map.openModificationPopupForScale()
      * ```
      */
-    function openChangePopupForScale(): void
+    function openModificationPopupForScale(): void
 
     /**
-     * ***JMap.Map.closeChangePopup***
+     * ***JMap.Map.closeModificationPopup***
      * 
      * If opened, close the map change popup (for center/scale), else do nothing.
      * 
      * @example ```ts
      * 
      * // if opened, close the map change popup (for center/scale), else do nothing
-     * JMap.Map.closeChangePopup()
+     * JMap.Map.closeModificationPopup()
      * ```
      */
-    function closeChangePopup(): void
+    function closeModificationPopup(): void
 
     /**
      * **JMap.Map.Interaction**
