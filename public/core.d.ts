@@ -3014,7 +3014,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // if opened, close the map change popup (for center/scale), else do nothing
+     * // if opened, closes the map change popup (for center/scale), else does nothing
      * JMap.Map.closeModificationPopup()
      * ```
      */
