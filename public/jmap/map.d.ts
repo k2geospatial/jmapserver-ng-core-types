@@ -5,6 +5,8 @@ declare interface JMapInteractor {
   terminate(): void
 }
 
+declare type JMapModificationTypes = "" | "center" | "scale"
+
 declare type JMapPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right"
 
 declare type JDistanceUnit = "millimeters" | "centimeters" | "meters" | "kilometers" | "inches" | "feet" | "yards" | "miles" | "nauticalmiles"
