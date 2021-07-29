@@ -6,6 +6,8 @@ declare type JLayerAttributeType = "string" | "number" | "date" | "datetime" |
 
 declare type JLayerThematicType = "INDIVIDUAL_VALUES" | "GRADUATED_STYLE" | "OTHER"
 
+declare type JLayerThematicFamilyType = "Classification" | "ProportionalSymbol" | "Other"
+
 declare type JLayerThematicPrimitiveType = "LINE" | "POINT" | "AREA"
 
 declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "IMAGE" | "MIXED"
@@ -37,6 +39,13 @@ declare interface JLayerMetadata extends JLayerBaseMetadata {
 
 declare interface JLayerEventChangeParams {
   layerTree: JLayerTree
+}
+
+declare interface JLayerEventThematicCategoryVisibilityParams{
+  layerId: JId
+  thematicId: JId
+  // TODO: remove "null" if BE sends nullValueCategories
+  filteredCategoryIndexes: Array<number | null>
 }
 
 declare interface JLayerEventThematicVisibilityParams {
@@ -140,8 +149,12 @@ declare interface JLayerThematicClassification extends JLayerThematic {
   categoryCount: number
   dynamicLegend: boolean
   colorPaletteName: string
+  attribute: string
   nullValueSupported: boolean
+  outOfSampleDataIgnored: boolean
   categories: JLayerThematicCategory[]
+  // TODO: remove "null" if BE sends nullValueCategories
+  filteredCategoryIndexes: Array<number | null>
 }
 
 declare interface JLayerThematicCategory {
@@ -282,22 +295,30 @@ declare interface JRGBColor {
 }
 
 declare interface JLayerSetLayersVisibilityParams {
-  layerId: number, 
+  layerId: number
   visibility: boolean
 }
 
 declare interface JLayerSetLayersSelectabilityParams {
-  layerId: JId, 
+  layerId: JId
   selectability: boolean
 }
 
-declare interface JLayerSetThematicsVisibilityParams {
-  layerId: number, 
-  thematicId: number, 
+declare interface JLayerThematicSetVisibilityParams {
+  layerId: JId
+  thematicId: JId
+  visibility: boolean
+}
+
+declare interface JLayerThematicSetCategoryVisibilityParams{
+  layerId: JId
+  thematicId: JId
+  // TODO: remove "null" if BE sends nullValueCategories
+  categoryIndex: number | null
   visibility: boolean
 }
 
 declare interface JLayerSetLayerGroupsExpansionParams {
-  layerGroupId: number, 
+  layerGroupId: number
   open: boolean
 }

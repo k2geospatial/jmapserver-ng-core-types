@@ -137,6 +137,7 @@ export interface JLayerEventModule extends JEventModule {
   on: {
     layersChange(listenerId: string, fn: (params: JLayerEventChangeParams) => void): void
     thematicVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicVisibilityParams) => void): void
+    thematicCategoriesVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicCategoryVisibilityParams) => void): void
     visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void):void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
@@ -557,6 +558,7 @@ export interface JProjectService {
 
 export interface JLayerService {
   Search: JLayerSearchService
+  Thematic: JLayerThematicService
   getMetadataSchema(): JLayerMetadataSchemaItem[]
   getLayerTree(): JLayerTree
   getLayerTreeElementsById(): { [treeElementId: number]: JLayerTreeElement }
@@ -582,9 +584,21 @@ export interface JLayerService {
   getStyle(layerId: number): JLayerStyle
   getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
   getSelectionStyle(layerId: number): JLayerStyle | null
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead
+   */
   getAllThematicsForLayer(layerId: number): JLayerThematic[]
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.getById]] instead
+   */
   getThematicById(layerId: number, thematicId: number): JLayerThematic
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.hasAnyVisibleByLayerId]] instead
+   */
   hasVisibleThematics(layerId: number): boolean
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.getAllVisibleByLayerId]] instead
+   */
   getVisibleThematics(layerId: number): JLayerThematic[]
   setVisible(layerId: number, visible: boolean): void
   setLayersVisibility(params: JLayerSetLayersVisibilityParams[]): void
@@ -593,8 +607,14 @@ export interface JLayerService {
   setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
   setLayerGroupsExpansion(params: JLayerSetLayerGroupsExpansionParams[]): void
   deleteLayer(layerId: number): void
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.setVisibilityById]] instead
+   */
   setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
-  setThematicsVisibility(params: JLayerSetThematicsVisibilityParams[]): void
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.setThematicsVisibility]] instead
+   */
+  setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
   isHoverActive(): boolean
   activateHover(): void
   deactivateHover(): void
@@ -602,6 +622,19 @@ export interface JLayerService {
 
 export interface JLayerSearchService {
   byAttribute(params: JLayerSearchByAttributesParams): Promise<Feature[]>
+}
+
+export interface JLayerThematicService {
+  getAllByLayerId(layerId: JId): JLayerThematic[]
+  getById(layerId: JId, thematicId: JId): JLayerThematic
+  hasAnyVisibleByLayerId(layerId: JId): boolean
+  getAllVisibleByLayerId(layerId: JId): JLayerThematic[]
+  setVisibilityById(layerId: JId, thematicId: JId, visibility: boolean): void
+  setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
+  setCategoryVisibility(params: JLayerThematicSetCategoryVisibilityParams): void
+  setCategoriesVisibility(params: JLayerThematicSetCategoryVisibilityParams[]): void
+  setAllCategoriesVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
+  getFamilyType(layerId: number, thematicId: number): JLayerThematicFamilyType
 }
 
 export interface JLayerGroup extends JLayerTreeElement {
