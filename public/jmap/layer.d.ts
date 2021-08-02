@@ -44,8 +44,7 @@ declare interface JLayerEventChangeParams {
 declare interface JLayerEventThematicCategoryVisibilityParams{
   layerId: JId
   thematicId: JId
-  // TODO: remove "null" if BE sends nullValueCategories
-  filteredCategoryIndexes: Array<number | null>
+  filteredCategoryIndexes: number[]
 }
 
 declare interface JLayerEventThematicVisibilityParams {
@@ -153,8 +152,7 @@ declare interface JLayerThematicClassification extends JLayerThematic {
   nullValueSupported: boolean
   outOfSampleDataIgnored: boolean
   categories: JLayerThematicCategory[]
-  // TODO: remove "null" if BE sends nullValueCategories
-  filteredCategoryIndexes: Array<number | null>
+  filteredCategoryIndexes: number[]
 }
 
 declare interface JLayerThematicCategory {
@@ -313,8 +311,7 @@ declare interface JLayerThematicSetVisibilityParams {
 declare interface JLayerThematicSetCategoryVisibilityParams{
   layerId: JId
   thematicId: JId
-  // TODO: remove "null" if BE sends nullValueCategories
-  categoryIndex: number | null
+  categoryIndex: number
   visibility: boolean
 }
 
