@@ -728,7 +728,7 @@ declare namespace JMap {
       /**
        * **JMap.Layer.Thematic.setThematicsVisibility**
        * 
-       * Show or hide multiple layer thematics on the map
+       * Shows or hides multiple layer thematics on the map
        * 
        * @throws Error if any layer or thematic are not found
        * @param params An array of JLayerThematicSetVisibilityParams
