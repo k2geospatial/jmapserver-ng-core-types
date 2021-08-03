@@ -708,7 +708,7 @@ declare namespace JMap {
       /**
        * **JMap.Layer.Thematic.setVisibilityById**
        * 
-       * Show or hide a layer thematic on the map
+       * Shows or hides a layer thematic on the map
        * 
        * @throws Error if layer or thematic is not found
        * @param layerId The JMap layer id
