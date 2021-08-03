@@ -766,8 +766,7 @@ declare namespace JMap {
       /**
        * **JMap.Layer.Thematic.setCategoriesVisibility**
        * 
-       * Shows or hides specific layer thematic categories on the map. Passing null for the category index
-       * will hide the "null value" category if this thematic supports it
+       * Shows or hides specific layer thematic categories on the map. 
        * 
        * @throws Error if layer or thematic is not found, or if an invalid param is provided
        * @param params an array of [[JLayerThematicSetCategoryVisibilityParams]] objects
