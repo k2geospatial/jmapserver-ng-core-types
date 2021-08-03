@@ -292,6 +292,7 @@ export interface JUserState {
   identity: JUserIdentity
   token: string
   informations: JUserInfo[]
+  changePasswordAllowed: boolean
 }
 
 export interface JLanguageState {

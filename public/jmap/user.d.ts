@@ -20,6 +20,10 @@ declare interface JSessionData {
    * ```
    */
   user: JUserPublicData
+  /**
+   * The user clearance to change his password.
+   */
+  changePasswordAllowed: boolean
 }
 
 declare interface JUserPublicData {
