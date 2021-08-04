@@ -5097,6 +5097,21 @@ declare namespace JMap {
      * ```
      */
     function removeInfo(infoId: string): void
+
+    /**
+     * ***JMap.User.changePassword***
+     * 
+     * Change the user password on JMap server
+     * 
+     * @param newPassword The user new password
+     * @param currentPassword The user current password
+     * @example ```ts
+     * 
+     * // change the password to 1234 with a current password 123
+     * JMap.User.changePassword(1234, 123)
+     * ```
+     */
+    function changePassword(newPassword: string, currentPassword: string): Promise<JUserChangePasswordResponse>
   }
 
   /**
