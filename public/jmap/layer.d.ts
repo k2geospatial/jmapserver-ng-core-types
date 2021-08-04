@@ -44,7 +44,7 @@ declare interface JLayerEventChangeParams {
 declare interface JLayerEventThematicCategoryVisibilityParams{
   layerId: JId
   thematicId: JId
-  filteredCategoryIndexes: number[]
+  hiddenCategoryIndexes: number[]
 }
 
 declare interface JLayerEventThematicVisibilityParams {
@@ -152,7 +152,7 @@ declare interface JLayerThematicClassification extends JLayerThematic {
   nullValueSupported: boolean
   outOfSampleDataIgnored: boolean
   categories: JLayerThematicCategory[]
-  filteredCategoryIndexes: number[]
+  hiddenCategoryIndexes: number[]
 }
 
 declare interface JLayerThematicCategory {

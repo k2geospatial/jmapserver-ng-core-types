@@ -6297,7 +6297,7 @@ declare namespace JMap {
          *      console.log(
          *        `Layer id="${params.layerId}", ` +
          *        `thematic id="${params.thematicId}" ` +
-         *        `hidden categories="${params.filteredCategoryIndexes.toString()}"`
+         *        `hidden categories="${params.hiddenCategoryIndexes.toString()}"`
          *      )
          *    }
          * )
