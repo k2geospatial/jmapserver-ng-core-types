@@ -627,7 +627,7 @@ export interface JUserService {
   getAllInfos(): JUserInfo[]
   addInfo(info: JUserInfo): void
   removeInfo(infoId: string): void
-  changePassword(newPassword: string, currentPassword: string): Promise<JUserChangePasswordResponse>
+  changePassword(newPassword: string, currentPassword: string): Promise<boolean>
 }
 
 export interface JLanguageService {

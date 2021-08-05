@@ -5107,8 +5107,8 @@ declare namespace JMap {
      * @param currentPassword The user current password
      * @example ```ts
      * 
-     * // change the password to 1234 with a current password 123
-     * JMap.User.changePassword(1234, 123)
+     * // change the password to warl3pE with a current password grl83n5
+     * JMap.User.changePassword("warl3pE", "grl83n5")
      * ```
      */
     function changePassword(newPassword: string, currentPassword: string): Promise<JUserChangePasswordResponse>
