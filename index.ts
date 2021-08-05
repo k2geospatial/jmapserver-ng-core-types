@@ -627,6 +627,7 @@ export interface JLayerSearchService {
 export interface JLayerThematicService {
   getAllByLayerId(layerId: JId): JLayerThematic[]
   getById(layerId: JId, thematicId: JId): JLayerThematic
+  existsById(layerId: JId, thematicId: JId): boolean
   hasAnyVisibleByLayerId(layerId: JId): boolean
   getAllVisibleByLayerId(layerId: JId): JLayerThematic[]
   setVisibilityById(layerId: JId, thematicId: JId, visibility: boolean): void
@@ -634,7 +635,7 @@ export interface JLayerThematicService {
   setCategoryVisibility(params: JLayerThematicSetCategoryVisibilityParams): void
   setCategoriesVisibility(params: JLayerThematicSetCategoryVisibilityParams[]): void
   setAllCategoriesVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
-  getFamilyType(layerId: number, thematicId: number): JLayerThematicFamilyType
+  getFamilyTypeById(layerId: number, thematicId: number): JLayerThematicFamilyType
 }
 
 export interface JLayerGroup extends JLayerTreeElement {

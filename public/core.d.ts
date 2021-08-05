@@ -676,6 +676,22 @@ declare namespace JMap {
       function getById(layerId: JId, thematicId: JId): JLayerThematic
 
       /**
+       * ***JMap.Layer.Thematic.existsById***
+       * 
+       * Returns true if the thematic exists for the given layer and thematic ids, false otherwise.
+       * 
+       * @param layerId The JMap layer id
+       * @param thematicId The thematic id
+       * @example ```ts
+       * 
+       * // test for thematic existence
+       * JMap.Layer.Thematic.existsById(4, 3)
+       * // false
+       * ```
+       */
+      function existsById(layerId: JId, thematicId: JId): boolean
+
+      /**
        * ***JMap.Layer.Thematic.hasAnyVisibleByLayerId***
        * 
        * Returns true if the layer has at least one thematic displayed on the map.
@@ -813,7 +829,7 @@ declare namespace JMap {
       function setAllCategoriesVisibility(layerId: number, thematicId: number, visibility: boolean): void
   
       /**
-       * **JMap.Layer.Thematic.getFamilyType**
+       * **JMap.Layer.Thematic.getFamilyTypeById**
        * 
        * Returns the family of the specified layer thematic
        * 
@@ -823,7 +839,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // return the family of thematic id=3 of layer id=7
-       * let family = JMap.Layer.Thematic.getFamilyType(
+       * let family = JMap.Layer.Thematic.getFamilyTypeById(
        *    layerId: 7,
        *    thematicId: 3
        *  })
@@ -831,7 +847,7 @@ declare namespace JMap {
        * // "Classification"
        * ```
        */
-      function getFamilyType(layerId: number, thematicId: number): JLayerThematicFamilyType
+      function getFamilyTypeById(layerId: number, thematicId: number): JLayerThematicFamilyType
     }
 
     /**
