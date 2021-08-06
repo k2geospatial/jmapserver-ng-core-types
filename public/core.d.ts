@@ -5103,13 +5103,15 @@ declare namespace JMap {
      * 
      * Change the user password on JMap server
      * 
-     * @throws Errors if passwords are not string or empty or if new password is not valid.
+     * @throws Errors if passwords are not string or empty, if new password is not valid or if newPassword < PASSWORD_MIN_LENGTH.
      * @param newPassword The user new password
      * @param currentPassword The user current password
      * @example ```ts
      * 
      * // change the password to warl3pE with a current password, grl83n5
      * JMap.User.changePassword("warl3pE", "grl83n5")
+     * .then(() => console.info("Password changed successfully"))
+     * .catch(error => console.error(error))
      * ```
      */
     function changePassword(newPassword: string, currentPassword: string): Promise<void>
@@ -5117,11 +5119,11 @@ declare namespace JMap {
     /**
      * ***JMap.User.getMinimumPasswordLength***
      * 
-     * Return the minumum password lenght defined in JMap Core 
+     * Return the minumum password length defined in JMap Core 
      * 
      * @example ```ts
      * 
-     * // return the minimum password lenght 
+     * // return the minimum password length
      * const MINIMUM_PASSWORD_LENGTH = JMap.user.getMinimumPasswordLength()
      * ```
      */
