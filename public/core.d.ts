@@ -5103,7 +5103,7 @@ declare namespace JMap {
      * 
      * Change the user password on JMap server
      * 
-     * @throws Errors if passwords are not string or empty, if new password is not valid or if newPassword length is lower that the minimum lenght required.
+     * @throws Errors if passwords are not string or empty, if new password is not valid or if newPassword lenght is lower that the minimum lenght required.
      * @param newPassword The user new password
      * @param currentPassword The user current password
      * @example ```ts
