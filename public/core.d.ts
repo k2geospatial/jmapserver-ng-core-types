@@ -5115,7 +5115,7 @@ declare namespace JMap {
     function changePassword(newPassword: string, currentPassword: string): Promise<void>
 
     /**
-     * ***JMap.User.changePassword***
+     * ***JMap.User.getMinimumPasswordLength***
      * 
      * Return the minumum password lenght defined in JMap Core 
      * 
