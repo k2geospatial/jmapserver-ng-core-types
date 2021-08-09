@@ -96,6 +96,10 @@ export interface JEventModule {
 
 export interface JFormEventModule extends JEventModule {
   on: {
+    layerDialogOpened(listenerId: string, fn: (params: JFormLayerDialogOpenEventParams) => void): void
+    layerDialogClosed(listenerId: string, fn: (params: JFormLayerDialogCloseEventParams) => void): void
+    subFormDialogOpened(listenerId: string, fn: (params: JFormSubFormDialogOpenEventParams) => void): void
+    subFormDialogClosed(listenerId: string, fn: (params: JFormSubFormDialogCloseEventParams) => void): void
     submit(listenerId: string, fn: (params: JFormSubmitEventParams) => void): void
     deleteElements(listenerId: string, fn: (params: JFormDeleteEventParams) => void): void
   }
@@ -321,6 +325,8 @@ export interface JFormService {
   deleteExternalFormEntries(params: JFormElements): Promise<void>
   deleteSubFormEntries(params: JFormElements): Promise<void>
   // DIALOG METHODS (UI)
+  getAllFormsMetaDataForCurrentLayer(): JFormMetaData[]
+  getFormMetaDataByIdForCurrentLayer(formId: JId): JFormMetaData
   hasDisplayedForm(): boolean
   getDisplayedForm(): JForm
   resetDisplayedForm(): void
@@ -332,6 +338,8 @@ export interface JFormService {
   getSubForms(): JForm[]
   openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
   openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
+  openCreationDialogForSubForm(subFormId: JId, selectedParentElements: JFormElement[]): JFormMetaData
+  openUpdateDialogForSubForm(subFormId: JId, subFormElements: JFormElement[]): JFormMetaData
   closeCurrentDisplayedDialog(): void
   getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
   setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors

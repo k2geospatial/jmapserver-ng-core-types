@@ -5786,6 +5786,82 @@ declare namespace JMap {
       namespace on {
 
         /**
+         * ***JMap.Event.Form.on.layerDialogOpened***
+         * 
+         * This event is triggered each time a layer form dialog is opened (attribute and external forms).
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once a form layer dialog has been opened
+         * JMap.Event.Form.on.layerDialogOpened(
+         *   "custom-form-layer-dialog-opened", 
+         *   params => console.info(
+         *     `Layer form dialog opened for layer id="${params.layerId}"`,
+         *     params.attributeForm,
+         *     params.externalForms
+         *   )
+         * )
+         * ```
+         */
+        function layerDialogOpened(listenerId: string, fn: (params: JFormLayerDialogOpenEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Form.on.layerDialogClosed***
+         * 
+         * This event is triggered each time a layer form dialog is closed (attribute and external forms).
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once a form layer dialog has been closed
+         * JMap.Event.Form.on.layerDialogClosed(
+         *   "custom-form-layer-dialog-closed", 
+         *   params => console.info(`Layer form dialog closed for layer id="${params.layerId}"`)
+         * )
+         * ```
+         */
+        function layerDialogClosed(listenerId: string, fn: () => void): void
+
+        /**
+         * ***JMap.Event.Form.on.subFormDialogOpened***
+         * 
+         * This event is triggered each time a sub form dialog is opened.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once a sub form dialog has been opened
+         * JMap.Event.Form.on.subFormDialogOpened(
+         *   "custom-sub-form-dialog-opened", 
+         *   params => console.info(`Sub form dialog opened for layer id="${params.layerId}"`, params.subForm)
+         * )
+         * ```
+         */
+        function subFormDialogOpened(listenerId: string, fn: (params: JFormLayerDialogOpenEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Form.on.subFormDialogClosed***
+         * 
+         * This event is triggered each time a sub form dialog is opened.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once a sub form dialog has been closed
+         * JMap.Event.Form.on.subFormDialogClosed(
+         *   "custom-sub-form-dialog-closed", 
+         *   params => console.info(`Form dialog closed for layer id="${params.layerId}"`)
+         * )
+         * ```
+         */
+        function subFormDialogClosed(listenerId: string, fn: () => void): void
+
+        /**
          * ***JMap.Event.Form.on.submit***
          * 
          * This event is triggered each time a form (or subform) is submitted.
@@ -7467,12 +7543,16 @@ declare namespace JMap {
     function resetDisplayedForm(): void
     function setActiveTabIndex(tabIndex: number): void
     function getActiveTabIndex(): number
+    function getAllFormsMetaDataForCurrentLayer(): JFormMetaData[]
+    function getFormMetaDataByIdForCurrentLayer(formId: JId): JFormMetaData
     function hasAttributeForm(): boolean
     function getAttributeForm(): JForm
     function getExternalForms(): JForm[]
     function getSubForms(): JForm[]
     function openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
     function openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
+    function openCreationDialogForSubForm(subFormId: JId, selectedParentElements: JFormElement[]): JFormMetaData
+    function openUpdateDialogForSubForm(subFormId: JId, subFormElements: JFormElement[]): JFormMetaData
     function closeCurrentDisplayedDialog(): void
     function getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
     function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors

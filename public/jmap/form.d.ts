@@ -30,7 +30,7 @@ declare type JSONSchemaTypes =
   | "array"
   | "object"
 
-  declare type JFormOperationType = "creation" | "update" | "delete"
+declare type JFormOperationType = "creation" | "update" | "delete"
 
 // FORM METADATA
 
@@ -146,6 +146,7 @@ declare interface JFormUIControl {
   entries?: JFormUIControlEntry[]
   parentAttributeName?: string // used for select that change following parent value
   mask?: string
+  layerId?: JId // for table control
   subFormId?: JId // for table control
   tableAttributes?: JFormAttribute[] // for table control
   deleteWithElement?: boolean // for photo control
@@ -288,9 +289,9 @@ declare interface JFormFieldSelectTree extends JFormFieldSelectBase {
 }
 
 declare interface JFormAttribute {
-  name: string
-  title: string
-  sqlType: number
+  id: string
+  label: string
+  type: JLayerAttributeType
   readOnly: boolean
   nullable: boolean
   isSystem: boolean
@@ -313,19 +314,18 @@ declare interface JFormElementData {
 
 declare interface JFormElement extends JFormElementData {
   /**
-   * The element id
-   * In attribute form => layer attribute id
-   * In external form => related layer attribute id
-   * In sub form (and sub sub forms) => related parent element id
+   * undefined if element, set if it's an entry
    */
-  elementId: JId
+  parentId: JId
+  id: JId
   /**
-   * Only used by external and subform.
-   * At runtime this value is undefined for an attribute form.
-   * In external and sub forms elements don't have any specific id, it's just values.
+   * empty object if element, set if it's an entry
    */
-  entries: JAttributeValueByName[]
-  // at runtime attributeValueByName is undefined when form is not an attribute form
+  parentAttributeValueByName: JAttributeValueByName
+  /**
+   * undefined if element, set if it's an entry
+   */
+  elementId?: JId
 }
 
 // Used only for JMap 7 Rest API
@@ -334,7 +334,7 @@ declare interface JFormExternalAttribute {
   name: string
 }
 
-declare interface JFormPhoto {
+declare interface JFormPhotoData {
   isLoading: boolean
   hasLoadingError: boolean
   hasChange: boolean
@@ -367,8 +367,9 @@ declare interface JForm extends JFormElementData {
   canCreate: boolean
   canUpdate: boolean
   canDelete: boolean
+  photoData: JFormPhotoData
   geometry?: GeoJSON.Geometry // required for attribute forms
-  photo: JFormPhoto
+  subFormDataBySubFormId?: JSubFormDataBySubFormId // required for table support
 }
 
 declare interface JFormMetaDataById {
@@ -386,7 +387,9 @@ declare interface JFormElementId extends JFormId {
 
 declare interface JFormGetEntriesParams extends JFormId {
   elementId: JId
+  parentId: JId
   parentFormAttributesValuesByName: JAttributeValueByName
+  idAttributeName?: string
 }
 
 declare interface JFormElementIds extends JFormId {
@@ -401,8 +404,8 @@ declare interface JFormCreateAttributeFormElementParams extends JFormElementData
   geometry: GeoJSON.Geometry
 }
 
-declare interface JFormCreateElementParams extends JFormElementData, JFormId {
-  layerElementId: JId
+declare interface JFormCreateElementParams extends JFormElement, JFormId {
+  idAttributeName: JId
 }
 
 declare interface JFormUpdateElementsParams extends JFormElements {
@@ -448,7 +451,9 @@ declare interface JFormExternalOperation extends JFormOperation {
   isExternalForm: true
   isSubForm: false
   idAttributeName: string
-  entry: JAttributeValueByName
+  attributeValueByName: JAttributeValueByName
+  parentId: JFormId
+  parentAttributeValueByName: JAttributeValueByName
 }
 
 declare interface JFormSubFormOperation extends JFormOperation {
@@ -457,7 +462,9 @@ declare interface JFormSubFormOperation extends JFormOperation {
   isExternalForm: false
   isSubForm: true
   idAttributeName: string
-  entry: JAttributeValueByName
+  attributeValueByName: JAttributeValueByName
+  parentId: JFormId
+  parentAttributeValueByName: JAttributeValueByName
 }
 
 declare interface JFormPhotoOperation extends JFormOperation {
@@ -494,4 +501,38 @@ declare interface JFormSubmitEventParams extends JFormSubmitResult {
 
 declare interface JFormDeleteEventParams extends JFormDeleteResult {
   // nothing to add
+}
+
+interface JFormDialogEventParams {
+  layerId: JId
+}
+
+declare interface JFormLayerDialogOpenEventParams extends JFormDialogEventParams {
+  attributeForm: JForm
+  externalForms: JForm[]
+}
+
+declare interface JFormLayerDialogCloseEventParams extends JFormDialogEventParams {
+  // nothing to add
+}
+
+declare interface JFormSubFormDialogOpenEventParams extends JFormDialogEventParams {
+  subForm: JForm
+}
+
+declare interface JFormSubFormDialogCloseEventParams extends JFormDialogEventParams {
+  // nothing to add
+}
+
+declare interface JSubFormDataBySubFormId {
+  [ subFormId: string ]: JSubFormData
+}
+
+declare interface JSubFormData {
+  parentForm: JForm
+  subFormId: JId
+  isLoadingEntries: boolean
+  hasLoadingError: boolean
+  idAttributeName: string
+  subFormEntries: JFormElement[]
 }
