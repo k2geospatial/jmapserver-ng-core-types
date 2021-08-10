@@ -292,6 +292,7 @@ export interface JUserState {
   identity: JUserIdentity
   token: string
   informations: JUserInfo[]
+  changePasswordAllowed: boolean
 }
 
 export interface JLanguageState {
@@ -626,6 +627,9 @@ export interface JUserService {
   getAllInfos(): JUserInfo[]
   addInfo(info: JUserInfo): void
   removeInfo(infoId: string): void
+  changePassword(newPassword: string, currentPassword: string): Promise<void>
+  getMinimumPasswordLength(): number
+
 }
 
 export interface JLanguageService {

@@ -8,6 +8,10 @@ declare interface JSessionData {
    */
   token: string
   /**
+   * The user permission to change his password 
+   */
+  changePasswordAllowed: boolean
+  /**
    * The user information.
    * 
    * @example ```ts
