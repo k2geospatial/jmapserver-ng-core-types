@@ -362,7 +362,8 @@ declare interface JCoreMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *          *         ...
+   *        window.JMAP_OPTIONS = {
+   *         ...
    *         map: {
    *           scaleControlVisible: true,
    *         }
@@ -454,7 +455,8 @@ declare interface JCoreMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *          *         ...
+   *       window.JMAP_OPTIONS = {
+   *         ...
    *         map: {
    *           zoom: 4.32
    *         }
