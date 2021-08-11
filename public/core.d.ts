@@ -2570,7 +2570,7 @@ declare namespace JMap {
      * Set the bearing on the map (rotation)
      * 
      * @throws Error if the bearing is not between -360 to 360 degree
-     * @param bearing te new value of the bearing between 0 to 360
+     * @param bearing the new value of the bearing between -360 to 360
      * @example ```ts
      * 
      * // Set 30 degrees bearing

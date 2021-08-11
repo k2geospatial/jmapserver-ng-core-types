@@ -306,6 +306,29 @@ declare interface JCoreMapOptions {
   mapRotationControlVisible?: boolean
 
   /**
+   * You can set the initial rotation of the map by setting the ***mapInitialBearing*** parameter. By example if you want the map to open with a rotation of 90 degree :
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         map: {
+   *           mapInitialBearing: 90,
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+  mapInitialBearing?: number
+
+
+  /**
    * By default the Navigation History control is not visible.
    * 
    * But if ***navigationHistoryControlVisible*** is true, it will be displayed on the map.
@@ -339,8 +362,7 @@ declare interface JCoreMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_OPTIONS = {
-   *         ...
+   *          *         ...
    *         map: {
    *           scaleControlVisible: true,
    *         }
@@ -400,7 +422,7 @@ declare interface JCoreMapOptions {
   scaleControlUnit?: "imperial" | "metric" | "nautical"
 
   /**
-   * You can set the location of the center of the map by setting the ***center*** parameter. By exemple if you want to center the map on the city of Ottawa :
+   * You can set the location of the center of the map by setting the ***center*** parameter. By example if you want to center the map on the city of Ottawa :
    * 
    * ```html
    * <html>
@@ -432,8 +454,7 @@ declare interface JCoreMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *       window.JMAP_OPTIONS = {
-   *         ...
+   *          *         ...
    *         map: {
    *           zoom: 4.32
    *         }
