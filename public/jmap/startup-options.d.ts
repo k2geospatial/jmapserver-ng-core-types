@@ -135,6 +135,7 @@ declare interface JCoreOptions {
    *   <body>
    *     <script type="text/javascript">
    *       window.JMAP_OPTIONS = {
+   *         ...
    *         // a valid project name
    *         projectName: "The world"
    *       }
