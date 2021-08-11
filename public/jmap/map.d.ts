@@ -362,7 +362,7 @@ declare interface JCoreMapOptions {
    *   ...
    *   <body>
    *     <script type="text/javascript">
-   *        window.JMAP_OPTIONS = {
+   *       window.JMAP_OPTIONS = {
    *         ...
    *         map: {
    *           scaleControlVisible: true,
