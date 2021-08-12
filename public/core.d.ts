@@ -638,6 +638,261 @@ declare namespace JMap {
     }
 
     /**
+     *  **JMap.Layer.Thematic**
+     * 
+     * Methods used to manage thematics for a layer.
+     */
+    namespace Thematic {
+
+      /**
+       * ***JMap.Layer.Thematic.getAllByLayerId***
+       * 
+       * Returns all thematics for the specified layer.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a layer group.
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // returns all thematics of layer id=4
+       * JMap.Layer.Thematic.getAllByLayerId(4)
+       * ```
+       */
+      function getAllByLayerId(layerId: JId): JLayerThematic[]
+
+      /**
+       * ***JMap.Layer.Thematic.getById***
+       * 
+       * Returns a specific layer thematic.
+       * 
+       * @throws Error if no layer found for the id, if the layer is a layer group, or if the thematic doesn't exist.
+       * @param layerId The JMap layer id
+       * @param thematicId The thematic id
+       * @example ```ts
+       * 
+       * // returns thematic id=3 of layer id=4
+       * JMap.Layer.Thematic.getById(4, 3)
+       * ```
+       */
+      function getById(layerId: JId, thematicId: JId): JLayerThematic
+
+      /**
+       * ***JMap.Layer.Thematic.existsById***
+       * 
+       * Returns true if the thematic exists for the given layer and thematic ids, false otherwise.
+       * 
+       * @param layerId The JMap layer id
+       * @param thematicId The thematic id
+       * @example ```ts
+       * 
+       * // test for thematic existence
+       * JMap.Layer.Thematic.existsById(4, 3)
+       * // false
+       * ```
+       */
+      function existsById(layerId: JId, thematicId: JId): boolean
+
+      /**
+       * ***JMap.Layer.Thematic.hasAnyVisibleByLayerId***
+       * 
+       * Returns true if the layer has at least one thematic displayed on the map.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a layer group.
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // returns false if no thematic is displayed for layer id=4
+       * JMap.Layer.Thematic.hasAnyVisibleByLayerId(4)
+       * ```
+       */
+      function hasAnyVisibleByLayerId(layerId: JId): boolean
+
+      /**
+       * ***JMap.Layer.Thematic.getAllVisibleByLayerId***
+       * 
+       * Returns layer thematics that are currently displayed on the map.
+       * 
+       * @throws Error if no layer found for the id, or if the layer is a layer group.
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // returns the thematic(s) that are displayed on he map for layer id=4 
+       * JMap.Layer.Thematic.getAllVisibleByLayerId(4)
+       * ```
+       */
+      function getAllVisibleByLayerId(layerId: JId): JLayerThematic[]
+
+      /**
+       * **JMap.Layer.Thematic.setVisibilityById**
+       * 
+       * Shows or hides a layer thematic on the map
+       * 
+       * @throws Error if layer or thematic is not found
+       * @param layerId The JMap layer id
+       * @param thematicId The thematic id
+       * @param visibility true to show, false to hide
+       * @example ```ts
+       * 
+       * // Display the thematic id=3 of layer id=7
+       * JMap.Layer.Thematic.setVisibilityById(7, 3, true)
+       * 
+       * // Hide the thematic id=3 of layer id=7
+       * JMap.Layer.Thematic.setVisibilityById(7, 3, false)
+       * ```
+       */
+      function setVisibilityById(layerId: JId, thematicId: JId, visibility: boolean): void
+
+      /**
+       * **JMap.Layer.Thematic.setThematicsVisibility**
+       * 
+       * Shows or hides multiple layer thematics on the map
+       * 
+       * @throws Error if any layer or thematic are not found
+       * @param params An array of JLayerThematicSetVisibilityParams
+       * @example ```ts
+       * 
+       * // Display the thematic id=3 of layer id=7, and hide the thematic id=1 of layer id=14
+       * JMap.Layer.Thematic.setThematicsVisibility([
+       *    {layerId: 7, thematicId: 3, visibility: true},
+       *    {layerId: 14, thematicId: 1, visibility: false}
+       * ])
+       * ```
+       */
+      function setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
+
+      /**
+       * **JMap.Layer.Thematic.setCategoryVisibility**
+       * 
+       * Shows or hides a specific layer thematic category on the map.
+       * 
+       * @throws Error if layer or thematic is not found, or if an invalid param is provided
+       * @param params a [[JLayerThematicSetCategoryVisibilityParams]] object
+       * @example ```ts
+       * 
+       * // Hide the first category of thematic id=3 of layer id=7
+       * JMap.Layer.Thematic.setCategoryVisibility({
+       *    layerId: 7,
+       *    thematicId: 3,
+       *    categoryIndex: 0, 
+       *    visibility: false
+       *  })
+       * ```
+       */
+      function setCategoryVisibility(params: JLayerThematicSetCategoryVisibilityParams): void
+
+      /**
+       * **JMap.Layer.Thematic.setCategoriesVisibility**
+       * 
+       * Shows or hides specific layer thematic categories on the map. 
+       * 
+       * @throws Error if layer or thematic is not found, or if an invalid param is provided
+       * @param params an array of [[JLayerThematicSetCategoryVisibilityParams]] objects
+       * @example ```ts
+       * 
+       * // Hide the first and third category of thematic id=3 of layer id=7
+       * JMap.Layer.Thematic.setCategoriesVisibility([
+       * {
+       *    layerId: 7,
+       *    thematicId: 3,
+       *    categoryIndex: 0, 
+       *    visibility: false
+       *  },
+       * {
+       *    layerId: 7,
+       *    thematicId: 3,
+       *    categoryIndex: 2, 
+       *    visibility: false
+       *  },
+       * ])
+       * ```
+       */
+      function setCategoriesVisibility(params: JLayerThematicSetCategoryVisibilityParams[]): void
+
+      /**
+       * **JMap.Layer.Thematic.setAllCategoriesVisibility**
+       * 
+       * Shows or hides all thematic categories of a layer on the map
+       * 
+       * @throws Error if layer or thematic is not found, or if an invalid param is provided
+       * @param layerId The JMap layer id
+       * @param thematicId The thematic id
+       * @param visibility true to show, false to hide
+       * @example ```ts
+       * 
+       * // Hide all categories of thematic id=3 of layer id=7
+       * JMap.Layer.Thematic.setAllCategoriesVisibility(
+       *    layerId: 7,
+       *    thematicId: 3,
+       *    visibility: false
+       *  })
+       * ```
+       */
+      function setAllCategoriesVisibility(layerId: number, thematicId: number, visibility: boolean): void
+  
+      /**
+       * **JMap.Layer.Thematic.getFamilyTypeById**
+       * 
+       * Returns the family of the specified layer thematic
+       * 
+       * @throws Error if layer or thematic is not found, or if an invalid param is provided
+       * @param layerId The JMap layer id
+       * @param thematicId The thematic id
+       * @example ```ts
+       * 
+       * // return the family of thematic id=3 of layer id=7
+       * let family = JMap.Layer.Thematic.getFamilyTypeById(
+       *    layerId: 7,
+       *    thematicId: 3
+       *  })
+       * console.log(family)
+       * // "Classification"
+       * ```
+       */
+      function getFamilyTypeById(layerId: number, thematicId: number): JLayerThematicFamilyType
+    }
+
+    /**
+     * **JMap.Layer.getAllThematicsForLayer**
+     * 
+     * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead
+     */
+    function getAllThematicsForLayer(layerId: number): JLayerThematic[]
+
+    /**
+     * **JMap.Layer.getThematicById**
+     * 
+     * @deprecated use [[JMap.Layer.Thematic.getById]] instead
+     */
+    function getThematicById(layerId: number, thematicId: number): JLayerThematic
+
+    /**
+     * **JMap.Layer.hasVisibleThematics**
+     * 
+     * @deprecated use [[JMap.Layer.Thematic.hasAnyVisibleByLayerId]] instead
+     */
+    function hasVisibleThematics(layerId: number): boolean
+
+    /**
+     * **JMap.Layer.getVisibleThematics**
+     * 
+     * @deprecated use [[JMap.Layer.Thematic.getAllVisibleByLayerId]] instead
+     */
+    function getVisibleThematics(layerId: number): JLayerThematic[]
+
+    /**
+     * **JMap.Layer.setThematicVisibility**
+     * 
+     * @deprecated use [[JMap.Layer.Thematic.setVisibilityById]] instead
+     */
+    function setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
+
+    /**
+     * **JMap.Layer.setThematicsVisibility**
+     * 
+     * @deprecated use [[JMap.Layer.Thematic.setThematicsVisibility]] instead
+     */
+    function setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
+
+    /**
      * **JMap.Layer.getLayerTree**
      * 
      * Returns project's layer tree.
@@ -739,7 +994,7 @@ declare namespace JMap {
      */
     function getLayerIds(): number[]
 
-     /**
+    /**
      * **JMap.Layer.getVectorLayers**
      * 
      * Returns an array with vector JMap layers.
@@ -1101,67 +1356,6 @@ declare namespace JMap {
     function getSelectionStyle(layerId: number): JLayerStyle | null
 
     /**
-     * ***JMap.Layer.getAllThematicsForLayer***
-     * 
-     * Returns all layer thematics.
-     * 
-     * @throws Error if no layer found for the id, or if the layer is a layer group.
-     * @param layerId The JMap layer id
-     * @example ```ts
-     * 
-     * // returns all thematics of layer id=4
-     * JMap.Layer.getAllThematicsForLayer(4)
-     * ```
-     */
-    function getAllThematicsForLayer(layerId: number): JLayerThematic[]
-
-    /**
-     * ***JMap.Layer.getThematicById***
-     * 
-     * Returns a specific layer thematic.
-     * 
-     * @throws Error if no layer found for the id, if the layer is a layer group, or if the thematic doesn't exist.
-     * @param layerId The JMap layer id
-     * @param thematicId The thematic id
-     * @example ```ts
-     * 
-     * // returns thematic id=3 of layer id=4
-     * JMap.Layer.getThematicById(4, 3)
-     * ```
-     */
-    function getThematicById(layerId: number, thematicId: number): JLayerThematic
-
-    /**
-     * ***JMap.Layer.hasVisibleThematics***
-     * 
-     * Returns true if the layer has at least one thematic displayed on the map.
-     * 
-     * @throws Error if no layer found for the id, or if the layer is a layer group.
-     * @param layerId The JMap layer id
-     * @example ```ts
-     * 
-     * // returns false if no thematic is displayed for layer id=4
-     * JMap.Layer.hasVisibleThematics(4)
-     * ```
-     */
-    function hasVisibleThematics(layerId: number): boolean
-
-    /**
-     * ***JMap.Layer.getVisibleThematics***
-     * 
-     * Returns layer thematics that are currently displayed on the map.
-     * 
-     * @throws Error if no layer found for the id, or if the layer is a layer group.
-     * @param layerId The JMap layer id
-     * @example ```ts
-     * 
-     * // returns layer's id=4 thematic(s) that are displayed
-     * JMap.Layer.getVisibleThematics(4)
-     * ```
-     */
-    function getVisibleThematics(layerId: number): JLayerThematic[]
-
-    /**
      * **JMap.Layer.setVisible**
      * 
      * Set the visibility property of the layer.
@@ -1305,44 +1499,6 @@ declare namespace JMap {
      */
     function deleteLayer(layerId: number): void
     
-    /**
-     * **JMap.Layer.setThematicVisibility**
-     * 
-     * Show or hide a layer thematic on the map
-     * 
-     * @throws Error if layer or thematic is not found
-     * @param layerId The JMap layer id
-     * @param thematicId The thematic id
-     * @param visibility true to show, false to hide
-     * @example ```ts
-     * 
-     * // Display the thematic id=3 of layer id=7
-     * JMap.Layer.Thematic.setThematicVisibility(7, 3, true)
-     * 
-     * // Hide the thematic id=3 of layer id=7
-     * JMap.Layer.Thematic.setThematicVisibility(7, 3, false)
-     * ```
-     */
-    function setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
-
-    /**
-     * **JMap.Layer.setThematicsVisibility**
-     * 
-     * Show or hide multiple layer thematics on the map
-     * 
-     * @throws Error if any layer or thematic are not found
-     * @param params An array of JLayerSetThematicsVisibilityParams
-     * @example ```ts
-     * 
-     * // Display the thematic id=3 of layer id=7, and hide the thematic id=1 of layer id=14
-     * JMap.Layer.Thematic.setThematicsVisibility([
-     *    {layerId: 7, thematicId: 3, visibility: true},
-     *    {layerId: 14, thematicId: 1, visibility: false}
-     * ])
-     * ```
-     */
-    function setThematicsVisibility(params: JLayerSetThematicsVisibilityParams[]): void
-
     /**
      * **JMap.Layer.isHoverActive**
      * 
@@ -6171,6 +6327,30 @@ declare namespace JMap {
          * ```
          */
         function thematicVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicVisibilityParams) => void): void
+
+        /**
+         * ***JMap.Event.Layer.on.thematicCategoriesVisibilityChange***
+         * 
+         * This event is triggered when the visibility state of a layer thematic categories changes.
+         * 
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a layer thematic category visibility state is changed this method is processed
+         * JMap.Event.Layer.on.thematicCategoriesVisibilityChange(
+         *    "custom-thematic-visibility-change",
+         *    params => {
+         *      console.log(
+         *        `Layer id="${params.layerId}", ` +
+         *        `thematic id="${params.thematicId}" ` +
+         *        `hidden categories="${params.hiddenCategoryIndexes.toString()}"`
+         *      )
+         *    }
+         * )
+         * ```
+         */
+        function thematicCategoriesVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicCategoryVisibilityParams) => void): void
 
         /**
          * ***JMap.Event.Layer.on.layerDeletion***
