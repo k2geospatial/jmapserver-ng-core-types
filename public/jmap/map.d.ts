@@ -327,7 +327,6 @@ declare interface JCoreMapOptions {
    */
    bearing?: number
 
-
   /**
    * By default the Navigation History control is not visible.
    * 
