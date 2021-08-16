@@ -7533,11 +7533,9 @@ declare namespace JMap {
     function createExternalFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
     function createSubFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
     function updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
-    function updateExternalFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
-    function updateSubFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+    function updateExternalOrSubFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
     function deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
-    function deleteExternalFormEntries(params: JFormElements): Promise<void>
-    function deleteSubFormEntries(params: JFormElements): Promise<void>
+    function deleteExternalOrSubFormEntries(params: JFormElements): Promise<JDeleteEntriesResult>
     function hasDisplayedForm(): boolean
     function getDisplayedForm(): JForm
     function resetDisplayedForm(): void
@@ -7556,18 +7554,21 @@ declare namespace JMap {
     function closeCurrentDisplayedDialog(): void
     function getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
     function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
-    function submit(): Promise<JFormSubmitResult>
+    function submit(params?: JFormSubmitParams): Promise<JFormSubmitResult>
     function canDeleteCurrentElements(): boolean
     function deleteCurrentElements(): Promise<JFormDeleteResult>
+    function getNextViewId(): number
+    function incrementNextViewId(): void
+    function processRule(rule: any, data: any): any
+    function canCreateElementOnForm(params: JFormId): boolean
+    function canUpdateElementOnForm(params: JFormId): boolean
+    function canDeleteElementOnForm(params: JFormId): boolean
+    function hasEditOwnRightsForAllElements(params: JFormElements): boolean
     function hasDisplayedFormAPhotoField(): boolean
     function getDisplayedFormPhotos(): JPhoto[]
     function addDisplayedFormPhoto(photo: JPhoto): JId
     function updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
     function removeDisplayedFormPhotoById(photoId: JId): void
-    function getNextViewId(): number
-    function incrementNextViewId(): void
-    function processRule(rule: any, data: any): any
-
     /**
      * ***JMap.Form.getDefaultValues***
      * 

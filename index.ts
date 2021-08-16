@@ -319,11 +319,9 @@ export interface JFormService {
   createExternalFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
   createSubFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
   updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
-  updateExternalFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
-  updateSubFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+  updateExternalOrSubFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
   deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
-  deleteExternalFormEntries(params: JFormElements): Promise<void>
-  deleteSubFormEntries(params: JFormElements): Promise<void>
+  deleteExternalOrSubFormEntries(params: JFormElements): Promise<JDeleteEntriesResult>
   // DIALOG METHODS (UI)
   getAllFormsMetaDataForCurrentLayer(): JFormMetaData[]
   getFormMetaDataByIdForCurrentLayer(formId: JId): JFormMetaData
@@ -343,12 +341,16 @@ export interface JFormService {
   closeCurrentDisplayedDialog(): void
   getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
   setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
-  submit(): Promise<JFormSubmitResult>
+  submit(params?: JFormSubmitParams): Promise<JFormSubmitResult>
   canDeleteCurrentElements(): boolean
   deleteCurrentElements(): Promise<JFormDeleteResult>
   getNextViewId(): number
   incrementNextViewId(): void
   processRule(rule: any, data: any): any
+  canCreateElementOnForm(params: JFormId): boolean
+  canUpdateElementOnForm(params: JFormId): boolean
+  canDeleteElementOnForm(params: JFormId): boolean
+  hasEditOwnRightsForAllElements(params: JFormElements): boolean
   // PHOTOS
   hasDisplayedFormAPhotoField(): boolean
   getDisplayedFormPhotos(): JPhoto[]

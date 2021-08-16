@@ -536,3 +536,12 @@ declare interface JSubFormData {
   idAttributeName: string
   subFormEntries: JFormElement[]
 }
+
+declare interface JDeleteEntriesResult {
+  inSuccessLayerElementIds: JId[]
+  inErrorLayerElementIds: JId[]
+}
+
+declare interface JFormSubmitParams {
+  avoidClosePopupOnSuccess?: boolean
+}
