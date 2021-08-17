@@ -434,7 +434,8 @@ declare interface JFormOperation {
   isExternalForm: boolean
   isSubForm: boolean
   operationType: JFormOperationType
-  elementId: JId
+  layerElementId: JId
+  id: JId
 }
 
 declare interface JFormAttributeOperation extends JFormOperation {
@@ -452,7 +453,6 @@ declare interface JFormExternalOperation extends JFormOperation {
   isSubForm: false
   idAttributeName: string
   attributeValueByName: JAttributeValueByName
-  parentId: JFormId
   parentAttributeValueByName: JAttributeValueByName
 }
 
@@ -468,15 +468,8 @@ declare interface JFormSubFormOperation extends JFormOperation {
 }
 
 declare interface JFormPhotoOperation extends JFormOperation {
+  parentId: JId
   photo: JPhoto
-}
-
-declare interface JFormAttributePhotoOperation extends JFormPhotoOperation {
-  // nothing to add
-}
-
-declare interface JFormDatabasePhotoOperation extends JFormPhotoOperation {
-  objectId: string
 }
 
 declare interface JFormSubmitResult {

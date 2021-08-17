@@ -15,6 +15,12 @@ declare interface JPhoto {
   canUpdate?: boolean
   initialTitle?: string
   initialComment?: string | undefined
+  /**
+   * Used to store the generated id (the one used when creating photo that are not yet saved).
+   * Required to replace in the store photo list, after the photo has been successfully
+   * created on the server.
+   */
+  oldTempCreationId?: JId
 }
 
 declare interface JPhotoOpenPopupParams {
