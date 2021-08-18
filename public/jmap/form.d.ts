@@ -326,6 +326,10 @@ declare interface JFormElement extends JFormElementData {
    * undefined if element, set if it's an entry
    */
   elementId?: JId
+  /**
+   * used to replace new created element temp id by new real id
+   */
+  tempId?: JId
 }
 
 // Used only for JMap 7 Rest API
@@ -402,6 +406,7 @@ declare interface JFormElements extends JFormId {
 
 declare interface JFormCreateAttributeFormElementParams extends JFormElementData, JFormId {
   geometry: GeoJSON.Geometry
+  tempId?: JId // used to replace tempId by real one in external forms
 }
 
 declare interface JFormCreateElementParams extends JFormElement, JFormId {
@@ -433,6 +438,7 @@ declare interface JFormOperation {
   isAttributeForm: boolean
   isExternalForm: boolean
   isSubForm: boolean
+  isPhoto: boolean
   operationType: JFormOperationType
   layerElementId: JId
   id: JId
@@ -443,6 +449,7 @@ declare interface JFormAttributeOperation extends JFormOperation {
   isAttributeForm: true
   isExternalForm: false
   isSubForm: false
+  isPhoto: false
   attributeValueByName: JAttributeValueByName
 }
 
@@ -451,6 +458,7 @@ declare interface JFormExternalOperation extends JFormOperation {
   isAttributeForm: false
   isExternalForm: true
   isSubForm: false
+  isPhoto: false
   idAttributeName: string
   attributeValueByName: JAttributeValueByName
   parentAttributeValueByName: JAttributeValueByName
@@ -461,6 +469,7 @@ declare interface JFormSubFormOperation extends JFormOperation {
   isAttributeForm: false
   isExternalForm: false
   isSubForm: true
+  isPhoto: false
   idAttributeName: string
   attributeValueByName: JAttributeValueByName
   parentId: JFormId
@@ -470,6 +479,7 @@ declare interface JFormSubFormOperation extends JFormOperation {
 declare interface JFormPhotoOperation extends JFormOperation {
   parentId: JId
   photo: JPhoto
+  isPhoto: true
 }
 
 declare interface JFormSubmitResult {
