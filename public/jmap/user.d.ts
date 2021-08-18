@@ -30,12 +30,14 @@ declare interface JUserPublicData {
   username: string
   fullName: string
   email: string
+  organizationIds: string[] // for jaaz only
 }
 
 declare interface JUserIdentity {
   username: string
   fullName: string
   email: string
+  organizationIds: string[] // for jaaz only
 }
 
 declare interface JUserInfo {
