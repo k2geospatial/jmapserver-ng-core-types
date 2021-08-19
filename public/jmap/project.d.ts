@@ -20,7 +20,7 @@ declare interface JProjectServerExtension {
 }
 
 declare interface JProject {
-  id: number
+  id: JId //TODO: refactoring will be done in JWNG-351
   name: string
   description: string
   projection: JProjection

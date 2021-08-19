@@ -1,3 +1,5 @@
+declare type JServerType = "legacy" | "saas"
+
 declare interface JServerIdentityProviderById { 
   [ id: string ]: JServerIdentityProvider 
 } 
@@ -6,6 +8,7 @@ declare interface JServerInfo {
   identityProviderById: JServerIdentityProviderById
   standardLoginAvailable: boolean
   version: string
+  type: JServerType
 }
 
 declare interface JServerIdentityProvider {
