@@ -823,7 +823,7 @@ declare namespace JMap {
        *    layerId: 7,
        *    thematicId: 3,
        *    visibility: false
-       *  })
+       *  )
        * ```
        */
       function setAllCategoriesVisibility(layerId: number, thematicId: number, visibility: boolean): void
