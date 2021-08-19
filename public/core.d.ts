@@ -842,7 +842,7 @@ declare namespace JMap {
        * let family = JMap.Layer.Thematic.getFamilyTypeById(
        *    layerId: 7,
        *    thematicId: 3
-       *  })
+       *  )
        * console.log(family)
        * // "Classification"
        * ```
