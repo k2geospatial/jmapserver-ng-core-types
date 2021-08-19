@@ -23,21 +23,14 @@ declare interface JSessionData {
    * }
    * ```
    */
-  user: JUserPublicData
-}
-
-declare interface JUserPublicData {
-  username: string
-  fullName: string
-  email: string
-  organizationIds: string[] // for jaaz only
+  user: JUserIdentity
 }
 
 declare interface JUserIdentity {
   username: string
   fullName: string
   email: string
-  organizationIds: string[] // for jaaz only
+  organizationId: string // for jaaz only
 }
 
 declare interface JUserInfo {
