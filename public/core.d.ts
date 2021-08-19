@@ -7530,12 +7530,11 @@ declare namespace JMap {
     function getElements(params: JFormElementIds): Promise<JFormElement[]>
     function getEntries(params: JFormGetEntriesParams): Promise<JFormElement[]>
     function createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
-    function createExternalFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
-    function createSubFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
+    function createDatabaseFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
     function updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
-    function updateExternalOrSubFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+    function updateDatabaseFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
     function deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
-    function deleteExternalOrSubFormEntries(params: JFormElements): Promise<JDeleteEntriesResult>
+    function deleteDatabaseFormEntries(params: JFormElements): Promise<JDeleteEntriesResult>
     function hasDisplayedForm(): boolean
     function getDisplayedForm(): JForm
     function resetDisplayedForm(): void

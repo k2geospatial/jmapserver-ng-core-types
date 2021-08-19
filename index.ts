@@ -316,12 +316,11 @@ export interface JFormService {
   getElements(params: JFormElementIds): Promise<JFormElement[]>
   getEntries(params: JFormGetEntriesParams): Promise<JFormElement[]>
   createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
-  createExternalFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
-  createSubFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
+  createDatabaseFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
   updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
-  updateExternalOrSubFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+  updateDatabaseFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
   deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
-  deleteExternalOrSubFormEntries(params: JFormElements): Promise<JDeleteEntriesResult>
+  deleteDatabaseFormEntries(params: JFormElements): Promise<JDeleteEntriesResult>
   // DIALOG METHODS (UI)
   getAllFormsMetaDataForCurrentLayer(): JFormMetaData[]
   getFormMetaDataByIdForCurrentLayer(formId: JId): JFormMetaData
