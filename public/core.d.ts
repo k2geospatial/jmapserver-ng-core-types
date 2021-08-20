@@ -2705,12 +2705,42 @@ declare namespace JMap {
      * JMap.Map.getPitch()
      * ```
      */
+
+    
     function getPitch(): number
+    
+    /**
+     * **JMap.Map.getRotation**
+     * 
+     * Returns the current positive map rotation angle (clockwise rotation).
+     * 
+     * @example ```ts
+     * 
+     * // returns the current map rotation
+     * JMap.Map.getRotation()
+     * ```
+     */
+     function getRotation(): number 
 
     /**
-     * ***JMap.Map.getBaseMap***
+     * **JMap.Map.setRotation**
      * 
-     * Returns the current map bearing (rotation).
+     * Set the rotation on the map (clockwise rotation)
+     * 
+     * @throws Error if the rotation angle is not between -360 to 360 degree
+     * @param rotation the new degree of the rotation between -360 to 360
+     * @example ```ts
+     * 
+     * // Set 30 degrees rotation
+     * JMap.Map.setRotation(30)
+     * ```
+     */
+     function setRotation(rotation: number): void
+
+    /**
+     * ***JMap.Map.getBearing***
+     * 
+     * Returns the current positive map bearing angle (anticlockwise rotation).
      * 
      * @example ```ts
      * 
@@ -2723,9 +2753,9 @@ declare namespace JMap {
     /**
      * **JMap.Map.setBearing**
      * 
-     * Set the bearing on the map (rotation)
+     * Set the bearing on the map (anticlockwise rotation)
      * 
-     * @throws Error if the bearing is not between -360 to 360 degree
+     * @throws Error if the bearing angle is not between -360 to 360 degree
      * @param bearing the new degree of the bearing between -360 to 360
      * @example ```ts
      * 
