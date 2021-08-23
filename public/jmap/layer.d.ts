@@ -19,7 +19,7 @@ declare type JLayerMetadataType = "date" | "text" | "number"
 declare type JLayerMetaDataValue =  string | number | Date
 
 declare interface JLayerBaseMetadata {
-  id: number
+  id: JId
 }
 
 declare interface JLayerMetadataSchemaItem extends JLayerBaseMetadata{
@@ -48,24 +48,24 @@ declare interface JLayerEventThematicCategoryVisibilityParams{
 }
 
 declare interface JLayerEventThematicVisibilityParams {
-  layerId: number
-  thematicId: number
+  layerId: JId
+  thematicId: JId
   visibility: boolean
 }
 
 declare interface JLayerEventVisibilityParams {
-  layerId: number
+  layerId: JId
   visibility: boolean
   areAllParentsVisible: boolean
 }
 
 declare interface JLayerEventSelectabilityParams {
-  layerId: number
+  layerId: JId
   selectability: boolean
 }
 
 declare interface JLayerEventParams {
-  layerId: number
+  layerId: JId
 }
 
 declare interface JMapEventLoadedParams {
@@ -119,7 +119,7 @@ declare interface JLayerAttribute {
 }
 
 declare interface JLayerTreeElement {
-  id: number,
+  id: JId,
   name: string,
   description: string
   initialVisibility: boolean
@@ -131,7 +131,7 @@ declare interface JLayerTreeElement {
 declare type JLayerTree = JLayerTreeElement[]
 
 declare interface JLayerThematic {
-  id: number
+  id: JId
   enabled: boolean // initial visibility
   isVisible: boolean // user visibility
   name: string
@@ -176,7 +176,7 @@ declare interface JLayerThematicCategoryRange extends JLayerThematicCategory {
 }
 
 declare interface JLayerSearchByAttributesParams {
-  layerId: number
+  layerId: JId
   attributeName: string
   attributeValue: any | any[]
   projectionCode?: string
@@ -293,7 +293,7 @@ declare interface JRGBColor {
 }
 
 declare interface JLayerSetLayersVisibilityParams {
-  layerId: number
+  layerId: JId
   visibility: boolean
 }
 
@@ -316,6 +316,6 @@ declare interface JLayerThematicSetCategoryVisibilityParams{
 }
 
 declare interface JLayerSetLayerGroupsExpansionParams {
-  layerGroupId: number
+  layerGroupId: JId
   open: boolean
 }

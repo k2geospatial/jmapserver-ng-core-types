@@ -1,5 +1,5 @@
 declare type JOperatingSystem = "" | "mac" | "windows" | "ios" | "android" | "linux"
-declare type JId = any
+declare type JId = string | number
 
 declare interface JArrayService {
   remove<T>(array: T[], object: T): T[]

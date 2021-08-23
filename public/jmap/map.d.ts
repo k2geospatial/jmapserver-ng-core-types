@@ -45,7 +45,7 @@ declare interface JMapEventPitchParams extends JMapEventParams {
 }
 
 declare interface JMapEventLayerParams extends JMapEventLocationParams {
-  layerId: number
+  layerId: JId
 }
 
 declare interface JMapEventFeaturesParams extends JMapEventLayerParams {
@@ -74,12 +74,12 @@ declare interface JMapEventSelectionChangedParams {
   changesByLayerId: { [layerId: string]: JMapLayerSelectionChanges }
 }
 
-declare interface JMapSelection {
-  [ layerId: number ]: GeoJSON.Feature[]
+declare type JMapSelection = {
+  [ key in JId ]: GeoJSON.Feature[]
 }
 
 declare interface JMapLayerVisibilityStatus {
-  layerId: number
+  layerId: JId
   layerName: string
   isRendered: boolean
   visibilityProperty: boolean
@@ -88,8 +88,8 @@ declare interface JMapLayerVisibilityStatus {
   extentVisibility: boolean
 }
 
-declare interface JMapLayersVisibilityStatus {
-  [ layerElementId: number ]: JMapLayerVisibilityStatus
+declare type JMapLayersVisibilityStatus = {
+  [ key in JId ] : JMapLayerVisibilityStatus
 }
 
 declare interface JProjection {
@@ -98,12 +98,12 @@ declare interface JProjection {
 }
 
 declare interface JMapFeatureAttributeValues {
-  featureId: number
+  featureId: JId
   [ attributeId: string ]: any
 }
 
 declare interface JMapAttributeSearch {
-  layerId: number
+  layerId: JId
   attributeName: string
   attributeValue: any | any[]
   showMapPopup?: boolean
@@ -148,8 +148,8 @@ declare interface JMapMapboxLayerStyleDefinition {
 }
 
 declare interface JMapAddMapboxLayerConfigurationForJmapLayerParams {
-  jmapLayerId: number
-  beforeJmapLayerId?: number
+  jmapLayerId: JId
+  beforeJmapLayerId?: JId
   beforeMapboxLayerId?: string
   baseStyle: JMapMapboxLayerStyleDefinition
   // TODO: add support for thematics, selections, etc

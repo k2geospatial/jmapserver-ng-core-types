@@ -1,14 +1,14 @@
 declare interface JQueryGroup {
-  id: number
+  id: JId
   name: string
   queries: JQuery[]
 }
 
 declare interface JQuery {
   id: string
-  groupId: number
+  groupId: JId
   name: string
-  layerId: number
+  layerId: JId
   maxScale: number
   maxResults: number,
   formMetaData: JFormMetaData
