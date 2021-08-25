@@ -19,6 +19,14 @@ export interface JCoreService extends JCoreMainService {
   Extension: JExtensionService
   Server: JServerService
   Photo: JPhotoService
+  Util: JUtilService
+}
+
+export interface JUtilService {
+  loadJSFile(fileUrl: string): Promise<void>
+  isJMapId(id: any, allowStringNumber?: boolean): boolean
+  checkJmapId(id: any, message?: string): void
+  getJmapIdAsIntegerIfPossible(id: any): JId
 }
 
 export interface JPhotoService {
@@ -42,6 +50,9 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
+  /**
+  * @deprecated use [[JMap.Util.loadJSFile]] instead
+  */
   loadJSFile(fileUrl: string): Promise<void>
 }
 

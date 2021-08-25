@@ -101,13 +101,7 @@ declare namespace JMap {
   /**
   * **JMap.loadJSFile**
   * 
-  * Load an external JS File then resolve when file has been loaded.
-  * 
-  * @example ```ts
-  * 
-  * // load your custom JS file dynamically
-  * JMap.loadJSFile("https://mysever/toLoadFile.js")
-  * ```
+  * @deprecated use [[JMap.Util.loadJSFile]] instead
   */
   function loadJSFile(fileUrl: string): Promise<void>
 
@@ -7770,5 +7764,102 @@ declare namespace JMap {
      * ```
      */
     function validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): JFormErrors
+  }
+
+  /**
+   * **JMap.Util**
+   * 
+   * Here you'll find all JMap utility methods
+   */
+  namespace Util {
+    /**
+     * **JMap.Util.loadJSFile**
+     * 
+     * Load an external JS File then resolve when file has been loaded.
+     * 
+     * @param fileUrl the JS URL to load
+     * @example ```ts
+     * 
+     * // load your custom JS file dynamically
+     * JMap.Util.loadJSFile("https://mysever/toLoadFile.js")
+     * ```
+     */
+    function loadJSFile(fileUrl: string): Promise<void>
+    
+    /**
+     * **JMap.Util.isJMapId**
+     * 
+     * Validates if the value passed is either a string uuid (for instance, "f3af01ab-4042-4ccf-be04-33dc96228ce7"), or a numeric ID (integer, can be negative)
+     * If the allowStringNumber param is true, the string "123" will be considerd as a valid numeric ID. allowStringNumber is false by default
+     * 
+     * @param id The JMap Id to validate
+     * @param allowStringNumber optional parameter. false by default.
+     * @example ```ts
+     * 
+     * JMap.Util.isJMapId(1)
+     * // true
+     * 
+     * JMap.Util.isJMapId("1")
+     * // false
+     * 
+     * JMap.Util.isJMapId("1", true)
+     * // true
+     * 
+     * JMap.Util.isJMapId("f3af01ab-4042-4ccf-be04-33dc96228ce7")
+     * // true
+     * ```
+     */
+    function isJMapId(id: any, allowStringNumber?: boolean): boolean
+
+    /**
+     * **JMap.Util.checkJmapId**
+     * 
+     * Throws an Error if the passed Id is not a valid JMap Id, otherwise does nothing. You can use this method as a safeguard in your methods that accept JMap Ids.
+     * JMap.Util.checkJmapId always run a strict check on the passed value, i.e. the string "123" will not pass. If you want the value to be compliant, you
+     * can use [[JMap.Util.getJmapIdAsIntegerIfPossible]] to transform it.
+     * 
+     * 
+     * @param id The JMap Id to validate
+     * @param message optional message that will be used in the thrown error if the passed value doesn't pass the check.
+     * @throws Error if the passed value is not a valid JMap Id
+     * @example ```ts
+     * 
+     * JMap.Util.checkJmapId("")
+     * // Error thrown
+     * 
+     * JMap.Util.checkJmapId("", "My custom error message")
+     * // Error thrown "My custom error message"
+     * 
+     * JMap.Util.checkJmapId(4)
+     * // undefined
+     * ```
+     */
+    function checkJmapId(id: any, message?: string): void
+
+    /**
+     * **JMap.Util.getJmapIdAsIntegerIfPossible**
+     * 
+     * Converts the passed Id as a numeric JMap Id if possible. This utility function can be used to transform serialized
+     * or otherwise stringified JMap Ids that would normally be expressed as integers. For instance, if you extract 
+     * a JMap Id from a query string, the query param "3" would be returned a an integer (3). 
+     * If the passed value cannot be converted to a valid JMap numeric Id, it will be
+     * returned as-is, if valid. If not valid, an error is thrown.
+     * 
+     * @param id The JMap Id to convert
+     * @throws Error if the passed Id is not a valid JMap Id
+     * @example ```ts
+     * 
+     * JMap.Util.getJmapIdAsIntegerIfPossible("1")
+     * // 1
+     * 
+     * JMap.Util.getJmapIdAsIntegerIfPossible("1.4")
+     * // throw Error
+     * 
+     * JMap.Util.getJmapIdAsIntegerIfPossible("f3af01ab-4042-4ccf-be04-33dc96228ce7")
+     * // "f3af01ab-4042-4ccf-be04-33dc96228ce7"
+     * ```
+     */
+    function getJmapIdAsIntegerIfPossible(id: any): JId
+
   }
 }
