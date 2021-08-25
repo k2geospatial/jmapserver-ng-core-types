@@ -99,10 +99,10 @@ declare namespace JMap {
   function getOS(): JOperatingSystem
 
   /**
-  * **JMap.loadJSFile**
-  * 
-  * @deprecated use [[JMap.Util.loadJSFile]] instead
-  */
+   * **JMap.loadJSFile**
+   * 
+   * @deprecated use [[JMap.Util.loadJSFile]] instead
+   */
   function loadJSFile(fileUrl: string): Promise<void>
 
   /* **JMap.Server**

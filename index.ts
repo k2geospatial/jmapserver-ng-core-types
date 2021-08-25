@@ -51,8 +51,8 @@ export interface JCoreMainService {
   openDocumentation(): void
   getOS(): JOperatingSystem
   /**
-  * @deprecated use [[JMap.Util.loadJSFile]] instead
-  */
+   * @deprecated use [[JMap.Util.loadJSFile]] instead
+   */
   loadJSFile(fileUrl: string): Promise<void>
 }
 
