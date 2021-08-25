@@ -306,7 +306,31 @@ declare interface JCoreMapOptions {
   mapRotationControlVisible?: boolean
 
   /**
-   * You can set the initial rotation of the map by setting the ***bearing*** parameter. By example if you want the map to open with a rotation of 90 degree :
+   * You can set the initial rotation of the map by setting the ***rotation*** parameter. This parameter will have the priority over bearing if both parameters are specified.
+   * By example if you want the map to open with a clockwise rotation of 90 degree :
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         map: {
+   *           rotation: 90,
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+  rotation?: number
+  
+  /**
+   * You can set the initial rotation of the map by setting the ***bearing*** parameter. This parameter will be ignored if rotation is specified.
+   * By example if you want the map to open with a anticlockwise rotation of 90 degree :
    * 
    * ```html
    * <html>
