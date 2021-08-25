@@ -7823,7 +7823,7 @@ declare namespace JMap {
      * If the allowStringNumber param is true, the string "123" will be considered as a valid numeric ID. allowStringNumber is false by default
      * 
      * @param id The JMap Id to validate
-     * @param allowStringNumber optional parameter. false by default.
+     * @param allowStringNumber Optional parameter. false by default.
      * @example ```ts
      * 
      * JMap.Util.isJMapId(1)
@@ -7850,7 +7850,7 @@ declare namespace JMap {
      * 
      * 
      * @param id The JMap Id to validate
-     * @param message optional message that will be used in the thrown error if the passed value doesn't pass the check.
+     * @param message Optional message that will be used in the thrown error if the passed value doesn't pass the check.
      * @throws Error if the passed value is not a valid JMap Id
      * @example ```ts
      * 
