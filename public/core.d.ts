@@ -7820,7 +7820,7 @@ declare namespace JMap {
      * **JMap.Util.isJMapId**
      * 
      * Validates if the value passed is either a string uuid (for instance, "f3af01ab-4042-4ccf-be04-33dc96228ce7"), or a numeric ID (integer, can be negative)
-     * If the allowStringNumber param is true, the string "123" will be considerd as a valid numeric ID. allowStringNumber is false by default
+     * If the allowStringNumber param is true, the string "123" will be considered as a valid numeric ID. allowStringNumber is false by default
      * 
      * @param id The JMap Id to validate
      * @param allowStringNumber optional parameter. false by default.
