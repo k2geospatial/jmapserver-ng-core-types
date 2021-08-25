@@ -327,8 +327,7 @@ declare interface JCoreMapOptions {
    * ```
    */
   rotation?: number
-
-
+  
   /**
    * You can set the initial rotation of the map by setting the ***bearing*** parameter. This parameter will be ignored if rotation is specified.
    * By example if you want the map to open with a anticlockwise rotation of 90 degree :

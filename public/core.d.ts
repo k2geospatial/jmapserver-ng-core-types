@@ -2712,7 +2712,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.getRotation**
      * 
-     * Returns the current positive map rotation angle (clockwise rotation).
+     * Returns the current map rotation angle.
      * 
      * @example ```ts
      * 
@@ -2725,7 +2725,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.setRotation**
      * 
-     * Set the rotation on the map (clockwise rotation)
+     * Set the rotation on the map.
      * 
      * @throws Error if the rotation angle is not between -360 to 360 degree
      * @param rotation the new degree of the rotation between -360 to 360
@@ -2740,7 +2740,7 @@ declare namespace JMap {
     /**
      * ***JMap.Map.getBearing***
      * 
-     * Returns the current positive map bearing angle (anticlockwise rotation).
+     * Returns the current map bearing angle.
      * 
      * @example ```ts
      * 
@@ -2753,7 +2753,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.setBearing**
      * 
-     * Set the bearing on the map (anticlockwise rotation)
+     * Set the bearing on the map.
      * 
      * @throws Error if the bearing angle is not between -360 to 360 degree
      * @param bearing the new degree of the bearing between -360 to 360
