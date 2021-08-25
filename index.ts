@@ -233,6 +233,7 @@ export interface JGeolocationState {
 
 export interface JMapState {
   pitch: number
+  rotation: number
   bearing: number
   isLoaded: boolean
   hasFirstLoaded: boolean
@@ -438,10 +439,12 @@ export interface JMapService {
   getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): Feature[]
   getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
   getPitch(): number
+  getRotation(): number
   getBearing(): number
   getNavigationHistoryStack(): JMapNavigationStep[]
   undoLastNavigationStep(): JMapNavigationStep | undefined
   setPitch(pitch: number): void
+  setRotation(rotation: number): void
   setBearing(bearing: number): void
   panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
   zoomTo(zoom: number, options?: JPanAndZoomOptions): void
