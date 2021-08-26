@@ -116,7 +116,7 @@ declare interface JCoreOptions {
    * </html>
    * ```
    */
-  projectId?: number
+  projectId?: JId
 
   /**
    * A JMap project name.

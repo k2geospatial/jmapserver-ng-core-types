@@ -1,7 +1,7 @@
 declare type JPhotoProjectionType = "none" | "equirectangular"
 
 declare interface JPhoto {
-  id: number
+  id: JId
   url: string
   title: string
   fileName: string
@@ -20,7 +20,7 @@ declare interface JPhoto {
 declare interface JPhotoOpenPopupParams {
   selectedPhotoId?: JId
   keepSameSelectedPhotoId?: boolean
-  onDelete?: (photo: JPhoto, selectedPhotoId: JId) => boolean
+  onDelete?: (photo: JPhoto) => boolean
   onUpdate?: (photo: JPhoto, title: string, comment: string | undefined) => boolean
 }
 

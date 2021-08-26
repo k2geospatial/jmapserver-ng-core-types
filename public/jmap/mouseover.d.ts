@@ -9,7 +9,7 @@ declare interface JMapMouseOver {
 
 declare interface JMouseOverContent {
   html: string
-  photoFeatureIdsByLayerId: { [ layerId: number ]: number[] }
+  photoFeatureIdsByLayerId: { [key in JId]: JId[] }
   toEvalJS: string[]
 }
 
@@ -44,7 +44,7 @@ declare interface JMouseOverContentEventParams extends JMouseOverSelectionParams
 
 declare interface JMouseOverBeforeEventParams extends JMouseOverContentEventParams {
   addFeaturesToLayerSelection(layerId: JId, features: GeoJSON.Feature[]): void
-  removeFeaturesFromLayerSelection(layerId: JId, featureIds: string[]): void
+  removeFeaturesFromLayerSelection(layerId: JId, featureIds: JId[]): void
   getFeaturesByLayerId(layerId: JId): GeoJSON.Feature[]
   // you can add some html at the beginning of the mouseover
   addHtmlContentAtTheBeginning(html: string): void

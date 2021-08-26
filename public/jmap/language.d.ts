@@ -10,7 +10,7 @@ declare interface JTranslationItem {
 }
 
 interface JTranslateParams extends JTranslationItem {
-  params?: string | string[] | number | number[]
+  params?: (string | number) | Array<string | number>
   locale?: JLocale
 }
 

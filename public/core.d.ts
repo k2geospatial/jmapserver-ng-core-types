@@ -98,19 +98,6 @@ declare namespace JMap {
   */
   function getOS(): JOperatingSystem
 
-  /**
-  * **JMap.loadJSFile**
-  * 
-  * Load an external JS File then resolve when file has been loaded.
-  * 
-  * @example ```ts
-  * 
-  * // load your custom JS file dynamically
-  * JMap.loadJSFile("https://mysever/toLoadFile.js")
-  * ```
-  */
-  function loadJSFile(fileUrl: string): Promise<void>
-
   /* **JMap.Server**
    * 
    * This is where you can find JMap Server relative methods
@@ -204,7 +191,7 @@ declare namespace JMap {
      * JMap.Photo.displayFeaturePhotosPopup(4, 345)
      * ```
      */
-    function displayFeaturePhotosPopup(layerId: number, featureId: number): Promise<void>
+    function displayFeaturePhotosPopup(layerId: JId, featureId: JId): Promise<void>
 
     /**
      * **JMap.Photo.displayPhotosPopup**
@@ -823,10 +810,10 @@ declare namespace JMap {
        *    layerId: 7,
        *    thematicId: 3,
        *    visibility: false
-       *  })
+       *  )
        * ```
        */
-      function setAllCategoriesVisibility(layerId: number, thematicId: number, visibility: boolean): void
+      function setAllCategoriesVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
   
       /**
        * **JMap.Layer.Thematic.getFamilyTypeById**
@@ -842,12 +829,12 @@ declare namespace JMap {
        * let family = JMap.Layer.Thematic.getFamilyTypeById(
        *    layerId: 7,
        *    thematicId: 3
-       *  })
+       *  )
        * console.log(family)
        * // "Classification"
        * ```
        */
-      function getFamilyTypeById(layerId: number, thematicId: number): JLayerThematicFamilyType
+      function getFamilyTypeById(layerId: JId, thematicId: JId): JLayerThematicFamilyType
     }
 
     /**
@@ -855,35 +842,35 @@ declare namespace JMap {
      * 
      * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead
      */
-    function getAllThematicsForLayer(layerId: number): JLayerThematic[]
+    function getAllThematicsForLayer(layerId: JId): JLayerThematic[]
 
     /**
      * **JMap.Layer.getThematicById**
      * 
      * @deprecated use [[JMap.Layer.Thematic.getById]] instead
      */
-    function getThematicById(layerId: number, thematicId: number): JLayerThematic
+    function getThematicById(layerId: JId, thematicId: JId): JLayerThematic
 
     /**
      * **JMap.Layer.hasVisibleThematics**
      * 
      * @deprecated use [[JMap.Layer.Thematic.hasAnyVisibleByLayerId]] instead
      */
-    function hasVisibleThematics(layerId: number): boolean
+    function hasVisibleThematics(layerId: JId): boolean
 
     /**
      * **JMap.Layer.getVisibleThematics**
      * 
      * @deprecated use [[JMap.Layer.Thematic.getAllVisibleByLayerId]] instead
      */
-    function getVisibleThematics(layerId: number): JLayerThematic[]
+    function getVisibleThematics(layerId: JId): JLayerThematic[]
 
     /**
      * **JMap.Layer.setThematicVisibility**
      * 
      * @deprecated use [[JMap.Layer.Thematic.setVisibilityById]] instead
      */
-    function setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
+    function setThematicVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
 
     /**
      * **JMap.Layer.setThematicsVisibility**
@@ -953,7 +940,7 @@ declare namespace JMap {
      * JMap.Layer.getLayerTreeElementsById()
      * ```
      */
-    function getLayerTreeElementsById(): { [ layerElementId: number ]: JLayerTreeElement }
+    function getLayerTreeElementsById(): { [ layerElementId: JId ]: JLayerTreeElement }
 
     /**
      * **JMap.Layer.getLayers**
@@ -992,7 +979,7 @@ declare namespace JMap {
      * JMap.Layer.getLayerIds()
      * ```
      */
-    function getLayerIds(): number[]
+    function getLayerIds(): JId[]
 
     /**
      * **JMap.Layer.getVectorLayers**
@@ -1037,7 +1024,7 @@ declare namespace JMap {
      * JMap.Layer.getVectorLayerIds()
      * ```
      */
-    function getVectorLayerIds(): number[]   
+    function getVectorLayerIds(): JId[]   
   
     /**
      * **JMap.Layer.isVectorLayerById**
@@ -1069,7 +1056,7 @@ declare namespace JMap {
      *  JMap.Layer.attributeExists(4, "SPECIES")
      * ```
      */
-    function attributeExists(layerId: number, attributeName: string): boolean
+    function attributeExists(layerId: JId, attributeName: string): boolean
 
     /**
      * **JMap.Layer.getLayerAttribute**
@@ -1085,7 +1072,7 @@ declare namespace JMap {
      *  JMap.Layer.getLayerAttribute(4, "SPECIES")
      * ```
      */
-    function getLayerAttribute(layerId: number, attributeName: string): JLayerAttribute
+    function getLayerAttribute(layerId: JId, attributeName: string): JLayerAttribute
 
     /**
      * **JMap.Layer.getLayerAttributes**
@@ -1099,7 +1086,7 @@ declare namespace JMap {
      *  JMap.Layer.getLayerAttributes(4)
      * ```
      */
-    function getLayerAttributes(layerId: number): JLayerAttribute[]
+    function getLayerAttributes(layerId: JId): JLayerAttribute[]
     
     /**
      * **JMap.Layer.exists**
@@ -1113,7 +1100,7 @@ declare namespace JMap {
      * JMap.Layer.exists(3)
      * ```
      */
-    function exists(layerId: number): boolean
+    function exists(layerId: JId): boolean
 
     /**
      * **JMap.Layer.getById**
@@ -1128,7 +1115,7 @@ declare namespace JMap {
      * JMap.Layer.getById(3)
      * ```
      */
-    function getById(layerId: number): JLayerTreeElement
+    function getById(layerId: JId): JLayerTreeElement
 
     /**
      * **JMap.Layer.getSelfOrChildren**
@@ -1147,7 +1134,7 @@ declare namespace JMap {
      * JMap.Layer.getSelfOrChildren(3)
      * ```
      */
-    function getSelfOrChildren(layerId: number): JLayer[]
+    function getSelfOrChildren(layerId: JId): JLayer[]
 
     /**
      * **JMap.Layer.getName**
@@ -1162,7 +1149,7 @@ declare namespace JMap {
      * JMap.Layer.getName(3)
      * ```
      */
-    function getName(layerId: number): string
+    function getName(layerId: JId): string
 
     /**
      * **JMap.Layer.getDescription**
@@ -1177,7 +1164,7 @@ declare namespace JMap {
      * JMap.Layer.getDescription(3)
      * ```
      */
-    function getDescription(layerId: number): string
+    function getDescription(layerId: JId): string
 
     /**
      * **JMap.Layer.getEPSG4326Extent**
@@ -1192,7 +1179,7 @@ declare namespace JMap {
      * @throws Error if no layer found for the id
      * @param layerId The JMap layer id
      */
-    function getEPSG4326Extent(layerId: number):JBoundaryBox | null
+    function getEPSG4326Extent(layerId: JId):JBoundaryBox | null
 
     /**
      * **JMap.Layer.isVisible**
@@ -1216,7 +1203,7 @@ declare namespace JMap {
      * JMap.Layer.isVisible(3)
      * ```
      */
-    function isVisible(layerId: number, checkParentVisibility?: boolean): boolean
+    function isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
 
     /**
      * **JMap.Layer.isSelectableById**
@@ -1305,7 +1292,7 @@ declare namespace JMap {
      * JMap.Layer.isAllLayerParentsVisible(3)
      * ```
      */
-    function isAllLayerParentsVisible(layerId: number): boolean
+    function isAllLayerParentsVisible(layerId: JId): boolean
 
     /**
      * **JMap.Layer.getStyle**
@@ -1320,7 +1307,7 @@ declare namespace JMap {
      * JMap.Layer.getStyle(3)
      * ```
      */
-    function getStyle(layerId: number): JLayerStyle
+    function getStyle(layerId: JId): JLayerStyle
 
     /**
      * **JMap.Layer.getSimpleSelectionStyle**
@@ -1338,7 +1325,7 @@ declare namespace JMap {
      * JMap.Layer.getSimpleSelectionStyle(3)
      * ```
      */
-    function getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
+    function getSimpleSelectionStyle(layerId: JId): JLayerSimpleStyle
 
     /**
      * **JMap.Layer.getSelectionStyle**
@@ -1353,7 +1340,7 @@ declare namespace JMap {
      * JMap.Layer.getSelectionStyle(3)
      * ```
      */
-    function getSelectionStyle(layerId: number): JLayerStyle | null
+    function getSelectionStyle(layerId: JId): JLayerStyle | null
 
     /**
      * **JMap.Layer.setVisible**
@@ -1382,7 +1369,7 @@ declare namespace JMap {
      * JMap.Layer.setVisible(3, false)
      * ```
      */
-    function setVisible(layerId: number, isVisible: boolean): void
+    function setVisible(layerId: JId, isVisible: boolean): void
 
     /**
      * **JMap.Layer.setLayersVisibility**
@@ -1430,7 +1417,7 @@ declare namespace JMap {
      * 
      * ```
      */
-    function ensureLayerIsVisible(layerId: number): void
+    function ensureLayerIsVisible(layerId: JId): void
 
     /**
      * **JMap.Layer.ensureLayersAreVisible**
@@ -1447,7 +1434,7 @@ declare namespace JMap {
      * 
      * ```
      */
-    function ensureLayersAreVisible(layerIds: number[]): void
+    function ensureLayersAreVisible(layerIds: JId[]): void
 
     /**
      * **JMap.Layer.setLayerGroupExpansion**
@@ -1463,7 +1450,7 @@ declare namespace JMap {
      * JMap.Layer.setLayerGroupExpansion(-4, true)
      * ```
      */
-    function setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
+    function setLayerGroupExpansion(layerGroupId: JId, isExpanded: boolean): void
     
     /**
      * **JMap.Layer.setLayerGroupsExpansion**
@@ -1497,7 +1484,7 @@ declare namespace JMap {
      * JMap.Layer.deleteLayer(4)
      * ```
      */
-    function deleteLayer(layerId: number): void
+    function deleteLayer(layerId: JId): void
     
     /**
      * **JMap.Layer.isHoverActive**
@@ -2399,7 +2386,7 @@ declare namespace JMap {
      * JMap.Map.isLayerRendered(4)
      * ```
      */
-    function isLayerRendered(layerId: number): boolean
+    function isLayerRendered(layerId: JId): boolean
 
     /**
      * **JMap.Map.getLayersVisibilityStatus**
@@ -2490,7 +2477,7 @@ declare namespace JMap {
      * JMap.Map.getMapboxSupportedJMapLayerIds()
      * ```
      */
-    function getMapboxSupportedJMapLayerIds(): number[]
+    function getMapboxSupportedJMapLayerIds(): JId[]
         
     /**
      * **JMap.Map.getMapboxSupportedJMapLayerBefore**
@@ -2506,7 +2493,7 @@ declare namespace JMap {
      * JMap.Map.getMapboxSupportedJMapLayerBefore(4)
      * ```
      */
-    function getMapboxSupportedJMapLayerBefore(layerId: number): number | undefined
+    function getMapboxSupportedJMapLayerBefore(layerId: JId): JId | undefined
     
     /**
      * **JMap.Map.getMapboxSupportedJMapLayerAfter**
@@ -2522,7 +2509,7 @@ declare namespace JMap {
      * JMap.Map.getMapboxSupportedJMapLayerAfter(3)
      * ```
      */
-    function getMapboxSupportedJMapLayerAfter(layerId: number): number | undefined
+    function getMapboxSupportedJMapLayerAfter(layerId: JId): JId | undefined
 
     /**
      * **JMap.Map.addMapboxLayerConfigurationForJmapLayer**
@@ -2592,7 +2579,7 @@ declare namespace JMap {
      * JMap.Map.getRenderedJMapLayerIds()
      * ```
      */
-    function getRenderedJMapLayerIds(): number[]
+    function getRenderedJMapLayerIds(): JId[]
 
     /**
      * **JMap.Map.getRenderedFeatures**
@@ -2623,7 +2610,7 @@ declare namespace JMap {
      * })
      * ```
      */
-    function getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): GeoJSON.Feature[]
+    function getRenderedFeatures(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle): GeoJSON.Feature[]
     
     /**
      * **JMap.Map.getRenderedFeaturesAttributeValues**
@@ -2659,7 +2646,7 @@ declare namespace JMap {
      * ]
      * ```
      */
-    function getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
+    function getRenderedFeaturesAttributeValues(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
 
     /**
      * **JMap.Map.getNavigationHistoryStack**
@@ -3364,7 +3351,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyHasAttribute(4, "name")
        * ```
        */
-      function applyHasAttribute(layerId: number, attributeId: string): string
+      function applyHasAttribute(layerId: JId, attributeId: string): string
       
       /**
        * **JMap.Map.Filter.applyHasNotAttribute**
@@ -3384,7 +3371,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyHasNotAttribute(4, "name")
        * ```
        */
-      function applyHasNotAttribute(layerId: number, attributeId: string): string
+      function applyHasNotAttribute(layerId: JId, attributeId: string): string
       
       /**
        * **JMap.Map.Filter.applyAttributeValueEqualTo**
@@ -3404,7 +3391,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyAttributeValueEqualTo(4, "name", "Aquarius")
        * ```
        */
-      function applyAttributeValueEqualTo(layerId: number, attributeId: string, attributeValue: any): string
+      function applyAttributeValueEqualTo(layerId: JId, attributeId: string, attributeValue: any): string
       
       /**
        * **JMap.Map.Filter.applyAttributeValueBetween**
@@ -3426,7 +3413,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyAttributeValueBetween(4, "level", 2, 10)
        * ```
        */
-      function applyAttributeValueBetween(layerId: number, attributeId: string, start: any, end: any): string
+      function applyAttributeValueBetween(layerId: JId, attributeId: string, start: any, end: any): string
       
       /**
        * **JMap.Map.Filter.applyAttributeValueNotEqualTo**
@@ -3446,7 +3433,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyAttributeValueNotEqualTo(4, "name", "Aquarius")
        * ```
        */
-      function applyAttributeValueNotEqualTo(layerId: number, attributeId: string, attributeValue: any): string
+      function applyAttributeValueNotEqualTo(layerId: JId, attributeId: string, attributeValue: any): string
       
       /**
        * **JMap.Map.Filter.applyAttributeValueGreaterThan**
@@ -3466,7 +3453,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyAttributeValueGreaterThan(4, "level", 2)
        * ```
        */
-      function applyAttributeValueGreaterThan(layerId: number, attributeId: string, attributeValue: any): string
+      function applyAttributeValueGreaterThan(layerId: JId, attributeId: string, attributeValue: any): string
       
       /**
        * **JMap.Map.Filter.applyAttributeValueGreaterOrEqualsTo**
@@ -3486,7 +3473,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyAttributeValueGreaterOrEqualsTo(4, "level", 2)
        * ```
        */
-      function applyAttributeValueGreaterOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
+      function applyAttributeValueGreaterOrEqualsTo(layerId: JId, attributeId: string, attributeValue: any): string
       
       /**
        * **JMap.Map.Filter.applyAttributeValueLowerThan**
@@ -3506,7 +3493,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyAttributeValueLowerThan(4, "level", 5)
        * ```
        */
-      function applyAttributeValueLowerThan(layerId: number, attributeId: string, attributeValue: any): string
+      function applyAttributeValueLowerThan(layerId: JId, attributeId: string, attributeValue: any): string
       
       /**
        * **JMap.Map.Filter.applyAttributeValueLowerOrEqualsTo**
@@ -3526,7 +3513,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyAttributeValueLowerOrEqualsTo(4, "level", 5)
        * ```
        */
-      function applyAttributeValueLowerOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
+      function applyAttributeValueLowerOrEqualsTo(layerId: JId, attributeId: string, attributeValue: any): string
       
       /**
        * **JMap.Map.Filter.applyAttributeValueIn**
@@ -3546,7 +3533,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyAttributeValueIn(4, "level", [ 4, 5 ])
        * ```
        */
-      function applyAttributeValueIn(layerId: number, attributeId: string, attributeValues: any[]): string
+      function applyAttributeValueIn(layerId: JId, attributeId: string, attributeValues: any[]): string
       
       /**
        * **JMap.Map.Filter.applyAttributeValueNotIn**
@@ -3566,7 +3553,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applyAttributeValueNotIn(4, "level", [ 4, 5 ])
        * ```
        */
-      function applyAttributeValueNotIn(layerId: number, attributeId: string, attributeValues: any[]): string
+      function applyAttributeValueNotIn(layerId: JId, attributeId: string, attributeValues: any[]): string
       
       /**
        * **JMap.Map.Filter.applySpatial**
@@ -3588,7 +3575,7 @@ declare namespace JMap {
        * JMap.Map.Filter.applySpatial(4, [ [ 20.44, 10.32 ], [ 20.44, 78.44 ], [ 40.56, 78.44 ], [ 40.56, 10.32 ], [ 20.44, 10.32 ] ])
        * ```
        */
-      function applySpatial(layerId: number, filterGeometry: JPolygon | JCircle): string
+      function applySpatial(layerId: JId, filterGeometry: JPolygon | JCircle): string
       
       /**
        * **JMap.Map.Filter.removeByFilterId**
@@ -3619,7 +3606,7 @@ declare namespace JMap {
        * JMap.Map.Filter.removeAllFilters(3)
        * ```
        */
-      function removeAllFilters(layerId: number): void
+      function removeAllFilters(layerId: JId): void
     }
 
     /**
@@ -3710,7 +3697,7 @@ declare namespace JMap {
        * JMap.Map.Selection.getSelectedFeaturesForLayer(3)
        * ```
        */
-      function getSelectedFeaturesForLayer(layerId: number): GeoJSON.Feature[]
+      function getSelectedFeaturesForLayer(layerId: JId): GeoJSON.Feature[]
 
       /**
        * ***JMap.Map.Selection.getSelectedFeatureIdsForLayer***
@@ -3721,7 +3708,7 @@ declare namespace JMap {
        * ```ts
        * // returns the same as JMap.Map.getSelectedFeatureIdsForLayer(3)
        * JMap.Map.Selection
-       *    .getSelectedFeaturesForLayer(layerId: number)
+       *    .getSelectedFeaturesForLayer(layerId)
        *    .map(feature => feature.id)
        * ```
        * 
@@ -3731,7 +3718,7 @@ declare namespace JMap {
        * JMap.Map.Selection.getSelectedFeatureIdsForLayer(3)
        * ```
        */
-      function getSelectedFeatureIdsForLayer(layerId: number): string[]
+      function getSelectedFeatureIdsForLayer(layerId: JId): string[]
 
       /**
        * **JMap.Map.Selection.selectOnOneLayerAtLocation**
@@ -3751,7 +3738,7 @@ declare namespace JMap {
        * JMap.Map.Selection.selectOnOneLayerAtLocation(4, { x: 34.23, y: 55.5 })
        * ```
        */
-      function selectOnOneLayerAtLocation(layerId: number, location: JLocation, params?: JMapSelectionParams): GeoJSON.Feature[]
+      function selectOnOneLayerAtLocation(layerId: JId, location: JLocation, params?: JMapSelectionParams): GeoJSON.Feature[]
 
       /**
        * **JMap.Map.Selection.selectOnOneLayerFromCircle**
@@ -3776,7 +3763,7 @@ declare namespace JMap {
        * )
        * ```
        */
-      function selectOnOneLayerFromCircle(layerId: number, circle: JCircle, params?: JMapSelectionParams): GeoJSON.Feature[]
+      function selectOnOneLayerFromCircle(layerId: JId, circle: JCircle, params?: JMapSelectionParams): GeoJSON.Feature[]
 
       /**
        * **JMap.Map.Selection.selectOnOneLayerFromLine**
@@ -3802,7 +3789,7 @@ declare namespace JMap {
        * )
        * ```
        */
-      function selectOnOneLayerFromLine(layerId: number, line: JLine, params?: JMapSelectionParams): GeoJSON.Feature[]
+      function selectOnOneLayerFromLine(layerId: JId, line: JLine, params?: JMapSelectionParams): GeoJSON.Feature[]
 
       /**
        * **JMap.Map.Selection.selectOnOneLayerFromPolygon**
@@ -3828,7 +3815,7 @@ declare namespace JMap {
        * )
        * ```
        */
-      function selectOnOneLayerFromPolygon(layerId: number, polygon: JPolygon, params?: JMapSelectionParams): GeoJSON.Feature[]
+      function selectOnOneLayerFromPolygon(layerId: JId, polygon: JPolygon, params?: JMapSelectionParams): GeoJSON.Feature[]
 
       /**
        * **JMap.Map.Selection.selectOnAllLayersAtLocation**
@@ -3952,7 +3939,7 @@ declare namespace JMap {
        * ])
        * ```
        */
-      function setLayerSelection(layerId: number, features: GeoJSON.Feature | GeoJSON.Feature[]): void
+      function setLayerSelection(layerId: JId, features: GeoJSON.Feature | GeoJSON.Feature[]): void
 
       /**
        * **JMap.Map.Selection.setLayersSelection**
@@ -4014,7 +4001,7 @@ declare namespace JMap {
        * ])
        * ```
        */
-      function addFeaturesToLayerSelection(layerId: number, features: GeoJSON.Feature | GeoJSON.Feature[]): void
+      function addFeaturesToLayerSelection(layerId: JId, features: GeoJSON.Feature | GeoJSON.Feature[]): void
 
       /**
        * **JMap.Map.Selection.removeFeaturesFromLayerSelection**
@@ -4035,7 +4022,7 @@ declare namespace JMap {
        * JMap.Map.Selection.removeFeaturesFromLayerSelection(4, [ "234", "567" ])
        * ```
        */
-      function removeFeaturesFromLayerSelection(layerId: number, featureIds: string | string[]): void
+      function removeFeaturesFromLayerSelection(layerId: JId, featureIds: JId | JId[]): void
 
       /**
        * **JMap.Map.Selection.clearSelection**
@@ -4055,7 +4042,7 @@ declare namespace JMap {
        * JMap.Map.Selection.clearSelection()
        * ```
        */
-      function clearSelection(layerId?: number): void
+      function clearSelection(layerId?: JId): void
 
       /**
        * **JMap.Map.Selection.clearLayersSelection**
@@ -4534,7 +4521,7 @@ declare namespace JMap {
      * JMap.Project.existsById(2)
      * ```
      */
-    function existsById(projectId: number): boolean
+    function existsById(projectId: JId): boolean
 
 
     /**
@@ -4566,7 +4553,7 @@ declare namespace JMap {
      * console.log("Project '" + project.name + "' is loaded")
      * ```
      */
-    function getById(projectId: number): JProject
+    function getById(projectId: JId): JProject
 
     /**
      * **JMap.Project.getByName**
@@ -4629,7 +4616,7 @@ declare namespace JMap {
      * JMap.Project.getId()
      * ```
      */
-    function getId(): number
+    function getId(): JId
 
     /**
      * **JMap.Project.getName**
@@ -4820,7 +4807,7 @@ declare namespace JMap {
      * }
      * ```
      */
-    function activateById(projectId: number): JProject
+    function activateById(projectId: JId): JProject
 
     /**
      * **JMap.Project.activateByName**
@@ -5633,7 +5620,7 @@ declare namespace JMap {
      * JMap.Query.groupExist(21)
      * ```
      */
-    function groupExist(groupId: number): boolean
+    function groupExist(groupId: JId): boolean
 
     /**
      * ***JMap.Query.queryExist***
@@ -5648,7 +5635,7 @@ declare namespace JMap {
      * JMap.Query.queryExist(10, 5)
      * ```
      */
-    function queryExist(groupId: number, queryId: string): boolean
+    function queryExist(groupId: JId, queryId: string): boolean
 
     /**
      * ***JMap.Query.getQueriesByLayerId***
@@ -5663,7 +5650,7 @@ declare namespace JMap {
      * JMap.Query.getQueriesByLayerId(12)
      * ```
      */
-    function getQueriesByLayerId(layerId: number): JQuery[]
+    function getQueriesByLayerId(layerId: JId): JQuery[]
 
     /**
      * ***JMap.Query.getQueryByLayerId***
@@ -5679,7 +5666,7 @@ declare namespace JMap {
      * JMap.Query.getQueryByLayerId(12, 3)
      * ```
      */
-    function getQueryByLayerId(layerId: number, queryId: string): JQuery
+    function getQueryByLayerId(layerId: JId, queryId: string): JQuery
 
     /**
      * ***JMap.Query.getQueriesByGroupId***
@@ -5694,7 +5681,7 @@ declare namespace JMap {
      * JMap.Query.getQueriesByGroupId(10)
      * ```
      */
-    function getQueriesByGroupId(groupId: number): JQuery[]
+    function getQueriesByGroupId(groupId: JId): JQuery[]
 
     /**
      * ***JMap.Query.getQueryByGroupId***
@@ -5710,7 +5697,7 @@ declare namespace JMap {
      * JMap.Query.getQueryByGroupId(10, 5)
      * ```
      */
-    function getQueryByGroupId(groupId: number, queryId: string): JQuery
+    function getQueryByGroupId(groupId: JId, queryId: string): JQuery
 
     /**
      * ***JMap.Query.fetchFeatures***
@@ -5734,7 +5721,7 @@ declare namespace JMap {
      *   .catch(error => console.error("Error while processing query request.", error))
      * ```
      */
-    function fetchFeatures(layerId: number, queryId: string, data: any): Promise<any[]> // features
+    function fetchFeatures(layerId: JId, queryId: string, data: any): Promise<any[]> // features
   }
 
   /**
@@ -7800,5 +7787,102 @@ declare namespace JMap {
      * ```
      */
     function validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): JFormErrors
+  }
+
+  /**
+   * **JMap.Util**
+   * 
+   * Here you'll find all JMap utility methods
+   */
+  namespace Util {
+    /**
+     * **JMap.Util.loadJSFile**
+     * 
+     * Load an external JS File then resolve when file has been loaded.
+     * 
+     * @param fileUrl the JS URL to load
+     * @example ```ts
+     * 
+     * // load your custom JS file dynamically
+     * JMap.Util.loadJSFile("https://mysever/toLoadFile.js")
+     * ```
+     */
+    function loadJSFile(fileUrl: string): Promise<void>
+    
+    /**
+     * **JMap.Util.isJMapId**
+     * 
+     * Validates if the value passed is either a string uuid (for instance, "f3af01ab-4042-4ccf-be04-33dc96228ce7"), or a numeric ID (integer, can be negative)
+     * If the allowStringNumber param is true, the string "123" will be considered as a valid numeric ID. allowStringNumber is false by default
+     * 
+     * @param id The JMap Id to validate
+     * @param allowStringNumber Optional parameter. false by default.
+     * @example ```ts
+     * 
+     * JMap.Util.isJMapId(1)
+     * // true
+     * 
+     * JMap.Util.isJMapId("1")
+     * // false
+     * 
+     * JMap.Util.isJMapId("1", true)
+     * // true
+     * 
+     * JMap.Util.isJMapId("f3af01ab-4042-4ccf-be04-33dc96228ce7")
+     * // true
+     * ```
+     */
+    function isJMapId(id: any, allowStringNumber?: boolean): boolean
+
+    /**
+     * **JMap.Util.checkJmapId**
+     * 
+     * Throws an Error if the passed Id is not a valid JMap Id, otherwise does nothing. You can use this method as a safeguard in your methods that accept JMap Ids.
+     * JMap.Util.checkJmapId always run a strict check on the passed value, i.e. the string "123" will not pass. If you want the value to be compliant, you
+     * can use [[JMap.Util.getJmapIdAsIntegerIfPossible]] to transform it.
+     * 
+     * 
+     * @param id The JMap Id to validate
+     * @param message Optional message that will be used in the thrown error if the passed value doesn't pass the check.
+     * @throws Error if the passed value is not a valid JMap Id
+     * @example ```ts
+     * 
+     * JMap.Util.checkJmapId("")
+     * // Error thrown "Invalid JMap Id"
+     * 
+     * JMap.Util.checkJmapId("", "My custom error message")
+     * // Error thrown "My custom error message"
+     * 
+     * JMap.Util.checkJmapId(4)
+     * // undefined
+     * ```
+     */
+    function checkJmapId(id: any, message?: string): void
+
+    /**
+     * **JMap.Util.getJmapIdAsIntegerIfPossible**
+     * 
+     * Converts the passed Id as a numeric JMap Id if possible. This utility function can be used to transform serialized
+     * or otherwise stringified JMap Ids that would normally be expressed as integers. For instance, if you extract 
+     * a JMap Id from a query string, the query param "3" would be returned a an integer (3). 
+     * If the passed value cannot be converted to a valid JMap numeric Id, it will be
+     * returned as-is, if valid. If not valid, an error is thrown.
+     * 
+     * @param id The JMap Id to convert
+     * @throws Error if the passed Id is not a valid JMap Id
+     * @example ```ts
+     * 
+     * JMap.Util.getJmapIdAsIntegerIfPossible("1")
+     * // 1
+     * 
+     * JMap.Util.getJmapIdAsIntegerIfPossible("1.4")
+     * // throw Error
+     * 
+     * JMap.Util.getJmapIdAsIntegerIfPossible("f3af01ab-4042-4ccf-be04-33dc96228ce7")
+     * // "f3af01ab-4042-4ccf-be04-33dc96228ce7"
+     * ```
+     */
+    function getJmapIdAsIntegerIfPossible(id: any): JId
+
   }
 }
