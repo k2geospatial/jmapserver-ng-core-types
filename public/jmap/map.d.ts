@@ -45,7 +45,7 @@ declare interface JMapEventPitchParams extends JMapEventParams {
 }
 
 declare interface JMapEventLayerParams extends JMapEventLocationParams {
-  layerId: number
+  layerId: JId
 }
 
 declare interface JMapEventFeaturesParams extends JMapEventLayerParams {
@@ -74,12 +74,12 @@ declare interface JMapEventSelectionChangedParams {
   changesByLayerId: { [layerId: string]: JMapLayerSelectionChanges }
 }
 
-declare interface JMapSelection {
-  [ layerId: number ]: GeoJSON.Feature[]
+declare type JMapSelection = {
+  [ key in JId ]: GeoJSON.Feature[]
 }
 
 declare interface JMapLayerVisibilityStatus {
-  layerId: number
+  layerId: JId
   layerName: string
   isRendered: boolean
   visibilityProperty: boolean
@@ -88,8 +88,8 @@ declare interface JMapLayerVisibilityStatus {
   extentVisibility: boolean
 }
 
-declare interface JMapLayersVisibilityStatus {
-  [ layerElementId: number ]: JMapLayerVisibilityStatus
+declare type JMapLayersVisibilityStatus = {
+  [ key in JId ] : JMapLayerVisibilityStatus
 }
 
 declare interface JProjection {
@@ -98,12 +98,12 @@ declare interface JProjection {
 }
 
 declare interface JMapFeatureAttributeValues {
-  featureId: number
+  featureId: JId
   [ attributeId: string ]: any
 }
 
 declare interface JMapAttributeSearch {
-  layerId: number
+  layerId: JId
   attributeName: string
   attributeValue: any | any[]
   showMapPopup?: boolean
@@ -148,8 +148,8 @@ declare interface JMapMapboxLayerStyleDefinition {
 }
 
 declare interface JMapAddMapboxLayerConfigurationForJmapLayerParams {
-  jmapLayerId: number
-  beforeJmapLayerId?: number
+  jmapLayerId: JId
+  beforeJmapLayerId?: JId
   beforeMapboxLayerId?: string
   baseStyle: JMapMapboxLayerStyleDefinition
   // TODO: add support for thematics, selections, etc
@@ -306,6 +306,52 @@ declare interface JCoreMapOptions {
   mapRotationControlVisible?: boolean
 
   /**
+   * You can set the initial rotation of the map by setting the ***rotation*** parameter. This parameter will have the priority over bearing if both parameters are specified.
+   * By example if you want the map to open with a clockwise rotation of 90 degree :
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         map: {
+   *           rotation: 90,
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+  rotation?: number
+  
+  /**
+   * You can set the initial rotation of the map by setting the ***bearing*** parameter. This parameter will be ignored if rotation is specified.
+   * By example if you want the map to open with a anticlockwise rotation of 90 degree :
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         map: {
+   *           bearing: 90,
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+   bearing?: number
+
+  /**
    * By default the Navigation History control is not visible.
    * 
    * But if ***navigationHistoryControlVisible*** is true, it will be displayed on the map.
@@ -400,7 +446,7 @@ declare interface JCoreMapOptions {
   scaleControlUnit?: "imperial" | "metric" | "nautical"
 
   /**
-   * You can set the location of the center of the map by setting the ***center*** parameter. By exemple if you want to center the map on the city of Ottawa :
+   * You can set the location of the center of the map by setting the ***center*** parameter. By example if you want to center the map on the city of Ottawa :
    * 
    * ```html
    * <html>

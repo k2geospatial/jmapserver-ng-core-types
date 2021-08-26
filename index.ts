@@ -19,10 +19,18 @@ export interface JCoreService extends JCoreMainService {
   Extension: JExtensionService
   Server: JServerService
   Photo: JPhotoService
+  Util: JUtilService
+}
+
+export interface JUtilService {
+  loadJSFile(fileUrl: string): Promise<void>
+  isJMapId(id: any, allowStringNumber?: boolean): boolean
+  checkJmapId(id: any, message?: string): void
+  getJmapIdAsIntegerIfPossible(id: any): JId
 }
 
 export interface JPhotoService {
-  displayFeaturePhotosPopup(layerId: number, featureId: number): Promise<void>
+  displayFeaturePhotosPopup(layerId: JId, featureId: JId): Promise<void>
   displayPhotosPopup(photos: JPhoto[], params?: JPhotoOpenPopupParams): void
   closePhotoPopup(): void
 }
@@ -42,7 +50,6 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
-  loadJSFile(fileUrl: string): Promise<void>
 }
 
 export interface JGeolocationService {
@@ -54,13 +61,13 @@ export interface JGeolocationService {
 
 export interface JQueryService {
   getAllGroups(): JQueryGroup[]
-  groupExist(groupId: number): boolean
-  getQueriesByLayerId(layerId: number): JQuery[]
-  getQueryByLayerId(layerId: number, queryId: string): JQuery
-  getQueriesByGroupId(groupId: number): JQuery[]
-  getQueryByGroupId(groupId: number, queryId: string): JQuery
-  queryExist(groupId: number, queryId: string): boolean
-  fetchFeatures(layerId: number, queryId: string, data: any): Promise<Feature[]>
+  groupExist(groupId: JId): boolean
+  getQueriesByLayerId(layerId: JId): JQuery[]
+  getQueryByLayerId(layerId: JId, queryId: string): JQuery
+  getQueriesByGroupId(groupId: JId): JQuery[]
+  getQueryByGroupId(groupId: JId, queryId: string): JQuery
+  queryExist(groupId: JId, queryId: string): boolean
+  fetchFeatures(layerId: JId, queryId: string, data: any): Promise<Feature[]>
 }
 
 export interface JEventService {
@@ -141,6 +148,7 @@ export interface JLayerEventModule extends JEventModule {
   on: {
     layersChange(listenerId: string, fn: (params: JLayerEventChangeParams) => void): void
     thematicVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicVisibilityParams) => void): void
+    thematicCategoriesVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicCategoryVisibilityParams) => void): void
     visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void):void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
@@ -214,7 +222,7 @@ export interface JCoreState {
 }
 
 export interface JFormState {
-  layerId: JId
+  layerId: JId // set as "" when no layer is set
   formMetaDataById: JFormMetaDataById
   isLoadingLayer: boolean
   hasLoadingLayerError: boolean
@@ -236,6 +244,7 @@ export interface JGeolocationState {
 
 export interface JMapState {
   pitch: number
+  rotation: number
   bearing: number
   isLoaded: boolean
   hasFirstLoaded: boolean
@@ -247,7 +256,7 @@ export interface JMapState {
   activeBasemapId: string | undefined
   basemaps: JBasemap[]
   selection: JMapSelection
-  jmapLayerIdsSupportedByMapbox: number[]
+  jmapLayerIdsSupportedByMapbox: JId[]
   scaleControlPosition: JMapPosition
   distanceUnit: JDistanceUnit
   isNavigationHistoryControlVisible:boolean
@@ -275,7 +284,7 @@ export interface JLayerState {
   metadataSchema: JLayerMetadataSchemaItem[]
   tree: JLayerTree
   allById: { [treeElementId: string]: JLayerTreeElement }
-  orderedLayerIds: number[]
+  orderedLayerIds: JId[]
   vectorLayerIds: JId[]
 }
 
@@ -289,13 +298,14 @@ export interface JPhotoState {
 
 export interface JQueryState {
   groups: JQueryGroup[]
-  queriesByLayerId: { [ layerId: number ]: JQuery[] }
+  queriesByLayerId: { [ key in JId ]: JQuery[] }
 }
 
 export interface JUserState {
   identity: JUserIdentity
   token: string
   informations: JUserInfo[]
+  changePasswordAllowed: boolean
 }
 
 export interface JLanguageState {
@@ -433,22 +443,24 @@ export interface JMapService {
   setMapInfoControlVisibility(isVisible: boolean): void
   isMapInfoControlExpanded(): boolean
   setMapInfoControlExpansion(isExpanded: boolean):void
-  isLayerRendered(layerId: number): boolean
+  isLayerRendered(layerId: JId): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
-  getMapboxSupportedJMapLayerIds(): number[]
-  getMapboxSupportedJMapLayerBefore(layerId: number): number | undefined
-  getMapboxSupportedJMapLayerAfter(layerId: number): number | undefined
+  getMapboxSupportedJMapLayerIds(): JId[]
+  getMapboxSupportedJMapLayerBefore(layerId: JId): JId | undefined
+  getMapboxSupportedJMapLayerAfter(layerId: JId): JId | undefined
   addMapboxLayerConfigurationForJmapLayer(params: JMapAddMapboxLayerConfigurationForJmapLayerParams): void
   refreshLayerById(layerId: JId): void
-  getRenderedJMapLayerIds(): number[]
-  getRenderedFeatures(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): Feature[]
-  getRenderedFeaturesAttributeValues(layerId: number, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
+  getRenderedJMapLayerIds(): JId[]
+  getRenderedFeatures(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle): Feature[]
+  getRenderedFeaturesAttributeValues(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
   getPitch(): number
+  getRotation(): number
   getBearing(): number
   getNavigationHistoryStack(): JMapNavigationStep[]
   undoLastNavigationStep(): JMapNavigationStep | undefined
   setPitch(pitch: number): void
+  setRotation(rotation: number): void
   setBearing(bearing: number): void
   panTo(center: JLocation, stopJMapEventPropagation?: boolean): void
   zoomTo(zoom: number, options?: JPanAndZoomOptions): void
@@ -500,53 +512,53 @@ export interface JMapSelectionService {
   isEmptyByLayerId(layerId: JId): boolean
   getSelectionCentroid(selection: JMapSelection): JLocation
   getSelectedFeatures(): JMapSelection
-  getSelectedFeaturesForLayer(layerId: number): Feature[]
-  getSelectedFeatureIdsForLayer(layerId: number): string[]
-  selectOnOneLayerAtLocation(layerId: number, location: JLocation, params?: JMapSelectionParams | undefined): Feature[]
-  selectOnOneLayerFromCircle(layerId: number, circle: JCircle, params?: JMapSelectionParams | undefined): Feature[]
-  selectOnOneLayerFromLine(layerId: number, line: JLine, params?: JMapSelectionParams | undefined): Feature[]
-  selectOnOneLayerFromPolygon(layerId: number, polygon: JPolygon, params?: JMapSelectionParams | undefined): Feature[]
+  getSelectedFeaturesForLayer(layerId: JId): Feature[]
+  getSelectedFeatureIdsForLayer(layerId: JId): string[]
+  selectOnOneLayerAtLocation(layerId: JId, location: JLocation, params?: JMapSelectionParams | undefined): Feature[]
+  selectOnOneLayerFromCircle(layerId: JId, circle: JCircle, params?: JMapSelectionParams | undefined): Feature[]
+  selectOnOneLayerFromLine(layerId: JId, line: JLine, params?: JMapSelectionParams | undefined): Feature[]
+  selectOnOneLayerFromPolygon(layerId: JId, polygon: JPolygon, params?: JMapSelectionParams | undefined): Feature[]
   selectOnAllLayersAtLocation(location: JLocation, params?: JMapSelectionParams | undefined): JMapSelection
   selectOnAllLayersFromCircle(circle: JCircle, params?: JMapSelectionParams | undefined): JMapSelection
   selectOnAllLayersFromLine(line: JLine, params?: JMapSelectionParams | undefined): JMapSelection
   selectOnAllLayersFromPolygon(polygon: JPolygon, params?: JMapSelectionParams | undefined): JMapSelection
-  setLayerSelection(layerId: number, features: Feature | Feature[]): void
+  setLayerSelection(layerId: JId, features: Feature | Feature[]): void
   setLayersSelection(params: JSelectionSetLayersSelectionParams[]): void
-  addFeaturesToLayerSelection(layerId: number, features: Feature | Feature[]): void
-  removeFeaturesFromLayerSelection(layerId: number, featureIds: string | string[]): void
-  clearSelection(layerId?: number): void
+  addFeaturesToLayerSelection(layerId: JId, features: Feature | Feature[]): void
+  removeFeaturesFromLayerSelection(layerId: JId, featureIds: JId | JId[]): void
+  clearSelection(layerId?: JId): void
   clearLayersSelection(layerIds: JId[]): void
 }
 
 export interface JMapFilterService {
-  applyHasAttribute(layerId: number, attributeId: string): string
-  applyHasNotAttribute(layerId: number, attributeId: string): string
-  applyAttributeValueEqualTo(layerId: number, attributeId: string, attributeValue: any): string
-  applyAttributeValueBetween(layerId: number, attributeId: string, start: any, end: any): string
-  applyAttributeValueNotEqualTo(layerId: number, attributeId: string, attributeValue: any): string
-  applyAttributeValueGreaterThan(layerId: number, attributeId: string, attributeValue: any): string
-  applyAttributeValueGreaterOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
-  applyAttributeValueLowerThan(layerId: number, attributeId: string, attributeValue: any): string
-  applyAttributeValueLowerOrEqualsTo(layerId: number, attributeId: string, attributeValue: any): string
-  applyAttributeValueIn(layerId: number, attributeId: string, attributeValues: any[]): string
-  applyAttributeValueNotIn(layerId: number, attributeId: string, attributeValues: any[]): string
-  applySpatial(layerId: number, filterGeometry: JPolygon | JCircle): string
+  applyHasAttribute(layerId: JId, attributeId: string): string
+  applyHasNotAttribute(layerId: JId, attributeId: string): string
+  applyAttributeValueEqualTo(layerId: JId, attributeId: string, attributeValue: any): string
+  applyAttributeValueBetween(layerId: JId, attributeId: string, start: any, end: any): string
+  applyAttributeValueNotEqualTo(layerId: JId, attributeId: string, attributeValue: any): string
+  applyAttributeValueGreaterThan(layerId: JId, attributeId: string, attributeValue: any): string
+  applyAttributeValueGreaterOrEqualsTo(layerId: JId, attributeId: string, attributeValue: any): string
+  applyAttributeValueLowerThan(layerId: JId, attributeId: string, attributeValue: any): string
+  applyAttributeValueLowerOrEqualsTo(layerId: JId, attributeId: string, attributeValue: any): string
+  applyAttributeValueIn(layerId: JId, attributeId: string, attributeValues: any[]): string
+  applyAttributeValueNotIn(layerId: JId, attributeId: string, attributeValues: any[]): string
+  applySpatial(layerId: JId, filterGeometry: JPolygon | JCircle): string
   removeByFilterId(filterId: string): void
-  removeAllFilters(layerId: number): void
+  removeAllFilters(layerId: JId): void
 }
 
 export interface JProjectService {
   hasProjectActivated(): boolean
   getActiveProject(): JProject
-  activateById(projectId: number): JProject
+  activateById(projectId: JId): JProject
   activateByName(projectName: string): JProject
   deactivate(): void
   getAllProjects(): Promise<JProject[]>
-  existsById(projectId: number): boolean
+  existsById(projectId: JId): boolean
   existsByName(projectName: string): boolean
-  getById(projectId: number): JProject
+  getById(projectId: JId): JProject
   getByName(projectName: string): JProject
-  getId(): number
+  getId(): JId
   getName(): string
   getDescription(): string
   getProjection(): JProjection
@@ -566,44 +578,63 @@ export interface JProjectService {
 
 export interface JLayerService {
   Search: JLayerSearchService
+  Thematic: JLayerThematicService
   getMetadataSchema(): JLayerMetadataSchemaItem[]
   getLayerTree(): JLayerTree
-  getLayerTreeElementsById(): { [treeElementId: number]: JLayerTreeElement }
+  getLayerTreeElementsById(): { [key in JId]: JLayerTreeElement }
   getLayers(): JLayer[]
-  getLayerIds(): number[]
+  getLayerIds(): JId[]
   getVectorLayers(): JLayer[]
-  getVectorLayerIds(): number[]
-  getLayerAttributes(layerId: number): JLayerAttribute[]
-  getLayerAttribute(layerId: number, attributeName: string): JLayerAttribute
-  exists(layerId: number): boolean
-  attributeExists(layerId: number, attributeName: string): boolean
-  getById(layerId: number): JLayerTreeElement
-  getSelfOrChildren(layerId: number): JLayer[]
-  getName(layerId: number): string
-  getDescription(layerId: number): string
-  getEPSG4326Extent(layerId: number): JBoundaryBox | null
-  isVisible(layerId: number, checkParentVisibility?: boolean): boolean
+  getVectorLayerIds(): JId[]
+  getLayerAttributes(layerId: JId): JLayerAttribute[]
+  getLayerAttribute(layerId: JId, attributeName: string): JLayerAttribute
+  exists(layerId: JId): boolean
+  attributeExists(layerId: JId, attributeName: string): boolean
+  getById(layerId: JId): JLayerTreeElement
+  getSelfOrChildren(layerId: JId): JLayer[]
+  getName(layerId: JId): string
+  getDescription(layerId: JId): string
+  getEPSG4326Extent(layerId: JId): JBoundaryBox | null
+  isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
   isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
   setSelectabilityById(layerId: JId, selectability:boolean):void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
-  isAllLayerParentsVisible(layerId: number): boolean
-  getStyle(layerId: number): JLayerStyle
-  getSimpleSelectionStyle(layerId: number): JLayerSimpleStyle
-  getSelectionStyle(layerId: number): JLayerStyle | null
-  getAllThematicsForLayer(layerId: number): JLayerThematic[]
-  getThematicById(layerId: number, thematicId: number): JLayerThematic
-  hasVisibleThematics(layerId: number): boolean
-  getVisibleThematics(layerId: number): JLayerThematic[]
-  setVisible(layerId: number, visible: boolean): void
+  isAllLayerParentsVisible(layerId: JId): boolean
+  getStyle(layerId: JId): JLayerStyle
+  getSimpleSelectionStyle(layerId: JId): JLayerSimpleStyle
+  getSelectionStyle(layerId: JId): JLayerStyle | null
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead
+   */
+  getAllThematicsForLayer(layerId: JId): JLayerThematic[]
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.getById]] instead
+   */
+  getThematicById(layerId: JId, thematicId: JId): JLayerThematic
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.hasAnyVisibleByLayerId]] instead
+   */
+  hasVisibleThematics(layerId: JId): boolean
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.getAllVisibleByLayerId]] instead
+   */
+  getVisibleThematics(layerId: JId): JLayerThematic[]
+  setVisible(layerId: JId, visible: boolean): void
   setLayersVisibility(params: JLayerSetLayersVisibilityParams[]): void
-  ensureLayerIsVisible(layerId: number): void
-  ensureLayersAreVisible(layerIds: number[]): void
-  setLayerGroupExpansion(layerGroupId: number, isExpanded: boolean): void
+  ensureLayerIsVisible(layerId: JId): void
+  ensureLayersAreVisible(layerIds: JId[]): void
+  setLayerGroupExpansion(layerGroupId: JId, isExpanded: boolean): void
   setLayerGroupsExpansion(params: JLayerSetLayerGroupsExpansionParams[]): void
-  deleteLayer(layerId: number): void
-  setThematicVisibility(layerId: number, thematicId: number, visibility: boolean): void
-  setThematicsVisibility(params: JLayerSetThematicsVisibilityParams[]): void
+  deleteLayer(layerId: JId): void
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.setVisibilityById]] instead
+   */
+  setThematicVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
+  /**
+   * @deprecated use [[JMap.Layer.Thematic.setThematicsVisibility]] instead
+   */
+  setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
   isHoverActive(): boolean
   activateHover(): void
   deactivateHover(): void
@@ -611,6 +642,20 @@ export interface JLayerService {
 
 export interface JLayerSearchService {
   byAttribute(params: JLayerSearchByAttributesParams): Promise<Feature[]>
+}
+
+export interface JLayerThematicService {
+  getAllByLayerId(layerId: JId): JLayerThematic[]
+  getById(layerId: JId, thematicId: JId): JLayerThematic
+  existsById(layerId: JId, thematicId: JId): boolean
+  hasAnyVisibleByLayerId(layerId: JId): boolean
+  getAllVisibleByLayerId(layerId: JId): JLayerThematic[]
+  setVisibilityById(layerId: JId, thematicId: JId, visibility: boolean): void
+  setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
+  setCategoryVisibility(params: JLayerThematicSetCategoryVisibilityParams): void
+  setCategoriesVisibility(params: JLayerThematicSetCategoryVisibilityParams[]): void
+  setAllCategoriesVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
+  getFamilyTypeById(layerId: JId, thematicId: JId): JLayerThematicFamilyType
 }
 
 export interface JLayerGroup extends JLayerTreeElement {
@@ -635,6 +680,9 @@ export interface JUserService {
   getAllInfos(): JUserInfo[]
   addInfo(info: JUserInfo): void
   removeInfo(infoId: string): void
+  changePassword(newPassword: string, currentPassword: string): Promise<void>
+  getMinimumPasswordLength(): number
+
 }
 
 export interface JLanguageService {
@@ -667,20 +715,11 @@ export interface JMouseOverService {
 }
 
 export interface JExtensionService {
-  Document?: JDocumentService
   register(extension: JCoreExtension): void
   isRegistered(extensionId: string): boolean
   getAllRegisteredIds(): string[]
   hasMouseOver():boolean
   renderMouseOver(layer: JLayer, feature: Feature): Array<JExtensionMouseOver | undefined>
-}
-
-export interface JDocumentService {
-  selectElement(layer: string, element: string): Promise<void>
-  getElementDocuments(toSelectObjectId: JObjectId): Promise<JAllDocumentDescriptors>
-  selectDocuments(descriptors: JAllDocumentDescriptors): void
-  filter(filterValue: string | undefined): void
-  getRichPreview(webSiteUrl: string): void
 }
 
 export interface JServerService {
@@ -689,31 +728,6 @@ export interface JServerService {
   isStandardLoginAvailable(): boolean
   getIdentityProviderById(providerId: string): JServerIdentityProvider
   getAllIdentityProvidersById(): JServerIdentityProviderById
-}
-
-export interface JAllDocumentDescriptors {
-  documents: JDocumentDescriptor[]
-  hyperlinks: JHyperLinkDescriptor[]
-}
-
-export interface JHyperLinkDescriptor {
-  id: number
-  url: string
-  depositName: string
-  depositId: number
-  linkDescription: string
-  linkImageLocation: string
-  linkTitle: string
-  linkFavicon: string
-}
-
-export interface JDocumentDescriptor {
-  identifier: number
-  title: string
-  description: string
-  fileName: string
-  creation: number // timestamp
-  depositName: string
 }
 
 // MISC

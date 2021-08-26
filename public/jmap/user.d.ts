@@ -8,6 +8,10 @@ declare interface JSessionData {
    */
   token: string
   /**
+   * The user permission to change his password 
+   */
+  changePasswordAllowed: boolean
+  /**
    * The user information.
    * 
    * @example ```ts
@@ -19,19 +23,14 @@ declare interface JSessionData {
    * }
    * ```
    */
-  user: JUserPublicData
-}
-
-declare interface JUserPublicData {
-  username: string
-  fullName: string
-  email: string
+  user: JUserIdentity
 }
 
 declare interface JUserIdentity {
   username: string
   fullName: string
   email: string
+  organizationId: string // for jaaz only
 }
 
 declare interface JUserInfo {
