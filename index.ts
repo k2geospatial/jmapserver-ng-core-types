@@ -50,10 +50,6 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
-  /**
-   * @deprecated use [[JMap.Util.loadJSFile]] instead
-   */
-  loadJSFile(fileUrl: string): Promise<void>
 }
 
 export interface JGeolocationService {

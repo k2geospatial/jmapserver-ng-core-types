@@ -98,13 +98,6 @@ declare namespace JMap {
   */
   function getOS(): JOperatingSystem
 
-  /**
-   * **JMap.loadJSFile**
-   * 
-   * @deprecated use [[JMap.Util.loadJSFile]] instead
-   */
-  function loadJSFile(fileUrl: string): Promise<void>
-
   /* **JMap.Server**
    * 
    * This is where you can find JMap Server relative methods
@@ -7855,7 +7848,7 @@ declare namespace JMap {
      * @example ```ts
      * 
      * JMap.Util.checkJmapId("")
-     * // Error thrown
+     * // Error thrown "Invalid JMap Id"
      * 
      * JMap.Util.checkJmapId("", "My custom error message")
      * // Error thrown "My custom error message"
