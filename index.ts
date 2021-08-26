@@ -222,7 +222,7 @@ export interface JCoreState {
 }
 
 export interface JFormState {
-  layerId: JId  // @lmignonat est-ce qu'on mets " | undefined ici?" 
+  layerId: JId // set as "" when no layer is set
   formMetaDataById: JFormMetaDataById
   isLoadingLayer: boolean
   hasLoadingLayerError: boolean
