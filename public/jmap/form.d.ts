@@ -472,7 +472,7 @@ declare interface JFormSubFormOperation extends JFormOperation {
   isPhoto: false
   idAttributeName: string
   attributeValueByName: JAttributeValueByName
-  parentId: JFormId
+  parentId: JId
   parentAttributeValueByName: JAttributeValueByName
 }
 
