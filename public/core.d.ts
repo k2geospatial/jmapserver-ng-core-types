@@ -940,7 +940,7 @@ declare namespace JMap {
      * JMap.Layer.getLayerTreeElementsById()
      * ```
      */
-    function getLayerTreeElementsById(): { [ layerElementId: JId ]: JLayerTreeElement }
+    function getLayerTreeElementsById(): { [key in JId]: JLayerTreeElement }
 
     /**
      * **JMap.Layer.getLayers**
