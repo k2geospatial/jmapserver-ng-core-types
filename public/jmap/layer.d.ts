@@ -68,6 +68,10 @@ declare interface JLayerEventParams {
   layerId: JId
 }
 
+declare interface JLayerInitialSearchEventParams extends JLayerEventParams {
+  features: GeoJSON.Feature[]
+}
+
 declare interface JMapEventLoadedParams {
   map: mapboxgl.Map
 }

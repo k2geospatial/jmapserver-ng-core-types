@@ -20,6 +20,60 @@ export interface JCoreService extends JCoreMainService {
   Server: JServerService
   Photo: JPhotoService
   Util: JUtilService
+  Library: JLibraryService
+  MapContext: JMapContextService
+}
+
+export interface JLibraryService {
+  mapboxgl(): any
+  html2canvas(): any
+}
+
+export interface JMapContextService {
+  isActive(): boolean
+  setActive(isActive: boolean): void
+  startCreation(): void
+  cancelCreation(): void
+  getAll(): JMapContext[]
+  getById(contextId: JId): JMapContext
+  existsById(contextId: JId): boolean
+  getUrlByUUID(contextUUID: string): string
+  applyContextById(contextId: JId): void
+  deleteContextById(contextId: JId | JId[]): Promise<void>
+  create(params?: JMapContextMetaData): Promise<JMapContext>
+  update(
+    contextId: JId,
+    params?: Partial<JMapContextMetaData>
+  ): Promise<JMapContext>
+  updateMetaData(
+    contextId: JId,
+    params: Partial<JMapContextMetaData>
+  ): Promise<void>
+  setCreateTitle(newTitle: string): void
+  setCreateDescription(newDescription: string): void
+  setCreateTitleError(hasError: boolean): void
+  getContextTitle(contextId: JId): string
+  setContextTitle(contextId: JId, title: string): Promise<void>
+  getContextDescription(contextId: JId): string
+  setContextDescription(contextId: JId, description: string): Promise<void>
+  isLinkShared(contextId: JId): boolean
+  setLinkShare(contextId: JId, isShared: boolean): Promise<void>
+  getDefaultContext(): JMapContext | undefined
+  isDefaultContext(contextId: JId): boolean
+  setDefaultContext(contextId?: JId): Promise<void>
+  sortListBy(sortBy: JMapContextSortByOption): void
+  getListSortBy(): JMapContextSortByOption
+  getAllListSortBy(): JMapContextSortByOption[]
+  setListSortDirection(sortByDirection: JMapContextSortByDirection): void
+  getListSortDirection(): JMapContextSortByDirection
+  getAllListSortDirection(): JMapContextSortByDirection[]
+  filterList(filter: string): void
+  getListFilter(): string
+  clearListFilter(): void
+  setPreviewImageSize(size: JSize): void
+  getPreviewImageSize(): JSize
+  addCssClassesToIgnoreForPreviewImage(classes: string[]): void
+  getIgnoredCssClassesForPreviewImage(): string[]
 }
 
 export interface JUtilService {
@@ -82,6 +136,7 @@ export interface JEventService {
   Form: JFormEventModule
   Extension: JExtensionEventModule
   MouseOver: JMouseOverEventModule
+  MapContext: JMapContextEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -152,6 +207,7 @@ export interface JLayerEventModule extends JEventModule {
     visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void):void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
+    initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
   }
 }
 
@@ -207,6 +263,15 @@ export interface JCoreEventModule extends JEventModule {
   }
 }
 
+export interface JMapContextEventModule extends JEventModule {
+  on: {
+    beforeMapDataChange(listenerId: string, fn: (params: JMapContextBeforeMapDataChangeEventParams) => void): void
+    afterMapDataChange(listenerId: string, fn: (params: JMapContextAfterMapDataChangeEventParams) => void): void
+    beforeApply(listenerId: string, fn: (params: JMapContextBeforeApplyEventParams) => void): void
+    afterApply(listenerId: string, fn: (params: JMapContextAfterApplyEventParams) => void): void
+  }
+}
+
 export interface JCoreState {
   map: JMapState
   project: JProjectState
@@ -218,7 +283,24 @@ export interface JCoreState {
   geolocation: JGeolocationState
   form: JFormState
   server: JServerState
+  mapContext: JMapContextState
   external?: any
+}
+
+export interface JMapContextState {
+  isActive: boolean
+  isLoading: boolean
+  hasLoadingError: boolean
+  isApplying: boolean
+  activeTab: JMapContextTab
+  contexts: JMapContext[]
+  defaultContextId: JId | undefined
+  filter: string
+  sortBy: JMapContextSortByOption
+  sortByDirection: JMapContextSortByDirection
+  createTitle: string
+  createDescription: string
+  createTitleError: boolean
 }
 
 export interface JFormState {
@@ -682,7 +764,7 @@ export interface JUserService {
   removeInfo(infoId: string): void
   changePassword(newPassword: string, currentPassword: string): Promise<void>
   getMinimumPasswordLength(): number
-
+  isPseudoUser(): boolean
 }
 
 export interface JLanguageService {
