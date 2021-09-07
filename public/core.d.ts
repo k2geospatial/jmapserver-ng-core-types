@@ -2589,7 +2589,7 @@ declare namespace JMap {
      * @throws Error if layer is not found
      * @throws Error if no or incorrect filter is passed
      * @param layerId The JMap layer id
-     * @param filter You can pass a location, a boundary box, or a circle (radius in km). Will returns only features that intersect.
+     * @param param You can pass a location, a boundary box, or a circle (radius in km) or a JGetRenderedFeaturesParams. Will returns only features that intersect.
      * @return A features array
      * @example ```ts
      * 
@@ -2608,9 +2608,12 @@ declare namespace JMap {
      *  sw: { x: 45.54, y: 65.43 },
      *  ne: { x: 48.54, y: 70.43 }
      * })
+     * 
+     * // Returns all rendered geojson features for layer 4 that intersect a circle (radius in km), without any mapbox filter
+     * JMap.Map.getRenderedFeatures(4, {filter: { center: { x: 45.54, y: 65.43 }, radius: .5 }, ignoreMapBoxFilter: true})
      * ```
      */
-    function getRenderedFeatures(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle): GeoJSON.Feature[]
+    function getRenderedFeatures(layerId: JId, params?: JLocation | JBoundaryBox | JCircle | JGetRenderedFeaturesParams): GeoJSON.Feature[]
     
     /**
      * **JMap.Map.getRenderedFeaturesAttributeValues**

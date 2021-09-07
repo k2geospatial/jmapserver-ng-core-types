@@ -23,6 +23,16 @@ declare interface JScreenDPI {
   y: number
 }
 
+declare interface JGetRenderedFeaturesParams {
+  filter?: JLocation | JBoundaryBox | JCircle
+  ignoreMapBoxFilter?: boolean
+}
+
+declare interface JGetPointLikeResult {
+  pointLike: PointLike | [PointLike, PointLike] | undefined
+  circleFeature?: Feature<Polygon>
+}
+
 declare interface JMapEventParams {
   map: mapboxgl.Map,
   mapEvent: any

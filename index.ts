@@ -452,7 +452,7 @@ export interface JMapService {
   addMapboxLayerConfigurationForJmapLayer(params: JMapAddMapboxLayerConfigurationForJmapLayerParams): void
   refreshLayerById(layerId: JId): void
   getRenderedJMapLayerIds(): JId[]
-  getRenderedFeatures(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle): Feature[]
+  getRenderedFeatures(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle | JGetRenderedFeaturesParams): Feature[]
   getRenderedFeaturesAttributeValues(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
   getPitch(): number
   getRotation(): number
