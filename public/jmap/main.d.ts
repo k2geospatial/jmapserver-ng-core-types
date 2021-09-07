@@ -7,3 +7,8 @@ declare interface JArrayService {
   findIndexByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): number
   removeByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): T[]
 }
+
+declare interface JSize {
+  width: number
+  height: number
+}

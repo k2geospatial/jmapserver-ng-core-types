@@ -5297,10 +5297,23 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // return the minimum password length
-     * const MINIMUM_PASSWORD_LENGTH = JMap.user.getMinimumPasswordLength()
+     * const MINIMUM_PASSWORD_LENGTH = JMap.User.getMinimumPasswordLength()
      * ```
      */
     function getMinimumPasswordLength(): number
+
+    /**
+     * ***JMap.User.isPseudoUser***
+     * 
+     * Return true if the currently logged in user is a JMap pseudo user (ex: system, anonymous, etc...).
+     * 
+     * @example ```ts
+     * 
+     * // returns true if current user is a pseudo user
+     * JMap.User.isPseudoUser()
+     * ```
+     */
+    function isPseudoUser(): boolean
   }
 
   /**
@@ -5842,6 +5855,187 @@ declare namespace JMap {
        * 
        * // remove the listener "my-main-listener"
        * JMap.Event.Main.remove("my-main-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
+     * ***JMap.Event.MapContext***
+     * 
+     * Here you can manage all JMap NG map context event listeners.
+     * 
+     * Click to see all events available: ***[[JMap.Event.MapContext.on]]***. 
+     */
+    namespace MapContext {
+
+      /**
+       * ***JMap.Event.MapContext.on***
+       * 
+       * Here you have all JMap NG available map context events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.MapContext.on.beforeMapDataChange***
+         * 
+         * This event is triggered before a context map data is created or updated.
+         * 
+         * This event is not triggered when a context metadata is changed: title, description, default context, etc...
+         * 
+         * You can access and manage extension's data from this event, see example below.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Triggered before a map-context is created or updated
+         * JMap.Event.MapContext.on.beforeMapDataChange("my-before-map-data-changed-listener", params => {
+         *   console.info(`Before map data changed for context id="${params.context.title}"`, params.context)
+         *   console.info(`Is creation ="${params.isCreation}"`) // creation or update
+         *   // you can check if some extension data has been set for this map-context
+         *   const isExtensionDataSet = params.isExtensionDataSetById("my-extension")
+         *   if (isExtensionDataSet) {
+         *     // and you can delete this data if you want
+         *     params.removeExtensionDataById("my-extension")
+         *   }
+         *   // it's not necessary to delete before setting the data, update will overwrite the existing data
+         *   params.setExtensionDataById("my-extension", { count: 0, description: "your own extension data" })
+         *   console.info("Extension data has been set and will be saved", params.getExtensionDataById("my-extension"))
+         * })
+         * ```
+         */
+        function beforeMapDataChange(listenerId: string, fn: (params: JMapContextBeforeMapDataChangeEventParams) => void): void
+
+        /**
+         * ***JMap.Event.MapContext.on.afterMapDataChange***
+         * 
+         * This event is triggered after a context map data is created or updated.
+         * 
+         * This event is not triggered when a context metadata is changed: title, description, default context, etc...
+         * 
+         * You can access extension data from this event, see example below.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Triggered after a map-context is created or updated
+         * JMap.Event.MapContext.on.afterMapDataChange("my-after-map-data-change-listener", params => {
+         *   console.info(`After map data change for context id="${params.context.title}"`, params.context)
+         *   console.info(`Is creation ="${params.isCreation}"`) // creation or update
+         *   const isExtensionDataSet = params.isExtensionDataSetById("my-extension")
+         *   if (isExtensionDataSet) {
+         *     console.info("Saved extension data", params.getExtensionDataById("my-extension")) 
+         *   } else {
+         *     console.info("No extension data")
+         *   }
+         * })
+         * ```
+         */
+        function afterMapDataChange(listenerId: string, fn: (params: JMapContextAfterMapDataChangeEventParams) => void): void
+
+        /**
+         * ***JMap.Event.MapContext.on.beforeApply***
+         * 
+         * This event is triggered before the map context is applied.
+         * 
+         * You can access extension's data from this event, see example below.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Triggered before a map-context is applied
+         * JMap.Event.MapContext.on.beforeApply("my-before-apply-listener", params => {
+         *   console.info(`Before apply map context id="${params.context.title}"`, params.context)
+         *   const isExtensionDataSet = params.isExtensionDataSetById("my-extension")
+         *   if (!isExtensionDataSet) {
+         *     console.info("No extension data in map-context")
+         *   } else {
+         *     console.info("Extension map context data = ", params.getExtensionDataById("my-extension"))
+         *   }
+         * })
+         * ```
+         */
+        function beforeApply(listenerId: string, fn: (params: JMapContextBeforeApplyEventParams) => void): void
+        
+        /**
+         * ***JMap.Event.MapContext.on.afterApply***
+         * 
+         * This event is triggered after the map context is applied.
+         * 
+         * You can access extension's data from this event, see example below.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Triggered after a map-context is applied
+         * JMap.Event.MapContext.on.afterApply("my-after-apply-listener", params => {
+         *   console.info(`After apply map context id="${params.context.title}"`, params.context)
+         *   const isExtensionDataSet = params.isExtensionDataSetById("my-extension")
+         *   if (!isExtensionDataSet) {
+         *     console.info("No extension data in map-context")
+         *   } else {
+         *     console.info("Extension map context data = ", params.getExtensionDataById("my-extension"))
+         *   }
+         * })
+         * ```
+         */
+        function afterApply(listenerId: string, fn: (params: JMapContextAfterApplyEventParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.MapContext.activate***
+       * 
+       * Activates the listener.
+       * 
+       * If the listener is already active, does nothing.
+       * 
+       * If the listener is inactive, it will be reactivated and will be called again ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-mapcontext-listener"
+       * JMap.Event.MapContext.activate("my-mapcontext-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.MapContext.deactivate***
+       * 
+       * Deactivates the listener.
+       * 
+       * If the listener id doesn't exists or if the listener is already inactive, does nothing.
+       * 
+       * If the listener is active, it will be deactivated and will be ignored ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-mapcontext-listener"
+       * JMap.Event.MapContext.deactivate("my-mapcontext-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.MapContext.remove***
+       * 
+       * Removes the listener.
+       * 
+       * If the listener doesn't exist, does nothing.
+       * 
+       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-mapcontext-listener"
+       * JMap.Event.MapContext.remove("my-mapcontext-listener")
        * ```
        */
       function remove(listenerId: string): void
@@ -6464,6 +6658,26 @@ declare namespace JMap {
          * ```
          */
         function layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Layer.on.initialSearchApplied***
+         * 
+         * This event is triggered when the initial layer search is applied (if exist).
+         * 
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time the initial search is applied, will display a message in the console
+         * JMap.Event.Layer.on.initialSearchApplied(
+         *    "custom-layer-initial-search-applied",
+         *    params => {
+         *      console.info(`Initial search on layer id="${params.layerId}" has been applied`, params.features)
+         *    }
+         * )
+         * ```
+         */
+        function initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
       }
 
       /**
@@ -7963,6 +8177,707 @@ declare namespace JMap {
      * ```
      */
     function getJmapIdAsIntegerIfPossible(id: any): JId
+  }
 
+  /**
+   * **JMap.MapContext**
+   * 
+   * You can manage map contexts here.
+   */
+  namespace MapContext {
+
+    /**
+     * **JMap.MapContext.isActive**
+     * 
+     * Returns false if the map context functionnality is not active.
+     * 
+     * Some users don't have access to map context, like the anonymous or system user.
+     * 
+     * If map context service is not avalable, user cannot access, create, update or delete context from the service.
+     * 
+     * @example ```ts
+     * 
+     * // true if user can use map contexts
+     * JMap.MapContext.isActive()
+     * ```
+     */
+    function isActive(): boolean
+
+    /**
+     * **JMap.MapContext.setActive**
+     * 
+     * Activate or deactivate mapcontext functionality.
+     * 
+     * If map context functionality is not active, user cannot access, create, update or delete context from the service.
+     * 
+     * @throws if user cannot use the mapcontext (anonymous or system user for example)
+     * @param isActive true to activate, else false
+     * @example ```ts
+     * 
+     * // activate the mapcontext functionality
+     * JMap.MapContext.setActive(true)
+     * 
+     * // deactivate the mapcontext functionality
+     * JMap.MapContext.setActive(false)
+     * ```
+     */
+    function setActive(isActive: boolean): void
+
+    /**
+     * **JMap.MapContext.startCreation**
+     * 
+     * Displays the new map-context tab on screen.
+     * 
+     * @example ```ts
+     * 
+     * // display the new map-context tab on screen
+     * JMap.MapContext.startCreation()
+     * ```
+     */
+    function startCreation(): void
+
+    /**
+     * **JMap.MapContext.cancelCreation**
+     * 
+     * Hides the creation tab, input are cleared, and list of map-context are displayed.
+     * 
+     * @example ```ts
+     * 
+     * // hide the new map-context tab
+     * JMap.MapContext.cancelCreation()
+     * ```
+     */
+    function cancelCreation(): void
+
+    /**
+     * **JMap.MapContext.getAll**
+     * 
+     * Returns all map contexts fetched from server, for the given project.
+     * @example ```ts
+     * 
+     * // returns all map contexts for the current project
+     * JMap.MapContext.getAll()
+     * ```
+     */
+    function getAll(): JMapContext[]
+
+    /**
+     * **JMap.MapContext.getById**
+     * 
+     * Returns the map context for a given id.
+     * 
+     * @throws if map-context not found
+     * @param contextId the JMap map context id
+     * @example ```ts
+     * 
+     * // returns the map-context id=3
+     * JMap.MapContext.getById(3)
+     * ```
+     */
+    function getById(contextId: JId): JMapContext
+
+    /**
+     * **JMap.MapContext.existsById**
+     * 
+     * Returns true if map context exists for a given id, else false.
+     * 
+     * @param contextId the JMap map context id
+     * @example ```ts
+     * 
+     * // returns true if the map context id=3 exist, else false
+     * JMap.MapContext.existsById(3)
+     * ```
+     */
+    function existsById(contextId: JId): boolean
+
+    /**
+     * **JMap.MapContext.getUrlByUUID**
+     * 
+     * Returns the map context url, accessible if the map context is shared.
+     * 
+     * @param contextUUID the JMap map context UUID (not the id but the UUID)
+     * @example ```ts
+     * 
+     * // returns the map context url, accessible if the map context is shared
+     * JMap.MapContext.getUrlByUUID("qsdqsd-wsdwqd-wdwde-wedwdwd")
+     * ```
+     */
+    function getUrlByUUID(contextUUID: string): string
+
+    /**
+     * **JMap.MapContext.applyContextById**
+     * 
+     * Apples the map context for a given id.
+     * 
+     * @throws if map-context not found
+     * @param contextId the JMap map context id
+     * @example ```ts
+     * 
+     * // load the map-context id=3 on screen
+     * JMap.MapContext.applyContextById(3)
+     * ```
+     */
+    function applyContextById(contextId: JId): void
+
+    /**
+     * **JMap.MapContext.applyContextById**
+     * 
+     * Deletes the map context for a given id.
+     * 
+     * The map-context deletion is persisted server-side.
+     * 
+     * This is a full delete.
+     * 
+     * @throws if map-context not found, or server request error
+     * @param contextId the JMap map context id or an array of map context ids
+     * @example ```ts
+     * 
+     * // delete the map-context id=5
+     * JMap.MapContext
+     *    .deleteContextById(5)
+     *    .then(() => console.info("Context 5 deleted !"))
+     *    .catch(error => console.error(error))
+     * 
+     * // delete map-contexts id in [ 3, 5, 12 ]
+     * JMap.MapContext
+     *    .deleteContextById([ 3, 5, 12 ])
+     *    .then(() => console.info("Three map contexts have been deleted !"))
+     *    .catch(error => console.error(error))
+     * ```
+     */
+    function deleteContextById(contextId: JId | JId[]): Promise<void>
+
+    /**
+     * **JMap.MapContext.create**
+     * 
+     * Creates a map context. The map-context creation is persisted server-side.
+     * 
+     * You just need to provide the context meta-data (= data that describe the context).
+     * 
+     * The current map context will be saved.
+     * 
+     * @throws if invalid map context data provided, or server request error
+     * @param params the complete map context meta-data
+     * @returns the created map context, with it's id
+     * @example ```ts
+     * 
+     * // create a new map-context
+     * JMap.MapContext
+     *    .create({
+     *      title: "My city",
+     *      description: "My city description",
+     *      shareLink: false
+     *    })
+     *    .then(mapContext => console.info(`Map context id={mapContext.id} created !`))
+     *    .catch(error => console.error(error))
+     * ```
+     */
+    function create(params?: JMapContextMetaData): Promise<JMapContext>
+
+    /**
+     * **JMap.MapContext.update**
+     * 
+     * Updates a map context, saves the current map context data.
+     * 
+     * The map-context update is persisted server-side.
+     * 
+     * You can provide partial meta-data (= data that describes the context),
+     * if a meta-data is not provided, it will not be changed.
+     * 
+     * @throws if context not found, or empty or invalid meta-data, or server request error
+     * @param contextId the JMap map context id
+     * @param params partial map context meta-data, only data provided will be updated
+     * @returns the updated map context
+     * @example ```ts
+     * 
+     * // update the map-context id=3
+     * JMap.MapContext
+     *    .update(3, { title: "My new title" }) // only "title" meta-data will be changed, "description" and "shareLink" keep the same
+     *    .then(mapContext => console.info(`Map context id=3 meta-data and map data updated.`, mapContext))
+     *    .catch(error => console.error(error))
+     * ```
+     */
+    function update(contextId: JId, params?: Partial<JMapContextMetaData>): Promise<JMapContext>
+
+    /**
+     * **JMap.MapContext.updateMetaData**
+     * 
+     * Updates a map context meta-data (= data that describe the context), without changing the map data.
+     * 
+     * The map context map's data will not be changed, for that use [[JMap.MapContext.update]] function.
+     * 
+     * The map-context meta-data is persisted server-side.
+     * 
+     * You can provide partial meta-data, if a meta-data is not provided it will not be changed.
+     * 
+     * @throws if context not found, or empty or invalid meta-data, or server request error
+     * @param contextId the JMap map context id
+     * @param params partial map context meta-data, only data provided will be updated
+     * @returns the updated map context
+     * @example ```ts
+     * 
+     * // update the map-context id=3 meta-data
+     * JMap.MapContext
+     *    .updateMetaData(3, { // only "title" and "description" meta-data will be changed, "shareLink" keep the same
+     *      title: "My new title",
+     *      descritpion: "My new description"
+     *    })
+     *    .then(mapContext => console.info(`Map context id=3 "title" and "description" updated.`, mapContext))
+     *    .catch(error => console.error(error))
+     * ```
+     */
+    function updateMetaData(contextId: JId, data: Partial<JMapContextMetaData>): Promise<void>
+
+    /**
+     * **JMap.MapContext.setCreateTitle**
+     * 
+     * Set the title for the creation panel (visible in NG app only).
+     * 
+     * @throws if newTitle is not a string
+     * @param newTitle the new title to display
+     * @example ```ts
+     * 
+     * // set the title in the redux store, used for new map context creation
+     * JMap.MapContext.setCreateTitle("New title")
+     * ```
+     */
+    function setCreateTitle(newTitle: string): void
+
+    /**
+     * **JMap.MapContext.setCreateDescription**
+     * 
+     * Set the description for the creation panel (visible in NG app only).
+     * 
+     * @throws if newDescription is not a string
+     * @param newDescription the new description to display
+     * @example ```ts
+     * 
+     * // set the description in the redux store, used for new map context creation
+     * JMap.MapContext.setCreateDescription("New description")
+     * ```
+     */
+    function setCreateDescription(newDescription: string): void
+
+    /**
+     * **JMap.MapContext.setCreateTitleError**
+     * 
+     * Set the title creation in error or not for the creation panel (visible in NG app only).
+     * 
+     * @param hasError true or false
+     * @example ```ts
+     * 
+     * // set the title creation in error in the redux store, used for new map context creation
+     * JMap.MapContext.setCreateTitleError("New description")
+     * ```
+     */
+    function setCreateTitleError(hasError: boolean): void
+
+    /**
+     * **JMap.MapContext.getContextTitle**
+     * 
+     * Returns the map context title for a given map context id.
+     * 
+     * @throws if map-context not found
+     * @param contextId the JMap map context id
+     * @example ```ts
+     * 
+     * // returns the map-context id=3 title
+     * JMap.MapContext.getContextTitle(3)
+     * ```
+     */
+    function getContextTitle(contextId: JId): string
+
+    /**
+     * **JMap.MapContext.setContextTitle**
+     * 
+     * Updates a map context title, without changing the map data.
+     * 
+     * The map-context title is persisted server-side.
+     * 
+     * @throws if context not found, or empty title, or server request error
+     * @param contextId the JMap map context id
+     * @param title the new title
+     * @example ```ts
+     * 
+     * // update the map-context id=3 title
+     * JMap.MapContext
+     *    .setContextTitle(3, "My new title")
+     *    .then(() => console.info(`Map context id=3 "title" updated`))
+     *    .catch(error => console.error(error))
+     * ```
+     */
+    function setContextTitle(contextId: JId, title: string): Promise<void>
+
+    /**
+     * **JMap.MapContext.getContextDescription**
+     * 
+     * Returns the map context description for a given map context id.
+     * 
+     * @throws if map-context not found
+     * @param contextId the JMap map context id
+     * @example ```ts
+     * 
+     * // return the map-context id=3 description
+     * JMap.MapContext.getContextDescription(3)
+     * ```
+     */
+    function getContextDescription(contextId: JId): string
+
+    /**
+     * **JMap.MapContext.setContextDescription**
+     * 
+     * Updates a map context description, without changing the map data.
+     * 
+     * The map-context description is persisted server-side.
+     * 
+     * @throws if context not found, or empty title, or server request error
+     * @param contextId the JMap map context id
+     * @param description the new description
+     * @example ```ts
+     * 
+     * // update the map-context id=3 description
+     * JMap.MapContext
+     *    .setContextDescription(3, "My new description")
+     *    .then(() => console.info(`Map context id=3 "description" updated`))
+     *    .catch(error => console.error(error))
+     * ```
+     */
+    function setContextDescription(contextId: JId, description: string): Promise<void>
+
+    /**
+     * **JMap.MapContext.isLinkShared**
+     * 
+     * Returns true if the map context is shared, for a given map context id.
+     * 
+     * @throws if map-context not found
+     * @param contextId the JMap map context id
+     * @example ```ts
+     * 
+     * // returns true if the map-context id=3 is shared
+     * JMap.MapContext.isLinkShared(3)
+     * ```
+     */
+    function isLinkShared(contextId: JId): boolean
+
+    /**
+     * **JMap.MapContext.setLinkShare**
+     * 
+     * Updates a map context link share state, without changing the map data.
+     * 
+     * The map-context link share state is persisted server-side.
+     * 
+     * @throws if context not found, or empty title, or server request error
+     * @param contextId the JMap map context id
+     * @param isShared true if the link is shared, else false
+     * @example ```ts
+     * 
+     * // update the map-context id=3 link share state to true
+     * JMap.MapContext
+     *    .setLinkShare(3, true)
+     *    .then(() => console.info(`Map context id=3 is now shared`))
+     *    .catch(error => console.error(error))
+     * ```
+     */
+    function setLinkShare(contextId: JId, isShared: boolean): Promise<void>
+
+    /**
+     * **JMap.MapContext.getDefaultContext**
+     * 
+     * Returns the default map context if one has been set as default, else undefined.
+     * 
+     * The default map context is loaded automatically at startup.
+     * 
+     * @example ```ts
+     * 
+     * // return the default map context if one has been set
+     * JMap.MapContext.getDefaultContext()
+     * ```
+     */
+    function getDefaultContext(): JMapContext | undefined
+
+    /**
+     * **JMap.MapContext.isDefaultContext**
+     * 
+     * Returns true if the map context is the default one, given the id.
+     * 
+     * The default map context is loaded automatically at startup.
+     * 
+     * @throws if map-context not found
+     * @param contextId the JMap map context id
+     * @example ```ts
+     * 
+     * // return true if the map context id=3 is the default one.
+     * JMap.MapContext.isDefaultContext(3)
+     * ```
+     */
+    function isDefaultContext(contextId: JId): boolean
+
+    /**
+     * **JMap.MapContext.setDefaultContext**
+     * 
+     * Sets or unsets default map context, the change is persited server side.
+     * 
+     * If a contextId is provided, sets the map context as the default one.
+     * 
+     * If no context id is provided, unsets the current default context.
+     * 
+     * @throws if context provided but not found, or server request error
+     * @param contextId the JMap map context id
+     * @example ```ts
+     * 
+     * // set the map-context id=3 as the default one
+     * JMap.MapContext
+     *    .setDefaultContext(3)
+     *    .then(() => console.info(`Map context id=3 is now the default one`))
+     *    .catch(error => console.error(error))
+     * ```
+     * 
+     * // make no map-context as default
+     * JMap.MapContext
+     *    .setDefaultContext()
+     *    .then(() => console.info(`No map context are default now`))
+     *    .catch(error => console.error(error))
+     * ```
+     */
+    function setDefaultContext(contextId?: JId): Promise<void>
+
+    /**
+     * **JMap.MapContext.sortListBy**
+     * 
+     * Changes the map-context list sort. The change is persited in local storage.
+     * 
+     * "alphabetic" : list following map context title string
+     * "lastUpdate" : list following map context last update
+     * 
+     * @throws if sortBy param is not correct
+     * @param sortBy "alphabetic" or "lastUpdate"
+     * @example ```ts
+     * 
+     * // sort the list alphabetically
+     * JMap.MapContext.sortListBy("alphabetic")
+     * 
+     * // sort the list with the last upadte date
+     * JMap.MapContext.sortListBy("lastUpdate")
+     * ```
+     */
+    function sortListBy(sortBy: JMapContextSortByOption): void
+
+    /**
+     * **JMap.MapContext.getListSortBy**
+     * 
+     * Returns the map-context list sort.
+     * 
+     * @example ```ts
+     * 
+     * // returns the list sort
+     * JMap.MapContext.getListSortBy()
+     * ```
+     */
+    function getListSortBy(): JMapContextSortByOption
+
+    /**
+     * **JMap.MapContext.getAllListSortBy**
+     * 
+     * Returns all available map context list sort : [ "alphabetic", "lastUpdate" ]
+     * 
+     * @example ```ts
+     * 
+     * // returns all available list sort
+     * JMap.MapContext.getAllListSortBy()
+     * ```
+     */
+    function getAllListSortBy(): JMapContextSortByOption[]
+
+    /**
+     * **JMap.MapContext.setListSortDirection**
+     * 
+     * Changes the map-context list sort direction. The change is persited in local storage.
+     * 
+     * "asc" : ascendant sort
+     * "desc" : descendant sort
+     * 
+     * @throws if sortByDirection param is not correct
+     * @param sortByDirection "asc" or "desc"
+     * @example ```ts
+     * 
+     * // make the sort ascendant
+     * JMap.MapContext.setListSortDirection("asc")
+     * 
+     * // make the sort descendant
+     * JMap.MapContext.setListSortDirection("desc")
+     * ```
+     */
+    function setListSortDirection(sortByDirection: JMapContextSortByDirection): void
+
+    /**
+     * **JMap.MapContext.getListSortDirection**
+     * 
+     * Returns the map-context list sort direction.
+     * 
+     * @example ```ts
+     * 
+     * // return the list sort direction
+     * JMap.MapContext.getListSortDirection()
+     * ```
+     */
+    function getListSortDirection(): JMapContextSortByDirection
+
+    /**
+     * **JMap.MapContext.getAllListSortDirection**
+     * 
+     * Returns all available map context list sort directions : [ "asc", "desc" ]
+     * 
+     * @example ```ts
+     * 
+     * // return all available list sort directions
+     * JMap.MapContext.getAllListSortDirection()
+     * ```
+     */
+    function getAllListSortDirection(): JMapContextSortByDirection[]
+
+    /**
+     * **JMap.MapContext.filterList**
+     * 
+     * Filters the map context list.
+     * 
+     * The filter is done on "title" and/or "description".
+     * 
+     * @param filter a string
+     * @example ```ts
+     * 
+     * // only map context having "ab" in title and/or description will be displayed
+     * JMap.MapContext.filterList("ab")
+     * ```
+     */
+    function filterList(filter: string): void
+
+    /**
+     * **JMap.MapContext.getListFilter**
+     * 
+     * Returns the currently applied filter on the map context list, or an empty string if no filter is applied.
+     * 
+     * @example ```ts
+     * 
+     * // return the current filter
+     * JMap.MapContext.getListFilter()
+     * ```
+     */
+    function getListFilter(): string
+
+    /**
+     * **JMap.MapContext.getListFilter**
+     * 
+     * If a filter is applied on the map context list, this function clears it.
+     * 
+     * @example ```ts
+     * 
+     * // clear the current filter if exists
+     * JMap.MapContext.getListFilter()
+     * ```
+     */
+    function clearListFilter(): void
+
+    /**
+     * **JMap.MapContext.setPreviewImageSize**
+     * 
+     * Set the preview image size, by default size is :
+     *  - Width: 100
+     *  - Height: 100
+     * 
+     * @throws if given size is not an object having positive and greater than zero width and height
+     * @param size: preview image size
+     * @example ```ts
+     * 
+     * // set the review image size
+     * JMap.MapContext.setPreviewImageSize({
+     *  width: 100,
+     *  height: 200
+     * })
+     * ```
+     */
+    function setPreviewImageSize(size: JSize): void
+
+    /**
+     * **JMap.MapContext.getPreviewImageSize**
+     * 
+     * Returns the preview image size.
+     * 
+     * @example ```ts
+     * 
+     * // Print the preview image size in console.
+     * console.info("Preview image size", JMap.MapContext.getPreviewImageSize())
+     * ```
+     */
+    function getPreviewImageSize(): JSize
+
+    /**
+     * **JMap.MapContext.addCssClassesToIgnoreForPreviewImage**
+     * 
+     * Add css classes in the list of css class to ignore/hide when processing the preview image.
+     * 
+     * @throws if given classes param is not a string array
+     * @param classes: css classes
+     * @example ```ts
+     * 
+     * // dom elements that having "my-class-that-is-visible-on-screen-but-want-to-hide-in-preview"
+     * // css class will be hidden in the preview image
+     * JMap.MapContext.addCssClassesToIgnoreForPreviewImage([
+     *  "my-class-that-is-visible-on-screen-but-want-to-hide-in-preview"
+     * ])
+     * ```
+     */
+    function addCssClassesToIgnoreForPreviewImage(classes: string[]): void
+
+    /**
+     * **JMap.MapContext.getIgnoredCssClassesForPreviewImage**
+     * 
+     * Add css classes in the list of css class to ignore/hide when processing the preview image.
+     * 
+     * @throws if given classes param is not a string array
+     * @param classes: photo thumbnail size
+     * @example ```ts
+     * 
+     * // print in the console all css classes that will be ignored/hidden in the preview image
+     * console.info(
+     *  "Css classes ignored when generating the preview image:",
+     *  JMap.MapContext.getIgnoredCssClassesForPreviewImage()
+     * )
+     * ```
+     */
+    function getIgnoredCssClassesForPreviewImage(): string[]
+  }
+  
+  /**
+   * **JMap.Library**
+   * 
+   * Here you'll find all external library JMap expose to its client
+   */
+  namespace Library {
+
+    /**
+     * **JMap.Library.mapboxgl**
+     * 
+     * Return the mapboxgl library.
+     * 
+     * @example ```ts
+     * 
+     * // get the mapboxgl library
+     * const mapboxgl = JMap.Library.mapboxgl()
+     * ```
+     */
+    function mapboxgl(): any
+
+    /**
+     * **JMap.Library.html2canvas**
+     * 
+     * Return the html2canvas library.
+     * 
+     * @example ```ts
+     * 
+     * // get the html2canvas library
+     * const html2canvas = JMap.Library.html2canvas()
+     * ```
+     */
+    function html2canvas(): any
   }
 }
