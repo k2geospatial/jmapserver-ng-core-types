@@ -28,11 +28,6 @@ declare interface JGetRenderedFeaturesParams {
   ignoreMapBoxFilter?: boolean
 }
 
-declare interface JGetPointLikeResult {
-  pointLike: PointLike | [PointLike, PointLike] | undefined
-  circleFeature?: Feature<Polygon>
-}
-
 declare interface JMapEventParams {
   map: mapboxgl.Map,
   mapEvent: any
