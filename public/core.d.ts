@@ -2589,7 +2589,7 @@ declare namespace JMap {
      * @throws Error if layer is not found
      * @throws Error if no or incorrect filter is passed
      * @param layerId The JMap layer id
-     * @param param You can pass a location, a boundary box, or a circle (radius in km) or a JGetRenderedFeaturesParams. Will returns only features that intersect.
+     * @param params You can pass a location, a boundary box, or a circle (radius in km) or a JGetRenderedFeaturesParams. Will returns only features that intersect.
      * @return A features array
      * @example ```ts
      * 
