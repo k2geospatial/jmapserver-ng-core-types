@@ -24,7 +24,7 @@ declare interface JScreenDPI {
 }
 
 declare interface JGetRenderedFeaturesParams {
-  filter?: JLocation | JBoundaryBox | JCircle
+  geoFilter?: JLocation | JBoundaryBox | JCircle
   ignoreMapBoxFilter?: boolean
 }
 
