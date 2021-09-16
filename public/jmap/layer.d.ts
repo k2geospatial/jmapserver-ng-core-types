@@ -153,6 +153,7 @@ declare interface JLayerThematic {
   elementCount: number
   title: string
   subTitle: string
+  dynamicLegend: boolean
 }
 
 declare interface JLayerThematicClassification extends JLayerThematic {

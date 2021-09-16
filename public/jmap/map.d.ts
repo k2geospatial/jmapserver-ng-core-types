@@ -23,6 +23,11 @@ declare interface JScreenDPI {
   y: number
 }
 
+declare interface JGetRenderedFeaturesParams {
+  geoFilter?: JLocation | JBoundaryBox | JCircle
+  ignoreMapBoxFilter?: boolean
+}
+
 declare interface JMapEventParams {
   map: mapboxgl.Map,
   mapEvent: any
