@@ -76,7 +76,19 @@ export interface JMapContextService {
   getIgnoredCssClassesForPreviewImage(): string[]
 }
 
+export interface JDateService {
+  getDateFormat(displayTime?: boolean): string
+  getDateFnsLocale(displayTime?: boolean): any
+  is12HoursTimeFormat(): boolean
+  getDateFromISOString(isoDate: string): Date
+  format(date: JDateLike, params?: JDateFormatParams): string
+  formatAsTimePast(date: JDateLike, params?: JDateFormatParams): string
+  isBefore(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
+  isAfter(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
+}
+
 export interface JUtilService {
+  Date: JDateService
   loadJSFile(fileUrl: string): Promise<void>
   isJMapId(id: any, allowStringNumber?: boolean): boolean
   checkJmapId(id: any, message?: string): void
