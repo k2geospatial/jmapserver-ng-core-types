@@ -8101,6 +8101,23 @@ declare namespace JMap {
     namespace Date {
 
       /**
+       * **JMap.Util.Date.getDate**
+       * 
+       * Returns the date for the given input.
+       * 
+       * @param date the date as a string, number, or Date
+       * @example ```ts
+       * 
+       * // returns a date object for the given timestamp
+       * JMap.Util.Date.getDate(1631879544000)
+       * 
+       * // returns a date object for the given ISO string
+       * JMap.Util.Date.getDate("2012-09-27")
+       * ```
+       */
+      function getDate(date: JDateLike): Date
+
+      /**
        * **JMap.Util.Date.getDateFormat**
        * 
        * Returns the date format.
@@ -8166,6 +8183,53 @@ declare namespace JMap {
        */
       function getDateFromISOString(isoDate: string): Date
 
+      /**
+       * **JMap.Util.Date.add**
+       * 
+       * Returns a date, that is the given date plus the given amount of unit.
+       * 
+       * It's safe, the given date is not changed.
+       * 
+       * Possible time units are : "seconds" | "minutes" | "hours" | "days" | "weeks" | "months" |"years"
+       * 
+       * @param date the date from
+       * @param amount amount of unit
+       * @param unit time unit
+       * @throws
+       * @example ```ts
+       * 
+       * // returns the date 2 days in the future
+       * JMap.Util.Date.add(new Date(), 2, "days")
+       * 
+       * // returns the date 2 seconds in the future
+       * JMap.Util.Date.add(new Date(), 2, "seconds")
+       * ```
+       */
+      function add(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
+
+      /**
+       * **JMap.Util.Date.substract**
+       * 
+       * Returns a date, that is the given date minus the given amount of unit.
+       * 
+       * It's safe, the given date is not changed.
+       * 
+       * Possible time units are : "seconds" | "minutes" | "hours" | "days" | "weeks" | "months" |"years"
+       * 
+       * @param date the date from
+       * @param amount amount of unit
+       * @param unit time unit
+       * @throws
+       * @example ```ts
+       * 
+       * // returns the date 2 days in the past
+       * JMap.Util.Date.substract(new Date(), 2, "days")
+       * 
+       * // returns the date 2 seconds in the past
+       * JMap.Util.Date.substract(new Date(), 2, "seconds")
+       * ```
+       */
+      function substract(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
       /**
        * **JMap.Util.Date.format**
        * 
