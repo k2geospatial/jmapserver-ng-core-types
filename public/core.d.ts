@@ -5356,15 +5356,19 @@ declare namespace JMap {
     /**
      * **JMap.Language.getDateFnsLocale**
      * 
-     * Get the current locale as a "dateFns" locale.
+     * Returns the format for date-fns library.
      * 
+     * @param displayTime true to return the format including the time
      * @example ```ts
      * 
-     * // return the current dateFns locale
+     * // returns the format for date-fns library without datetime
      * JMap.Language.getDateFnsLocale()
+     * 
+     * // returns the format for date-fns library without datetime
+     * JMap.Language.getDateFnsLocale(true)
      * ```
      */
-    function getDateFnsLocale(): any
+    function getDateFnsLocale(displayTime?: boolean): any
 
     /**
      * **JMap.Language.getDefaultLocale**
@@ -5556,29 +5560,11 @@ declare namespace JMap {
      * ```
      */
     function isValidLocale(locale: JLocale):boolean
-    
-    /**
-     * **JMap.Language.getDateFormat**
-     * 
-     * returns the date format associated with the current locale
-     * 
-     * @example ```ts
-     * 
-     * // return the default locale
-     * JMap.Language.setLocale("fr")
-     * console.log(JMap.Language.getDateFormat())
-     * // "DD/MM/YYYY"
-     * JMap.Language.setLocale("en")
-     * console.log(JMap.Language.getDateFormat())
-     * // "MM/DD/YYYY"
-     * ```
-     */
-    function getDateFormat(): string
 
     /**
      * **JMap.Language.getDateFnsDateFormat**
      * 
-     * returns the date format associated with the current locale (specific to the date-fns JS library)
+     * Returns the date format associated with the current locale (specific to the date-fns JS library)
      * 
      * @example ```ts
      * 
@@ -8118,25 +8104,6 @@ declare namespace JMap {
       function getDate(date: JDateLike): Date
 
       /**
-       * **JMap.Util.Date.getDateFormat**
-       * 
-       * Returns the date format.
-       * 
-       * @param displayTime true to return the format including the time
-       * @example ```ts
-       * 
-       * // returns the date format without datetime
-       * JMap.Util.Date.getDateFormat()
-       * 
-       * // returns the date format with datetime
-       * JMap.Util.Date.getDateFormat({
-       *  displayTime: true
-       * })
-       * ```
-       */
-      function getDateFormat(displayTime?: boolean): string
-
-      /**
        * **JMap.Util.Date.getDateFnsLocale**
        * 
        * Returns the format for date-fns library.
@@ -8148,9 +8115,7 @@ declare namespace JMap {
        * JMap.Util.Date.getDateFnsLocale()
        * 
        * // returns the format for date-fns library without datetime
-       * JMap.Util.Date.getDateFnsLocale({
-       *  displayTime: true
-       * })
+       * JMap.Util.Date.getDateFnsLocale(true)
        * ```
        */
       function getDateFnsLocale(displayTime?: boolean): any

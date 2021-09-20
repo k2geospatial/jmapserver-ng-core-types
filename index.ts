@@ -78,7 +78,6 @@ export interface JMapContextService {
 
 export interface JDateService {
   getDate(date: JDateLike): Date
-  getDateFormat(displayTime?: boolean): string
   getDateFnsLocale(displayTime?: boolean): any
   is12HoursTimeFormat(): boolean
   getDateFromISOString(isoDate: string): Date
@@ -790,13 +789,12 @@ export interface JLanguageService {
   getBundles(): JTranslationBundleById
   getLocales(): JLocale[]
   getLocale(): JLocale
-  getDateFnsLocale(): any
+  getDateFnsLocale(displayTime?: boolean): any
   getDefaultLocale(): JLocale 
   setLocale(locale: JLocale): void
   translate(params: JTranslateParams): string
   is12HoursTimeFormat(): boolean
   isValidLocale(locale: JLocale): boolean
-  getDateFormat(): string
   getDateFnsDateFormat(): string
 }
 
