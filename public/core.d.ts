@@ -5356,15 +5356,19 @@ declare namespace JMap {
     /**
      * **JMap.Language.getDateFnsLocale**
      * 
-     * Get the current locale as a "dateFns" locale.
+     * Returns the format for date-fns library.
      * 
+     * @param displayTime true to return the format including the time
      * @example ```ts
      * 
-     * // return the current dateFns locale
+     * // returns the format for date-fns library without datetime
      * JMap.Language.getDateFnsLocale()
+     * 
+     * // returns the format for date-fns library without datetime
+     * JMap.Language.getDateFnsLocale(true)
      * ```
      */
-    function getDateFnsLocale(): any
+    function getDateFnsLocale(displayTime?: boolean): any
 
     /**
      * **JMap.Language.getDefaultLocale**
@@ -5556,29 +5560,11 @@ declare namespace JMap {
      * ```
      */
     function isValidLocale(locale: JLocale):boolean
-    
-    /**
-     * **JMap.Language.getDateFormat**
-     * 
-     * returns the date format associated with the current locale
-     * 
-     * @example ```ts
-     * 
-     * // return the default locale
-     * JMap.Language.setLocale("fr")
-     * console.log(JMap.Language.getDateFormat())
-     * // "DD/MM/YYYY"
-     * JMap.Language.setLocale("en")
-     * console.log(JMap.Language.getDateFormat())
-     * // "MM/DD/YYYY"
-     * ```
-     */
-    function getDateFormat(): string
 
     /**
      * **JMap.Language.getDateFnsDateFormat**
      * 
-     * returns the date format associated with the current locale (specific to the date-fns JS library)
+     * Returns the date format associated with the current locale (specific to the date-fns JS library)
      * 
      * @example ```ts
      * 
@@ -8092,6 +8078,212 @@ declare namespace JMap {
    * Here you'll find all JMap utility methods
    */
   namespace Util {
+
+    /**
+     * **JMap.Util.Date**
+     * 
+     * Here you'll find all JMap date utility methods
+     */
+    namespace Date {
+
+      /**
+       * **JMap.Util.Date.getDate**
+       * 
+       * Returns the date for the given input.
+       * 
+       * @param date the date as a string, number, or Date
+       * @example ```ts
+       * 
+       * // returns a date object for the given timestamp
+       * JMap.Util.Date.getDate(1631879544000)
+       * 
+       * // returns a date object for the given ISO string
+       * JMap.Util.Date.getDate("2012-09-27")
+       * ```
+       */
+      function getDate(date: JDateLike): Date
+
+      /**
+       * **JMap.Util.Date.getDateFnsLocale**
+       * 
+       * Returns the format for date-fns library.
+       * 
+       * @param displayTime true to return the format including the time
+       * @example ```ts
+       * 
+       * // returns the format for date-fns library without datetime
+       * JMap.Util.Date.getDateFnsLocale()
+       * 
+       * // returns the format for date-fns library without datetime
+       * JMap.Util.Date.getDateFnsLocale(true)
+       * ```
+       */
+      function getDateFnsLocale(displayTime?: boolean): any
+
+      /**
+       * **JMap.Util.Date.is12HoursTimeFormat**
+       * 
+       * Returns true if the current user locale use AM-PM format, else false.
+       * 
+       * @example ```ts
+       * 
+       * // returns true if the current user locale use AM-PM format, else false
+       * JMap.Util.Date.is12HoursTimeFormat()
+       * ```
+       */
+      function is12HoursTimeFormat(): boolean
+
+      /**
+       * **JMap.Util.Date.getDateFromISOString**
+       * 
+       * Returns a date corresponding to the given ISO-8601 date string.
+       * 
+       * @param isoDate IS-8601 string date
+       * @throws
+       * @example ```ts
+       * 
+       * // returns a date corresponding to the given ISO-8601 date string.
+       * JMap.Util.Date.getDateFromISOString()
+       * ```
+       */
+      function getDateFromISOString(isoDate: string): Date
+
+      /**
+       * **JMap.Util.Date.add**
+       * 
+       * Returns a date, that is the given date plus the given amount of unit.
+       * 
+       * It's safe, the given date is not changed.
+       * 
+       * Possible time units are : "seconds" | "minutes" | "hours" | "days" | "weeks" | "months" |"years"
+       * 
+       * @param date the date from
+       * @param amount amount of unit
+       * @param unit time unit
+       * @throws
+       * @example ```ts
+       * 
+       * // returns the date 2 days in the future
+       * JMap.Util.Date.add(new Date(), 2, "days")
+       * 
+       * // returns the date 2 seconds in the future
+       * JMap.Util.Date.add(new Date(), 2, "seconds")
+       * ```
+       */
+      function add(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
+
+      /**
+       * **JMap.Util.Date.substract**
+       * 
+       * Returns a date, that is the given date minus the given amount of unit.
+       * 
+       * It's safe, the given date is not changed.
+       * 
+       * Possible time units are : "seconds" | "minutes" | "hours" | "days" | "weeks" | "months" |"years"
+       * 
+       * @param date the date from
+       * @param amount amount of unit
+       * @param unit time unit
+       * @throws
+       * @example ```ts
+       * 
+       * // returns the date 2 days in the past
+       * JMap.Util.Date.substract(new Date(), 2, "days")
+       * 
+       * // returns the date 2 seconds in the past
+       * JMap.Util.Date.substract(new Date(), 2, "seconds")
+       * ```
+       */
+
+      function substract(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
+      /**
+       * **JMap.Util.Date.format**
+       * 
+       * Returns a formatted string from a date.
+       * 
+       * @param date Date object, or ISO string, or timestamp number
+       * @param params optional params
+       * @throws if date is not a Date object, or ISO string, or timestamp number
+       * @example ```ts
+       * 
+       * // returns the current date as a string, according to the current user locale
+       * JMap.Util.Date.format(new Date())
+       * 
+       * // returns the current date as a string, with time, according to the current user locale
+       * JMap.Util.Date.format(new Date(), {
+       *  displayTime: true
+       * })
+       * ```
+       */
+      function format(date: JDateLike, params?: JDateFormatParams): string
+
+      /**
+       * **JMap.Util.Date.formatDistanceToNow**
+       * 
+       * Returns in the user's locale language, the time that will pass, or passed from now for the given date.
+       * 
+       * @param date Date object, or ISO string, or timestamp number
+       * @param params optional params
+       * @throws if date is not a Date object, or ISO string, or timestamp number
+       * @example ```ts
+       * 
+       * // returns in the user's locale language, the time that will pass, or passed from now for the given date
+       * JMap.Util.Date.formatDistanceToNow(new Date())
+       * ```
+       */
+      function formatDistanceToNow(date: JDateLike, params?: JDateFormatParams): string
+
+      /**
+       * **JMap.Util.Date.isBefore**
+       * 
+       * Returns true if the first date is before the second date.
+       * 
+       * @param date1 Date object, or ISO string, or timestamp number
+       * @param date2 Date object, or ISO string, or timestamp number
+       * @param checkTime if true will also check the date time, else check only the date
+       * @throws if dates are not Date object, or ISO string, or timestamp number
+       * @example ```ts
+       * 
+       * // returns in the user's locale language, the time that will pass, or passed from now for the given date
+       * const firstDate = new Date()
+       * setTimeout(() => {
+       *  const secondDate = new Date()
+       *  // will return false
+       *  JMap.Util.Date.isBefore(firstDate, secondDate)
+       * 
+       *  // will return true (because also check the time)
+       *  JMap.Util.Date.isBefore(firstDate, secondDate, true)
+       * }, 1000)
+       * ```
+       */
+      function isBefore(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
+
+      /**
+       * **JMap.Util.Date.isAfter**
+       * 
+       * Returns true if the first date is after the second date.
+       * 
+       * @param date1 Date object, or ISO string, or timestamp number
+       * @param date2 Date object, or ISO string, or timestamp number
+       * @param checkTime if true will also check the date time, else check only the date
+       * @throws if dates are not Date object, or ISO string, or timestamp number
+       * @example ```ts
+       * 
+       * // returns in the user's locale language, the time that will pass, or passed from now for the given date
+       * const firstDate = new Date()
+       * setTimeout(() => {
+       *  const secondDate = new Date()
+       *  // will return false (time is not checked)
+       *  JMap.Util.Date.isAfter(secondDate, firstDate)
+       * 
+       *  // will return true (because also check the time)
+       *  JMap.Util.Date.isAfter(secondDate, firstDate, true)
+       * }, 1000)
+       * ```
+       */
+      function isAfter(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
+    }
+
     /**
      * **JMap.Util.loadJSFile**
      * 

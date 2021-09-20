@@ -76,7 +76,21 @@ export interface JMapContextService {
   getIgnoredCssClassesForPreviewImage(): string[]
 }
 
+export interface JDateService {
+  getDate(date: JDateLike): Date
+  getDateFnsLocale(displayTime?: boolean): any
+  is12HoursTimeFormat(): boolean
+  getDateFromISOString(isoDate: string): Date
+  add(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
+  substract(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
+  format(date: JDateLike, params?: JDateFormatParams): string
+  formatDistanceToNow(date: JDateLike, params?: JDateFormatParams): string
+  isBefore(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
+  isAfter(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
+}
+
 export interface JUtilService {
+  Date: JDateService
   loadJSFile(fileUrl: string): Promise<void>
   isJMapId(id: any, allowStringNumber?: boolean): boolean
   checkJmapId(id: any, message?: string): void
@@ -775,13 +789,12 @@ export interface JLanguageService {
   getBundles(): JTranslationBundleById
   getLocales(): JLocale[]
   getLocale(): JLocale
-  getDateFnsLocale(): any
+  getDateFnsLocale(displayTime?: boolean): any
   getDefaultLocale(): JLocale 
   setLocale(locale: JLocale): void
   translate(params: JTranslateParams): string
   is12HoursTimeFormat(): boolean
   isValidLocale(locale: JLocale): boolean
-  getDateFormat(): string
   getDateFnsDateFormat(): string
 }
 
