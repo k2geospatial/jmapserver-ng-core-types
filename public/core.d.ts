@@ -8194,6 +8194,7 @@ declare namespace JMap {
        * JMap.Util.Date.substract(new Date(), 2, "seconds")
        * ```
        */
+
       function substract(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
       /**
        * **JMap.Util.Date.format**
@@ -8214,7 +8215,7 @@ declare namespace JMap {
        * })
        * ```
        */
-      function format(date: number | Date | string, params?: JDateFormatParams): string
+      function format(date: JDateLike, params?: JDateFormatParams): string
 
       /**
        * **JMap.Util.Date.formatDistanceToNow**
@@ -8230,7 +8231,7 @@ declare namespace JMap {
        * JMap.Util.Date.formatDistanceToNow(new Date())
        * ```
        */
-      function formatDistanceToNow(date: number | Date | string, params?: JDateFormatParams): string
+      function formatDistanceToNow(date: JDateLike, params?: JDateFormatParams): string
 
       /**
        * **JMap.Util.Date.isBefore**
