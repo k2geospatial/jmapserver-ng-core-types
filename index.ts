@@ -84,7 +84,7 @@ export interface JDateService {
   add(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
   substract(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
   format(date: JDateLike, params?: JDateFormatParams): string
-  formatAsTimePast(date: JDateLike, params?: JDateFormatParams): string
+  formatDistanceToNow(date: JDateLike, params?: JDateFormatParams): string
   isBefore(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
   isAfter(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
 }

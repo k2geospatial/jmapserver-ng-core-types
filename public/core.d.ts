@@ -8217,7 +8217,7 @@ declare namespace JMap {
       function format(date: number | Date | string, params?: JDateFormatParams): string
 
       /**
-       * **JMap.Util.Date.formatAsTimePast**
+       * **JMap.Util.Date.formatDistanceToNow**
        * 
        * Returns in the user's locale language, the time that will pass, or passed from now for the given date.
        * 
@@ -8227,10 +8227,10 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // returns in the user's locale language, the time that will pass, or passed from now for the given date
-       * JMap.Util.Date.formatAsTimePast(new Date())
+       * JMap.Util.Date.formatDistanceToNow(new Date())
        * ```
        */
-      function formatAsTimePast(date: number | Date | string, params?: JDateFormatParams): string
+      function formatDistanceToNow(date: number | Date | string, params?: JDateFormatParams): string
 
       /**
        * **JMap.Util.Date.isBefore**
