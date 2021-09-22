@@ -172,7 +172,7 @@ declare interface JLayerThematicCategory {
   style: JLayerStyle
   enabled: boolean
   nullValueCategory: boolean
-  categorieIndex: number
+  index: number
 }
 
 declare interface JLayerThematicCategoryIndividual extends JLayerThematicCategory {
