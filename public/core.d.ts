@@ -8416,7 +8416,7 @@ declare namespace JMap {
      * JMap.MapContext.setActive(false)
      * ```
      */
-    function setActive(isActive: boolean): void
+    function setActive(isActive: boolean): Promise<void>
 
     /**
      * **JMap.MapContext.startCreation**

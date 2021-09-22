@@ -31,7 +31,7 @@ export interface JLibraryService {
 
 export interface JMapContextService {
   isActive(): boolean
-  setActive(isActive: boolean): void
+  setActive(isActive: boolean): Promise<void>
   startCreation(): void
   cancelCreation(): void
   getAll(): JMapContext[]
