@@ -25,7 +25,12 @@ declare interface JScreenDPI {
 
 declare interface JGetRenderedFeaturesParams {
   geoFilter?: JLocation | JBoundaryBox | JCircle
-  ignoreMapBoxFilter?: boolean
+  keepAllTiles?: boolean
+}
+
+declare interface JGetSourceFeaturesParams {
+  viewport?: GeoJSON.Feature<GeoJSON.Polygon>
+  keepAllTiles?: boolean
 }
 
 declare interface JMapEventParams {

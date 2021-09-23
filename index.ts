@@ -549,6 +549,7 @@ export interface JMapService {
   refreshLayerById(layerId: JId): void
   getRenderedJMapLayerIds(): JId[]
   getRenderedFeatures(layerId: JId, params?: JLocation | JBoundaryBox | JCircle | JGetRenderedFeaturesParams): Feature[]
+  getSourceFeatures(layerId: JId, params?: JGetSourceFeaturesParams): Feature[]
   getRenderedFeaturesAttributeValues(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
   getPitch(): number
   getRotation(): number
