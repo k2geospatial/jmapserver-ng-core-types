@@ -8405,18 +8405,22 @@ declare namespace JMap {
      * 
      * If map context functionality is not active, user cannot access, create, update or delete context from the service.
      * 
-     * @throws if user cannot use the mapcontext (anonymous or system user for example)
+     * @throws if user cannot use the mapcontext (anonymous or system user for example), or if state initialization failed
      * @param isActive true to activate, else false
      * @example ```ts
      * 
      * // activate the mapcontext functionality
      * JMap.MapContext.setActive(true)
+     *  .then(result => console.info(result))
+     *  .catch(error => console.error(error))
      * 
      * // deactivate the mapcontext functionality
      * JMap.MapContext.setActive(false)
+     *  .then(result => console.info(result))
+     *  .catch(error => console.error(error))
      * ```
      */
-    function setActive(isActive: boolean): Promise<void>
+    function setActive(isActive: boolean): Promise<JMapContextSetActiveResult>
 
     /**
      * **JMap.MapContext.startCreation**
@@ -8510,12 +8514,14 @@ declare namespace JMap {
      * 
      * // load the map-context id=3 on screen
      * JMap.MapContext.applyContextById(3)
+     *  .then(() => console.info("Map context applied"))
+     *  .catch(error => console.error(error))
      * ```
      */
-    function applyContextById(contextId: JId): void
+    function applyContextById(contextId: JId): Promise<void>
 
     /**
-     * **JMap.MapContext.applyContextById**
+     * **JMap.MapContext.deleteContextById**
      * 
      * Deletes the map context for a given id.
      * 

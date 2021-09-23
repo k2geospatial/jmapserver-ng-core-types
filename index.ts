@@ -31,14 +31,14 @@ export interface JLibraryService {
 
 export interface JMapContextService {
   isActive(): boolean
-  setActive(isActive: boolean): Promise<void>
+  setActive(isActive: boolean): Promise<JMapContextSetActiveResult>
   startCreation(): void
   cancelCreation(): void
   getAll(): JMapContext[]
   getById(contextId: JId): JMapContext
   existsById(contextId: JId): boolean
   getUrlByUUID(contextUUID: string): string
-  applyContextById(contextId: JId): void
+  applyContextById(contextId: JId): Promise<void>
   deleteContextById(contextId: JId | JId[]): Promise<void>
   create(params?: JMapContextMetaData): Promise<JMapContext>
   update(
