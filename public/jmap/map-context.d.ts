@@ -157,7 +157,7 @@ declare interface JMapContextAfterApplyEventParams extends JMapContextEventParam
 }
 
 declare interface JMapContextSetActiveResult {
-  hasInitialized: boolean
+  hasBeanInitialized: boolean
   hasLoadedDefault: boolean
   hasLoadedShared: boolean
   hasLoadingDefaultError?: boolean
