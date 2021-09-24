@@ -2589,7 +2589,7 @@ declare namespace JMap {
      * If the JMap layer is not visible, no features are returned.
      * 
      * MapBox splits geometries along tiles internally, meaning for instance that a polygon feature that crosses many tiles will be returned as multiple polygon pieces (sharing all properties of the original source features).
-     * By default, getRenderedFeatures will only return one of those piecces (a random one).
+     * By default, getRenderedFeatures will only return one of those pieces (a random one).
      * If you pass a JGetRenderedFeaturesParams with keepAllTiles = true, all feature pieces will be returned by getRenderedFeatures.
      * 
      * @throws Error if layer is not found
