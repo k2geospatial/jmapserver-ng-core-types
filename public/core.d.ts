@@ -2659,7 +2659,7 @@ declare namespace JMap {
      * 
      * ```
      */
-    function getSourceFeatures(layerId: JId, params?: JGetSourceFeaturesParams): Feature[]
+    function getSourceFeatures(layerId: JId, params?: JGetSourceFeaturesParams): GeoJSON.Feature[]
 
     /**
      * **JMap.Map.getRenderedFeaturesAttributeValues**
