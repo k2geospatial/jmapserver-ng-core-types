@@ -2584,7 +2584,13 @@ declare namespace JMap {
     /**
      * **JMap.Map.getRenderedFeatures**
      * 
-     * Returns rendered geojson features for the layer.
+     * Returns rendered geojson features for the specified Jmap layer. Features that are not rendered (i.e. filtered by MapBox) are not returned
+     * 
+     * If the JMap layer is not visible, no features are returned.
+     * 
+     * MapBox splits geometries along tiles internally, meaning for instance that a polygon feature that crosses many tiles will be returned as multiple polygon pieces (sharing all properties of the original source features).
+     * By default, getRenderedFeatures will only return one of those pieces (a random one).
+     * If you pass a JGetRenderedFeaturesParams with keepAllTiles = true, all feature pieces will be returned by getRenderedFeatures.
      * 
      * @throws Error if layer is not found
      * @throws Error if no or incorrect filter is passed
@@ -2615,6 +2621,46 @@ declare namespace JMap {
      */
     function getRenderedFeatures(layerId: JId, params?: JLocation | JBoundaryBox | JCircle | JGetRenderedFeaturesParams): GeoJSON.Feature[]
     
+    /**
+     * **JMap.Map.getSourceFeatures**
+     * 
+     * Returns geojson features for the specified JMap layer whether or not they are currently rendered by MapBox (i.e. whether or not they are filtered on screen)
+     * 
+     * If the JMap layer is not visible, no features are returned.
+     * 
+     * MapBox splits geometries along tiles internally, meaning for instance that a polygon feature that crosses many tiles will be returned as multiple polygon pieces (sharing all properties of the original source features).
+     * By default, getSourceFeatures will only return one of those pieces (a random one).
+     * If you pass a JGetSourceFeaturesParams with keepAllTiles = true, all feature pieces will be returned by getSourceFeatures.
+     * If you pass a JGetSourceFeaturesParams with keepAllTiles = false (or if keepAllTiles is not specified), and if a viewport is specified in the JGetSourceFeaturesParams, the sole feature piece returned is garanteed to be included in the viewport.
+     * 
+     * 
+     * @throws Error if layer is not found
+     * @throws Error any invalid parameter is passed
+     * @param layerId The JMap layer id
+     * @param params an optional JGetSourceFeaturesParams object
+     * 
+     * @example ```ts
+     * 
+     * const viewPort = JMap.Geometry.getPolygonFeature({
+     *    type: "Polygon",
+     *    coordinates: [
+     *      [
+     *        [ 20.44, 10.32 ], 
+     *        [ 20.44, 78.44 ], 
+     *        [ 40.56, 78.44 ], 
+     *        [ 40.56, 10.32 ], 
+     *        [ 20.44, 10.32 ]
+     *      ]
+     *    ]
+     * })
+     * 
+     * const features = JMap.Map.getSourceFeatures(1, {viewport: viewport})
+     * console.log("features for layer id=1 :" , features)
+     * 
+     * ```
+     */
+    function getSourceFeatures(layerId: JId, params?: JGetSourceFeaturesParams): Feature[]
+
     /**
      * **JMap.Map.getRenderedFeaturesAttributeValues**
      * 
