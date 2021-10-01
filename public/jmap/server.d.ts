@@ -1,4 +1,5 @@
 declare type JServerType = "legacy" | "saas"
+declare type JServerIdentityProviderType = "sso"
 
 declare interface JServerIdentityProviderById { 
   [ id: string ]: JServerIdentityProvider 
@@ -7,7 +8,7 @@ declare interface JServerIdentityProviderById {
 declare interface JServerInfo {
   identityProviderById: JServerIdentityProviderById
   standardLoginAvailable: boolean
-  version: string
+  version: JServerVersion
   type: JServerType
 }
 
@@ -19,4 +20,18 @@ declare interface JServerIdentityProvider {
   loginUrl: string
 }
 
-declare type JServerIdentityProviderType = "sso" 
+declare interface JServerVersion {
+  title: string
+  mainVersion: number
+  buildNumber: number
+}
+
+declare interface JMinimumServerVersion {
+  legacy: JServerVersion
+  saas: JServerVersion
+}
+
+declare interface JServerInfoReadyEventParams {
+  serverInfo: JServerInfo
+  isMinimumVersionRespected: boolean
+}
