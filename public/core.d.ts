@@ -105,23 +105,80 @@ declare namespace JMap {
   namespace Server {
 
     /**
-     * **JMap.Server.getVersion**
+     * **JMap.Server.isReady**
      * 
      * Returns a string identifying the full version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
-
+     *
      * @example ```ts
      * 
-     * console.log(JMap.Server.getVersion())
-     * // "7.0 Jakarta build 174"
+     * // display in the console if the server is ready or not
+     * console.log(JMap.Server.isReady() ? "Server is ready" : "Server is not ready")
      * ```
      */
-    function getVersion(): string
-    
+    function isReady(): boolean
+
+    /**
+     * **JMap.Server.getVersion**
+     * 
+     * Returns the server version.
+     * 
+     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
+     * @example ```ts
+     * 
+     * // display the server version
+     * console.log("Server version:", JMap.Server.getVersion())
+     * ```
+     */
+    function getVersion(): JServerVersion
+
+    /**
+     * **JMap.Server.getType**
+     * 
+     * Returns the server type.
+     * 
+     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
+     * @example ```ts
+     * 
+     * // display the server type, "legacy" (JMap 7) or "saas" (Jaaz)
+     * console.log(`Server type is "${JMap.Server.getType()}""`)
+     * ```
+     */
+    function getType(): JServerType
+
+    /**
+     * **JMap.Server.getMinimalVersion**
+     * 
+     * Return the minimal server version required by NG to work fine.
+     * 
+     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
+     * @example ```ts
+     * 
+     * // Return the minimal server version required by NG to work fine
+     * JMap.Server.getMinimalVersion()
+     * ```
+     */
+    function getMinimalVersion(): JMinimalServerVersion
+
+    /**
+     * **JMap.Server.isMinimalVersionRespected**
+     * 
+     * Return true if the current version of the server is lower than the minimal server version required by NG.
+     * 
+     * @param currentVersion if not passed will use the version returned by server
+     * @example ```ts
+     * 
+     * // Return true if current server version is greater or equals than minimal server version
+     * JMap.Server.isMinimalVersionRespected()
+     * ```
+     */
+    function isMinimalVersionRespected(currentVersion?: JServerVersion): boolean
+
     /**
      * **JMap.Server.getShortVersion**
      * 
      * Returns a normalized string identifying the major version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
-
+     * 
+     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @example ```ts
      * 
      * console.log(JMap.Server.getShortVersion())
@@ -135,6 +192,7 @@ declare namespace JMap {
      * 
      * Returns true is the standard JMap User Manager is available for authentication, false otherwise.
      * 
+     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @example ```ts
      * 
      * console.log(JMap.Server.isStandardLoginAvailable())
@@ -148,7 +206,7 @@ declare namespace JMap {
      * 
      * Returns the specified Identity Provider. Provider Ids can be derived from [[JMap.Server.getAllIdentityProvidersById]]
      * 
-     * @throws if specified provider id is not valid or not found
+     * @throws if specified provider id is not valid or not found, or if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @param providerId the provider identity id
      * @example ```ts
      * 
@@ -163,6 +221,7 @@ declare namespace JMap {
      * 
      * Return all the Identity Provider supported by the system, in an object keyed by provider Id
      * 
+     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @example ```ts
      * 
      * console.log(JMap.Server.getAllIdentityProvidersById())
@@ -5890,6 +5949,93 @@ declare namespace JMap {
        * 
        * // remove the listener "my-main-listener"
        * JMap.Event.Main.remove("my-main-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    namespace Server {
+
+      /**
+       * ***JMap.Event.Server.on***
+       * 
+       * Here have all JMap NG Core server related events.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Server.on.infoReady***
+         * 
+         * This event is triggered server info is fetched.
+         * 
+         * Fetching the server info is the first thing NG does.
+         * 
+         * At this point the user is not yet logged in.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log server info in the console, once the server has responded
+         * JMap.Event.Server.on.infoReady(
+         *   "custom-server-info-ready",
+         *   params => console.log("Server info:", params.serverInfo)
+         * )
+         * ```
+         */
+        function infoReady(listenerId: string, fn: (params: JServerInfoReadyEventParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Server.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If the listener is already active, do nothing.
+       * 
+       * If the listener is inactive, it will be reactivated and will be called again ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-server-listener"
+       * JMap.Event.Server.activate("my-server-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Server.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
+       * 
+       * If the listener is active, it will be deactivated and will be ignored ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-server-listener"
+       * JMap.Event.Server.deactivate("my-server-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Server.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-server-listener"
+       * JMap.Event.Server.remove("my-server-listener")
        * ```
        */
       function remove(listenerId: string): void

@@ -151,6 +151,7 @@ export interface JEventService {
   Extension: JExtensionEventModule
   MouseOver: JMouseOverEventModule
   MapContext: JMapContextEventModule
+  Server: JServerEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -168,6 +169,12 @@ export interface JEventModule {
   activate(listenerId: string): void
   deactivate(listenerId: string): void
   remove(listenerId: string): void
+}
+
+export interface JServerEventModule extends JEventModule {
+  on: {
+    infoReady(listenerId: string, fn: (params: JServerInfoReadyEventParams) => void): void
+  }
 }
 
 export interface JFormEventModule extends JEventModule {
@@ -409,6 +416,7 @@ export interface JLanguageState {
 }
 
 export interface JServerState extends JServerInfo {
+  isReady: boolean
   isLoading: boolean
   hasLoadingError: boolean
 }
@@ -819,7 +827,11 @@ export interface JExtensionService {
 }
 
 export interface JServerService {
-  getVersion(): string
+  isReady(): boolean
+  getVersion(): JServerVersion
+  getType(): JServerType
+  getMinimalVersion(): JMinimalServerVersion
+  isMinimalVersionRespected(currentVersion?: JServerVersion): boolean
   getShortVersion(): string
   isStandardLoginAvailable(): boolean
   getIdentityProviderById(providerId: string): JServerIdentityProvider
