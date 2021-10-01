@@ -146,32 +146,32 @@ declare namespace JMap {
     function getType(): JServerType
 
     /**
-     * **JMap.Server.getMinimalVersion**
+     * **JMap.Server.getMinimumVersion**
      * 
-     * Return the minimal server version required by NG to work fine.
+     * Return the minimum server version required by NG to work fine.
      * 
      * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @example ```ts
      * 
-     * // Return the minimal server version required by NG to work fine
-     * JMap.Server.getMinimalVersion()
+     * // Return the minimum server version required by NG to work fine
+     * JMap.Server.getMinimumVersion()
      * ```
      */
-    function getMinimalVersion(): JMinimalServerVersion
+    function getMinimumVersion(): JMinimumServerVersion
 
     /**
-     * **JMap.Server.isMinimalVersionRespected**
+     * **JMap.Server.isMinimumVersionRespected**
      * 
-     * Return true if the current version of the server is lower than the minimal server version required by NG.
+     * Return true if the current version of the server is lower than the minimum server version required by NG.
      * 
      * @param currentVersion if not passed will use the version returned by server
      * @example ```ts
      * 
-     * // Return true if current server version is greater or equals than minimal server version
-     * JMap.Server.isMinimalVersionRespected()
+     * // Return true if current server version is greater or equals than minimum server version
+     * JMap.Server.isMinimumVersionRespected()
      * ```
      */
-    function isMinimalVersionRespected(currentVersion?: JServerVersion): boolean
+    function isMinimumVersionRespected(currentVersion?: JServerVersion): boolean
 
     /**
      * **JMap.Server.getShortVersion**

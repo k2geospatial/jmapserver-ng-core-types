@@ -830,8 +830,8 @@ export interface JServerService {
   isReady(): boolean
   getVersion(): JServerVersion
   getType(): JServerType
-  getMinimalVersion(): JMinimalServerVersion
-  isMinimalVersionRespected(currentVersion?: JServerVersion): boolean
+  getMinimumVersion(): JMinimumServerVersion
+  isMinimumVersionRespected(currentVersion?: JServerVersion): boolean
   getShortVersion(): string
   isStandardLoginAvailable(): boolean
   getIdentityProviderById(providerId: string): JServerIdentityProvider
