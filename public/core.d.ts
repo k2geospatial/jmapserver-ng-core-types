@@ -1836,9 +1836,9 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * const wkt = "POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))"
+     * const wktPolygon = "POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))"
      * // The method will return a polygon feature
-     * const feature = JMap.Geometry.getFeatureFromWkt(wkt)
+     * const polygonFeature = JMap.Geometry.getFeatureFromWkt(wkt)
      * ```
      */
     function getFeatureFromWkt(wkt: string): Feature
