@@ -1,21 +1,52 @@
 declare type JServerType = "legacy" | "saas"
-declare type JServerIdentityProviderType = "sso"
+declare type JServerSaasStatus = "STARTING" | "UP" | "DOWN" 
+declare type JServerIdentityProviderType = "legacy-sso" | "auth0-spa" | "jaaz.io"
 
 declare interface JServerIdentityProviderById { 
-  [ id: string ]: JServerIdentityProvider 
+  [ id: string ]: JServerAnyIdentityProvider 
 } 
+
+declare interface JServerSaasServiceById {
+  [ id: string ]: JServerSaasService
+}
 
 declare interface JServerInfo {
   identityProviderById: JServerIdentityProviderById
   standardLoginAvailable: boolean
   version: JServerVersion
   type: JServerType
+  saasServiceById?: JServerSaasServiceById
 }
 
-declare interface JServerIdentityProvider {
+declare interface JServerSaasService {
   id: string
-  type: JServerIdentityProviderType
   name: string
+  version: string
+  status: JServerSaasStatus
+  restBaseUrl: string
+}
+
+declare type JServerAnyIdentityProvider = JServerIdentityProviderJaazNative | JServerIdentityProviderAuth0Password | JServerIdentityProviderSso
+
+declare interface JServerIdentityProviderBase {
+  id: string
+  name: string
+  type: JServerIdentityProviderType
+}
+
+declare interface JServerIdentityProviderJaazNative extends JServerIdentityProviderBase {
+  type: "jaaz.io"
+}
+
+declare interface JServerIdentityProviderAuth0Password extends JServerIdentityProviderBase {
+  type: "auth0-spa"
+  domain: string
+  clientId: string
+  realm: string
+}
+
+declare interface JServerIdentityProviderSso extends JServerIdentityProviderBase {
+  type: "legacy-sso"
   imageData: string
   loginUrl: string
 }
