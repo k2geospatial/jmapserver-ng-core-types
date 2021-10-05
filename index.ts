@@ -502,9 +502,10 @@ export interface JGeometryService {
   getLineLength(feature: Feature<LineString> | Feature<MultiLineString>, units?: JGeometryUnit | JDistanceUnit): number
   getCentroid(feature: Feature | FeatureCollection): Feature<Point>
   getFeatureFromLine(line: JLine): Feature<LineString>
+  getFeatureFromWkt(wkt: string): Feature
   getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): Feature<Polygon>
   getFeatureFromPolygon(polygon: JPolygon): Feature<Polygon>
-  getBboxFromFeature(polygon: Feature): JBoundaryBox
+  getBboxFromFeature(feature: Feature): JBoundaryBox
   getBboxFromFeatures(features: Feature[]): JBoundaryBox
   getBboxFromPolygon(polygon: JPolygon): JBoundaryBox
   getBboxFromLine(line: JLine): JBoundaryBox
@@ -835,7 +836,7 @@ export interface JServerService {
   isMinimumVersionRespected(currentVersion?: JServerVersion): boolean
   getShortVersion(): string
   isStandardLoginAvailable(): boolean
-  getIdentityProviderById(providerId: string): JServerIdentityProvider
+  getIdentityProviderById(providerId: string): JServerAnyIdentityProvider
   getAllIdentityProvidersById(): JServerIdentityProviderById
 }
 

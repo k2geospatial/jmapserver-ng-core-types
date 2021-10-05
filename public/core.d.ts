@@ -214,7 +214,7 @@ declare namespace JMap {
      * // {id: "idp-0", loginUrl: "https:// ....", ......}
      * ```
      */
-    function getIdentityProviderById(providerId: string): JServerIdentityProvider
+    function getIdentityProviderById(providerId: string): JServerAnyIdentityProvider
     
     /**
      * **JMap.Server.getAllIdentityProvidersById**
@@ -1827,9 +1827,26 @@ declare namespace JMap {
     function getFeatureFromLine(line: JLine): GeoJSON.Feature<GeoJSON.LineString>
     
     /**
+     * **JMap.Geometry.getFeatureFromWkt**
+     * 
+     * Returns a GeoJSON feature from a Well-Known Text geometry representation.
+     * 
+     * @throws if the passed WKT is invalid
+     * @param wkt a Well-Known Text geometry
+     * 
+     * @example ```ts
+     * 
+     * const wkt = "POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))"
+     * // The method will return a polygon feature
+     * const feature = JMap.Geometry.getFeatureFromWkt(wkt)
+     * ```
+     */
+    function getFeatureFromWkt(wkt: string): Feature
+
+    /**
      * **JMap.Geometry.getPolygonFeatureFromCircle**
      * 
-     * Returns a plygon feature from a circle object ([[JCircle]]).
+     * Returns a polygon feature from a circle object ([[JCircle]]).
      * 
      * @param circle A circle object
      * @param units unit of the radius
@@ -5244,7 +5261,7 @@ declare namespace JMap {
      * 
      * // fetch all Identity Providers
      * const allProviders = JMap.Server.getAllIdentityProvidersById()
-     * // {idp-1: {id: "idp-1", type: "sso", ..... }}
+     * // {idp-1: {id: "idp-1", type: "legacy-sso", ..... }}
      * 
      * // Open a new user session using the first provider received
      * JMap.User.loginWithIdentityProvider("idp-1")
