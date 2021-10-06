@@ -1555,7 +1555,7 @@ declare namespace JMap {
      * // hover is false by default, but can be activated
      * JMap.Layer.isHoverActive()
      * ```
-     * */
+     **/
     function isHoverActive(): boolean
 
     /**
@@ -1570,7 +1570,7 @@ declare namespace JMap {
      * // Activate feature hover highlight
      * JMap.Layer.activateHover()
      * ```
-     * */
+     **/
     function activateHover(): void
 
     /**
@@ -1585,8 +1585,42 @@ declare namespace JMap {
      * // Deactivate feature hover highlight
      * JMap.Layer.deactivateHover()
      * ```
-     * */
+     **/
     function deactivateHover(): void
+
+    /**
+     * **JMap.Layer.hasServerReport**
+     * 
+     * Returns true if the given layer has a report set in JMap Admin.
+     * 
+     * @param layerId the JMap layer id
+     * @throws if layerId not valid or layer not found
+     * @example ```ts
+     * 
+     * // returns true if JMap layer id="3" has report set in JMap admin
+     * JMap.Layer.hasServerReport(3)
+     * ```
+     **/
+    function hasServerReport(layerId: JId): boolean
+
+    /**
+     * **JMap.Layer.openServerReportInTab**
+     * 
+     * Open a new tab in order to display the server report for the given layer id and feature ids
+     * 
+     * @param layerId the JMap layer id
+     * @param featureIds the JMap feature ids
+     * @throws if layerId not valid or layer not found
+     * @example ```ts
+     * 
+     * // open a new tab that display the server report of features ids=33 and 44, for layer id=3
+     * JMap.Layer
+     *  .openServerReportInTab(3, [33, 44])
+     *  .then(() => console.log("Tab has been opened"))
+     *  .catch(error => console.error("Cannot open the report tab", error))
+     * ```
+     **/
+    function openServerReportInTab(layerId: JId, featureIds: JId[]): Promise<string>
   }
 
   /**
@@ -3134,7 +3168,7 @@ declare namespace JMap {
      * // clear all flashed locations after a timeout of 30 seconds
      * setTimeout(()=>JMap.Map.clearFlashingLocations(), 30000)
      * ```     
-     * */
+     **/
     function clearFlashingLocations():void
 
     /**
@@ -3158,7 +3192,7 @@ declare namespace JMap {
      *   zoom: 4
      * })
      * ```     
-     * */
+     **/
     function getResolution(params?: JLatitudeAndZoom): number
 
     /**
