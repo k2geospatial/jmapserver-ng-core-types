@@ -745,8 +745,8 @@ export interface JLayerService {
   isHoverActive(): boolean
   activateHover(): void
   deactivateHover(): void
-  hasServerReport(layerId: JId): boolean
-  openServerReportInTab(layerId: JId, featureIds: JId[]): Promise<string>
+  hasInformationReport(layerId: JId): boolean
+  openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
 }
 
 export interface JLayerSearchService {

@@ -1589,38 +1589,38 @@ declare namespace JMap {
     function deactivateHover(): void
 
     /**
-     * **JMap.Layer.hasServerReport**
+     * **JMap.Layer.hasInformationReport**
      * 
-     * Returns true if the given layer has a report set in JMap Admin.
+     * Returns true if the given layer has an information report set in JMap Admin.
      * 
      * @param layerId the JMap layer id
      * @throws if layerId not valid or layer not found
      * @example ```ts
      * 
-     * // returns true if JMap layer id="3" has report set in JMap admin
-     * JMap.Layer.hasServerReport(3)
+     * // returns true if JMap layer id="3" has an information report set in JMap admin
+     * JMap.Layer.hasInformationReport(3)
      * ```
      **/
-    function hasServerReport(layerId: JId): boolean
+    function hasInformationReport(layerId: JId): boolean
 
     /**
-     * **JMap.Layer.openServerReportInTab**
+     * **JMap.Layer.openInformationReportInNewTab**
      * 
-     * Open a new tab in order to display the server report for the given layer id and feature ids
+     * Open a new tab in order to display the information report for the given layer id and feature ids
      * 
      * @param layerId the JMap layer id
      * @param featureIds the JMap feature ids
-     * @throws if layerId not valid or layer not found
+     * @throws if layerId not valid or layer not found, or layer has no information report set
      * @example ```ts
      * 
-     * // open a new tab that display the server report of features ids=33 and 44, for layer id=3
+     * // open a new tab that display the information report of features ids=33 and 44, for layer id=3
      * JMap.Layer
-     *  .openServerReportInTab(3, [33, 44])
-     *  .then(() => console.log("Tab has been opened"))
-     *  .catch(error => console.error("Cannot open the report tab", error))
+     *  .openInformationReportInNewTab(3, [33, 44])
+     *  .then(() => console.log("Information report opened in new tab"))
+     *  .catch(error => console.error("Cannot open the information report in new tab", error))
      * ```
      **/
-    function openServerReportInTab(layerId: JId, featureIds: JId[]): Promise<string>
+    function openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
   }
 
   /**

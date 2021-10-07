@@ -115,7 +115,7 @@ declare interface JLayer extends JLayerTreeElement {
   authorPropertyName: string
   lowercasedAttributeIds: string[]
   forms: JLayerForm[]
-  hasReport: boolean
+  hasInformationReport: boolean
 }
 
 declare interface JLayerForm {
