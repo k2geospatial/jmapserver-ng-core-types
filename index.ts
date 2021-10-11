@@ -536,6 +536,7 @@ export interface JMapService {
   getExtent(): JBoundaryBox
   getCenter(): { x: number, y: number }
   getZoom(): number
+  getMapBoxSourceIdByJMapLayerId(layerId: JId): string
   isScaleControlVisible(): boolean
   setScaleControlVisibility(isVisible: boolean, position?: JMapPosition): void
   setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void
