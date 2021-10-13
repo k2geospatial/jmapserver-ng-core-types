@@ -2255,13 +2255,13 @@ declare namespace JMap {
     /**
      * ***JMap.Map.getMapBoxSourceIdByJMapLayerId***
      * 
-     * Return the source id of the given Jmap Layer Id.
+     * Return the source id of the given Jmap layer id.
      * 
-     * @throws if invalid JMap Layer Id or if JMap Layer doesn't exist
-     * @param layerId the JMap Layer Id
+     * @throws if invalid JMap layer id or if JMap layer doesn't exist
+     * @param layerId the JMap layer id
      * @example ```ts
      * 
-     * // return the source id of the JMap layer with Id 4
+     * // return the source id of the JMap layer with id 4
      * JMap.Map.getMapBoxSourceIdByJMapLayerId(4)
      * ```
      */
