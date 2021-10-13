@@ -2257,7 +2257,7 @@ declare namespace JMap {
      * 
      * Return the source id of the given Jmap Layer Id.
      * 
-     * @throws if invalid JMap Layer Id or if JMap Layer Id doesn't exist
+     * @throws if invalid JMap Layer Id or if JMap Layer doesn't exist
      * @param layerId the JMap Layer Id
      * @example ```ts
      * 
