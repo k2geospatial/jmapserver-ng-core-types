@@ -2253,6 +2253,21 @@ declare namespace JMap {
     function getZoom(): number
 
     /**
+     * ***JMap.Map.getMapBoxSourceIdByJMapLayerId***
+     * 
+     * Return the source id of the given Jmap layer id.
+     * 
+     * @throws if invalid JMap layer id or if JMap layer doesn't exist
+     * @param layerId the JMap layer id
+     * @example ```ts
+     * 
+     * // return the source id of the JMap layer with id 4
+     * JMap.Map.getMapBoxSourceIdByJMapLayerId(4)
+     * ```
+     */
+    function getMapBoxSourceIdByJMapLayerId(layerId: JId): string
+
+    /**
      * ***JMap.Map.isNavigationHistoryControlVisible***
      * 
      * Returns true if the Navigation History control is visible on the map.
