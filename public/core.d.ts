@@ -1841,7 +1841,7 @@ declare namespace JMap {
      * const polygonFeature = JMap.Geometry.getFeatureFromWkt(wkt)
      * ```
      */
-    function getFeatureFromWkt(wkt: string): Feature
+    function getFeatureFromWkt(wkt: string): GeoJSON.Feature
 
     /**
      * **JMap.Geometry.getPolygonFeatureFromCircle**
