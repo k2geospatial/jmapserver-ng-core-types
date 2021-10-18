@@ -4639,6 +4639,23 @@ declare namespace JMap {
      * ```
      */
     function processJSAndPhotosForContent(content: JMouseOverContent): void
+
+    /**
+     * **JMap.MouseOver.openInformationReportInNewTab**
+     * 
+     * Open the information report related to given layerId in a new tab.
+     * 
+     * Display information report for all features that are displayed in the mouseover.
+     *
+     * @param projectId The JMap project id
+     * @throws if mouseover doesn't display any feature for the given layer
+     * @example ```ts
+     * 
+     * // open the information report related to layer id=3
+     * JMap.MouseOver.openInformationReportInNewTab(2)
+     * ```
+     */
+    function openInformationReportInNewTab(layerId: JId): Promise<string>
   }
   /**
    * **JMap.Project**

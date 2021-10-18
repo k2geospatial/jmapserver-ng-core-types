@@ -820,6 +820,7 @@ export interface JMouseOverService {
   renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
   getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined
   processJSAndPhotosForContent(content: JMouseOverContent): void
+  openInformationReportInNewTab(layerId: JId): Promise<string>
 }
 
 export interface JExtensionService {
