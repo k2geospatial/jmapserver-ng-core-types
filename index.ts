@@ -746,6 +746,8 @@ export interface JLayerService {
   isHoverActive(): boolean
   activateHover(): void
   deactivateHover(): void
+  hasInformationReport(layerId: JId): boolean
+  openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
 }
 
 export interface JLayerSearchService {
@@ -819,6 +821,7 @@ export interface JMouseOverService {
   renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
   getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined
   processJSAndPhotosForContent(content: JMouseOverContent): void
+  openInformationReportInNewTab(layerId: JId): Promise<string>
 }
 
 export interface JExtensionService {
