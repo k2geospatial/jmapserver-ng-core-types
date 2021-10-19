@@ -1610,7 +1610,7 @@ declare namespace JMap {
      * 
      * @param layerId the JMap layer id
      * @param featureIds the JMap feature ids
-     * @throws if layerId not valid or layer not found, or layer has no information report set
+     * @throws if layerId not valid or layer not found, or layer has no information report set, or featureIds is not an array or empty
      * @example ```ts
      * 
      * // open a new tab that display the information report of features ids=33 and 44, for layer id=3
