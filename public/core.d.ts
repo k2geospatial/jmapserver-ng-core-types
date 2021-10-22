@@ -8604,6 +8604,7 @@ declare namespace JMap {
        * 
        * Return null if localStorage is not available.
        * 
+       * @param key the item key
        * @example ```ts
        * 
        * // returns the value if exists for the given key
@@ -8619,6 +8620,8 @@ declare namespace JMap {
        * 
        * Set nothing and do nothing if local storage is not available.
        * 
+       * @param key the item key
+       * @param value the new item value
        * @example ```ts
        * 
        * // set the value "my value" for the key "my-key"
@@ -8634,6 +8637,7 @@ declare namespace JMap {
        * 
        * Do nothing if local storage is not available.
        * 
+       * @param key the item key
        * @example ```ts
        * 
        * // removes the key/value item "my-key" if exist
