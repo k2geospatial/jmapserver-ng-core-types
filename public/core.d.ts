@@ -8578,6 +8578,72 @@ declare namespace JMap {
     }
 
     /**
+     * **JMap.Util.LocalStorage**
+     * 
+     * Some browser doesn't support local storage, you can use this service in order to avoid error
+     */
+    namespace LocalStorage {
+
+      /**
+       * **JMap.Util.LocalStorage.isAvailable**
+       * 
+       * Returns true if browser support local storage.
+       * 
+       * @example ```ts
+       * 
+       * // returns true if browser support local storage
+       * JMap.Util.LocalStorage.isAvailable()
+       * ```
+       */
+      function isAvailable(): boolean
+
+      /**
+       * **JMap.Util.LocalStorage.get**
+       * 
+       * Returns the value, or null if not exists, for the given key.
+       * 
+       * Return null if localStorage is not available.
+       * 
+       * @example ```ts
+       * 
+       * // returns the value if exists for the given key
+       * JMap.Util.LocalStorage.get("my-key")
+       * ```
+       */
+      function get(key: string): string | null
+
+      /**
+       * **JMap.Util.LocalStorage.set**
+       * 
+       * Set the key in local storage.
+       * 
+       * Set nothing and do nothing if local storage is not available.
+       * 
+       * @example ```ts
+       * 
+       * // set the value "my value" for the key "my-key"
+       * JMap.Util.LocalStorage.set("my-key", "my value")
+       * ```
+       */
+      function set(key: string, value: string): void
+
+      /**
+       * **JMap.Util.LocalStorage.remove**
+       * 
+       * Removes the key/value item for the given key.
+       * 
+       * Do nothing if local storage is not available.
+       * 
+       * @example ```ts
+       * 
+       * // removes the key/value item "my-key" if exist
+       * JMap.Util.LocalStorage.remove("my-key")
+       * ```
+       */
+      function remove(key: string): void
+    }
+
+    /**
      * **JMap.Util.loadJSFile**
      * 
      * Load an external JS File then resolve when file has been loaded.
