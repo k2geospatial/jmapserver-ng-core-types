@@ -91,10 +91,18 @@ export interface JDateService {
 
 export interface JUtilService {
   Date: JDateService
+  LocalStorage: JLocalStorageService
   loadJSFile(fileUrl: string): Promise<void>
   isJMapId(id: any, allowStringNumber?: boolean): boolean
   checkJmapId(id: any, message?: string): void
   getJmapIdAsIntegerIfPossible(id: any): JId
+}
+
+export interface JLocalStorageService {
+  isAvailable(): boolean
+  get(key: string): string | null
+  set(key: string, value: string): void
+  remove(key: string): void
 }
 
 export interface JPhotoService {
