@@ -91,10 +91,18 @@ export interface JDateService {
 
 export interface JUtilService {
   Date: JDateService
+  LocalStorage: JLocalStorageService
   loadJSFile(fileUrl: string): Promise<void>
   isJMapId(id: any, allowStringNumber?: boolean): boolean
   checkJmapId(id: any, message?: string): void
   getJmapIdAsIntegerIfPossible(id: any): JId
+}
+
+export interface JLocalStorageService {
+  isAvailable(): boolean
+  get(key: string): string | null
+  set(key: string, value: string): void
+  remove(key: string): void
 }
 
 export interface JPhotoService {
@@ -746,6 +754,8 @@ export interface JLayerService {
   isHoverActive(): boolean
   activateHover(): void
   deactivateHover(): void
+  hasInformationReport(layerId: JId): boolean
+  openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
 }
 
 export interface JLayerSearchService {
@@ -819,6 +829,7 @@ export interface JMouseOverService {
   renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
   getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined
   processJSAndPhotosForContent(content: JMouseOverContent): void
+  openInformationReportInNewTab(layerId: JId): Promise<string>
 }
 
 export interface JExtensionService {

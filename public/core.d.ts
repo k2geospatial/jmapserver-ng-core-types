@@ -1555,7 +1555,7 @@ declare namespace JMap {
      * // hover is false by default, but can be activated
      * JMap.Layer.isHoverActive()
      * ```
-     * */
+     **/
     function isHoverActive(): boolean
 
     /**
@@ -1570,7 +1570,7 @@ declare namespace JMap {
      * // Activate feature hover highlight
      * JMap.Layer.activateHover()
      * ```
-     * */
+     **/
     function activateHover(): void
 
     /**
@@ -1585,8 +1585,42 @@ declare namespace JMap {
      * // Deactivate feature hover highlight
      * JMap.Layer.deactivateHover()
      * ```
-     * */
+     **/
     function deactivateHover(): void
+
+    /**
+     * **JMap.Layer.hasInformationReport**
+     * 
+     * Returns true if the given layer has an information report set in JMap Admin.
+     * 
+     * @param layerId the JMap layer id
+     * @throws if layerId not valid or layer not found
+     * @example ```ts
+     * 
+     * // returns true if JMap layer id="3" has an information report set in JMap admin
+     * JMap.Layer.hasInformationReport(3)
+     * ```
+     **/
+    function hasInformationReport(layerId: JId): boolean
+
+    /**
+     * **JMap.Layer.openInformationReportInNewTab**
+     * 
+     * Open a new tab in order to display the information report for the given layer id and feature ids
+     * 
+     * @param layerId the JMap layer id
+     * @param featureIds the JMap feature ids
+     * @throws if layerId not valid or layer not found, or layer has no information report set, or featureIds is not an array or empty
+     * @example ```ts
+     * 
+     * // open a new tab that display the information report of features ids=33 and 44, for layer id=3
+     * JMap.Layer
+     *  .openInformationReportInNewTab(3, [33, 44])
+     *  .then(() => console.log("Information report opened in new tab"))
+     *  .catch(error => console.error("Cannot open the information report in new tab", error))
+     * ```
+     **/
+    function openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
   }
 
   /**
@@ -3149,7 +3183,7 @@ declare namespace JMap {
      * // clear all flashed locations after a timeout of 30 seconds
      * setTimeout(()=>JMap.Map.clearFlashingLocations(), 30000)
      * ```     
-     * */
+     **/
     function clearFlashingLocations():void
 
     /**
@@ -3173,7 +3207,7 @@ declare namespace JMap {
      *   zoom: 4
      * })
      * ```     
-     * */
+     **/
     function getResolution(params?: JLatitudeAndZoom): number
 
     /**
@@ -4620,6 +4654,23 @@ declare namespace JMap {
      * ```
      */
     function processJSAndPhotosForContent(content: JMouseOverContent): void
+
+    /**
+     * **JMap.MouseOver.openInformationReportInNewTab**
+     * 
+     * Open the information report related to given layerId in a new tab.
+     * 
+     * Display information report for all features that are displayed in the mouseover.
+     *
+     * @param projectId The JMap project id
+     * @throws if mouseover doesn't display any feature for the given layer
+     * @example ```ts
+     * 
+     * // open the information report related to layer id=3
+     * JMap.MouseOver.openInformationReportInNewTab(2)
+     * ```
+     */
+    function openInformationReportInNewTab(layerId: JId): Promise<string>
   }
   /**
    * **JMap.Project**
@@ -8524,6 +8575,76 @@ declare namespace JMap {
        * ```
        */
       function isAfter(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
+    }
+
+    /**
+     * **JMap.Util.LocalStorage**
+     * 
+     * Some browser doesn't support local storage, you can use this service in order to avoid error
+     */
+    namespace LocalStorage {
+
+      /**
+       * **JMap.Util.LocalStorage.isAvailable**
+       * 
+       * Returns true if browser support local storage.
+       * 
+       * @example ```ts
+       * 
+       * // returns true if browser support local storage
+       * JMap.Util.LocalStorage.isAvailable()
+       * ```
+       */
+      function isAvailable(): boolean
+
+      /**
+       * **JMap.Util.LocalStorage.get**
+       * 
+       * Returns the value, or null if not exists, for the given key.
+       * 
+       * Return null if localStorage is not available.
+       * 
+       * @param key the item key
+       * @example ```ts
+       * 
+       * // returns the value if exists for the given key
+       * JMap.Util.LocalStorage.get("my-key")
+       * ```
+       */
+      function get(key: string): string | null
+
+      /**
+       * **JMap.Util.LocalStorage.set**
+       * 
+       * Set the key in local storage.
+       * 
+       * Set nothing and do nothing if local storage is not available.
+       * 
+       * @param key the item key
+       * @param value the new item value
+       * @example ```ts
+       * 
+       * // set the value "my value" for the key "my-key"
+       * JMap.Util.LocalStorage.set("my-key", "my value")
+       * ```
+       */
+      function set(key: string, value: string): void
+
+      /**
+       * **JMap.Util.LocalStorage.remove**
+       * 
+       * Removes the key/value item for the given key.
+       * 
+       * Do nothing if local storage is not available.
+       * 
+       * @param key the item key
+       * @example ```ts
+       * 
+       * // removes the key/value item "my-key" if exist
+       * JMap.Util.LocalStorage.remove("my-key")
+       * ```
+       */
+      function remove(key: string): void
     }
 
     /**
