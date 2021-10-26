@@ -98,6 +98,26 @@ declare namespace JMap {
   */
   function getOS(): JOperatingSystem
 
+  /**
+   * **JMap.setMainLayoutVisibility**
+   * 
+   * Set the main UI layout visibility.
+   * 
+   * By default main UI layout is visible.
+   * 
+   * @throws if isVisible is not boolean value
+   * @param isVisible false to hide, true to show
+   * @example ```ts
+   * 
+   * // display main layout
+   * JMap.setMainLayoutVisibility(true)
+   * 
+   * // hide main layout
+   * JMap.setMainLayoutVisibility(false)
+   * ```
+   */
+  function setMainLayoutVisibility(isVisible: boolean): void
+
   /* **JMap.Server**
    * 
    * This is where you can find JMap Server relative methods
