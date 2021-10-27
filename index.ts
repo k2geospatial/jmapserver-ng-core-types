@@ -126,6 +126,7 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
+  setMainLayoutVisibility(isVisible: boolean): void
 }
 
 export interface JGeolocationService {
@@ -303,6 +304,7 @@ export interface JMapContextEventModule extends JEventModule {
 }
 
 export interface JCoreState {
+  main: JMainState
   map: JMapState
   project: JProjectState
   layer: JLayerState
@@ -315,6 +317,10 @@ export interface JCoreState {
   server: JServerState
   mapContext: JMapContextState
   external?: any
+}
+
+export interface JMainState {
+  isMainLayoutVisible: boolean
 }
 
 export interface JMapContextState {
@@ -414,6 +420,7 @@ export interface JQueryState {
 }
 
 export interface JUserState {
+  isLoggingIn: boolean
   identity: JUserIdentity
   token: string
   informations: JUserInfo[]
