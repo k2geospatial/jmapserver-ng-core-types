@@ -1,6 +1,6 @@
 declare type JServerType = "legacy" | "saas"
 declare type JServerSaasStatus = "STARTING" | "UP" | "DOWN" 
-declare type JServerIdentityProviderType = "legacy-sso" | "auth0-spa" | "jaaz.io"
+declare type JServerIdentityProviderType = "sso" | "auth0-spa" | "jaaz.io"
 
 declare interface JServerIdentityProviderById { 
   [ id: string ]: JServerAnyIdentityProvider 
@@ -46,7 +46,7 @@ declare interface JServerIdentityProviderAuth0Password extends JServerIdentityPr
 }
 
 declare interface JServerIdentityProviderSso extends JServerIdentityProviderBase {
-  type: "legacy-sso"
+  type: "sso"
   imageData: string
   loginUrl: string
 }

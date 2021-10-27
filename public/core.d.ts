@@ -5347,7 +5347,7 @@ declare namespace JMap {
      * 
      * // fetch all Identity Providers
      * const allProviders = JMap.Server.getAllIdentityProvidersById()
-     * // {idp-1: {id: "idp-1", type: "legacy-sso", ..... }}
+     * // {idp-1: {id: "idp-1", type: "sso", ..... }}
      * 
      * // Open a new user session using the first provider received
      * JMap.User.loginWithIdentityProvider("idp-1")
