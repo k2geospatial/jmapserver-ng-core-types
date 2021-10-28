@@ -161,6 +161,7 @@ export interface JEventService {
   MouseOver: JMouseOverEventModule
   MapContext: JMapContextEventModule
   Server: JServerEventModule
+  Query: JQueryEventModule
 }
 
 export type JEventFunction = (params?: any) => void
@@ -178,6 +179,14 @@ export interface JEventModule {
   activate(listenerId: string): void
   deactivate(listenerId: string): void
   remove(listenerId: string): void
+}
+
+export interface JQueryEventModule extends JEventModule {
+  on: {
+    beforeSubmit(listenerId: string, fn: (params: JQueryBeforeEventParams) => void): void
+    success(listenerId: string, fn: (params: JQuerySuccessEventParams) => void): void
+    error(listenerId: string, fn: (params: JQueryErrorEventParams) => void): void
+  }
 }
 
 export interface JServerEventModule extends JEventModule {
