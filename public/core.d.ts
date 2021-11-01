@@ -6069,7 +6069,7 @@ declare namespace JMap {
       /**
        * ***JMap.Event.Query.on***
        * 
-       * Here you have all JMap NG Core high level available events on which you can attach a listener.
+       * Here you have all JMap NG Core query events on which you can attach a listener.
        */
       namespace on {
 
