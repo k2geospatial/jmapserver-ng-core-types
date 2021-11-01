@@ -6057,17 +6057,6 @@ declare namespace JMap {
       function remove(listenerId: string): void
     }
 
-
-
-
-
-
-
-
-
-
-
-
     /**
      * ***JMap.Event.Query***
      * 
@@ -6195,18 +6184,6 @@ declare namespace JMap {
        */
       function remove(listenerId: string): void
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     namespace Server {
 
