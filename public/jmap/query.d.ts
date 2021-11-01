@@ -24,24 +24,10 @@ declare interface JQueryBeforeEventParams {
   enteredData: any
 }
 
-declare interface JQuerySuccessEventParams {
-  id: string
-  groupId: string
-  name: string
-  layerId: JId
-  maxScale: number
-  maxResults: number
-  enteredData: any
+declare interface JQuerySuccessEventParams extends JQueryBeforeEventParams {
   returnedFeatures: GeoJSON.Feature[]
 }
 
-declare interface JQueryErrorEventParams {
-  id: string
-  groupId: string
-  name: string
-  layerId: JId
-  maxScale: number
-  maxResults: number
-  enteredData: any
+declare interface JQueryErrorEventParams extends JQueryBeforeEventParams {
   error: string
 }
