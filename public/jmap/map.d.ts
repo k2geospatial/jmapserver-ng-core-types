@@ -18,11 +18,6 @@ declare interface JLatitudeAndZoom {
   latitude?: number
 }
 
-declare interface JScreenDPI {
-  x: number
-  y: number
-}
-
 declare interface JGetRenderedFeaturesParams {
   geoFilter?: JLocation | JBoundaryBox | JCircle
   keepAllTiles?: boolean
