@@ -6057,6 +6057,134 @@ declare namespace JMap {
       function remove(listenerId: string): void
     }
 
+    /**
+     * ***JMap.Event.Query***
+     * 
+     * Here you can manage all query event listeners.
+     * 
+     * Click to see all events available: ***[[JMap.Event.Query.on]]***. 
+     */
+    namespace Query {
+
+      /**
+       * ***JMap.Event.Query.on***
+       * 
+       * Here you have all JMap NG Core query events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Query.on.beforeSubmit***
+         * 
+         * This event is triggered when a query is submitted, before the call to the server is made.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once the button submit is clicked.
+         * JMap.Event.Query.on.beforeSubmit(
+         *   "custom-query-before-submit", 
+         *   params => console.log("A query to the server will be done", params)
+         * )
+         * ```
+         */
+        function beforeSubmit(listenerId: string, fn: (params: JQueryBeforeEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Query.on.success***
+         * 
+         * This event is triggered when a query has been processed, after the call to the server has been made.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once the server has responded
+         * JMap.Event.Query.on.success(
+         *   "custom-query-success", 
+         *   params => console.log("A query to the server has been done", params)
+         * )
+         * ```
+         */
+        function success(listenerId: string, fn: (params: JQuerySuccessEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Query.on.error***
+         * 
+         * This event is triggered when a query has been processed, but an error occured.
+         * 
+         * Id the max result limit is reach, an error is thrown, and this event is triggered.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console if a query error occured
+         * JMap.Event.Query.on.error(
+         *   "custom-query-error", 
+         *   params => console.log("A query to the server has failed", params)
+         * )
+         * ```
+         */
+        function error(listenerId: string, fn: (params: JQueryErrorEventParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Query.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If the listener is already active, do nothing.
+       * 
+       * If the listener is inactive, it will be reactivated and will be called again ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-query-listener"
+       * JMap.Event.Query.activate("my-query-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Query.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
+       * 
+       * If the listener is active, it will be deactivated and will be ignored ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-query-listener"
+       * JMap.Event.Query.deactivate("my-query-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Query.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-query-listener"
+       * JMap.Event.Query.remove("my-query-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
     namespace Server {
 
       /**

@@ -13,3 +13,21 @@ declare interface JQuery {
   maxResults: number,
   formMetaData: JFormMetaData
 }
+
+declare interface JQueryBeforeEventParams {
+  id: string
+  groupId: string
+  name: string
+  layerId: JId
+  maxScale: number
+  maxResults: number
+  enteredData: any
+}
+
+declare interface JQuerySuccessEventParams extends JQueryBeforeEventParams {
+  returnedFeatures: GeoJSON.Feature[]
+}
+
+declare interface JQueryErrorEventParams extends JQueryBeforeEventParams {
+  error: string
+}
