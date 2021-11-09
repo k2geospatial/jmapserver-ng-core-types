@@ -5805,6 +5805,25 @@ declare namespace JMap {
   namespace Query {
 
     /**
+     * ***JMap.Query.initializeQueryFormById***
+     * 
+     * By default attribute query forms are not fetched from server, because sometime it takes too much time.
+     * 
+     * This method will fetch the query form.
+     * 
+     * @param layerId the JMap layer id
+     * @param queryId the query id
+     * @example ```ts
+     * 
+     * // initialized query id="layers/2/attribute-queries/3" form of layer id=2, then return the filled query
+     * JMap.Query.initializeQueryFormById(2, "layers/2/attribute-queries/3")
+     *  .then(query => console.log("Query form has been loaded", query))
+     *  .catch(error => console.error("An error occured while loading query id='layers/2/attribute-queries/3'"))
+     * ```
+     */
+    function initializeQueryFormById(layerId: JId, queryId: string): Promise<JQuery>
+
+    /**
      * ***JMap.Query.getAllGroups***
      * 
      * Returns all query groups defined by JMap administrator.
@@ -6072,6 +6091,24 @@ declare namespace JMap {
        * Here you have all JMap NG Core query events on which you can attach a listener.
        */
       namespace on {
+
+        /**
+         * ***JMap.Event.Query.on.queryFormLoad***
+         * 
+         * This event is triggered when a query form has been loaded.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once a query form has been fetched from server.
+         * JMap.Event.Query.on.queryFormLoad(
+         *   "custom-query-form-load", 
+         *   params => console.log("A query form has been loaded from server", params.query)
+         * )
+         * ```
+         */
+        function queryFormLoad(listenerId: string, fn: (params: JQueryQueryFormHasLoadedEventParams) => void): void
 
         /**
          * ***JMap.Event.Query.on.beforeSubmit***
