@@ -115,7 +115,7 @@ export interface JFeatureService {
   getById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
   getByIds(layerId: JId, featureIds: JId[]): Promise<GeoJSON.Feature[]>
   geometryUpdateById(params: JFeatureGeometryUpdateParams): Promise<GeoJSON.Feature>
-  deleteById(layerId: JId, featureId: JId): Promise<void>
+  deleteById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
   deleteByIds(layerId: JId, featureIds: JId[]): Promise<JFeatureDeleteByIdsResult>
 }
 

@@ -451,11 +451,11 @@ declare namespace JMap {
      * // delete the feature id="4" on layer id="3"
      * JMap.Feature
      *  .deleteById(3, 4)
-     *  .then(() => console.info("Feature has been deleted"))
+     *  .then(deletedFeature => console.info("Feature has been deleted", deletedFeature))
      *  .catch(error => console.error("An error occured", error))
      * ```
      */
-    function deleteById(layerId: JId, featureId: JId): Promise<void>
+    function deleteById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
 
     /**
      * **JMap.Feature.deleteByIds**
