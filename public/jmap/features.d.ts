@@ -15,7 +15,7 @@ declare interface JFeatureEventGeometryUpdateParams {
 
 declare interface JFeatureEventDeleteParams {
   layerId: JId
-  featureIds: JId[]
+  deletedFeatures: GeoJSON.Feature[]
 }
 
 declare interface JFeatureDeleteByIdsResult {

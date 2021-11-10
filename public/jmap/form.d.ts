@@ -503,7 +503,7 @@ declare interface JFormSubmitEventParams extends JFormSubmitResult {
 }
 
 declare interface JFormDeleteEventParams extends JFormDeleteResult {
-  // nothing to add
+  deletedFeatures: GeoJSON.Feature[]
 }
 
 interface JFormDialogEventParams {
