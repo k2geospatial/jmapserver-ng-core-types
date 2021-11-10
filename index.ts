@@ -137,6 +137,7 @@ export interface JGeolocationService {
 }
 
 export interface JQueryService {
+  initializeQueryFormById(layerId: JId, queryId: string): Promise<JQuery>
   getAllGroups(): JQueryGroup[]
   groupExist(groupId: JId): boolean
   getQueriesByLayerId(layerId: JId): JQuery[]
@@ -183,6 +184,7 @@ export interface JEventModule {
 
 export interface JQueryEventModule extends JEventModule {
   on: {
+    queryFormLoad(listenerId: string, fn: (params: JQueryQueryFormHasLoadedEventParams) => void): void
     beforeSubmit(listenerId: string, fn: (params: JQueryBeforeEventParams) => void): void
     success(listenerId: string, fn: (params: JQuerySuccessEventParams) => void): void
     error(listenerId: string, fn: (params: JQueryErrorEventParams) => void): void
