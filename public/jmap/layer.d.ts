@@ -16,6 +16,8 @@ declare type JLayerStyleArrow = "NONE" | "FORWARD" | "BACKWARD"
 
 declare type JLayerMetadataType = "date" | "text" | "number"
 
+declare type JLayerInformationReportType = "JSP" | "BIRT" | "BIRT_HTML" | "BIRT_PDF" | "WMS" | "CUSTOM"
+
 declare type JLayerMetaDataValue =  string | number | Date
 
 declare interface JLayerBaseMetadata {
@@ -120,7 +122,7 @@ declare interface JLayer extends JLayerTreeElement {
 }
 
 declare interface JLayerInformationReport {
-  type: string
+  type: JLayerInformationReportType
   title: string
   preFormatted: boolean
   singlePresentationPage: string
