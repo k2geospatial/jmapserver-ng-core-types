@@ -184,14 +184,14 @@ declare namespace JMap {
      * 
      * Return true if the current version of the server is lower than the minimum server version required by NG.
      * 
-     * @param currentVersion if not passed will use the version returned by server
+     * @param serverInfo if not passed will use the current one
      * @example ```ts
      * 
      * // Return true if current server version is greater or equals than minimum server version
      * JMap.Server.isMinimumVersionRespected()
      * ```
      */
-    function isMinimumVersionRespected(currentVersion?: JServerVersion): boolean
+    function isMinimumVersionRespected(serverInfo?: JServerInfo): boolean
 
     /**
      * **JMap.Server.getShortVersion**
