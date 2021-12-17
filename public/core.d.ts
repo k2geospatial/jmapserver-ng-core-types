@@ -6433,6 +6433,23 @@ declare namespace JMap {
          * ```
          */
         function afterApply(listenerId: string, fn: (params: JMapContextAfterApplyEventParams) => void): void
+
+        /**
+         * ***JMap.Event.MapContext.on.initialized***
+         * 
+         * This event is triggered when the map-context service is initialized.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Triggered when map context is initialized
+         * JMap.Event.MapContext.on.initialized("custom-initialized-listener", params =>
+         *   console.info("Map context service initialized", params)
+         * )
+         * ```
+         */
+        function initialized(listenerId: string, fn: (params: JMapContextSetActiveResult) => void): void
       }
 
       /**
