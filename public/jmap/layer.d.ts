@@ -100,8 +100,6 @@ declare interface JLayer extends JLayerTreeElement {
   mouseOver: JMapMouseOver
   simpleSelectionStyle: JLayerSimpleStyle
   selectionStyle: JLayerStyle
-  minimumVisibleScale: number | undefined
-  maximumVisibleScale: number | undefined
   minimumVisibleMapboxZoom: number | undefined
   maximumVisibleMapboxZoom: number | undefined
   baseStyles: JLayerStyleScaled[]
@@ -115,10 +113,11 @@ declare interface JLayer extends JLayerTreeElement {
   selectable: boolean
   listedInTree: boolean
   authorPropertyName: string
-  lowercasedAttributeIds: string[]
+  lowercasedAttributeNames: string[]
   forms: JLayerForm[]
   hasInformationReport: boolean
   informationReports: JLayerInformationReport[]
+  spatialDataSourceId: string // For Jaaz only
 }
 
 declare interface JLayerInformationReport {
@@ -137,6 +136,7 @@ declare interface JLayerForm {
 
 declare interface JLayerAttribute {
   id: string
+  name: string
   label: string
   type: JLayerAttributeType
 }
