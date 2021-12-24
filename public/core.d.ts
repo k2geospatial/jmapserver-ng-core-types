@@ -917,6 +917,16 @@ declare namespace JMap {
     }
 
     /**
+     *  **JMap.Layer.DynamicLayer**
+     * 
+     * Methods used to manage dynamic filters for a layer.
+     */
+    namespace DynamicFilter{
+      function setDynamicFilter(layerId: JId, dynamicFilter: JDynamicFilter): void
+      function addDynamicFilterCondition(layerId: JId, layerAttribute: JLayerAttribute, operator: string, value?: any | any[]): void
+    }
+
+    /**
      * **JMap.Layer.getAllThematicsForLayer**
      * 
      * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead

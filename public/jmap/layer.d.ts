@@ -74,6 +74,15 @@ declare interface JLayerInitialSearchEventParams extends JLayerEventParams {
   features: GeoJSON.Feature[]
 }
 
+declare interface JLayerDynamicFilterActivationParams extends JLayerEventParams {
+  isActivation: boolean
+  filter: JDynamicFilter
+}
+
+declare interface JLayerDynamicFilterChange extends JLayerEventParams {
+  filter: JDynamicFilter
+}
+
 declare interface JMapEventLoadedParams {
   map: mapboxgl.Map
 }
@@ -119,6 +128,7 @@ declare interface JLayer extends JLayerTreeElement {
   forms: JLayerForm[]
   hasInformationReport: boolean
   informationReports: JLayerInformationReport[]
+  defaultDynamicFilter?: JDynamicFilter
 }
 
 declare interface JLayerInformationReport {
@@ -127,6 +137,23 @@ declare interface JLayerInformationReport {
   preFormatted: boolean
   singlePresentationPage: string
   multiplePresentationPage: string
+}
+
+declare interface JDynamicFilter {
+  isActive: boolean
+  conditions: JDynamicFilterCondition[]
+}
+
+declare interface JDynamicFilterCondition {
+  id: JId
+  attribute: JDynamicFilterConditionAttribute
+  filterOperator: string
+  value?: any | any[] // array for between, no value for exist, simple value for equals, etc...
+}
+declare interface JDynamicFilterConditionAttribute {
+  name: string
+  title: string
+  type: string
 }
 
 declare interface JLayerForm {

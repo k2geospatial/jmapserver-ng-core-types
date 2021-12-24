@@ -326,6 +326,7 @@ export interface JCoreState {
   form: JFormState
   server: JServerState
   mapContext: JMapContextState
+  dynamicFilter: JDynamicFilterState
   external?: any
 }
 
@@ -446,6 +447,10 @@ export interface JServerState extends JServerInfo {
   isReady: boolean
   isLoading: boolean
   hasLoadingError: boolean
+}
+
+export interface JDynamicFilterState {
+  filterByLayerId: { [layerId: string]: JDynamicFilter }
 }
 
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
@@ -713,6 +718,7 @@ export interface JProjectService {
 export interface JLayerService {
   Search: JLayerSearchService
   Thematic: JLayerThematicService
+  DynamicFilter: JDynamicFilterService
   getMetadataSchema(): JLayerMetadataSchemaItem[]
   getLayerTree(): JLayerTree
   getLayerTreeElementsById(): { [key in JId]: JLayerTreeElement }
@@ -868,6 +874,11 @@ export interface JServerService {
   isStandardLoginAvailable(): boolean
   getIdentityProviderById(providerId: string): JServerAnyIdentityProvider
   getAllIdentityProvidersById(): JServerIdentityProviderById
+}
+
+export interface JDynamicFilterService {
+  setDynamicFilter(layerId: JId, dynamicFilter: JDynamicFilter): void
+  addDynamicFilterCondition(layerId: JId, layerAttribute: JLayerAttribute, operator: string, value?: any | any[]): void
 }
 
 // MISC
