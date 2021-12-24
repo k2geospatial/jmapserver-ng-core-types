@@ -126,11 +126,8 @@ declare interface JLayer extends JLayerTreeElement {
   forms: JLayerForm[]
   hasInformationReport: boolean
   informationReports: JLayerInformationReport[]
-<<<<<<< HEAD
   defaultDynamicFilter?: JDynamicFilter
-=======
   spatialDataSourceId: string // For Jaaz only
->>>>>>> master
 }
 
 declare interface JLayerInformationReport {
