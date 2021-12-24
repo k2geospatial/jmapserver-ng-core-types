@@ -184,14 +184,14 @@ declare namespace JMap {
      * 
      * Return true if the current version of the server is lower than the minimum server version required by NG.
      * 
-     * @param currentVersion if not passed will use the version returned by server
+     * @param serverInfo if not passed will use the current one
      * @example ```ts
      * 
      * // Return true if current server version is greater or equals than minimum server version
      * JMap.Server.isMinimumVersionRespected()
      * ```
      */
-    function isMinimumVersionRespected(currentVersion?: JServerVersion): boolean
+    function isMinimumVersionRespected(serverInfo?: JServerInfo): boolean
 
     /**
      * **JMap.Server.getShortVersion**
@@ -6443,6 +6443,23 @@ declare namespace JMap {
          * ```
          */
         function afterApply(listenerId: string, fn: (params: JMapContextAfterApplyEventParams) => void): void
+
+        /**
+         * ***JMap.Event.MapContext.on.initialized***
+         * 
+         * This event is triggered when the map-context service is initialized.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Triggered when map context is initialized
+         * JMap.Event.MapContext.on.initialized("custom-initialized-listener", params =>
+         *   console.info("Map context service initialized", params)
+         * )
+         * ```
+         */
+        function initialized(listenerId: string, fn: (params: JMapContextSetActiveResult) => void): void
       }
 
       /**
