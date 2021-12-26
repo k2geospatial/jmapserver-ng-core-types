@@ -922,8 +922,10 @@ declare namespace JMap {
      * Methods used to manage dynamic filters for a layer.
      */
     namespace DynamicFilter{
-      function setDynamicFilter(layerId: JId, dynamicFilter: JDynamicFilter): void
-      function addDynamicFilterCondition(layerId: JId, layerAttribute: JLayerAttribute, operator: string, value?: any | any[]): void
+      function setDynamicFilterIsActive(layerId: JId, isActive: boolean): boolean
+      function getDynamicFilterByLayerId(layerId: JId): JDynamicFilter
+      function addDynamicFilterCondition(layerId: JId, attribute: JLayerAttribute, operator: string, value?: any | any[]): void
+      function removeDynamicFilterConditions(layerId: JId, conditionsIds: JId[]): void
     }
 
     /**

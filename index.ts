@@ -878,8 +878,10 @@ export interface JServerService {
 }
 
 export interface JDynamicFilterService {
-  setDynamicFilter(layerId: JId, dynamicFilter: JDynamicFilter): void
-  addDynamicFilterCondition(layerId: JId, layerAttribute: JLayerAttribute, operator: string, value?: any | any[]): void
+  setDynamicFilterIsActive(layerId: JId, isActive: boolean): boolean
+  getDynamicFilterByLayerId(layerId: JId): JDynamicFilter 
+  addDynamicFilterCondition(layerId: JId, attribute: JLayerAttribute, operator: string, value?: any | any[]): void
+  removeDynamicFilterConditions(layerId:JId, conditionsIds: JId[]): void
 }
 
 // MISC
