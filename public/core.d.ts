@@ -922,7 +922,37 @@ declare namespace JMap {
      * Methods used to manage dynamic filters for a layer.
      */
     namespace DynamicFilter{
+
+      /**
+       * **JMap.Layer.DynamicLayer.setDynamicFilterIsActive**
+       * 
+       * Activate or deactivate the dynamic filter of a given layer id
+       * 
+       * @throws Error if layer  is not found
+       * @param layerId The JMap layer id
+       * @param isActive The new status of the filter
+       * @example ```ts
+       * 
+       * // activate the dynamic filter of layer id=5
+       * JMap.Layer.DynamicLayer.setDynamicFilterIsActive(5, true)
+       * ```
+       */
       function setDynamicFilterIsActive(layerId: JId, isActive: boolean): boolean
+
+      /**
+       * **JMap.Layer.DynamicLayer.getDynamicFilterByLayerId**
+       * 
+       * Return the dynamic filter of a given layer id
+       * 
+       * @throws Error if layer  is not found
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // return the filter of layer id=3 
+       * const filter: JDynamicFilter = JMap.Layer.DynamicLayer.getDynamicFilterByLayerId(3)
+       * console.log(filter)
+       * ```
+       */
       function getDynamicFilterByLayerId(layerId: JId): JDynamicFilter
       function addDynamicFilterCondition(layerId: JId, attribute: JLayerAttribute, operator: string, value?: any | any[]): void
       function removeDynamicFilterConditions(layerId: JId, conditionsIds: JId[]): void
