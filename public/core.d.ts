@@ -2140,6 +2140,23 @@ declare namespace JMap {
      * ```
      */
     function isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
+
+    /**
+     * **JMap.Geometry.rotate**
+     * 
+     * Returns the feature with geometry rotated from the centroid.
+     * 
+     * @param feature the feature
+     * @param angleInDegrees from -360 to 360 degrees
+     * @throws if layer not found or layer is a layer group
+     * @example ```ts
+     * 
+     * // 37 degrees rotation of the polygon
+     * const polygon = ...
+     * const rotatedPolygon = JMap.Geometry.rotate(polygon, 37)
+     * ```
+     */
+    function rotate(feature: GeoJSON.Feature, angleInDegrees: number): GeoJSON.Feature
   }
 
   /**

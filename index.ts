@@ -545,6 +545,7 @@ export interface JGeometryService {
   getCircleFeature(center: JPoint | JLocation, radius: number): Feature<Polygon> // radius in km
   getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): Feature<Polygon>
   isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
+  rotate(feature: GeoJSON.Feature, angle: number): GeoJSON.Feature
 }
 
 export interface JMapService {
