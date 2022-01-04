@@ -20,6 +20,21 @@ declare type JLayerInformationReportType = "JSP" | "BIRT" | "BIRT_HTML" | "BIRT_
 
 declare type JLayerMetaDataValue =  string | number | Date
 
+declare type JDynamicFilterOperator =
+  "EQUALS" |
+  "NOT_EQUALS" |
+  "GREATER_THAN" |
+  "GREATER_OR_EQUALS_TO" |
+  "LESS_THAN" |
+  "LESS_OR_EQUALS_TO" |
+  "CONTAINS" |
+  "IS_EMPTY" |
+  "IS_NOT_EMPTY" |
+  "IS_NULL" |
+  "IS_NOT_NULL" |
+  "IS_IN_RANGE" |
+  "IS_NOT_IN_RANGE"
+
 declare interface JLayerBaseMetadata {
   id: JId
 }
@@ -76,11 +91,17 @@ declare interface JLayerInitialSearchEventParams extends JLayerEventParams {
 
 declare interface JLayerDynamicFilterActivationParams extends JLayerEventParams {
   isActivation: boolean
-  filter: JDynamicFilter
+  layerId: JId
 }
 
-declare interface JLayerDynamicFilterChange extends JLayerEventParams {
+declare interface JLayerDynamicFilterConditionAdded extends JLayerEventParams {
   filter: JDynamicFilter
+  condition: JDynamicFilterCondition
+}
+
+declare interface JLayerDynamicFilterConditionsRemoved extends JLayerEventParams {
+  filter: JDynamicFilter
+  conditionIds: number[]
 }
 
 declare interface JMapEventLoadedParams {
@@ -127,6 +148,8 @@ declare interface JLayer extends JLayerTreeElement {
   hasInformationReport: boolean
   informationReports: JLayerInformationReport[]
   spatialDataSourceId: string // For Jaaz only
+  hasDynamicFilter: boolean
+  isDynamicFilterActive: boolean
 }
 
 declare interface JLayerInformationReport {
@@ -138,20 +161,17 @@ declare interface JLayerInformationReport {
 }
 
 declare interface JDynamicFilter {
+  layerId: JId
   isActive: boolean
   conditions: JDynamicFilterCondition[]
 }
 
 declare interface JDynamicFilterCondition {
-  id: JId
-  attribute: JDynamicFilterConditionAttribute
-  filterOperator: string
-  value?: any | any[] // array for between, no value for exist, simple value for equals, etc...
-}
-declare interface JDynamicFilterConditionAttribute {
-  name: string
-  title: string
-  type: string
+  layerId: JId
+  id: number
+  attributeName: string
+  filterOperator: JDynamicFilterOperator
+  value: any | any[] // 2 items array for between
 }
 
 declare interface JLayerForm {
