@@ -9,6 +9,7 @@ export interface JCoreService extends JCoreMainService {
   Language: JLanguageService
   Feature: JFeatureService
   Map: JMapService
+  Geocoding: JGeocodingService,
   Geolocation: JGeolocationService,
   Geometry: JGeometryService,
   MouseOver: JMouseOverService
@@ -127,6 +128,14 @@ export interface JCoreMainService {
   openDocumentation(): void
   getOS(): JOperatingSystem
   setMainLayoutVisibility(isVisible: boolean): void
+}
+
+export interface JGeocodingService {
+  isAvailable(): boolean
+  getMinimumSearchStringLength(): number
+  getInvalidSearchStringCharacters(): string
+  forwardSearch(searchText: string , options?: JGeocodingOptions): void
+  displayForwardSearchResult(forwardSearchResult: JGeocodingResult): void
 }
 
 export interface JGeolocationService {
@@ -323,6 +332,7 @@ export interface JCoreState {
   language: JLanguageState
   photo: JPhotoState
   query: JQueryState
+  geocoding: JGeocodingState
   geolocation: JGeolocationState
   form: JFormState
   server: JServerState
@@ -363,6 +373,15 @@ export interface JFormState {
   attributeForm: JForm | undefined
   externalForms: JForm[]
   subForms: JForm[]
+}
+
+export interface JGeocodingState {
+  isAvailable: boolean
+  isLoadPending: boolean
+  isLoading: boolean
+  hasLoadingError: boolean
+  searchString: string
+  results: JGeocodingResult[]
 }
 
 export interface JGeolocationState {
