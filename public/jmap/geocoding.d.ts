@@ -14,3 +14,11 @@ declare interface JGeocodingResult {
     placeName: string
     atttribution: string
 }
+
+declare interface JGeocodingSuccessEventParams {
+    results: JGeocodingResult[]
+}
+
+declare interface JGeocodingErrorEventParams {
+    error: any
+}

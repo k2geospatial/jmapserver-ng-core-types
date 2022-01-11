@@ -6240,7 +6240,7 @@ declare namespace JMap {
          * 
          * This event is triggered when a query has been processed, but an error occured.
          * 
-         * Id the max result limit is reach, an error is thrown, and this event is triggered.
+         * If the max result limit is reach, an error is thrown, and this event is triggered.
          * 
          * @param listenerId Your listener id (must be unique)
          * @param fn Your listener function
@@ -6306,6 +6306,114 @@ declare namespace JMap {
        * 
        * // remove the listener "my-query-listener"
        * JMap.Event.Query.remove("my-query-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
+     * ***JMap.Event.Geocoding***
+     * 
+     * Here you can manage all geocoding event listeners.
+     * 
+     * Click to see all events available: ***[[JMap.Event.Geocoding.on]]***. 
+     */
+    namespace Geocoding {
+
+      /**
+       * ***JMap.Event.Geocoding.on***
+       * 
+       * Here you have all JMap NG Core geocoding events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Geocoding.on.success***
+         * 
+         * This event is triggered when a geocoding search has been completed.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once the geocoding search has been completed
+         * JMap.Event.Geocoding.on.success(
+         *   "custom-geocoding-success", 
+         *   params => console.log("A geocoding search has been completed", params.results)
+         * )
+         * ```
+         */
+        function success(listenerId: string, fn: (params: JGeocodingSuccessEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Geocoding.on.error***
+         * 
+         * This event is triggered when a geocoding search has been processed, but an error occured.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console if a geocoding search error occured
+         * JMap.Event.Geocoding.on.error(
+         *   "custom-geocoding-error", 
+         *   params => console.log("A geocoding search has failed", params)
+         * )
+         * ```
+         */
+        function error(listenerId: string, fn: (params: JGeocodingErrorEventParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Geocoding.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If the listener is already active, do nothing.
+       * 
+       * If the listener is inactive, it will be reactivated and will be called again ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-geocoding-listener"
+       * JMap.Event.Geocoding.activate("my-geocoding-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Geocoding.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
+       * 
+       * If the listener is active, it will be deactivated and will be ignored ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-geocoding-listener"
+       * JMap.Event.Geocoding.deactivate("my-geocoding-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Geocoding.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-geocoding-listener"
+       * JMap.Event.Geocoding.remove("my-geocoding-listener")
        * ```
        */
       function remove(listenerId: string): void

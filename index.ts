@@ -162,6 +162,7 @@ export interface JEventService {
   Layer: JLayerEventModule
   Language: JLanguageEventModule
   Map: JMapEventModule
+  Geocoding: JGeocodingEventModule
   Photo: JPhotoEventModule
   Project: JProjectEventModule
   User: JUserEventModule
@@ -246,6 +247,13 @@ export interface JProjectEventModule extends JEventModule {
 export interface JLanguageEventModule extends JEventModule {
   on: {
     localeChange(listenerId: string, fn: (params: JLanguageEventLocaleChangeParams) => void): void
+  }
+}
+
+export interface JGeocodingEventModule extends JEventModule {
+  on: {
+    success(listenerId: string, fn: (params: JGeocodingSuccessEventParams) => void): void
+    error(listenerId: string, fn: (params: JGeocodingErrorEventParams) => void): void
   }
 }
 
