@@ -134,7 +134,7 @@ export interface JGeocodingService {
   isAvailable(): boolean
   getMinimumSearchStringLength(): number
   getInvalidSearchStringCharacters(): string
-  forwardSearch(searchText: string , options?: JGeocodingOptions): void
+  forwardSearch(searchText: string, options?: JGeocodingOptions): void
   displayForwardSearchResult(forwardSearchResult: JGeocodingResult): void
 }
 

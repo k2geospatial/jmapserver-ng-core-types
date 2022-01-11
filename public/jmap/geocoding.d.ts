@@ -1,6 +1,15 @@
 declare interface JGeocodingOptions {
+    /**
+     * if true, returns all match that would begin with the search string
+     */
     autoComplete?: boolean
+    /**
+     * if true, proceeds with a fuzzy search (ex: "montan" will match "montain")
+     */
     fuzzyMatch?: boolean
+    /**
+     * a JLocation object, or null. If not specified, it is by default set to the map's extent center. If you want to disable proximity bias, pass null for this option.
+     */
     proximity?: JLocation | null | undefined
 }
 
@@ -12,7 +21,7 @@ declare interface JGeocodingResult {
     relevance: number
     title: string
     placeName: string
-    atttribution: string
+    attribution: string
 }
 
 declare interface JGeocodingSuccessEventParams {

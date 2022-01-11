@@ -362,15 +362,18 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
+     * // log a message in the console once the geocoding search has been completed
+     * JMap.Event.Geocoding.on.success(
+     *   "custom-geocoding-success", 
+     *   params => console.log("A geocoding search has been completed", params.results)
+     * )
      * // options.autoComplete is true by default (returns all match that would begin with the search string)
      * // options.fuzzyMatch is true by default (setting this option to false will restrict results to exact match)
      * // option.proximity: a JLocation object, or null. If not specified, it is by default set to the map's extent center. If you want to disable proximity bias, pass null for this option.
-     * 
      * JMap.Geocoding.forwardSearch("1440 Saint-Catherine St W #522, Montreal, Quebec H3G 1R8", {autoComplete: false, fuzzyMatch: false, proximity: null})
-     * // @TODO: add Event listener example
      * ```
      */
-    function forwardSearch(searchText: string , options?: JGeocodingOptions): void
+    function forwardSearch(searchText: string, options?: JGeocodingOptions): void
     
     /**
      * **JMap.Geocoding.displayForwardSearchResult**
@@ -382,8 +385,16 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
+     * // Display on the map the first match received
+     * JMap.Event.Geocoding.on.success(
+     *   "custom-geocoding-success", 
+     *   params => {
+     *    if(params.results.length > 0){
+     *      JMap.Geocoding.displayForwardSearchResult(params.results[0])
+     *    }
+     *  }
+     * )
      * JMap.Geocoding.forwardSearch("1440 Saint-Catherine St W #522, Montreal, Quebec H3G 1R8", {autoComplete: false, fuzzyMatch: false, proximity: null})
-     * // @TODO: add Event listener example
      * ```
      * 
      */
