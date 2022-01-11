@@ -398,6 +398,7 @@ export interface JMapState {
   containerWidth: number
   containerHeight: number
   modificationType: JMapModificationTypes
+  defaultAttribution: JMapAttribution
 }
 
 export interface JProjectState {
