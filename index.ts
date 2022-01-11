@@ -9,6 +9,7 @@ export interface JCoreService extends JCoreMainService {
   Language: JLanguageService
   Feature: JFeatureService
   Map: JMapService
+  Geocoding: JGeocodingService,
   Geolocation: JGeolocationService,
   Geometry: JGeometryService,
   MouseOver: JMouseOverService
@@ -129,6 +130,14 @@ export interface JCoreMainService {
   setMainLayoutVisibility(isVisible: boolean): void
 }
 
+export interface JGeocodingService {
+  isAvailable(): boolean
+  getMinimumSearchStringLength(): number
+  getInvalidSearchStringCharacters(): string
+  forwardSearch(searchText: string, options?: JGeocodingOptions): void
+  displayForwardSearchResult(forwardSearchResult: JGeocodingResult): void
+}
+
 export interface JGeolocationService {
   isSupportedByBrowser(): boolean
   isEnabled(): boolean
@@ -153,6 +162,7 @@ export interface JEventService {
   Layer: JLayerEventModule
   Language: JLanguageEventModule
   Map: JMapEventModule
+  Geocoding: JGeocodingEventModule
   Photo: JPhotoEventModule
   Project: JProjectEventModule
   User: JUserEventModule
@@ -240,6 +250,13 @@ export interface JLanguageEventModule extends JEventModule {
   }
 }
 
+export interface JGeocodingEventModule extends JEventModule {
+  on: {
+    success(listenerId: string, fn: (params: JGeocodingSuccessEventParams) => void): void
+    error(listenerId: string, fn: (params: JGeocodingErrorEventParams) => void): void
+  }
+}
+
 export interface JLayerEventModule extends JEventModule {
   on: {
     layersChange(listenerId: string, fn: (params: JLayerEventChangeParams) => void): void
@@ -323,6 +340,7 @@ export interface JCoreState {
   language: JLanguageState
   photo: JPhotoState
   query: JQueryState
+  geocoding: JGeocodingState
   geolocation: JGeolocationState
   form: JFormState
   server: JServerState
@@ -363,6 +381,15 @@ export interface JFormState {
   attributeForm: JForm | undefined
   externalForms: JForm[]
   subForms: JForm[]
+}
+
+export interface JGeocodingState {
+  isAvailable: boolean
+  isLoadPending: boolean
+  isLoading: boolean
+  hasLoadingError: boolean
+  searchString: string
+  results: JGeocodingResult[]
 }
 
 export interface JGeolocationState {

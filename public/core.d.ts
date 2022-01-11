@@ -302,6 +302,106 @@ declare namespace JMap {
   }
 
   /**
+   * **JMap.Geocoding**
+   * 
+   * This is where you can find geocoding relative methods
+   */
+  namespace Geocoding {
+
+    /**
+     * **JMap.Geocoding.isAvailable**
+     * 
+     * Returns false if geocoding is not available. Geocoding may be unavailable based on your configuration in regards with the available API keys configured in your account
+     * 
+     * @example ```ts
+     * 
+     * // return false if geocoding is unavailable
+     * JMap.Geocoding.isAvailable()
+     * ```
+     */
+    function isAvailable(): boolean
+
+    /**
+     * **JMap.Geocoding.getMinimumSearchStringLength**
+     * 
+     * Returns the search string length required to trigger a geocoding search
+     * 
+     * @example ```ts
+     * 
+     * // return the minimum search string length
+     * JMap.Geocoding.getMinimumSearchStringLength()
+     * // 3
+     * ```
+     */
+    function getMinimumSearchStringLength(): number
+
+    /**
+     * **JMap.Geocoding.getInvalidSearchStringCharacters**
+     * 
+     * Returns a string composed of all forbiden characters in geocoding search strings
+     * 
+     * @example ```ts
+     * 
+     * // return the invalid characters
+     * JMap.Geocoding.getInvalidSearchStringCharacters()
+     * // ";"
+     * ```
+     */
+    function getInvalidSearchStringCharacters(): string
+  
+    /**
+     * **JMap.Geocoding.forwardSearch**
+     * 
+     * Proceeds with a forward geocoding search. Some characters are not permitted in search strings (see [[JMap.Geocoding.getInvalidSearchStringCharacters]]).
+     * Calling this method may not trigger immediately a forward geocoding search if the string is too short, or if the method is repetitively called too fast.
+     * You can set an event listener to have access to the forward search results (see [[TBD]]). Search Reasults are also available in the redux store under store-->geocoding-->results
+     * 
+     * @param searchText The place name to search for. Can be an address, a region's name, or a geographical location expressed as "longitude,latitude" (ex: "-73.576321,45.495757" )
+     * @param options an optional JGeocodingOptions object
+     * @throws If geocoding is not enabled, if the search string is too short or invalid, or if an unexpected error occurs
+     * 
+     * @example ```ts
+     * 
+     * // log a message in the console once the geocoding search has been completed
+     * JMap.Event.Geocoding.on.success(
+     *   "custom-geocoding-success", 
+     *   params => console.log("A geocoding search has been completed", params.results)
+     * )
+     * // options.autoComplete is true by default (returns all match that would begin with the search string)
+     * // options.fuzzyMatch is true by default (setting this option to false will restrict results to exact match)
+     * // option.proximity: a JLocation object, or null. If not specified, it is by default set to the map's extent center. If you want to disable proximity bias, pass null for this option.
+     * JMap.Geocoding.forwardSearch("1440 Saint-Catherine St W #522, Montreal, Quebec H3G 1R8", {autoComplete: false, fuzzyMatch: false, proximity: null})
+     * ```
+     */
+    function forwardSearch(searchText: string, options?: JGeocodingOptions): void
+    
+    /**
+     * **JMap.Geocoding.displayForwardSearchResult**
+     * 
+     * Will display on the map the result of a [[JMap.Geocoding.forwardSearch]] single result.
+     * 
+     * @param forwardSearchResult A JGeocodingResult object
+     * @throws If geocoding is not enabled, or if an unexpected error occurs
+     * 
+     * @example ```ts
+     * 
+     * // Display on the map the first match received
+     * JMap.Event.Geocoding.on.success(
+     *   "custom-geocoding-success", 
+     *   params => {
+     *    if(params.results.length > 0){
+     *      JMap.Geocoding.displayForwardSearchResult(params.results[0])
+     *    }
+     *  }
+     * )
+     * JMap.Geocoding.forwardSearch("1440 Saint-Catherine St W #522, Montreal, Quebec H3G 1R8", {autoComplete: false, fuzzyMatch: false, proximity: null})
+     * ```
+     * 
+     */
+    function displayForwardSearchResult(forwardSearchResult: JGeocodingResult): void
+  }
+
+  /**
    * **JMap.Geolocation**
    * 
    * This is where you can find geolocation relative methods
@@ -6168,7 +6268,7 @@ declare namespace JMap {
          * 
          * This event is triggered when a query has been processed, but an error occured.
          * 
-         * Id the max result limit is reach, an error is thrown, and this event is triggered.
+         * If the max result limit is reach, an error is thrown, and this event is triggered.
          * 
          * @param listenerId Your listener id (must be unique)
          * @param fn Your listener function
@@ -6234,6 +6334,114 @@ declare namespace JMap {
        * 
        * // remove the listener "my-query-listener"
        * JMap.Event.Query.remove("my-query-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
+     * ***JMap.Event.Geocoding***
+     * 
+     * Here you can manage all geocoding event listeners.
+     * 
+     * Click to see all events available: ***[[JMap.Event.Geocoding.on]]***. 
+     */
+    namespace Geocoding {
+
+      /**
+       * ***JMap.Event.Geocoding.on***
+       * 
+       * Here you have all JMap NG Core geocoding events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Geocoding.on.success***
+         * 
+         * This event is triggered when a geocoding search has been completed.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once the geocoding search has been completed
+         * JMap.Event.Geocoding.on.success(
+         *   "custom-geocoding-success", 
+         *   params => console.log("A geocoding search has been completed", params.results)
+         * )
+         * ```
+         */
+        function success(listenerId: string, fn: (params: JGeocodingSuccessEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Geocoding.on.error***
+         * 
+         * This event is triggered when a geocoding search has been processed, but an error occured.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console if a geocoding search error occured
+         * JMap.Event.Geocoding.on.error(
+         *   "custom-geocoding-error", 
+         *   params => console.log("A geocoding search has failed", params)
+         * )
+         * ```
+         */
+        function error(listenerId: string, fn: (params: JGeocodingErrorEventParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Geocoding.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If the listener is already active, do nothing.
+       * 
+       * If the listener is inactive, it will be reactivated and will be called again ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-geocoding-listener"
+       * JMap.Event.Geocoding.activate("my-geocoding-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Geocoding.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
+       * 
+       * If the listener is active, it will be deactivated and will be ignored ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-geocoding-listener"
+       * JMap.Event.Geocoding.deactivate("my-geocoding-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Geocoding.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-geocoding-listener"
+       * JMap.Event.Geocoding.remove("my-geocoding-listener")
        * ```
        */
       function remove(listenerId: string): void
