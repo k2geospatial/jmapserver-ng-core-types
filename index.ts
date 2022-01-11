@@ -330,7 +330,6 @@ export interface JCoreState {
   form: JFormState
   server: JServerState
   mapContext: JMapContextState
-  dynamicFilter: JDynamicFilterState
   external?: any
 }
 
@@ -451,10 +450,6 @@ export interface JServerState extends JServerInfo {
   isReady: boolean
   isLoading: boolean
   hasLoadingError: boolean
-}
-
-export interface JDynamicFilterState {
-  filterByLayerId: { [layerId: string]: JDynamicFilter }
 }
 
 export type JHistoryListener = (oldValue: string | undefined, newValue: string | undefined) => void
@@ -886,6 +881,7 @@ export interface JDynamicFilterService {
   getByLayerId(layerId: JId): JDynamicFilter
   getAllOperators(): JDynamicFilterOperator[]
   getAllTwoValuesOperators(): JDynamicFilterOperator[]
+  getOperatorsForAttributeType(attributeType: JLayerAttributeType): JDynamicFilterOperator[]
   getConditionError(condition: JDynamicFilterCondition): string | undefined
   isConditionValid(condition: JDynamicFilterCondition): boolean
   existSimilarCondition(condition: JDynamicFilterCondition): boolean

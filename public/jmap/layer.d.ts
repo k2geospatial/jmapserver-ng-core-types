@@ -33,7 +33,9 @@ declare type JDynamicFilterOperator =
   "IS_NULL" |
   "IS_NOT_NULL" |
   "IS_IN_RANGE" |
-  "IS_NOT_IN_RANGE"
+  "IS_NOT_IN_RANGE" |
+  "LAST" |
+  "INTERVAL"
 
 declare interface JLayerBaseMetadata {
   id: JId
@@ -148,8 +150,7 @@ declare interface JLayer extends JLayerTreeElement {
   hasInformationReport: boolean
   informationReports: JLayerInformationReport[]
   spatialDataSourceId: string // For Jaaz only
-  hasDynamicFilter: boolean
-  isDynamicFilterActive: boolean
+  dynamicFilter: JDynamicFilter
 }
 
 declare interface JLayerInformationReport {
@@ -162,7 +163,9 @@ declare interface JLayerInformationReport {
 
 declare interface JDynamicFilter {
   layerId: JId
+  isDisabled: boolean // true means no dynamic filter for layer, ex: IMAGE layers
   isActive: boolean
+  intervalOperatorDisabled: boolean // true if layer has less than 2 date attributes
   conditions: JDynamicFilterCondition[]
 }
 
@@ -170,6 +173,7 @@ declare interface JDynamicFilterCondition {
   layerId: JId
   id: number
   attributeName: string
+  endAttributeName?: string // used for INTERVAL operator
   filterOperator: JDynamicFilterOperator
   value: any | any[] // 2 items array for between
 }

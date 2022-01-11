@@ -1002,6 +1002,20 @@ declare namespace JMap {
       function getAllTwoValuesOperators(): JDynamicFilterOperator[]
 
       /**
+       * **JMap.Layer.DynamicLayer.getOperatorsForAttributeType**
+       * 
+       * Return list of all operators available for a given attribute type.
+       * 
+       * @example ```ts
+       * 
+       * // return the list of all operators that require two values
+       * const operators = JMap.Layer.DynamicLayer.getOperatorsForAttributeType("number")
+       * console.log("Available operators for attribute type:", operators)
+       * ```
+       */
+      function getOperatorsForAttributeType(attributeType: JLayerAttributeType): JDynamicFilterOperator[]
+
+      /**
        * **JMap.Layer.DynamicLayer.getConditionError**
        * 
        * Return a string error (human readable) if the condition is not correct.
