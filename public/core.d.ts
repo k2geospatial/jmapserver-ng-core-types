@@ -2142,7 +2142,7 @@ declare namespace JMap {
     function isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
 
     /**
-     * **JMap.Geometry.rotate**
+     * **JMap.Geometry.getRotatedFeature**
      * 
      * Returns the feature with geometry rotated from the centroid.
      * 
@@ -2153,10 +2153,10 @@ declare namespace JMap {
      * 
      * // 37 degrees rotation of the polygon
      * const polygon = ...
-     * const rotatedPolygon = JMap.Geometry.rotate(polygon, 37)
+     * const rotatedPolygon = JMap.Geometry.getRotatedFeature(polygon, 37)
      * ```
      */
-    function rotate(feature: GeoJSON.Feature, angleInDegrees: number): GeoJSON.Feature
+    function getRotatedFeature(feature: GeoJSON.Feature, angleInDegrees: number): GeoJSON.Feature
   }
 
   /**
