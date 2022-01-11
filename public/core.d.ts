@@ -7669,6 +7669,27 @@ declare namespace JMap {
          * ```
          */
         function selectionChanged(listenerId: string, fn: (params: JMapEventSelectionChangedParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.basemapChanged***
+         * 
+         * This event is triggered when the basemap is changed.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the basemap is changed, display the new active basemap id in the console
+         * JMap.Event.Map.on.basemapChanged(
+         *    "custom-basemap-changed",
+         *    params => {
+         *      console.log("Old selection:", params.oldSelection)
+         *      console.log("New selection:", params.activeBasemapId)
+         *    }
+         * )
+         * ```
+         */
+        function basemapChanged(listenerId: string, fn: (params: JMapEventBasemapChangedParams) => void): void
       }
       /**
        * ***JMap.Event.Map.activate***
