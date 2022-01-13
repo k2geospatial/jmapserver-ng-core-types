@@ -76,6 +76,11 @@ export interface JMapContextService {
   getIgnoredCssClassesForPreviewImage(): string[]
 }
 
+export interface JMapAttributionService {
+  getAttributionControlPosition(): JMapPosition 
+  setAttributionControlPosition(position: JMapPosition ): void
+}
+
 export interface JDateService {
   getDate(date: JDateLike): Date
   getDateFnsLocale(displayTime?: boolean): any
@@ -388,6 +393,7 @@ export interface JMapState {
   selection: JMapSelection
   jmapLayerIdsSupportedByMapbox: JId[]
   scaleControlPosition: JMapPosition
+  attributionControlPosition: JMapPosition
   distanceUnit: JDistanceUnit
   isNavigationHistoryControlVisible:boolean
   isScaleControlVisible: boolean
@@ -553,6 +559,7 @@ export interface JMapService {
   Filter: JMapFilterService
   Selection: JMapSelectionService
   Basemap: JMapBasemapService
+  Attribution: JMapAttributionService
   getMap(): Map
   getMapJSLib(): any
   getDomContainerId(): string
