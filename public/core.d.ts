@@ -1372,6 +1372,19 @@ declare namespace JMap {
        * ```
        */
       function getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
+ 
+      /**
+       * **JMap.Layer.DynamicLayer.getNowValue**
+       * 
+       * Returns the now value, used for date.
+       * 
+       * @example ```ts
+       *
+       * const nowValue = JMap.Layer.DynamicLayer.getNowValue()
+       * console.log(`Now value is '${nowValue}'`) // display "Now value is 'Now'"
+       * ```
+       */
+      function getNowValue(): string
     }
 
     /**
