@@ -986,6 +986,20 @@ declare namespace JMap {
        * ```
        */
       function getAllOperators(): JDynamicFilterOperator[]
+      
+      /**
+       * **JMap.Layer.DynamicLayer.getAllArrayValueOperators**
+       * 
+       * Return the list of all operators that require an array values (ex: EQUALS, NOT_EQUALS)
+       * 
+       * @example ```ts
+       * 
+       * // return the list of all operators that require two values
+       * const allArrayValueOperators = JMap.Layer.DynamicLayer.getAllArrayValueOperators()
+       * console.log(allArrayValueOperators)
+       * ```
+       */
+      function getAllArrayValueOperators(): JDynamicFilterOperator[]
 
       /**
        * **JMap.Layer.DynamicLayer.getAllTwoValuesOperators**
@@ -1031,7 +1045,7 @@ declare namespace JMap {
        * const error = JMap.Layer.DynamicLayer.getConditionError({
        *  layerId: 3,
        *  attributeName: "City",
-       *  filterOperator: "equals",
+       *  filterOperator: "EQUALS",
        *  value: "Montreal"
        * })
        * console.log("Error:", error)
@@ -1048,6 +1062,7 @@ declare namespace JMap {
        * 
        * @throws if condition is not correct
        * @param condition The condition to verify
+       * @param isUpdate tell if the check is for a creation or an update
        * @example ```ts
        * 
        * // log in console a message if this condition already exist
@@ -1056,7 +1071,7 @@ declare namespace JMap {
        * }
        * ```
        */
-      function existSimilarCondition(condition: JDynamicFilterCondition): boolean
+      function existSimilarCondition(condition: JDynamicFilterCondition, isUpdate?: boolean): boolean
 
       /**
        * **JMap.Layer.DynamicLayer.isConditionValid**
@@ -1079,27 +1094,44 @@ declare namespace JMap {
       function isConditionValid(condition: JDynamicFilterCondition): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.addCondition**
+       * **JMap.Layer.DynamicLayer.createCondition**
        * 
        * Add a new condition for a JMap Layer dynamic filter.
        * 
        * Returns the new conditon id, and set the id in the object passed in parameter
        * 
        * @throws Error if invalid condition
-       * @param condition The dynaic filter condition
+       * @param condition The dynamic filter condition to create
        * @example ```ts
        * 
        * const newCondition = {
        *  layerId: 3,
        *  attributeName: "city"
-       *  filterOperator: "equals"
+       *  filterOperator: "EQUALS"
        *  value: "Paris"
        * }
-       * JMap.Layer.DynamicLayer.addCondition(newCondition)
-       * console.log(`New condition id="${newCondition.id}" added`)
+       * JMap.Layer.DynamicLayer.createCondition(newCondition)
+       * console.log(`New condition id="${newCondition.id}" created`)
        * ```
        */
-      function addCondition(condition: JDynamicFilterCondition): number
+      function createCondition(condition: JDynamicFilterCondition): number
+
+      /**
+       * **JMap.Layer.DynamicLayer.updateCondition**
+       * 
+       * Update an existing condition, for a JMap Layer dynamic filter.
+       * 
+       * @throws Error if invalid or not found condition
+       * @param condition The dynamic filter condition to update
+       * @example ```ts
+       * 
+       * const condition = getCondition()
+       * condition.value = 3
+       * JMap.Layer.DynamicLayer.updateCondition(condition)
+       * console.log(`Condition new value is 3`)
+       * ```
+       */
+      function updateCondition(condition: JDynamicFilterCondition): void
 
       /**
        * **JMap.Layer.DynamicLayer.removeConditions**
@@ -1117,25 +1149,6 @@ declare namespace JMap {
       function removeConditions(layerId: JId, conditionsIds: number[]): void
 
       /**
-       * **JMap.Layer.DynamicLayer.isTwoValuesOperator**
-       * 
-       * Returns true if the operator require two values.
-       * 
-       * This function is safe, it throws nothing.
-       * 
-       * @param operator The operator to check
-       * @example ```ts
-       * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isTwoValuesOperator("is-between")
-       * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isTwoValuesOperator("equals")
-       * ```
-       */
-      function isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
-
-      /**
        * **JMap.Layer.DynamicLayer.isNoValueOperator**
        * 
        * Returns true if the operator doesn't require any value.
@@ -1146,19 +1159,63 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // return false
-       * JMap.Layer.DynamicLayer.isNoValueOperator("is-between")
+       * JMap.Layer.DynamicLayer.isNoValueOperator("IS_IN_RANGE")
        * 
        * // return false
-       * JMap.Layer.DynamicLayer.isNoValueOperator("equals")
+       * JMap.Layer.DynamicLayer.isNoValueOperator("EQUALS")
        * 
        * // return true
-       * JMap.Layer.DynamicLayer.isNoValueOperator("is-empty")
+       * JMap.Layer.DynamicLayer.isNoValueOperator("IS_EMPTY")
        * 
        * // return true
-       * JMap.Layer.DynamicLayer.isNoValueOperator("is-not-null")
+       * JMap.Layer.DynamicLayer.isNoValueOperator("IS_NOT_NULL")
        * ```
        */
       function isNoValueOperator(operator: JDynamicFilterOperator): boolean
+
+      /**
+       * **JMap.Layer.DynamicLayer.isArrayValueOperator**
+       * 
+       * Returns true if the operator requires a value that is an array.
+       * 
+       * This function is safe, it throws nothing.
+       * 
+       * @param operator The operator to check
+       * @example ```ts
+       * 
+       * // return true
+       * JMap.Layer.DynamicLayer.isTwoValuesOperator("EQUALS")
+       * 
+       * // return true
+       * JMap.Layer.DynamicLayer.isTwoValuesOperator("NOT_EQUALS")
+       * 
+       * // return false
+       * JMap.Layer.DynamicLayer.isTwoValuesOperator("CONTAINS")
+       * 
+       * // return false
+       * JMap.Layer.DynamicLayer.isTwoValuesOperator("IS_IN_RANGE")
+       * ```
+       */
+      function isArrayValueOperator(operator: JDynamicFilterOperator): boolean
+
+      /**
+       * **JMap.Layer.DynamicLayer.isTwoValuesOperator**
+       * 
+       * Returns true if the operator require two values.
+       * 
+       * This function is safe, it throws nothing.
+       * 
+       * @param operator The operator to check
+       * @example ```ts
+       * 
+       * // return true
+       * JMap.Layer.DynamicLayer.isTwoValuesOperator("IS_IN_RANGE")
+       * 
+       * // return false
+       * JMap.Layer.DynamicLayer.isTwoValuesOperator("EQUALS")
+       * ```
+       */
+      function isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
 
       /**
        * **JMap.Layer.DynamicLayer.getConditionValueError**
@@ -1169,32 +1226,35 @@ declare namespace JMap {
        * 
        * @param operator The operator to check
        * @param attributeType The attribute type
-       * @param value the value, an array of value for is-between operator
+       * @param value the value, an array of value for IS_IN_RANGE operator
        * @example ```ts
        * 
        * // return an error
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("is-between", "date", date1)
+       * const error = JMap.Layer.DynamicLayer.getConditionValueError("IS_IN_RANGE", "date", date1)
        * 
        * // if date1 and date2 are not date objects, or date1 >= date2, return an error
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("is-between", "date", [date1, date2])
+       * const error = JMap.Layer.DynamicLayer.getConditionValueError("IS_IN_RANGE", "date", [date1, date2])
+       *  
+       * // return an error value must be an array for EQUALS operator
+       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "string", ["Montreal"])
        * 
        * // no error, return undefined
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("equals", "string", "Montreal")
+       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "string", ["Montreal"])
        * 
        * // no error, return undefined
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("equals", "string", "")
+       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "string", [""])
        *  
        * // return an error
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("equals", "string", undefined)
+       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "string", undefined)
        * 
        * // return an error
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("is-empty", "string")
+       * const error = JMap.Layer.DynamicLayer.getConditionValueError("IS_EMPTY", "string")
        * 
        * // no error, return undefined
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("equals", "number", "test")
+       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "number", "test")
        * 
        * // no error, return undefined
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("equals", "number", 22)
+       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "number", 22)
        * ```
        */
       function getConditionValueError(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): string | undefined
@@ -1208,40 +1268,68 @@ declare namespace JMap {
        * 
        * @param operator The operator to check
        * @param attributeType The attribute type
-       * @param value the value, an array of value for is-between operator
+       * @param value the value, an array of value for IS_IN_RANGE operator
        * @example ```ts
        * 
        * // if date1 is Date object, returns false
-       * JMap.Layer.DynamicLayer.isConditionValueValid("is-between", "date", date1)
+       * JMap.Layer.DynamicLayer.isConditionValueValid("IS_IN_RANGE", "date", date1)
        * 
        * // if date1 and date2 are Date objects, return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("is-between", "date", [date1, date2])
+       * JMap.Layer.DynamicLayer.isConditionValueValid("IS_IN_RANGE", "date", [date1, date2])
        * 
        * // return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("equals", "string", "Montreal")
+       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "string", "Montreal")
        * 
        * // return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("equals", "string", "")
+       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "string", "")
        *  
        * // return false
-       * JMap.Layer.DynamicLayer.isConditionValueValid("equals", "string", undefined)
+       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "string", undefined)
        * 
        * // return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("is-empty", "string")
+       * JMap.Layer.DynamicLayer.isConditionValueValid("IS_EMPTY", "string")
        * 
        * // return false
-       * JMap.Layer.DynamicLayer.isConditionValueValid("equals", "number", "test")
+       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "number", "test")
        * 
        * // return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("equals", "number", 22)
+       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "number", 22)
        * ```
        */
       function isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value1?: any, value2?: any): boolean
 
       /**
+       * **JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators**
+       * 
+       * Returns true if the attribute type accept multiple value operator ("EQUALS" or "NOT_EQUALS" for example).
+       * 
+       * This function is safe, it throws nothing.
+       * 
+       * @param attributeType The attribute type
+       * @example ```ts
+       * 
+       * // return true
+       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("string")
+       *  
+       * // return true
+       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("number")
+       * 
+       * // return false
+       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("date")
+       * 
+       * // return false
+       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("datetime")
+       *  
+       * // return false
+       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("boolean")
+       * ```
+       */
+      function isAttributeTypeAcceptMultipleValueOperators(attributeType: JLayerAttributeType): boolean
+
+      /**
        * **JMap.Layer.DynamicLayer.isAttributeTypeAcceptTwoValuesOperators**
        * 
-       * Returns true if the attribute type accept two value operator ("is-between").
+       * Returns true if the attribute type accept two value operator ("IS_IN_RANGE").
        * 
        * This function is safe, it throws nothing.
        * 
@@ -1269,7 +1357,7 @@ declare namespace JMap {
       /**
        * **JMap.Layer.DynamicLayer.getIsBetweenValuesError**
        * 
-       * Returns true if the attribute type accept two value operator ("is-between").
+       * Returns true if the attribute type accept two value operator ("IS_IN_RANGE").
        * 
        * This function is safe, it throws nothing.
        * 
@@ -7536,24 +7624,44 @@ declare namespace JMap {
         function dynamicFilterActivationChange(listenerId: string, fn: (params: JLayerDynamicFilterActivationParams) => void): void
 
         /**
-         * ***JMap.Event.Layer.on.dynamicFilterConditionAdded***
+         * ***JMap.Event.Layer.on.dynamicFilterConditionCreated***
          * 
-         * This event is triggered when a condition is added on a layer dynamic filter.
+         * This event is triggered when a condition is created on a layer dynamic filter.
          * 
          * @param listenerId Your listener id (must be unique for all layer events)
          * @param fn Your listener function
          * @example ```ts
          * 
-         * // Each time a condition is added on a layer dynamic filter, will display a message in the console
-         * JMap.Event.Layer.on.dynamicFilterConditionAdded(
-         *    "custom-layer-dynamic-filter-condition-added",
+         * // Each time a condition is created on a layer dynamic filter, will display a message in the console
+         * JMap.Event.Layer.on.dynamicFilterConditionCreated(
+         *    "custom-layer-dynamic-filter-condition-created",
          *    params => {
          *      console.info(`Condition added on layer id=${params.layerId}'s dynamic filter`, params.filter, params.condition)
          *    }
          * )
          * ```
          */
-        function dynamicFilterConditionAdded(listenerId: string, fn: (params: JLayerDynamicFilterConditionAdded) => void): void
+        function dynamicFilterConditionCreated(listenerId: string, fn: (params: JLayerDynamicFilterConditionCreated) => void): void
+
+        /**
+         * ***JMap.Event.Layer.on.dynamicFilterConditionUpdated***
+         * 
+         * This event is triggered when a condition is updated on a layer dynamic filter.
+         * 
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time a condition is updated on a layer dynamic filter, will display a message in the console
+         * JMap.Event.Layer.on.dynamicFilterConditionUpdated(
+         *    "custom-layer-dynamic-filter-condition-updated",
+         *    params => {
+         *      console.info(`Condition updated on layer id=${params.layerId}'s dynamic filter`, params.filter, params.condition)
+         *    }
+         * )
+         * ```
+         */
+        function dynamicFilterConditionUpdated(listenerId: string, fn: (params: JLayerDynamicFilterConditionUpdated) => void): void
 
         /**
          * ***JMap.Event.Layer.on.dynamicFilterConditionsRemoved***

@@ -96,7 +96,12 @@ declare interface JLayerDynamicFilterActivationParams extends JLayerEventParams 
   layerId: JId
 }
 
-declare interface JLayerDynamicFilterConditionAdded extends JLayerEventParams {
+declare interface JLayerDynamicFilterConditionCreated extends JLayerEventParams {
+  filter: JDynamicFilter
+  condition: JDynamicFilterCondition
+}
+
+declare interface JLayerDynamicFilterConditionUpdated extends JLayerEventParams {
   filter: JDynamicFilter
   condition: JDynamicFilterCondition
 }

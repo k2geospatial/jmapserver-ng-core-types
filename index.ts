@@ -250,7 +250,8 @@ export interface JLayerEventModule extends JEventModule {
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
     initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
     dynamicFilterActivationChange(listenerId: string, fn: (params: JLayerDynamicFilterActivationParams) => void): void
-    dynamicFilterConditionAdded(listenerId: string, fn: (params: JLayerDynamicFilterConditionAdded) => void): void
+    dynamicFilterConditionCreated(listenerId: string, fn: (params: JLayerDynamicFilterConditionCreated) => void): void
+    dynamicFilterConditionUpdated(listenerId: string, fn: (params: JLayerDynamicFilterConditionUpdated) => void): void
     dynamicFilterConditionsRemoved(listenerId: string, fn: (params: JLayerDynamicFilterConditionsRemoved) => void): void
   }
 }
@@ -880,17 +881,21 @@ export interface JDynamicFilterService {
   setIsActive(layerId: JId, isActive: boolean): void
   getByLayerId(layerId: JId): JDynamicFilter
   getAllOperators(): JDynamicFilterOperator[]
+  getAllArrayValueOperators(): JDynamicFilterOperator[]
   getAllTwoValuesOperators(): JDynamicFilterOperator[]
   getOperatorsForAttributeType(attributeType: JLayerAttributeType): JDynamicFilterOperator[]
   getConditionError(condition: JDynamicFilterCondition): string | undefined
   isConditionValid(condition: JDynamicFilterCondition): boolean
-  existSimilarCondition(condition: JDynamicFilterCondition): boolean
-  addCondition(condition: JDynamicFilterCondition): number
+  existSimilarCondition(condition: JDynamicFilterCondition, isUpdate?: boolean): boolean
+  createCondition(condition: JDynamicFilterCondition): number
+  updateCondition(condition: JDynamicFilterCondition): void
   removeConditions(layerId: JId, conditionsIds: number[]): void
-  isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
   isNoValueOperator(operator: JDynamicFilterOperator): boolean
+  isArrayValueOperator(operator: JDynamicFilterOperator): boolean
+  isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
   getConditionValueError(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): string | undefined
   isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): boolean
+  isAttributeTypeAcceptMultipleValueOperators(attributeType: JLayerAttributeType): boolean
   isAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
   getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
 }
