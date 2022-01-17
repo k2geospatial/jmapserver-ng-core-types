@@ -877,6 +877,7 @@ export interface JServerService {
 }
 
 export interface JDynamicFilterService {
+  isAvailable(layerId: JId): boolean
   isActive(layerId: JId): boolean
   setIsActive(layerId: JId, isActive: boolean): void
   getByLayerId(layerId: JId): JDynamicFilter

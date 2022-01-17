@@ -168,7 +168,7 @@ declare interface JLayerInformationReport {
 
 declare interface JDynamicFilter {
   layerId: JId
-  isDisabled: boolean // true means no dynamic filter for layer, ex: IMAGE layers
+  isAvailable: boolean // false means no dynamic filter for layer, ex: IMAGE layers
   isActive: boolean
   intervalOperatorDisabled: boolean // true if layer has less than 2 date attributes
   conditions: JDynamicFilterCondition[]

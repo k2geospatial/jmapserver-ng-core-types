@@ -924,9 +924,28 @@ declare namespace JMap {
     namespace DynamicFilter {
 
       /**
+       * **JMap.Layer.DynamicLayer.isAvailable**
+       * 
+       * Return true if the layer support dynamic filter.
+       * 
+       * For example raster layers don't support dynamic filter.
+       * 
+       * @throws Error if layer is not found
+       * @param layerId The JMap layer id
+       * @example ```ts
+       * 
+       * // returns true if layer id=5 support dynamic filter, else false
+       * JMap.Layer.DynamicLayer.isAvailable(5)
+       * ```
+       */
+      function isAvailable(layerId: JId): boolean
+
+      /**
        * **JMap.Layer.DynamicLayer.isActive**
        * 
        * Return true if the layer has a dynamic filter, and its filter is active.
+       * 
+       * Doesn't throw if the given layer doesn't support dynamic filter.
        * 
        * @throws Error if layer is not found
        * @param layerId The JMap layer id
