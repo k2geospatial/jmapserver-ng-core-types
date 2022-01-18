@@ -437,7 +437,7 @@ declare interface JCoreMapOptions {
    * </html>
    * ```
    */
-    scaleControlPosition?: JMapPosition
+  scaleControlPosition?: JMapPosition
 
   /**
    * You can choose the position of the attribution control on the map.
