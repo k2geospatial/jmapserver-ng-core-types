@@ -79,7 +79,11 @@ export interface JMapContextService {
 
 export interface JMapAttributionService {
   getAttributionControlPosition(): JMapPosition 
-  setAttributionControlPosition(position: JMapPosition ): void
+  setAttributionControlPosition(position: JMapPosition): void
+  getAll(): JMapAttribution[]
+  add(attribution: JMapAttribution): void
+  removeByIds(attributionsIds: string[]): void
+  getById(attributionId: string): JMapAttribution
 }
 
 export interface JDateService {
@@ -431,7 +435,7 @@ export interface JMapState {
   containerWidth: number
   containerHeight: number
   modificationType: JMapModificationTypes
-  defaultAttribution: JMapAttribution
+  attributions: JMapAttribution[]
 }
 
 export interface JProjectState {

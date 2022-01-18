@@ -80,7 +80,8 @@ declare interface JMapEventSelectionChangedParams {
 }
 
 declare interface JMapEventBasemapChangedParams {
-  activeBasemapId: string 
+  currentActiveBasemapId: string
+  newActiveBasemapId: string 
 }
 
 declare type JMapSelection = {
@@ -202,8 +203,7 @@ declare interface JBasemap {
 
 declare interface JMapAttribution {
   id: string
-  image: string | undefined
-  text: string | undefined
+  html: string
 }
 
 declare interface JZoomOptions {
@@ -437,7 +437,31 @@ declare interface JCoreMapOptions {
    * </html>
    * ```
    */
-  scaleControlPosition?: JMapPosition
+    scaleControlPosition?: JMapPosition
+
+  /**
+   * You can choose the position of the attribution control on the map.
+   * 
+   * Use a value in : "**top-left**", "**top-right**", "**bottom-left**", or "**bottom-right**"
+   * 
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         map: {
+   *           attributionControlPosition: "bottom-right"
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+   attributionControlPosition?: JMapPosition
 
   /**
    * This is the unit in which the scale control panel will display the data.

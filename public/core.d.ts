@@ -4596,6 +4596,98 @@ declare namespace JMap {
        */
       function removeByIds(basemapIds: string[]): void
     }
+
+    namespace Attribution {
+      /**
+       * ***JMap.Map.Attribution.setAttributionControlPosition***
+       * 
+       * Changes the scale control position on the map.
+       * @throws Error if no or incorrect position is passed
+       * @param position the position on the map where to display the attribution control.
+       * @example ```ts
+       * 
+       * // Moves the attribution control on the top-left corner of the map
+       * JMap.Map.Attribution.setAttributionControlPosition("top-left")
+       * ```
+       */
+      function setAttributionControlPosition(position: JMapPosition): void
+
+      /**
+       * ***JMap.Map.Attribution.getAttributionControlPosition***
+       * 
+       * Returns the current attribution control position on the map.
+       * 
+       * @example ```ts
+       * 
+       * // Return the current attribution control position
+       * JMap.Map.Attribution.getAttributionControlPosition()
+       * ```
+       */
+      function getAttributionControlPosition(): JMapPosition
+
+      /**
+       * ***JMap.Map.Attribution.getAll***
+       * 
+       * Returns all the attributions displayed on the map.
+       * 
+       * @example ```ts
+       * 
+       * // Get all the attributions currently displayed.
+       * const attributions: JMapAttribution = JMap.Map.Attribution.getAll()
+       * 
+       * ```
+       */
+      function getAll(): JMapAttribution[]
+
+      /**
+       * ***JMap.Map.Attribution.add***
+       * 
+       * Add a custom attribution on the map.
+       * 
+       * @throws Errors if incorrect or taken id, or if html isn't a non-empty string
+       * @param attribution the attribution to add to the map
+       * @example ```ts
+       *
+       * // Add a text attribution on the map.
+       * const myTextAttribution: JMapAttribution = { id: "my-text-attribution", html:"<p> Hello World !</p>" }
+       * JMap.Map.Attribution.add(myTextAttribution)
+       * 
+       * ```
+       */
+      function add(attribution: JMapAttribution): void
+
+      /**
+       * ***JMap.Map.Attribution.removeByIds***
+       * 
+       * Remove the attributions from the map for the given ids (does nothing for nonexistents ids or default JMap attribution's id )
+       * 
+       * @throws Error if attributionsIds is not an array
+       * @param attributionsIds The array of attributions ids to remove
+       * @example ```ts
+       * 
+       * // Remove a custom attribution from the map.
+       * JMap.Map.Attribution.removeByIds(["my-attribution"])
+       * 
+       * ```
+       */
+      function removeByIds(attributionsIds: string[]): void 
+
+      /**
+       * ***JMap.Map.Attribution.getById***
+       * 
+       * Remove the attributions from the map for the given ids (does nothing for nonexistents ids or default JMap attribution's id )
+       * 
+       * @throws Errors if incorrect or nonexistent id  
+       * @param attributionId The attribution id
+       * @example ```ts
+       * 
+       * // Display a mapbox attribution.
+       * console.log(JMap.Map.Attribution.getById(["mapbox-satellite-attribution"]))
+       * 
+       * ```
+       */
+      function getById(attributionId: string): JMapAttribution 
+    }
   }
 
   /**
