@@ -78,10 +78,9 @@ export interface JMapContextService {
 }
 
 export interface JMapAttributionService {
-  getAttributionControlPosition(): JMapPosition 
-  setAttributionControlPosition(position: JMapPosition): void
   getAll(): JMapAttribution[]
   add(attribution: JMapAttribution): void
+  addAttributions(attributions: JMapAttribution[]): void
   removeByIds(attributionsIds: string[]): void
   getById(attributionId: string): JMapAttribution
 }
@@ -302,6 +301,7 @@ export interface JMapEventModule extends JEventModule {
     containerReady(listenerId: string, fn: (params: JMapEventContainerReadyParams) => void): void
     containerResized(listenerId: string, fn: (params: JMapEventContainerResizedParams) => void): void
     selectionChanged(listenerId: string, fn: (params: JMapEventSelectionChangedParams) => void): void
+    basemapChanged(listenerId: string, fn: (params: JMapEventBasemapChangedParams) => void): void
   }
 }
 
@@ -424,7 +424,6 @@ export interface JMapState {
   selection: JMapSelection
   jmapLayerIdsSupportedByMapbox: JId[]
   scaleControlPosition: JMapPosition
-  attributionControlPosition: JMapPosition
   distanceUnit: JDistanceUnit
   isNavigationHistoryControlVisible:boolean
   isScaleControlVisible: boolean

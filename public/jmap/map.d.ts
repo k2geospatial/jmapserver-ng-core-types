@@ -198,12 +198,14 @@ declare interface JBasemap {
   maxzoom?: number
   tileSize?: number
   extent?: JBoundaryBox
-  attribution? : JMapAttribution
+  attributions? : JMapAttribution[]
 }
 
 declare interface JMapAttribution {
   id: string
-  html: string
+  text: string | undefined
+  imgSrc: string | undefined
+  href?: string
 }
 
 declare interface JZoomOptions {

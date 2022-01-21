@@ -4599,33 +4599,6 @@ declare namespace JMap {
 
     namespace Attribution {
       /**
-       * ***JMap.Map.Attribution.setAttributionControlPosition***
-       * 
-       * Changes the scale control position on the map.
-       * @throws Error if no or incorrect position is passed
-       * @param position the position on the map where to display the attribution control.
-       * @example ```ts
-       * 
-       * // Moves the attribution control on the top-left corner of the map
-       * JMap.Map.Attribution.setAttributionControlPosition("top-left")
-       * ```
-       */
-      function setAttributionControlPosition(position: JMapPosition): void
-
-      /**
-       * ***JMap.Map.Attribution.getAttributionControlPosition***
-       * 
-       * Returns the current attribution control position on the map.
-       * 
-       * @example ```ts
-       * 
-       * // Return the current attribution control position
-       * JMap.Map.Attribution.getAttributionControlPosition()
-       * ```
-       */
-      function getAttributionControlPosition(): JMapPosition
-
-      /**
        * ***JMap.Map.Attribution.getAll***
        * 
        * Returns all the attributions displayed on the map.
@@ -4644,17 +4617,41 @@ declare namespace JMap {
        * 
        * Add a custom attribution on the map.
        * 
-       * @throws Errors if incorrect or taken id, or if html isn't a non-empty string
+       * @throws Errors if incorrect or taken id, if both text and imgSrc are not a string, if href is initialized but not a string
        * @param attribution the attribution to add to the map
        * @example ```ts
        *
-       * // Add a text attribution on the map.
-       * const myTextAttribution: JMapAttribution = { id: "my-text-attribution", html:"<p> Hello World !</p>" }
-       * JMap.Map.Attribution.add(myTextAttribution)
+       * // Add a link attribution on the map.
+       *
+       * JMap.Map.Attribution.add({ id: "link-test", text: "© HelloWorld", href:"https://k2geospatial.com/jmap-en/"})
        * 
+       * // Add a text attribution on the map.
+       *
+       * JMap.Map.Attribution.add({ id: "text-test", text: "© HelloWorld")
+       *
+       * // Add a image attribution on the map.
+       *
+       * JMap.Map.Attribution.add({id: "test-image",imgSrc: "https://k2geospatial.com/wp-content/themes/k2-theme/assets/images/k2-logo.png", href: "https://k2geospatial.com/jmap-en/"})
        * ```
        */
       function add(attribution: JMapAttribution): void
+
+
+      /**
+       * ***JMap.Map.Attribution.add***
+       * 
+       * Add a custom attribution on the map.
+       * 
+       * @throws Errors if attributions is not an array, if one of the attribution is invalid
+       * @param attributions the attributions to add to the map
+       * @example ```ts
+       *
+       * // Add two custom attributions on the map.
+       *
+       * JMap.Map.Attribution.addAttributions([{ id: "custom-attribution-0", text: "© K2Geospatial", href: "https://k2geospatial.com/jmap-en/" },{ id: "custom-attribution-1", text: "© StackOverflow", href: "https://stackoverflow.com/" }])
+       * ```
+       */
+       function addAttributions(attributions: JMapAttribution[]): void
 
       /**
        * ***JMap.Map.Attribution.removeByIds***
@@ -8000,8 +7997,8 @@ declare namespace JMap {
          * JMap.Event.Map.on.basemapChanged(
          *    "custom-basemap-changed",
          *    params => {
-         *      console.log("Old selection:", params.oldSelection)
-         *      console.log("New selection:", params.activeBasemapId)
+         *      console.log("currentActiveBasemapId:", params.currentActiveBasemapId)
+         *      console.log("newActiveBasemapId:", params.newActiveBasemapId)
          *    }
          * )
          * ```
