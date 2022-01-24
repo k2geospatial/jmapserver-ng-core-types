@@ -4613,7 +4613,7 @@ declare namespace JMap {
       function getAll(): JMapAttribution[]
 
       /**
-       * ***JMap.Map.Attribution.add***
+       * ***JMap.Map.Attribution.addSingle***
        * 
        * Add a custom attribution on the map.
        * 
@@ -4623,22 +4623,22 @@ declare namespace JMap {
        *
        * // Add a link attribution on the map.
        *
-       * JMap.Map.Attribution.add({ id: "link-test", text: "© HelloWorld", href:"https://k2geospatial.com/jmap-en/"})
+       * JMap.Map.Attribution.addSingle({ id: "link-test", text: "© HelloWorld", href:"https://k2geospatial.com/jmap-en/"})
        * 
        * // Add a text attribution on the map.
        *
-       * JMap.Map.Attribution.add({ id: "text-test", text: "© HelloWorld")
+       * JMap.Map.Attribution.addSingle({ id: "text-test", text: "© HelloWorld")
        *
        * // Add a image attribution on the map.
        *
-       * JMap.Map.Attribution.add({id: "test-image",imgSrc: "https://k2geospatial.com/wp-content/themes/k2-theme/assets/images/k2-logo.png", href: "https://k2geospatial.com/jmap-en/"})
+       * JMap.Map.Attribution.addSingle({id: "test-image",imgSrc: "https://k2geospatial.com/wp-content/themes/k2-theme/assets/images/k2-logo.png", href: "https://k2geospatial.com/jmap-en/"})
        * ```
        */
-      function add(attribution: JMapAttribution): void
+      function addSingle(attribution: JMapAttribution): void
 
 
       /**
-       * ***JMap.Map.Attribution.add***
+       * ***JMap.Map.Attribution.addMultiple***
        * 
        * Add a custom attribution on the map.
        * 
@@ -4648,10 +4648,10 @@ declare namespace JMap {
        *
        * // Add two custom attributions on the map.
        *
-       * JMap.Map.Attribution.addAttributions([{ id: "custom-attribution-0", text: "© K2Geospatial", href: "https://k2geospatial.com/jmap-en/" },{ id: "custom-attribution-1", text: "© StackOverflow", href: "https://stackoverflow.com/" }])
+       * JMap.Map.Attribution.addMultiple([{ id: "custom-attribution-0", text: "© K2Geospatial", href: "https://k2geospatial.com/jmap-en/" },{ id: "custom-attribution-1", text: "© StackOverflow", href: "https://stackoverflow.com/" }])
        * ```
        */
-       function addAttributions(attributions: JMapAttribution[]): void
+       function addMultiple(attributions: JMapAttribution[]): void
 
       /**
        * ***JMap.Map.Attribution.removeByIds***

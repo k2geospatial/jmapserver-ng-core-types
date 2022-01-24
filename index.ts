@@ -79,8 +79,8 @@ export interface JMapContextService {
 
 export interface JMapAttributionService {
   getAll(): JMapAttribution[]
-  add(attribution: JMapAttribution): void
-  addAttributions(attributions: JMapAttribution[]): void
+  addSingle(attribution: JMapAttribution): void
+  addMultiple(attributions: JMapAttribution[]): void
   removeByIds(attributionsIds: string[]): void
   getById(attributionId: string): JMapAttribution
 }
