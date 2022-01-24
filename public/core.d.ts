@@ -4636,7 +4636,6 @@ declare namespace JMap {
        */
       function addSingle(attribution: JMapAttribution): void
 
-
       /**
        * ***JMap.Map.Attribution.addMultiple***
        * 
