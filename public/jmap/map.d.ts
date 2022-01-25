@@ -203,8 +203,8 @@ declare interface JBasemap {
 
 declare interface JMapAttribution {
   id: string
-  text: string | undefined
-  imgSrc: string | undefined
+  text: string | undefined // text and/or imageUrl param(s) must be set
+  imageSource: string | undefined // imageUrl and/or text param(s) must be set
   href?: string
 }
 

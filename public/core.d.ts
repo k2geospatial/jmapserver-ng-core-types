@@ -4598,14 +4598,15 @@ declare namespace JMap {
     }
 
     namespace Attribution {
+
       /**
        * ***JMap.Map.Attribution.getAll***
        * 
-       * Returns all the attributions displayed on the map.
+       * Returns all attributions displayed on the map.
        * 
        * @example ```ts
        * 
-       * // Get all the attributions currently displayed.
+       * // Get all attributions currently displayed.
        * const attributions: JMapAttribution = JMap.Map.Attribution.getAll()
        * 
        * ```
@@ -4617,21 +4618,20 @@ declare namespace JMap {
        * 
        * Add a custom attribution on the map.
        * 
-       * @throws Errors if incorrect or taken id, if both text and imgSrc are not a string, if href is initialized but not a string
+       * @throws Errors if some parameters are invalid, or if an attribution having the same id already exists
        * @param attribution the attribution to add to the map
        * @example ```ts
        *
        * // Add a link attribution on the map.
-       *
        * JMap.Map.Attribution.addSingle({ id: "link-test", text: "© HelloWorld", href:"https://k2geospatial.com/jmap-en/"})
        * 
-       * // Add a text attribution on the map.
-       *
+       * // Add a text attribution on the map
        * JMap.Map.Attribution.addSingle({ id: "text-test", text: "© HelloWorld")
        *
        * // Add a image attribution on the map.
-       *
-       * JMap.Map.Attribution.addSingle({id: "test-image",imgSrc: "https://k2geospatial.com/wp-content/themes/k2-theme/assets/images/k2-logo.png", href: "https://k2geospatial.com/jmap-en/"})
+       * JMap.Map.Attribution.addSingle({id: "test-image",
+       * imageSource: "https://k2geospatial.com/wp-content/themes/k2-theme/assets/images/k2-logo.png",
+       * href: "https://k2geospatial.com/jmap-en/"})
        * ```
        */
       function addSingle(attribution: JMapAttribution): void
@@ -4639,15 +4639,19 @@ declare namespace JMap {
       /**
        * ***JMap.Map.Attribution.addMultiple***
        * 
-       * Add a custom attribution on the map.
+       * Add multiple attributions on the map.
        * 
-       * @throws Errors if attributions is not an array, if one of the attribution is invalid
-       * @param attributions the attributions to add to the map
+       * @throws Errors if invalid parameters, or if an attribution having the same id already exists
+       * @param attributions an array of attributions
        * @example ```ts
        *
        * // Add two custom attributions on the map.
-       *
-       * JMap.Map.Attribution.addMultiple([{ id: "custom-attribution-0", text: "© K2Geospatial", href: "https://k2geospatial.com/jmap-en/" },{ id: "custom-attribution-1", text: "© StackOverflow", href: "https://stackoverflow.com/" }])
+       * JMap.Map.Attribution.addMultiple([{ id: "custom-attribution-0",
+       *  text: "© K2Geospatial",
+       *  href: "https://k2geospatial.com/jmap-en/" },
+       * { id: "custom-attribution-1",
+       *  text: "© StackOverflow",
+       *  href: "https://stackoverflow.com/" }])
        * ```
        */
        function addMultiple(attributions: JMapAttribution[]): void
@@ -4658,7 +4662,7 @@ declare namespace JMap {
        * Remove the attributions from the map for the given ids (does nothing for nonexistents ids or default JMap attribution's id )
        * 
        * @throws Error if attributionsIds is not an array
-       * @param attributionsIds The array of attributions ids to remove
+       * @param attributionsIds array of attribution ids to remove
        * @example ```ts
        * 
        * // Remove a custom attribution from the map.
@@ -4669,7 +4673,7 @@ declare namespace JMap {
       function removeByIds(attributionsIds: string[]): void 
 
       /**
-       * ***JMap.Map.Attribution.getById***
+       * ***JMap.Map.Attribution.removeByIds***
        * 
        * Remove the attributions from the map for the given ids (does nothing for nonexistents ids or default JMap attribution's id )
        * 
@@ -7986,13 +7990,13 @@ declare namespace JMap {
         /**
          * ***JMap.Event.Map.on.basemapChanged***
          * 
-         * This event is triggered when the basemap is changed.
+         * This event is triggered when the basemap changed.
          * 
          * @param listenerId Your listener id (must be unique for all map events)
          * @param fn Your listener function
          * @example ```ts
          * 
-         * // When the basemap is changed, display the new active basemap id in the console
+         * // When the basemap is changed, display the new basemap id in the console
          * JMap.Event.Map.on.basemapChanged(
          *    "custom-basemap-changed",
          *    params => {
