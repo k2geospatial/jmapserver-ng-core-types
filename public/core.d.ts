@@ -4659,7 +4659,7 @@ declare namespace JMap {
       /**
        * ***JMap.Map.Attribution.removeByIds***
        * 
-       * Remove the attributions from the map for the given ids (does nothing for nonexistents ids or default JMap attribution's id )
+       * Remove the attributions from the map for the given ids (does nothing if id not found)
        * 
        * @throws Error if attributionsIds is not an array
        * @param attributionsIds array of attribution ids to remove
@@ -4673,11 +4673,10 @@ declare namespace JMap {
       function removeByIds(attributionsIds: string[]): void 
 
       /**
-       * ***JMap.Map.Attribution.removeByIds***
+       * ***JMap.Map.Attribution.getById***
        * 
-       * Remove the attributions from the map for the given ids (does nothing for nonexistents ids or default JMap attribution's id )
+       * Return an attribution for the given id
        * 
-       * @throws Errors if incorrect or nonexistent id  
        * @param attributionId The attribution id
        * @example ```ts
        * 
