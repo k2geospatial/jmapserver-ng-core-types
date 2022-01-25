@@ -4630,7 +4630,7 @@ declare namespace JMap {
        *
        * // Add a image attribution on the map.
        * JMap.Map.Attribution.addSingle({id: "test-image",
-       * imageSource: "https://k2geospatial.com/wp-content/themes/k2-theme/assets/images/k2-logo.png",
+       * imageUrl: "https://k2geospatial.com/wp-content/themes/k2-theme/assets/images/k2-logo.png",
        * href: "https://k2geospatial.com/jmap-en/"})
        * ```
        */
