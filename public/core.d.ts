@@ -4596,6 +4596,97 @@ declare namespace JMap {
        */
       function removeByIds(basemapIds: string[]): void
     }
+
+    namespace Attribution {
+
+      /**
+       * ***JMap.Map.Attribution.getAll***
+       * 
+       * Returns all attributions displayed on the map.
+       * 
+       * @example ```ts
+       * 
+       * // Get all attributions currently displayed.
+       * const attributions: JMapAttribution = JMap.Map.Attribution.getAll()
+       * 
+       * ```
+       */
+      function getAll(): JMapAttribution[]
+
+      /**
+       * ***JMap.Map.Attribution.addSingle***
+       * 
+       * Add a custom attribution on the map.
+       * 
+       * @throws Errors if some parameters are invalid, or if an attribution having the same id already exists
+       * @param attribution the attribution to add to the map
+       * @example ```ts
+       *
+       * // Add a link attribution on the map.
+       * JMap.Map.Attribution.addSingle({ id: "link-test", text: "© HelloWorld", href:"https://k2geospatial.com/jmap-en/"})
+       * 
+       * // Add a text attribution on the map
+       * JMap.Map.Attribution.addSingle({ id: "text-test", text: "© HelloWorld")
+       *
+       * // Add a image attribution on the map.
+       * JMap.Map.Attribution.addSingle({id: "test-image",
+       * imageUrl: "https://k2geospatial.com/wp-content/themes/k2-theme/assets/images/k2-logo.png",
+       * href: "https://k2geospatial.com/jmap-en/"})
+       * ```
+       */
+      function addSingle(attribution: JMapAttribution): void
+
+      /**
+       * ***JMap.Map.Attribution.addMultiple***
+       * 
+       * Add multiple attributions on the map.
+       * 
+       * @throws Errors if invalid parameters, or if an attribution having the same id already exists
+       * @param attributions an array of attributions
+       * @example ```ts
+       *
+       * // Add two custom attributions on the map.
+       * JMap.Map.Attribution.addMultiple([{ id: "custom-attribution-0",
+       *  text: "© K2Geospatial",
+       *  href: "https://k2geospatial.com/jmap-en/" },
+       * { id: "custom-attribution-1",
+       *  text: "© StackOverflow",
+       *  href: "https://stackoverflow.com/" }])
+       * ```
+       */
+       function addMultiple(attributions: JMapAttribution[]): void
+
+      /**
+       * ***JMap.Map.Attribution.removeByIds***
+       * 
+       * Remove the attributions from the map for the given ids (does nothing if id not found)
+       * 
+       * @throws Error if attributionsIds is not an array
+       * @param attributionsIds array of attribution ids to remove
+       * @example ```ts
+       * 
+       * // Remove a custom attribution from the map.
+       * JMap.Map.Attribution.removeByIds(["my-attribution"])
+       * 
+       * ```
+       */
+      function removeByIds(attributionsIds: string[]): void 
+
+      /**
+       * ***JMap.Map.Attribution.getById***
+       * 
+       * Return an attribution for the given id
+       * 
+       * @param attributionId The attribution id
+       * @example ```ts
+       * 
+       * // Display a mapbox attribution.
+       * console.log(JMap.Map.Attribution.getById(["mapbox-satellite-attribution"]))
+       * 
+       * ```
+       */
+      function getById(attributionId: string): JMapAttribution 
+    }
   }
 
   /**
@@ -7894,6 +7985,27 @@ declare namespace JMap {
          * ```
          */
         function selectionChanged(listenerId: string, fn: (params: JMapEventSelectionChangedParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.basemapChanged***
+         * 
+         * This event is triggered when the basemap changed.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the basemap is changed, display the new basemap id in the console
+         * JMap.Event.Map.on.basemapChanged(
+         *    "custom-basemap-changed",
+         *    params => {
+         *      console.log("currentActiveBasemapId:", params.currentActiveBasemapId)
+         *      console.log("newActiveBasemapId:", params.newActiveBasemapId)
+         *    }
+         * )
+         * ```
+         */
+        function basemapChanged(listenerId: string, fn: (params: JMapEventBasemapChangedParams) => void): void
       }
       /**
        * ***JMap.Event.Map.activate***

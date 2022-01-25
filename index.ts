@@ -77,6 +77,14 @@ export interface JMapContextService {
   getIgnoredCssClassesForPreviewImage(): string[]
 }
 
+export interface JMapAttributionService {
+  getAll(): JMapAttribution[]
+  addSingle(attribution: JMapAttribution): void
+  addMultiple(attributions: JMapAttribution[]): void
+  removeByIds(attributionsIds: string[]): void
+  getById(attributionId: string): JMapAttribution
+}
+
 export interface JDateService {
   getDate(date: JDateLike): Date
   getDateFnsLocale(displayTime?: boolean): any
@@ -293,6 +301,7 @@ export interface JMapEventModule extends JEventModule {
     containerReady(listenerId: string, fn: (params: JMapEventContainerReadyParams) => void): void
     containerResized(listenerId: string, fn: (params: JMapEventContainerResizedParams) => void): void
     selectionChanged(listenerId: string, fn: (params: JMapEventSelectionChangedParams) => void): void
+    basemapChanged(listenerId: string, fn: (params: JMapEventBasemapChangedParams) => void): void
   }
 }
 
@@ -425,6 +434,7 @@ export interface JMapState {
   containerWidth: number
   containerHeight: number
   modificationType: JMapModificationTypes
+  attributions: JMapAttribution[]
 }
 
 export interface JProjectState {
@@ -580,6 +590,7 @@ export interface JMapService {
   Filter: JMapFilterService
   Selection: JMapSelectionService
   Basemap: JMapBasemapService
+  Attribution: JMapAttributionService
   getMap(): Map
   getMapJSLib(): any
   getDomContainerId(): string
