@@ -4690,12 +4690,12 @@ declare namespace JMap {
       /**
        * ***JMap.Map.Attribution.isDefaultAttributionId***
        * 
-       * Return true if the given id is a default attribution id
+       * Return true if the given id is reserved
        * 
        * @param attributionId The attribution id
        * @example ```ts
        * 
-       * // Display if "custom-attribution" is an id taken by the default attributions .
+       * // Display if "custom-attribution" is a reserved id
        * console.log(JMap.Map.Attribution.isDefaultAttributionId("custom-attribution"))
        * 
        * ```
