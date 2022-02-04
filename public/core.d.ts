@@ -4634,7 +4634,7 @@ declare namespace JMap {
        * JMap.Map.Attribution.addSingle({ id: "link-test", text: "© HelloWorld", href:"https://k2geospatial.com/jmap-en/"})
        * 
        * // Add a text attribution on the map
-       * JMap.Map.Attribution.addSingle({ id: "text-test", text: "© HelloWorld")
+       * JMap.Map.Attribution.addSingle({ id: "text-test", text: "© HelloWorld"})
        *
        * // Add a image attribution on the map.
        * JMap.Map.Attribution.addSingle({id: "test-image",
@@ -4693,7 +4693,22 @@ declare namespace JMap {
        * 
        * ```
        */
-      function getById(attributionId: string): JMapAttribution 
+      function getById(attributionId: string): JMapAttribution
+
+      /**
+       * ***JMap.Map.Attribution.isDefaultAttributionId***
+       * 
+       * Return true if the given id is reserved
+       * 
+       * @param attributionId The attribution id
+       * @example ```ts
+       * 
+       * // Display if "custom-attribution" is a reserved id
+       * console.log(JMap.Map.Attribution.isDefaultAttributionId("custom-attribution"))
+       * 
+       * ```
+       */
+      function isDefaultAttributionId(attributionId: string): boolean 
     }
   }
 

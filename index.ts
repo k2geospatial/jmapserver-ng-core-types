@@ -83,6 +83,7 @@ export interface JMapAttributionService {
   addMultiple(attributions: JMapAttribution[]): void
   removeByIds(attributionsIds: string[]): void
   getById(attributionId: string): JMapAttribution
+  isDefaultAttributionId(attributionId: string): boolean
 }
 
 export interface JDateService {
