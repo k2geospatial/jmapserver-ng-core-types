@@ -4753,7 +4753,6 @@ declare namespace JMap {
      */
     function closePopup(): void
     
-    
     /**
      * **JMap.MouseOver.openPopup**
      * 
@@ -9217,7 +9216,7 @@ declare namespace JMap {
       /**
        * **JMap.Util.Array.remove**
        * 
-       * Remove given elements in given array.
+       * Remove given element in given array.
        * 
        * @param array the array
        * @param element the element to remove
@@ -9236,7 +9235,7 @@ declare namespace JMap {
       /**
        * **JMap.Util.Array.findByProperty**
        * 
-       * Remove given elements in given array.
+       * Search for first element in the given object array, for a given attribute name and value.
        * 
        * @param array the array
        * @param propertyName the object property name
@@ -9254,7 +9253,7 @@ declare namespace JMap {
        *  id: 3,
        *  name: "Blue"
        * }]
-       * // search for an object in the array that have attribute "name" equals to "red", and returns found object or undefined
+       * // search for an object in the given array, having attribute "name" equals to "red", and returns found object or undefined
        * const foundObject = JMap.Util.Array.findByProperty(myObjects, "name", "Red")
        * console.log(`Found object: "${JSON.parse(foundObject)}"`)
        * // display message 'Found object: "{ \"id\": 2, \"name\": \"Red\" }"'
@@ -9265,7 +9264,7 @@ declare namespace JMap {
       /**
        * **JMap.Util.Array.findIndexByProperty**
        * 
-       * Remove given elements in given array.
+       * Search for first element index in the given object array, for a given attribute name and value.
        * 
        * @param array the array
        * @param propertyName the object property name
@@ -9325,7 +9324,7 @@ declare namespace JMap {
       /**
        * **JMap.Util.Array.getCopyWithoutDuplicate**
        * 
-       * Remove the first occurence.
+       * Get a copy of the given array without duplicate.
        * 
        * @param array the array
        * @returns given array copy, without duplicate
