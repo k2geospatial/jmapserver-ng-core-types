@@ -4615,7 +4615,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // Get all attributions currently displayed.
-       * const attributions: JMapAttribution = JMap.Map.Attribution.getAll()
+       * const attributions = JMap.Map.Attribution.getAll()
        * 
        * ```
        */
@@ -4689,7 +4689,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // Display a mapbox attribution.
-       * console.log(JMap.Map.Attribution.getById(["mapbox-satellite-attribution"]))
+       * console.log(JMap.Map.Attribution.getById("mapbox-satellite-1-attribution"))
        * 
        * ```
        */
