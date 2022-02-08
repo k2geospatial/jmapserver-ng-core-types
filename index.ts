@@ -102,10 +102,19 @@ export interface JDateService {
 export interface JUtilService {
   Date: JDateService
   LocalStorage: JLocalStorageService
+  Array: JArrayService
   loadJSFile(fileUrl: string): Promise<void>
   isJMapId(id: any, allowStringNumber?: boolean): boolean
   checkJmapId(id: any, message?: string): void
   getJmapIdAsIntegerIfPossible(id: any): JId
+}
+
+export interface JArrayService {
+  remove<T>(array: T[], element: T): T[]
+  findByProperty<T extends object>(array: T[], propertyName: string, value: any): T | undefined
+  findIndexByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): number
+  removeByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): T[]
+  getCopyWithoutDuplicate(array: Array<string | number>): Array<string | number>
 }
 
 export interface JLocalStorageService {
@@ -769,7 +778,7 @@ export interface JLayerService {
   getSelfOrChildren(layerId: JId): JLayer[]
   getName(layerId: JId): string
   getDescription(layerId: JId): string
-  getEPSG4326Extent(layerId: JId): JBoundaryBox | null
+  getEPSG4326Extent(layerId: JId): Promise<JBoundaryBox | null>
   isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
   isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
@@ -835,12 +844,6 @@ export interface JLayerThematicService {
   getFamilyTypeById(layerId: JId, thematicId: JId): JLayerThematicFamilyType
 }
 
-export interface JLayerGroup extends JLayerTreeElement {
-  open: boolean
-  image: string | null
-  children: JLayerTreeElement[]
-}
-
 export interface JUserService {
   getToken(): string
   getFullName(): string
@@ -860,6 +863,7 @@ export interface JUserService {
   changePassword(newPassword: string, currentPassword: string): Promise<void>
   getMinimumPasswordLength(): number
   isPseudoUser(): boolean
+  getOrganizationId(): string
 }
 
 export interface JLanguageService {

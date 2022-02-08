@@ -1349,16 +1349,24 @@ declare namespace JMap {
      * **JMap.Layer.getEPSG4326Extent**
      * 
      * Returns the extent of the layer in ESPG:4326 coordinates
+     * 
+     * With Jaaz server a call is made to the server.
+     * 
+     * With JMap 7 server no call to server is made, returns the cached extent.
+     * 
      * @example ```ts
      * 
      * // returns the bounding box (JBoundaryBox) of the layer ID 3 in decimal degrees
-     * JMap.Layer.getEPSG4326Extent(3)
+     * JMap.Layer
+     *  .getEPSG4326Extent(3)
+     *  .then(extent => console.info("Extent of layer id=3", extent))
+     *  .catch(error => console.error(error))
      * ```
      * 
      * @throws Error if no layer found for the id
      * @param layerId The JMap layer id
      */
-    function getEPSG4326Extent(layerId: JId):JBoundaryBox | null
+    function getEPSG4326Extent(layerId: JId): Promise<JBoundaryBox | null>
 
     /**
      * **JMap.Layer.isVisible**
@@ -4745,7 +4753,6 @@ declare namespace JMap {
      */
     function closePopup(): void
     
-    
     /**
      * **JMap.MouseOver.openPopup**
      * 
@@ -5748,6 +5755,22 @@ declare namespace JMap {
      * ```
      */
     function isPseudoUser(): boolean
+
+    /**
+     * ***JMap.User.getOrganizationId***
+     * 
+     * Returns user's organization id.
+     * 
+     * If server is JMap server and not Jaaz, will return "", as there is no organization concept 
+     * for this kind of server. 
+     * 
+     * @example ```ts
+     * 
+     * // returns user's organization id
+     * JMap.User.getOrganizationId()
+     * ```
+     */
+    function getOrganizationId(): string
   }
 
   /**
@@ -9181,6 +9204,140 @@ declare namespace JMap {
        * ```
        */
       function remove(key: string): void
+    }
+
+    /**
+     * **JMap.Util.Array**
+     * 
+     * Here you'll find all array related methods
+     */
+    namespace Array {
+
+      /**
+       * **JMap.Util.Array.remove**
+       * 
+       * Remove given element in given array.
+       * 
+       * @param array the array
+       * @param element the element to remove
+       * @returns the given array (and not a copy)
+       * @example ```ts
+       * 
+       * const myNumbers = [3, 5, 6, 7]
+       * // remove element 6 in array
+       * JMap.Util.Array.remove(myNumbers, 6)
+       * console.log(`Now my numbers are [${myNumbers.join(", ")}]`)
+       * // display message "Now my numbers are [3, 5, 7]"
+       * ```
+       */
+      function remove<T>(array: T[], element: T): T[]
+
+      /**
+       * **JMap.Util.Array.findByProperty**
+       * 
+       * Search for first element in the given object array, for a given attribute name and value.
+       * 
+       * @param array the array
+       * @param propertyName the object property name
+       * @param value object's value for the given property name
+       * @returns the found object, undefined if not found
+       * @example ```ts
+       * 
+       * const myObjects = [{
+       *  id: 1,
+       *  name: "Green"
+       * }, {
+       *  id: 2,
+       *  name: "Red"
+       * }, {
+       *  id: 3,
+       *  name: "Blue"
+       * }]
+       * // search for an object in the given array, having attribute "name" equals to "red", and returns found object or undefined
+       * const foundObject = JMap.Util.Array.findByProperty(myObjects, "name", "Red")
+       * console.log(`Found object: "${JSON.parse(foundObject)}"`)
+       * // display message 'Found object: "{ \"id\": 2, \"name\": \"Red\" }"'
+       * ```
+       */
+      function findByProperty<T extends object>(array: T[], propertyName: string, value: any): T | undefined
+
+      /**
+       * **JMap.Util.Array.findIndexByProperty**
+       * 
+       * Search for first element index in the given object array, for a given attribute name and value.
+       * 
+       * @param array the array
+       * @param propertyName the object property name
+       * @param value object's value for the given property name
+       * @param nonStrict by default test the value like "===", if nonStrict is true, will test like "=="
+       * @returns the found index, -1 if not found
+       * @example ```ts
+       * 
+       * const myObjects = [{
+       *  id: 1,
+       *  name: "Green"
+       * }, {
+       *  id: 2,
+       *  name: "Red"
+       * }, {
+       *  id: 3,
+       *  name: "Blue"
+       * }]
+       * // search for an object in the array that have attribute "name" equals to "red", and return its index position in the array
+       * const objectIndex = JMap.Util.Array.findIndexByProperty(myObjects, "name", "Red")
+       * console.log(`Object index: ${objectIndex}`)
+       * // display message 'Object index: 1'
+       * ```
+       */
+      function findIndexByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): number
+
+      /**
+       * **JMap.Util.Array.removeByProperty**
+       * 
+       * Remove the first occurence.
+       * 
+       * @param array the array
+       * @param propertyName the object property name
+       * @param value object's value for the given property name
+       * @param nonStrict by default test the value like "===", if nonStrict is true, will test like "=="
+       * @returns the given array (and not a copy)
+       * @example ```ts
+       * 
+       * const myObjects = [{
+       *  id: 1,
+       *  name: "Green"
+       * }, {
+       *  id: 2,
+       *  name: "Red"
+       * }, {
+       *  id: 3,
+       *  name: "Blue"
+       * }]
+       * // remove in the array the object that have a property "name" equals to "Red"
+       * JMap.Util.Array.removeByProperty(myObjects, "name", "Red")
+       * console.log(`myObjects: [${myObjects.join(", "")}]`)
+       * // display message 'myObjects: [{ \"id\": 1, \"name\": \"Green\" }, { \"id\": 3, \"name\": \"Blue\" }]'
+       * ```
+       */
+      function removeByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): T[]
+
+      /**
+       * **JMap.Util.Array.getCopyWithoutDuplicate**
+       * 
+       * Get a copy of the given array without duplicate.
+       * 
+       * @param array the array
+       * @returns given array copy, without duplicate
+       * @example ```ts
+       * 
+       * const myNumbers = [1, 4, 2, 6, 1, 2, 8]
+       * // returns array copy containing no duplicate
+       * const copy = JMap.Util.Array.getCopyWithoutDuplicate(myObjects, "name", "Red")
+       * console.log(`Copy: "${JSON.parse(foundObject)}"`)
+       * // display message 'Copy: "[1, 4, 2, 6, 8]"'
+       * ```
+       */
+      function getCopyWithoutDuplicate(array: Array<string | number>): Array<string | number>
     }
 
     /**
