@@ -900,6 +900,7 @@ export interface JDynamicFilterService {
   isAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
   getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
   getNowValue(): string
+  getAllLastOperatorUnits(): string[]
 }
 
 // MISC

@@ -1404,6 +1404,25 @@ declare namespace JMap {
        * ```
        */
       function getNowValue(): string
+
+      /**
+       * **JMap.Layer.DynamicLayer.getAllLastOperatorUnits**
+       * 
+       * Returns list of all "LAST" operator available units:
+       *  - "mi": minutes
+       *  - "h": hours
+       *  - "d": days
+       *  - "w": weeks
+       *  - "mo": months
+       *  - "y": years
+       * 
+       * @example ```ts
+       *
+       * const allUnits = JMap.Layer.DynamicLayer.getAllLastOperatorUnits()
+       * console.log(`All unit for 'LAST' operator are: ${allUnits.join(", ")}`)
+       * ```
+       */
+      function getAllLastOperatorUnits(): string[]
     }
 
     /**
