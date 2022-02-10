@@ -546,6 +546,7 @@ export interface JFormService {
   updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
   removeDisplayedFormPhotoById(photoId: JId): void
   // PURE FORM METHODS (not integrated, also used by query service)
+  checkAndCorrectSchemas(schema: JFormSchema, uiSchema: JFormUISchema): void
   getDefaultValues(formMetaData: JFormMetaData, initialData?: JAttributeValueByName): JAttributeValueByName
   getPreparedData(formMetaData: JFormMetaData, data: JAttributeValueByName): JAttributeValueByName
   validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): JFormErrors

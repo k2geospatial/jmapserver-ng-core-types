@@ -8851,6 +8851,24 @@ declare namespace JMap {
     function addDisplayedFormPhoto(photo: JPhoto): JId
     function updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
     function removeDisplayedFormPhotoById(photoId: JId): void
+
+    /**
+     * ***JMap.Form.checkAndCorrectSchemas***
+     * 
+     * Checks if the schemas are valid, corrects them when possible, throws for non-repairable errors
+     * 
+     * @param schema form data schema
+     * @param uiSchema form ui schema
+     * @example ```ts
+     * 
+     * const schema = ...
+     * const uiSchema = ...
+     * // checks the schemas, corrects them when possible, throws for non-repairable errors
+     * JMap.Form.checkAndCorrectSchemas(schema, uiSchema)
+     * ```
+     */
+    function checkAndCorrectSchemas(schema: JFormSchema, uiSchema: JFormUISchema): void
+    
     /**
      * ***JMap.Form.getDefaultValues***
      * 
