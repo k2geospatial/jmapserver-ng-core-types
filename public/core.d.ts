@@ -8832,7 +8832,7 @@ declare namespace JMap {
     /**
      * ***JMap.Form.checkAndCorrectSchemas***
      * 
-     * Checks if the schemas are valid, correct it when possible, throws for non-repairable errors
+     * Checks if the schemas are valid, corrects them when possible, throws for non-repairable errors
      * 
      * @param schema form data schema
      * @param uiSchema form ui schema
