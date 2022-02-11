@@ -126,7 +126,7 @@ declare interface JFormUIControl {
   type: "Control"
   id: string
   widget: JFormWidgetType
-  colSpan: number // the layout grid has 12 columns
+  colSpan?: number // the layout grid has 12 columns
   ruleCalculated?: object
   ruleReadOnly?: object
   ruleRequired?: object

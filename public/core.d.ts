@@ -302,6 +302,106 @@ declare namespace JMap {
   }
 
   /**
+   * **JMap.Geocoding**
+   * 
+   * This is where you can find geocoding relative methods
+   */
+  namespace Geocoding {
+
+    /**
+     * **JMap.Geocoding.isAvailable**
+     * 
+     * Returns false if geocoding is not available. Geocoding may be unavailable based on your configuration in regards with the available API keys configured in your account
+     * 
+     * @example ```ts
+     * 
+     * // return false if geocoding is unavailable
+     * JMap.Geocoding.isAvailable()
+     * ```
+     */
+    function isAvailable(): boolean
+
+    /**
+     * **JMap.Geocoding.getMinimumSearchStringLength**
+     * 
+     * Returns the search string length required to trigger a geocoding search
+     * 
+     * @example ```ts
+     * 
+     * // return the minimum search string length
+     * JMap.Geocoding.getMinimumSearchStringLength()
+     * // 3
+     * ```
+     */
+    function getMinimumSearchStringLength(): number
+
+    /**
+     * **JMap.Geocoding.getInvalidSearchStringCharacters**
+     * 
+     * Returns a string composed of all forbiden characters in geocoding search strings
+     * 
+     * @example ```ts
+     * 
+     * // return the invalid characters
+     * JMap.Geocoding.getInvalidSearchStringCharacters()
+     * // ";"
+     * ```
+     */
+    function getInvalidSearchStringCharacters(): string
+  
+    /**
+     * **JMap.Geocoding.forwardSearch**
+     * 
+     * Proceeds with a forward geocoding search. Some characters are not permitted in search strings (see [[JMap.Geocoding.getInvalidSearchStringCharacters]]).
+     * Calling this method may not trigger immediately a forward geocoding search if the string is too short, or if the method is repetitively called too fast.
+     * You can set an event listener to have access to the forward search results (see [[TBD]]). Search Reasults are also available in the redux store under store-->geocoding-->results
+     * 
+     * @param searchText The place name to search for. Can be an address, a region's name, or a geographical location expressed as "longitude,latitude" (ex: "-73.576321,45.495757" )
+     * @param options an optional JGeocodingOptions object
+     * @throws If geocoding is not enabled, if the search string is too short or invalid, or if an unexpected error occurs
+     * 
+     * @example ```ts
+     * 
+     * // log a message in the console once the geocoding search has been completed
+     * JMap.Event.Geocoding.on.success(
+     *   "custom-geocoding-success", 
+     *   params => console.log("A geocoding search has been completed", params.results)
+     * )
+     * // options.autoComplete is true by default (returns all match that would begin with the search string)
+     * // options.fuzzyMatch is true by default (setting this option to false will restrict results to exact match)
+     * // option.proximity: a JLocation object, or null. If not specified, it is by default set to the map's extent center. If you want to disable proximity bias, pass null for this option.
+     * JMap.Geocoding.forwardSearch("1440 Saint-Catherine St W #522, Montreal, Quebec H3G 1R8", {autoComplete: false, fuzzyMatch: false, proximity: null})
+     * ```
+     */
+    function forwardSearch(searchText: string, options?: JGeocodingOptions): void
+    
+    /**
+     * **JMap.Geocoding.displayForwardSearchResult**
+     * 
+     * Will display on the map the result of a [[JMap.Geocoding.forwardSearch]] single result.
+     * 
+     * @param forwardSearchResult A JGeocodingResult object
+     * @throws If geocoding is not enabled, or if an unexpected error occurs
+     * 
+     * @example ```ts
+     * 
+     * // Display on the map the first match received
+     * JMap.Event.Geocoding.on.success(
+     *   "custom-geocoding-success", 
+     *   params => {
+     *    if(params.results.length > 0){
+     *      JMap.Geocoding.displayForwardSearchResult(params.results[0])
+     *    }
+     *  }
+     * )
+     * JMap.Geocoding.forwardSearch("1440 Saint-Catherine St W #522, Montreal, Quebec H3G 1R8", {autoComplete: false, fuzzyMatch: false, proximity: null})
+     * ```
+     * 
+     */
+    function displayForwardSearchResult(forwardSearchResult: JGeocodingResult): void
+  }
+
+  /**
    * **JMap.Geolocation**
    * 
    * This is where you can find geolocation relative methods
@@ -1784,16 +1884,24 @@ declare namespace JMap {
      * **JMap.Layer.getEPSG4326Extent**
      * 
      * Returns the extent of the layer in ESPG:4326 coordinates
+     * 
+     * With Jaaz server a call is made to the server.
+     * 
+     * With JMap 7 server no call to server is made, returns the cached extent.
+     * 
      * @example ```ts
      * 
      * // returns the bounding box (JBoundaryBox) of the layer ID 3 in decimal degrees
-     * JMap.Layer.getEPSG4326Extent(3)
+     * JMap.Layer
+     *  .getEPSG4326Extent(3)
+     *  .then(extent => console.info("Extent of layer id=3", extent))
+     *  .catch(error => console.error(error))
      * ```
      * 
      * @throws Error if no layer found for the id
      * @param layerId The JMap layer id
      */
-    function getEPSG4326Extent(layerId: JId):JBoundaryBox | null
+    function getEPSG4326Extent(layerId: JId): Promise<JBoundaryBox | null>
 
     /**
      * **JMap.Layer.isVisible**
@@ -2675,6 +2783,23 @@ declare namespace JMap {
      * ```
      */
     function isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
+
+    /**
+     * **JMap.Geometry.getRotatedFeature**
+     * 
+     * Returns the feature with geometry rotated from the centroid.
+     * 
+     * @param feature the feature
+     * @param angleInDegrees from -360 to 360 degrees
+     * @throws if layer not found or layer is a layer group
+     * @example ```ts
+     * 
+     * // 37 degrees rotation of the polygon
+     * const polygon = ...
+     * const rotatedPolygon = JMap.Geometry.getRotatedFeature(polygon, 37)
+     * ```
+     */
+    function getRotatedFeature(feature: GeoJSON.Feature, angleInDegrees: number): GeoJSON.Feature
   }
 
   /**
@@ -5014,6 +5139,112 @@ declare namespace JMap {
        */
       function removeByIds(basemapIds: string[]): void
     }
+
+    namespace Attribution {
+
+      /**
+       * ***JMap.Map.Attribution.getAll***
+       * 
+       * Returns all attributions displayed on the map.
+       * 
+       * @example ```ts
+       * 
+       * // Get all attributions currently displayed.
+       * const attributions = JMap.Map.Attribution.getAll()
+       * 
+       * ```
+       */
+      function getAll(): JMapAttribution[]
+
+      /**
+       * ***JMap.Map.Attribution.addSingle***
+       * 
+       * Add a custom attribution on the map.
+       * 
+       * @throws Errors if some parameters are invalid, or if an attribution having the same id already exists
+       * @param attribution the attribution to add to the map
+       * @example ```ts
+       *
+       * // Add a link attribution on the map.
+       * JMap.Map.Attribution.addSingle({ id: "link-test", text: "© HelloWorld", href:"https://k2geospatial.com/jmap-en/"})
+       * 
+       * // Add a text attribution on the map
+       * JMap.Map.Attribution.addSingle({ id: "text-test", text: "© HelloWorld"})
+       *
+       * // Add a image attribution on the map.
+       * JMap.Map.Attribution.addSingle({id: "test-image",
+       * imageUrl: "https://k2geospatial.com/wp-content/themes/k2-theme/assets/images/k2-logo.png",
+       * href: "https://k2geospatial.com/jmap-en/"})
+       * ```
+       */
+      function addSingle(attribution: JMapAttribution): void
+
+      /**
+       * ***JMap.Map.Attribution.addMultiple***
+       * 
+       * Add multiple attributions on the map.
+       * 
+       * @throws Errors if invalid parameters, or if an attribution having the same id already exists
+       * @param attributions an array of attributions
+       * @example ```ts
+       *
+       * // Add two custom attributions on the map.
+       * JMap.Map.Attribution.addMultiple([{ id: "custom-attribution-0",
+       *  text: "© K2Geospatial",
+       *  href: "https://k2geospatial.com/jmap-en/" },
+       * { id: "custom-attribution-1",
+       *  text: "© StackOverflow",
+       *  href: "https://stackoverflow.com/" }])
+       * ```
+       */
+       function addMultiple(attributions: JMapAttribution[]): void
+
+      /**
+       * ***JMap.Map.Attribution.removeByIds***
+       * 
+       * Remove the attributions from the map for the given ids (does nothing if id not found)
+       * 
+       * @throws Error if attributionsIds is not an array
+       * @param attributionsIds array of attribution ids to remove
+       * @example ```ts
+       * 
+       * // Remove a custom attribution from the map.
+       * JMap.Map.Attribution.removeByIds(["my-attribution"])
+       * 
+       * ```
+       */
+      function removeByIds(attributionsIds: string[]): void 
+
+      /**
+       * ***JMap.Map.Attribution.getById***
+       * 
+       * Return an attribution for the given id
+       * 
+       * @param attributionId The attribution id
+       * @example ```ts
+       * 
+       * // Display a mapbox attribution.
+       * console.log(JMap.Map.Attribution.getById("mapbox-satellite-1-attribution"))
+       * 
+       * ```
+       */
+      function getById(attributionId: string): JMapAttribution
+
+      /**
+       * ***JMap.Map.Attribution.isDefaultAttributionId***
+       * 
+       * Return true if the given id is reserved
+       * 
+       * @param attributionId The attribution id
+       * @example ```ts
+       * 
+       * // Display if "custom-attribution" is a reserved id
+       * console.log(JMap.Map.Attribution.isDefaultAttributionId("custom-attribution"))
+       * 
+       * ```
+       */
+      function isDefaultAttributionId(attributionId: string): boolean 
+    }
   }
 
   /**
@@ -5056,7 +5287,6 @@ declare namespace JMap {
      * JMap.MouseOver.closePopup()
      */
     function closePopup(): void
-    
     
     /**
      * **JMap.MouseOver.openPopup**
@@ -6060,6 +6290,22 @@ declare namespace JMap {
      * ```
      */
     function isPseudoUser(): boolean
+
+    /**
+     * ***JMap.User.getOrganizationId***
+     * 
+     * Returns user's organization id.
+     * 
+     * If server is JMap server and not Jaaz, will return "", as there is no organization concept 
+     * for this kind of server. 
+     * 
+     * @example ```ts
+     * 
+     * // returns user's organization id
+     * JMap.User.getOrganizationId()
+     * ```
+     */
+    function getOrganizationId(): string
   }
 
   /**
@@ -6686,7 +6932,7 @@ declare namespace JMap {
          * 
          * This event is triggered when a query has been processed, but an error occured.
          * 
-         * Id the max result limit is reach, an error is thrown, and this event is triggered.
+         * If the max result limit is reach, an error is thrown, and this event is triggered.
          * 
          * @param listenerId Your listener id (must be unique)
          * @param fn Your listener function
@@ -6752,6 +6998,114 @@ declare namespace JMap {
        * 
        * // remove the listener "my-query-listener"
        * JMap.Event.Query.remove("my-query-listener")
+       * ```
+       */
+      function remove(listenerId: string): void
+    }
+
+    /**
+     * ***JMap.Event.Geocoding***
+     * 
+     * Here you can manage all geocoding event listeners.
+     * 
+     * Click to see all events available: ***[[JMap.Event.Geocoding.on]]***. 
+     */
+    namespace Geocoding {
+
+      /**
+       * ***JMap.Event.Geocoding.on***
+       * 
+       * Here you have all JMap NG Core geocoding events on which you can attach a listener.
+       */
+      namespace on {
+
+        /**
+         * ***JMap.Event.Geocoding.on.success***
+         * 
+         * This event is triggered when a geocoding search has been completed.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console once the geocoding search has been completed
+         * JMap.Event.Geocoding.on.success(
+         *   "custom-geocoding-success", 
+         *   params => console.log("A geocoding search has been completed", params.results)
+         * )
+         * ```
+         */
+        function success(listenerId: string, fn: (params: JGeocodingSuccessEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Geocoding.on.error***
+         * 
+         * This event is triggered when a geocoding search has been processed, but an error occured.
+         * 
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // log a message in the console if a geocoding search error occured
+         * JMap.Event.Geocoding.on.error(
+         *   "custom-geocoding-error", 
+         *   params => console.log("A geocoding search has failed", params)
+         * )
+         * ```
+         */
+        function error(listenerId: string, fn: (params: JGeocodingErrorEventParams) => void): void
+      }
+
+      /**
+       * ***JMap.Event.Geocoding.activate***
+       * 
+       * Activate the listener.
+       * 
+       * If the listener is already active, do nothing.
+       * 
+       * If the listener is inactive, it will be reactivated and will be called again ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // activate the listener "my-geocoding-listener"
+       * JMap.Event.Geocoding.activate("my-geocoding-listener")
+       * ```
+       */
+      function activate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Geocoding.deactivate***
+       * 
+       * Deactivate the listener.
+       * 
+       * If the listener id doesn't exists or if the listener is already inactive, do nothing.
+       * 
+       * If the listener is active, it will be deactivated and will be ignored ...
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // deactivate the listener "my-geocoding-listener"
+       * JMap.Event.Geocoding.deactivate("my-geocoding-listener")
+       * ```
+       */
+      function deactivate(listenerId: string): void
+
+      /**
+       * ***JMap.Event.Geocoding.remove***
+       * 
+       * Remove the listener.
+       * 
+       * If the listener doesn't exist, do nothing.
+       * 
+       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * 
+       * @param listenerId The listener id
+       * @example ```ts
+       * 
+       * // remove the listener "my-geocoding-listener"
+       * JMap.Event.Geocoding.remove("my-geocoding-listener")
        * ```
        */
       function remove(listenerId: string): void
@@ -8304,6 +8658,27 @@ declare namespace JMap {
          * ```
          */
         function selectionChanged(listenerId: string, fn: (params: JMapEventSelectionChangedParams) => void): void
+
+        /**
+         * ***JMap.Event.Map.on.basemapChanged***
+         * 
+         * This event is triggered when the basemap changed.
+         * 
+         * @param listenerId Your listener id (must be unique for all map events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // When the basemap is changed, display the new basemap id in the console
+         * JMap.Event.Map.on.basemapChanged(
+         *    "custom-basemap-changed",
+         *    params => {
+         *      console.log("currentActiveBasemapId:", params.currentActiveBasemapId)
+         *      console.log("newActiveBasemapId:", params.newActiveBasemapId)
+         *    }
+         * )
+         * ```
+         */
+        function basemapChanged(listenerId: string, fn: (params: JMapEventBasemapChangedParams) => void): void
       }
       /**
        * ***JMap.Event.Map.activate***
@@ -9111,6 +9486,24 @@ declare namespace JMap {
     function addDisplayedFormPhoto(photo: JPhoto): JId
     function updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
     function removeDisplayedFormPhotoById(photoId: JId): void
+
+    /**
+     * ***JMap.Form.checkAndCorrectSchemas***
+     * 
+     * Checks if the schemas are valid, corrects them when possible, throws for non-repairable errors
+     * 
+     * @param schema form data schema
+     * @param uiSchema form ui schema
+     * @example ```ts
+     * 
+     * const schema = ...
+     * const uiSchema = ...
+     * // checks the schemas, corrects them when possible, throws for non-repairable errors
+     * JMap.Form.checkAndCorrectSchemas(schema, uiSchema)
+     * ```
+     */
+    function checkAndCorrectSchemas(schema: JFormSchema, uiSchema: JFormUISchema): void
+    
     /**
      * ***JMap.Form.getDefaultValues***
      * 
@@ -9464,6 +9857,140 @@ declare namespace JMap {
        * ```
        */
       function remove(key: string): void
+    }
+
+    /**
+     * **JMap.Util.Array**
+     * 
+     * Here you'll find all array related methods
+     */
+    namespace Array {
+
+      /**
+       * **JMap.Util.Array.remove**
+       * 
+       * Remove given element in given array.
+       * 
+       * @param array the array
+       * @param element the element to remove
+       * @returns the given array (and not a copy)
+       * @example ```ts
+       * 
+       * const myNumbers = [3, 5, 6, 7]
+       * // remove element 6 in array
+       * JMap.Util.Array.remove(myNumbers, 6)
+       * console.log(`Now my numbers are [${myNumbers.join(", ")}]`)
+       * // display message "Now my numbers are [3, 5, 7]"
+       * ```
+       */
+      function remove<T>(array: T[], element: T): T[]
+
+      /**
+       * **JMap.Util.Array.findByProperty**
+       * 
+       * Search for first element in the given object array, for a given attribute name and value.
+       * 
+       * @param array the array
+       * @param propertyName the object property name
+       * @param value object's value for the given property name
+       * @returns the found object, undefined if not found
+       * @example ```ts
+       * 
+       * const myObjects = [{
+       *  id: 1,
+       *  name: "Green"
+       * }, {
+       *  id: 2,
+       *  name: "Red"
+       * }, {
+       *  id: 3,
+       *  name: "Blue"
+       * }]
+       * // search for an object in the given array, having attribute "name" equals to "red", and returns found object or undefined
+       * const foundObject = JMap.Util.Array.findByProperty(myObjects, "name", "Red")
+       * console.log(`Found object: "${JSON.parse(foundObject)}"`)
+       * // display message 'Found object: "{ \"id\": 2, \"name\": \"Red\" }"'
+       * ```
+       */
+      function findByProperty<T extends object>(array: T[], propertyName: string, value: any): T | undefined
+
+      /**
+       * **JMap.Util.Array.findIndexByProperty**
+       * 
+       * Search for first element index in the given object array, for a given attribute name and value.
+       * 
+       * @param array the array
+       * @param propertyName the object property name
+       * @param value object's value for the given property name
+       * @param nonStrict by default test the value like "===", if nonStrict is true, will test like "=="
+       * @returns the found index, -1 if not found
+       * @example ```ts
+       * 
+       * const myObjects = [{
+       *  id: 1,
+       *  name: "Green"
+       * }, {
+       *  id: 2,
+       *  name: "Red"
+       * }, {
+       *  id: 3,
+       *  name: "Blue"
+       * }]
+       * // search for an object in the array that have attribute "name" equals to "red", and return its index position in the array
+       * const objectIndex = JMap.Util.Array.findIndexByProperty(myObjects, "name", "Red")
+       * console.log(`Object index: ${objectIndex}`)
+       * // display message 'Object index: 1'
+       * ```
+       */
+      function findIndexByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): number
+
+      /**
+       * **JMap.Util.Array.removeByProperty**
+       * 
+       * Remove the first occurence.
+       * 
+       * @param array the array
+       * @param propertyName the object property name
+       * @param value object's value for the given property name
+       * @param nonStrict by default test the value like "===", if nonStrict is true, will test like "=="
+       * @returns the given array (and not a copy)
+       * @example ```ts
+       * 
+       * const myObjects = [{
+       *  id: 1,
+       *  name: "Green"
+       * }, {
+       *  id: 2,
+       *  name: "Red"
+       * }, {
+       *  id: 3,
+       *  name: "Blue"
+       * }]
+       * // remove in the array the object that have a property "name" equals to "Red"
+       * JMap.Util.Array.removeByProperty(myObjects, "name", "Red")
+       * console.log(`myObjects: [${myObjects.join(", "")}]`)
+       * // display message 'myObjects: [{ \"id\": 1, \"name\": \"Green\" }, { \"id\": 3, \"name\": \"Blue\" }]'
+       * ```
+       */
+      function removeByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): T[]
+
+      /**
+       * **JMap.Util.Array.getCopyWithoutDuplicate**
+       * 
+       * Get a copy of the given array without duplicate.
+       * 
+       * @param array the array
+       * @returns given array copy, without duplicate
+       * @example ```ts
+       * 
+       * const myNumbers = [1, 4, 2, 6, 1, 2, 8]
+       * // returns array copy containing no duplicate
+       * const copy = JMap.Util.Array.getCopyWithoutDuplicate(myObjects, "name", "Red")
+       * console.log(`Copy: "${JSON.parse(foundObject)}"`)
+       * // display message 'Copy: "[1, 4, 2, 6, 8]"'
+       * ```
+       */
+      function getCopyWithoutDuplicate(array: Array<string | number>): Array<string | number>
     }
 
     /**

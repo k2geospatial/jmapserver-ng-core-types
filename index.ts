@@ -9,6 +9,7 @@ export interface JCoreService extends JCoreMainService {
   Language: JLanguageService
   Feature: JFeatureService
   Map: JMapService
+  Geocoding: JGeocodingService,
   Geolocation: JGeolocationService,
   Geometry: JGeometryService,
   MouseOver: JMouseOverService
@@ -76,6 +77,15 @@ export interface JMapContextService {
   getIgnoredCssClassesForPreviewImage(): string[]
 }
 
+export interface JMapAttributionService {
+  getAll(): JMapAttribution[]
+  addSingle(attribution: JMapAttribution): void
+  addMultiple(attributions: JMapAttribution[]): void
+  removeByIds(attributionsIds: string[]): void
+  getById(attributionId: string): JMapAttribution
+  isDefaultAttributionId(attributionId: string): boolean
+}
+
 export interface JDateService {
   getDate(date: JDateLike): Date
   getDateFnsLocale(displayTime?: boolean): any
@@ -92,10 +102,19 @@ export interface JDateService {
 export interface JUtilService {
   Date: JDateService
   LocalStorage: JLocalStorageService
+  Array: JArrayService
   loadJSFile(fileUrl: string): Promise<void>
   isJMapId(id: any, allowStringNumber?: boolean): boolean
   checkJmapId(id: any, message?: string): void
   getJmapIdAsIntegerIfPossible(id: any): JId
+}
+
+export interface JArrayService {
+  remove<T>(array: T[], element: T): T[]
+  findByProperty<T extends object>(array: T[], propertyName: string, value: any): T | undefined
+  findIndexByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): number
+  removeByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): T[]
+  getCopyWithoutDuplicate(array: Array<string | number>): Array<string | number>
 }
 
 export interface JLocalStorageService {
@@ -129,6 +148,14 @@ export interface JCoreMainService {
   setMainLayoutVisibility(isVisible: boolean): void
 }
 
+export interface JGeocodingService {
+  isAvailable(): boolean
+  getMinimumSearchStringLength(): number
+  getInvalidSearchStringCharacters(): string
+  forwardSearch(searchText: string, options?: JGeocodingOptions): void
+  displayForwardSearchResult(forwardSearchResult: JGeocodingResult): void
+}
+
 export interface JGeolocationService {
   isSupportedByBrowser(): boolean
   isEnabled(): boolean
@@ -153,6 +180,7 @@ export interface JEventService {
   Layer: JLayerEventModule
   Language: JLanguageEventModule
   Map: JMapEventModule
+  Geocoding: JGeocodingEventModule
   Photo: JPhotoEventModule
   Project: JProjectEventModule
   User: JUserEventModule
@@ -240,6 +268,13 @@ export interface JLanguageEventModule extends JEventModule {
   }
 }
 
+export interface JGeocodingEventModule extends JEventModule {
+  on: {
+    success(listenerId: string, fn: (params: JGeocodingSuccessEventParams) => void): void
+    error(listenerId: string, fn: (params: JGeocodingErrorEventParams) => void): void
+  }
+}
+
 export interface JLayerEventModule extends JEventModule {
   on: {
     layersChange(listenerId: string, fn: (params: JLayerEventChangeParams) => void): void
@@ -281,6 +316,7 @@ export interface JMapEventModule extends JEventModule {
     containerReady(listenerId: string, fn: (params: JMapEventContainerReadyParams) => void): void
     containerResized(listenerId: string, fn: (params: JMapEventContainerResizedParams) => void): void
     selectionChanged(listenerId: string, fn: (params: JMapEventSelectionChangedParams) => void): void
+    basemapChanged(listenerId: string, fn: (params: JMapEventBasemapChangedParams) => void): void
   }
 }
 
@@ -328,6 +364,7 @@ export interface JCoreState {
   language: JLanguageState
   photo: JPhotoState
   query: JQueryState
+  geocoding: JGeocodingState
   geolocation: JGeolocationState
   form: JFormState
   server: JServerState
@@ -370,6 +407,15 @@ export interface JFormState {
   subForms: JForm[]
 }
 
+export interface JGeocodingState {
+  isAvailable: boolean
+  isLoadPending: boolean
+  isLoading: boolean
+  hasLoadingError: boolean
+  searchString: string
+  results: JGeocodingResult[]
+}
+
 export interface JGeolocationState {
   isLocationDisplayed: boolean
   isEnabled: boolean
@@ -403,6 +449,7 @@ export interface JMapState {
   containerWidth: number
   containerHeight: number
   modificationType: JMapModificationTypes
+  attributions: JMapAttribution[]
 }
 
 export interface JProjectState {
@@ -504,6 +551,7 @@ export interface JFormService {
   updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
   removeDisplayedFormPhotoById(photoId: JId): void
   // PURE FORM METHODS (not integrated, also used by query service)
+  checkAndCorrectSchemas(schema: JFormSchema, uiSchema: JFormUISchema): void
   getDefaultValues(formMetaData: JFormMetaData, initialData?: JAttributeValueByName): JAttributeValueByName
   getPreparedData(formMetaData: JFormMetaData, data: JAttributeValueByName): JAttributeValueByName
   validateData(formMetaData: JFormMetaData, data: JAttributeValueByName): JFormErrors
@@ -550,6 +598,7 @@ export interface JGeometryService {
   getCircleFeature(center: JPoint | JLocation, radius: number): Feature<Polygon> // radius in km
   getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): Feature<Polygon>
   isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
+  getRotatedFeature(feature: GeoJSON.Feature, angle: number): GeoJSON.Feature
 }
 
 export interface JMapService {
@@ -557,6 +606,7 @@ export interface JMapService {
   Filter: JMapFilterService
   Selection: JMapSelectionService
   Basemap: JMapBasemapService
+  Attribution: JMapAttributionService
   getMap(): Map
   getMapJSLib(): any
   getDomContainerId(): string
@@ -735,7 +785,7 @@ export interface JLayerService {
   getSelfOrChildren(layerId: JId): JLayer[]
   getName(layerId: JId): string
   getDescription(layerId: JId): string
-  getEPSG4326Extent(layerId: JId): JBoundaryBox | null
+  getEPSG4326Extent(layerId: JId): Promise<JBoundaryBox | null>
   isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
   isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
@@ -801,12 +851,6 @@ export interface JLayerThematicService {
   getFamilyTypeById(layerId: JId, thematicId: JId): JLayerThematicFamilyType
 }
 
-export interface JLayerGroup extends JLayerTreeElement {
-  open: boolean
-  image: string | null
-  children: JLayerTreeElement[]
-}
-
 export interface JUserService {
   getToken(): string
   getFullName(): string
@@ -826,6 +870,7 @@ export interface JUserService {
   changePassword(newPassword: string, currentPassword: string): Promise<void>
   getMinimumPasswordLength(): number
   isPseudoUser(): boolean
+  getOrganizationId(): string
 }
 
 export interface JLanguageService {

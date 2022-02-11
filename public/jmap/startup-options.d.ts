@@ -422,5 +422,5 @@ declare interface JCoreOptions {
    * 
    * For example NG App don't need NG Core minimal UI and use this option.
    */
-  hideMainLayout: boolean
+  hideMainLayout?: boolean
 }

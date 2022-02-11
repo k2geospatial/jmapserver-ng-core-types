@@ -79,6 +79,11 @@ declare interface JMapEventSelectionChangedParams {
   changesByLayerId: { [layerId: string]: JMapLayerSelectionChanges }
 }
 
+declare interface JMapEventBasemapChangedParams {
+  currentActiveBasemapId: string
+  newActiveBasemapId: string 
+}
+
 declare type JMapSelection = {
   [ key in JId ]: GeoJSON.Feature[]
 }
@@ -193,6 +198,14 @@ declare interface JBasemap {
   maxzoom?: number
   tileSize?: number
   extent?: JBoundaryBox
+  attributions? : JMapAttribution[]
+}
+
+declare interface JMapAttribution {
+  id: string
+  text: string | undefined // text and/or imageUrl param(s) must be set
+  imageUrl: string | undefined // imageUrl and/or text param(s) must be set
+  href?: string
 }
 
 declare interface JZoomOptions {

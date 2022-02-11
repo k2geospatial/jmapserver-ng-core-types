@@ -132,6 +132,12 @@ declare interface JLayerPermissions {
   EDIT_ONLY_OWN: boolean
 }
 
+declare interface JLayerGroup extends JLayerTreeElement {
+  open: boolean
+  image: string | null
+  children: JLayerTreeElement[]
+}
+
 declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
   type: LAYER_TYPE
@@ -217,7 +223,7 @@ declare interface JLayerTreeElement {
   initialVisibility: boolean
   visible: boolean
   isGroup: boolean
-  path: string
+  paths: string[]
 }
 
 declare type JLayerTree = JLayerTreeElement[]
