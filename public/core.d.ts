@@ -1113,6 +1113,32 @@ declare namespace JMap {
       function isConditionValid(condition: JDynamicFilterCondition): boolean
 
       /**
+       * **JMap.Layer.DynamicLayer.set**
+       * 
+       * Set multiple layer's dynamic filters at once.
+       * 
+       * If some conditions where already set, will destroy them and replace it with the new given conditions.
+       * 
+       * @param params the parameters
+       * @throws if invalid params
+       * @example ```ts
+       * 
+       * // set layer's id=3 dynamic filter
+       * JMap.Layer.DynamicLayer.set({
+       *  dynamicFiltersParams: [{
+       *    layerId: 3,
+       *    conditions: [{
+       *      attributeName: "name",
+       *      filterOperator: "EQUALS"
+       *      value: ["Ottawa"]
+       *    }]
+       *  }]
+       * })
+       * ```
+       */
+      function set(params: JDynamicFilterSetParams): void
+
+      /**
        * **JMap.Layer.DynamicLayer.createCondition**
        * 
        * Add a new condition for a JMap Layer dynamic filter.
@@ -7653,6 +7679,26 @@ declare namespace JMap {
          * ```
          */
         function initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
+
+        /**
+         * ***JMap.Event.Layer.on.dynamicFilterSet***
+         * 
+         * This event is triggered when some dynamic filters are set.
+         * 
+         * Could happened when a map context is applied, or when we use the method [[JMap.Layer.DynamicFilter.set]].
+         * 
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         * 
+         * // Each time some layer dynamic filters have been set
+         * JMap.Event.Layer.on.dynamicFilterSet(
+         *    "custom-layer-dynamic-filter-set",
+         *    params => console.info("Some dynamic filters have been set", params)
+         * )
+         * ```
+         */
+        function dynamicFilterSet(listenerId: string, fn: (params: JLayerDynamicFilterSetParams) => void): void
 
         /**
          * ***JMap.Event.Layer.on.dynamicFilterActivationChange***

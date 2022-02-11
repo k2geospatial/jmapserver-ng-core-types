@@ -249,6 +249,7 @@ export interface JLayerEventModule extends JEventModule {
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void):void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
     initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
+    dynamicFilterSet(listenerId: string, fn: (params: JLayerDynamicFilterSetParams) => void): void
     dynamicFilterActivationChange(listenerId: string, fn: (params: JLayerDynamicFilterActivationParams) => void): void
     dynamicFilterConditionCreated(listenerId: string, fn: (params: JLayerDynamicFilterConditionCreated) => void): void
     dynamicFilterConditionUpdated(listenerId: string, fn: (params: JLayerDynamicFilterConditionUpdated) => void): void
@@ -888,6 +889,7 @@ export interface JDynamicFilterService {
   getConditionError(condition: JDynamicFilterCondition): string | undefined
   isConditionValid(condition: JDynamicFilterCondition): boolean
   existSimilarCondition(condition: JDynamicFilterCondition, isUpdate?: boolean): boolean
+  set(params: JDynamicFilterSetMultipleParams): void
   createCondition(condition: JDynamicFilterCondition): number
   updateCondition(condition: JDynamicFilterCondition): void
   removeConditions(layerId: JId, conditionsIds: number[]): void

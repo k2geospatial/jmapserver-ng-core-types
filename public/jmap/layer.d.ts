@@ -91,9 +91,12 @@ declare interface JLayerInitialSearchEventParams extends JLayerEventParams {
   features: GeoJSON.Feature[]
 }
 
+declare interface JLayerDynamicFilterSetParams {
+  filters: JDynamicFilter[]
+}
+
 declare interface JLayerDynamicFilterActivationParams extends JLayerEventParams {
   isActivation: boolean
-  layerId: JId
 }
 
 declare interface JLayerDynamicFilterConditionCreated extends JLayerEventParams {
@@ -181,6 +184,17 @@ declare interface JDynamicFilterCondition {
   endAttributeName?: string // used for INTERVAL operator
   filterOperator: JDynamicFilterOperator
   value: any | any[] // 2 items array for between
+}
+
+declare interface JDynamicFilterSetParams {
+  layerId: JId
+  conditions: JDynamicFilterCondition[]
+  isActive?: boolean
+}
+
+declare interface JDynamicFilterSetMultipleParams {
+  dynamicFiltersParams: JDynamicFilterSetParams[] 
+  correctIfPossible?: boolean
 }
 
 declare interface JLayerForm {
@@ -388,7 +402,7 @@ declare interface JLayerThematicSetVisibilityParams {
   visibility: boolean
 }
 
-declare interface JLayerThematicSetCategoryVisibilityParams{
+declare interface JLayerThematicSetCategoryVisibilityParams {
   layerId: JId
   thematicId: JId
   categoryIndex: number

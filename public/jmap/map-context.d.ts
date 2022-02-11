@@ -90,6 +90,8 @@ declare interface JMapContextDataLayerElement {
 declare interface JMapContextDataLayer extends JMapContextDataLayerElement{
   selectable: boolean
   thematics: JMapContextDataThematic[]
+  dynamicFilterConditions: JDynamicFilterCondition[]
+  dynamicFilterIsActive: boolean
 }
 
 declare interface JMapContextDataThematic {
