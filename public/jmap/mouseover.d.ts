@@ -12,14 +12,14 @@ declare interface JMouseOverContent {
   toEvalJS: string[]
 }
 
-declare interface JMouseOverOpenPopupParams{
+declare interface JMouseOverOpenPopupParams {
   location: JLocation
   html: string
   toEvalJS?: string[]
   panToLocation?: boolean
 }
 
-declare interface JMouseOverOpenPopupForSelectionParams{
+declare interface JMouseOverOpenPopupForSelectionParams {
   selection: JMapSelection 
   location?: JLocation 
   panToLocation?: boolean

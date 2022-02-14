@@ -119,7 +119,7 @@ declare interface JMapAttributeSearch {
   showMapPopup?: boolean
 }
 
-declare interface JMapNavigationStep{
+declare interface JMapNavigationStep {
   center: JLocation
   zoom: number
   bearing: number

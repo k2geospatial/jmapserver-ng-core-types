@@ -389,7 +389,7 @@ declare namespace JMap {
      * JMap.Event.Geocoding.on.success(
      *   "custom-geocoding-success", 
      *   params => {
-     *    if(params.results.length > 0){
+     *    if (params.results.length > 0) {
      *      JMap.Geocoding.displayForwardSearchResult(params.results[0])
      *    }
      *  }
@@ -5893,7 +5893,7 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // enable project change
-     * if(JMap.Project.isChangeDisabled()){
+     * if (JMap.Project.isChangeDisabled()) {
      *    JMap.Project.setChangeEnabled()
      * }
      * ```
@@ -5910,7 +5910,7 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // disable project change
-     * if(!JMap.Project.isChangeDisabled()){
+     * if (!JMap.Project.isChangeDisabled()) {
      *    JMap.Project.setChangeDisabled()
      * }
      * ```
@@ -5978,12 +5978,9 @@ declare namespace JMap {
      * 
      * let prefName = "jmap-core-basemap"
      * JMap.User
-     *      .getPreference(prefName)
-     *      .then(preferenceValue=>{
-     *        console.log(`Preference item "${prefName}" value is "${preferenceValue}"`) 
-     *      }).catch(reason=>{
-     *        console.log(`Cannot get the preference value of param "${prefName}". Reason: ${reason}`) 
-     *      })
+     *  .getPreference(prefName)
+     *  .then(preferenceValue => console.log(`Preference item "${prefName}" value is "${preferenceValue}"`))
+     *  .catch(reason => console.log(`Cannot get the preference value of param "${prefName}". Reason: ${reason}`))
      * 
      * ```
      */
@@ -6001,11 +5998,8 @@ declare namespace JMap {
      * 
      * let prefName = "jmap-core-basemap"
      * JMap.User
-     *      .hasPreference(prefName)
-     *      .then(hasPreferenceValue=>{
-     *        console.log(`Preference item "${prefName}" exists: ${hasPreferenceValue.toString()}`) 
-     *      })
-     * 
+     *  .hasPreference(prefName)
+     *  .then(hasPreferenceValue => console.log(`Preference item "${prefName}" exists: ${hasPreferenceValue.toString()}`))
      * ```
      */
     function hasPreference(name: string): Promise<boolean>
@@ -6022,15 +6016,14 @@ declare namespace JMap {
      * 
      * let prefName = "jmap-core-basemap"
      * JMap.User
-     *      .removePreference(prefName)
-     *      .then(removedPreferenceValue=>{
-     *        if(removedPreferenceValue === null){
-     *          console.log(`Preference item "${prefName}" did not exist or was not removed`) 
-     *        }else{
-     *          console.log(`Preference item "${prefName}" has been removed. Value was: ${removedPreferenceValue}`) 
-     *        }
-     *      })
-     * 
+     *  .removePreference(prefName)
+     *  .then(removedPreferenceValue => {
+     *    if (removedPreferenceValue === null) {
+     *      console.log(`Preference item "${prefName}" did not exist or was not removed`) 
+     *    } else {
+     *      console.log(`Preference item "${prefName}" has been removed. Value was: ${removedPreferenceValue}`) 
+     *    }
+     *  })
      * ```
      */
     function removePreference(name: string): Promise<string | null>
@@ -6052,22 +6045,15 @@ declare namespace JMap {
      * 
      * // Set the value "light" for user preference "jmap-core-basemap"
      * JMap.User
-     *      .setPreference(prefName, "light")
-     *      .then(preferenceValue=>{
-     *        console.log(`Preference item "${prefName}" has been set`) 
-     *      }).catch(reason=>{
-     *        console.log(`Cannot set the preference value of param "${prefName}". Reason: ${reason}`) 
-     *      })
+     *  .setPreference(prefName, "light")
+     *  .then(preferenceValue => console.log(`Preference item "${prefName}" has been set`))
+     *  .catch(reason => console.log(`Cannot set the preference value of param "${prefName}". Reason: ${reason}`))
      * 
      * // Remove the value for user preference "theme"
      * JMap.User
-     *      .removePreference(prefName)
-     *      .then(preferenceValue=>{
-     *        console.log(`Preference item "${prefName}" has been removed, and its value were "${preferenceValue}""`) 
-     *      }).catch(reason=>{
-     *        console.log(`Cannot remove the preference "${prefName}". Reason: ${reason}`) 
-     *      })
-     * 
+     *  .removePreference(prefName)
+     *  .then(preferenceValue => console.log(`Preference item "${prefName}" has been removed, and its value were "${preferenceValue}""`))
+     *  .catch(reason => console.log(`Cannot remove the preference "${prefName}". Reason: ${reason}`))
      * ```
      */
     function setPreference(name: string, value: string | undefined): Promise<void>
@@ -6112,7 +6098,7 @@ declare namespace JMap {
      * 
      * // fetch all Identity Providers
      * const allProviders = JMap.Server.getAllIdentityProvidersById()
-     * // {idp-1: {id: "idp-1", type: "sso", ..... }}
+     * // { idp-1: { id: "idp-1", type: "sso", ..... } }
      * 
      * // Open a new user session using the first provider received
      * JMap.User.loginWithIdentityProvider("idp-1")
@@ -9410,9 +9396,9 @@ declare namespace JMap {
      * @example ```ts
      * 
      * const hasMouseOver = JMap.Extension.hasMouseOver()
-     * if(hasMouseOver){
+     * if (hasMouseOver) {
      *    console.log("some extensions have defined mouseOvers")
-     * }else{
+     * } else {
      *    console.log("there is currently no extension defining mouseOvers")
      * }
      * ```

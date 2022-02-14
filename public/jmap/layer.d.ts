@@ -41,7 +41,7 @@ declare interface JLayerBaseMetadata {
   id: JId
 }
 
-declare interface JLayerMetadataSchemaItem extends JLayerBaseMetadata{
+declare interface JLayerMetadataSchemaItem extends JLayerBaseMetadata {
   type: JLayerMetadataType
   label: string
   allowMultiple: boolean
