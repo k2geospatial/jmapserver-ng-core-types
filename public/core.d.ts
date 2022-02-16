@@ -541,14 +541,14 @@ declare namespace JMap {
     /**
      * **JMap.Feature.deleteById**
      * 
-     * Delete the feature for the given layer and feature ids.
+     * Deletes the feature for the given layer and feature ids.
      * 
      * @param layerId the JMap layer id
      * @param featureId the JMap feature id
      * @throws if layer or feature not found
      * @example ```ts
      * 
-     * // delete the feature id="4" on layer id="3"
+     * // deletes the feature id="4" on layer id="3"
      * JMap.Feature
      *  .deleteById(3, 4)
      *  .then(deletedFeature => console.info("Feature has been deleted", deletedFeature))
@@ -560,14 +560,14 @@ declare namespace JMap {
     /**
      * **JMap.Feature.deleteByIds**
      * 
-     * Delete the features for the given layer and features ids.
+     * Deletes the features for the given layer and features ids.
      * 
      * @param layerId the JMap layer id
      * @param featureIds the JMap feature ids to delete
      * @throws if layer or feature not found
      * @example ```ts
      * 
-     * // delete 3 features on layer id="3"
+     * // deletes 3 features on layer id="3"
      * JMap.Feature
      *  .deleteByIds(3, [4, 5, 16])
      *  .then(() => console.info("Features have been deleted"))
@@ -1657,7 +1657,7 @@ declare namespace JMap {
     /**
      * **JMap.Layer.deleteLayer**
      * 
-     * Delete the layer in the data store and in the map.
+     * Deletes the layer in the data store and in the map.
      * 
      * The layer is not deleted server side, but only in the browser.
      * 
@@ -1667,7 +1667,7 @@ declare namespace JMap {
      * @param layerId The JMap layer id
      * @example ```ts
      * 
-     * // Remove layer 4 (only client side)
+     * // Removes layer 4 (only client side)
      * JMap.Layer.deleteLayer(4)
      * ```
      */
@@ -8808,48 +8808,942 @@ declare namespace JMap {
    * Here you'll find all form related methods
    */
   namespace Form {
+
+    /**
+     * ***JMap.Form.getFormsMetaDataByLayerId***
+     * 
+     * Returns all forms metadata for a given layer id.
+     * 
+     * Fecthes data from server first time, then keeps it in cache for the next time.
+     * 
+     * @param layerId the JMap layer id
+     * @throws if layer not found
+     * @example ```ts
+     * 
+     * // returns all forms metadata for layer id=3
+     * JMap.Form
+     *  .getFormsMetaDataByLayerId(3)
+     *  .then(formsMetadata => console.log("Forms metatada of layer 3", formsMetadata))
+     *  .catch(error => console.error("An error occurred when getting form metadata", error))
+     * ```
+     */
     function getFormsMetaDataByLayerId(layerId: JId): Promise<JFormMetaData[]>
+
+    /**
+     * ***JMap.Form.getElement***
+     * 
+     * Returns form data of an element from given parameters.
+     * 
+     * Works only for attribute forms.
+     * 
+     * @param params params which identify the element
+     * @throws if layer not found, if form not found, or form is not an attribute form
+     * @example ```ts
+     * 
+     * // returns element form data for layer id=3, form id=2, and element id=245
+     * JMap.Form
+     *  .getElement({
+     *    layerId: 3,
+     *    formId: 2,
+     *    elementId: 245 
+     *  })
+     *  .then(element => console.log("Element:", element))
+     *  .catch(error => console.error("An error occurred when getting element data", error))
+     * ```
+     */
     function getElement(params: JFormElementId): Promise<JFormElement | undefined>
+
+    /**
+     * ***JMap.Form.getElements***
+     * 
+     * Returns form data of multiple elements from given parameters.
+     * 
+     * Works only for attribute forms.
+     * 
+     * @param params params which identify the elements
+     * @throws if layer not found, if form not found, or form is not an attribute form
+     * @example ```ts
+     * 
+     * // returns elements form data for layer id=3, form id=2, and elements id=245,236
+     * JMap.Form
+     *  .getElements({
+     *    layerId: 3,
+     *    formId: 2,
+     *    elementIds: [245, 236]
+     *  })
+     *  .then(elements => console.log("Elements:", elements))
+     *  .catch(error => console.error("An error occurred when getting elements data", error))
+     * ```
+     */
     function getElements(params: JFormElementIds): Promise<JFormElement[]>
+
+    /**
+     * ***JMap.Form.getEntries***
+     * 
+     * Returns form data of multiple entries from given parameters.
+     * 
+     * Works only for external and sub forms.
+     * 
+     * @param params params which identify the entries
+     * @throws if layer not found, if form not found, or form is not an external or sub form
+     * @example ```ts
+     * 
+     * // returns entries form data for layer id=3, form id=4, and elements id=5
+     * JMap.Form
+     *  .getEntries({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elementId: 5,
+     *    parentId: 2,
+     *    parentFormAttributesValuesByName: { jmap_id: 2, name: "Yellow" },
+     *  })
+     *  .then(entries => console.log("Entries:", entries))
+     *  .catch(error => console.error("An error occurred when getting entries data", error))
+     * ```
+     */
     function getEntries(params: JFormGetEntriesParams): Promise<JFormElement[]>
+
+    /**
+     * ***JMap.Form.createAttributeFormElement***
+     * 
+     * Creates an attribute form element.
+     * 
+     * Works only for attribute form.
+     * 
+     * @param params params needed to create a new feature
+     * @throws if layer not found, if form not found, or form is not an attribute form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns the new created feature
+     * JMap.Form
+     *  .createAttributeFormElement({
+     *    layerId: 3,
+     *    formId: 4,
+     *    attributeValueByName: {
+     *      color: "green",
+     *      type: "tree"
+     *    },
+     *    geometry: {
+     *      type: "Point",
+     *      coordinates: [43.55843, 6.55121]
+     *    }
+     *  })
+     *  .then(feature => console.log("New feature created:", feature))
+     *  .catch(error => console.error("An error occurred while creating new feature", error))
+     * ```
+     */
     function createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
+
+    /**
+     * ***JMap.Form.createDatabaseFormEntry***
+     * 
+     * Creates an external or sub form entry.
+     * 
+     * Works only for external or sub forms.
+     * 
+     * @param params params needed to create a new entry
+     * @throws if layer not found, if form not found, or form is not an external or sub form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns the new created entries
+     * JMap.Form
+     *  .createDatabaseFormEntry({
+     *    layerId: 3,
+     *    formId: 5,
+     *    parentId: 3,
+     *    parentAttributeValueByName: {
+     *      jmap_id: 3,
+     *      color: "green",
+     *      type: "tree"
+     *    },
+     *    attributeValueByName: {
+     *      name: "bird",
+     *      type: "nest"
+     *    },
+     *    elementId: 3
+     *  })
+     *  .then(entry => console.log("New entry created:", entry))
+     *  .catch(error => console.error("An error occurred while creating new entry", error))
+     * ```
+     */
     function createDatabaseFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
+
+    /**
+     * ***JMap.Form.updateAttributeFormElements***
+     * 
+     * Updates an attribute form element.
+     * 
+     * Works only for attribute form.
+     * 
+     * @param params params needed to update an element
+     * @throws if layer not found, if form not found, or form is not an attribute form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns update result
+     * JMap.Form
+     *  .updateAttributeFormElements({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elements: [{
+     *      id: 3,
+     *      attributeValueByName: {
+     *        color: "red",
+     *        type: "tree"
+     *      },
+     *      parentAttributeValueByName: {}
+     *    }]
+     *  })
+     *  .then(result => console.log("Element updated:", result))
+     *  .catch(error => console.error("An error occurred while updating elements", error))
+     * ```
+     */
     function updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
+
+    /**
+     * ***JMap.Form.updateDatabaseFormEntries***
+     * 
+     * Updates an external or sub form entry.
+     * 
+     * Works only for external or sub form.
+     * 
+     * @param params params needed to update an entry
+     * @throws if layer not found, if form not found, or form is not an external or sub form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns update result
+     * JMap.Form
+     *  .updateDatabaseFormEntries({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elements: [{
+     *      id: 3,
+     *      parentId: 3,
+     *      elementId: 3,
+     *      attributeValueByName: {
+     *        name: "bee",
+     *        type: "nest"
+     *      },
+     *      parentAttributeValueByName: {
+     *        jmap_id: 3,
+     *        color: "red",
+     *        type: "tree"
+     *      }
+     *    }]
+     *  })
+     *  .then(entries => console.log("Updated entries:", entries))
+     *  .catch(error => console.error("An error occurred while updating entries", error))
+     * ```
+     */
     function updateDatabaseFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+
+    /**
+     * ***JMap.Form.deleteAttributeFormElements***
+     * 
+     * Deletes elements of an attribute form.
+     * 
+     * Works only for attribute form.
+     * 
+     * @param params params needed to delete elements
+     * @throws if layer not found, if form not found, or form is not an attribute form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns delete result
+     * JMap.Form
+     *  .deleteAttributeFormElements({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elementIds: [453, 653, 354]
+     *  })
+     *  .then(result => console.log("Deleted elements result:", result))
+     *  .catch(error => console.error("An error occurred while deleting elements", error))
+     * ```
+     */
     function deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
+
+    /**
+     * ***JMap.Form.deleteDatabaseFormEntries***
+     * 
+     * Deletes entries of an attribute form.
+     * 
+     * Works only for attribute form.
+     * 
+     * @param params params needed to delete entries
+     * @throws if layer not found, if form not found, or form is not an attribute form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns delete result
+     * JMap.Form
+     *  .deleteDatabaseFormEntries({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elements: [{
+     *      id: 3,
+     *      parentId: 3,
+     *      elementId: 3,
+     *      attributeValueByName: {
+     *        name: "bee",
+     *        type: "nest"
+     *      },
+     *      parentAttributeValueByName: {
+     *        jmap_id: 3,
+     *        color: "red",
+     *        type: "tree"
+     *      }
+     *    }]
+     *  })
+     *  .then(result => console.log("Deleted entries result:", result))
+     *  .catch(error => console.error("An error occurred while deleting entries", error))
+     * ```
+     */
     function deleteDatabaseFormEntries(params: JFormElements): Promise<JDeleteEntriesResult>
+
+    /**
+     * ***JMap.Form.hasDisplayedForm***
+     * 
+     * Returns true if a form is currently displayed.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if a form is currently displayed, else false
+     * JMap.Form.hasDisplayedForm()
+     * ```
+     */
     function hasDisplayedForm(): boolean
+
+    /**
+     * ***JMap.Form.getDisplayedForm***
+     * 
+     * Returns the currently displayed form.
+     * 
+     * Use [[JMap.Form.hasDisplayedForm()]] to know if a form is currently displayed.
+     * 
+     * @throws if no layer is displayed
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm()) {
+     *  // returns the currently displayed form
+     *  const form = JMap.Form.getDisplayedForm()
+     *  ...
+     * }
+     * ```
+     */
     function getDisplayedForm(): JForm
+
+    /**
+     * ***JMap.Form.resetDisplayedForm***
+     * 
+     * Resets the currently displayed form.
+     * 
+     * Use [[JMap.Form.hasDisplayedForm()]] to know if a form is currently displayed.
+     * 
+     * @throws if no layer is displayed
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm()) {
+     *  // reset currently displayed form values
+     *  JMap.Form.resetDisplayedForm()
+     *  ...
+     * }
+     * ```
+     */
     function resetDisplayedForm(): void
+
+    /**
+     * ***JMap.Form.setActiveTabIndex***
+     * 
+     * Set the active tab index.
+     * 
+     * Works only for attribute form that have at least one external form.
+     * 
+     * Index starts at 0 (attribute form), 1 (first external form), etc...
+     * 
+     * Use [[JMap.Form.hasDisplayedForm()]] to know if a form is currently displayed.
+     * 
+     * @param tabIndex the tab index
+     * @throws if no layer is displayed, if index is invalid.
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm()) {
+     *  // reset currently displayed form values
+     *  JMap.Form.setActiveTabIndex(1)
+     *  ...
+     * }
+     * ```
+     */
     function setActiveTabIndex(tabIndex: number): void
+
+    /**
+     * ***JMap.Form.getActiveTabIndex***
+     * 
+     * Returns the active tab index.
+     * 
+     * If no form, or sub form is displayed, returns 0.
+     * 
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm()) {
+     *  // reset currently displayed form values
+     *  const currentTabIndex = JMap.Form.getActiveTabIndex()
+     *  ...
+     * }
+     * ```
+     */
     function getActiveTabIndex(): number
+
+    /**
+     * ***JMap.Form.getAllFormsMetaDataForCurrentLayer***
+     * 
+     * Returns the current layer forms metadata.
+     * 
+     * If no layer form displayed, returns an empty array.
+     * 
+     * @example ```ts
+     * 
+     *  // returns the current layer forms metadata
+     *  const formsMetadata = JMap.Form.getAllFormsMetaDataForCurrentLayer()
+     * }
+     * ```
+     */
     function getAllFormsMetaDataForCurrentLayer(): JFormMetaData[]
+
+    /**
+     * ***JMap.Form.getAllFormsMetaDataForCurrentLayer***
+     * 
+     * Returns form metadata of the currently displayed layer and given form id.
+     * 
+     * @param formId the JMap form id
+     * @throws if form not found
+     * @example ```ts
+     * 
+     *  // returns the form metadata of currently displayed layer and form id=2
+     *  const formMetadata = JMap.Form.getAllFormsMetaDataForCurrentLayer(2)
+     * }
+     * ```
+     */
     function getFormMetaDataByIdForCurrentLayer(formId: JId): JFormMetaData
+
+    /**
+     * ***JMap.Form.hasAttributeForm***
+     * 
+     * Returns true if the currently displayed layer has an attribute form.
+     * 
+     * @returns If no form is displayed, return false.
+     * @example ```ts
+     * 
+     *  // returns true if the currently displayed layer has an attribute form
+     *  JMap.Form.hasAttributeForm()
+     * }
+     * ```
+     */
     function hasAttributeForm(): boolean
+
+    /**
+     * ***JMap.Form.getAttributeForm***
+     * 
+     * Returns attribute form of currently displayed layer.
+     * 
+     * @throws if layer has no attribute form
+     * @example ```ts
+     * 
+     *  // returns attribute form of currently displayed layer
+     *  const attributeForm = JMap.Form.getAttributeForm()
+     * }
+     * ```
+     */
     function getAttributeForm(): JForm
+
+    /**
+     * ***JMap.Form.getExternalForms***
+     * 
+     * Returns external forms of currently displayed layer.
+     * 
+     * @return an empty array if layer has no external forms
+     * @example ```ts
+     * 
+     *  // returns external forms of currently displayed layer
+     *  const externalForms = JMap.Form.getExternalForms()
+     * }
+     * ```
+     */
     function getExternalForms(): JForm[]
+
+    /**
+     * ***JMap.Form.getSubForms***
+     * 
+     * Returns sub forms of currently displayed layer.
+     * 
+     * @return an empty array if layer has no sub forms
+     * @example ```ts
+     * 
+     *  // returns sub forms of currently displayed layer
+     *  const subForms = JMap.Form.getSubForms()
+     * }
+     * ```
+     */
     function getSubForms(): JForm[]
+
+    /**
+     * ***JMap.Form.openCreationDialogForLayer***
+     * 
+     * Opens the form creation dialog.
+     * 
+     * @param layerId the JMap layer id
+     * @param geometry the feature geometry
+     * @throws if layer not found, or invalid geometry, or layer has no form
+     * @example ```ts
+     * 
+     *  // opens the form creation dialog for layer id=3
+     *  JMap.Form
+     *    .openCreationDialogForLayer(
+     *      3,
+     *      {
+     *        type: "Point",
+     *        coordinates: [43.55843, 6.55121]
+     *      }
+     *    )
+     *    .then(formsMetadata => console.log("Creation form dialog opened", formsMetadata))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
+
+    /**
+     * ***JMap.Form.openUpdateDialogForLayer***
+     * 
+     * Opens the form update dialog.
+     * 
+     * @param layerId the JMap layer id
+     * @param elements the elements to update
+     * @throws if layer not found, or layer has no form
+     * @example ```ts
+     * 
+     *  const layerId = 3
+     *  const featureId = 4
+     *  // in this exemple we fetch the feature from the server, but we could get from the map
+     *  // with the following method [[JMap.Map.getRenderedFeatures]]
+     *  const feature = await JMap.Feature.getById(layerId, featureId)
+     *  // opens form update dialog for one element of layer id=3
+     *  JMap.Form
+     *    .openUpdateDialogForLayer(
+     *      layerId,
+     *      [{
+     *        id: featureId,
+     *        attributeValueByName: feature.properties
+     *      }]
+     *    )
+     *    .then(formsMetadata => console.log("Update form dialog opened", formsMetadata))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
+
+    /**
+     * ***JMap.Form.openCreationDialogForSubForm***
+     * 
+     * Opens the sub form creation dialog.
+     * 
+     * @param layerId the JMap layer id
+     * @param geometry the feature geometry
+     * @throws if no form dialog currently opened, or sub form not found, or no sub form table field in currently displayed form, or invalid parameters
+     * @example ```ts
+     * 
+     *  // opens the form creation dialog for layer id=3
+     *  JMap.Form
+     *    .openCreationDialogForSubForm(
+     *      4,
+     *      [
+     *        id: 3,
+     *        attributeValueByName: {
+     *          jmap_id: 3,
+     *          color: "red",
+     *          type: "tree"
+     *        }
+     *      ]
+     *    )
+     *    .then(formMetadata => console.log("Creation sub form dialog opened", formMetadata))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function openCreationDialogForSubForm(subFormId: JId, selectedParentElements: JFormElement[]): JFormMetaData
+
+    /**
+     * ***JMap.Form.openCreationDialogForSubForm***
+     * 
+     * Opens the sub form creation dialog.
+     * 
+     * @param layerId the JMap layer id
+     * @param geometry the feature geometry
+     * @throws if no form dialog currently opened, or sub form not found, or no sub form table field in currently displayed form, or invalid parameters
+     * @example ```ts
+     * 
+     *  // opens the form creation dialog for layer id=3
+     *  JMap.Form
+     *    .openCreationDialogForSubForm(
+     *      4,
+     *      [
+     *        id: 4,
+     *        parentId: 3,
+     *        elementId: 3,
+     *        parentAttributeValueByName: {
+     *          jmap_id: 3,
+     *          color: "red",
+     *          type: "tree"
+     *        },
+     *        attributeValueByName: {
+     *          id: 4,
+     *          name: "bee",
+     *          type: "nest"
+     *        }
+     *      ]
+     *    )
+     *    .then(formMetadata => console.log("Update sub form dialog opened", formMetadata))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function openUpdateDialogForSubForm(subFormId: JId, subFormElements: JFormElement[]): JFormMetaData
+
+    /**
+     * ***JMap.Form.closeCurrentDisplayedDialog***
+     * 
+     * Closes the currently displayed form.
+     * 
+     * Do nothing if no form displayed.
+     * 
+     * @example ```ts
+     * 
+     *  // closes currently displayed form
+     *  JMap.Form.closeCurrentDisplayedDialog()
+     * ```
+     */
     function closeCurrentDisplayedDialog(): void
+
+    /**
+     * ***JMap.Form.getFormValues***
+     * 
+     * Returns default values if form has not been edited, else form values.
+     * 
+     * This is a technical method used by JMap App, you should never have to use this function
+     * 
+     * @example ```ts
+     * 
+     *  const form = ...
+     *  // returns the form values
+     *  JMap.Form.getFormValues(form)
+     * ```
+     */
     function getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
+
+    /**
+     * ***JMap.Form.setFormValues***
+     * 
+     * Set form values of the given form.
+     * 
+     * @example ```ts
+     * 
+     *  const form = JMap.Form.getAttributeForm()
+     *  // set values of the attribute form
+     *  JMap.Form.setFormValues(form, {
+     *    color: "white",
+     *    type: "tree"
+     *  })
+     * ```
+     */
     function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
+
+    /**
+     * ***JMap.Form.submit***
+     * 
+     * Submit the currently displayed form.
+     * 
+     * @throws if no form displayed
+     * @param params optional params
+     * @example ```ts
+     * 
+     *  const layerId = 3
+     *  const featureId = 4
+     *  const feature = await JMap.Feature.getById(layerId, featureId)
+     *  // opens form update dialog for one element of layer id=3
+     *  await JMap.Form.openUpdateDialogForLayer(
+     *    layerId,
+     *    [{
+     *      id: featureId,
+     *      attributeValueByName: feature.properties
+     *    }]
+     *  )
+     *  const form = JMap.Form.getAttributeForm()
+     *  // change some values of the attribute form
+     *  JMap.Form.setFormValues(form, {
+     *    color: "white",
+     *    type: "tree"
+     *  })
+     *  JMap.Form
+     *    .submit()
+     *    .then(result => console.log("Submit result", result))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function submit(params?: JFormSubmitParams): Promise<JFormSubmitResult>
+
+    /**
+     * ***JMap.Form.canDeleteCurrentElements***
+     * 
+     * Returns true if the current form attribute elements can be deleted.
+     * 
+     * @returns false if no form is displayed
+     * @example ```ts
+     * 
+     * // returns true if the current form attribute elements can be deleted
+     * JMap.Form.canDeleteCurrentElements()
+     * ```
+     */
     function canDeleteCurrentElements(): boolean
+
+    /**
+     * ***JMap.Form.deleteCurrentElements***
+     * 
+     * Deletes the current attribute form elements.
+     * 
+     * Works only for update of attribute form elements.
+     * 
+     * @example ```ts
+     * 
+     * // deletes current form attribute elements
+     * JMap.Form
+     *  .deleteCurrentElements()
+     *  then(result => console.info("Delete result", result))
+     * ```
+     */
     function deleteCurrentElements(): Promise<JFormDeleteResult>
+
+    /**
+     * ***JMap.Form.getNextViewId***
+     * 
+     * Returns the next view id.
+     * 
+     * This is a technical method that you should never have to use.
+     * 
+     * @example ```ts
+     * 
+     * // returns the next view id
+     * JMap.Form.getNextViewId()
+     * ```
+     */
     function getNextViewId(): number
+
+    /**
+     * ***JMap.Form.incrementNextViewId***
+     * 
+     * Increments the next view id.
+     * 
+     * This is a technical method that you should never have to use.
+     * 
+     * @example ```ts
+     * 
+     * // increments the next view id
+     * JMap.Form.incrementNextViewId()
+     * ```
+     */
     function incrementNextViewId(): void
+    
+    /**
+     * ***JMap.Form.processRule***
+     * 
+     * Processes a JSON Logic rule and returns the result, or undefined if rules are not correct.
+     * 
+     * https://github.com/jwadhams/json-logic-js#readme
+     * 
+     * @param rule the json logic rule
+     * @param data the data
+     * @example ```ts
+     * 
+     * // returns "banana"
+     * JMap.Form.processRule({"var" : 1 }, [ "apple", "banana", "carrot" ])
+     * ```
+     */
     function processRule(rule: any, data: any): any
+    
+    /**
+     * ***JMap.Form.canCreateElementOnForm***
+     * 
+     * Returns true if current user can create element on the given form.
+     * 
+     * @param params parameters needed to identify the form
+     * @example ```ts
+     * 
+     * // returns true if current user can create element on form id=1 of layer id=3.
+     * JMap.Form.canCreateElementOnForm({
+     *  layerId: 3,
+     *  formId: 1
+     * })
+     * ```
+     */
     function canCreateElementOnForm(params: JFormId): boolean
+    
+    /**
+     * ***JMap.Form.canUpdateElementOnForm***
+     * 
+     * Returns true if current user can update element on the given form.
+     * 
+     * @param params parameters needed to identify the form
+     * @example ```ts
+     * 
+     * // returns true if current user can udpate element on form id=1 of layer id=3.
+     * JMap.Form.canUpdateElementOnForm({
+     *  layerId: 3,
+     *  formId: 1
+     * })
+     * ```
+     */
     function canUpdateElementOnForm(params: JFormId): boolean
+    
+    /**
+     * ***JMap.Form.canDeleteElementOnForm***
+     * 
+     * Returns true if current user can delete element on the given form.
+     * 
+     * @param params parameters needed to identify the form
+     * @example ```ts
+     * 
+     * // returns true if current user can delete element on form id=1 of layer id=3.
+     * JMap.Form.canDeleteElementOnForm({
+     *  layerId: 3,
+     *  formId: 1
+     * })
+     * ```
+     */
     function canDeleteElementOnForm(params: JFormId): boolean
+    
+    /**
+     * ***JMap.Form.hasEditOwnRightsForAllElements***
+     * 
+     * Returns true if current user has the right to edit all given elements.
+     * 
+     * @param params parameters needed to identify the form
+     * @example ```ts
+     * 
+     * // returns true if current user has the right to edit all given elements
+     * JMap.Form.hasEditOwnRightsForAllElements({
+     *  layerId: 3,
+     *  formId: 1,
+     *  elements: [{
+     *    id: 3,
+     *    attributeValueByName: {
+     *      author: "administrator",
+     *      jmap_id: 3,
+     *      color: "white",
+     *      type: "tree"
+     *    }
+     *  }, {
+     *    id: 4,
+     *    attributeValueByName: {
+     *      author: "administrator",
+     *      jmap_id: 4,
+     *      color: "red",
+     *      type: "tree"
+     *    }
+     *  }]
+     * })
+     * ```
+     */
     function hasEditOwnRightsForAllElements(params: JFormElements): boolean
+    
+    /**
+     * ***JMap.Form.hasDisplayedFormAPhotoField***
+     * 
+     * Returns true if currently displayed form has a photo field.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if currently displayed form has a photo field
+     * JMap.Form.hasDisplayedFormAPhotoField()
+     * ```
+     */
     function hasDisplayedFormAPhotoField(): boolean
+    
+    /**
+     * ***JMap.Form.getDisplayedFormPhotos***
+     * 
+     * Returns the photo of the currently displayed form.
+     * 
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm() && JMap.Form.hasDisplayedFormAPhotoField()) {
+     *  // returns the photos of the currently displayed form
+     *  const photos = JMap.Form.getDisplayedFormPhotos()
+     *  ...
+     * }
+     * ```
+     */
     function getDisplayedFormPhotos(): JPhoto[]
+    
+    /**
+     * ***JMap.Form.addDisplayedFormPhoto***
+     * 
+     * Adds a photo to the currently displayed form.
+     * 
+     * @param photo the photo to add
+     * @returns the new photo id
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm() && JMap.Form.hasDisplayedFormAPhotoField()) {
+     *  // returns the photos of the currently displayed form
+     *  const newPhoto = JMap.Form.addDisplayedFormPhoto({
+     *    url: "https://your-url/myphoto.jpeg",
+     *    title: "My photo",
+     *    fileName: "myphoto.jpeg",
+     *    comment: undefined,
+     *    metadata: {
+     *      projectionType: "none"
+     *    },
+     *    imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABEAYAAABPhRjKAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw1AUhU9TpSIVhVYQcchQnSyISnHUKhShQqgVWnUweekfNGlIUlwcBdeCgz+LVQcXZ10dXAVB8AfE0clJ0UVKvK8ptIjxwuN9nHfP4b37AKFeZprVNQFoum2mEnExk10VA6/wIYRBxDAgM8uYk6QkPOvrnrqp7qI8y7vvz+pTcxYDfCLxLDNMm3iDOLZpG5z3icOsKKvE58TjJl2Q+JHristvnAtNFnhm2Eyn5onDxGKhg5UOZkVTI54mjqiaTvlCxmWV8xZnrVxlrXvyFwZz+soy12mNIIFFLEGCCAVVlFCGjSjtOikWUnQe9/APN/0SuRRylcDIsYAKNMhNP/gf/J6tlZ+adJOCcaD7xXE+RoHALtCoOc73seM0TgD/M3Clt/2VOjDzSXqtrUWOgP5t4OK6rSl7wOUOMPRkyKbclPy0hHweeD+jb8oCoVugd82dW+scpw9AmmaVvAEODoGxAmWve7y7p3Nu//a05vcDhJpyruvcgbwAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfmARsTORZSgY7TAAAAGXRFWHRDb21tZW50AENyZWF0ZWQgd2l0aCBHSU1QV4EOFwAAAAtJREFUCNdjYIACAAAJAAFjKhYNAAAAAElFTkSuQmCC"
+     *  })
+     *  ...
+     * }
+     * ```
+     */
     function addDisplayedFormPhoto(photo: JPhoto): JId
+    
+    /**
+     * ***JMap.Form.updateDisplayedFormPhoto***
+     * 
+     * Updates a photo to the currently displayed form.
+     * 
+     * @throws if invalid params passed, or if title AND comments are not or empty string
+     * @param params the needed params
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm() && JMap.Form.hasDisplayedFormAPhotoField()) {
+     *  const photos = getDisplayedFormPhotos()
+     *  if (photos.length > 0) {
+     *    JMap.Form.updateDisplayedFormPhoto({
+     *      photoId: photos[0].id,
+     *      title: "My new title !",
+     *      comment: "My new comment"
+     *    })
+     *  ...
+     *  }
+     * }
+     * ```
+     */
     function updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
+    
+    /**
+     * ***JMap.Form.removeDisplayedFormPhotoById***
+     * 
+     * Deletes a photo on the currently displayed form, for a given photo id.
+     * 
+     * @throws if invalid id passed, or photo not found
+     * @param photoId the photo to delete
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm() && JMap.Form.hasDisplayedFormAPhotoField()) {
+     *  const photos = getDisplayedFormPhotos()
+     *  if (photos.length > 0) {
+     *    JMap.Form.removeDisplayedFormPhotoById(photos[0].id)
+     *  }
+     * }
+     * ```
+     */
     function removeDisplayedFormPhotoById(photoId: JId): void
 
     /**
@@ -9607,13 +10501,13 @@ declare namespace JMap {
      * @param contextId the JMap map context id or an array of map context ids
      * @example ```ts
      * 
-     * // delete the map-context id=5
+     * // deletes the map-context id=5
      * JMap.MapContext
      *    .deleteContextById(5)
      *    .then(() => console.info("Context 5 deleted !"))
      *    .catch(error => console.error(error))
      * 
-     * // delete map-contexts id in [ 3, 5, 12 ]
+     * // deletes map-contexts id in [ 3, 5, 12 ]
      * JMap.MapContext
      *    .deleteContextById([ 3, 5, 12 ])
      *    .then(() => console.info("Three map contexts have been deleted !"))
