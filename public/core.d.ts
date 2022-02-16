@@ -541,14 +541,14 @@ declare namespace JMap {
     /**
      * **JMap.Feature.deleteById**
      * 
-     * Delete the feature for the given layer and feature ids.
+     * Deletes the feature for the given layer and feature ids.
      * 
      * @param layerId the JMap layer id
      * @param featureId the JMap feature id
      * @throws if layer or feature not found
      * @example ```ts
      * 
-     * // delete the feature id="4" on layer id="3"
+     * // deletes the feature id="4" on layer id="3"
      * JMap.Feature
      *  .deleteById(3, 4)
      *  .then(deletedFeature => console.info("Feature has been deleted", deletedFeature))
@@ -560,14 +560,14 @@ declare namespace JMap {
     /**
      * **JMap.Feature.deleteByIds**
      * 
-     * Delete the features for the given layer and features ids.
+     * Deletes the features for the given layer and features ids.
      * 
      * @param layerId the JMap layer id
      * @param featureIds the JMap feature ids to delete
      * @throws if layer or feature not found
      * @example ```ts
      * 
-     * // delete 3 features on layer id="3"
+     * // deletes 3 features on layer id="3"
      * JMap.Feature
      *  .deleteByIds(3, [4, 5, 16])
      *  .then(() => console.info("Features have been deleted"))
@@ -1657,7 +1657,7 @@ declare namespace JMap {
     /**
      * **JMap.Layer.deleteLayer**
      * 
-     * Delete the layer in the data store and in the map.
+     * Deletes the layer in the data store and in the map.
      * 
      * The layer is not deleted server side, but only in the browser.
      * 
@@ -1667,7 +1667,7 @@ declare namespace JMap {
      * @param layerId The JMap layer id
      * @example ```ts
      * 
-     * // Remove layer 4 (only client side)
+     * // Removes layer 4 (only client side)
      * JMap.Layer.deleteLayer(4)
      * ```
      */
@@ -9453,7 +9453,7 @@ declare namespace JMap {
     /**
      * ***JMap.Form.submit***
      * 
-     * Set form values of the given form.
+     * Submit the currently displayed form.
      * 
      * @throws if no form displayed
      * @param params optional params
@@ -9501,13 +9501,13 @@ declare namespace JMap {
     /**
      * ***JMap.Form.deleteCurrentElements***
      * 
-     * Delete the current attribute form elements.
+     * Deletes the current attribute form elements.
      * 
      * Works only for update of attribute form elements.
      * 
      * @example ```ts
      * 
-     * // delete current form attribute elements
+     * // deletes current form attribute elements
      * JMap.Form
      *  .deleteCurrentElements()
      *  then(result => console.info("Delete result", result))
@@ -10501,13 +10501,13 @@ declare namespace JMap {
      * @param contextId the JMap map context id or an array of map context ids
      * @example ```ts
      * 
-     * // delete the map-context id=5
+     * // deletes the map-context id=5
      * JMap.MapContext
      *    .deleteContextById(5)
      *    .then(() => console.info("Context 5 deleted !"))
      *    .catch(error => console.error(error))
      * 
-     * // delete map-contexts id in [ 3, 5, 12 ]
+     * // deletes map-contexts id in [ 3, 5, 12 ]
      * JMap.MapContext
      *    .deleteContextById([ 3, 5, 12 ])
      *    .then(() => console.info("Three map contexts have been deleted !"))
