@@ -8814,7 +8814,7 @@ declare namespace JMap {
      * 
      * Returns all forms metadata for a given layer id.
      * 
-     * Fecth data from server first time, then keeps it in cache for the next time.
+     * Fecthes data from server first time, then keeps it in cache for the next time.
      * 
      * @param layerId the JMap layer id
      * @throws if layer not found
@@ -8836,7 +8836,7 @@ declare namespace JMap {
      * 
      * Works only for attribute forms.
      * 
-     * @param params params which identifies the element
+     * @param params params which identify the element
      * @throws if layer not found, if form not found, or form is not an attribute form
      * @example ```ts
      * 
@@ -8860,7 +8860,7 @@ declare namespace JMap {
      * 
      * Works only for attribute forms.
      * 
-     * @param params params which identifies the elements
+     * @param params params which identify the elements
      * @throws if layer not found, if form not found, or form is not an attribute form
      * @example ```ts
      * 
@@ -8884,7 +8884,7 @@ declare namespace JMap {
      * 
      * Works only for external and sub forms.
      * 
-     * @param params params which identifies the entries
+     * @param params params which identify the entries
      * @throws if layer not found, if form not found, or form is not an external or sub form
      * @example ```ts
      * 
@@ -9209,7 +9209,7 @@ declare namespace JMap {
     /**
      * ***JMap.Form.getAllFormsMetaDataForCurrentLayer***
      * 
-     * Returns form metadata of the current displayed layer and given form id.
+     * Returns form metadata of the currently displayed layer and given form id.
      * 
      * @param formId the JMap form id
      * @throws if form not found
@@ -9240,12 +9240,12 @@ declare namespace JMap {
     /**
      * ***JMap.Form.getAttributeForm***
      * 
-     * Returns attribute form of the current displayed layer.
+     * Returns attribute form of currently displayed layer.
      * 
      * @throws if layer has no attribute form
      * @example ```ts
      * 
-     *  // returns attribute form of the current displayed layer
+     *  // returns attribute form of currently displayed layer
      *  const attributeForm = JMap.Form.getAttributeForm()
      * }
      * ```
@@ -9255,12 +9255,12 @@ declare namespace JMap {
     /**
      * ***JMap.Form.getExternalForms***
      * 
-     * Returns external forms of the current displayed layer.
+     * Returns external forms of currently displayed layer.
      * 
      * @return an empty array if layer has no external forms
      * @example ```ts
      * 
-     *  // returns external forms of the current displayed layer
+     *  // returns external forms of currently displayed layer
      *  const externalForms = JMap.Form.getExternalForms()
      * }
      * ```
@@ -9270,12 +9270,12 @@ declare namespace JMap {
     /**
      * ***JMap.Form.getSubForms***
      * 
-     * Returns sub forms of the current displayed layer.
+     * Returns sub forms of currently displayed layer.
      * 
      * @return an empty array if layer has no sub forms
      * @example ```ts
      * 
-     *  // returns sub forms of the current displayed layer
+     *  // returns sub forms of currently displayed layer
      *  const subForms = JMap.Form.getSubForms()
      * }
      * ```
@@ -9422,7 +9422,7 @@ declare namespace JMap {
      * 
      * Returns default values if form has not been edited, else form values.
      * 
-     * This is a technical method used by JMap App, you should never used this function
+     * This is a technical method used by JMap App, you should never have to use this function
      * 
      * @example ```ts
      * 
@@ -9520,7 +9520,7 @@ declare namespace JMap {
      * 
      * Returns the next view id.
      * 
-     * This is a technical method that you should never used.
+     * This is a technical method that you should never have to use.
      * 
      * @example ```ts
      * 
@@ -9535,7 +9535,7 @@ declare namespace JMap {
      * 
      * Increments the next view id.
      * 
-     * This is a technical method that you should never used.
+     * This is a technical method that you should never have to use.
      * 
      * @example ```ts
      * 
@@ -9548,7 +9548,7 @@ declare namespace JMap {
     /**
      * ***JMap.Form.processRule***
      * 
-     * Processes a JSON Logic rule and returns the result, undefined if rules is not correct.
+     * Processes a JSON Logic rule and returns the result, or undefined if rules are not correct.
      * 
      * https://github.com/jwadhams/json-logic-js#readme
      * 
@@ -9679,7 +9679,7 @@ declare namespace JMap {
     /**
      * ***JMap.Form.addDisplayedFormPhoto***
      * 
-     * Add a photo to the currently displayed form.
+     * Adds a photo to the currently displayed form.
      * 
      * @param photo the photo to add
      * @returns the new photo id
@@ -9706,7 +9706,7 @@ declare namespace JMap {
     /**
      * ***JMap.Form.updateDisplayedFormPhoto***
      * 
-     * Update a photo to the currently displayed form.
+     * Updates a photo to the currently displayed form.
      * 
      * @throws if invalid params passed, or if title AND comments are not or empty string
      * @param params the needed params
@@ -9730,7 +9730,7 @@ declare namespace JMap {
     /**
      * ***JMap.Form.removeDisplayedFormPhotoById***
      * 
-     * Delete a photo on the currently displayed form, for a given photo id.
+     * Deletes a photo on the currently displayed form, for a given photo id.
      * 
      * @throws if invalid id passed, or photo not found
      * @param photoId the photo to delete
