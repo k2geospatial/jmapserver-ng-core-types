@@ -22,6 +22,7 @@ export interface JCoreService extends JCoreMainService {
   Photo: JPhotoService
   Util: JUtilService
   Library: JLibraryService
+  Projection: JProjectionService
   MapContext: JMapContextService
 }
 
@@ -599,6 +600,8 @@ export interface JGeometryService {
   getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): Feature<Polygon>
   isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
   getRotatedFeature(feature: GeoJSON.Feature, angle: number): GeoJSON.Feature
+  convertLength(length: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number // fromUnit is km by default
+  convertArea(area: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number // fromUnit is km by default
 }
 
 export interface JMapService {
@@ -737,6 +740,11 @@ export interface JMapFilterService {
   removeAllFilters(layerId: JId): void
 }
 
+export interface JProjectionService {
+  getLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
+  getBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
+}
+
 export interface JProjectService {
   hasProjectActivated(): boolean
   getActiveProject(): JProject
@@ -753,6 +761,7 @@ export interface JProjectService {
   getDescription(): string
   getProjection(): JProjection
   getDefaultDistanceUnit(): JDistanceUnit
+  getMapUnit(): JDistanceUnit
   getInitialRotation(): number
   getMinScale(): number
   getMaxScale(): number

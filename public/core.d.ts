@@ -2713,7 +2713,7 @@ declare namespace JMap {
      * const distance = JMap.Geometry.getDistance({ x: 10, y: 20 }, { x: 30, y: 30 })
      * ```
      */
-    function getDistance(p1: JPoint | JLocation, p2: JPoint | JLocation): number
+    function getDistance(p1: JPoint | JLocation, p2: JPoint | JLocation, unit?: JDistanceUnit): number
 
     /**
      * **JMap.Geometry.getFeatureCollection**
@@ -2800,6 +2800,46 @@ declare namespace JMap {
      * ```
      */
     function getRotatedFeature(feature: GeoJSON.Feature, angleInDegrees: number): GeoJSON.Feature
+
+    /**
+     * **JMap.Geometry.convertLength**
+     * 
+     * Converts the distance from a unit to another.
+     * 
+     * @param length the distance to convert
+     * @param toUnit the output unit
+     * @param fromUnit the input unit
+     * @throws if invalid parameters
+     * @example ```ts
+     * 
+     * // returns 2 kilometers in miles
+     * JMap.Geometry.convertLength(2, "miles")
+     * 
+     * // returns 200 meters in yards
+     * JMap.Geometry.convertLength(200, "yards", "meters")
+     * ```
+     */
+    function convertLength(length: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number
+
+    /**
+     * **JMap.Geometry.convertArea**
+     * 
+     * Converts the distance from a unit to another.
+     * 
+     * @param length the distance to convert
+     * @param toUnit the output unit
+     * @param fromUnit the input unit
+     * @throws if invalid parameters
+     * @example ```ts
+     * 
+     * // returns 2 square kilometers in square miles
+     * JMap.Geometry.convertArea(2, "miles")
+     * 
+     * // returns 200 square meters in square yards
+     * JMap.Geometry.convertArea(200, "yards", "meters")
+     * ```
+     */
+    function convertArea(area: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number
   }
 
   /**
@@ -5623,6 +5663,19 @@ declare namespace JMap {
     function getDefaultDistanceUnit(): JDistanceUnit
 
     /**
+     * **JMap.Project.getMapUnit**
+     *
+     * Returns the project map unit.
+     *
+     * @throws if no project is loaded
+     * @example ```ts
+     *
+     * // return "meters", or "kilometers", or "miles", or "yards"...
+     * JMap.Project.getMapUnit()
+     * ```
+     */
+    function getMapUnit(): JDistanceUnit
+    /**
      * **JMap.Project.getDescription**
      * 
      * Returns loaded JMap project description.
@@ -5916,6 +5969,62 @@ declare namespace JMap {
      * ```
      */
     function setChangeDisabled(): void
+  }
+
+  /**
+   * **JMap.Projection**
+   * 
+   * From this section you can make projection conversion.
+   */
+  namespace Projection {
+
+    /**
+     * ***JMap.Projection.getLocation***
+     * 
+     * Returns the location in the given projection.
+     * 
+     * @param location the location to reproject
+     * @param toProjection the desired projection output
+     * @param fromProjection projection of the given location, by default the project projection
+     * @throws if invalid parameters
+     * @example ```ts
+     * 
+     * // returns the location in long/lat
+     * const longLatLocation = JMap.Projection.getLocation({
+     *    x: -8251305.053809433,
+     *    y: 5683448.361086178
+     *  },
+     *  "EPSG:4326",
+     *  "EPSG:3857"
+     * )
+     * console.log("Long/lat location", longLatLocation)
+     * ```
+     */
+    function getLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
+
+    /**
+     * ***JMap.Projection.getBoundaryBox***
+     * 
+     * Returns the boundary box in the given projection.
+     * 
+     * @param boundaryBox the boundary box to reproject
+     * @param toProjection the desired projection output
+     * @param fromProjection projection of the given location, by default the project projection
+     * @throws if invalid parameters
+     * @example ```ts
+     * 
+     * // returns the boundary box in long/lat
+     * const longLatBbox = JMap.Projection.getBoundaryBox({
+     *    x: -8251305.053809433,
+     *    y: 5683448.361086178
+     *  },
+     *  "EPSG:4326",
+     *  "EPSG:3857"
+     * )
+     * console.log("Long/lat boundary box", longLatBbox)
+     * ```
+     */
+    function getBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
   }
 
   /**
