@@ -2713,7 +2713,7 @@ declare namespace JMap {
      * const distance = JMap.Geometry.getDistance({ x: 10, y: 20 }, { x: 30, y: 30 })
      * ```
      */
-    function getDistance(p1: JPoint | JLocation, p2: JPoint | JLocation, unit?: JDistanceUnit): number
+    function getDistance(p1: JPoint | JLocation, p2: JPoint | JLocation): number
 
     /**
      * **JMap.Geometry.getFeatureCollection**

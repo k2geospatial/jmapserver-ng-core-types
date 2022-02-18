@@ -14,7 +14,7 @@ declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "I
 
 declare type JLayerStyleArrow = "NONE" | "FORWARD" | "BACKWARD"
 
-declare type JLayerMetadataType = "date" | "text" | "number"
+declare type JLayerMetadataType = "date" | "text" | "number" | "textarea"
 
 declare type JLayerInformationReportType = "JSP" | "BIRT" | "BIRT_HTML" | "BIRT_PDF" | "WMS" | "CUSTOM"
 
@@ -54,6 +54,8 @@ declare interface JLayersConfiguration {
 
 declare interface JLayerMetadata extends JLayerBaseMetadata {
   value: JLayerMetaDataValue
+  label: string
+  type: JLayerMetadataType
 }
 
 declare interface JLayerEventChangeParams {
