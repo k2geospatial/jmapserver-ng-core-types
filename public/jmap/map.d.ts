@@ -157,14 +157,6 @@ declare interface JMapMapboxLayerStyleDefinition {
   borderStyleLayer?: mapboxgl.Layer
 }
 
-declare interface JMapAddMapboxLayerConfigurationForJmapLayerParams {
-  jmapLayerId: JId
-  beforeJmapLayerId?: JId
-  beforeMapboxLayerId?: string
-  baseStyle: JMapMapboxLayerStyleDefinition
-  // TODO: add support for thematics, selections, etc
-}
-
 declare interface JMapNavigateToParams extends JPanAndZoomOptions {
   center: JLocation
   zoom: number

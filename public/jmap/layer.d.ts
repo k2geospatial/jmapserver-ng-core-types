@@ -1,8 +1,8 @@
 declare type LAYER_TYPE = "POINT" | "LINE" | "POLYGON" | "TEXT" | "IMAGE" | "LABEL" | "ELLIPSE" | "MIXED"
 
-declare type LAYER_GEOMETRY = "ANNOTATION" | "CURVE" | "COMPLEX" | "POINT" | "RASTER" | "SURFACE" | "ELLIPSE" | "NONE"
+declare type LAYER_GEOMETRY = "ANNOTATION" | "CURVE" | "COMPLEX" | "POINT" | "RASTER" | "SURFACE" | "ELLIPSE" | "NONE"
 
-declare type JLayerAttributeType = "string" | "number" | "date" | "datetime" | "boolean" | "binary"
+declare type JLayerAttributeType = "string" | "number" | "date" | "datetime" | "boolean" | "binary"
 
 declare type JLayerThematicType = "INDIVIDUAL_VALUES" | "GRADUATED_STYLE" | "OTHER"
 
@@ -10,7 +10,7 @@ declare type JLayerThematicFamilyType = "Classification" | "ProportionalSymbol" 
 
 declare type JLayerThematicPrimitiveType = "LINE" | "POINT" | "AREA"
 
-declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "IMAGE" | "MIXED"
+declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "IMAGE" | "MIXED"
 
 declare type JLayerStyleArrow = "NONE" | "FORWARD" | "BACKWARD"
 
@@ -19,6 +19,18 @@ declare type JLayerMetadataType = "date" | "text" | "number"
 declare type JLayerInformationReportType = "JSP" | "BIRT" | "BIRT_HTML" | "BIRT_PDF" | "WMS" | "CUSTOM"
 
 declare type JLayerMetaDataValue =  string | number | Date
+
+declare type JLayerStyleRuleConditionExpressionOperator =
+  "EMPTY" |
+  "NOT_EMPTY" |
+  "IS_NULL" |
+  "IS_NOT_NULL" |
+  "EQUALS" |
+  "NOT_EQUALS" |
+  "GREATER_THAN" |
+  "LOWER_THAN" |
+  "GREATER_OR_EQUALS_TO" |
+  "LOWER_OR_EQUALS_TO"
 
 declare interface JLayerBaseMetadata {
   id: JId
@@ -104,11 +116,11 @@ declare interface JLayer extends JLayerTreeElement {
   metadatas: JLayerMetadata[]
   attributes: JLayerAttribute[]
   mouseOver: JMapMouseOver
-  simpleSelectionStyle: JLayerSimpleStyle
-  selectionStyle: JLayerStyle
   minimumVisibleMapboxZoom: number | undefined
   maximumVisibleMapboxZoom: number | undefined
-  baseStyles: JLayerStyleScaled[]
+  styleRules: JLayerStyleRule[]
+  defaultStyleRule: JLayerStyleRule
+  selectionStyleRule: JLayerStyleRule
   thematics: JLayerThematic[]
   queries: JQuery[]
   extent: JBoundaryBox | null
@@ -213,15 +225,27 @@ declare interface JLayerSearchByAttributesParams {
   projectionCode?: string
 }
 
+declare interface JLayerStyleRule {
+  id: string
+  active: boolean
+  label: string
+  conditions: JLayerStyleRuleCondition[]
+}
+
+declare interface JLayerStyleRuleCondition {
+  conditionExpressions: JLayerStyleRuleConditionExpression[]
+  styleMapScales: JLayerStyleScaled[]
+}
+
+declare interface JLayerStyleRuleConditionExpression {
+  operator: JLayerStyleRuleConditionExpressionOperator
+  value: any
+  attribute: JLayerAttribute
+}
+
 declare interface JLayerStyleScaled {
   minScale: number
   style: JLayerStyle
-}
-
-declare interface JLayerSimpleStyle {
-  transparency: number
-  fillColor: string
-  lineColor: string
 }
 
 declare interface JLayerStyle {

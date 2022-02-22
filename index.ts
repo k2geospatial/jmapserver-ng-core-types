@@ -424,6 +424,7 @@ export interface JMapState {
   bearing: number
   isLoaded: boolean
   hasFirstLoaded: boolean
+  hasLoadingError: boolean
   navigationHistory: JMapNavigationStep[]
   center: JLocation
   zoom: number
@@ -633,7 +634,6 @@ export interface JMapService {
   getMapboxSupportedJMapLayerIds(): JId[]
   getMapboxSupportedJMapLayerBefore(layerId: JId): JId | undefined
   getMapboxSupportedJMapLayerAfter(layerId: JId): JId | undefined
-  addMapboxLayerConfigurationForJmapLayer(params: JMapAddMapboxLayerConfigurationForJmapLayerParams): void
   refreshLayerById(layerId: JId): void
   getRenderedJMapLayerIds(): JId[]
   getRenderedFeatures(layerId: JId, params?: JLocation | JBoundaryBox | JCircle | JGetRenderedFeaturesParams): Feature[]
@@ -786,9 +786,8 @@ export interface JLayerService {
   setSelectabilityById(layerId: JId, selectability:boolean):void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: JId): boolean
-  getStyle(layerId: JId): JLayerStyle
-  getSimpleSelectionStyle(layerId: JId): JLayerSimpleStyle
-  getSelectionStyle(layerId: JId): JLayerStyle | null
+  getDefaultStyleRule(layerId: JId): JLayerStyleRule
+  getSelectionStyleRule(layerId: JId): JLayerStyleRule | null
   /**
    * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead
    */
