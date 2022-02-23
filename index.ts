@@ -944,7 +944,7 @@ export interface JDynamicFilterService {
   getConditionValueError(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): string | undefined
   isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): boolean
   isAttributeTypeAcceptMultipleValueOperators(attributeType: JLayerAttributeType): boolean
-  isAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
+  canAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
   getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
   getNowValue(): string
   getAllLastOperatorUnits(): string[]

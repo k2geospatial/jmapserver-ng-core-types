@@ -1470,7 +1470,7 @@ declare namespace JMap {
       function isAttributeTypeAcceptMultipleValueOperators(attributeType: JLayerAttributeType): boolean
 
       /**
-       * **JMap.Layer.DynamicFilter.isAttributeTypeAcceptTwoValuesOperators**
+       * **JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators**
        * 
        * Returns true if the attribute type accept two value operator ("IS_IN_RANGE").
        * 
@@ -1480,22 +1480,22 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // returns false
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptTwoValuesOperators("string")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("string")
        * 
        * // returns true
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptTwoValuesOperators("date")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("date")
        * 
        * // returns true
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptTwoValuesOperators("datetime")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("datetime")
        *  
        * // returns true
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptTwoValuesOperators("number")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("number")
        *  
        * // returns false
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptTwoValuesOperators("boolean")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("boolean")
        * ```
        */
-      function isAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
+      function canAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
 
       /**
        * **JMap.Layer.DynamicFilter.getIsBetweenValuesError**
