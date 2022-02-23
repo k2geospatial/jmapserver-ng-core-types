@@ -331,7 +331,7 @@ declare interface JLayerSetLayersVisibilityParams {
 declare interface JLayerSetLayersSelectabilityParams {
   layerId: JId
   selectability: boolean,
-  ensureVisibility?: boolean
+  ignoreVisibility?: boolean
 }
 
 declare interface JLayerThematicSetVisibilityParams {
