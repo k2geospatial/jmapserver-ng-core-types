@@ -127,6 +127,7 @@ export interface JLocalStorageService {
 export interface JPhotoService {
   displayFeaturePhotosPopup(layerId: JId, featureId: JId): Promise<void>
   displayPhotosPopup(photos: JPhoto[], params?: JPhotoOpenPopupParams): void
+  downloadById(photoId: JId): Promise<void>
   closePhotoPopup(): void
 }
 
@@ -471,6 +472,7 @@ export interface JPhotoState {
   isPopupOpened: boolean
   isLoading: boolean
   hasLoadingError: boolean
+  isDownloading: boolean
 }
 
 export interface JQueryState {
