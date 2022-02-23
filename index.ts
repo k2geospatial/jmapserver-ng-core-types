@@ -783,7 +783,7 @@ export interface JLayerService {
   isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
   isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
-  setSelectabilityById(layerId: JId, selectability:boolean):void
+  setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility?: boolean):void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: JId): boolean
   getStyle(layerId: JId): JLayerStyle

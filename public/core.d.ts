@@ -1424,6 +1424,7 @@ declare namespace JMap {
      * @throws Error if no layer found for the id or if it is not a vector layer
      * @param layerId The JMap layer id
      * @param selectability The new selectability property value for the layer
+     * @param ignoreVisibility If false or unspecified will make sure that the layer is visible
      * @example ```ts
      * 
      * // make layer id=5 selectable
@@ -1433,7 +1434,7 @@ declare namespace JMap {
      * JMap.Layer.setSelectabilityById(3, false)
      * ```
      */
-    function setSelectabilityById(layerId: JId, selectability:boolean): void
+    function setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility? : boolean): void
 
     /**
      * **JMap.Layer.setLayersSelectability**
