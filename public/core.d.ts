@@ -299,6 +299,19 @@ declare namespace JMap {
      * ```
      */
     function closePhotoPopup(): void
+
+    /**
+     * **JMap.Photo.downloadById**
+     * 
+     * Triggers a file download for a given photo id.
+     * 
+     * @example ```ts
+     * 
+     * // download photo id="3"
+     * JMap.Photo.downloadById(3)
+     * ```
+     */
+    function downloadById(photoId: JId): Promise<void>
   }
 
   /**
