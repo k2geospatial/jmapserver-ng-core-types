@@ -303,7 +303,7 @@ declare namespace JMap {
     /**
      * **JMap.Photo.downloadById**
      * 
-     * Download photo for a given photo id.
+     * Triggers a file download for a given photo id.
      * 
      * @example ```ts
      * 
