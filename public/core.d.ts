@@ -1105,18 +1105,20 @@ declare namespace JMap {
       function getAllOperators(): JDynamicFilterOperator[]
       
       /**
-       * **JMap.Layer.DynamicFilter.getAllArrayValueOperators**
+       * **JMap.Layer.DynamicFilter.getAllMultipleValuesOperators**
        * 
-       * Returns the list of all operators that require an array values (ex: EQUALS, NOT_EQUALS)
+       * Returns the list of all operators that require an array values.
+       * 
+       * Warning: EQUALS, NOT_EQUALS are operators that takes an array of values, they act like "IN" or "NOT IN".
        * 
        * @example ```ts
        * 
        * // returns the list of all operators that require two values
-       * const allArrayValueOperators = JMap.Layer.DynamicFilter.getAllArrayValueOperators()
-       * console.log(allArrayValueOperators)
+       * const allMultipleValuesOperators = JMap.Layer.DynamicFilter.getAllMultipleValuesOperators()
+       * console.log(allMultipleValuesOperators)
        * ```
        */
-      function getAllArrayValueOperators(): JDynamicFilterOperator[]
+      function getAllMultipleValuesOperators(): JDynamicFilterOperator[]
 
       /**
        * **JMap.Layer.DynamicFilter.getAllTwoValuesOperators**
@@ -1317,7 +1319,7 @@ declare namespace JMap {
       function isNoValueOperator(operator: JDynamicFilterOperator): boolean
 
       /**
-       * **JMap.Layer.DynamicFilter.isArrayValueOperator**
+       * **JMap.Layer.DynamicFilter.isMultipleValuesOperator**
        * 
        * Returns true if the operator requires a value that is an array.
        * 
@@ -1327,19 +1329,19 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // returns true
-       * JMap.Layer.DynamicFilter.isTwoValuesOperator("EQUALS")
+       * JMap.Layer.DynamicFilter.isMultipleValuesOperator("EQUALS")
        * 
        * // returns true
-       * JMap.Layer.DynamicFilter.isTwoValuesOperator("NOT_EQUALS")
+       * JMap.Layer.DynamicFilter.isMultipleValuesOperator("NOT_EQUALS")
        * 
        * // returns false
-       * JMap.Layer.DynamicFilter.isTwoValuesOperator("CONTAINS")
+       * JMap.Layer.DynamicFilter.isMultipleValuesOperator("CONTAINS")
        * 
        * // returns false
-       * JMap.Layer.DynamicFilter.isTwoValuesOperator("IS_IN_RANGE")
+       * JMap.Layer.DynamicFilter.isMultipleValuesOperator("IS_IN_RANGE")
        * ```
        */
-      function isArrayValueOperator(operator: JDynamicFilterOperator): boolean
+      function isMultipleValuesOperator(operator: JDynamicFilterOperator): boolean
 
       /**
        * **JMap.Layer.DynamicFilter.isTwoValuesOperator**
@@ -1442,7 +1444,7 @@ declare namespace JMap {
       function isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value1?: any, value2?: any): boolean
 
       /**
-       * **JMap.Layer.DynamicFilter.isAttributeTypeAcceptMultipleValueOperators**
+       * **JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators**
        * 
        * Returns true if the attribute type accept multiple value operator ("EQUALS" or "NOT_EQUALS" for example).
        * 
@@ -1452,22 +1454,22 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // returns true
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptMultipleValueOperators("string")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("string")
        *  
        * // returns true
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptMultipleValueOperators("number")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("number")
        * 
        * // returns false
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptMultipleValueOperators("date")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("date")
        * 
        * // returns false
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptMultipleValueOperators("datetime")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("datetime")
        *  
        * // returns false
-       * JMap.Layer.DynamicFilter.isAttributeTypeAcceptMultipleValueOperators("boolean")
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("boolean")
        * ```
        */
-      function isAttributeTypeAcceptMultipleValueOperators(attributeType: JLayerAttributeType): boolean
+      function canAttributeTypeAcceptMultipleValuesOperators(attributeType: JLayerAttributeType): boolean
 
       /**
        * **JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators**

@@ -928,7 +928,7 @@ export interface JDynamicFilterService {
   setIsActive(layerId: JId, isActive: boolean): void
   getByLayerId(layerId: JId): JDynamicFilter
   getAllOperators(): JDynamicFilterOperator[]
-  getAllArrayValueOperators(): JDynamicFilterOperator[]
+  getAllMultipleValuesOperators(): JDynamicFilterOperator[]
   getAllTwoValuesOperators(): JDynamicFilterOperator[]
   getOperatorsForAttributeType(attributeType: JLayerAttributeType): JDynamicFilterOperator[]
   getConditionError(condition: JDynamicFilterCondition): string | undefined
@@ -939,11 +939,11 @@ export interface JDynamicFilterService {
   updateCondition(condition: JDynamicFilterCondition): void
   removeConditions(layerId: JId, conditionsIds: number[]): void
   isNoValueOperator(operator: JDynamicFilterOperator): boolean
-  isArrayValueOperator(operator: JDynamicFilterOperator): boolean
+  isMultipleValuesOperator(operator: JDynamicFilterOperator): boolean
   isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
   getConditionValueError(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): string | undefined
   isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): boolean
-  isAttributeTypeAcceptMultipleValueOperators(attributeType: JLayerAttributeType): boolean
+  canAttributeTypeAcceptMultipleValuesOperators(attributeType: JLayerAttributeType): boolean
   canAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
   getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
   getNowValue(): string
