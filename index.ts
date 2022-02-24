@@ -127,6 +127,7 @@ export interface JLocalStorageService {
 export interface JPhotoService {
   displayFeaturePhotosPopup(layerId: JId, featureId: JId): Promise<void>
   displayPhotosPopup(photos: JPhoto[], params?: JPhotoOpenPopupParams): void
+  downloadById(photoId: JId): Promise<void>
   closePhotoPopup(): void
 }
 
@@ -476,6 +477,7 @@ export interface JPhotoState {
   isPopupOpened: boolean
   isLoading: boolean
   hasLoadingError: boolean
+  isDownloading: boolean
 }
 
 export interface JQueryState {
@@ -789,7 +791,7 @@ export interface JLayerService {
   isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
   isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
-  setSelectabilityById(layerId: JId, selectability:boolean):void
+  setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility?: boolean):void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: JId): boolean
   getStyle(layerId: JId): JLayerStyle
