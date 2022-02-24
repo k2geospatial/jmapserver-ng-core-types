@@ -285,6 +285,11 @@ export interface JLayerEventModule extends JEventModule {
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void):void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
     initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
+    dynamicFilterSet(listenerId: string, fn: (params: JLayerDynamicFilterSetParams) => void): void
+    dynamicFilterActivationChange(listenerId: string, fn: (params: JLayerDynamicFilterActivationParams) => void): void
+    dynamicFilterConditionCreated(listenerId: string, fn: (params: JLayerDynamicFilterConditionCreated) => void): void
+    dynamicFilterConditionUpdated(listenerId: string, fn: (params: JLayerDynamicFilterConditionUpdated) => void): void
+    dynamicFilterConditionsRemoved(listenerId: string, fn: (params: JLayerDynamicFilterConditionsRemoved) => void): void
   }
 }
 
@@ -766,6 +771,7 @@ export interface JProjectService {
 export interface JLayerService {
   Search: JLayerSearchService
   Thematic: JLayerThematicService
+  DynamicFilter: JDynamicFilterService
   getMetadataSchema(): JLayerMetadataSchemaItem[]
   getLayerTree(): JLayerTree
   getLayerTreeElementsById(): { [key in JId]: JLayerTreeElement }
@@ -916,6 +922,34 @@ export interface JServerService {
   isStandardLoginAvailable(): boolean
   getIdentityProviderById(providerId: string): JServerAnyIdentityProvider
   getAllIdentityProvidersById(): JServerIdentityProviderById
+}
+
+export interface JDynamicFilterService {
+  isAvailable(layerId: JId): boolean
+  isActive(layerId: JId): boolean
+  setIsActive(layerId: JId, isActive: boolean): void
+  getByLayerId(layerId: JId): JDynamicFilter
+  getAllOperators(): JDynamicFilterOperator[]
+  getAllMultipleValuesOperators(): JDynamicFilterOperator[]
+  getAllTwoValuesOperators(): JDynamicFilterOperator[]
+  getOperatorsForAttributeType(attributeType: JLayerAttributeType): JDynamicFilterOperator[]
+  getConditionError(condition: JDynamicFilterCondition): string | undefined
+  isConditionValid(condition: JDynamicFilterCondition): boolean
+  existSimilarCondition(condition: JDynamicFilterCondition, isUpdate?: boolean): boolean
+  set(params: JDynamicFilterSetMultipleParams): void
+  createCondition(condition: JDynamicFilterCondition): number
+  updateCondition(condition: JDynamicFilterCondition): void
+  removeConditions(layerId: JId, conditionsIds: number[]): void
+  isNoValueOperator(operator: JDynamicFilterOperator): boolean
+  isMultipleValuesOperator(operator: JDynamicFilterOperator): boolean
+  isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
+  getConditionValueError(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): string | undefined
+  isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): boolean
+  canAttributeTypeAcceptMultipleValuesOperators(attributeType: JLayerAttributeType): boolean
+  canAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
+  getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
+  getNowValue(): string
+  getAllLastOperatorUnits(): string[]
 }
 
 // MISC

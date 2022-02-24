@@ -20,6 +20,23 @@ declare type JLayerInformationReportType = "JSP" | "BIRT" | "BIRT_HTML" | "BIRT_
 
 declare type JLayerMetaDataValue =  string | number | Date
 
+declare type JDynamicFilterOperator =
+  "EQUALS" |
+  "NOT_EQUALS" |
+  "GREATER_THAN" |
+  "GREATER_OR_EQUALS_TO" |
+  "LESS_THAN" |
+  "LESS_OR_EQUALS_TO" |
+  "CONTAINS" |
+  "IS_EMPTY" |
+  "IS_NOT_EMPTY" |
+  "IS_NULL" |
+  "IS_NOT_NULL" |
+  "IS_IN_RANGE" |
+  "IS_NOT_IN_RANGE" |
+  "LAST" |
+  "INTERVAL"
+
 declare interface JLayerBaseMetadata {
   id: JId
 }
@@ -74,6 +91,29 @@ declare interface JLayerInitialSearchEventParams extends JLayerEventParams {
   features: GeoJSON.Feature[]
 }
 
+declare interface JLayerDynamicFilterSetParams {
+  filters: JDynamicFilter[]
+}
+
+declare interface JLayerDynamicFilterActivationParams extends JLayerEventParams {
+  isActivation: boolean
+}
+
+declare interface JLayerDynamicFilterConditionCreated extends JLayerEventParams {
+  filter: JDynamicFilter
+  condition: JDynamicFilterCondition
+}
+
+declare interface JLayerDynamicFilterConditionUpdated extends JLayerEventParams {
+  filter: JDynamicFilter
+  condition: JDynamicFilterCondition
+}
+
+declare interface JLayerDynamicFilterConditionsRemoved extends JLayerEventParams {
+  filter: JDynamicFilter
+  conditionIds: number[]
+}
+
 declare interface JMapEventLoadedParams {
   map: mapboxgl.Map
 }
@@ -124,6 +164,7 @@ declare interface JLayer extends JLayerTreeElement {
   hasInformationReport: boolean
   informationReports: JLayerInformationReport[]
   spatialDataSourceId: string // For Jaaz only
+  dynamicFilter: JDynamicFilter
 }
 
 declare interface JLayerInformationReport {
@@ -132,6 +173,34 @@ declare interface JLayerInformationReport {
   preFormatted: boolean
   singlePresentationPage: string
   multiplePresentationPage: string
+}
+
+declare interface JDynamicFilter {
+  layerId: JId
+  isAvailable: boolean // false means no dynamic filter for layer, ex: IMAGE layers
+  isActive: boolean
+  intervalOperatorDisabled: boolean // true if layer has less than 2 date attributes
+  conditions: JDynamicFilterCondition[]
+}
+
+declare interface JDynamicFilterCondition {
+  layerId: JId
+  id: number
+  attributeName: string
+  endAttributeName?: string // used for INTERVAL operator
+  filterOperator: JDynamicFilterOperator
+  value: any | any[] // 2 items array for between
+}
+
+declare interface JDynamicFilterSetParams {
+  layerId: JId
+  conditions: JDynamicFilterCondition[]
+  isActive?: boolean
+}
+
+declare interface JDynamicFilterSetMultipleParams {
+  dynamicFiltersParams: JDynamicFilterSetParams[] 
+  correctIfPossible?: boolean
 }
 
 declare interface JLayerForm {
@@ -340,7 +409,7 @@ declare interface JLayerThematicSetVisibilityParams {
   visibility: boolean
 }
 
-declare interface JLayerThematicSetCategoryVisibilityParams{
+declare interface JLayerThematicSetCategoryVisibilityParams {
   layerId: JId
   thematicId: JId
   categoryIndex: number
