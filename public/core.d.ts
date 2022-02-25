@@ -10295,7 +10295,23 @@ declare namespace JMap {
      * ```
      */
     function hasEditOwnRightsForAllElements(params: JFormElements): boolean
-    
+
+    /**
+     * ***JMap.Form.isOwnPermissionRespectedForAllElements***
+     * 
+     * Returns true if all given elements respect edit own permission.
+     * 
+     * Works only for attribute form elements, edit own permission are not supported for external or sub forms.
+     * 
+     * @example ```ts
+     * 
+     * const formElements = ... // get attribute form elements
+     * // returns true if all elements respect edit own permission
+     * JMap.Form.isOwnPermissionRespectedForAllElements(3, elements)
+     * ```
+     */
+    function isOwnPermissionRespectedForAllElements(layerId: JId, elements: JFormElement[]): boolean
+
     /**
      * ***JMap.Form.hasDisplayedFormAPhotoField***
      * 
