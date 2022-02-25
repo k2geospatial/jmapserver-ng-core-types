@@ -546,6 +546,7 @@ export interface JFormService {
   canUpdateElementOnForm(params: JFormId): boolean
   canDeleteElementOnForm(params: JFormId): boolean
   hasEditOwnRightsForAllElements(params: JFormElements): boolean
+  isOwnPermissionRespectedForAllElements(layerId: JId, elements: JFormElement[]): boolean
   // PHOTOS
   hasDisplayedFormAPhotoField(): boolean
   getDisplayedFormPhotos(): JPhoto[]
