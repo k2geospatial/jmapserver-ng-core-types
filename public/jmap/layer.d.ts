@@ -14,7 +14,7 @@ declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "I
 
 declare type JLayerStyleArrow = "NONE" | "FORWARD" | "BACKWARD"
 
-declare type JLayerMetadataType = "date" | "text" | "number" | "textarea"
+declare type JLayerMetadataType = "date" | "text" | "number" | "textarea"| "url"
 
 declare type JLayerInformationReportType = "JSP" | "BIRT" | "BIRT_HTML" | "BIRT_PDF" | "WMS" | "CUSTOM"
 
@@ -56,6 +56,12 @@ declare interface JLayerMetadata extends JLayerBaseMetadata {
   value: JLayerMetaDataValue
   label: string
   type: JLayerMetadataType
+}
+
+interface JLayerMetadataSection {
+  id: JId
+  title: string
+  metadatas: JLayerMetadata[]
 }
 
 declare interface JLayerEventChangeParams {
@@ -143,7 +149,8 @@ declare interface JLayerGroup extends JLayerTreeElement {
 declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
   type: LAYER_TYPE
-  metadatas: JLayerMetadata[]
+  defaultMetadatas: JLayerMetadata[]
+  metadataSections: JLayerMetadataSection[]
   attributes: JLayerAttribute[]
   mouseOver: JMapMouseOver
   simpleSelectionStyle: JLayerSimpleStyle
