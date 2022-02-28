@@ -3785,7 +3785,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.closeIFramePopup**
      * 
-     * Close the iframe popup if open.
+     * If open, close the iframe popup.
      * 
      * @example ```ts
      * 
