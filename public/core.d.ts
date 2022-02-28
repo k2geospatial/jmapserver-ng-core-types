@@ -3757,12 +3757,58 @@ declare namespace JMap {
     function setDefaultZoomOptions(options?: Partial<JZoomOptions>): void
 
     /**
+     * **JMap.Map.openIFramePopup**
+     * 
+     * Open a embeded page in a popup for a given source.
+     * 
+     * Only one iframe popup can be open at the same time
+     * 
+     * Parameters initialWidth and initialHeight are in pixels.
+     *
+     * @throws Error if iframeSource is empty or if bad parameters are passed
+     * @param options initialPosition, initialWidth, initialHeight, title, iframeSource, onClose()
+     * @example ```ts
+     * 
+     * // Open an embedded popup of k2geospatial website 
+     * JMap.Map.openIFramePopup({
+     *  initialPosition: {x: 400, y: 250},
+     *  initialWidth: 400,
+     *  initialHeight: 250,
+     *  title: "My embeded web page",
+     *  iframeSource: "https://k2geospatial.com/",
+     * })
+     * 
+     * ```
+     */
+    function openIFramePopup(options: JMapIFramePopupOptions): void
+
+    /**
+     * **JMap.Map.closeIFramePopup**
+     * 
+     * Close the iframe popup if open.
+     * 
+     * @example ```ts
+     * 
+     * // Open an embedded popup of k2geospatial website 
+     * JMap.Map.openIFramePopup({
+     *  initialPosition: {x: 400, y: 150},
+     *  initialWidth: 400,
+     *  initialHeight: 350,
+     *  title: "My embeded web page",
+     *  iframeSource: "https://k2geospatial.com/",
+     * })
+     * 
+     * // Then close it 
+     * JMap.Map.closeIFramePopup()
+     * 
+     * ```
+     */
+    function closeIFramePopup(): void
+
+    /**
      * **JMap.Map.navigateTo**
      * 
      * Navigate to a location on the map (animated)
-     * 
-     * @throws Error if bad parameters are passed
-     * @param params the navigation params
      * 
      * @example ```ts
      * 

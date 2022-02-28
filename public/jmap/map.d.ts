@@ -165,6 +165,14 @@ declare interface JMapAddMapboxLayerConfigurationForJmapLayerParams {
   // TODO: add support for thematics, selections, etc
 }
 
+declare interface JMapIFramePopupOptions {
+  initialPosition: JLocation
+  initialWidth: string
+  initialHeight: string
+  title: string
+  iframeSource: string
+}
+
 declare interface JMapNavigateToParams extends JPanAndZoomOptions {
   center: JLocation
   zoom: number

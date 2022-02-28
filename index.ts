@@ -450,7 +450,8 @@ export interface JMapState {
   containerWidth: number
   containerHeight: number
   modificationType: JMapModificationTypes
-  attributions: JMapAttribution[]
+  attributions: JMapAttribution[],
+  iframePopupOptions: JMapIFramePopupOptions
 }
 
 export interface JProjectState {
@@ -674,7 +675,9 @@ export interface JMapService {
   setMouseCursor(cursor: string): void
   openModificationPopupForCenter(): void
   openModificationPopupForScale(): void
-  closeModificationPopup(): void
+  closeModificationPopup(): void,
+  openIFramePopup(options: JMapIFramePopupOptions): void
+  closeIFramePopup(): void
 }
 
 export interface JMapBasemapService {
