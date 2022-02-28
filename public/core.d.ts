@@ -8496,7 +8496,7 @@ declare namespace JMap {
            * @param fn Your listener function
            * @example ```ts
            * 
-           * // When the map zoom stop, it will display a message in the console
+           * // When the map zoom end, it will display a message in the console
            * JMap.Event.Map.on.zoomEnd(
            *    "custom-map-zoom-end",
            *    args => console.log(`The zoom is finished (zoom="${args.zoom}")`)
