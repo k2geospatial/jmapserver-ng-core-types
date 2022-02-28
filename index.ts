@@ -128,6 +128,7 @@ export interface JLocalStorageService {
 export interface JPhotoService {
   displayFeaturePhotosPopup(layerId: JId, featureId: JId): Promise<void>
   displayPhotosPopup(photos: JPhoto[], params?: JPhotoOpenPopupParams): void
+  downloadById(photoId: JId): Promise<void>
   closePhotoPopup(): void
 }
 
@@ -478,6 +479,7 @@ export interface JPhotoState {
   isPopupOpened: boolean
   isLoading: boolean
   hasLoadingError: boolean
+  isDownloading: boolean
 }
 
 export interface JQueryState {
@@ -546,6 +548,7 @@ export interface JFormService {
   canUpdateElementOnForm(params: JFormId): boolean
   canDeleteElementOnForm(params: JFormId): boolean
   hasEditOwnRightsForAllElements(params: JFormElements): boolean
+  isOwnPermissionRespectedForAllElements(layerId: JId, elements: JFormElement[]): boolean
   // PHOTOS
   hasDisplayedFormAPhotoField(): boolean
   getDisplayedFormPhotos(): JPhoto[]
@@ -801,7 +804,7 @@ export interface JLayerService {
   isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
   isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
-  setSelectabilityById(layerId: JId, selectability:boolean):void
+  setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility?: boolean):void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: JId): boolean
   getStyle(layerId: JId): JLayerStyle
@@ -940,7 +943,7 @@ export interface JDynamicFilterService {
   setIsActive(layerId: JId, isActive: boolean): void
   getByLayerId(layerId: JId): JDynamicFilter
   getAllOperators(): JDynamicFilterOperator[]
-  getAllArrayValueOperators(): JDynamicFilterOperator[]
+  getAllMultipleValuesOperators(): JDynamicFilterOperator[]
   getAllTwoValuesOperators(): JDynamicFilterOperator[]
   getOperatorsForAttributeType(attributeType: JLayerAttributeType): JDynamicFilterOperator[]
   getConditionError(condition: JDynamicFilterCondition): string | undefined
@@ -951,12 +954,12 @@ export interface JDynamicFilterService {
   updateCondition(condition: JDynamicFilterCondition): void
   removeConditions(layerId: JId, conditionsIds: number[]): void
   isNoValueOperator(operator: JDynamicFilterOperator): boolean
-  isArrayValueOperator(operator: JDynamicFilterOperator): boolean
+  isMultipleValuesOperator(operator: JDynamicFilterOperator): boolean
   isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
   getConditionValueError(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): string | undefined
   isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): boolean
-  isAttributeTypeAcceptMultipleValueOperators(attributeType: JLayerAttributeType): boolean
-  isAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
+  canAttributeTypeAcceptMultipleValuesOperators(attributeType: JLayerAttributeType): boolean
+  canAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
   getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
   getNowValue(): string
   getAllLastOperatorUnits(): string[]

@@ -1,6 +1,7 @@
 
 declare type JMapContextVersion = 0 | 1
 declare type JMapContextVersions = JMapContext | JMapContextV0 | JMapContextV1
+declare type JMapContextApplyType = "standard" | "default" | "shared"
 declare type JMapContextTab = "list" | "create"
 declare type JMapContextSortByOption = "alphabetic" | "lastUpdate" //  | "lastUse"
 declare type JMapContextSortByDirection = "asc" | "desc"
@@ -151,11 +152,11 @@ declare interface JMapContextAfterMapDataChangeEventParams extends JMapContextMa
 }
 
 declare interface JMapContextBeforeApplyEventParams extends JMapContextEventParams {
-  // nothing else
+  applyType: JMapContextApplyType
 }
 
 declare interface JMapContextAfterApplyEventParams extends JMapContextEventParams  {
-  // nothing else
+  applyType: JMapContextApplyType
 }
 
 declare interface JMapContextSetActiveResult {

@@ -86,13 +86,13 @@ declare namespace JMap {
   /**
   * **JMap.getOS**
   * 
-  * Return the operating system on witch JMap NG Core library is running client side.
+  * Returns the operating system on witch JMap NG Core library is running client side.
   * 
   * Possible values returned are defined here [[JOperatingSystem]].
   * 
   * @example ```ts
   * 
-  * // Return "mac" if the OS is Mac OS
+  * // returns "mac" if the OS is Mac OS
   * JMap.getOS()
   * ```
   */
@@ -168,12 +168,12 @@ declare namespace JMap {
     /**
      * **JMap.Server.getMinimumVersion**
      * 
-     * Return the minimum server version required by NG to work fine.
+     * Returns the minimum server version required by NG to work fine.
      * 
      * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @example ```ts
      * 
-     * // Return the minimum server version required by NG to work fine
+     * // returns the minimum server version required by NG to work fine
      * JMap.Server.getMinimumVersion()
      * ```
      */
@@ -182,12 +182,12 @@ declare namespace JMap {
     /**
      * **JMap.Server.isMinimumVersionRespected**
      * 
-     * Return true if the current version of the server is lower than the minimum server version required by NG.
+     * Returns true if the current version of the server is lower than the minimum server version required by NG.
      * 
      * @param serverInfo if not passed will use the current one
      * @example ```ts
      * 
-     * // Return true if current server version is greater or equals than minimum server version
+     * // Returns true if current server version is greater or equals than minimum server version
      * JMap.Server.isMinimumVersionRespected()
      * ```
      */
@@ -239,7 +239,7 @@ declare namespace JMap {
     /**
      * **JMap.Server.getAllIdentityProvidersById**
      * 
-     * Return all the Identity Provider supported by the system, in an object keyed by provider Id
+     * Returns all the Identity Provider supported by the system, in an object keyed by provider Id
      * 
      * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @example ```ts
@@ -299,6 +299,19 @@ declare namespace JMap {
      * ```
      */
     function closePhotoPopup(): void
+
+    /**
+     * **JMap.Photo.downloadById**
+     * 
+     * Triggers a file download for a given photo id.
+     * 
+     * @example ```ts
+     * 
+     * // download photo id="3"
+     * JMap.Photo.downloadById(3)
+     * ```
+     */
+    function downloadById(photoId: JId): Promise<void>
   }
 
   /**
@@ -315,7 +328,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return false if geocoding is unavailable
+     * // returns false if geocoding is unavailable
      * JMap.Geocoding.isAvailable()
      * ```
      */
@@ -328,7 +341,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the minimum search string length
+     * // returns the minimum search string length
      * JMap.Geocoding.getMinimumSearchStringLength()
      * // 3
      * ```
@@ -342,7 +355,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the invalid characters
+     * // returns the invalid characters
      * JMap.Geocoding.getInvalidSearchStringCharacters()
      * // ";"
      * ```
@@ -415,7 +428,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return true if the browser supports the geolocation
+     * // returns true if the browser supports the geolocation
      * JMap.Geolocation.isSupportedByBrowser()
      * ```
      */
@@ -430,7 +443,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return false if geolocation is disabled
+     * // returns false if geolocation is disabled
      * JMap.Geolocation.isEnabled()
      * ```
      */
@@ -444,7 +457,7 @@ declare namespace JMap {
      * @throws if browser doesn't support geolocation, if geolocation is disabled, if an unexpected error occurs while getting location from browser
      * @example ```ts
      * 
-     * // return a promise that return the user current location if succeed
+     * // returns a promise that return the user current location if succeed
      * JMap.Geolocation.getMyLocation()
      *    .then(location => console.info("My location is ", location))
      *    .error(error => console.error("Cannot get my location : ", error))
@@ -541,14 +554,14 @@ declare namespace JMap {
     /**
      * **JMap.Feature.deleteById**
      * 
-     * Delete the feature for the given layer and feature ids.
+     * Deletes the feature for the given layer and feature ids.
      * 
      * @param layerId the JMap layer id
      * @param featureId the JMap feature id
      * @throws if layer or feature not found
      * @example ```ts
      * 
-     * // delete the feature id="4" on layer id="3"
+     * // deletes the feature id="4" on layer id="3"
      * JMap.Feature
      *  .deleteById(3, 4)
      *  .then(deletedFeature => console.info("Feature has been deleted", deletedFeature))
@@ -560,14 +573,14 @@ declare namespace JMap {
     /**
      * **JMap.Feature.deleteByIds**
      * 
-     * Delete the features for the given layer and features ids.
+     * Deletes the features for the given layer and features ids.
      * 
      * @param layerId the JMap layer id
      * @param featureIds the JMap feature ids to delete
      * @throws if layer or feature not found
      * @example ```ts
      * 
-     * // delete 3 features on layer id="3"
+     * // deletes 3 features on layer id="3"
      * JMap.Feature
      *  .deleteByIds(3, [4, 5, 16])
      *  .then(() => console.info("Features have been deleted"))
@@ -631,7 +644,7 @@ declare namespace JMap {
     /**
      * **JMap.History.getHashParameter**
      * 
-     * Return a JS object that contains all key / value entries present
+     * Returns a JS object that contains all key / value entries present
      * in the hash of the url.
      * 
      * Returns an empty string if parameter's not found.
@@ -643,10 +656,10 @@ declare namespace JMap {
      * // Ex. url = ***http://localhost:8080/services/ng#ngProjectId=0&myvar=test***
      * 
      * JMap.History.getHashParameter("myvar")
-     * // return "test"
+     * // returns "test"
      * 
      * JMap.History.getHashParameter("myvardoesntexist")
-     * // return ""
+     * // returns ""
      * ```
      */
     function getHashParameter(parameterName: string): string
@@ -654,7 +667,7 @@ declare namespace JMap {
     /**
      * **JMap.History.getHashParameters**
      * 
-     * Return a JS object that contains all key / value entries present
+     * Returns a JS object that contains all key / value entries present
      * in the hash of the url.
      * 
      * @example ```ts
@@ -1004,7 +1017,7 @@ declare namespace JMap {
        * @param thematicId The thematic id
        * @example ```ts
        * 
-       * // return the family of thematic id=3 of layer id=7
+       * // returns the family of thematic id=3 of layer id=7
        * let family = JMap.Layer.Thematic.getFamilyTypeById(
        *    layerId: 7,
        *    thematicId: 3
@@ -1017,48 +1030,46 @@ declare namespace JMap {
     }
 
     /**
-     *  **JMap.Layer.DynamicLayer**
+     *  **JMap.Layer.DynamicFilter**
      * 
      * Methods used to manage dynamic filters for a layer.
      */
     namespace DynamicFilter {
 
       /**
-       * **JMap.Layer.DynamicLayer.isAvailable**
+       * **JMap.Layer.DynamicFilter.isAvailable**
        * 
-       * Return true if the layer support dynamic filter.
+       * Returns true if the layer support dynamic filter.
        * 
        * For example raster layers don't support dynamic filter.
        * 
-       * @throws Error if layer is not found
        * @param layerId The JMap layer id
        * @example ```ts
        * 
        * // returns true if layer id=5 support dynamic filter, else false
-       * JMap.Layer.DynamicLayer.isAvailable(5)
+       * JMap.Layer.DynamicFilter.isAvailable(5)
        * ```
        */
       function isAvailable(layerId: JId): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.isActive**
+       * **JMap.Layer.DynamicFilter.isActive**
        * 
-       * Return true if the layer has a dynamic filter, and its filter is active.
+       * Returns true if the layer has a dynamic filter, and its filter is active.
        * 
        * Doesn't throw if the given layer doesn't support dynamic filter.
        * 
-       * @throws Error if layer is not found
        * @param layerId The JMap layer id
        * @example ```ts
        * 
        * // returns true if layer has dynamic filter, and filter is active
-       * JMap.Layer.DynamicLayer.isActive(5)
+       * JMap.Layer.DynamicFilter.isActive(5)
        * ```
        */
       function isActive(layerId: JId): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.setIsActive**
+       * **JMap.Layer.DynamicFilter.setIsActive**
        * 
        * Activate or deactivate a dynamic layer filter for a given JMap layer id
        * 
@@ -1068,100 +1079,102 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // activate the dynamic filter for layer id=5
-       * JMap.Layer.DynamicLayer.setIsActive(5, true)
+       * JMap.Layer.DynamicFilter.setIsActive(5, true)
        * 
        * // deactivate the dynamic filter for layer id=2
-       * JMap.Layer.DynamicLayer.setIsActive(2, false)
+       * JMap.Layer.DynamicFilter.setIsActive(2, false)
        * ```
        */
       function setIsActive(layerId: JId, isActive: boolean): void
 
       /**
-       * **JMap.Layer.DynamicLayer.getByLayerId**
+       * **JMap.Layer.DynamicFilter.getByLayerId**
        * 
-       * Return the dynamic filter of a given layer id
+       * Returns the dynamic filter of a given layer id
        * 
        * @throws Error if layer is not found
        * @param layerId The JMap layer id
        * @example ```ts
        * 
-       * // return the filter of layer id=3 
-       * const filter = JMap.Layer.DynamicLayer.getByLayerId(3)
+       * // returns the filter of layer id=3 
+       * const filter = JMap.Layer.DynamicFilter.getByLayerId(3)
        * console.log(filter)
        * ```
        */
       function getByLayerId(layerId: JId): JDynamicFilter
 
       /**
-       * **JMap.Layer.DynamicLayer.getAllOperators**
+       * **JMap.Layer.DynamicFilter.getAllOperators**
        * 
-       * Return the list of all availables operators
+       * Returns the list of all availables operators
        * 
        * @example ```ts
        * 
-       * // return the list of all available operators
-       * const allOperators = JMap.Layer.DynamicLayer.getAllOperators()
+       * // returns the list of all available operators
+       * const allOperators = JMap.Layer.DynamicFilter.getAllOperators()
        * console.log(allOperators)
        * ```
        */
       function getAllOperators(): JDynamicFilterOperator[]
       
       /**
-       * **JMap.Layer.DynamicLayer.getAllArrayValueOperators**
+       * **JMap.Layer.DynamicFilter.getAllMultipleValuesOperators**
        * 
-       * Return the list of all operators that require an array values (ex: EQUALS, NOT_EQUALS)
+       * Returns the list of all operators that require an array values.
+       * 
+       * Warning: EQUALS, NOT_EQUALS are operators that takes an array of values, they act like "IN" or "NOT IN".
        * 
        * @example ```ts
        * 
-       * // return the list of all operators that require two values
-       * const allArrayValueOperators = JMap.Layer.DynamicLayer.getAllArrayValueOperators()
-       * console.log(allArrayValueOperators)
+       * // returns the list of all operators that require two values
+       * const allMultipleValuesOperators = JMap.Layer.DynamicFilter.getAllMultipleValuesOperators()
+       * console.log(allMultipleValuesOperators)
        * ```
        */
-      function getAllArrayValueOperators(): JDynamicFilterOperator[]
+      function getAllMultipleValuesOperators(): JDynamicFilterOperator[]
 
       /**
-       * **JMap.Layer.DynamicLayer.getAllTwoValuesOperators**
+       * **JMap.Layer.DynamicFilter.getAllTwoValuesOperators**
        * 
-       * Return the list of all operators that require two values (ex: IS_IN_RANGE, IS_NOT_IN_RANGE)
+       * Returns the list of all operators that require two values (ex: IS_IN_RANGE, IS_NOT_IN_RANGE)
        * 
        * @example ```ts
        * 
-       * // return the list of all operators that require two values
-       * const allTwoValuesOperators = JMap.Layer.DynamicLayer.getAllTwoValuesOperators()
+       * // returns the list of all operators that require two values
+       * const allTwoValuesOperators = JMap.Layer.DynamicFilter.getAllTwoValuesOperators()
        * console.log(allTwoValuesOperators)
        * ```
        */
       function getAllTwoValuesOperators(): JDynamicFilterOperator[]
 
       /**
-       * **JMap.Layer.DynamicLayer.getOperatorsForAttributeType**
+       * **JMap.Layer.DynamicFilter.getOperatorsForAttributeType**
        * 
-       * Return list of all operators available for a given attribute type.
+       * Returns list of all operators available for a given attribute type.
        * 
        * @example ```ts
        * 
-       * // return the list of all operators that require two values
-       * const operators = JMap.Layer.DynamicLayer.getOperatorsForAttributeType("number")
+       * // returns the list of all operators that require two values
+       * const operators = JMap.Layer.DynamicFilter.getOperatorsForAttributeType("number")
        * console.log("Available operators for attribute type:", operators)
        * ```
        */
       function getOperatorsForAttributeType(attributeType: JLayerAttributeType): JDynamicFilterOperator[]
 
       /**
-       * **JMap.Layer.DynamicLayer.getConditionError**
+       * **JMap.Layer.DynamicFilter.getConditionError**
        * 
-       * Return a string error (human readable) if the condition is not correct.
+       * Returns a string error (human readable) if the condition is not correct.
        * 
-       * If correct return undefined.
+       * If correct returns undefined.
        * 
        * It doesn't check the id of the condition.
        * 
        * @param condition The condition to verify
        * @example ```ts
        * 
-       * // return a string error if the condition is not correct
-       * const error = JMap.Layer.DynamicLayer.getConditionError({
+       * // returns a string error if the condition is not correct
+       * const error = JMap.Layer.DynamicFilter.getConditionError({
        *  layerId: 3,
        *  attributeName: "City",
        *  filterOperator: "EQUALS",
@@ -1173,9 +1186,9 @@ declare namespace JMap {
       function getConditionError(condition: JDynamicFilterCondition): string | undefined
       
       /**
-       * **JMap.Layer.DynamicLayer.existSimilarCondition**
+       * **JMap.Layer.DynamicFilter.existSimilarCondition**
        * 
-       * Return true if the condition already exist for the layer.
+       * Returns true if the condition already exist for the layer.
        * 
        * It doesn't check the id of the condition, only the values.
        * 
@@ -1185,7 +1198,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // log in console a message if this condition already exist
-       * if (!JMap.Layer.DynamicLayer.existSimilarCondition(myCondition)) {
+       * if (!JMap.Layer.DynamicFilter.existSimilarCondition(myCondition)) {
        *  console.log("Same condition values already exist")
        * }
        * ```
@@ -1193,11 +1206,11 @@ declare namespace JMap {
       function existSimilarCondition(condition: JDynamicFilterCondition, isUpdate?: boolean): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.isConditionValid**
+       * **JMap.Layer.DynamicFilter.isConditionValid**
        * 
-       * Return a string error (human readable) if the condition is not correct.
+       * Returns a string error (human readable) if the condition is not correct.
        * 
-       * If correct return undefined.
+       * If correct returns undefined.
        * 
        * It doesn't check the id of the condition.
        * 
@@ -1205,7 +1218,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // log in console a message if the condition is not valid
-       * if (!JMap.Layer.DynamicLayer.isConditionValid(myCondition)) {
+       * if (!JMap.Layer.DynamicFilter.isConditionValid(myCondition)) {
        *  console.log("Condition is not valid")
        * }
        * ```
@@ -1213,7 +1226,7 @@ declare namespace JMap {
       function isConditionValid(condition: JDynamicFilterCondition): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.set**
+       * **JMap.Layer.DynamicFilter.set**
        * 
        * Set multiple layer's dynamic filters at once.
        * 
@@ -1224,7 +1237,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // set layer's id=3 dynamic filter
-       * JMap.Layer.DynamicLayer.set({
+       * JMap.Layer.DynamicFilter.set({
        *  dynamicFiltersParams: [{
        *    layerId: 3,
        *    conditions: [{
@@ -1239,7 +1252,7 @@ declare namespace JMap {
       function set(params: JDynamicFilterSetParams): void
 
       /**
-       * **JMap.Layer.DynamicLayer.createCondition**
+       * **JMap.Layer.DynamicFilter.createCondition**
        * 
        * Add a new condition for a JMap Layer dynamic filter.
        * 
@@ -1255,14 +1268,14 @@ declare namespace JMap {
        *  filterOperator: "EQUALS"
        *  value: "Paris"
        * }
-       * JMap.Layer.DynamicLayer.createCondition(newCondition)
+       * JMap.Layer.DynamicFilter.createCondition(newCondition)
        * console.log(`New condition id="${newCondition.id}" created`)
        * ```
        */
       function createCondition(condition: JDynamicFilterCondition): number
 
       /**
-       * **JMap.Layer.DynamicLayer.updateCondition**
+       * **JMap.Layer.DynamicFilter.updateCondition**
        * 
        * Update an existing condition, for a JMap Layer dynamic filter.
        * 
@@ -1272,14 +1285,14 @@ declare namespace JMap {
        * 
        * const condition = getCondition()
        * condition.value = 3
-       * JMap.Layer.DynamicLayer.updateCondition(condition)
+       * JMap.Layer.DynamicFilter.updateCondition(condition)
        * console.log(`Condition new value is 3`)
        * ```
        */
       function updateCondition(condition: JDynamicFilterCondition): void
 
       /**
-       * **JMap.Layer.DynamicLayer.removeConditions**
+       * **JMap.Layer.DynamicFilter.removeConditions**
        * 
        * Remove conditions for a given layer id and condition ids.
        * 
@@ -1288,13 +1301,13 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // for layer id=3, remove 2 conditions (id 2 and 12)
-       * JMap.Layer.DynamicLayer.removeConditions(3, [2, 12])
+       * JMap.Layer.DynamicFilter.removeConditions(3, [2, 12])
        * ```
        */
       function removeConditions(layerId: JId, conditionsIds: number[]): void
 
       /**
-       * **JMap.Layer.DynamicLayer.isNoValueOperator**
+       * **JMap.Layer.DynamicFilter.isNoValueOperator**
        * 
        * Returns true if the operator doesn't require any value.
        * 
@@ -1303,23 +1316,23 @@ declare namespace JMap {
        * @param operator The operator to check
        * @example ```ts
        * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isNoValueOperator("IS_IN_RANGE")
+       * // returns false
+       * JMap.Layer.DynamicFilter.isNoValueOperator("IS_IN_RANGE")
        * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isNoValueOperator("EQUALS")
+       * // returns false
+       * JMap.Layer.DynamicFilter.isNoValueOperator("EQUALS")
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isNoValueOperator("IS_EMPTY")
+       * // returns true
+       * JMap.Layer.DynamicFilter.isNoValueOperator("IS_EMPTY")
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isNoValueOperator("IS_NOT_NULL")
+       * // returns true
+       * JMap.Layer.DynamicFilter.isNoValueOperator("IS_NOT_NULL")
        * ```
        */
       function isNoValueOperator(operator: JDynamicFilterOperator): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.isArrayValueOperator**
+       * **JMap.Layer.DynamicFilter.isMultipleValuesOperator**
        * 
        * Returns true if the operator requires a value that is an array.
        * 
@@ -1328,23 +1341,23 @@ declare namespace JMap {
        * @param operator The operator to check
        * @example ```ts
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isTwoValuesOperator("EQUALS")
+       * // returns true
+       * JMap.Layer.DynamicFilter.isMultipleValuesOperator("EQUALS")
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isTwoValuesOperator("NOT_EQUALS")
+       * // returns true
+       * JMap.Layer.DynamicFilter.isMultipleValuesOperator("NOT_EQUALS")
        * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isTwoValuesOperator("CONTAINS")
+       * // returns false
+       * JMap.Layer.DynamicFilter.isMultipleValuesOperator("CONTAINS")
        * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isTwoValuesOperator("IS_IN_RANGE")
+       * // returns false
+       * JMap.Layer.DynamicFilter.isMultipleValuesOperator("IS_IN_RANGE")
        * ```
        */
-      function isArrayValueOperator(operator: JDynamicFilterOperator): boolean
+      function isMultipleValuesOperator(operator: JDynamicFilterOperator): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.isTwoValuesOperator**
+       * **JMap.Layer.DynamicFilter.isTwoValuesOperator**
        * 
        * Returns true if the operator require two values.
        * 
@@ -1353,17 +1366,17 @@ declare namespace JMap {
        * @param operator The operator to check
        * @example ```ts
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isTwoValuesOperator("IS_IN_RANGE")
+       * // returns true
+       * JMap.Layer.DynamicFilter.isTwoValuesOperator("IS_IN_RANGE")
        * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isTwoValuesOperator("EQUALS")
+       * // returns false
+       * JMap.Layer.DynamicFilter.isTwoValuesOperator("EQUALS")
        * ```
        */
       function isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.getConditionValueError**
+       * **JMap.Layer.DynamicFilter.getConditionValueError**
        * 
        * Returns an error if value is not correct.
        * 
@@ -1374,38 +1387,38 @@ declare namespace JMap {
        * @param value the value, an array of value for IS_IN_RANGE operator
        * @example ```ts
        * 
-       * // return an error
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("IS_IN_RANGE", "date", date1)
+       * // returns an error
+       * const error = JMap.Layer.DynamicFilter.getConditionValueError("IS_IN_RANGE", "date", date1)
        * 
-       * // if date1 and date2 are not date objects, or date1 >= date2, return an error
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("IS_IN_RANGE", "date", [date1, date2])
+       * // if date1 and date2 are not date objects, or date1 >= date2, returns an error
+       * const error = JMap.Layer.DynamicFilter.getConditionValueError("IS_IN_RANGE", "date", [date1, date2])
        *  
-       * // return an error value must be an array for EQUALS operator
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "string", ["Montreal"])
+       * // returns an error value must be an array for EQUALS operator
+       * const error = JMap.Layer.DynamicFilter.getConditionValueError("EQUALS", "string", ["Montreal"])
        * 
-       * // no error, return undefined
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "string", ["Montreal"])
+       * // no error, returns undefined
+       * const error = JMap.Layer.DynamicFilter.getConditionValueError("EQUALS", "string", ["Montreal"])
        * 
-       * // no error, return undefined
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "string", [""])
+       * // no error, returns undefined
+       * const error = JMap.Layer.DynamicFilter.getConditionValueError("EQUALS", "string", [""])
        *  
-       * // return an error
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "string", undefined)
+       * // returns an error
+       * const error = JMap.Layer.DynamicFilter.getConditionValueError("EQUALS", "string", undefined)
        * 
-       * // return an error
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("IS_EMPTY", "string")
+       * // returns an error
+       * const error = JMap.Layer.DynamicFilter.getConditionValueError("IS_EMPTY", "string")
        * 
-       * // no error, return undefined
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "number", "test")
+       * // no error, returns undefined
+       * const error = JMap.Layer.DynamicFilter.getConditionValueError("EQUALS", "number", "test")
        * 
-       * // no error, return undefined
-       * const error = JMap.Layer.DynamicLayer.getConditionValueError("EQUALS", "number", 22)
+       * // no error, returns undefined
+       * const error = JMap.Layer.DynamicFilter.getConditionValueError("EQUALS", "number", 22)
        * ```
        */
       function getConditionValueError(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): string | undefined
 
       /**
-       * **JMap.Layer.DynamicLayer.isConditionValueValid**
+       * **JMap.Layer.DynamicFilter.isConditionValueValid**
        * 
        * Returns true if the condition value is valid.
        * 
@@ -1417,34 +1430,34 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // if date1 is Date object, returns false
-       * JMap.Layer.DynamicLayer.isConditionValueValid("IS_IN_RANGE", "date", date1)
+       * JMap.Layer.DynamicFilter.isConditionValueValid("IS_IN_RANGE", "date", date1)
        * 
-       * // if date1 and date2 are Date objects, return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("IS_IN_RANGE", "date", [date1, date2])
+       * // if date1 and date2 are Date objects, returns true
+       * JMap.Layer.DynamicFilter.isConditionValueValid("IS_IN_RANGE", "date", [date1, date2])
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "string", "Montreal")
+       * // returns true
+       * JMap.Layer.DynamicFilter.isConditionValueValid("EQUALS", "string", "Montreal")
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "string", "")
+       * // returns true
+       * JMap.Layer.DynamicFilter.isConditionValueValid("EQUALS", "string", "")
        *  
-       * // return false
-       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "string", undefined)
+       * // returns false
+       * JMap.Layer.DynamicFilter.isConditionValueValid("EQUALS", "string", undefined)
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("IS_EMPTY", "string")
+       * // returns true
+       * JMap.Layer.DynamicFilter.isConditionValueValid("IS_EMPTY", "string")
        * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "number", "test")
+       * // returns false
+       * JMap.Layer.DynamicFilter.isConditionValueValid("EQUALS", "number", "test")
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isConditionValueValid("EQUALS", "number", 22)
+       * // returns true
+       * JMap.Layer.DynamicFilter.isConditionValueValid("EQUALS", "number", 22)
        * ```
        */
       function isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value1?: any, value2?: any): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators**
+       * **JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators**
        * 
        * Returns true if the attribute type accept multiple value operator ("EQUALS" or "NOT_EQUALS" for example).
        * 
@@ -1453,26 +1466,26 @@ declare namespace JMap {
        * @param attributeType The attribute type
        * @example ```ts
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("string")
+       * // returns true
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("string")
        *  
-       * // return true
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("number")
+       * // returns true
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("number")
        * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("date")
+       * // returns false
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("date")
        * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("datetime")
+       * // returns false
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("datetime")
        *  
-       * // return false
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptMultipleValueOperators("boolean")
+       * // returns false
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptMultipleValuesOperators("boolean")
        * ```
        */
-      function isAttributeTypeAcceptMultipleValueOperators(attributeType: JLayerAttributeType): boolean
+      function canAttributeTypeAcceptMultipleValuesOperators(attributeType: JLayerAttributeType): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.isAttributeTypeAcceptTwoValuesOperators**
+       * **JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators**
        * 
        * Returns true if the attribute type accept two value operator ("IS_IN_RANGE").
        * 
@@ -1481,26 +1494,26 @@ declare namespace JMap {
        * @param attributeType The attribute type
        * @example ```ts
        * 
-       * // return false
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptTwoValuesOperators("string")
+       * // returns false
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("string")
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptTwoValuesOperators("date")
+       * // returns true
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("date")
        * 
-       * // return true
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptTwoValuesOperators("datetime")
+       * // returns true
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("datetime")
        *  
-       * // return true
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptTwoValuesOperators("number")
+       * // returns true
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("number")
        *  
-       * // return false
-       * JMap.Layer.DynamicLayer.isAttributeTypeAcceptTwoValuesOperators("boolean")
+       * // returns false
+       * JMap.Layer.DynamicFilter.canAttributeTypeAcceptTwoValuesOperators("boolean")
        * ```
        */
-      function isAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
+      function canAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
 
       /**
-       * **JMap.Layer.DynamicLayer.getIsBetweenValuesError**
+       * **JMap.Layer.DynamicFilter.getIsBetweenValuesError**
        * 
        * Returns true if the attribute type accept two value operator ("IS_IN_RANGE").
        * 
@@ -1509,30 +1522,30 @@ declare namespace JMap {
        * @param attributeType The attribute type
        * @example ```ts
        *  
-       * // return an error
-       * const error = JMap.Layer.DynamicLayer.getIsBetweenValuesError("number", 4, 2)
+       * // returns an error
+       * const error = JMap.Layer.DynamicFilter.getIsBetweenValuesError("number", 4, 2)
        * 
-       * // return no error
-       * const error = JMap.Layer.DynamicLayer.getIsBetweenValuesError("number", 2, 4)
+       * // returns no error
+       * const error = JMap.Layer.DynamicFilter.getIsBetweenValuesError("number", 2, 4)
        * ```
        */
       function getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
  
       /**
-       * **JMap.Layer.DynamicLayer.getNowValue**
+       * **JMap.Layer.DynamicFilter.getNowValue**
        * 
        * Returns the now value, used for date.
        * 
        * @example ```ts
        *
-       * const nowValue = JMap.Layer.DynamicLayer.getNowValue()
+       * const nowValue = JMap.Layer.DynamicFilter.getNowValue()
        * console.log(`Now value is '${nowValue}'`) // display "Now value is 'Now'"
        * ```
        */
       function getNowValue(): string
 
       /**
-       * **JMap.Layer.DynamicLayer.getAllLastOperatorUnits**
+       * **JMap.Layer.DynamicFilter.getAllLastOperatorUnits**
        * 
        * Returns list of all "LAST" operator available units:
        *  - "mi": minutes
@@ -1544,7 +1557,7 @@ declare namespace JMap {
        * 
        * @example ```ts
        *
-       * const allUnits = JMap.Layer.DynamicLayer.getAllLastOperatorUnits()
+       * const allUnits = JMap.Layer.DynamicFilter.getAllLastOperatorUnits()
        * console.log(`All unit for 'LAST' operator are: ${allUnits.join(", ")}`)
        * ```
        */
@@ -1766,7 +1779,7 @@ declare namespace JMap {
      * @param attributeName The JMap attribute name
      * @example ```ts
      * 
-     *  // return true if the attribute named "SPECIES" exist on layer id=4
+     *  // returns true if the attribute named "SPECIES" exist on layer id=4
      *  JMap.Layer.attributeExists(4, "SPECIES")
      * ```
      */
@@ -1782,7 +1795,7 @@ declare namespace JMap {
      * @param attributeName The JMap attribute name
      * @example ```ts
      * 
-     *  // return the layer attribute descriptor
+     *  // returns the layer attribute descriptor
      *  JMap.Layer.getLayerAttribute(4, "SPECIES")
      * ```
      */
@@ -1959,6 +1972,7 @@ declare namespace JMap {
      * @throws Error if no layer found for the id or if it is not a vector layer
      * @param layerId The JMap layer id
      * @param selectability The new selectability property value for the layer
+     * @param ignoreVisibility If false or unspecified will make sure that the layer is visible
      * @example ```ts
      * 
      * // make layer id=5 selectable
@@ -1968,7 +1982,7 @@ declare namespace JMap {
      * JMap.Layer.setSelectabilityById(3, false)
      * ```
      */
-    function setSelectabilityById(layerId: JId, selectability:boolean): void
+    function setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility? : boolean): void
 
     /**
      * **JMap.Layer.setLayersSelectability**
@@ -2192,7 +2206,7 @@ declare namespace JMap {
     /**
      * **JMap.Layer.deleteLayer**
      * 
-     * Delete the layer in the data store and in the map.
+     * Deletes the layer in the data store and in the map.
      * 
      * The layer is not deleted server side, but only in the browser.
      * 
@@ -2202,7 +2216,7 @@ declare namespace JMap {
      * @param layerId The JMap layer id
      * @example ```ts
      * 
-     * // Remove layer 4 (only client side)
+     * // Removes layer 4 (only client side)
      * JMap.Layer.deleteLayer(4)
      * ```
      */
@@ -2211,7 +2225,7 @@ declare namespace JMap {
     /**
      * **JMap.Layer.isHoverActive**
      * 
-     * Return true if the hover is active on the map.
+     * Returns true if the hover is active on the map.
      * 
      * @example ```ts
      * 
@@ -2317,7 +2331,7 @@ declare namespace JMap {
     /**
      * **JMap.Geometry.isValidLocation**
      * 
-     * Return false if the provided parameter is not a valid location.
+     * Returns false if the provided parameter is not a valid location.
      * 
      * @param location The location object to check
      * @example ```ts
@@ -2336,7 +2350,7 @@ declare namespace JMap {
     /**
      * **JMap.Geometry.isValidBbox**
      * 
-     * Return false if the provided parameter is not a valid boundary box.
+     * Returns false if the provided parameter is not a valid boundary box.
      * 
      * @param bbox The bbox object to check
      * @example ```ts
@@ -2355,18 +2369,18 @@ declare namespace JMap {
     /**
      * **JMap.Geometry.isValidGeometry**
      * 
-     * Return true if the provided geometry is valid.
+     * Returns true if the provided geometry is valid.
      * 
      * @param geometry The given geometry object to test
      * @example ```ts
      * 
-     * // return true
+     * // returns true
      * JMap.Geometry.isValidGeometry({
      *   "type": "Point",
      *   "coordinates": [43.6, 10.1]
      * })
      * 
-     * // return false
+     * // returns false
      * JMap.Geometry.isValidGeometry({
      *  "coordinates": [43.6, 10.1]
      * })
@@ -2589,13 +2603,13 @@ declare namespace JMap {
     /**
      * **JMap.Geometry.getBboxFromFeatures**
      * 
-     * Return the boundary box that contains all features
+     * Returns the boundary box that contains all features
      * 
      * @param features array of features
      * @example ```ts
      *
      * const features = ...
-     * // return the features bbox
+     * // returns the features bbox
      * const distance = JMap.Geometry.getBboxFromFeatures(features)
      * ```
      */
@@ -2900,7 +2914,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      *
-     * // return list of all distance units
+     * // returns list of all distance units
      * // ["millimeters", "centimeters", "meters", "kilometers", "inches", "feet", "yards", "miles", "nauticalmiles" ]
      * JMap.Map.getAllDistanceUnits()
      * ```
@@ -2918,7 +2932,7 @@ declare namespace JMap {
      * @throws if no project is loaded
      * @example ```ts
      *
-     * // return undefined if no distance unit, else the value
+     * // returns undefined if no distance unit, else the value
      * JMap.Map.getDistanceUnit()
      * ```
      */
@@ -3009,13 +3023,13 @@ declare namespace JMap {
     /**
      * ***JMap.Map.getMapBoxSourceIdByJMapLayerId***
      * 
-     * Return the source id of the given Jmap layer id.
+     * Returns the source id of the given Jmap layer id.
      * 
      * @throws if invalid JMap layer id or if JMap layer doesn't exist
      * @param layerId the JMap layer id
      * @example ```ts
      * 
-     * // return the source id of the JMap layer with id 4
+     * // returns the source id of the JMap layer with id 4
      * JMap.Map.getMapBoxSourceIdByJMapLayerId(4)
      * ```
      */
@@ -3211,7 +3225,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // Return the current scale control position
+     * // Returns the current scale control position
      * JMap.Map.getScaleControlPosition()
      * ```
      */
@@ -3248,11 +3262,11 @@ declare namespace JMap {
      *  - isRendered: true if 'visibilityProperty', 'parentVisibility', 
      *                'scaleVisibility' and 'extentVisibility' are all true
      *  - visibilityProperty: user can show or hide a layer
-     *  - parentVisibility: return false if one of its group parent(s) has
+     *  - parentVisibility: returns false if one of its group parent(s) has
      *                      its visibility property equals to false
-     *  - scaleVisibility: return false if at the current scale the layer
+     *  - scaleVisibility: returns false if at the current scale the layer
      *                     cannot be displayed
-     *  - extentVisibility: return false if the extent of the layer is not
+     *  - extentVisibility: returns false if the extent of the layer is not
      *                      contains by the current view of the map
      * 
      * @example ```ts
@@ -3283,11 +3297,11 @@ declare namespace JMap {
      *  - isRendered: true if 'visibilityProperty', 'parentVisibility', 
      *                'scaleVisibility' and 'extentVisibility' are all true
      *  - visibilityProperty: user can show or hide a layer
-     *  - parentVisibility: return false if one of its group parent(s) has
+     *  - parentVisibility: returns false if one of its group parent(s) has
      *                      its visibility property equals to false
-     *  - scaleVisibility: return false if at the current scale the layer
+     *  - scaleVisibility: returns false if at the current scale the layer
      *                     cannot be displayed
-     *  - extentVisibility: return false if the extent of the layer is not
+     *  - extentVisibility: returns false if the extent of the layer is not
      *                      contains by the current view of the map
      * 
      * @example ```ts
@@ -3829,7 +3843,7 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // first select some features on layer id=3
-     * const features = JMap.Map.Selection.getSelectedFeaturesForLayer(3) // return layer id=3 selected features
+     * const features = JMap.Map.Selection.getSelectedFeaturesForLayer(3) // returns layer id=3 selected features
      * // Move and zoom to display the features
      * JMap.Map.fitFeatures(features)
      * 
@@ -3955,7 +3969,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.getResolution**
      * 
-     * Return the screen resolution, depending on screen DPI, latitude, and zoom level.
+     * Returns the screen resolution, depending on screen DPI, latitude, and zoom level.
      * 
      * if params is passed will use the given values for latitude (center of the map) and zoom, else use map current ones.
      * 
@@ -3964,10 +3978,10 @@ declare namespace JMap {
      * @param params if passed will use the given values for latitude and zoom, else use map current values
      * @example ```ts
      * 
-     * // return the current resolution for current map latitude (center of the map) and zoom level
+     * // returns the current resolution for current map latitude (center of the map) and zoom level
      * JMap.Map.getResolution()
      * 
-     * // return the resolution for given map latitude=45.5 and zoom level = 4
+     * // returns the resolution for given map latitude=45.5 and zoom level = 4
      * JMap.Map.getResolution({
      *   latitude: 45.5,
      *   zoom: 4
@@ -5304,7 +5318,7 @@ declare namespace JMap {
       /**
        * ***JMap.Map.Attribution.getById***
        * 
-       * Return an attribution for the given id
+       * Returns an attribution for the given id
        * 
        * @param attributionId The attribution id
        * @example ```ts
@@ -5319,7 +5333,7 @@ declare namespace JMap {
       /**
        * ***JMap.Map.Attribution.isDefaultAttributionId***
        * 
-       * Return true if the given id is reserved
+       * Returns true if the given id is reserved
        * 
        * @param attributionId The attribution id
        * @example ```ts
@@ -5352,11 +5366,11 @@ declare namespace JMap {
     /**
      * **JMap.MouseOver.isPopupOpened**
      * 
-     * Return true if the mouseover popup is visible on the map, else false.
+     * Returns true if the mouseover popup is visible on the map, else false.
      * 
      * @example ```ts
      * 
-     * // return true if the mouseover popup is visible on the map
+     * // returns true if the mouseover popup is visible on the map
      * JMap.MouseOver.openPopup()
      * ```
      */
@@ -5559,7 +5573,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // This is asynchronous code, getAllProject return a promise that is
+     * // This is asynchronous code, getAllProject returns a promise that is
      * // resolved after the server returned all project data.
      * JMap.Project
      *    .getAllProjects()
@@ -5702,7 +5716,7 @@ declare namespace JMap {
      * @throws if no project is loaded
      * @example ```ts
      *
-     * // return "meters", or "kilometers", or "miles", or "yards"...
+     * // returns "meters", or "kilometers", or "miles", or "yards"...
      * JMap.Project.getDefaultDistanceUnit()
      * ```
      */
@@ -6349,7 +6363,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return all user infos
+     * // returns all user infos
      * JMap.User.getAllInfos()
      * ```
      */
@@ -6409,11 +6423,11 @@ declare namespace JMap {
     /**
      * ***JMap.User.getMinimumPasswordLength***
      * 
-     * Return the minumum password length defined in JMap Core 
+     * Returns the minumum password length defined in JMap Core 
      * 
      * @example ```ts
      * 
-     * // return the minimum password length
+     * // returns the minimum password length
      * const MINIMUM_PASSWORD_LENGTH = JMap.User.getMinimumPasswordLength()
      * ```
      */
@@ -6422,7 +6436,7 @@ declare namespace JMap {
     /**
      * ***JMap.User.isPseudoUser***
      * 
-     * Return true if the currently logged in user is a JMap pseudo user (ex: system, anonymous, etc...).
+     * Returns true if the currently logged in user is a JMap pseudo user (ex: system, anonymous, etc...).
      * 
      * @example ```ts
      * 
@@ -6476,7 +6490,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the current locale
+     * // returns the current locale
      * JMap.Language.getLocale()
      * // ex: "fr"
      * ```
@@ -6507,7 +6521,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the default locale
+     * // returns the default locale
      * JMap.Language.getDefaultLocale()
      * // "en"
      * ```
@@ -6666,7 +6680,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the default locale
+     * // returns the default locale
      * JMap.Language.setLocale("fr")
      * console.log(JMap.Language.is12HoursTimeFormat())
      * // false
@@ -6698,7 +6712,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the default locale
+     * // returns the default locale
      * JMap.Language.setLocale("fr")
      * console.log(JMap.Language.getDateFnsDateFormat())
      * // "dd/MM/yyyy"
@@ -6737,7 +6751,7 @@ declare namespace JMap {
      * @param queryId the query id
      * @example ```ts
      * 
-     * // initialized query id="layers/2/attribute-queries/3" form of layer id=2, then return the filled query
+     * // initializes query id="layers/2/attribute-queries/3" form of layer id=2, then returns the filled query
      * JMap.Query.initializeQueryFormById(2, "layers/2/attribute-queries/3")
      *  .then(query => console.log("Query form has been loaded", query))
      *  .catch(error => console.error("An error occured while loading query id='layers/2/attribute-queries/3'"))
@@ -8180,7 +8194,7 @@ declare namespace JMap {
          * 
          * This event is triggered when some dynamic filters are set.
          * 
-         * Could happened when a map context is applied, or when we use the method [[JMap.Layer.DynamicFilter.set]].
+         * Could happen when a map context is applied, or when we use the method [[JMap.Layer.DynamicFilter.set]].
          * 
          * @param listenerId Your listener id (must be unique for all layer events)
          * @param fn Your listener function
@@ -8258,7 +8272,7 @@ declare namespace JMap {
         /**
          * ***JMap.Event.Layer.on.dynamicFilterConditionsRemoved***
          * 
-         * This event is triggered when a condition is added on a layer dynamic filter.
+         * This event is triggered when a condition is removed on a layer dynamic filter.
          * 
          * @param listenerId Your listener id (must be unique for all layer events)
          * @param fn Your listener function
@@ -9584,48 +9598,958 @@ declare namespace JMap {
    * Here you'll find all form related methods
    */
   namespace Form {
+
+    /**
+     * ***JMap.Form.getFormsMetaDataByLayerId***
+     * 
+     * Returns all forms metadata for a given layer id.
+     * 
+     * Fecthes data from server first time, then keeps it in cache for the next time.
+     * 
+     * @param layerId the JMap layer id
+     * @throws if layer not found
+     * @example ```ts
+     * 
+     * // returns all forms metadata for layer id=3
+     * JMap.Form
+     *  .getFormsMetaDataByLayerId(3)
+     *  .then(formsMetadata => console.log("Forms metatada of layer 3", formsMetadata))
+     *  .catch(error => console.error("An error occurred when getting form metadata", error))
+     * ```
+     */
     function getFormsMetaDataByLayerId(layerId: JId): Promise<JFormMetaData[]>
+
+    /**
+     * ***JMap.Form.getElement***
+     * 
+     * Returns form data of an element from given parameters.
+     * 
+     * Works only for attribute forms.
+     * 
+     * @param params params which identify the element
+     * @throws if layer not found, if form not found, or form is not an attribute form
+     * @example ```ts
+     * 
+     * // returns element form data for layer id=3, form id=2, and element id=245
+     * JMap.Form
+     *  .getElement({
+     *    layerId: 3,
+     *    formId: 2,
+     *    elementId: 245 
+     *  })
+     *  .then(element => console.log("Element:", element))
+     *  .catch(error => console.error("An error occurred when getting element data", error))
+     * ```
+     */
     function getElement(params: JFormElementId): Promise<JFormElement | undefined>
+
+    /**
+     * ***JMap.Form.getElements***
+     * 
+     * Returns form data of multiple elements from given parameters.
+     * 
+     * Works only for attribute forms.
+     * 
+     * @param params params which identify the elements
+     * @throws if layer not found, if form not found, or form is not an attribute form
+     * @example ```ts
+     * 
+     * // returns elements form data for layer id=3, form id=2, and elements id=245,236
+     * JMap.Form
+     *  .getElements({
+     *    layerId: 3,
+     *    formId: 2,
+     *    elementIds: [245, 236]
+     *  })
+     *  .then(elements => console.log("Elements:", elements))
+     *  .catch(error => console.error("An error occurred when getting elements data", error))
+     * ```
+     */
     function getElements(params: JFormElementIds): Promise<JFormElement[]>
+
+    /**
+     * ***JMap.Form.getEntries***
+     * 
+     * Returns form data of multiple entries from given parameters.
+     * 
+     * Works only for external and sub forms.
+     * 
+     * @param params params which identify the entries
+     * @throws if layer not found, if form not found, or form is not an external or sub form
+     * @example ```ts
+     * 
+     * // returns entries form data for layer id=3, form id=4, and elements id=5
+     * JMap.Form
+     *  .getEntries({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elementId: 5,
+     *    parentId: 2,
+     *    parentFormAttributesValuesByName: { jmap_id: 2, name: "Yellow" },
+     *  })
+     *  .then(entries => console.log("Entries:", entries))
+     *  .catch(error => console.error("An error occurred when getting entries data", error))
+     * ```
+     */
     function getEntries(params: JFormGetEntriesParams): Promise<JFormElement[]>
+
+    /**
+     * ***JMap.Form.createAttributeFormElement***
+     * 
+     * Creates an attribute form element.
+     * 
+     * Works only for attribute form.
+     * 
+     * @param params params needed to create a new feature
+     * @throws if layer not found, if form not found, or form is not an attribute form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns the new created feature
+     * JMap.Form
+     *  .createAttributeFormElement({
+     *    layerId: 3,
+     *    formId: 4,
+     *    attributeValueByName: {
+     *      color: "green",
+     *      type: "tree"
+     *    },
+     *    geometry: {
+     *      type: "Point",
+     *      coordinates: [43.55843, 6.55121]
+     *    }
+     *  })
+     *  .then(feature => console.log("New feature created:", feature))
+     *  .catch(error => console.error("An error occurred while creating new feature", error))
+     * ```
+     */
     function createAttributeFormElement(params: JFormCreateAttributeFormElementParams): Promise<GeoJSON.Feature>
+
+    /**
+     * ***JMap.Form.createDatabaseFormEntry***
+     * 
+     * Creates an external or sub form entry.
+     * 
+     * Works only for external or sub forms.
+     * 
+     * @param params params needed to create a new entry
+     * @throws if layer not found, if form not found, or form is not an external or sub form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns the new created entries
+     * JMap.Form
+     *  .createDatabaseFormEntry({
+     *    layerId: 3,
+     *    formId: 5,
+     *    parentId: 3,
+     *    parentAttributeValueByName: {
+     *      jmap_id: 3,
+     *      color: "green",
+     *      type: "tree"
+     *    },
+     *    attributeValueByName: {
+     *      name: "bird",
+     *      type: "nest"
+     *    },
+     *    elementId: 3
+     *  })
+     *  .then(entry => console.log("New entry created:", entry))
+     *  .catch(error => console.error("An error occurred while creating new entry", error))
+     * ```
+     */
     function createDatabaseFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
+
+    /**
+     * ***JMap.Form.updateAttributeFormElements***
+     * 
+     * Updates an attribute form element.
+     * 
+     * Works only for attribute form.
+     * 
+     * @param params params needed to update an element
+     * @throws if layer not found, if form not found, or form is not an attribute form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns update result
+     * JMap.Form
+     *  .updateAttributeFormElements({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elements: [{
+     *      id: 3,
+     *      attributeValueByName: {
+     *        color: "red",
+     *        type: "tree"
+     *      },
+     *      parentAttributeValueByName: {}
+     *    }]
+     *  })
+     *  .then(result => console.log("Element updated:", result))
+     *  .catch(error => console.error("An error occurred while updating elements", error))
+     * ```
+     */
     function updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
+
+    /**
+     * ***JMap.Form.updateDatabaseFormEntries***
+     * 
+     * Updates an external or sub form entry.
+     * 
+     * Works only for external or sub form.
+     * 
+     * @param params params needed to update an entry
+     * @throws if layer not found, if form not found, or form is not an external or sub form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns update result
+     * JMap.Form
+     *  .updateDatabaseFormEntries({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elements: [{
+     *      id: 3,
+     *      parentId: 3,
+     *      elementId: 3,
+     *      attributeValueByName: {
+     *        name: "bee",
+     *        type: "nest"
+     *      },
+     *      parentAttributeValueByName: {
+     *        jmap_id: 3,
+     *        color: "red",
+     *        type: "tree"
+     *      }
+     *    }]
+     *  })
+     *  .then(entries => console.log("Updated entries:", entries))
+     *  .catch(error => console.error("An error occurred while updating entries", error))
+     * ```
+     */
     function updateDatabaseFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
+
+    /**
+     * ***JMap.Form.deleteAttributeFormElements***
+     * 
+     * Deletes elements of an attribute form.
+     * 
+     * Works only for attribute form.
+     * 
+     * @param params params needed to delete elements
+     * @throws if layer not found, if form not found, or form is not an attribute form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns delete result
+     * JMap.Form
+     *  .deleteAttributeFormElements({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elementIds: [453, 653, 354]
+     *  })
+     *  .then(result => console.log("Deleted elements result:", result))
+     *  .catch(error => console.error("An error occurred while deleting elements", error))
+     * ```
+     */
     function deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
+
+    /**
+     * ***JMap.Form.deleteDatabaseFormEntries***
+     * 
+     * Deletes entries of an attribute form.
+     * 
+     * Works only for attribute form.
+     * 
+     * @param params params needed to delete entries
+     * @throws if layer not found, if form not found, or form is not an attribute form, or invalid parameter
+     * @example ```ts
+     * 
+     * // returns delete result
+     * JMap.Form
+     *  .deleteDatabaseFormEntries({
+     *    layerId: 3,
+     *    formId: 4,
+     *    elements: [{
+     *      id: 3,
+     *      parentId: 3,
+     *      elementId: 3,
+     *      attributeValueByName: {
+     *        name: "bee",
+     *        type: "nest"
+     *      },
+     *      parentAttributeValueByName: {
+     *        jmap_id: 3,
+     *        color: "red",
+     *        type: "tree"
+     *      }
+     *    }]
+     *  })
+     *  .then(result => console.log("Deleted entries result:", result))
+     *  .catch(error => console.error("An error occurred while deleting entries", error))
+     * ```
+     */
     function deleteDatabaseFormEntries(params: JFormElements): Promise<JDeleteEntriesResult>
+
+    /**
+     * ***JMap.Form.hasDisplayedForm***
+     * 
+     * Returns true if a form is currently displayed.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if a form is currently displayed, else false
+     * JMap.Form.hasDisplayedForm()
+     * ```
+     */
     function hasDisplayedForm(): boolean
+
+    /**
+     * ***JMap.Form.getDisplayedForm***
+     * 
+     * Returns the currently displayed form.
+     * 
+     * Use [[JMap.Form.hasDisplayedForm()]] to know if a form is currently displayed.
+     * 
+     * @throws if no layer is displayed
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm()) {
+     *  // returns the currently displayed form
+     *  const form = JMap.Form.getDisplayedForm()
+     *  ...
+     * }
+     * ```
+     */
     function getDisplayedForm(): JForm
+
+    /**
+     * ***JMap.Form.resetDisplayedForm***
+     * 
+     * Resets the currently displayed form.
+     * 
+     * Use [[JMap.Form.hasDisplayedForm()]] to know if a form is currently displayed.
+     * 
+     * @throws if no layer is displayed
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm()) {
+     *  // reset currently displayed form values
+     *  JMap.Form.resetDisplayedForm()
+     *  ...
+     * }
+     * ```
+     */
     function resetDisplayedForm(): void
+
+    /**
+     * ***JMap.Form.setActiveTabIndex***
+     * 
+     * Set the active tab index.
+     * 
+     * Works only for attribute form that have at least one external form.
+     * 
+     * Index starts at 0 (attribute form), 1 (first external form), etc...
+     * 
+     * Use [[JMap.Form.hasDisplayedForm()]] to know if a form is currently displayed.
+     * 
+     * @param tabIndex the tab index
+     * @throws if no layer is displayed, if index is invalid.
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm()) {
+     *  // reset currently displayed form values
+     *  JMap.Form.setActiveTabIndex(1)
+     *  ...
+     * }
+     * ```
+     */
     function setActiveTabIndex(tabIndex: number): void
+
+    /**
+     * ***JMap.Form.getActiveTabIndex***
+     * 
+     * Returns the active tab index.
+     * 
+     * If no form, or sub form is displayed, returns 0.
+     * 
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm()) {
+     *  // reset currently displayed form values
+     *  const currentTabIndex = JMap.Form.getActiveTabIndex()
+     *  ...
+     * }
+     * ```
+     */
     function getActiveTabIndex(): number
+
+    /**
+     * ***JMap.Form.getAllFormsMetaDataForCurrentLayer***
+     * 
+     * Returns the current layer forms metadata.
+     * 
+     * If no layer form displayed, returns an empty array.
+     * 
+     * @example ```ts
+     * 
+     *  // returns the current layer forms metadata
+     *  const formsMetadata = JMap.Form.getAllFormsMetaDataForCurrentLayer()
+     * }
+     * ```
+     */
     function getAllFormsMetaDataForCurrentLayer(): JFormMetaData[]
+
+    /**
+     * ***JMap.Form.getAllFormsMetaDataForCurrentLayer***
+     * 
+     * Returns form metadata of the currently displayed layer and given form id.
+     * 
+     * @param formId the JMap form id
+     * @throws if form not found
+     * @example ```ts
+     * 
+     *  // returns the form metadata of currently displayed layer and form id=2
+     *  const formMetadata = JMap.Form.getAllFormsMetaDataForCurrentLayer(2)
+     * }
+     * ```
+     */
     function getFormMetaDataByIdForCurrentLayer(formId: JId): JFormMetaData
+
+    /**
+     * ***JMap.Form.hasAttributeForm***
+     * 
+     * Returns true if the currently displayed layer has an attribute form.
+     * 
+     * @returns If no form is displayed, return false.
+     * @example ```ts
+     * 
+     *  // returns true if the currently displayed layer has an attribute form
+     *  JMap.Form.hasAttributeForm()
+     * }
+     * ```
+     */
     function hasAttributeForm(): boolean
+
+    /**
+     * ***JMap.Form.getAttributeForm***
+     * 
+     * Returns attribute form of currently displayed layer.
+     * 
+     * @throws if layer has no attribute form
+     * @example ```ts
+     * 
+     *  // returns attribute form of currently displayed layer
+     *  const attributeForm = JMap.Form.getAttributeForm()
+     * }
+     * ```
+     */
     function getAttributeForm(): JForm
+
+    /**
+     * ***JMap.Form.getExternalForms***
+     * 
+     * Returns external forms of currently displayed layer.
+     * 
+     * @return an empty array if layer has no external forms
+     * @example ```ts
+     * 
+     *  // returns external forms of currently displayed layer
+     *  const externalForms = JMap.Form.getExternalForms()
+     * }
+     * ```
+     */
     function getExternalForms(): JForm[]
+
+    /**
+     * ***JMap.Form.getSubForms***
+     * 
+     * Returns sub forms of currently displayed layer.
+     * 
+     * @return an empty array if layer has no sub forms
+     * @example ```ts
+     * 
+     *  // returns sub forms of currently displayed layer
+     *  const subForms = JMap.Form.getSubForms()
+     * }
+     * ```
+     */
     function getSubForms(): JForm[]
+
+    /**
+     * ***JMap.Form.openCreationDialogForLayer***
+     * 
+     * Opens the form creation dialog.
+     * 
+     * @param layerId the JMap layer id
+     * @param geometry the feature geometry
+     * @throws if layer not found, or invalid geometry, or layer has no form
+     * @example ```ts
+     * 
+     *  // opens the form creation dialog for layer id=3
+     *  JMap.Form
+     *    .openCreationDialogForLayer(
+     *      3,
+     *      {
+     *        type: "Point",
+     *        coordinates: [43.55843, 6.55121]
+     *      }
+     *    )
+     *    .then(formsMetadata => console.log("Creation form dialog opened", formsMetadata))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function openCreationDialogForLayer(layerId: JId, geometry: GeoJSON.Geometry): Promise<JFormMetaData[]>
+
+    /**
+     * ***JMap.Form.openUpdateDialogForLayer***
+     * 
+     * Opens the form update dialog.
+     * 
+     * @param layerId the JMap layer id
+     * @param elements the elements to update
+     * @throws if layer not found, or layer has no form
+     * @example ```ts
+     * 
+     *  const layerId = 3
+     *  const featureId = 4
+     *  // in this exemple we fetch the feature from the server, but we could get from the map
+     *  // with the following method [[JMap.Map.getRenderedFeatures]]
+     *  const feature = await JMap.Feature.getById(layerId, featureId)
+     *  // opens form update dialog for one element of layer id=3
+     *  JMap.Form
+     *    .openUpdateDialogForLayer(
+     *      layerId,
+     *      [{
+     *        id: featureId,
+     *        attributeValueByName: feature.properties
+     *      }]
+     *    )
+     *    .then(formsMetadata => console.log("Update form dialog opened", formsMetadata))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function openUpdateDialogForLayer(layerId: JId, elements: JFormElement[]): Promise<JFormMetaData[]>
+
+    /**
+     * ***JMap.Form.openCreationDialogForSubForm***
+     * 
+     * Opens the sub form creation dialog.
+     * 
+     * @param layerId the JMap layer id
+     * @param geometry the feature geometry
+     * @throws if no form dialog currently opened, or sub form not found, or no sub form table field in currently displayed form, or invalid parameters
+     * @example ```ts
+     * 
+     *  // opens the form creation dialog for layer id=3
+     *  JMap.Form
+     *    .openCreationDialogForSubForm(
+     *      4,
+     *      [
+     *        id: 3,
+     *        attributeValueByName: {
+     *          jmap_id: 3,
+     *          color: "red",
+     *          type: "tree"
+     *        }
+     *      ]
+     *    )
+     *    .then(formMetadata => console.log("Creation sub form dialog opened", formMetadata))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function openCreationDialogForSubForm(subFormId: JId, selectedParentElements: JFormElement[]): JFormMetaData
+
+    /**
+     * ***JMap.Form.openCreationDialogForSubForm***
+     * 
+     * Opens the sub form creation dialog.
+     * 
+     * @param layerId the JMap layer id
+     * @param geometry the feature geometry
+     * @throws if no form dialog currently opened, or sub form not found, or no sub form table field in currently displayed form, or invalid parameters
+     * @example ```ts
+     * 
+     *  // opens the form creation dialog for layer id=3
+     *  JMap.Form
+     *    .openCreationDialogForSubForm(
+     *      4,
+     *      [
+     *        id: 4,
+     *        parentId: 3,
+     *        elementId: 3,
+     *        parentAttributeValueByName: {
+     *          jmap_id: 3,
+     *          color: "red",
+     *          type: "tree"
+     *        },
+     *        attributeValueByName: {
+     *          id: 4,
+     *          name: "bee",
+     *          type: "nest"
+     *        }
+     *      ]
+     *    )
+     *    .then(formMetadata => console.log("Update sub form dialog opened", formMetadata))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function openUpdateDialogForSubForm(subFormId: JId, subFormElements: JFormElement[]): JFormMetaData
+
+    /**
+     * ***JMap.Form.closeCurrentDisplayedDialog***
+     * 
+     * Closes the currently displayed form.
+     * 
+     * Do nothing if no form displayed.
+     * 
+     * @example ```ts
+     * 
+     *  // closes currently displayed form
+     *  JMap.Form.closeCurrentDisplayedDialog()
+     * ```
+     */
     function closeCurrentDisplayedDialog(): void
+
+    /**
+     * ***JMap.Form.getFormValues***
+     * 
+     * Returns default values if form has not been edited, else form values.
+     * 
+     * This is a technical method used by JMap App, you should never have to use this function
+     * 
+     * @example ```ts
+     * 
+     *  const form = ...
+     *  // returns the form values
+     *  JMap.Form.getFormValues(form)
+     * ```
+     */
     function getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
+
+    /**
+     * ***JMap.Form.setFormValues***
+     * 
+     * Set form values of the given form.
+     * 
+     * @example ```ts
+     * 
+     *  const form = JMap.Form.getAttributeForm()
+     *  // set values of the attribute form
+     *  JMap.Form.setFormValues(form, {
+     *    color: "white",
+     *    type: "tree"
+     *  })
+     * ```
+     */
     function setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
+
+    /**
+     * ***JMap.Form.submit***
+     * 
+     * Submit the currently displayed form.
+     * 
+     * @throws if no form displayed
+     * @param params optional params
+     * @example ```ts
+     * 
+     *  const layerId = 3
+     *  const featureId = 4
+     *  const feature = await JMap.Feature.getById(layerId, featureId)
+     *  // opens form update dialog for one element of layer id=3
+     *  await JMap.Form.openUpdateDialogForLayer(
+     *    layerId,
+     *    [{
+     *      id: featureId,
+     *      attributeValueByName: feature.properties
+     *    }]
+     *  )
+     *  const form = JMap.Form.getAttributeForm()
+     *  // change some values of the attribute form
+     *  JMap.Form.setFormValues(form, {
+     *    color: "white",
+     *    type: "tree"
+     *  })
+     *  JMap.Form
+     *    .submit()
+     *    .then(result => console.log("Submit result", result))
+     *    .catch(error => console.error(error))
+     * ```
+     */
     function submit(params?: JFormSubmitParams): Promise<JFormSubmitResult>
+
+    /**
+     * ***JMap.Form.canDeleteCurrentElements***
+     * 
+     * Returns true if the current form attribute elements can be deleted.
+     * 
+     * @returns false if no form is displayed
+     * @example ```ts
+     * 
+     * // returns true if the current form attribute elements can be deleted
+     * JMap.Form.canDeleteCurrentElements()
+     * ```
+     */
     function canDeleteCurrentElements(): boolean
+
+    /**
+     * ***JMap.Form.deleteCurrentElements***
+     * 
+     * Deletes the current attribute form elements.
+     * 
+     * Works only for update of attribute form elements.
+     * 
+     * @example ```ts
+     * 
+     * // deletes current form attribute elements
+     * JMap.Form
+     *  .deleteCurrentElements()
+     *  then(result => console.info("Delete result", result))
+     * ```
+     */
     function deleteCurrentElements(): Promise<JFormDeleteResult>
+
+    /**
+     * ***JMap.Form.getNextViewId***
+     * 
+     * Returns the next view id.
+     * 
+     * This is a technical method that you should never have to use.
+     * 
+     * @example ```ts
+     * 
+     * // returns the next view id
+     * JMap.Form.getNextViewId()
+     * ```
+     */
     function getNextViewId(): number
+
+    /**
+     * ***JMap.Form.incrementNextViewId***
+     * 
+     * Increments the next view id.
+     * 
+     * This is a technical method that you should never have to use.
+     * 
+     * @example ```ts
+     * 
+     * // increments the next view id
+     * JMap.Form.incrementNextViewId()
+     * ```
+     */
     function incrementNextViewId(): void
+    
+    /**
+     * ***JMap.Form.processRule***
+     * 
+     * Processes a JSON Logic rule and returns the result, or undefined if rules are not correct.
+     * 
+     * https://github.com/jwadhams/json-logic-js#readme
+     * 
+     * @param rule the json logic rule
+     * @param data the data
+     * @example ```ts
+     * 
+     * // returns "banana"
+     * JMap.Form.processRule({"var" : 1 }, [ "apple", "banana", "carrot" ])
+     * ```
+     */
     function processRule(rule: any, data: any): any
+    
+    /**
+     * ***JMap.Form.canCreateElementOnForm***
+     * 
+     * Returns true if current user can create element on the given form.
+     * 
+     * @param params parameters needed to identify the form
+     * @example ```ts
+     * 
+     * // returns true if current user can create element on form id=1 of layer id=3.
+     * JMap.Form.canCreateElementOnForm({
+     *  layerId: 3,
+     *  formId: 1
+     * })
+     * ```
+     */
     function canCreateElementOnForm(params: JFormId): boolean
+    
+    /**
+     * ***JMap.Form.canUpdateElementOnForm***
+     * 
+     * Returns true if current user can update element on the given form.
+     * 
+     * @param params parameters needed to identify the form
+     * @example ```ts
+     * 
+     * // returns true if current user can udpate element on form id=1 of layer id=3.
+     * JMap.Form.canUpdateElementOnForm({
+     *  layerId: 3,
+     *  formId: 1
+     * })
+     * ```
+     */
     function canUpdateElementOnForm(params: JFormId): boolean
+    
+    /**
+     * ***JMap.Form.canDeleteElementOnForm***
+     * 
+     * Returns true if current user can delete element on the given form.
+     * 
+     * @param params parameters needed to identify the form
+     * @example ```ts
+     * 
+     * // returns true if current user can delete element on form id=1 of layer id=3.
+     * JMap.Form.canDeleteElementOnForm({
+     *  layerId: 3,
+     *  formId: 1
+     * })
+     * ```
+     */
     function canDeleteElementOnForm(params: JFormId): boolean
+    
+    /**
+     * ***JMap.Form.hasEditOwnRightsForAllElements***
+     * 
+     * Returns true if current user has the right to edit all given elements.
+     * 
+     * @param params parameters needed to identify the form
+     * @example ```ts
+     * 
+     * // returns true if current user has the right to edit all given elements
+     * JMap.Form.hasEditOwnRightsForAllElements({
+     *  layerId: 3,
+     *  formId: 1,
+     *  elements: [{
+     *    id: 3,
+     *    attributeValueByName: {
+     *      author: "administrator",
+     *      jmap_id: 3,
+     *      color: "white",
+     *      type: "tree"
+     *    }
+     *  }, {
+     *    id: 4,
+     *    attributeValueByName: {
+     *      author: "administrator",
+     *      jmap_id: 4,
+     *      color: "red",
+     *      type: "tree"
+     *    }
+     *  }]
+     * })
+     * ```
+     */
     function hasEditOwnRightsForAllElements(params: JFormElements): boolean
+
+    /**
+     * ***JMap.Form.isOwnPermissionRespectedForAllElements***
+     * 
+     * Returns true if all given elements respect edit own permission.
+     * 
+     * Works only for attribute form elements, edit own permission are not supported for external or sub forms.
+     * 
+     * @example ```ts
+     * 
+     * const formElements = ... // get attribute form elements
+     * // returns true if all elements respect edit own permission
+     * JMap.Form.isOwnPermissionRespectedForAllElements(3, elements)
+     * ```
+     */
+    function isOwnPermissionRespectedForAllElements(layerId: JId, elements: JFormElement[]): boolean
+
+    /**
+     * ***JMap.Form.hasDisplayedFormAPhotoField***
+     * 
+     * Returns true if currently displayed form has a photo field.
+     * 
+     * @example ```ts
+     * 
+     * // returns true if currently displayed form has a photo field
+     * JMap.Form.hasDisplayedFormAPhotoField()
+     * ```
+     */
     function hasDisplayedFormAPhotoField(): boolean
+    
+    /**
+     * ***JMap.Form.getDisplayedFormPhotos***
+     * 
+     * Returns the photo of the currently displayed form.
+     * 
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm() && JMap.Form.hasDisplayedFormAPhotoField()) {
+     *  // returns the photos of the currently displayed form
+     *  const photos = JMap.Form.getDisplayedFormPhotos()
+     *  ...
+     * }
+     * ```
+     */
     function getDisplayedFormPhotos(): JPhoto[]
+    
+    /**
+     * ***JMap.Form.addDisplayedFormPhoto***
+     * 
+     * Adds a photo to the currently displayed form.
+     * 
+     * @param photo the photo to add
+     * @returns the new photo id
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm() && JMap.Form.hasDisplayedFormAPhotoField()) {
+     *  // returns the photos of the currently displayed form
+     *  const newPhoto = JMap.Form.addDisplayedFormPhoto({
+     *    url: "https://your-url/myphoto.jpeg",
+     *    title: "My photo",
+     *    fileName: "myphoto.jpeg",
+     *    comment: undefined,
+     *    metadata: {
+     *      projectionType: "none"
+     *    },
+     *    imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABEAYAAABPhRjKAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw1AUhU9TpSIVhVYQcchQnSyISnHUKhShQqgVWnUweekfNGlIUlwcBdeCgz+LVQcXZ10dXAVB8AfE0clJ0UVKvK8ptIjxwuN9nHfP4b37AKFeZprVNQFoum2mEnExk10VA6/wIYRBxDAgM8uYk6QkPOvrnrqp7qI8y7vvz+pTcxYDfCLxLDNMm3iDOLZpG5z3icOsKKvE58TjJl2Q+JHristvnAtNFnhm2Eyn5onDxGKhg5UOZkVTI54mjqiaTvlCxmWV8xZnrVxlrXvyFwZz+soy12mNIIFFLEGCCAVVlFCGjSjtOikWUnQe9/APN/0SuRRylcDIsYAKNMhNP/gf/J6tlZ+adJOCcaD7xXE+RoHALtCoOc73seM0TgD/M3Clt/2VOjDzSXqtrUWOgP5t4OK6rSl7wOUOMPRkyKbclPy0hHweeD+jb8oCoVugd82dW+scpw9AmmaVvAEODoGxAmWve7y7p3Nu//a05vcDhJpyruvcgbwAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfmARsTORZSgY7TAAAAGXRFWHRDb21tZW50AENyZWF0ZWQgd2l0aCBHSU1QV4EOFwAAAAtJREFUCNdjYIACAAAJAAFjKhYNAAAAAElFTkSuQmCC"
+     *  })
+     *  ...
+     * }
+     * ```
+     */
     function addDisplayedFormPhoto(photo: JPhoto): JId
+    
+    /**
+     * ***JMap.Form.updateDisplayedFormPhoto***
+     * 
+     * Updates a photo to the currently displayed form.
+     * 
+     * @throws if invalid params passed, or if title AND comments are not or empty string
+     * @param params the needed params
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm() && JMap.Form.hasDisplayedFormAPhotoField()) {
+     *  const photos = getDisplayedFormPhotos()
+     *  if (photos.length > 0) {
+     *    JMap.Form.updateDisplayedFormPhoto({
+     *      photoId: photos[0].id,
+     *      title: "My new title !",
+     *      comment: "My new comment"
+     *    })
+     *  ...
+     *  }
+     * }
+     * ```
+     */
     function updateDisplayedFormPhoto(params: JFormPhotoUpdate): void
+    
+    /**
+     * ***JMap.Form.removeDisplayedFormPhotoById***
+     * 
+     * Deletes a photo on the currently displayed form, for a given photo id.
+     * 
+     * @throws if invalid id passed, or photo not found
+     * @param photoId the photo to delete
+     * @example ```ts
+     * 
+     * if (JMap.Form.hasDisplayedForm() && JMap.Form.hasDisplayedFormAPhotoField()) {
+     *  const photos = getDisplayedFormPhotos()
+     *  if (photos.length > 0) {
+     *    JMap.Form.removeDisplayedFormPhotoById(photos[0].id)
+     *  }
+     * }
+     * ```
+     */
     function removeDisplayedFormPhotoById(photoId: JId): void
 
     /**
@@ -9694,7 +10618,7 @@ declare namespace JMap {
     /**
      * ***JMap.Form.validateData***
      * 
-     * Return errors for the given form id and data.
+     * Returns errors for the given form id and data.
      * 
      * If no error validation, it returns an empty object.
      * 
@@ -9711,7 +10635,7 @@ declare namespace JMap {
      *  const data = {
      *   name: "Jack"
      * }
-     * // return {} if no error, else could returns { age: "required field" }
+     * // returns {} if no error, else could returns { age: "required field" }
      * const errors = JMap.Form.validateData(form, data)
      * ```
      */
@@ -9955,7 +10879,7 @@ declare namespace JMap {
        * 
        * Returns the value, or null if not exists, for the given key.
        * 
-       * Return null if localStorage is not available.
+       * Returns null if localStorage is not available.
        * 
        * @param key the item key
        * @example ```ts
@@ -10383,13 +11307,13 @@ declare namespace JMap {
      * @param contextId the JMap map context id or an array of map context ids
      * @example ```ts
      * 
-     * // delete the map-context id=5
+     * // deletes the map-context id=5
      * JMap.MapContext
      *    .deleteContextById(5)
      *    .then(() => console.info("Context 5 deleted !"))
      *    .catch(error => console.error(error))
      * 
-     * // delete map-contexts id in [ 3, 5, 12 ]
+     * // deletes map-contexts id in [ 3, 5, 12 ]
      * JMap.MapContext
      *    .deleteContextById([ 3, 5, 12 ])
      *    .then(() => console.info("Three map contexts have been deleted !"))
@@ -10568,7 +11492,7 @@ declare namespace JMap {
      * @param contextId the JMap map context id
      * @example ```ts
      * 
-     * // return the map-context id=3 description
+     * // returns the map-context id=3 description
      * JMap.MapContext.getContextDescription(3)
      * ```
      */
@@ -10640,7 +11564,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the default map context if one has been set
+     * // returns the default map context if one has been set
      * JMap.MapContext.getDefaultContext()
      * ```
      */
@@ -10657,7 +11581,7 @@ declare namespace JMap {
      * @param contextId the JMap map context id
      * @example ```ts
      * 
-     * // return true if the map context id=3 is the default one.
+     * // returns true if the map context id=3 is the default one.
      * JMap.MapContext.isDefaultContext(3)
      * ```
      */
@@ -10767,7 +11691,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the list sort direction
+     * // returns the list sort direction
      * JMap.MapContext.getListSortDirection()
      * ```
      */
@@ -10780,7 +11704,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return all available list sort directions
+     * // returns all available list sort directions
      * JMap.MapContext.getAllListSortDirection()
      * ```
      */
@@ -10809,7 +11733,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // return the current filter
+     * // returns the current filter
      * JMap.MapContext.getListFilter()
      * ```
      */
@@ -10908,7 +11832,7 @@ declare namespace JMap {
     /**
      * **JMap.Library.mapboxgl**
      * 
-     * Return the mapboxgl library.
+     * Returns the mapboxgl library.
      * 
      * @example ```ts
      * 
@@ -10921,7 +11845,7 @@ declare namespace JMap {
     /**
      * **JMap.Library.html2canvas**
      * 
-     * Return the html2canvas library.
+     * Returns the html2canvas library.
      * 
      * @example ```ts
      * 
