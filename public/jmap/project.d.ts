@@ -30,6 +30,7 @@ declare interface JProject {
   colorSelection: string
   colorBackground: string
   initialExtent: JBounds | null
+  mapUnit: JDistanceUnit
   apiKey: {
     google: string | null
     bing: string | null
