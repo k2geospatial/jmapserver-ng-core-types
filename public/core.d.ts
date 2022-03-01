@@ -1244,7 +1244,7 @@ declare namespace JMap {
        *  layerId: 3,
        *  attributeName: "city"
        *  filterOperator: "EQUALS"
-       *  value: "Paris"
+       *  value: ["Paris", "Ottawa"]
        * }
        * JMap.Layer.DynamicFilter.createCondition(newCondition)
        * console.log(`New condition id="${newCondition.id}" created`)
