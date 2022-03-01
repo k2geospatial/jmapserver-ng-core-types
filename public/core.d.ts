@@ -11842,7 +11842,7 @@ declare namespace JMap {
     /**
      * **JMap.UI.closeIFramePopup**
      * 
-     * If close the iframe popup if opened.
+     * Closes the iframe popup if opened.
      * 
      * @example ```ts
      * 
