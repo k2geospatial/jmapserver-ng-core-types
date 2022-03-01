@@ -98,26 +98,6 @@ declare namespace JMap {
   */
   function getOS(): JOperatingSystem
 
-  /**
-   * **JMap.setMainLayoutVisibility**
-   * 
-   * Set the main UI layout visibility.
-   * 
-   * By default main UI layout is visible.
-   * 
-   * @throws if isVisible is not boolean value
-   * @param isVisible false to hide, true to show
-   * @example ```ts
-   * 
-   * // display main layout
-   * JMap.setMainLayoutVisibility(true)
-   * 
-   * // hide main layout
-   * JMap.setMainLayoutVisibility(false)
-   * ```
-   */
-  function setMainLayoutVisibility(isVisible: boolean): void
-
   /* **JMap.Server**
    * 
    * This is where you can find JMap Server relative methods
@@ -1237,19 +1217,17 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // set layer's id=3 dynamic filter
-       * JMap.Layer.DynamicFilter.set({
-       *  dynamicFiltersParams: [{
-       *    layerId: 3,
-       *    conditions: [{
-       *      attributeName: "name",
-       *      filterOperator: "EQUALS"
-       *      value: ["Ottawa"]
-       *    }]
-       *  }]
-       * })
+       * JMap.Layer.DynamicFilter.set([{
+       *   layerId: 3,
+       *   conditions: [{
+       *     attributeName: "name",
+       *     filterOperator: "EQUALS"
+       *     value: ["Ottawa"]
+       *   }]
+       * }])
        * ```
        */
-      function set(params: JDynamicFilterSetParams): void
+      function set(params: JDynamicFilterSetParams[]): void
 
       /**
        * **JMap.Layer.DynamicFilter.createCondition**
@@ -3771,55 +3749,6 @@ declare namespace JMap {
     function setDefaultZoomOptions(options?: Partial<JZoomOptions>): void
 
     /**
-     * **JMap.Map.openIFramePopup**
-     * 
-     * Open a embeded page in a popup for a given source.
-     * 
-     * Only one iframe popup can be open at the same time
-     * 
-     * Parameters initialWidth and initialHeight are in pixels.
-     *
-     * @throws Error if iframeSource is empty or if bad parameters are passed
-     * @param options initialPosition, initialWidth, initialHeight, title, iframeSource, onClose()
-     * @example ```ts
-     * 
-     * // Open an embedded popup of k2geospatial website 
-     * JMap.Map.openIFramePopup({
-     *  initialPosition: {x: 400, y: 250},
-     *  initialWidth: 400,
-     *  initialHeight: 250,
-     *  title: "My embeded web page",
-     *  iframeSource: "https://k2geospatial.com/",
-     * })
-     * 
-     * ```
-     */
-    function openIFramePopup(options: JMapIFramePopupOptions): void
-
-    /**
-     * **JMap.Map.closeIFramePopup**
-     * 
-     * If open, close the iframe popup.
-     * 
-     * @example ```ts
-     * 
-     * // Open an embedded popup of k2geospatial website 
-     * JMap.Map.openIFramePopup({
-     *  initialPosition: {x: 400, y: 150},
-     *  initialWidth: 400,
-     *  initialHeight: 350,
-     *  title: "My embeded web page",
-     *  iframeSource: "https://k2geospatial.com/",
-     * })
-     * 
-     * // Then close it 
-     * JMap.Map.closeIFramePopup()
-     * 
-     * ```
-     */
-    function closeIFramePopup(): void
-
-    /**
      * **JMap.Map.navigateTo**
      * 
      * Navigate to a location on the map (animated)
@@ -6034,23 +5963,23 @@ declare namespace JMap {
   /**
    * **JMap.Projection**
    * 
-   * From this section you can make projection conversion.
+   * From this section you can make projection transformations.
    */
   namespace Projection {
 
     /**
-     * ***JMap.Projection.getLocation***
+     * ***JMap.Projection.reprojectLocation***
      * 
-     * Returns the location in the given projection.
+     * Returns reprojected location in the given projection.
      * 
      * @param location the location to reproject
-     * @param toProjection the desired projection output
-     * @param fromProjection projection of the given location, by default the project projection
+     * @param toProjection the desired output projection (EPSG code)
+     * @param fromProjection projection of the given location, by default the project projection (EPSG code)
      * @throws if invalid parameters
      * @example ```ts
      * 
      * // returns the location in long/lat
-     * const longLatLocation = JMap.Projection.getLocation({
+     * const longLatLocation = JMap.Projection.reprojectLocation({
      *    x: -8251305.053809433,
      *    y: 5683448.361086178
      *  },
@@ -6060,21 +5989,21 @@ declare namespace JMap {
      * console.log("Long/lat location", longLatLocation)
      * ```
      */
-    function getLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
+    function reprojectLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
 
     /**
-     * ***JMap.Projection.getBoundaryBox***
+     * ***JMap.Projection.reprojectBoundaryBox***
      * 
-     * Returns the boundary box in the given projection.
+     * Returns the reprojected boundary box in the given projection.
      * 
      * @param boundaryBox the boundary box to reproject
-     * @param toProjection the desired projection output
-     * @param fromProjection projection of the given location, by default the project projection
+     * @param toProjection the desired output projection (EPSG code)
+     * @param fromProjection projection of the given location, by default the project projection (EPSG code)
      * @throws if invalid parameters
      * @example ```ts
      * 
      * // returns the boundary box in long/lat
-     * const longLatBbox = JMap.Projection.getBoundaryBox({
+     * const longLatBbox = JMap.Projection.reprojectBoundaryBox({
      *    x: -8251305.053809433,
      *    y: 5683448.361086178
      *  },
@@ -6084,7 +6013,7 @@ declare namespace JMap {
      * console.log("Long/lat boundary box", longLatBbox)
      * ```
      */
-    function getBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
+    function reprojectBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
   }
 
   /**
@@ -11854,5 +11783,83 @@ declare namespace JMap {
      * ```
      */
     function html2canvas(): any
+  }
+  
+  /**
+   * **JMap.UI**
+   * 
+   * Here you'll find all UI related methods
+   */
+  namespace UI {
+
+    /**
+     * **JMap.UI.setMainLayoutVisibility**
+     * 
+     * Set the main UI layout visibility.
+     * 
+     * By default main UI layout is visible.
+     * 
+     * @throws if isVisible is not boolean value
+     * @param isVisible false to hide, true to show
+     * @example ```ts
+     * 
+     * // display main layout
+     * JMap.UI.setMainLayoutVisibility(true)
+     * 
+     * // hide main layout
+     * JMap.UI.setMainLayoutVisibility(false)
+     * ```
+     */
+    function setMainLayoutVisibility(isVisible: boolean): void
+
+    /**
+     * **JMap.UI.openIFramePopup**
+     * 
+     * Opens a embedded page in a popup that is movable (and resizable in options).
+     * 
+     * Only one iframe popup can be open at the same time.
+     * 
+     * Parameters initialWidth and initialHeight are in pixels.
+     *
+     * @throws Error if invalid parameters are passed
+     * @param params parameters needed to open the iframe popup
+     * @example ```ts
+     * 
+     * // Open an embedded popup of k2geospatial website 
+     * JMap.UI.openIFramePopup({
+     *  src: "https://k2geospatial.com/",
+     *  initialPosition: { x: 400, y: 250 },
+     *  initialWidth: 400,
+     *  initialHeight: 250,
+     *  title: "My embeded web page",
+     *  resizable: true
+     * })
+     * 
+     * ```
+     */
+    function openIFramePopup(params: JIFramePopupParams): void
+
+    /**
+     * **JMap.UI.closeIFramePopup**
+     * 
+     * If close the iframe popup if opened.
+     * 
+     * @example ```ts
+     * 
+     * // Open an embedded popup of k2geospatial website 
+     * JMap.UI.openIFramePopup({
+     *  src: "https://k2geospatial.com/",
+     *  title: "My embedded web page",
+     *  initialPosition: { x: 400, y: 150 },
+     *  initialWidth: 400,
+     *  initialHeight: 350
+     * })
+     * 
+     * // Then close it 
+     * JMap.UI.closeIFramePopup()
+     * 
+     * ```
+     */
+    function closeIFramePopup(): void
   }
 }

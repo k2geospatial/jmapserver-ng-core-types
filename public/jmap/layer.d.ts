@@ -14,8 +14,6 @@ declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "I
 
 declare type JLayerStyleArrow = "NONE" | "FORWARD" | "BACKWARD"
 
-declare type JLayerMetadataType = "date" | "text" | "number" | "textarea"| "url"
-
 declare type JLayerInformationReportType = "JSP" | "BIRT" | "BIRT_HTML" | "BIRT_PDF" | "WMS" | "CUSTOM"
 
 declare type JLayerMetaDataValue =  string | number | Date
@@ -37,12 +35,20 @@ declare type JDynamicFilterOperator =
   "LAST" |
   "INTERVAL"
 
+declare const enum METADATA_TYPES {
+  DATE = "date",
+  TEXT = "text",
+  NUMBER = "number",
+  TEXTAREA = "textarea",
+  URL = "url"
+}
+
 declare interface JLayerBaseMetadata {
   id: JId
 }
 
 declare interface JLayerMetadataSchemaItem extends JLayerBaseMetadata {
-  type: JLayerMetadataType
+  type: METADATA_TYPES
   label: string
   allowMultiple: boolean
 }
@@ -55,7 +61,7 @@ declare interface JLayersConfiguration {
 declare interface JLayerMetadata extends JLayerBaseMetadata {
   value: JLayerMetaDataValue
   label: string
-  type: JLayerMetadataType
+  type: METADATA_TYPES
 }
 
 interface JLayerMetadataSection {
@@ -205,11 +211,6 @@ declare interface JDynamicFilterSetParams {
   layerId: JId
   conditions: JDynamicFilterCondition[]
   isActive?: boolean
-}
-
-declare interface JDynamicFilterSetMultipleParams {
-  dynamicFiltersParams: JDynamicFilterSetParams[] 
-  correctIfPossible?: boolean
 }
 
 declare interface JLayerForm {

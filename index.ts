@@ -24,6 +24,13 @@ export interface JCoreService extends JCoreMainService {
   Library: JLibraryService
   Projection: JProjectionService
   MapContext: JMapContextService
+  UI: JUIService
+}
+
+export interface JUIService {
+  setMainLayoutVisibility(isVisible: boolean): void
+  openIFramePopup(params: JIFramePopupParams): void
+  closeIFramePopup(): void
 }
 
 export interface JLibraryService {
@@ -147,7 +154,6 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
-  setMainLayoutVisibility(isVisible: boolean): void
 }
 
 export interface JGeocodingService {
@@ -358,7 +364,6 @@ export interface JMapContextEventModule extends JEventModule {
 }
 
 export interface JCoreState {
-  main: JMainState
   map: JMapState
   project: JProjectState
   layer: JLayerState
@@ -371,11 +376,13 @@ export interface JCoreState {
   form: JFormState
   server: JServerState
   mapContext: JMapContextState
+  ui: JUIState
   external?: any
 }
 
-export interface JMainState {
-  isMainLayoutVisible: boolean
+export interface JUIState {
+  isMainLayoutVisible: boolean,
+  iframePopup: JIFramePopup
 }
 
 export interface JMapContextState {
@@ -451,8 +458,7 @@ export interface JMapState {
   containerWidth: number
   containerHeight: number
   modificationType: JMapModificationTypes
-  attributions: JMapAttribution[],
-  iframePopupOptions: JMapIFramePopupOptions
+  attributions: JMapAttribution[]
 }
 
 export interface JProjectState {
@@ -678,9 +684,7 @@ export interface JMapService {
   setMouseCursor(cursor: string): void
   openModificationPopupForCenter(): void
   openModificationPopupForScale(): void
-  closeModificationPopup(): void,
-  openIFramePopup(options: JMapIFramePopupOptions): void
-  closeIFramePopup(): void
+  closeModificationPopup(): void
 }
 
 export interface JMapBasemapService {
@@ -747,8 +751,8 @@ export interface JMapFilterService {
 }
 
 export interface JProjectionService {
-  getLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
-  getBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
+  reprojectLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
+  reprojectBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
 }
 
 export interface JProjectService {
@@ -949,7 +953,7 @@ export interface JDynamicFilterService {
   getConditionError(condition: JDynamicFilterCondition): string | undefined
   isConditionValid(condition: JDynamicFilterCondition): boolean
   existSimilarCondition(condition: JDynamicFilterCondition, isUpdate?: boolean): boolean
-  set(params: JDynamicFilterSetMultipleParams): void
+  set(params: JDynamicFilterSetParams[]): void
   createCondition(condition: JDynamicFilterCondition): number
   updateCondition(condition: JDynamicFilterCondition): void
   removeConditions(layerId: JId, conditionsIds: number[]): void
