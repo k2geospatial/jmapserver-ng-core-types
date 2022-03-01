@@ -8558,22 +8558,22 @@ declare namespace JMap {
         function zoom(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
 
         /**
-           * ***JMap.Event.Map.on.zoomStop***
+           * ***JMap.Event.Map.on.zoomEnd***
            * 
-           * This event is triggered when zoom start.
+           * This event is triggered when zoom end.
            * 
            * @param listenerId Your listener id (must be unique for all map events)
            * @param fn Your listener function
            * @example ```ts
            * 
-           * // When the map zoom stop, it will display a message in the console
-           * JMap.Event.Map.on.zoomStop(
-           *    "custom-map-zoom-stop",
+           * // When the map zoom end, it will display a message in the console
+           * JMap.Event.Map.on.zoomEnd(
+           *    "custom-map-zoom-end",
            *    args => console.log(`The zoom is finished (zoom="${args.zoom}")`)
            * )
            * ```
            */
-        function zoomStop(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
+        function zoomEnd(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
 
         /**
          * ***JMap.Event.Map.on.rotateStart***
