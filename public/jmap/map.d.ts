@@ -21,6 +21,7 @@ declare interface JLatitudeAndZoom {
 declare interface JGetRenderedFeaturesParams {
   geoFilter?: JLocation | JBoundaryBox | JCircle
   keepAllTiles?: boolean
+  includeClusterFeatures?: boolean
 }
 
 declare interface JGetSourceFeaturesParams {
