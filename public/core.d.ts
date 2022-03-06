@@ -98,26 +98,6 @@ declare namespace JMap {
   */
   function getOS(): JOperatingSystem
 
-  /**
-   * **JMap.setMainLayoutVisibility**
-   * 
-   * Set the main UI layout visibility.
-   * 
-   * By default main UI layout is visible.
-   * 
-   * @throws if isVisible is not boolean value
-   * @param isVisible false to hide, true to show
-   * @example ```ts
-   * 
-   * // display main layout
-   * JMap.setMainLayoutVisibility(true)
-   * 
-   * // hide main layout
-   * JMap.setMainLayoutVisibility(false)
-   * ```
-   */
-  function setMainLayoutVisibility(isVisible: boolean): void
-
   /* **JMap.Server**
    * 
    * This is where you can find JMap Server relative methods
@@ -402,7 +382,7 @@ declare namespace JMap {
      * JMap.Event.Geocoding.on.success(
      *   "custom-geocoding-success", 
      *   params => {
-     *    if(params.results.length > 0){
+     *    if (params.results.length > 0) {
      *      JMap.Geocoding.displayForwardSearchResult(params.results[0])
      *    }
      *  }
@@ -1237,19 +1217,17 @@ declare namespace JMap {
        * @example ```ts
        * 
        * // set layer's id=3 dynamic filter
-       * JMap.Layer.DynamicFilter.set({
-       *  dynamicFiltersParams: [{
-       *    layerId: 3,
-       *    conditions: [{
-       *      attributeName: "name",
-       *      filterOperator: "EQUALS"
-       *      value: ["Ottawa"]
-       *    }]
-       *  }]
-       * })
+       * JMap.Layer.DynamicFilter.set([{
+       *   layerId: 3,
+       *   conditions: [{
+       *     attributeName: "name",
+       *     filterOperator: "EQUALS"
+       *     value: ["Ottawa"]
+       *   }]
+       * }])
        * ```
        */
-      function set(params: JDynamicFilterSetParams): void
+      function set(params: JDynamicFilterSetParams[]): void
 
       /**
        * **JMap.Layer.DynamicFilter.createCondition**
@@ -1266,7 +1244,7 @@ declare namespace JMap {
        *  layerId: 3,
        *  attributeName: "city"
        *  filterOperator: "EQUALS"
-       *  value: "Paris"
+       *  value: ["Paris", "Ottawa"]
        * }
        * JMap.Layer.DynamicFilter.createCondition(newCondition)
        * console.log(`New condition id="${newCondition.id}" created`)
@@ -2814,6 +2792,46 @@ declare namespace JMap {
      * ```
      */
     function getRotatedFeature(feature: GeoJSON.Feature, angleInDegrees: number): GeoJSON.Feature
+
+    /**
+     * **JMap.Geometry.convertLength**
+     * 
+     * Converts the distance from a unit to another.
+     * 
+     * @param length the distance to convert
+     * @param toUnit the output unit
+     * @param fromUnit the input unit
+     * @throws if invalid parameters
+     * @example ```ts
+     * 
+     * // returns 2 kilometers in miles
+     * JMap.Geometry.convertLength(2, "miles")
+     * 
+     * // returns 200 meters in yards
+     * JMap.Geometry.convertLength(200, "yards", "meters")
+     * ```
+     */
+    function convertLength(length: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number
+
+    /**
+     * **JMap.Geometry.convertArea**
+     * 
+     * Converts the distance from a unit to another.
+     * 
+     * @param length the distance to convert
+     * @param toUnit the output unit
+     * @param fromUnit the input unit
+     * @throws if invalid parameters
+     * @example ```ts
+     * 
+     * // returns 2 square kilometers in square miles
+     * JMap.Geometry.convertArea(2, "miles")
+     * 
+     * // returns 200 square meters in square yards
+     * JMap.Geometry.convertArea(200, "yards", "meters")
+     * ```
+     */
+    function convertArea(area: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number
   }
 
   /**
@@ -3734,9 +3752,6 @@ declare namespace JMap {
      * **JMap.Map.navigateTo**
      * 
      * Navigate to a location on the map (animated)
-     * 
-     * @throws Error if bad parameters are passed
-     * @param params the navigation params
      * 
      * @example ```ts
      * 
@@ -5637,6 +5652,19 @@ declare namespace JMap {
     function getDefaultDistanceUnit(): JDistanceUnit
 
     /**
+     * **JMap.Project.getMapUnit**
+     *
+     * Returns the project map unit.
+     *
+     * @throws if no project is loaded
+     * @example ```ts
+     *
+     * // return "meters", or "kilometers", or "miles", or "yards"...
+     * JMap.Project.getMapUnit()
+     * ```
+     */
+    function getMapUnit(): JDistanceUnit
+    /**
      * **JMap.Project.getDescription**
      * 
      * Returns loaded JMap project description.
@@ -5907,7 +5935,7 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // enable project change
-     * if(JMap.Project.isChangeDisabled()){
+     * if (JMap.Project.isChangeDisabled()) {
      *    JMap.Project.setChangeEnabled()
      * }
      * ```
@@ -5924,12 +5952,68 @@ declare namespace JMap {
      * @example ```ts
      * 
      * // disable project change
-     * if(!JMap.Project.isChangeDisabled()){
+     * if (!JMap.Project.isChangeDisabled()) {
      *    JMap.Project.setChangeDisabled()
      * }
      * ```
      */
     function setChangeDisabled(): void
+  }
+
+  /**
+   * **JMap.Projection**
+   * 
+   * From this section you can make projection transformations.
+   */
+  namespace Projection {
+
+    /**
+     * ***JMap.Projection.reprojectLocation***
+     * 
+     * Returns reprojected location in the given projection.
+     * 
+     * @param location the location to reproject
+     * @param toProjection the desired output projection (EPSG code)
+     * @param fromProjection projection of the given location, by default the project projection (EPSG code)
+     * @throws if invalid parameters
+     * @example ```ts
+     * 
+     * // returns the location in long/lat
+     * const longLatLocation = JMap.Projection.reprojectLocation({
+     *    x: -8251305.053809433,
+     *    y: 5683448.361086178
+     *  },
+     *  "EPSG:4326",
+     *  "EPSG:3857"
+     * )
+     * console.log("Long/lat location", longLatLocation)
+     * ```
+     */
+    function reprojectLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
+
+    /**
+     * ***JMap.Projection.reprojectBoundaryBox***
+     * 
+     * Returns the reprojected boundary box in the given projection.
+     * 
+     * @param boundaryBox the boundary box to reproject
+     * @param toProjection the desired output projection (EPSG code)
+     * @param fromProjection projection of the given location, by default the project projection (EPSG code)
+     * @throws if invalid parameters
+     * @example ```ts
+     * 
+     * // returns the boundary box in long/lat
+     * const longLatBbox = JMap.Projection.reprojectBoundaryBox({
+     *    x: -8251305.053809433,
+     *    y: 5683448.361086178
+     *  },
+     *  "EPSG:4326",
+     *  "EPSG:3857"
+     * )
+     * console.log("Long/lat boundary box", longLatBbox)
+     * ```
+     */
+    function reprojectBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
   }
 
   /**
@@ -5992,12 +6076,9 @@ declare namespace JMap {
      * 
      * let prefName = "jmap-core-basemap"
      * JMap.User
-     *      .getPreference(prefName)
-     *      .then(preferenceValue=>{
-     *        console.log(`Preference item "${prefName}" value is "${preferenceValue}"`) 
-     *      }).catch(reason=>{
-     *        console.log(`Cannot get the preference value of param "${prefName}". Reason: ${reason}`) 
-     *      })
+     *  .getPreference(prefName)
+     *  .then(preferenceValue => console.log(`Preference item "${prefName}" value is "${preferenceValue}"`))
+     *  .catch(reason => console.log(`Cannot get the preference value of param "${prefName}". Reason: ${reason}`))
      * 
      * ```
      */
@@ -6015,11 +6096,8 @@ declare namespace JMap {
      * 
      * let prefName = "jmap-core-basemap"
      * JMap.User
-     *      .hasPreference(prefName)
-     *      .then(hasPreferenceValue=>{
-     *        console.log(`Preference item "${prefName}" exists: ${hasPreferenceValue.toString()}`) 
-     *      })
-     * 
+     *  .hasPreference(prefName)
+     *  .then(hasPreferenceValue => console.log(`Preference item "${prefName}" exists: ${hasPreferenceValue.toString()}`))
      * ```
      */
     function hasPreference(name: string): Promise<boolean>
@@ -6036,15 +6114,14 @@ declare namespace JMap {
      * 
      * let prefName = "jmap-core-basemap"
      * JMap.User
-     *      .removePreference(prefName)
-     *      .then(removedPreferenceValue=>{
-     *        if(removedPreferenceValue === null){
-     *          console.log(`Preference item "${prefName}" did not exist or was not removed`) 
-     *        }else{
-     *          console.log(`Preference item "${prefName}" has been removed. Value was: ${removedPreferenceValue}`) 
-     *        }
-     *      })
-     * 
+     *  .removePreference(prefName)
+     *  .then(removedPreferenceValue => {
+     *    if (removedPreferenceValue === null) {
+     *      console.log(`Preference item "${prefName}" did not exist or was not removed`) 
+     *    } else {
+     *      console.log(`Preference item "${prefName}" has been removed. Value was: ${removedPreferenceValue}`) 
+     *    }
+     *  })
      * ```
      */
     function removePreference(name: string): Promise<string | null>
@@ -6066,22 +6143,15 @@ declare namespace JMap {
      * 
      * // Set the value "light" for user preference "jmap-core-basemap"
      * JMap.User
-     *      .setPreference(prefName, "light")
-     *      .then(preferenceValue=>{
-     *        console.log(`Preference item "${prefName}" has been set`) 
-     *      }).catch(reason=>{
-     *        console.log(`Cannot set the preference value of param "${prefName}". Reason: ${reason}`) 
-     *      })
+     *  .setPreference(prefName, "light")
+     *  .then(preferenceValue => console.log(`Preference item "${prefName}" has been set`))
+     *  .catch(reason => console.log(`Cannot set the preference value of param "${prefName}". Reason: ${reason}`))
      * 
      * // Remove the value for user preference "theme"
      * JMap.User
-     *      .removePreference(prefName)
-     *      .then(preferenceValue=>{
-     *        console.log(`Preference item "${prefName}" has been removed, and its value were "${preferenceValue}""`) 
-     *      }).catch(reason=>{
-     *        console.log(`Cannot remove the preference "${prefName}". Reason: ${reason}`) 
-     *      })
-     * 
+     *  .removePreference(prefName)
+     *  .then(preferenceValue => console.log(`Preference item "${prefName}" has been removed, and its value were "${preferenceValue}""`))
+     *  .catch(reason => console.log(`Cannot remove the preference "${prefName}". Reason: ${reason}`))
      * ```
      */
     function setPreference(name: string, value: string | undefined): Promise<void>
@@ -6126,7 +6196,7 @@ declare namespace JMap {
      * 
      * // fetch all Identity Providers
      * const allProviders = JMap.Server.getAllIdentityProvidersById()
-     * // {idp-1: {id: "idp-1", type: "sso", ..... }}
+     * // { idp-1: { id: "idp-1", type: "sso", ..... } }
      * 
      * // Open a new user session using the first provider received
      * JMap.User.loginWithIdentityProvider("idp-1")
@@ -8488,22 +8558,22 @@ declare namespace JMap {
         function zoom(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
 
         /**
-           * ***JMap.Event.Map.on.zoomStop***
+           * ***JMap.Event.Map.on.zoomEnd***
            * 
-           * This event is triggered when zoom start.
+           * This event is triggered when zoom end.
            * 
            * @param listenerId Your listener id (must be unique for all map events)
            * @param fn Your listener function
            * @example ```ts
            * 
-           * // When the map zoom stop, it will display a message in the console
-           * JMap.Event.Map.on.zoomStop(
-           *    "custom-map-zoom-stop",
+           * // When the map zoom end, it will display a message in the console
+           * JMap.Event.Map.on.zoomEnd(
+           *    "custom-map-zoom-end",
            *    args => console.log(`The zoom is finished (zoom="${args.zoom}")`)
            * )
            * ```
            */
-        function zoomStop(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
+        function zoomEnd(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
 
         /**
          * ***JMap.Event.Map.on.rotateStart***
@@ -9424,9 +9494,9 @@ declare namespace JMap {
      * @example ```ts
      * 
      * const hasMouseOver = JMap.Extension.hasMouseOver()
-     * if(hasMouseOver){
+     * if (hasMouseOver) {
      *    console.log("some extensions have defined mouseOvers")
-     * }else{
+     * } else {
      *    console.log("there is currently no extension defining mouseOvers")
      * }
      * ```
@@ -11713,5 +11783,83 @@ declare namespace JMap {
      * ```
      */
     function html2canvas(): any
+  }
+  
+  /**
+   * **JMap.UI**
+   * 
+   * Here you'll find all UI related methods
+   */
+  namespace UI {
+
+    /**
+     * **JMap.UI.setMainLayoutVisibility**
+     * 
+     * Set the main UI layout visibility.
+     * 
+     * By default main UI layout is visible.
+     * 
+     * @throws if isVisible is not boolean value
+     * @param isVisible false to hide, true to show
+     * @example ```ts
+     * 
+     * // display main layout
+     * JMap.UI.setMainLayoutVisibility(true)
+     * 
+     * // hide main layout
+     * JMap.UI.setMainLayoutVisibility(false)
+     * ```
+     */
+    function setMainLayoutVisibility(isVisible: boolean): void
+
+    /**
+     * **JMap.UI.openIFramePopup**
+     * 
+     * Opens a embedded page in a popup that is movable (and resizable in options).
+     * 
+     * Only one iframe popup can be open at the same time.
+     * 
+     * Parameters initialWidth and initialHeight are in pixels.
+     *
+     * @throws Error if invalid parameters are passed
+     * @param params parameters needed to open the iframe popup
+     * @example ```ts
+     * 
+     * // Open an embedded popup of k2geospatial website 
+     * JMap.UI.openIFramePopup({
+     *  src: "https://k2geospatial.com/",
+     *  initialPosition: { x: 400, y: 250 },
+     *  initialWidth: 400,
+     *  initialHeight: 250,
+     *  title: "My embeded web page",
+     *  resizable: true
+     * })
+     * 
+     * ```
+     */
+    function openIFramePopup(params: JIFramePopupParams): void
+
+    /**
+     * **JMap.UI.closeIFramePopup**
+     * 
+     * Closes the iframe popup if opened.
+     * 
+     * @example ```ts
+     * 
+     * // Open an embedded popup of k2geospatial website 
+     * JMap.UI.openIFramePopup({
+     *  src: "https://k2geospatial.com/",
+     *  title: "My embedded web page",
+     *  initialPosition: { x: 400, y: 150 },
+     *  initialWidth: 400,
+     *  initialHeight: 350
+     * })
+     * 
+     * // Then close it 
+     * JMap.UI.closeIFramePopup()
+     * 
+     * ```
+     */
+    function closeIFramePopup(): void
   }
 }

@@ -22,7 +22,15 @@ export interface JCoreService extends JCoreMainService {
   Photo: JPhotoService
   Util: JUtilService
   Library: JLibraryService
+  Projection: JProjectionService
   MapContext: JMapContextService
+  UI: JUIService
+}
+
+export interface JUIService {
+  setMainLayoutVisibility(isVisible: boolean): void
+  openIFramePopup(params: JIFramePopupParams): void
+  closeIFramePopup(): void
 }
 
 export interface JLibraryService {
@@ -146,7 +154,6 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
-  setMainLayoutVisibility(isVisible: boolean): void
 }
 
 export interface JGeocodingService {
@@ -357,7 +364,6 @@ export interface JMapContextEventModule extends JEventModule {
 }
 
 export interface JCoreState {
-  main: JMainState
   map: JMapState
   project: JProjectState
   layer: JLayerState
@@ -370,11 +376,13 @@ export interface JCoreState {
   form: JFormState
   server: JServerState
   mapContext: JMapContextState
+  ui: JUIState
   external?: any
 }
 
-export interface JMainState {
-  isMainLayoutVisible: boolean
+export interface JUIState {
+  isMainLayoutVisible: boolean,
+  iframePopup: JIFramePopup
 }
 
 export interface JMapContextState {
@@ -602,6 +610,8 @@ export interface JGeometryService {
   getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): Feature<Polygon>
   isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
   getRotatedFeature(feature: GeoJSON.Feature, angle: number): GeoJSON.Feature
+  convertLength(length: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number // fromUnit is km by default
+  convertArea(area: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number // fromUnit is km by default
 }
 
 export interface JMapService {
@@ -740,6 +750,11 @@ export interface JMapFilterService {
   removeAllFilters(layerId: JId): void
 }
 
+export interface JProjectionService {
+  reprojectLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
+  reprojectBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
+}
+
 export interface JProjectService {
   hasProjectActivated(): boolean
   getActiveProject(): JProject
@@ -756,6 +771,7 @@ export interface JProjectService {
   getDescription(): string
   getProjection(): JProjection
   getDefaultDistanceUnit(): JDistanceUnit
+  getMapUnit(): JDistanceUnit
   getInitialRotation(): number
   getMinScale(): number
   getMaxScale(): number
@@ -937,7 +953,7 @@ export interface JDynamicFilterService {
   getConditionError(condition: JDynamicFilterCondition): string | undefined
   isConditionValid(condition: JDynamicFilterCondition): boolean
   existSimilarCondition(condition: JDynamicFilterCondition, isUpdate?: boolean): boolean
-  set(params: JDynamicFilterSetMultipleParams): void
+  set(params: JDynamicFilterSetParams[]): void
   createCondition(condition: JDynamicFilterCondition): number
   updateCondition(condition: JDynamicFilterCondition): void
   removeConditions(layerId: JId, conditionsIds: number[]): void

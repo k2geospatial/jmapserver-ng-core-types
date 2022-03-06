@@ -14,8 +14,6 @@ declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "I
 
 declare type JLayerStyleArrow = "NONE" | "FORWARD" | "BACKWARD"
 
-declare type JLayerMetadataType = "date" | "text" | "number"
-
 declare type JLayerInformationReportType = "JSP" | "BIRT" | "BIRT_HTML" | "BIRT_PDF" | "WMS" | "CUSTOM"
 
 declare type JLayerMetaDataValue =  string | number | Date
@@ -37,12 +35,20 @@ declare type JDynamicFilterOperator =
   "LAST" |
   "INTERVAL"
 
+declare const enum METADATA_TYPES {
+  DATE = "date",
+  TEXT = "text",
+  NUMBER = "number",
+  TEXTAREA = "textarea",
+  URL = "url"
+}
+
 declare interface JLayerBaseMetadata {
   id: JId
 }
 
-declare interface JLayerMetadataSchemaItem extends JLayerBaseMetadata{
-  type: JLayerMetadataType
+declare interface JLayerMetadataSchemaItem extends JLayerBaseMetadata {
+  type: METADATA_TYPES
   label: string
   allowMultiple: boolean
 }
@@ -54,6 +60,14 @@ declare interface JLayersConfiguration {
 
 declare interface JLayerMetadata extends JLayerBaseMetadata {
   value: JLayerMetaDataValue
+  label: string
+  type: METADATA_TYPES
+}
+
+interface JLayerMetadataSection {
+  id: JId
+  title: string
+  metadatas: JLayerMetadata[]
 }
 
 declare interface JLayerEventChangeParams {
@@ -141,7 +155,8 @@ declare interface JLayerGroup extends JLayerTreeElement {
 declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
   type: LAYER_TYPE
-  metadatas: JLayerMetadata[]
+  defaultMetadatas: JLayerMetadata[]
+  metadataSections: JLayerMetadataSection[]
   attributes: JLayerAttribute[]
   mouseOver: JMapMouseOver
   simpleSelectionStyle: JLayerSimpleStyle
@@ -196,11 +211,6 @@ declare interface JDynamicFilterSetParams {
   layerId: JId
   conditions: JDynamicFilterCondition[]
   isActive?: boolean
-}
-
-declare interface JDynamicFilterSetMultipleParams {
-  dynamicFiltersParams: JDynamicFilterSetParams[] 
-  correctIfPossible?: boolean
 }
 
 declare interface JLayerForm {
