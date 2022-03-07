@@ -31,6 +31,8 @@ export interface JUIService {
   setMainLayoutVisibility(isVisible: boolean): void
   openIFramePopup(params: JIFramePopupParams): void
   closeIFramePopup(): void
+  getContainerWidth(): number
+  getContainerHeight(): number
 }
 
 export interface JLibraryService {

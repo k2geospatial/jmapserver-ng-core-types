@@ -11861,5 +11861,31 @@ declare namespace JMap {
      * ```
      */
     function closeIFramePopup(): void
+
+    /**
+     * **JMap.UI.getContainerWidth**
+     * 
+     * Returns the map container width.
+     * 
+     * @example ```ts
+     * 
+     * // returns the map container width
+     * JMap.UI.getContainerWidth()
+     * ```
+     */
+    function getContainerWidth(): number
+
+    /**
+     * **JMap.UI.getContainerHeight**
+     * 
+     * Returns the map container height.
+     * 
+     * @example ```ts
+     * 
+     * // returns the map container height
+     * JMap.UI.getContainerHeight()
+     * ```
+     */
+    function getContainerHeight(): number
   }
 }
