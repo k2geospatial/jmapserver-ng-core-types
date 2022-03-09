@@ -11103,7 +11103,6 @@ declare namespace JMap {
       function patch(config: JRequestConfig): Promise<any>
     }
 
-
     /**
      * **JMap.Util.loadJSFile**
      * 
