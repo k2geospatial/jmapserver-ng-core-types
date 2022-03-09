@@ -11865,11 +11865,11 @@ declare namespace JMap {
     /**
      * **JMap.UI.getContainerWidth**
      * 
-     * Returns the map container width.
+     * Returns the map container width in pixels.
      * 
      * @example ```ts
      * 
-     * // returns the map container width
+     * // returns the map container width in pixels
      * JMap.UI.getContainerWidth()
      * ```
      */
@@ -11878,11 +11878,11 @@ declare namespace JMap {
     /**
      * **JMap.UI.getContainerHeight**
      * 
-     * Returns the map container height.
+     * Returns the map container height in pixels.
      * 
      * @example ```ts
      * 
-     * // returns the map container height
+     * // returns the map container height in pixels
      * JMap.UI.getContainerHeight()
      * ```
      */
