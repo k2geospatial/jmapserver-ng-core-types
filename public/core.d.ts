@@ -11042,7 +11042,7 @@ declare namespace JMap {
       /**
        * ** JMap.Util.Ajax.put
        * 
-       * Used to replace or create data on the server at the specified resource.
+       * Used to insert or replace data on the server at the specified resource.
        * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
