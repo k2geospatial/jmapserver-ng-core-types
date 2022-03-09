@@ -111,6 +111,7 @@ export interface JUtilService {
   Date: JDateService
   LocalStorage: JLocalStorageService
   Array: JArrayService
+  Ajax: JAjaxService
   loadJSFile(fileUrl: string): Promise<void>
   isJMapId(id: any, allowStringNumber?: boolean): boolean
   checkJmapId(id: any, message?: string): void
@@ -181,6 +182,14 @@ export interface JQueryService {
   getQueryByGroupId(groupId: JId, queryId: string): JQuery
   queryExist(groupId: JId, queryId: string): boolean
   fetchFeatures(layerId: JId, queryId: string, data: any): Promise<Feature[]>
+}
+
+export interface JAjaxService {
+  get(config: JRequestConfig): Promise<any>
+  post(config: JRequestConfig): Promise<any>
+  put(config: JRequestConfig): Promise<any>
+  del(config: JRequestConfig): Promise<any>
+  patch(config: JRequestConfig): Promise<any>
 }
 
 export interface JEventService {

@@ -10988,6 +10988,123 @@ declare namespace JMap {
     }
 
     /**
+     * **JMap.Util.Ajax**
+     * 
+     * Here you'll find all JMap Ajax related methods
+     */
+    namespace Ajax {
+
+      /**
+       * ** JMap.Util.Ajax.get
+       * 
+       * Used to retreive data from the server at the specified resource.
+       * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
+       * @example ```ts
+       * 
+       * JMap.Util.Ajax.get({ url: yourUrl })
+       * .then(response => {
+       *   if(!response.result) {
+       *    return reject("Result not found")
+       *   }
+       *  resolve(response.result)
+       * })
+       * .catch(error => {
+       *   if(error?.response?.status === 404) {
+       *     return reject("Result not found")
+       *   }
+       *   reject(error)
+       * })
+       * ```
+       */
+      function get(config: JRequestConfig): Promise<any>
+
+      /**
+       * ** JMap.Util.Ajax.post
+       * 
+       * Used to insert or update data on the server at the specified resource.
+       * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
+       * @example ```ts
+       * 
+       * JMap.Util.Ajax.post({ url: yourUrl, params: { yourParam }, includeHeadersInResponse: true })
+       * .then(response => {
+       *   resolve(response.result)
+       * })
+       * .catch(error => {
+       *   if(error?.response?.status === 404) {
+       *     return reject("Result not found")
+       *   }
+       *   reject(error)
+       * })
+       * ```
+       */
+      function post(config: JRequestConfig): Promise<any>
+
+      /**
+       * ** JMap.Util.Ajax.put
+       * 
+       * Used to replace or create data on the server at the specified resource.
+       * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
+       * @example ```ts
+       * 
+       * JMap.Util.Ajax.put({ url: yourUrl }, params: { yourParam }})
+       * .then(response => {
+       *   resolve(response.result)
+       * })
+       * .catch(error => {
+       *   if(error?.response?.status === 404) {
+       *     return reject("Result not found")
+       *   }
+       *   reject(error)
+       * })
+       * ```
+       */
+      function put(config: JRequestConfig): Promise<any>
+
+      /**
+       * ** JMap.Util.Ajax.del
+       * 
+       * Used to delete data on the server at the specified resource.
+       * @param config the request configuration(url, params, accessToken, includeHeadersInResponse)
+       * @example ```ts
+       * 
+       * JMap.Util.Ajax.del({ url: yourUrl })
+       * .then(response => {
+       *   resolve(response.result)
+       * })
+       * .catch(error => {
+       *   if(error?.response?.status === 404) {
+       *     return reject("Data not found")
+       *   }
+       *   reject(error)
+       * })
+       * ```
+       */
+      function del(config: JRequestConfig): Promise<any>
+
+      /**
+       * ** JMap.Util.Ajax.patch
+       * 
+       * Used to update data on the server at the specified resource.
+       * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
+       * * @example ```ts
+       * 
+       * JMap.Util.Ajax.patch({ url: yourUrl })
+       * .then(response => {
+       *    resolve(response.result)
+       * })
+       * .catch(error => {
+       *   if(error?.response?.status === 404) {
+       *     return reject("Data not found")
+       *   }
+       *   reject(error)
+       * })
+       * ```
+       */ 
+      function patch(config: JRequestConfig): Promise<any>
+    }
+
+
+    /**
      * **JMap.Util.loadJSFile**
      * 
      * Load an external JS File then resolve when file has been loaded.
