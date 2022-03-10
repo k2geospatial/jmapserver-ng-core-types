@@ -10988,6 +10988,94 @@ declare namespace JMap {
     }
 
     /**
+     * **JMap.Util.Ajax**
+     * 
+     * Here you'll find all JMap Ajax related methods
+     */
+    namespace Ajax {
+
+      /**
+       * **JMap.Util.Ajax.get**
+       * 
+       * Retreives data from the server at the specified resource.
+       * 
+       * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
+       * @example ```ts
+       * 
+       * JMap.Util.Ajax
+       *  .get({ url: "https://your-url.com" })
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
+       * ```
+       */
+      function get(config: JRequestConfig): Promise<any> 
+
+      /**
+       * **JMap.Util.Ajax.post**
+       * 
+       * Inserts or updates data on the server at the specified resource.
+       * 
+       * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
+       * @example ```ts
+       * 
+       * JMap.Util.Ajax
+       *  .post({ url: "https://your-url.com", params: { title: "My title", count: 3 }})
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
+       * ```
+       */
+      function post(config: JRequestConfig): Promise<any>
+
+      /**
+       * **JMap.Util.Ajax.put**
+       * 
+       * Inserts or replaces data on the server at the specified resource.
+       * 
+       * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
+       * @example ```ts
+       * 
+       * JMap.Util.Ajax
+       *  .put({ url: "https://your-url.com", params: { title: "My title", count: 3 }})
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
+       * ```
+       */
+      function put(config: JRequestConfig): Promise<any>
+
+      /**
+       * **JMap.Util.Ajax.del**
+       * 
+       * Deletes data on the server at the specified resource.
+       * 
+       * @param config the request configuration(url, params, accessToken, includeHeadersInResponse)
+       * @example ```ts
+       * 
+       * JMap.Util.Ajax
+       *  .del({ url: "https://your-url.com" , params: { id: 3 }})
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
+       * ```
+       */
+      function del(config: JRequestConfig): Promise<any>
+
+      /**
+       * **JMap.Util.Ajax.patch**
+       * 
+       * Updates data on the server at the specified resource.
+       * 
+       * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
+       * @example ```ts
+       * 
+       * JMap.Util.Ajax
+       *  .patch({ url: "https://your-url.com" })
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
+       * ```
+       */ 
+      function patch(config: JRequestConfig): Promise<any>
+    }
+
+    /**
      * **JMap.Util.loadJSFile**
      * 
      * Load an external JS File then resolve when file has been loaded.
