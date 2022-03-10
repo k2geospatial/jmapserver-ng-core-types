@@ -10997,7 +10997,8 @@ declare namespace JMap {
       /**
        * ** JMap.Util.Ajax.get
        * 
-       * Used to retreive data from the server at the specified resource.
+       * Retreives data from the server at the specified resource.
+       * 
        * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
@@ -11021,7 +11022,8 @@ declare namespace JMap {
       /**
        * ** JMap.Util.Ajax.post
        * 
-       * Used to insert or update data on the server at the specified resource.
+       * Inserts or updates data on the server at the specified resource.
+       * 
        * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
@@ -11042,7 +11044,8 @@ declare namespace JMap {
       /**
        * ** JMap.Util.Ajax.put
        * 
-       * Used to insert or replace data on the server at the specified resource.
+       * Inserts or replaces data on the server at the specified resource.
+       * 
        * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
@@ -11063,7 +11066,8 @@ declare namespace JMap {
       /**
        * ** JMap.Util.Ajax.del
        * 
-       * Used to delete data on the server at the specified resource.
+       * Deletes data on the server at the specified resource.
+       * 
        * @param config the request configuration(url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
@@ -11084,9 +11088,10 @@ declare namespace JMap {
       /**
        * ** JMap.Util.Ajax.patch
        * 
-       * Used to update data on the server at the specified resource.
+       * Updates data on the server at the specified resource.
+       * 
        * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
-       * * @example ```ts
+       * @example ```ts
        * 
        * JMap.Util.Ajax.patch({ url: yourUrl })
        * .then(response => {
