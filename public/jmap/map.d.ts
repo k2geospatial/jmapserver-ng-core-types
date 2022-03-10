@@ -21,6 +21,7 @@ declare interface JLatitudeAndZoom {
 declare interface JGetRenderedFeaturesParams {
   geoFilter?: JLocation | JBoundaryBox | JCircle
   keepAllTiles?: boolean
+  includeClusterFeatures?: boolean
 }
 
 declare interface JGetSourceFeaturesParams {
@@ -119,7 +120,7 @@ declare interface JMapAttributeSearch {
   showMapPopup?: boolean
 }
 
-declare interface JMapNavigationStep{
+declare interface JMapNavigationStep {
   center: JLocation
   zoom: number
   bearing: number

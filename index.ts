@@ -22,7 +22,17 @@ export interface JCoreService extends JCoreMainService {
   Photo: JPhotoService
   Util: JUtilService
   Library: JLibraryService
+  Projection: JProjectionService
   MapContext: JMapContextService
+  UI: JUIService
+}
+
+export interface JUIService {
+  setMainLayoutVisibility(isVisible: boolean): void
+  openIFramePopup(params: JIFramePopupParams): void
+  closeIFramePopup(): void
+  getContainerWidth(): number
+  getContainerHeight(): number
 }
 
 export interface JLibraryService {
@@ -127,6 +137,7 @@ export interface JLocalStorageService {
 export interface JPhotoService {
   displayFeaturePhotosPopup(layerId: JId, featureId: JId): Promise<void>
   displayPhotosPopup(photos: JPhoto[], params?: JPhotoOpenPopupParams): void
+  downloadById(photoId: JId): Promise<void>
   closePhotoPopup(): void
 }
 
@@ -145,7 +156,6 @@ export interface JCoreMainService {
   getRestUrl(): string
   openDocumentation(): void
   getOS(): JOperatingSystem
-  setMainLayoutVisibility(isVisible: boolean): void
 }
 
 export interface JGeocodingService {
@@ -284,6 +294,11 @@ export interface JLayerEventModule extends JEventModule {
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void):void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
     initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
+    dynamicFilterSet(listenerId: string, fn: (params: JLayerDynamicFilterSetParams) => void): void
+    dynamicFilterActivationChange(listenerId: string, fn: (params: JLayerDynamicFilterActivationParams) => void): void
+    dynamicFilterConditionCreated(listenerId: string, fn: (params: JLayerDynamicFilterConditionCreated) => void): void
+    dynamicFilterConditionUpdated(listenerId: string, fn: (params: JLayerDynamicFilterConditionUpdated) => void): void
+    dynamicFilterConditionsRemoved(listenerId: string, fn: (params: JLayerDynamicFilterConditionsRemoved) => void): void
   }
 }
 
@@ -351,7 +366,6 @@ export interface JMapContextEventModule extends JEventModule {
 }
 
 export interface JCoreState {
-  main: JMainState
   map: JMapState
   project: JProjectState
   layer: JLayerState
@@ -364,11 +378,13 @@ export interface JCoreState {
   form: JFormState
   server: JServerState
   mapContext: JMapContextState
+  ui: JUIState
   external?: any
 }
 
-export interface JMainState {
-  isMainLayoutVisible: boolean
+export interface JUIState {
+  isMainLayoutVisible: boolean,
+  iframePopup: JIFramePopup
 }
 
 export interface JMapContextState {
@@ -472,6 +488,7 @@ export interface JPhotoState {
   isPopupOpened: boolean
   isLoading: boolean
   hasLoadingError: boolean
+  isDownloading: boolean
 }
 
 export interface JQueryState {
@@ -540,6 +557,7 @@ export interface JFormService {
   canUpdateElementOnForm(params: JFormId): boolean
   canDeleteElementOnForm(params: JFormId): boolean
   hasEditOwnRightsForAllElements(params: JFormElements): boolean
+  isOwnPermissionRespectedForAllElements(layerId: JId, elements: JFormElement[]): boolean
   // PHOTOS
   hasDisplayedFormAPhotoField(): boolean
   getDisplayedFormPhotos(): JPhoto[]
@@ -595,6 +613,8 @@ export interface JGeometryService {
   getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): Feature<Polygon>
   isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
   getRotatedFeature(feature: GeoJSON.Feature, angle: number): GeoJSON.Feature
+  convertLength(length: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number // fromUnit is km by default
+  convertArea(area: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number // fromUnit is km by default
 }
 
 export interface JMapService {
@@ -732,6 +752,11 @@ export interface JMapFilterService {
   removeAllFilters(layerId: JId): void
 }
 
+export interface JProjectionService {
+  reprojectLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
+  reprojectBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
+}
+
 export interface JProjectService {
   hasProjectActivated(): boolean
   getActiveProject(): JProject
@@ -748,6 +773,7 @@ export interface JProjectService {
   getDescription(): string
   getProjection(): JProjection
   getDefaultDistanceUnit(): JDistanceUnit
+  getMapUnit(): JDistanceUnit
   getInitialRotation(): number
   getMinScale(): number
   getMaxScale(): number
@@ -764,6 +790,7 @@ export interface JProjectService {
 export interface JLayerService {
   Search: JLayerSearchService
   Thematic: JLayerThematicService
+  DynamicFilter: JDynamicFilterService
   getMetadataSchema(): JLayerMetadataSchemaItem[]
   getLayerTree(): JLayerTree
   getLayerTreeElementsById(): { [key in JId]: JLayerTreeElement }
@@ -783,7 +810,7 @@ export interface JLayerService {
   isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
   isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
-  setSelectabilityById(layerId: JId, selectability:boolean):void
+  setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility?: boolean):void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: JId): boolean
   getDefaultStyleRule(layerId: JId): JLayerStyleRule
@@ -913,6 +940,34 @@ export interface JServerService {
   isStandardLoginAvailable(): boolean
   getIdentityProviderById(providerId: string): JServerAnyIdentityProvider
   getAllIdentityProvidersById(): JServerIdentityProviderById
+}
+
+export interface JDynamicFilterService {
+  isAvailable(layerId: JId): boolean
+  isActive(layerId: JId): boolean
+  setIsActive(layerId: JId, isActive: boolean): void
+  getByLayerId(layerId: JId): JDynamicFilter
+  getAllOperators(): JDynamicFilterOperator[]
+  getAllMultipleValuesOperators(): JDynamicFilterOperator[]
+  getAllTwoValuesOperators(): JDynamicFilterOperator[]
+  getOperatorsForAttributeType(attributeType: JLayerAttributeType): JDynamicFilterOperator[]
+  getConditionError(condition: JDynamicFilterCondition): string | undefined
+  isConditionValid(condition: JDynamicFilterCondition): boolean
+  existSimilarCondition(condition: JDynamicFilterCondition, isUpdate?: boolean): boolean
+  set(params: JDynamicFilterSetParams[]): void
+  createCondition(condition: JDynamicFilterCondition): number
+  updateCondition(condition: JDynamicFilterCondition): void
+  removeConditions(layerId: JId, conditionsIds: number[]): void
+  isNoValueOperator(operator: JDynamicFilterOperator): boolean
+  isMultipleValuesOperator(operator: JDynamicFilterOperator): boolean
+  isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
+  getConditionValueError(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): string | undefined
+  isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): boolean
+  canAttributeTypeAcceptMultipleValuesOperators(attributeType: JLayerAttributeType): boolean
+  canAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
+  getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
+  getNowValue(): string
+  getAllLastOperatorUnits(): string[]
 }
 
 // MISC
