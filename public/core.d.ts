@@ -10995,114 +10995,81 @@ declare namespace JMap {
     namespace Ajax {
 
       /**
-       * ** JMap.Util.Ajax.get
+       * **JMap.Util.Ajax.get**
        * 
        * Retreives data from the server at the specified resource.
        * 
        * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
-       * JMap.Util.Ajax.get({ url: yourUrl })
-       * .then(response => {
-       *   if(!response.result) {
-       *    return reject("Result not found")
-       *   }
-       *  resolve(response.result)
-       * })
-       * .catch(error => {
-       *   if(error?.response?.status === 404) {
-       *     return reject("Result not found")
-       *   }
-       *   reject(error)
-       * })
+       * JMap.Util.Ajax
+       *  .get({ url: yourUrl })
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
        * ```
        */
-      function get(config: JRequestConfig): Promise<any>
+      function get(config: JRequestConfig): Promise<any> 
 
       /**
-       * ** JMap.Util.Ajax.post
+       * **JMap.Util.Ajax.post**
        * 
        * Inserts or updates data on the server at the specified resource.
        * 
        * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
-       * JMap.Util.Ajax.post({ url: yourUrl, params: { yourParam }, includeHeadersInResponse: true })
-       * .then(response => {
-       *   resolve(response.result)
-       * })
-       * .catch(error => {
-       *   if(error?.response?.status === 404) {
-       *     return reject("Result not found")
-       *   }
-       *   reject(error)
-       * })
+       * JMap.Util.Ajax
+       *  .post({ url: yourUrl, params: { yourParam }, includeHeadersInResponse: true })
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
        * ```
        */
       function post(config: JRequestConfig): Promise<any>
 
       /**
-       * ** JMap.Util.Ajax.put
+       * **JMap.Util.Ajax.put**
        * 
        * Inserts or replaces data on the server at the specified resource.
        * 
        * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
-       * JMap.Util.Ajax.put({ url: yourUrl }, params: { yourParam }})
-       * .then(response => {
-       *   resolve(response.result)
-       * })
-       * .catch(error => {
-       *   if(error?.response?.status === 404) {
-       *     return reject("Result not found")
-       *   }
-       *   reject(error)
-       * })
+       * JMap.Util.Ajax
+       *  .put({ url: yourUrl }, params: { yourParam }})
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
        * ```
        */
       function put(config: JRequestConfig): Promise<any>
 
       /**
-       * ** JMap.Util.Ajax.del
+       * **JMap.Util.Ajax.del**
        * 
        * Deletes data on the server at the specified resource.
        * 
        * @param config the request configuration(url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
-       * JMap.Util.Ajax.del({ url: yourUrl })
-       * .then(response => {
-       *   resolve(response.result)
-       * })
-       * .catch(error => {
-       *   if(error?.response?.status === 404) {
-       *     return reject("Data not found")
-       *   }
-       *   reject(error)
-       * })
+       * JMap.Util.Ajax
+       *  .del({ url: yourUrl })
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
        * ```
        */
       function del(config: JRequestConfig): Promise<any>
 
       /**
-       * ** JMap.Util.Ajax.patch
+       * **JMap.Util.Ajax.patch**
        * 
        * Updates data on the server at the specified resource.
        * 
        * @param config the request configuration (url, params, accessToken, includeHeadersInResponse)
        * @example ```ts
        * 
-       * JMap.Util.Ajax.patch({ url: yourUrl })
-       * .then(response => {
-       *    resolve(response.result)
-       * })
-       * .catch(error => {
-       *   if(error?.response?.status === 404) {
-       *     return reject("Data not found")
-       *   }
-       *   reject(error)
-       * })
+       * JMap.Util.Ajax
+       *  .patch({ url: yourUrl })
+       *  .then(response => console.log(response))
+       *  .catch(error => console.error(error))
        * ```
        */ 
       function patch(config: JRequestConfig): Promise<any>
