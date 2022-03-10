@@ -11003,7 +11003,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * JMap.Util.Ajax
-       *  .get({ url: yourUrl })
+       *  .get({ url: https://your-url.com })
        *  .then(response => console.log(response))
        *  .catch(error => console.error(error))
        * ```
@@ -11019,7 +11019,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * JMap.Util.Ajax
-       *  .post({ url: yourUrl, params: { yourParam }, includeHeadersInResponse: true })
+       *  .post({ url: https://your-url.com, params: { title: "My title", count: 3 } })
        *  .then(response => console.log(response))
        *  .catch(error => console.error(error))
        * ```
@@ -11035,7 +11035,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * JMap.Util.Ajax
-       *  .put({ url: yourUrl }, params: { yourParam }})
+       *  .put({ url: https://your-url.com }, params: { title: "My title", count: 3 }})
        *  .then(response => console.log(response))
        *  .catch(error => console.error(error))
        * ```
@@ -11051,7 +11051,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * JMap.Util.Ajax
-       *  .del({ url: yourUrl })
+       *  .del({ url: https://your-url.com }, params: { id: 3 })
        *  .then(response => console.log(response))
        *  .catch(error => console.error(error))
        * ```
@@ -11067,7 +11067,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * JMap.Util.Ajax
-       *  .patch({ url: yourUrl })
+       *  .patch({ url: https://your-url.com })
        *  .then(response => console.log(response))
        *  .catch(error => console.error(error))
        * ```
