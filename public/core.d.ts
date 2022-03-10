@@ -11019,7 +11019,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * JMap.Util.Ajax
-       *  .post({ url: "https://your-url.com", params: { title: "My title", count: 3 } })
+       *  .post({ url: "https://your-url.com", params: { title: "My title", count: 3 }})
        *  .then(response => console.log(response))
        *  .catch(error => console.error(error))
        * ```
@@ -11035,7 +11035,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * JMap.Util.Ajax
-       *  .put({ url: "https://your-url.com", params: { title: "My title", count: 3 } })
+       *  .put({ url: "https://your-url.com", params: { title: "My title", count: 3 }})
        *  .then(response => console.log(response))
        *  .catch(error => console.error(error))
        * ```
@@ -11051,7 +11051,7 @@ declare namespace JMap {
        * @example ```ts
        * 
        * JMap.Util.Ajax
-       *  .del({ url: "https://your-url.com" , params: { id: 3 } })
+       *  .del({ url: "https://your-url.com" , params: { id: 3 }})
        *  .then(response => console.log(response))
        *  .catch(error => console.error(error))
        * ```
