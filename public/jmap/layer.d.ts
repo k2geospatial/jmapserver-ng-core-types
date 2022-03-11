@@ -175,7 +175,6 @@ declare interface JLayer extends JLayerTreeElement {
   maximumVisibleMapboxZoom: number | undefined
   styleRules: JLayerStyleRule[]
   defaultStyleRule: JLayerStyleRule
-  selectionStyleRule: JLayerStyleRule
   thematics: JLayerThematic[]
   queries: JQuery[]
   extent: JBoundaryBox | null

@@ -2024,21 +2024,6 @@ declare namespace JMap {
     function getDefaultStyleRule(layerId: JId): JLayerStyleRule
 
     /**
-     * **JMap.Layer.getSelectionStyleRule**
-     * 
-     * Returns the layer selection style rule if defined, else returns null.
-     * 
-     * @throws Error if no layer found for the id, or if the layer is a layer group.
-     * @param layerId The JMap layer id
-     * @example ```ts
-     * 
-     * // returns the selection style rule of layer id=3
-     * JMap.Layer.getSelectionStyleRule(3)
-     * ```
-     */
-    function getSelectionStyleRule(layerId: JId): JLayerStyleRule | null
-
-    /**
      * **JMap.Layer.setVisible**
      * 
      * Set the visibility property of the layer.
