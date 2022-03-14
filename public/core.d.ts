@@ -2009,52 +2009,19 @@ declare namespace JMap {
     function isAllLayerParentsVisible(layerId: JId): boolean
 
     /**
-     * **JMap.Layer.getStyle**
+     * **JMap.Layer.getDefaultStyleRule**
      * 
-     * Returns the base style of the layer.
-     * 
-     * @throws Error if no layer found for the id, or if the layer is a layer group.
-     * @param layerId The JMap layer id
-     * @example ```ts
-     * 
-     * // returns layer id=3 base style
-     * JMap.Layer.getStyle(3)
-     * ```
-     */
-    function getStyle(layerId: JId): JLayerStyle
-
-    /**
-     * **JMap.Layer.getSimpleSelectionStyle**
-     * 
-     * Returns the selection "simple" style of the layer.
-     * 
-     * It always returns an object, and if no selection style has been set on the layer,
-     * it returns the project default values.
+     * Returns the default style rule of the layer.
      * 
      * @throws Error if no layer found for the id, or if the layer is a layer group.
      * @param layerId The JMap layer id
      * @example ```ts
      * 
-     * // returns the simple selection style of layer id=3
-     * JMap.Layer.getSimpleSelectionStyle(3)
+     * // returns layer id=3 default style rule
+     * JMap.Layer.getDefaultStyleRule(3)
      * ```
      */
-    function getSimpleSelectionStyle(layerId: JId): JLayerSimpleStyle
-
-    /**
-     * **JMap.Layer.getSelectionStyle**
-     * 
-     * Returns the layer selection style if defined, else returns null.
-     * 
-     * @throws Error if no layer found for the id, or if the layer is a layer group.
-     * @param layerId The JMap layer id
-     * @example ```ts
-     * 
-     * // returns the simple selection style of layer id=3
-     * JMap.Layer.getSelectionStyle(3)
-     * ```
-     */
-    function getSelectionStyle(layerId: JId): JLayerStyle | null
+    function getDefaultStyleRule(layerId: JId): JLayerStyleRule
 
     /**
      * **JMap.Layer.setVisible**
@@ -3347,41 +3314,6 @@ declare namespace JMap {
      * ```
      */
     function getMapboxSupportedJMapLayerAfter(layerId: JId): JId | undefined
-
-    /**
-     * **JMap.Map.addMapboxLayerConfigurationForJmapLayer**
-     * 
-     * Add a JMap layer to the Mapbox supported layer configuration. This method will enable a JMap Layer that would otherwise not 
-     * be displayed on the map, and that would otherwise be disabled in the layer tree panel.
-     *  
-     * @throws Error if layer is not found, or if layer is already displayed on the map
-     * @param params a  JMapAddMapboxLayerConfigurationForJmapLayerParams object
-     * 
-     * @example ```ts
-     * 
-     * // Add Jmap layer id 118 to the mapbox supported layer configuration, before layer id 147
-     * 
-     *   JMap.Map.addMapboxLayerConfigurationForJmapLayer({
-     *    jmapLayerId: 118,
-     *    beforeJmapLayerId: 147,
-     *    baseStyle: {
-     *      styleLayer: {
-     *        "id": "this-id-will-be-normalized",
-     *        "type": "fill",
-     *        "paint": {
-     *          "fill-color": "#FF0000"
-     *        },
-     *        "layout": {
-     *          visibility: "visible" // visibility will be normalized
-     *        },
-     *        "source": "pre-existing-source-id-or-embeded-source",
-     *        "source-layer": "needed-if-adding-a-vector-tile-source"
-     *      }
-     *    }
-     *  })
-     * ```
-     */
-    function addMapboxLayerConfigurationForJmapLayer(params: JMapAddMapboxLayerConfigurationForJmapLayerParams): void
 
     /**
      * **JMap.Map.refreshLayerById**
