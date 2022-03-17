@@ -146,7 +146,7 @@ declare interface JCoreExtension {
   /**
    * The registration function.
    * 
-   * Triggered each time an extension is registered.
+   * Triggered when this extension has been registered.
    */
   onRegistrationDone?: () => void
 }
