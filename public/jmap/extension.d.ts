@@ -143,6 +143,12 @@ declare interface JCoreExtension {
    * @param feature  The mouseovered feature (having all its properties filled)
    */
   renderMouseOver?: (layer: JLayer, feature: any) => JExtensionMouseOver | undefined
+  /**
+   * The registration function.
+   * 
+   * Triggered when this extension has been registered.
+   */
+  onRegistrationDone?: () => void
 }
 
 declare interface JExtensionMouseOver {
