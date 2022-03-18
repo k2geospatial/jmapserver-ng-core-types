@@ -7647,24 +7647,6 @@ declare namespace JMap {
          * ```
          */
         function submit(listenerId: string, fn: (params: JFormSubmitEventParams) => void): void
-
-        /**
-         * ***JMap.Event.Form.on.deleteElements***
-         * 
-         * This event is triggered each time we delete elements in a form.
-         * 
-         * @param listenerId Your listener id (must be unique)
-         * @param fn Your listener function
-         * @example ```ts
-         * 
-         * // log a message in the console each time element(s) has/have been deleted in a form
-         * JMap.Event.Form.on.deleteElements(
-         *   "custom-form-delete-element", 
-         *   params => console.info(`Element(s) in a form has/have been deleted`, params)
-         * )
-         * ```
-         */
-        function deleteElements(listenerId: string, fn: (params: JFormDeleteEventParams) => void): void
       }
 
       /**
@@ -9688,30 +9670,6 @@ declare namespace JMap {
     function updateDatabaseFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
 
     /**
-     * ***JMap.Form.deleteAttributeFormElements***
-     * 
-     * Deletes elements of an attribute form.
-     * 
-     * Works only for attribute form.
-     * 
-     * @param params params needed to delete elements
-     * @throws if layer not found, if form not found, or form is not an attribute form, or invalid parameter
-     * @example ```ts
-     * 
-     * // returns delete result
-     * JMap.Form
-     *  .deleteAttributeFormElements({
-     *    layerId: 3,
-     *    formId: 4,
-     *    elementIds: [453, 653, 354]
-     *  })
-     *  .then(result => console.log("Deleted elements result:", result))
-     *  .catch(error => console.error("An error occurred while deleting elements", error))
-     * ```
-     */
-    function deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
-
-    /**
      * ***JMap.Form.deleteDatabaseFormEntries***
      * 
      * Deletes entries of an attribute form.
@@ -10134,37 +10092,6 @@ declare namespace JMap {
      * ```
      */
     function submit(params?: JFormSubmitParams): Promise<JFormSubmitResult>
-
-    /**
-     * ***JMap.Form.canDeleteCurrentElements***
-     * 
-     * Returns true if the current form attribute elements can be deleted.
-     * 
-     * @returns false if no form is displayed
-     * @example ```ts
-     * 
-     * // returns true if the current form attribute elements can be deleted
-     * JMap.Form.canDeleteCurrentElements()
-     * ```
-     */
-    function canDeleteCurrentElements(): boolean
-
-    /**
-     * ***JMap.Form.deleteCurrentElements***
-     * 
-     * Deletes the current attribute form elements.
-     * 
-     * Works only for update of attribute form elements.
-     * 
-     * @example ```ts
-     * 
-     * // deletes current form attribute elements
-     * JMap.Form
-     *  .deleteCurrentElements()
-     *  then(result => console.info("Delete result", result))
-     * ```
-     */
-    function deleteCurrentElements(): Promise<JFormDeleteResult>
 
     /**
      * ***JMap.Form.getNextViewId***
