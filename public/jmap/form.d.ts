@@ -342,6 +342,7 @@ declare interface JFormPhotoData {
   isLoading: boolean
   hasLoadingError: boolean
   hasChange: boolean
+  initialPhotos: JPhoto[]
   photos: JPhoto[]
 }
 
@@ -361,6 +362,7 @@ declare interface JForm extends JFormElementData {
   fetchElementsFromServerFailed: boolean
   errors: { [attributeName: string]: any }
   hasChange: boolean
+  hasAttributeValueChange: boolean
   isMultiple: boolean
   isCreation: boolean
   isAttributeForm: boolean
