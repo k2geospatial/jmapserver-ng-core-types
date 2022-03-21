@@ -504,10 +504,6 @@ declare interface JFormSubmitEventParams extends JFormSubmitResult {
   // nothing to add
 }
 
-declare interface JFormDeleteEventParams extends JFormDeleteResult {
-  deletedFeatures: GeoJSON.Feature[]
-}
-
 interface JFormDialogEventParams {
   layerId: JId
 }

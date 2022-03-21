@@ -251,7 +251,6 @@ export interface JFormEventModule extends JEventModule {
     subFormDialogOpened(listenerId: string, fn: (params: JFormSubFormDialogOpenEventParams) => void): void
     subFormDialogClosed(listenerId: string, fn: (params: JFormSubFormDialogCloseEventParams) => void): void
     submit(listenerId: string, fn: (params: JFormSubmitEventParams) => void): void
-    deleteElements(listenerId: string, fn: (params: JFormDeleteEventParams) => void): void
   }
 }
 
@@ -418,7 +417,6 @@ export interface JFormState {
   formMetaDataById: JFormMetaDataById
   isLoadingLayer: boolean
   hasLoadingLayerError: boolean
-  isDeletingElement: boolean
   isSubmitting: boolean
   submitErrors: string[]
   activeTabIndex: number
@@ -535,7 +533,6 @@ export interface JFormService {
   createDatabaseFormEntry(params: JFormCreateElementParams): Promise<JFormElement>
   updateAttributeFormElements(params: JFormUpdateElementsParams): Promise<JFormResult[]>
   updateDatabaseFormEntries(params: JFormUpdateElementsParams): Promise<JFormElement[]>
-  deleteAttributeFormElements(params: JFormElementIds): Promise<JFormDeleteResult>
   deleteDatabaseFormEntries(params: JFormElements): Promise<JDeleteEntriesResult>
   // DIALOG METHODS (UI)
   getAllFormsMetaDataForCurrentLayer(): JFormMetaData[]
@@ -557,8 +554,6 @@ export interface JFormService {
   getFormValues(form: JForm, initialData?: JAttributeValueByName): JAttributeValueByName
   setFormValues(form: JForm, attributeValueByName: JAttributeValueByName): JFormErrors
   submit(params?: JFormSubmitParams): Promise<JFormSubmitResult>
-  canDeleteCurrentElements(): boolean
-  deleteCurrentElements(): Promise<JFormDeleteResult>
   getNextViewId(): number
   incrementNextViewId(): void
   processRule(rule: any, data: any): any
