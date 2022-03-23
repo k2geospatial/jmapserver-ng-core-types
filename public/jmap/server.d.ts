@@ -1,20 +1,36 @@
-declare type JServerType = "legacy" | "saas"
-declare type JServerSaasStatus = "STARTING" | "UP" | "DOWN" 
-declare type JServerIdentityProviderType = "sso" | "auth0-spa" | "jaaz.io"
+// ALL_SERVER_TYPES in all-enum.ts
+declare const enum JSERVER_TYPES {
+  LEGACY = "legacy",
+  SAAS = "saas"
+}
 
-declare interface JServerIdentityProviderById { 
-  [ id: string ]: JServerAnyIdentityProvider 
-} 
+// ALL_SERVER_SAAS_STATUS in all-enum.ts
+declare const enum JSERVER_SAAS_STATUS {
+  STARTING = "STARTING",
+  UP = "UP",
+  DOWN = "DOWN"
+}
+
+// ALL_SERVER_SAAS_STATUS in all-enum.ts
+declare const enum JSERVER_IDENTITY_PROVIDER_TYPES {
+  SSO = "sso",
+  AUTH0_SPA = "auth0-spa",
+  JAAZ_IO = "jaaz.io"
+}
+
+declare interface JServerIdentityProviderById {
+  [id: string]: JServerAnyIdentityProvider
+}
 
 declare interface JServerSaasServiceById {
-  [ id: string ]: JServerSaasService
+  [id: string]: JServerSaasService
 }
 
 declare interface JServerInfo {
   identityProviderById: JServerIdentityProviderById
   standardLoginAvailable: boolean
   version: JServerVersion
-  type: JServerType
+  type: JSERVER_TYPES
   saasServiceById?: JServerSaasServiceById
 }
 
@@ -22,31 +38,34 @@ declare interface JServerSaasService {
   id: string
   name: string
   version: string
-  status: JServerSaasStatus
+  status: JSERVER_SAAS_STATUS
   restBaseUrl: string
 }
 
-declare type JServerAnyIdentityProvider = JServerIdentityProviderJaazNative | JServerIdentityProviderAuth0Password | JServerIdentityProviderSso
+declare type JServerAnyIdentityProvider =
+  | JServerIdentityProviderJaazNative
+  | JServerIdentityProviderAuth0Password
+  | JServerIdentityProviderSso
 
 declare interface JServerIdentityProviderBase {
   id: string
   name: string
-  type: JServerIdentityProviderType
+  type: JSERVER_IDENTITY_PROVIDER_TYPES
 }
 
 declare interface JServerIdentityProviderJaazNative extends JServerIdentityProviderBase {
-  type: "jaaz.io"
+  type: JSERVER_IDENTITY_PROVIDER_TYPES.JAAZ_IO
 }
 
 declare interface JServerIdentityProviderAuth0Password extends JServerIdentityProviderBase {
-  type: "auth0-spa"
+  type: JSERVER_IDENTITY_PROVIDER_TYPES.AUTH0_SPA
   domain: string
   clientId: string
   realm: string
 }
 
 declare interface JServerIdentityProviderSso extends JServerIdentityProviderBase {
-  type: "sso"
+  type: JSERVER_IDENTITY_PROVIDER_TYPES.SSO
   imageData: string
   loginUrl: string
 }

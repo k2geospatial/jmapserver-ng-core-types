@@ -1,3 +1,11 @@
+// ALL_GEOMETRY_UNITS in all-enum.ts
+declare const enum JGEOMETRY_UNITS {
+  KILOMETERS = "kilometers",
+  MILES = "miles",
+  DEGREES = "degrees",
+  RADIANS = "radians"
+}
+
 declare interface JBounds {
   x1: number
   x2: number
@@ -15,16 +23,14 @@ declare interface JLocation {
   y: number
 }
 
-declare type JPoint = [ number, number ] | [ number, number , number]
+declare type JPoint = [number, number] | [number, number, number]
 
 declare type JLine = JPoint[]
 
 declare type JPolygon = JPoint[]
 
-declare type JGeometryUnit = "kilometers" | "miles" | "degrees" | "radians"
-
 declare interface JCircle {
-  center: JLocation,
+  center: JLocation
   /**
    * With mapbox the radius unit is kilometer
    */

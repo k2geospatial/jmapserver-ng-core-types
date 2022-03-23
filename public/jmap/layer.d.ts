@@ -1,53 +1,134 @@
-declare type LAYER_TYPE = "POINT" | "LINE" | "POLYGON" | "TEXT" | "IMAGE" | "LABEL" | "ELLIPSE" | "MIXED"
+// ALL_LAYER_TYPES in all-enum.ts
+declare const enum JLAYER_TYPES {
+  POINT = "POINT",
+  LINE = "LINE",
+  POLYGON = "POLYGON",
+  TEXT = "TEXT",
+  IMAGE = "IMAGE",
+  LABEL = "LABEL",
+  ELLIPSE = "ELLIPSE",
+  MIXED = "MIXED"
+}
 
-declare type LAYER_GEOMETRY = "ANNOTATION" | "CURVE" | "COMPLEX" | "POINT" | "RASTER" | "SURFACE" | "ELLIPSE" | "NONE"
+// ALL_LAYER_GEOMETRIES in all-enum.ts
+declare const enum JLAYER_GEOMETRIES {
+  ANNOTATION = "ANNOTATION",
+  CURVE = "CURVE",
+  COMPLEX = "COMPLEX",
+  POINT = "POINT",
+  RASTER = "RASTER",
+  SURFACE = "SURFACE",
+  ELLIPSE = "ELLIPSE",
+  NONE = "NONE"
+}
 
-declare type JLayerAttributeType = "string" | "number" | "date" | "datetime" | "boolean" | "binary"
+// ALL_LAYER_ATTRIBUTE_TYPES in all-enum.ts
+declare const enum JLAYER_ATTRIBUTE_TYPES {
+  STRING = "string",
+  NUMBER = "number",
+  DATE = "date",
+  DATETIME = "datetime",
+  BOOLEAN = "boolean",
+  BINARY = "binary"
+}
 
-declare type JLayerThematicType = "INDIVIDUAL_VALUES" | "GRADUATED_STYLE" | "OTHER"
+// ALL_LAYER_THEMATIC_TYPES in all-enum.ts
+declare const enum JLAYER_THEMATIC_TYPES {
+  INDIVIDUAL = "INDIVIDUAL_VALUES",
+  GRADUATED = "GRADUATED_STYLE",
+  OTHER = "OTHER"
+}
 
-declare type JLayerThematicFamilyType = "Classification" | "ProportionalSymbol" | "Other"
+// ALL_LAYER_THEMATIC_FAMILY_TYPES in all-enum.ts
+declare const enum JLAYER_THEMATIC_FAMILY_TYPES {
+  CLASSIFICATION = "Classification",
+  PROPORTIONAL_SYMBOL = "ProportionalSymbol",
+  OTHER = "Other"
+}
 
-declare type JLayerThematicPrimitiveType = "LINE" | "POINT" | "AREA"
+// ALL_LAYER_THEMATIC_PRIMITIVE_TYPES in all-enum.ts
+declare const enum JLAYER_THEMATIC_PRIMITIVE_TYPES {
+  LINE = "LINE",
+  POINT = "POINT",
+  AREA = "AREA"
+}
 
-declare type JLayerStyleType = "POINT" | "LINE" | "SURFACE" | "ANNOTATION" | "IMAGE" | "MIXED"
+// ALL_LAYER_STYLE_TYPES in all-enum.ts
+declare const enum JLAYER_STYLE_TYPES {
+  POINT = "POINT",
+  LINE = "LINE",
+  SURFACE = "SURFACE",
+  ANNOTATION = "ANNOTATION",
+  IMAGE = "IMAGE",
+  MIXED = "MIXED"
+}
 
-declare type JLayerStyleArrow = "NONE" | "FORWARD" | "BACKWARD"
+// ALL_LAYER_STYLE_ARROWS in all-enum.ts
+declare const enum JLAYER_STYLE_ARROWS {
+  NONE = "NONE",
+  FORWARD = "FORWARD",
+  BACKWARD = "BACKWARD"
+}
 
-declare type JLayerInformationReportType = "JSP" | "BIRT" | "BIRT_HTML" | "BIRT_PDF" | "WMS" | "CUSTOM"
+// ALL_LAYER_INFORMATION_REPORT_TYPES in all-enum.ts
+declare const enum JLAYER_INFORMATION_REPORT_TYPES {
+  JSP = "JSP",
+  BIRT = "BIRT",
+  BIRT_HTML = "BIRT_HTML",
+  BIRT_PDF = "BIRT_PDF",
+  WMS = "WMS",
+  CUSTOM = "CUSTOM"
+}
 
-declare type JLayerMetaDataValue =  string | number | Date
+// ALL_LAYER_STYLE_RULE_CONDITION_EXPRESSION_OPERATORS in all-enum.ts
+declare const enum JLAYER_STYLE_RULE_CONDITION_EXPRESSION_OPERATORS {
+  EMPTY = "EMPTY",
+  NOT_EMPTY = "NOT_EMPTY",
+  IS_NULL = "IS_NULL",
+  IS_NOT_NULL = "IS_NOT_NULL",
+  EQUALS = "EQUALS",
+  NOT_EQUALS = "NOT_EQUALS",
+  GREATER_THAN = "GREATER_THAN",
+  LOWER_THAN = "LOWER_THAN",
+  GREATER_OR_EQUALS_TO = "GREATER_OR_EQUALS_TO",
+  LOWER_OR_EQUALS_TO = "LOWER_OR_EQUALS_TO"
+}
 
-declare type JLayerStyleRuleConditionExpressionOperator =
-  "EMPTY" |
-  "NOT_EMPTY" |
-  "IS_NULL" |
-  "IS_NOT_NULL" |
-  "EQUALS" |
-  "NOT_EQUALS" |
-  "GREATER_THAN" |
-  "LOWER_THAN" |
-  "GREATER_OR_EQUALS_TO" |
-  "LOWER_OR_EQUALS_TO"
+// ALL_LAYER_DYNAMIC_FILTER_OPERATORS in all-enum.ts
+declare const enum JLAYER_DYNAMIC_FILTER_OPERATORS {
+  EQUALS = "EQUALS",
+  NOT_EQUALS = "NOT_EQUALS",
+  GREATER_THAN = "GREATER_THAN",
+  GREATER_OR_EQUALS_TO = "GREATER_OR_EQUALS_TO",
+  LESS_THAN = "LESS_THAN",
+  LESS_OR_EQUALS_TO = "LESS_OR_EQUALS_TO",
+  CONTAINS = "CONTAINS",
+  IS_EMPTY = "IS_EMPTY",
+  IS_NOT_EMPTY = "IS_NOT_EMPTY",
+  IS_NULL = "IS_NULL",
+  IS_NOT_NULL = "IS_NOT_NULL",
+  IS_IN_RANGE = "IS_IN_RANGE",
+  IS_NOT_IN_RANGE = "IS_NOT_IN_RANGE",
+  LAST = "LAST",
+  INTERVAL = "INTERVAL"
+}
 
-declare type JDynamicFilterOperator =
-  "EQUALS" |
-  "NOT_EQUALS" |
-  "GREATER_THAN" |
-  "GREATER_OR_EQUALS_TO" |
-  "LESS_THAN" |
-  "LESS_OR_EQUALS_TO" |
-  "CONTAINS" |
-  "IS_EMPTY" |
-  "IS_NOT_EMPTY" |
-  "IS_NULL" |
-  "IS_NOT_NULL" |
-  "IS_IN_RANGE" |
-  "IS_NOT_IN_RANGE" |
-  "LAST" |
-  "INTERVAL"
+// ALL_LAYER_STYLE_LINE_STROKE_CAP in all-enum.ts
+declare const enum JLAYER_STYLE_LINE_STROKE_CAP {
+  BUTT = "BUTT",
+  ROUND = "ROUND",
+  SQUARE = "SQUARE"
+}
 
-declare const enum METADATA_TYPES {
+// ALL_LAYER_STYLE_LINE_STROKE_JOIN in all-enum.ts
+declare const enum JLAYER_STYLE_LINE_STROKE_JOIN {
+  MITER = "MITER",
+  ROUND = "ROUND",
+  BEVEL = "BEVEL"
+}
+
+// ALL_LAYER_METADATA_TYPES in all-enum.ts
+declare const enum JLAYER_METADATA_TYPES {
   DATE = "date",
   TEXT = "text",
   NUMBER = "number",
@@ -55,12 +136,14 @@ declare const enum METADATA_TYPES {
   URL = "url"
 }
 
+declare type JLayerMetaDataValue = string | number | Date
+
 declare interface JLayerBaseMetadata {
   id: JId
 }
 
 declare interface JLayerMetadataSchemaItem extends JLayerBaseMetadata {
-  type: METADATA_TYPES
+  type: JLAYER_METADATA_TYPES
   label: string
   allowMultiple: boolean
 }
@@ -73,7 +156,7 @@ declare interface JLayersConfiguration {
 declare interface JLayerMetadata extends JLayerBaseMetadata {
   value: JLayerMetaDataValue
   label: string
-  type: METADATA_TYPES
+  type: JLAYER_METADATA_TYPES
 }
 
 interface JLayerMetadataSection {
@@ -86,7 +169,7 @@ declare interface JLayerEventChangeParams {
   layerTree: JLayerTree
 }
 
-declare interface JLayerEventThematicCategoryVisibilityParams{
+declare interface JLayerEventThematicCategoryVisibilityParams {
   layerId: JId
   thematicId: JId
   hiddenCategoryIndexes: number[]
@@ -145,7 +228,7 @@ declare interface JMapEventLoadedParams {
 }
 
 declare interface JLayerGeometry {
-  type: LAYER_GEOMETRY
+  type: JLAYER_GEOMETRIES
   editable: boolean
 }
 
@@ -166,7 +249,7 @@ declare interface JLayerGroup extends JLayerTreeElement {
 
 declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
-  type: LAYER_TYPE
+  type: JLAYER_TYPES
   defaultMetadatas: JLayerMetadata[]
   metadataSections: JLayerMetadataSection[]
   attributes: JLayerAttribute[]
@@ -194,7 +277,7 @@ declare interface JLayer extends JLayerTreeElement {
 }
 
 declare interface JLayerInformationReport {
-  type: JLayerInformationReportType
+  type: JLAYER_INFORMATION_REPORT_TYPES
   title: string
   preFormatted: boolean
   singlePresentationPage: string
@@ -214,7 +297,7 @@ declare interface JDynamicFilterCondition {
   id: number
   attributeName: string
   endAttributeName?: string // used for INTERVAL operator
-  filterOperator: JDynamicFilterOperator
+  filterOperator: JLAYER_DYNAMIC_FILTER_OPERATORS
   value: any | any[] // 2 items array for between
 }
 
@@ -227,19 +310,19 @@ declare interface JDynamicFilterSetParams {
 declare interface JLayerForm {
   id: JId
   name: string
-  type: JFormType
+  type: JFORM_TYPE
 }
 
 declare interface JLayerAttribute {
   id: string
   name: string
   label: string
-  type: JLayerAttributeType
+  type: JLAYER_ATTRIBUTE_TYPES
 }
 
 declare interface JLayerTreeElement {
-  id: JId,
-  name: string,
+  id: JId
+  name: string
   description: string
   initialVisibility: boolean
   visible: boolean
@@ -255,9 +338,9 @@ declare interface JLayerThematic {
   isVisible: boolean // user visibility
   name: string
   description: string
-  type: JLayerThematicType
+  type: JLAYER_THEMATIC_TYPES
   baseStyle: JLayerStyle
-  primitiveType: JLayerThematicPrimitiveType
+  primitiveType: JLAYER_THEMATIC_PRIMITIVE_TYPES
   elementCount: number
   title: string
   subTitle: string
@@ -316,7 +399,7 @@ declare interface JLayerStyleRuleCondition {
 }
 
 declare interface JLayerStyleRuleConditionExpression {
-  operator: JLayerStyleRuleConditionExpressionOperator
+  operator: JLAYER_STYLE_RULE_CONDITION_EXPRESSION_OPERATORS
   value: any
   attribute: JLayerAttribute
 }
@@ -327,7 +410,7 @@ declare interface JLayerStyleScaled {
 }
 
 declare interface JLayerStyle {
-  styleType: JLayerStyleType
+  styleType: JLAYER_STYLE_TYPES
   imageSampleInBase64: string
   transparencyPerCent: number
 }
@@ -337,7 +420,7 @@ declare interface JLayerStyleVector extends JLayerStyle {
 }
 
 declare interface JLayerStylePoint extends JLayerStyleVector {
-  styleType: "POINT"
+  styleType: JLAYER_STYLE_TYPES.POINT
   symbolScale: number
   symbolRotationInDegree: number
   symbolProportionalSizeEnabled: boolean
@@ -345,17 +428,14 @@ declare interface JLayerStylePoint extends JLayerStyleVector {
   symbolRotateWithMapEnabled: boolean
   symbolOffsetX: number
   symbolOffsetY: number
-  symbolVector: JLayerStyleSymbolVector | null
+  symbolVector: JLayerStyleSymbolVector | null
   symbolImage: JLayerStyleSymbolImage | null
 }
 
-declare type JLayerStyleLineStrokeCap = "BUTT" | "ROUND" | "SQUARE"
-declare type JLayerStyleLineStrokeJoin = "MITER" | "ROUND" | "BEVEL"
-
 declare interface JLayerStyleLineStroke {
   width: number
-  cap: JLayerStyleLineStrokeCap
-  join: JLayerStyleLineStrokeJoin
+  cap: JLAYER_STYLE_LINE_STROKE_CAP
+  join: JLAYER_STYLE_LINE_STROKE_JOIN
 }
 
 declare interface JLayerStyleLineStrokeBasic extends JLayerStyleLineStroke {
@@ -365,18 +445,18 @@ declare interface JLayerStyleLineStrokeBasic extends JLayerStyleLineStroke {
 }
 
 declare interface JLayerStyleLine extends JLayerStyleVector {
-  styleType: "LINE"
+  styleType: JLAYER_STYLE_TYPES.LINE
   lineColor: JRGBColor
   lineThickness: number
-  arrowType: JLayerStyleArrow
+  arrowType: JLAYER_STYLE_ARROWS
   arrowPositionFromLeftInPerCent: number
   stroke: JLayerStyleLineStroke
 }
 
 declare interface JLayerStyleSurface extends JLayerStyleVector {
-  styleType: "SURFACE"
+  styleType: JLAYER_STYLE_TYPES.SURFACE
   fillColor: JRGBColor
-  transparentFill: boolean 
+  transparentFill: boolean
   borderColor: JRGBColor
   borderTransparencyInPercent: number
   borderThickness: number
@@ -386,7 +466,7 @@ declare interface JLayerStyleSurface extends JLayerStyleVector {
 }
 
 declare interface JLayerStyleAnnotation extends JLayerStyleVector {
-  styleType: "ANNOTATION"
+  styleType: JLAYER_STYLE_TYPES.ANNOTATION
   textFont: string
   textColor: JRGBColor
   textBold: boolean
@@ -398,7 +478,7 @@ declare interface JLayerStyleAnnotation extends JLayerStyleVector {
 }
 
 declare interface JLayerStyleMixed extends JLayerStyleVector {
-  styleType: "MIXED"
+  styleType: JLAYER_STYLE_TYPES.MIXED
   point: JLayerStylePoint
   line: JLayerStyleLine
   surface: JLayerStyleSurface
@@ -432,7 +512,7 @@ declare interface JLayerSetLayersVisibilityParams {
 
 declare interface JLayerSetLayersSelectabilityParams {
   layerId: JId
-  selectability: boolean,
+  selectability: boolean
   ignoreVisibility?: boolean
 }
 

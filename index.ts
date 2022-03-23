@@ -1,6 +1,6 @@
-import { Store } from "redux"
-import { Point, LineString, Polygon, Feature, FeatureCollection, MultiLineString } from "geojson"
+import { Feature, FeatureCollection, LineString, MultiLineString, Point, Polygon } from "geojson"
 import { Map } from "mapbox-gl"
+import { Store } from "redux"
 
 export interface JCoreService extends JCoreMainService {
   Project: JProjectService
@@ -9,9 +9,9 @@ export interface JCoreService extends JCoreMainService {
   Language: JLanguageService
   Feature: JFeatureService
   Map: JMapService
-  Geocoding: JGeocodingService,
-  Geolocation: JGeolocationService,
-  Geometry: JGeometryService,
+  Geocoding: JGeocodingService
+  Geolocation: JGeolocationService
+  Geometry: JGeometryService
   MouseOver: JMouseOverService
   Form: JFormService
   Query: JQueryService
@@ -52,14 +52,8 @@ export interface JMapContextService {
   applyContextById(contextId: JId): Promise<void>
   deleteContextById(contextId: JId | JId[]): Promise<void>
   create(params?: JMapContextMetaData): Promise<JMapContext>
-  update(
-    contextId: JId,
-    params?: Partial<JMapContextMetaData>
-  ): Promise<JMapContext>
-  updateMetaData(
-    contextId: JId,
-    params: Partial<JMapContextMetaData>
-  ): Promise<void>
+  update(contextId: JId, params?: Partial<JMapContextMetaData>): Promise<JMapContext>
+  updateMetaData(contextId: JId, params: Partial<JMapContextMetaData>): Promise<void>
   setCreateTitle(newTitle: string): void
   setCreateDescription(newDescription: string): void
   setCreateTitleError(hasError: boolean): void
@@ -72,12 +66,12 @@ export interface JMapContextService {
   getDefaultContext(): JMapContext | undefined
   isDefaultContext(contextId: JId): boolean
   setDefaultContext(contextId?: JId): Promise<void>
-  sortListBy(sortBy: JMapContextSortByOption): void
-  getListSortBy(): JMapContextSortByOption
-  getAllListSortBy(): JMapContextSortByOption[]
-  setListSortDirection(sortByDirection: JMapContextSortByDirection): void
-  getListSortDirection(): JMapContextSortByDirection
-  getAllListSortDirection(): JMapContextSortByDirection[]
+  sortListBy(sortBy: JMAP_CONTEXT_SORT_BY_OPTIONS): void
+  getListSortBy(): JMAP_CONTEXT_SORT_BY_OPTIONS
+  getAllListSortBy(): JMAP_CONTEXT_SORT_BY_OPTIONS[]
+  setListSortDirection(sortByDirection: JMAP_CONTEXT_SORT_BY_DIRECTIONS): void
+  getListSortDirection(): JMAP_CONTEXT_SORT_BY_DIRECTIONS
+  getAllListSortDirection(): JMAP_CONTEXT_SORT_BY_DIRECTIONS[]
   filterList(filter: string): void
   getListFilter(): string
   clearListFilter(): void
@@ -101,8 +95,8 @@ export interface JDateService {
   getDateFnsLocale(displayTime?: boolean): any
   is12HoursTimeFormat(): boolean
   getDateFromISOString(isoDate: string): Date
-  add(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
-  substract(date: JDateLike, amount: number, timeUnit: JDateUnit): Date
+  add(date: JDateLike, amount: number, timeUnit: JTIME_UNITS): Date
+  substract(date: JDateLike, amount: number, timeUnit: JTIME_UNITS): Date
   format(date: JDateLike, params?: JDateFormatParams): string
   formatDistanceToNow(date: JDateLike, params?: JDateFormatParams): string
   isBefore(date1: JDateLike, date2: JDateLike, checkTime?: boolean): boolean
@@ -156,7 +150,7 @@ export interface JCoreMainService {
   getDataStore(): Store<JCoreState> | undefined
   getRestUrl(): string
   openDocumentation(): void
-  getOS(): JOperatingSystem
+  getOS(): JOPERATING_SYSTEMS
 }
 
 export interface JGeocodingService {
@@ -297,9 +291,12 @@ export interface JLayerEventModule extends JEventModule {
   on: {
     layersChange(listenerId: string, fn: (params: JLayerEventChangeParams) => void): void
     thematicVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicVisibilityParams) => void): void
-    thematicCategoriesVisibilityChange(listenerId: string, fn: (params: JLayerEventThematicCategoryVisibilityParams) => void): void
+    thematicCategoriesVisibilityChange(
+      listenerId: string,
+      fn: (params: JLayerEventThematicCategoryVisibilityParams) => void
+    ): void
     visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
-    selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void):void
+    selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void): void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
     initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
     dynamicFilterSet(listenerId: string, fn: (params: JLayerDynamicFilterSetParams) => void): void
@@ -315,7 +312,7 @@ export interface JMapEventModule extends JEventModule {
     mapLoad(listenerId: string, fn: (params: JMapEventLoadedParams) => void): void
     mapDestroy(listenerId: string, fn: () => void): void
     moveStart(listenerId: string, fn: (params: JMapEventParams) => void): void
-    move(listenerId: string, fn: (params: JMapEventParams) => void):  void
+    move(listenerId: string, fn: (params: JMapEventParams) => void): void
     moveEnd(listenerId: string, fn: (params: JMapEventParams) => void): void
     mouseMove(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
     mouseMoveOnLayer(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
@@ -391,7 +388,7 @@ export interface JCoreState {
 }
 
 export interface JUIState {
-  isMainLayoutVisible: boolean,
+  isMainLayoutVisible: boolean
   iframePopup: JIFramePopup
 }
 
@@ -401,12 +398,12 @@ export interface JMapContextState {
   isLoading: boolean
   hasLoadingError: boolean
   isApplying: boolean
-  activeTab: JMapContextTab
+  activeTab: JMAP_CONTEXT_TABS
   contexts: JMapContext[]
   defaultContextId: JId | undefined
   filter: string
-  sortBy: JMapContextSortByOption
-  sortByDirection: JMapContextSortByDirection
+  sortBy: JMAP_CONTEXT_SORT_BY_OPTIONS
+  sortByDirection: JMAP_CONTEXT_SORT_BY_DIRECTIONS
   createTitle: string
   createDescription: string
   createTitleError: boolean
@@ -457,9 +454,9 @@ export interface JMapState {
   basemaps: JBasemap[]
   selection: JMapSelection
   jmapLayerIdsSupportedByMapbox: JId[]
-  scaleControlPosition: JMapPosition
-  distanceUnit: JDistanceUnit
-  isNavigationHistoryControlVisible:boolean
+  scaleControlPosition: JMAP_POSITIONS
+  distanceUnit: JMAP_DISTANCE_UNITS
+  isNavigationHistoryControlVisible: boolean
   isScaleControlVisible: boolean
   isMapRotationControlVisible: boolean
   isInfoControlVisible: boolean
@@ -467,7 +464,7 @@ export interface JMapState {
   defaultZoomOptions: JZoomOptions
   containerWidth: number
   containerHeight: number
-  modificationType: JMapModificationTypes
+  modificationType: JMAP_MODIFICATION_TYPES
   attributions: JMapAttribution[]
 }
 
@@ -500,7 +497,7 @@ export interface JPhotoState {
 
 export interface JQueryState {
   groups: JQueryGroup[]
-  queriesByLayerId: { [ key in JId ]: JQuery[] }
+  queriesByLayerId: { [key in JId]: JQuery[] }
 }
 
 export interface JUserState {
@@ -512,7 +509,7 @@ export interface JUserState {
 }
 
 export interface JLanguageState {
-  locale: JLocale
+  locale: JLOCALES
 }
 
 export interface JServerState extends JServerInfo {
@@ -597,11 +594,14 @@ export interface JGeometryService {
   checkLine(line: JLine): void
   checkBbox(bbox: JBoundaryBox): void
   getArea(feature: Feature): number
-  getLineLength(feature: Feature<LineString> | Feature<MultiLineString>, units?: JGeometryUnit | JDistanceUnit): number
+  getLineLength(
+    feature: Feature<LineString> | Feature<MultiLineString>,
+    units?: JGEOMETRY_UNITS | JMAP_DISTANCE_UNITS
+  ): number
   getCentroid(feature: Feature | FeatureCollection): Feature<Point>
   getFeatureFromLine(line: JLine): Feature<LineString>
   getFeatureFromWkt(wkt: string): Feature
-  getPolygonFeatureFromCircle(circle: JCircle, units?: JGeometryUnit): Feature<Polygon>
+  getPolygonFeatureFromCircle(circle: JCircle, units?: JGEOMETRY_UNITS): Feature<Polygon>
   getFeatureFromPolygon(polygon: JPolygon): Feature<Polygon>
   getBboxFromFeature(feature: Feature): JBoundaryBox
   getBboxFromFeatures(features: Feature[]): JBoundaryBox
@@ -617,8 +617,8 @@ export interface JGeometryService {
   getPolygonFeature(coordinates: JPoint[], closeCoordinates?: boolean): Feature<Polygon>
   isGeometryTypeValidForLayer(layerId: JId, geometryType: GeoJSON.GeoJsonGeometryTypes): boolean
   getRotatedFeature(feature: GeoJSON.Feature, angle: number): GeoJSON.Feature
-  convertLength(length: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number // fromUnit is km by default
-  convertArea(area: number, toUnit: JDistanceUnit, fromUnit?: JDistanceUnit): number // fromUnit is km by default
+  convertLength(length: number, toUnit: JMAP_DISTANCE_UNITS, fromUnit?: JMAP_DISTANCE_UNITS): number // fromUnit is km by default
+  convertArea(area: number, toUnit: JMAP_DISTANCE_UNITS, fromUnit?: JMAP_DISTANCE_UNITS): number // fromUnit is km by default
 }
 
 export interface JMapService {
@@ -630,20 +630,20 @@ export interface JMapService {
   getMap(): Map
   getMapJSLib(): any
   getDomContainerId(): string
-  getAllDistanceUnits(): JDistanceUnit[]
-  getDistanceUnit(): JDistanceUnit
-  setDistanceUnit(distanceUnit: JDistanceUnit): void
+  getAllDistanceUnits(): JMAP_DISTANCE_UNITS[]
+  getDistanceUnit(): JMAP_DISTANCE_UNITS
+  setDistanceUnit(distanceUnit: JMAP_DISTANCE_UNITS): void
   isMapCreated(): boolean
   isMapLoaded(): boolean
   getExtent(): JBoundaryBox
-  getCenter(): { x: number, y: number }
+  getCenter(): { x: number; y: number }
   getZoom(): number
   getMapBoxSourceIdByJMapLayerId(layerId: JId): string
   isScaleControlVisible(): boolean
-  setScaleControlVisibility(isVisible: boolean, position?: JMapPosition): void
+  setScaleControlVisibility(isVisible: boolean, position?: JMAP_POSITIONS): void
   setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void
-  setScaleControlPosition(position: JMapPosition): void
-  getScaleControlPosition(): JMapPosition
+  setScaleControlPosition(position: JMAP_POSITIONS): void
+  getScaleControlPosition(): JMAP_POSITIONS
   isNavigationHistoryControlVisible(): boolean
   setNavigationHistoryControlVisibility(isVisible: boolean): void
   isMapRotationControlVisible(): boolean
@@ -651,7 +651,7 @@ export interface JMapService {
   isMapInfoControlVisible(): boolean
   setMapInfoControlVisibility(isVisible: boolean): void
   isMapInfoControlExpanded(): boolean
-  setMapInfoControlExpansion(isExpanded: boolean):void
+  setMapInfoControlExpansion(isExpanded: boolean): void
   isLayerRendered(layerId: JId): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
@@ -662,7 +662,10 @@ export interface JMapService {
   getRenderedJMapLayerIds(): JId[]
   getRenderedFeatures(layerId: JId, params?: JLocation | JBoundaryBox | JCircle | JGetRenderedFeaturesParams): Feature[]
   getSourceFeatures(layerId: JId, params?: JGetSourceFeaturesParams): Feature[]
-  getRenderedFeaturesAttributeValues(layerId: JId, filter?: JLocation | JBoundaryBox | JCircle): JMapFeatureAttributeValues[]
+  getRenderedFeaturesAttributeValues(
+    layerId: JId,
+    filter?: JLocation | JBoundaryBox | JCircle
+  ): JMapFeatureAttributeValues[]
   getPitch(): number
   getRotation(): number
   getBearing(): number
@@ -680,7 +683,7 @@ export interface JMapService {
   fitFeatures(features: Feature[], options?: JPanAndZoomOptions): void
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
-  clearFlashingLocations():void
+  clearFlashingLocations(): void
   getResolution(params?: JLatitudeAndZoom): number
   getScale(params?: JLatitudeAndZoom): string
   getScaleDenominator(params?: JLatitudeAndZoom): number
@@ -776,8 +779,8 @@ export interface JProjectService {
   getName(): string
   getDescription(): string
   getProjection(): JProjection
-  getDefaultDistanceUnit(): JDistanceUnit
-  getMapUnit(): JDistanceUnit
+  getDefaultDistanceUnit(): JMAP_DISTANCE_UNITS
+  getMapUnit(): JMAP_DISTANCE_UNITS
   getInitialRotation(): number
   getMinScale(): number
   getMaxScale(): number
@@ -814,7 +817,7 @@ export interface JLayerService {
   isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
   isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
-  setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility?: boolean):void
+  setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility?: boolean): void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: JId): boolean
   getDefaultStyleRule(layerId: JId): JLayerStyleRule
@@ -871,7 +874,7 @@ export interface JLayerThematicService {
   setCategoryVisibility(params: JLayerThematicSetCategoryVisibilityParams): void
   setCategoriesVisibility(params: JLayerThematicSetCategoryVisibilityParams[]): void
   setAllCategoriesVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
-  getFamilyTypeById(layerId: JId, thematicId: JId): JLayerThematicFamilyType
+  getFamilyTypeById(layerId: JId, thematicId: JId): JLAYER_THEMATIC_FAMILY_TYPES
 }
 
 export interface JUserService {
@@ -902,14 +905,14 @@ export interface JLanguageService {
   getBundleById(bundleId: string): JTranslationBundle
   getAllBundleIds(): string[]
   getBundles(): JTranslationBundleById
-  getLocales(): JLocale[]
-  getLocale(): JLocale
+  getLocales(): JLOCALES[]
+  getLocale(): JLOCALES
   getDateFnsLocale(displayTime?: boolean): any
-  getDefaultLocale(): JLocale 
-  setLocale(locale: JLocale): void
+  getDefaultLocale(): JLOCALES
+  setLocale(locale: JLOCALES): void
   translate(params: JTranslateParams): string
   is12HoursTimeFormat(): boolean
-  isValidLocale(locale: JLocale): boolean
+  isValidLocale(locale: JLOCALES): boolean
   getDateFnsDateFormat(): string
 }
 
@@ -929,14 +932,14 @@ export interface JExtensionService {
   register(extension: JCoreExtension): void
   isRegistered(extensionId: string): boolean
   getAllRegisteredIds(): string[]
-  hasMouseOver():boolean
+  hasMouseOver(): boolean
   renderMouseOver(layer: JLayer, feature: Feature): Array<JExtensionMouseOver | undefined>
 }
 
 export interface JServerService {
   isReady(): boolean
   getVersion(): JServerVersion
-  getType(): JServerType
+  getType(): JSERVER_TYPES
   getMinimumVersion(): JMinimumServerVersion
   isMinimumVersionRespected(serverInfo?: JServerInfo): boolean
   getShortVersion(): string
@@ -950,10 +953,10 @@ export interface JDynamicFilterService {
   isActive(layerId: JId): boolean
   setIsActive(layerId: JId, isActive: boolean): void
   getByLayerId(layerId: JId): JDynamicFilter
-  getAllOperators(): JDynamicFilterOperator[]
-  getAllMultipleValuesOperators(): JDynamicFilterOperator[]
-  getAllTwoValuesOperators(): JDynamicFilterOperator[]
-  getOperatorsForAttributeType(attributeType: JLayerAttributeType): JDynamicFilterOperator[]
+  getAllOperators(): JLAYER_DYNAMIC_FILTER_OPERATORS[]
+  getAllMultipleValuesOperators(): JLAYER_DYNAMIC_FILTER_OPERATORS[]
+  getAllTwoValuesOperators(): JLAYER_DYNAMIC_FILTER_OPERATORS[]
+  getOperatorsForAttributeType(attributeType: JLAYER_ATTRIBUTE_TYPES): JLAYER_DYNAMIC_FILTER_OPERATORS[]
   getConditionError(condition: JDynamicFilterCondition): string | undefined
   isConditionValid(condition: JDynamicFilterCondition): boolean
   existSimilarCondition(condition: JDynamicFilterCondition, isUpdate?: boolean): boolean
@@ -961,14 +964,22 @@ export interface JDynamicFilterService {
   createCondition(condition: JDynamicFilterCondition): number
   updateCondition(condition: JDynamicFilterCondition): void
   removeConditions(layerId: JId, conditionsIds: number[]): void
-  isNoValueOperator(operator: JDynamicFilterOperator): boolean
-  isMultipleValuesOperator(operator: JDynamicFilterOperator): boolean
-  isTwoValuesOperator(operator: JDynamicFilterOperator): boolean
-  getConditionValueError(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): string | undefined
-  isConditionValueValid(operator: JDynamicFilterOperator, attributeType: JLayerAttributeType, value?: any): boolean
-  canAttributeTypeAcceptMultipleValuesOperators(attributeType: JLayerAttributeType): boolean
-  canAttributeTypeAcceptTwoValuesOperators(attributeType: JLayerAttributeType): boolean
-  getIsBetweenValuesError(attributeType: JLayerAttributeType, value1: any, value2: any): string | undefined
+  isNoValueOperator(operator: JLAYER_DYNAMIC_FILTER_OPERATORS): boolean
+  isMultipleValuesOperator(operator: JLAYER_DYNAMIC_FILTER_OPERATORS): boolean
+  isTwoValuesOperator(operator: JLAYER_DYNAMIC_FILTER_OPERATORS): boolean
+  getConditionValueError(
+    operator: JLAYER_DYNAMIC_FILTER_OPERATORS,
+    attributeType: JLAYER_ATTRIBUTE_TYPES,
+    value?: any
+  ): string | undefined
+  isConditionValueValid(
+    operator: JLAYER_DYNAMIC_FILTER_OPERATORS,
+    attributeType: JLAYER_ATTRIBUTE_TYPES,
+    value?: any
+  ): boolean
+  canAttributeTypeAcceptMultipleValuesOperators(attributeType: JLAYER_ATTRIBUTE_TYPES): boolean
+  canAttributeTypeAcceptTwoValuesOperators(attributeType: JLAYER_ATTRIBUTE_TYPES): boolean
+  getIsBetweenValuesError(attributeType: JLAYER_ATTRIBUTE_TYPES, value1: any, value2: any): string | undefined
   getNowValue(): string
   getAllLastOperatorUnits(): string[]
 }

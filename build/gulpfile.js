@@ -51,6 +51,8 @@ gulp.task('copy', cb => {
         .pipe(gulp.dest(join(process.env.COPY_DIR, `${sourceDir}/node_modules/jmap-core/public`)))
     gulp.src([ join(ROOT_DIR, 'index.ts') ])
         .pipe(gulp.dest(join(process.env.COPY_DIR, `${sourceDir}/node_modules/jmap-core`)))
+    gulp.src([ join(ROOT_DIR, 'all-enums.ts') ])
+      .pipe(gulp.dest(join(process.env.COPY_DIR, `${sourceDir}/node_modules/jmap-core`)))
   }
   cb()
 })

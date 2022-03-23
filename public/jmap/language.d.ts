@@ -1,6 +1,11 @@
-declare type JLocale = "fr" | "en" | "es"
+// ALL_LOCALES in all-enum.ts
+declare const enum JLOCALES {
+  FR = "fr",
+  EN = "en",
+  ES = "es"
+}
 
-declare interface JLocaleTranslation {    
+declare interface JLocaleTranslation {
   [key: string]: string
 }
 
@@ -11,7 +16,7 @@ declare interface JTranslationItem {
 
 interface JTranslateParams extends JTranslationItem {
   params?: (string | number) | Array<string | number>
-  locale?: JLocale
+  locale?: JLOCALES
 }
 
 declare interface JTranslationsByLocale {
@@ -21,7 +26,7 @@ declare interface JTranslationsByLocale {
 declare interface JTranslationBundle {
   id: string
   translationsByLocale: JTranslationsByLocale
-  defaultLocale?: JLocale
+  defaultLocale?: JLOCALES
 }
 
 declare interface JTranslationBundleById {
@@ -29,5 +34,5 @@ declare interface JTranslationBundleById {
 }
 
 declare interface JLanguageEventLocaleChangeParams {
-  locale: JLocale
+  locale: JLOCALES
 }
