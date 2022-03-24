@@ -1,4 +1,8 @@
-declare type JPhotoProjectionType = "none" | "equirectangular"
+// ALL_PHOTO_PROJECTION_TYPES in all-enum.ts
+declare const enum JPHOTO_PROJECTION_TYPES {
+  NONE = "none",
+  EQUIRECTANGULAR = "equirectangular"
+}
 
 declare interface JPhoto {
   id: JId
@@ -35,5 +39,5 @@ declare interface JPhotoEventContainerCreatedParams {
 }
 
 declare interface JPhotoMetadata {
-  projectionType: JPhotoProjectionType
+  projectionType: JPHOTO_PROJECTION_TYPES
 }
