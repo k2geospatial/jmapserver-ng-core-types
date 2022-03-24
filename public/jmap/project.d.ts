@@ -29,15 +29,15 @@ declare interface JProject {
   scaleMin: number
   colorSelection: string
   colorBackground: string
-  initialExtent: JBounds | null
-  mapUnit: JDistanceUnit
+  initialExtent: JBounds | null
+  mapUnit: JMAP_DISTANCE_UNITS
   apiKey: {
     google: string | null
-    bing: string | null
+    bing: string | null
     mapBox: string | null
-  },
+  }
   queryGroups: JQueryGroup[]
-  defaultDistanceUnit: JDistanceUnit
-  base64ImageThumbnail: string,
+  defaultDistanceUnit: JMAP_DISTANCE_UNITS
+  base64ImageThumbnail: string
   extensions: JProjectServerExtension[]
 }

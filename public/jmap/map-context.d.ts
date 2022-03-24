@@ -1,10 +1,35 @@
+// ALL_MAP_CONTEXT_APPLY_TYPES in all-enum.ts
+declare const enum JMAP_CONTEXT_APPLY_TYPES {
+  STANDARD = "standard",
+  DEFAULT = "default",
+  SHARED = "shared"
+}
 
-declare type JMapContextVersion = 0 | 1
+// ALL_MAP_CONTEXT_TAB in all-enum.ts
+declare const enum JMAP_CONTEXT_TABS {
+  LIST = "list",
+  CREATE = "create"
+}
+
+// ALL_MAP_CONTEXT_SORT_BY_OPTIONS in all-enum.ts
+declare const enum JMAP_CONTEXT_SORT_BY_OPTIONS {
+  ALPHABETIC = "alphabetic",
+  LAST_UPDATE = "lastUpdate"
+}
+
+// ALL_MAP_CONTEXT_SORT_BY_DIRECTIONS in all-enum.ts
+declare const enum JMAP_CONTEXT_SORT_BY_DIRECTIONS {
+  ASC = "asc",
+  DESC = "desc"
+}
+
+// ALL_MAP_CONTEXT_VERSIONS in all-enum.ts
+declare const enum JMAP_CONTEXT_VERSIONS {
+  V0 = 0,
+  V1 = 1
+}
+
 declare type JMapContextVersions = JMapContext | JMapContextV0 | JMapContextV1
-declare type JMapContextApplyType = "standard" | "default" | "shared"
-declare type JMapContextTab = "list" | "create"
-declare type JMapContextSortByOption = "alphabetic" | "lastUpdate" //  | "lastUse"
-declare type JMapContextSortByDirection = "asc" | "desc"
 
 declare interface JMapContextEditResponse {
   id: JId
@@ -29,13 +54,13 @@ declare interface JMapContextDataV0 {
     isGroup: boolean
     isVisible: boolean
   }>
-  mapCenter: { x: number, y: number }
+  mapCenter: { x: number; y: number }
   mapZoom: number
   mapPitch: number
   mapBearing: number
   baseMap: string | undefined
   selection: {
-    [ key in string | number ]: GeoJSON.Feature[]
+    [key in string | number]: GeoJSON.Feature[]
   }
   measures: Array<{
     id: string
@@ -70,7 +95,7 @@ declare interface JMapContextDataV0 {
 }
 
 declare interface JMapContextData {
-  version: JMapContextVersion
+  version: JMAP_CONTEXT_VERSIONS
   layerElements: JMapContextDataLayerElement[]
   mapCenter: JLocation
   mapZoom: number
@@ -101,12 +126,12 @@ declare interface JMapContextDataThematic {
 }
 
 declare interface JMapContext {
-  id?: JId,
-  title: string,
-  description: string,
-  shared: boolean,
-  origin: "web-ng",
-  uuid?: string,
+  id?: JId
+  title: string
+  description: string
+  shared: boolean
+  origin: "web-ng"
+  uuid?: string
   author?: string
   creationDate?: string
   modificationDate?: string
@@ -115,12 +140,12 @@ declare interface JMapContext {
 }
 
 declare interface JMapContextV0 {
-  id?: number | string,
-  title: string,
-  description: string,
-  shared: boolean,
-  origin: "web-ng",
-  uuid?: string,
+  id?: number | string
+  title: string
+  description: string
+  shared: boolean
+  origin: "web-ng"
+  uuid?: string
   author?: string
   creationDate?: string
   modificationDate?: string
@@ -152,11 +177,11 @@ declare interface JMapContextAfterMapDataChangeEventParams extends JMapContextMa
 }
 
 declare interface JMapContextBeforeApplyEventParams extends JMapContextEventParams {
-  applyType: JMapContextApplyType
+  applyType: JMAP_CONTEXT_APPLY_TYPES
 }
 
-declare interface JMapContextAfterApplyEventParams extends JMapContextEventParams  {
-  applyType: JMapContextApplyType
+declare interface JMapContextAfterApplyEventParams extends JMapContextEventParams {
+  applyType: JMAP_CONTEXT_APPLY_TYPES
 }
 
 declare interface JMapContextSetActiveResult {

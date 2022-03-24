@@ -19,6 +19,7 @@
   "include": [
     "../public/**/*",
     "../private/**/*",
-    "./index.ts"
+    "./index.ts",
+    "./all-enums.ts"
   ]
 }

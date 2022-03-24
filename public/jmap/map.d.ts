@@ -1,17 +1,43 @@
+// ALL_MAP_MODIFICATION_TYPES in all-enum.ts
+declare const enum JMAP_MODIFICATION_TYPES {
+  NONE = "",
+  CENTER = "center",
+  SCALE = "scale"
+}
+
+// ALL_MAP_POSITIONS in all-enum.ts
+declare const enum JMAP_POSITIONS {
+  TOP_LEFT = "top-left",
+  TOP_RIGHT = "top-right",
+  BOTTOM_LEFT = "bottom-left",
+  BOTTOM_RIGHT = "bottom-right"
+}
+
+// ALL_MAP_DISTANCE_UNITS in all-enum.ts
+declare const enum JMAP_DISTANCE_UNITS {
+  MILLIMETERS = "millimeters",
+  CENTIMETERS = "centimeters",
+  METERS = "meters",
+  KILOMETERS = "kilometers",
+  INCHES = "inches",
+  FEETS = "feet",
+  YARDS = "yards",
+  MILES = "miles",
+  NAUTICAL_MILES = "nauticalmiles"
+}
+
+// ALL_MAP_RASTER_SCHEME_TYPES in all-enum.ts
+declare const enum JMAP_RASTER_SCHEME_TYPES {
+  TMS = "tms",
+  XYZ = "xyz"
+}
+
 declare interface JMapInteractor {
   init(map: mapboxgl.Map): void
   activate(): void
   deactivate(): void
   terminate(): void
 }
-
-declare type JMapModificationTypes = "" | "center" | "scale"
-
-declare type JMapPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right"
-
-declare type JDistanceUnit = "millimeters" | "centimeters" | "meters" | "kilometers" | "inches" | "feet" | "yards" | "miles" | "nauticalmiles"
-
-declare type JMapRasterSchemeType = "tms" | "xyz"
 
 declare interface JLatitudeAndZoom {
   zoom?: number
@@ -30,7 +56,7 @@ declare interface JGetSourceFeaturesParams {
 }
 
 declare interface JMapEventParams {
-  map: mapboxgl.Map,
+  map: mapboxgl.Map
   mapEvent: any
 }
 
@@ -82,11 +108,11 @@ declare interface JMapEventSelectionChangedParams {
 
 declare interface JMapEventBasemapChangedParams {
   currentActiveBasemapId: string
-  newActiveBasemapId: string 
+  newActiveBasemapId: string
 }
 
 declare type JMapSelection = {
-  [ key in JId ]: GeoJSON.Feature[]
+  [key in JId]: GeoJSON.Feature[]
 }
 
 declare interface JMapLayerVisibilityStatus {
@@ -100,7 +126,7 @@ declare interface JMapLayerVisibilityStatus {
 }
 
 declare type JMapLayersVisibilityStatus = {
-  [ key in JId ] : JMapLayerVisibilityStatus
+  [key in JId]: JMapLayerVisibilityStatus
 }
 
 declare interface JProjection {
@@ -110,7 +136,7 @@ declare interface JProjection {
 
 declare interface JMapFeatureAttributeValues {
   featureId: JId
-  [ attributeId: string ]: any
+  [attributeId: string]: any
 }
 
 declare interface JMapAttributeSearch {
@@ -129,26 +155,26 @@ declare interface JMapNavigationStep {
 
 /**
  *  **JMapBoxEventData**
- * 
+ *
  * This interface describe optionnal data we can pass to MapBox events
  * in order to transport usefull information while consuming the events in your application
- * 
- * 
+ *
+ *
  */
 declare interface JMapBoxEventData {
   /**
    * **stopJMapEventPropagation**
-   * 
+   *
    * if true will prevent JMap event to be fired
-   * 
+   *
    */
   stopJMapEventPropagation?: boolean
   /**
    * **preventNavigationStepPush**
-   * 
+   *
    * Used in the context of programmatic navigation (ex: while stepping back in the navigation history)
    * if true it will prevent navigation destination to be pushed in the Navigation History stack
-   * 
+   *
    */
   preventNavigationStepPush?: boolean
 }
@@ -186,12 +212,12 @@ declare interface JBasemap {
   label: string
   tileUrls: string[]
   previewImageAsUrlOrBase64?: string
-  scheme?: JMapRasterSchemeType
+  scheme?: JMAP_RASTER_SCHEME_TYPE
   minzoom?: number
   maxzoom?: number
   tileSize?: number
   extent?: JBoundaryBox
-  attributions? : JMapAttribution[]
+  attributions?: JMapAttribution[]
 }
 
 declare interface JMapAttribution {
@@ -258,7 +284,7 @@ declare interface JCoreMapOptions {
    * ```
    *
    * In the above example the map will be inserted in the div having "my-custom-container-id" as id. You need to set the width and the height of this div by yourself.
-   * 
+   *
    * If no container is found in the DOM with the specified id, JMap Core library will create and append it automatically in the body element of the web page.
    */
   containerId?: string
@@ -266,13 +292,13 @@ declare interface JCoreMapOptions {
   /**
    * If a mapbox token is set through the JMap Admin interface,
    * the JMap Core library will use it automatically, nothing else to do for you.
-   * 
+   *
    * The Mapbox token is used by JMap in order to fully use Mapbox capabilities
    * like displaying a mapbox base maps.
-   * 
+   *
    * But if no token is set in JMap Admin, or if you want to use
    * the mapbox token of your choice, you have to set the "***mapboxToken***" parameter :
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -294,9 +320,9 @@ declare interface JCoreMapOptions {
 
   /**
    * By default the Map Rotation control is not visible.
-   * 
+   *
    * But if ***mapRotationControlVisible*** is true, it will be displayed on the map.
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -319,7 +345,7 @@ declare interface JCoreMapOptions {
   /**
    * You can set the initial rotation of the map by setting the ***rotation*** parameter. This parameter will have the priority over bearing if both parameters are specified.
    * By example if you want the map to open with a clockwise rotation of 90 degree :
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -338,11 +364,11 @@ declare interface JCoreMapOptions {
    * ```
    */
   rotation?: number
-  
+
   /**
    * You can set the initial rotation of the map by setting the ***bearing*** parameter. This parameter will be ignored if rotation is specified.
    * By example if you want the map to open with a anticlockwise rotation of 90 degree :
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -360,13 +386,13 @@ declare interface JCoreMapOptions {
    * </html>
    * ```
    */
-   bearing?: number
+  bearing?: number
 
   /**
    * By default the Navigation History control is not visible.
-   * 
+   *
    * But if ***navigationHistoryControlVisible*** is true, it will be displayed on the map.
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -388,9 +414,9 @@ declare interface JCoreMapOptions {
 
   /**
    * By default the scale control panel it is not visible.
-   * 
+   *
    * But if ***scaleControlVisible*** is true, it will be displayed on the map.
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -412,9 +438,9 @@ declare interface JCoreMapOptions {
 
   /**
    * You can choose the position of the scale control on the map.
-   * 
+   *
    * Use a value in : "**top-left**", "**top-right**", "**bottom-left**", or "**bottom-right**"
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -432,11 +458,11 @@ declare interface JCoreMapOptions {
    * </html>
    * ```
    */
-  scaleControlPosition?: JMapPosition
+  scaleControlPosition?: JMAP_POSITIONS
 
   /**
    * This is the unit in which the scale control panel will display the data.
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -458,7 +484,7 @@ declare interface JCoreMapOptions {
 
   /**
    * You can set the location of the center of the map by setting the ***center*** parameter. By example if you want to center the map on the city of Ottawa :
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -483,7 +509,7 @@ declare interface JCoreMapOptions {
 
   /**
    * You can zoom to a custom level by setting the "***zoom***" variable. Here an example :
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -505,7 +531,7 @@ declare interface JCoreMapOptions {
 
   /**
    * The map will zoom and pan to fit exactly the extent :
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -533,7 +559,7 @@ declare interface JCoreMapOptions {
    * Check for features having the property equals to the value. If showMapPopup is true and that
    * only one __attributeValue__ is specified and that only __one__ feature is found,
    * the feature's Mouseover info will be displayed if defined
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -561,10 +587,10 @@ declare interface JCoreMapOptions {
   /**
    * You can execute a custom piece of code at runtime, after the map is ready,
    * and only one time at JMap Core library startup.
-   * 
+   *
    * For that you have to set the "***onStartupMapReadyFn***" parameter which is a function.
    * Here an example that will display a message "Hello the map is ready !" in the console :
-   * 
+   *
    * ```html
    * <html>
    *   ...

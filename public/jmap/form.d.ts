@@ -1,41 +1,54 @@
-declare type JFormType =
-  "DEPRECATED_FORM"
-  | "LAYER_ATTRIBUTES_FORM"
-  | "LAYER_ATTRIBUTES_SUB_FORM"
-  | "EXTERNAL_ATTRIBUTES_FORM"
-  | "EXTERNAL_ATTRIBUTES_SUB_FORM"
+// ALL_FORM_TYPES in all-enum.ts
+declare const enum JFORM_TYPES {
+  DEPRECATED = "DEPRECATED_FORM",
+  ATTRIBUTE = "LAYER_ATTRIBUTES_FORM",
+  ATTRIBUTE_SUB_FORM = "LAYER_ATTRIBUTES_SUB_FORM",
+  EXTERNAL = "EXTERNAL_ATTRIBUTES_FORM",
+  EXTERNAL_SUB_FORM = "EXTERNAL_ATTRIBUTES_SUB_FORM"
+}
 
-declare type JFormUIControlAlignment =
-  "LEFT"
-  | "CENTER"
-  | "RIGHT"
+// ALL_FORM_UI_CONTROL_ALIGNMENTS in all-enum.ts
+declare const enum JFORM_UI_CONTROL_ALIGNMENTS {
+  LEFT = "LEFT",
+  CENTER = "CENTER",
+  RIGHT = "RIGHT"
+}
 
-declare type JFormWidgetType =
-  "input"
-  | "range"
-  | "switch"
-  | "select"
-  | "date"
-  | "photo"
-  | "tree"
-  | "label"
-  | "span"
-  | "table"
+// ALL_FORM_WIDGET_TYPES in all-enum.ts
+declare const enum JFORM_WIDGET_TYPES {
+  INPUT = "input",
+  RANGE = "range",
+  SWITCH = "switch",
+  SELECT = "select",
+  DATE = "date",
+  PHOTO = "photo",
+  TREE = "tree",
+  LABEL = "label",
+  SPAN = "span",
+  TABLE = "table"
+}
 
-declare type JSONSchemaTypes =
-  "string"
-  | "number"
-  | "integer"
-  | "boolean"
-  | "array"
-  | "object"
+// ALL_JSON_SCHEMA_TYPES in all-enum.ts
+declare const enum JJSON_SCHEMA_TYPES {
+  STRING = "string",
+  NUMBER = "number",
+  INTEGER = "integer",
+  BOOLEAN = "boolean",
+  ARRAY = "array",
+  OBJECT = "object"
+}
 
-declare type JFormOperationType = "creation" | "update" | "delete"
+// ALL_FORM_OPERATION_TYPES in all-enum.ts
+declare const enum JFORM_OPERATION_TYPES {
+  CREATION = "creation",
+  UPDATE = "update",
+  DELETE = "delete"
+}
 
 // FORM METADATA
 
 declare interface JFormFieldValidationRuleByAttributeName {
-  [ fieldName: string ]: any
+  [fieldName: string]: any
 }
 
 declare interface JFormValidationRules {
@@ -54,19 +67,19 @@ declare interface JFormGlobalValidationRule {
 }
 
 declare interface JFormPermissions {
-  editLayerAttributeValues: boolean,
-  addExternalFormAttributeValues: boolean,
-  deleteExternalFormAttributeValues: boolean,
+  editLayerAttributeValues: boolean
+  addExternalFormAttributeValues: boolean
+  deleteExternalFormAttributeValues: boolean
   editExternalFormAttributeValues: boolean
 }
 
 declare interface JFormMetaData {
   id: JId
-  type: JFormType
+  type: JFORM_TYPES
   name: string
   schema: JFormSchema
   uiSchema: JFormUISchema
-  validationRules: JFormValidationRules,
+  validationRules: JFormValidationRules
   idAttributeName: string | null
   hasPhoto: boolean
   readOnly: boolean
@@ -79,25 +92,26 @@ declare interface JFormMetaData {
 }
 
 declare interface JFormSchema {
-  $id: string,
-  type: "object",
-  $schema: "http://json-schema.org/draft-07/schema#",
-  definitions: {},
+  $id: string
+  type: "object"
+  $schema: "http://json-schema.org/draft-07/schema#"
+  definitions: {}
   properties: JFormSchemaProperties
   required: string[]
 }
 
 declare interface JFormSchemaProperties {
-  [ name: string ]: JFormSchemaProperty
+  [name: string]: JFormSchemaProperty
 }
 
 declare interface JFormSchemaProperty {
   title: string
-  type: JSONSchemaTypes
+  type: JJSON_SCHEMA_TYPES
   description: string
   isRequired: boolean
-  items?: { // used if property type = "array"
-    type: JSONSchemaTypes // only number or string
+  items?: {
+    // used if property type = "array"
+    type: JJSON_SCHEMA_TYPES // here only number or string
   }
   readOnly?: boolean
   format?: string
@@ -117,7 +131,7 @@ declare interface JFormSchemaProperty {
 declare type JFormUISchema = JFormUITab[]
 
 declare interface JFormUITab {
-  type: "Tab",
+  type: "Tab"
   title: string
   controls: JFormUIControl[]
 }
@@ -125,7 +139,7 @@ declare interface JFormUITab {
 declare interface JFormUIControl {
   type: "Control"
   id: string
-  widget: JFormWidgetType
+  widget: JFORM_WIDGET_TYPES
   colSpan?: number // the layout grid has 12 columns
   ruleCalculated?: object
   ruleReadOnly?: object
@@ -133,7 +147,7 @@ declare interface JFormUIControl {
   ruleVisible?: object // not yet implemented server side
   scope?: string // use with attribute related controls. Ex of scope : "#/properties/done"
   multi?: boolean // for select control
-  align?: JFormUIControlAlignment
+  align?: JFORM_UI_CONTROL_ALIGNMENTS
   rows?: number // for multiline input control
   label?: string
   tooltip?: string
@@ -164,20 +178,22 @@ declare interface JFormUIControlTreeElement extends JFormUIControlEntry {
 
 // BELOW ALL OLD FORM TYPES RECEIVED FROM SERVERS IN JMAP 7
 
-declare type JFormFieldType =
-  "TYPE_EMPTY"
-  | "TYPE_COLUMN_SPAN"
-  | "TYPE_LABEL"
-  | "TYPE_INPUT_TEXT"
-  | "TYPE_INPUT_RANGE"
-  | "TYPE_SELECT_ONE"
-  | "TYPE_SELECT_MANY"
-  | "TYPE_INPUT_DATE"
-  | "TYPE_SELECT_BOOLEAN"
-  | "TYPE_GROUP_PANEL"
-  | "TYPE_DOCUMENT"
-  | "TYPE_TREE"
-  | "TYPE_TABLE"
+// ALL_FORM_FIELD_TYPES in all-enum.ts
+declare const enum JFORM_FIELD_TYPES {
+  EMPTY = "TYPE_EMPTY",
+  COLUMN_SPAN = "TYPE_COLUMN_SPAN",
+  LABEL = "TYPE_LABEL",
+  TEXT = "TYPE_INPUT_TEXT",
+  RANGE = "TYPE_INPUT_RANGE",
+  SELECT_ONE = "TYPE_SELECT_ONE",
+  SELECT_MANY = "TYPE_SELECT_MANY",
+  DATE = "TYPE_INPUT_DATE",
+  BOOLEAN = "TYPE_SELECT_BOOLEAN",
+  GROUP_PANEL = "TYPE_GROUP_PANEL",
+  DOCUMENT = "TYPE_DOCUMENT",
+  TREE = "TYPE_TREE",
+  TABLE = "TYPE_TABLE"
+}
 
 declare interface JFormSection {
   name: string
@@ -194,7 +210,7 @@ declare interface JFormRow {
 }
 
 declare type JFormField =
-  JFormFieldLabel
+  | JFormFieldLabel
   | JFormFieldEmpty
   | JFormFieldInput
   | JFormFieldInputText
@@ -208,13 +224,13 @@ declare type JFormField =
 
 declare interface JFormFieldBase {
   id: string
-  type: JFormFieldType
+  type: JFORM_FIELD_TYPES
   tooltip: string
-  align: JFormUIControlAlignment
+  align: JFORM_UI_CONTROL_ALIGNMENTS
 }
 
 declare interface JFormFieldEmpty extends JFormFieldBase {
-  type: JFormFieldType
+  type: JFORM_FIELD_TYPES.EMPTY
 }
 
 declare interface JFormFieldPhoto extends JFormFieldBase {
@@ -254,14 +270,14 @@ declare interface JFormFieldDate extends JFormFieldInput {
 }
 
 declare interface JFormFieldInputText extends JFormFieldInput {
-  range: null | { min: number, max: number }
+  range: null | { min: number; max: number }
   multiLine: boolean
   maxNumberCharacter: number
   maskFormatter: string
 }
 
 declare interface JFormFieldRange extends JFormFieldInput {
-  type: JFormFieldType
+  type: JFORM_FIELD_TYPES.RANGE
 }
 
 declare interface JFormFieldCheckBox extends JFormFieldInput {
@@ -291,7 +307,7 @@ declare interface JFormFieldSelectTree extends JFormFieldSelectBase {
 declare interface JFormAttribute {
   id: string
   label: string
-  type: JLayerAttributeType
+  type: JLAYER_ATTRIBUTE_TYPES
   readOnly: boolean
   nullable: boolean
   isSystem: boolean
@@ -433,7 +449,7 @@ declare interface JFormEditParams extends JFormId {
 }
 
 declare interface JFormOperation {
-  formType: JFormType
+  formType: JFORM_TYPES
   layerId: JId
   formId: JId
   formName: string
@@ -441,13 +457,13 @@ declare interface JFormOperation {
   isExternalForm: boolean
   isSubForm: boolean
   isPhoto: boolean
-  operationType: JFormOperationType
+  operationType: JFORM_OPERATION_TYPES
   layerElementId: JId
   id: JId
 }
 
 declare interface JFormAttributeOperation extends JFormOperation {
-  formType: "LAYER_ATTRIBUTES_FORM"
+  formType: JFORM_TYPES.ATTRIBUTE
   isAttributeForm: true
   isExternalForm: false
   isSubForm: false
@@ -456,7 +472,7 @@ declare interface JFormAttributeOperation extends JFormOperation {
 }
 
 declare interface JFormExternalOperation extends JFormOperation {
-  formType: "EXTERNAL_ATTRIBUTES_FORM"
+  formType: JFORM_TYPES.EXTERNAL
   isAttributeForm: false
   isExternalForm: true
   isSubForm: false
@@ -467,7 +483,7 @@ declare interface JFormExternalOperation extends JFormOperation {
 }
 
 declare interface JFormSubFormOperation extends JFormOperation {
-  formType: "LAYER_ATTRIBUTES_SUB_FORM" | "EXTERNAL_ATTRIBUTES_SUB_FORM"
+  formType: JFORM_TYPES.ATTRIBUTE_SUB_FORM | JFORM_TYPES.EXTERNAL_SUB_FORM
   isAttributeForm: false
   isExternalForm: false
   isSubForm: true
@@ -526,7 +542,7 @@ declare interface JFormSubFormDialogCloseEventParams extends JFormDialogEventPar
 }
 
 declare interface JSubFormDataBySubFormId {
-  [ subFormId: string ]: JSubFormData
+  [subFormId: string]: JSubFormData
 }
 
 declare interface JSubFormData {
