@@ -310,7 +310,7 @@ declare interface JDynamicFilterSetParams {
 declare interface JLayerForm {
   id: JId
   name: string
-  type: JFORM_TYPE
+  type: JFORM_TYPES
 }
 
 declare interface JLayerAttribute {

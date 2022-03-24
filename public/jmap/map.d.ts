@@ -212,7 +212,7 @@ declare interface JBasemap {
   label: string
   tileUrls: string[]
   previewImageAsUrlOrBase64?: string
-  scheme?: JMAP_RASTER_SCHEME_TYPE
+  scheme?: JMAP_RASTER_SCHEME_TYPES
   minzoom?: number
   maxzoom?: number
   tileSize?: number
