@@ -3863,7 +3863,7 @@ declare namespace JMap {
      * @param layerId a layer Id
      * @example ```ts
      *
-     * // display the layer's extent of layer 4 for a few second
+     * // display the layer's extent of layer 4 (as long as the user don't pan or zoom)
      * JMap.Map.displayLayerExtent(4)
      *
      * // clear the displayed layer's extent
