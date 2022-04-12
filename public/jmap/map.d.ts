@@ -207,6 +207,10 @@ declare interface JMapFlashLocationParams {
   panAndZoomOptions?: JPanAndZoomOptions
 }
 
+declare interface JMapDisplayLayerExtentParams {
+  panAndZoom?: boolean
+}
+
 declare interface JBasemap {
   id: string
   label: string

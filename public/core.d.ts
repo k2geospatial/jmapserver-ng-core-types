@@ -3839,6 +3839,40 @@ declare namespace JMap {
     function clearFlashingLocations(): void
 
     /**
+     * **JMap.Map.displayLayerExtent**
+     *
+     * Display the layer extent of the given layer Id
+     *
+     * The layer extent will disapear shortly after a pan or a zoom
+     *
+     * @param layerId a layer Id
+     * @param options (see example)
+     * @example ```ts
+     *
+     * // Move to the layer 4 extent and display it for a few second
+     * JMap.Map.displayLayerExtent(4, {panAndZoom: true})
+     * ```
+     **/
+    function displayLayerExtent(layerId: JId, options?: JMapDisplayLayerExtentParams): void
+
+    /**
+     * **JMap.Map.clearDisplayedLayerExtent**
+     *
+     * Clear the currently displayed layer extent
+     *
+     * @param layerId a layer Id
+     * @example ```ts
+     *
+     * // display the layer's extent of layer 4 for a few second
+     * JMap.Map.displayLayerExtent(4)
+     *
+     * // clear the displayed layer's extent
+     * JMap.Map.clearDisplayedLayerExtent()
+     * ```
+     **/
+    function clearDisplayedLayerExtent(): void
+
+    /**
      * **JMap.Map.getResolution**
      *
      * Returns the screen resolution, depending on screen DPI, latitude, and zoom level.
