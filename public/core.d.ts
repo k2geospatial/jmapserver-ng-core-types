@@ -3841,7 +3841,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.displayLayerExtent**
      *
-     * Display the layer extent of the given layer Id
+     * Displays the layer extent of the given layer Id
      *
      * The layer extent will disapear shortly after a pan or a zoom
      *
@@ -3858,7 +3858,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.clearDisplayedLayerExtent**
      *
-     * Clear the currently displayed layer extent
+     * Clears the currently displayed layer extent
      *
      * @param layerId a layer Id
      * @example ```ts
