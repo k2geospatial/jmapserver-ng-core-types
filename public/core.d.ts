@@ -3846,31 +3846,13 @@ declare namespace JMap {
      * The layer extent will disapear shortly after a pan or a zoom
      *
      * @param layerId a layer Id
-     * @param options (see example)
      * @example ```ts
      *
-     * // Move to the layer 4 extent and display it for a few second
-     * JMap.Map.displayLayerExtent(4, {panAndZoom: true})
-     * ```
-     **/
-    function displayLayerExtent(layerId: JId, options?: JMapDisplayLayerExtentParams): void
-
-    /**
-     * **JMap.Map.clearDisplayedLayerExtent**
-     *
-     * Clears the currently displayed layer extent
-     *
-     * @param layerId a layer Id
-     * @example ```ts
-     *
-     * // display the layer's extent of layer 4 (as long as the user don't pan or zoom)
+     * // Move to layer 4 extent and display it for a few second
      * JMap.Map.displayLayerExtent(4)
-     *
-     * // clear the displayed layer's extent
-     * JMap.Map.clearDisplayedLayerExtent()
      * ```
      **/
-    function clearDisplayedLayerExtent(): void
+    function displayLayerExtent(layerId: JId): void
 
     /**
      * **JMap.Map.getResolution**
