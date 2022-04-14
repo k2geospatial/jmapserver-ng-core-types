@@ -256,8 +256,6 @@ declare interface JLayer extends JLayerTreeElement {
   mouseOver: JMapMouseOver
   minimumVisibleMapboxZoom: number | undefined
   maximumVisibleMapboxZoom: number | undefined
-  styleRules: JLayerStyleRule[]
-  defaultStyleRule: JLayerStyleRule
   thematics: JLayerThematic[]
   queries: JQuery[]
   extent: JBoundaryBox | null
@@ -274,6 +272,7 @@ declare interface JLayer extends JLayerTreeElement {
   informationReports: JLayerInformationReport[]
   spatialDataSourceId: string // For Jaaz only
   dynamicFilter: JDynamicFilter
+  styleThumbnailInBase64: string | undefined
 }
 
 declare interface JLayerInformationReport {
