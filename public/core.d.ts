@@ -3843,7 +3843,7 @@ declare namespace JMap {
      *
      * Displays the layer extent of the given layer Id
      *
-     * The layer extent will disapear shortly after a pan or a zoom
+     * The layer extent will disappear after a few seconds
      *
      * @param layerId a layer Id
      * @example ```ts
