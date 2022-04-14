@@ -3839,6 +3839,22 @@ declare namespace JMap {
     function clearFlashingLocations(): void
 
     /**
+     * **JMap.Map.displayLayerExtent**
+     *
+     * Displays the layer extent of the given layer Id
+     *
+     * The layer extent will disappear after a few seconds
+     *
+     * @param layerId a layer Id
+     * @example ```ts
+     *
+     * // Move to layer 4 extent and display it for a few second
+     * JMap.Map.displayLayerExtent(4)
+     * ```
+     **/
+    function displayLayerExtent(layerId: JId): void
+
+    /**
      * **JMap.Map.getResolution**
      *
      * Returns the screen resolution, depending on screen DPI, latitude, and zoom level.
