@@ -40,4 +40,5 @@ declare interface JProject {
   defaultDistanceUnit: JMAP_DISTANCE_UNITS
   base64ImageThumbnail: string
   extensions: JProjectServerExtension[]
+  usageStatisticsActive: boolean
 }

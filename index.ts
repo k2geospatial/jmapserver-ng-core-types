@@ -685,6 +685,7 @@ export interface JMapService {
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   clearFlashingLocations(): void
+  displayLayerExtent(layerId: JId): Promise<void>
   getResolution(params?: JLatitudeAndZoom): number
   getScale(params?: JLatitudeAndZoom): string
   getScaleDenominator(params?: JLatitudeAndZoom): number
@@ -821,7 +822,6 @@ export interface JLayerService {
   setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility?: boolean): void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: JId): boolean
-  getDefaultStyleRule(layerId: JId): JLayerStyleRule
   /**
    * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead
    */
