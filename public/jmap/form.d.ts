@@ -504,7 +504,12 @@ declare interface JFormSubmitResult {
   successMessages: string[]
   errorMessages: string[]
   operations: JFormOperation[]
-  createdFeatureId?: JId
+  featureCreation?: {
+    layerId: JId
+    featureId: JId
+    geometry: GeoJSON.Geometry
+    properties: JAttributeValueByName
+  }
   deletedFeatureIds?: JId[]
 }
 

@@ -23,3 +23,10 @@ declare interface JFeatureDeleteByIdsResult {
   inSuccessIds: JId[]
   inErrorIds: JId[]
 }
+
+declare interface JFeatureEventGeometryCreateParams {
+  layerId: JId
+  featureId: JId
+  featureGeometry: GeoJSON.Geometry
+  featureProperties: JAttributeValueByName
+}
