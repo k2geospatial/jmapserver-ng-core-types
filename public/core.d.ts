@@ -2014,21 +2014,6 @@ declare namespace JMap {
     function isAllLayerParentsVisible(layerId: JId): boolean
 
     /**
-     * **JMap.Layer.getDefaultStyleRule**
-     *
-     * Returns the default style rule of the layer.
-     *
-     * @throws Error if no layer found for the id, or if the layer is a layer group.
-     * @param layerId The JMap layer id
-     * @example ```ts
-     *
-     * // returns layer id=3 default style rule
-     * JMap.Layer.getDefaultStyleRule(3)
-     * ```
-     */
-    function getDefaultStyleRule(layerId: JId): JLayerStyleRule
-
-    /**
      * **JMap.Layer.setVisible**
      *
      * Set the visibility property of the layer.

@@ -821,7 +821,6 @@ export interface JLayerService {
   setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility?: boolean): void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: JId): boolean
-  getDefaultStyleRule(layerId: JId): JLayerStyleRule
   /**
    * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead
    */
