@@ -345,7 +345,7 @@ export interface JFeatureEventModule extends JEventModule {
   on: {
     deletion(listenerId: string, fn: (params: JFeatureEventDeleteParams) => void): void
     geometryChanged(listenerId: string, fn: (params: JFeatureEventGeometryUpdateParams) => void): void
-    creation(listenerId: string, fn: (params: JFeatureEventGeometryCreateParams) => void): void
+    creation(listenerId: string, fn: (params: JFeatureEventCreateParams) => void): void
   }
 }
 

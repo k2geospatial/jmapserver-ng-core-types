@@ -24,7 +24,7 @@ declare interface JFeatureDeleteByIdsResult {
   inErrorIds: JId[]
 }
 
-declare interface JFeatureEventGeometryCreateParams {
+declare interface JFeatureEventCreateParams {
   layerId: JId
   featureId: JId
   featureGeometry: GeoJSON.Geometry
