@@ -4916,6 +4916,20 @@ declare namespace JMap {
       function getAllIds(): string[]
 
       /**
+       * ***JMap.Map.Basemap.isDisabled***
+       *
+       * Returns true if basemaps are disabled.
+       *
+       * Can be disabled with option disableBasemaps [[JCoreOptions]] in JS options, or with url param "ngDisableBasemaps=true".
+       *
+       * @example ```ts
+       *
+       * JMap.Map.Basemap.isDisabled()
+       * ```
+       */
+      function isDisabled(): boolean
+
+      /**
        * ***JMap.Map.Basemap.isActive***
        *
        * Returns true if a basemap is active on the map.

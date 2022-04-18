@@ -699,6 +699,7 @@ export interface JMapService {
 
 export interface JMapBasemapService {
   getAllIds(): string[]
+  isDisabled(): boolean
   isActive(): boolean
   isMapboxId(basemapId: string): boolean
   isOSMId(basemapId: string): boolean
