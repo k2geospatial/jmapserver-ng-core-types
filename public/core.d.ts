@@ -8923,9 +8923,7 @@ declare namespace JMap {
          * JMap.Event.Feature.on.creation(
          *    "custom-feature-creation",
          *    params => console.info(
-         *      `For layer id="${params.layerId}", feature id="${params.featureId}" geometry has been created`,
-         *      params.newFeature
-         *    )
+         *      `For layer id="${params.layerId}", feature id="${params.featureId}" geometry has been created`)
          * )
          * ```
          */
