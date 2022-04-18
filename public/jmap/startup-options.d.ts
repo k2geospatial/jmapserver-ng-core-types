@@ -5,12 +5,12 @@ declare interface Window {
 
 /**
  * This section is about the JMAP Library startup options.
- * 
+ *
  * JMap library executable is available through a CDN url.
- * 
+ *
  * The URL is like "https://cdn.jsdelivr.net/npm/jmap-core-js@0.5.0/public/",
  * but it depends on the version you want to use.
- * 
+ *
  * First you need to import our JS file in your http file, in order to load the JMap Core library.
  * It's recommended to put the CDN import at the end of the body tag, like that :
  * ```html
@@ -25,13 +25,13 @@ declare interface Window {
  * </html>
  * ```
  * To make the JMap Core library working you need to provide some required information like :
- * 
+ *
  *   - Your JMap Server Rest API URL
  *   - The project id to open
  *   - A valid JMap user session token, **or** set the JMap Core library to log as "anonymous"
- * 
+ *
  * It can be passed by setting a global JS variable named "JMAP_OPTIONS" :
- * 
+ *
  * ```html
  * <html>
  *   <body>
@@ -53,10 +53,9 @@ declare interface Window {
  *   </body>
  * </html>
  * ```
- * 
+ *
  * Below a full example of how to start the JMap library in a web page,
  * where parameters ***ngToken*** and ***ngProjectId*** are get from the url :
-
  * ```html
  * <!DOCTYPE html>
  * <html>
@@ -83,23 +82,23 @@ declare interface Window {
  *   </body>
  * </html>
  * ```
- * 
+ *
  * For example, you can pass this parameters like that :
  *   - **http:// my-company/my-custom-page-using-jmap?ngToken=95423672742&ngProjectId=10**.
- * 
+ *
  * When JMAP Core library starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
  * the **JMap project id=*10***, then load the map in the **div id="*jmap-map*"**.
  */
 declare interface JCoreOptions {
   /**
    * The JMap project id.
-   * 
+   *
    * If both a project id and a project name are provided, project id will be used.
-   * 
+   *
    * If no project name or id are set, the library will do noting, you will have a blank page.
-   * 
+   *
    * So if you want the library to load the project automatically, you need to set the project id.
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -120,15 +119,15 @@ declare interface JCoreOptions {
 
   /**
    * A JMap project name.
-   * 
+   *
    * If you can prefer using the project id over the name.
-   * 
+   *
    * If both a project id and a project name are provided, project id will be used.
-   * 
+   *
    * If no project name or id are set, the library will do noting, you will have a blank page.
-   * 
+   *
    * So if you want the library to load the project automatically, you need to set the project name (or id).
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -149,9 +148,9 @@ declare interface JCoreOptions {
 
   /**
    * If provided this function will be processed when the list of projects is received from the server :
-   * 
+   *
    * the event receives a JProjectAllEventParams object
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -171,18 +170,18 @@ declare interface JCoreOptions {
    * ```
    */
   onProjectsChange?(params: JProjectAllEventParams): void
-  
+
   /**
    * By default project thumbnails are not loaded, because they are not usefull if JMap Core lib is used alone.
-   * 
+   *
    * To load asynchronously project thumbnails, set startup option "loadProjectThumbnails" to true.
-   * 
+   *
    * JMap Core lib will load all project thumbnails (or preview) in project objects (property "base64ImageThumbnail").
-   * 
+   *
    * The thumbnail is stored as a base64 string image, that you can use to set an img src attribute directly.
-   * 
+   *
    * For a project object, if thumbnail is not loaded, default value of its property "base64ImageThumbnail" is "" (empty string).
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -197,7 +196,7 @@ declare interface JCoreOptions {
    *   </body>
    * </html>
    * ```
-   * 
+   *
    * Then you will be able to get a project and use its thumbnail  :
    * ```javascript
    * JMap.Project.getBase64ImageThumbnail() // return loaded project image, "" if no image loaded
@@ -208,9 +207,9 @@ declare interface JCoreOptions {
 
   /**
    * The JMap Server Rest API url.
-   * 
+   *
    * Default value is : http://localhost:8080/services/rest/v2.0 (for test only).
-   * 
+   *
    * If your are not testing you must provide the url of your JMap REST API :
    * ```html
    * <html>
@@ -235,7 +234,7 @@ declare interface JCoreOptions {
    * you are not forced to pass a session token but you have
    * to explicitly tell the JMap NG library to log as an anonymous
    * user by setting the "***anonymous***" parameter like that :
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -251,9 +250,9 @@ declare interface JCoreOptions {
    *         ... // other optional JMAP params
    *       }
    *     </script>
-   * 
+   *
    *     ... your web page
-   *     
+   *
    *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/"></script>
    *   </body>
    * </html>
@@ -271,7 +270,7 @@ declare interface JCoreOptions {
    * ```sh
    * curl -X POST "https://my-jmap-server/services/rest/v2.0/session" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"username\": \"jdo@company.com\", \"password\": \"xxx\", \"type\": \"WEB\"}"
    * ```
-   * 
+   *
    * If the request is successfull, the response is like that :
    * ```js
    * {
@@ -283,9 +282,9 @@ declare interface JCoreOptions {
    *   }
    * }
    * ```
-   * 
+   *
    * The library "**token**" is the parameter "**sessionId**" in REST the response.
-   * 
+   *
    * So to start the library using the token you can do like that :
    * ```html
    * <html>
@@ -301,9 +300,9 @@ declare interface JCoreOptions {
    *   </body>
    * </html>
    * ```
-   * 
+   *
    * If you don't want to make an AJAX call to the REST API, you can use the JMap library to login (JMap will make the AJAX call to the rest API). But you have to wait for the lib to be loaded. To know if the lib has been loaded you can check if the JMAp namespace exist or not. Bellow the example :
-   * 
+   *
    * ```html
    * <!DOCTYPE html>
    *   <html>
@@ -338,15 +337,15 @@ declare interface JCoreOptions {
    *     </body>
    *   </html>
    * ```
-   * 
+   *
    */
   token?: string
 
   /**
    * By default the geolocation service is enabled.
-   * 
+   *
    * But you can disable the geolocation service by setting the "***geolocationEnabled***" parameter to false :
-   * 
+   *
    * ```html
    * <html>
    *   ...
@@ -366,14 +365,14 @@ declare interface JCoreOptions {
 
   /**
    * All map related options.
-   * 
+   *
    * Click on [[JCoreMapOptions]] to get details.
    */
   map?: JCoreMapOptions
 
   /**
    * Optional extensions.
-   * 
+   *
    * Click [[JCoreExtension]] to get details about how defining an extension.
    */
   extensions?: JCoreExtension[]
@@ -385,7 +384,7 @@ declare interface JCoreOptions {
 
   /**
    * If set to any of the locales supported by JMap, will define the default locale, bypassing browser or user-defined locale.
-   * 
+   *
    * Supported locales  can be retrieved by calling [[JMap.User.getLocales()]]
    */
   locale?: string
@@ -397,13 +396,13 @@ declare interface JCoreOptions {
 
   /**
    * For developpers, you can ovveride the project's extensions url here
-   * 
+   *
    * Ex: the extension having id="custom-extension" is set on the project.
    * It's url is "https://cdn.jsdelivr.net/npm/custom-extension@1.0.10/public/index.js"
-   * 
+   *
    * But in development, to test your changes you want to load your dev file, that is located
    * for example at this location : "https://localhost:8083/build/index.js".
-   * 
+   *
    * In order to change the extension jsUrl dynamically, you can override like this :
    * [{
    *  id: "custom-extension",
@@ -417,10 +416,16 @@ declare interface JCoreOptions {
    *  - a loader incating NG Core is loading
    *  - a login panel
    *  - a project selection panel
-   * 
+   *
    * But you can avoid this UI by setting this option to true.
-   * 
+   *
    * For example NG App don't need NG Core minimal UI and use this option.
    */
   hideMainLayout?: boolean
+
+  /**
+   * If true, no basemap will be available/displayed.
+   * In JMap NG App, no basemap panel will be displayed in the left panel
+   */
+  disableBasemaps?: boolean
 }
