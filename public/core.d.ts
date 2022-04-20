@@ -8909,6 +8909,24 @@ declare namespace JMap {
          * ```
          */
         function geometryChanged(listenerId: string, fn: (params: JFeatureEventGeometryUpdateParams) => void): void
+
+        /**
+         * ***JMap.Event.Feature.on.creation***
+         *
+         * This event is triggered when a feature has been created.
+         *
+         * @param listenerId Your listener id (must be unique for all user events)
+         * @param fn Your listener function
+         * @example ```ts
+         *
+         * // Each time a feature is created, this method is processed
+         * JMap.Event.Feature.on.creation(
+         *    "custom-feature-creation",
+         *    params => console.info(`For layer id="${params.layerId}", feature id="${params.featureId}" geometry has been created`)
+         * )
+         * ```
+         */
+        function creation(listenerId: string, fn: (params: JFeatureEventCreateParams) => void): void
       }
 
       /**
