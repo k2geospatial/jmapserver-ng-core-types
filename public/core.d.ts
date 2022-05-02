@@ -8880,10 +8880,10 @@ declare namespace JMap {
          * @param fn Your listener function
          * @example ```ts
          *
-         * // Each time a layer feature is deleted, this method is processed
+         * // Each time layer features are deleted, this method is processed
          * JMap.Event.Feature.on.deletion(
          *    "custom-feature-deletion",
-         *    params => console.info(`For layer id="${params.layerId}", feature id="${params.featureId}" has been deleted`)
+         *    params => console.info(`For layer id="${params.layerId}", deleted feature ids: ${params.deletedFeatures.map(f => f.id).join(", ")}`)
          * )
          * ```
          */
