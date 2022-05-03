@@ -8902,8 +8902,8 @@ declare namespace JMap {
          * JMap.Event.Feature.on.geometryChanged(
          *    "custom-feature-geometry-changed",
          *    params => console.info(
-         *      `For layer id="${params.layerId}", feature id="${params.newFeature.id}" geometry has been changed`,
-         *      params.newFeature
+         *      `For layer id="${params.layerId}", feature id="${params.updatedFeature.id}" geometry has been changed`,
+         *      params.updatedFeature
          *    )
          * )
          * ```
