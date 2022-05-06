@@ -44,10 +44,14 @@ declare interface JLatitudeAndZoom {
   latitude?: number
 }
 
+/**
+ * includeClusterFeatures and includeLabelFeatures are mainly used for internal NG methods, you should not have to use them.
+ */
 declare interface JGetRenderedFeaturesParams {
   geoFilter?: JLocation | JBoundaryBox | JCircle
   keepAllTiles?: boolean
   includeClusterFeatures?: boolean
+  includeLabelFeatures?: boolean
 }
 
 declare interface JGetSourceFeaturesParams {
