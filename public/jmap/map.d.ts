@@ -59,6 +59,10 @@ declare interface JGetSourceFeaturesParams {
   keepAllTiles?: boolean
 }
 
+declare interface JDisplayExtentParams {
+  moveToExtent: boolean
+}
+
 declare interface JMapEventParams {
   map: mapboxgl.Map
   mapEvent: any

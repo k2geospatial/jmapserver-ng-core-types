@@ -3831,13 +3831,31 @@ declare namespace JMap {
      * The layer extent will disappear after a few seconds
      *
      * @param layerId a layer Id
+     * @param params (see example)
      * @example ```ts
      *
      * // Move to layer 4 extent and display it for a few second
-     * JMap.Map.displayLayerExtent(4)
+     * JMap.Map.displayLayerExtent(4, {moveToExtent: true})
      * ```
      **/
-    function displayLayerExtent(layerId: JId): void
+    function displayLayerExtent(layerId: JId, params?: JDisplayExtentParams): Promise<void>
+
+    /**
+     * **JMap.Map.displayExtent**
+     *
+     * Displays the given extent
+     *
+     * The extent will disappear after a few seconds
+     *
+     * @param extent a boundary box
+     * @param params (see example)
+     * @example ```ts
+     *
+     * // Move to the extent of my boundary box and display it for a few second
+     * JMap.Map.displayExtent(myGeocodingBoundingBox, {moveToExtent: true})
+     * ```
+     **/
+    function displayExtent(extent: JBoundaryBox, params?: JDisplayExtentParams): void
 
     /**
      * **JMap.Map.getResolution**
