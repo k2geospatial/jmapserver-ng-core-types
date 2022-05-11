@@ -11291,7 +11291,7 @@ declare namespace JMap {
      *    .catch(error => console.error(error))
      * ```
      */
-    function update(contextId: JId, params?: Partial<JMapContextMetaData>): Promise<JMapContext>
+    function update(contextId: JId, params?: JMapContextMetaData): Promise<JMapContext>
 
     /**
      * **JMap.MapContext.updateMetaData**
@@ -11320,7 +11320,7 @@ declare namespace JMap {
      *    .catch(error => console.error(error))
      * ```
      */
-    function updateMetaData(contextId: JId, data: Partial<JMapContextMetaData>): Promise<void>
+    function updateMetaData(contextId: JId, data: JMapContextMetaData): Promise<void>
 
     /**
      * **JMap.MapContext.setCreateTitle**
