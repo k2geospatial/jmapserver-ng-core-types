@@ -3830,6 +3830,8 @@ declare namespace JMap {
      *
      * The layer extent will disappear after a few seconds
      *
+     * Returns a promise boolean to indicate if the layer extent has been succesfully displayed.
+     *
      * @param layerId a layer Id
      * @param params (see example)
      * @example ```ts
@@ -3838,7 +3840,7 @@ declare namespace JMap {
      * JMap.Map.displayLayerExtent(4, {moveToExtent: true})
      * ```
      **/
-    function displayLayerExtent(layerId: JId, params?: JDisplayExtentParams): Promise<void>
+    function displayLayerExtent(layerId: JId, params?: JDisplayExtentParams): Promise<boolean>
 
     /**
      * **JMap.Map.displayExtent**
@@ -3852,7 +3854,8 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Move to the extent of my boundary box and display it for a few second
-     * JMap.Map.displayExtent(myGeocodingBoundingBox, {moveToExtent: true})
+     * const myExtent = {"x": -77, "y": -37}
+     * JMap.Map.displayExtent(myExtent, {moveToExtent: true})
      * ```
      **/
     function displayExtent(extent: JBoundaryBox, params?: JDisplayExtentParams): void
