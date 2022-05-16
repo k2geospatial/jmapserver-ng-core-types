@@ -3854,7 +3854,7 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Move to the extent of my boundary box and display it for a few second
-     * const myExtent = {"x": -77, "y": -37}
+     * const myExtent = {sw: {x: -77,y: -37},ne: {x: 178,y: 58}}
      * JMap.Map.displayExtent(myExtent, {moveToExtent: true})
      * ```
      **/
