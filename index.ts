@@ -52,8 +52,8 @@ export interface JMapContextService {
   applyContextById(contextId: JId): Promise<void>
   deleteContextById(contextId: JId | JId[]): Promise<void>
   create(params?: JMapContextMetaData): Promise<JMapContext>
-  update(contextId: JId, params?: Partial<JMapContextMetaData>): Promise<JMapContext>
-  updateMetaData(contextId: JId, params: Partial<JMapContextMetaData>): Promise<void>
+  update(contextId: JId, params?: JMapContextMetaData): Promise<JMapContext>
+  updateMetaData(contextId: JId, params: JMapContextMetaData): Promise<void>
   setCreateTitle(newTitle: string): void
   setCreateDescription(newDescription: string): void
   setCreateTitleError(hasError: boolean): void

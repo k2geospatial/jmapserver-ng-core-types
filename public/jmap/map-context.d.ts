@@ -38,9 +38,10 @@ declare interface JMapContextEditResponse {
 }
 
 declare interface JMapContextMetaData {
-  title: string
-  shareLink: boolean
+  title?: string
+  shareLink?: boolean
   description?: string
+  thumbnailUrl?: string
 }
 
 /**
