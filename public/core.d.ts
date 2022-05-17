@@ -3830,10 +3830,9 @@ declare namespace JMap {
      *
      * The layer extent will disappear after a few seconds
      *
-     * Returns a promise boolean to indicate if the layer extent has been succesfully displayed.
-     *
      * @param layerId a layer Id
      * @param params (see example)
+     * @returns A promise boolean that is true is the layer has an extent or false otherwise.
      * @example ```ts
      *
      * // Move to layer 4 extent and display it for a few second
