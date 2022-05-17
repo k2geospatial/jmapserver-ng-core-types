@@ -3832,7 +3832,7 @@ declare namespace JMap {
      *
      * @param layerId a layer Id
      * @param params (see example)
-     * @returns A promise boolean that is true is the layer has an extent or false otherwise.
+     * @returns A promise boolean that is true if the layer has an extent or false otherwise.
      * @example ```ts
      *
      * // Move to layer 4 extent and display it for a few second
