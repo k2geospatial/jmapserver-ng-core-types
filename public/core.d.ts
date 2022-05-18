@@ -3831,13 +3831,33 @@ declare namespace JMap {
      * The layer extent will disappear after a few seconds
      *
      * @param layerId a layer Id
+     * @param params (see example)
+     * @returns A promise boolean that is true if the layer has an extent or false otherwise.
      * @example ```ts
      *
      * // Move to layer 4 extent and display it for a few second
-     * JMap.Map.displayLayerExtent(4)
+     * JMap.Map.displayLayerExtent(4, {moveToExtent: true})
      * ```
      **/
-    function displayLayerExtent(layerId: JId): void
+    function displayLayerExtent(layerId: JId, params?: JDisplayExtentParams): Promise<boolean>
+
+    /**
+     * **JMap.Map.displayExtent**
+     *
+     * Displays the given extent
+     *
+     * The extent will disappear after a few seconds
+     *
+     * @param extent a boundary box
+     * @param params (see example)
+     * @example ```ts
+     *
+     * // Move to the extent of my boundary box and display it for a few second
+     * const myExtent = {sw: {x: -77,y: -37},ne: {x: 178,y: 58}}
+     * JMap.Map.displayExtent(myExtent, {moveToExtent: true})
+     * ```
+     **/
+    function displayExtent(extent: JBoundaryBox, params?: JDisplayExtentParams): void
 
     /**
      * **JMap.Map.getResolution**

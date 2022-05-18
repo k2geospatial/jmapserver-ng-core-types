@@ -685,7 +685,8 @@ export interface JMapService {
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   clearFlashingLocations(): void
-  displayLayerExtent(layerId: JId): Promise<void>
+  displayLayerExtent(layerId: JId, params?: JDisplayExtentParams): Promise<boolean>
+  displayExtent(extent: JBoundaryBox, params?: JDisplayExtentParams): void
   getResolution(params?: JLatitudeAndZoom): number
   getScale(params?: JLatitudeAndZoom): string
   getScaleDenominator(params?: JLatitudeAndZoom): number
