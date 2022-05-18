@@ -148,9 +148,14 @@ declare interface JLayerMetadataSchemaItem extends JLayerBaseMetadata {
   allowMultiple: boolean
 }
 
+declare interface JLayerStyleSamplesById {
+  [styleId: string]: string
+}
+
 declare interface JLayersConfiguration {
   metadataSchema: JLayerMetadataSchemaItem[]
   layerTree: JLayerTree
+  styleSamples: JLayerStyleSamplesById
 }
 
 declare interface JLayerMetadata extends JLayerBaseMetadata {
@@ -256,6 +261,8 @@ declare interface JLayer extends JLayerTreeElement {
   mouseOver: JMapMouseOver
   minimumVisibleMapboxZoom: number | undefined
   maximumVisibleMapboxZoom: number | undefined
+  styleRules: JLayerStyleRule[]
+  defaultStyleRule: JLayerStyleRule
   thematics: JLayerThematic[]
   queries: JQuery[]
   extent: JBoundaryBox | null
@@ -272,7 +279,6 @@ declare interface JLayer extends JLayerTreeElement {
   informationReports: JLayerInformationReport[]
   spatialDataSourceId: string // For Jaaz only
   dynamicFilter: JDynamicFilter
-  styleThumbnailInBase64: string | undefined
 }
 
 declare interface JLayerInformationReport {
@@ -387,25 +393,36 @@ declare interface JLayerSearchByAttributesParams {
 
 declare interface JLayerStyleRule {
   id: string
+  layerId: string
   active: boolean
-  label: string
+  defaultRule: boolean
+  name: string
   conditions: JLayerStyleRuleCondition[]
 }
 
 declare interface JLayerStyleRuleCondition {
-  conditionExpressions: JLayerStyleRuleConditionExpression[]
+  id: string
+  name: string
   styleMapScales: JLayerStyleScaled[]
 }
 
+declare interface JLayerStyleScaled {
+  id: string
+  styleId: string
+  minimumVisibleMapboxZoom: number
+  maximumVisibleMapboxZoom: number
+}
+
+declare interface JLayerStyleSample {
+  styleId: string
+  imageSampleInBase64: string
+}
+
+// @TODO we probably don't need this interface anymore
 declare interface JLayerStyleRuleConditionExpression {
   operator: JLAYER_STYLE_RULE_CONDITION_EXPRESSION_OPERATORS
   value: any
   attribute: JLayerAttribute
-}
-
-declare interface JLayerStyleScaled {
-  minScale: number
-  style: JLayerStyle
 }
 
 declare interface JLayerStyle {
