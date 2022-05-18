@@ -11097,7 +11097,7 @@ declare namespace JMap {
      * @throws if fn is not a function, if timeoutsInMilliseconds is not a non-empty array of number
      * @example ```ts
      *
-     * // Print hello world instantly, then two other time after a delay of one second
+     * // Print hello world instantly, then two other times after a delay of one second
      * const myHelloWorldFunction = () => console.log("Hello World")
      * JMap.Util.asyncProcess(myHelloWorldFunction, [0, 1000, 1000])
      * ```
