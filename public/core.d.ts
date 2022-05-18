@@ -11086,6 +11086,23 @@ declare namespace JMap {
      * ```
      */
     function getJmapIdAsIntegerIfPossible(id: any): JId
+
+    /**
+     * **JMap.Util.asyncProcess**
+     *
+     * Run the parameter function after one or multiple delays.
+     *
+     * @param fn The function to run
+     * @param timeoutsInMilliseconds An array of delay in milliseconds
+     * @throws if fn is not a function, if timeoutsInMilliseconds is not a non-empty array of number
+     * @example ```ts
+     *
+     * // Print hello world instantly, then two other time after a delay of one second
+     * const myHelloWorldFunction = () => console.log("Hello World")
+     * JMap.Util.asyncProcess(myHelloWorldFunction, [0, 1000, 1000])
+     * ```
+     */
+    function asyncProcess(callback: () => any, timeoutsInMilliseconds: number[]): void
   }
 
   /**
