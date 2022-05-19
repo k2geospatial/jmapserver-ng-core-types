@@ -332,7 +332,7 @@ declare interface JLayerTreeElement {
   initialVisibility: boolean
   visible: boolean
   isGroup: boolean
-  paths: string[]
+  path: string
 }
 
 declare type JLayerTree = JLayerTreeElement[]
