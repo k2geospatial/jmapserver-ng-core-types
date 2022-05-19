@@ -428,4 +428,31 @@ declare interface JCoreOptions {
    * In JMap NG App, no basemap panel will be displayed in the left panel
    */
   disableBasemaps?: boolean
+
+  /**
+   * A basemap id.
+   *
+   * If provided, will use the corresponding basemap as the default basemap.
+   *
+   * If the id is unknown, will do nothing. To get all basemaps ids of the project, use [[JMap.Map.Basemap.getAllIds()]]
+   *
+   * Using the id "none" will disable the default basemap.
+   *
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         // disable the default basemap
+   *         defaultBasemapId: "none"
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+  defaultBasemapId?: string
 }
