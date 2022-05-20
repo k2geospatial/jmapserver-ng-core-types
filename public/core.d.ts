@@ -11092,7 +11092,7 @@ declare namespace JMap {
      *
      * Run the parameter function after one or multiple delays.
      *
-     * You can cancel the repetition by running the the function returned by asyncProcess
+     * You can cancel the repetition by running the function returned by asyncProcess
      *
      * @param callback The function to run
      * @param timeoutsInMilliseconds An array of delay in milliseconds
