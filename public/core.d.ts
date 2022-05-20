@@ -11100,7 +11100,7 @@ declare namespace JMap {
      * @throws if callback is not a function, if timeoutsInMilliseconds is not a non-empty array of number
      * @example ```ts
      *
-     * // Print hello world 4 times then cancel it before printing the last repetition
+     * // Print "Hello World" 4 times then cancel it before printing the last repetition
      * const myHelloWorldFunction = () => console.log("Hello World")
      * const stopProcessing = JMap.Util.asyncProcess(myHelloWorldFunction, [1000, 1000, 1000, 1000, 1000])
      * setTimeout(() => stopProcessing(), 4100)
