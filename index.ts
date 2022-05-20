@@ -112,7 +112,7 @@ export interface JUtilService {
   isJMapId(id: any, allowStringNumber?: boolean): boolean
   checkJmapId(id: any, message?: string): void
   getJmapIdAsIntegerIfPossible(id: any): JId
-  asyncProcess(callback: () => any, timeoutsInMilliseconds: number[]): void
+  asyncProcess(callback: () => any, timeoutsInMilliseconds: number[]): () => void
 }
 
 export interface JArrayService {

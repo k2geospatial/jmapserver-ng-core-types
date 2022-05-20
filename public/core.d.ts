@@ -11092,17 +11092,21 @@ declare namespace JMap {
      *
      * Run the parameter function after one or multiple delays.
      *
+     * You can cancel the repetition by running the the function returned by asyncProcess
+     *
      * @param callback The function to run
      * @param timeoutsInMilliseconds An array of delay in milliseconds
+     * @returns a function that will cancel the process if called
      * @throws if callback is not a function, if timeoutsInMilliseconds is not a non-empty array of number
      * @example ```ts
      *
-     * // Print hello world instantly, then two other times after a delay of one second
+     * // Print hello world 4 times then cancel it before printing the last repetition
      * const myHelloWorldFunction = () => console.log("Hello World")
-     * JMap.Util.asyncProcess(myHelloWorldFunction, [0, 1000, 1000])
+     * const stopProcessing = JMap.Util.asyncProcess(myHelloWorldFunction, [1000, 1000, 1000, 1000, 1000])
+     * setTimeout(() => stopProcessing(), 4100)
      * ```
      */
-    function asyncProcess(callback: () => any, timeoutsInMilliseconds: number[]): void
+    function asyncProcess(callback: () => any, timeoutsInMilliseconds: number[]): () => void
   }
 
   /**
