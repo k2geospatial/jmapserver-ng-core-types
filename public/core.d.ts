@@ -11092,9 +11092,9 @@ declare namespace JMap {
      *
      * Run the parameter function after one or multiple delays.
      *
-     * @param fn The function to run
+     * @param callback The function to run
      * @param timeoutsInMilliseconds An array of delay in milliseconds
-     * @throws if fn is not a function, if timeoutsInMilliseconds is not a non-empty array of number
+     * @throws if callback is not a function, if timeoutsInMilliseconds is not a non-empty array of number
      * @example ```ts
      *
      * // Print hello world instantly, then two other times after a delay of one second
