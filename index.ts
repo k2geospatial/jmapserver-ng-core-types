@@ -482,6 +482,7 @@ export interface JLayerState {
   hasLoadingError: boolean
   metadataSchema: JLayerMetadataSchemaItem[]
   tree: JLayerTree
+  styleSamplesById: JLayerStyleSamplesById
   allById: { [treeElementId: string]: JLayerTreeElement }
   orderedLayerIds: JId[]
   vectorLayerIds: JId[]
