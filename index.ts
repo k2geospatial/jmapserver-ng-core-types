@@ -788,8 +788,6 @@ export interface JProjectService {
   getDefaultDistanceUnit(): JMAP_DISTANCE_UNITS
   getMapUnit(): JMAP_DISTANCE_UNITS
   getInitialRotation(): number
-  getMinScale(): number
-  getMaxScale(): number
   getSelectionColor(): string
   getBackgroundColor(): string
   getInitialExtent(): JBounds | null

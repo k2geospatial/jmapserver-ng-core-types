@@ -5694,34 +5694,6 @@ declare namespace JMap {
     function getInitialRotation(): number
 
     /**
-     * **JMap.Project.getMinScale**
-     *
-     * Returns loaded JMap project min scale.
-     *
-     * @throws If no project is loaded
-     * @example ```ts
-     *
-     * // returns the project min scale
-     * JMap.Project.getMinScale()
-     * ```
-     */
-    function getMinScale(): number
-
-    /**
-     * **JMap.Project.getMaxScale**
-     *
-     * Returns loaded JMap project max scale.
-     *
-     * @throws If no project is loaded
-     * @example ```ts
-     *
-     * // returns the project max scale
-     * JMap.Project.getMaxScale()
-     * ```
-     */
-    function getMaxScale(): number
-
-    /**
      * **JMap.Project.getSelectionColor**
      *
      * Returns loaded JMap project selection color in html hexa format.

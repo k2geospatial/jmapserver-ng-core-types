@@ -25,8 +25,6 @@ declare interface JProject {
   description: string
   projection: JProjection
   initialRotation: number
-  scaleMax: number
-  scaleMin: number
   colorSelection: string
   colorBackground: string
   initialExtent: JBounds | null
