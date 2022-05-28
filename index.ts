@@ -353,6 +353,7 @@ export interface JFeatureEventModule extends JEventModule {
 export interface JUserEventModule extends JEventModule {
   on: {
     sessionChanged(listenerId: string, fn: (params: JUserEventSessionChangedParams) => void): void
+    organizationChanged(listenerId: string, fn: (params: JUserEventOrganizationChangedParams) => void): void
   }
 }
 
@@ -506,6 +507,7 @@ export interface JQueryState {
 export interface JUserState {
   isLoggingIn: boolean
   identity: JUserIdentity
+  organization: JOrganization
   token: string
   informations: JUserInfo[]
   changePasswordAllowed: boolean
@@ -882,6 +884,7 @@ export interface JLayerThematicService {
 
 export interface JUserService {
   getToken(): string
+  getOrganization(): JOrganization
   getFullName(): string
   getUsername(): string
   getPreference(name: string): Promise<string | null>
