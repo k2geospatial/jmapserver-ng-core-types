@@ -506,6 +506,7 @@ export interface JQueryState {
 export interface JUserState {
   isLoggingIn: boolean
   identity: JUserIdentity
+  organization: JOrganization
   token: string
   informations: JUserInfo[]
   changePasswordAllowed: boolean
@@ -882,6 +883,7 @@ export interface JLayerThematicService {
 
 export interface JUserService {
   getToken(): string
+  getOrganization(): JOrganization
   getFullName(): string
   getUsername(): string
   getPreference(name: string): Promise<string | null>
