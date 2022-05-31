@@ -1805,7 +1805,7 @@ declare namespace JMap {
      *
      * Return the initial transparency (defined on the layer style) for a  given raster layer
      *
-     * @throws Error if layer or attribute not found
+     * @throws Error if layer not found or not a raster layer
      * @param layerId The JMap layer id
      * @returns the initial transparency value
      * @example ```ts
