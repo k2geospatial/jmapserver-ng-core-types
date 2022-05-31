@@ -1212,8 +1212,9 @@ declare namespace JMap {
        * JMap.Layer.DynamicFilter.set([{
        *   layerId: 3,
        *   conditions: [{
+       *     layerId: 3,
        *     attributeName: "name",
-       *     filterOperator: "EQUALS"
+       *     filterOperator: "EQUALS",
        *     value: ["Ottawa"]
        *   }]
        * }])
