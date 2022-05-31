@@ -137,7 +137,7 @@ declare namespace JMap {
      * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @example ```ts
      *
-     * // display the server type, "legacy" (JMap 7) or "saas" (Jaaz)
+     * // display the server type, "legacy" (JMap 7) or "saas" (JMap Cloud)
      * console.log(`Server type is "${JMap.Server.getType()}""`)
      * ```
      */
@@ -1911,9 +1911,9 @@ declare namespace JMap {
      *
      * Returns the extent of the layer in ESPG:4326 coordinates
      *
-     * With Jaaz server a call is made to the server.
+     * With a JMap Cloud server, a call is made to the server.
      *
-     * With JMap 7 server no call to server is made, returns the cached extent.
+     * With a JMap 7 server, no call to server is made, returns the cached extent.
      *
      * @example ```ts
      *
@@ -6401,8 +6401,9 @@ declare namespace JMap {
      *
      * Returns user's organization id.
      *
-     * If server is JMap server and not Jaaz, will return "", as there is no organization concept
-     * for this kind of server.
+     * If server is not a JMap Cloud server, or if the user in not logged in, will return an empty Id
+     *
+     * Organizations are only defined when connected to a JMap Cloud server instance.
      *
      * @example ```ts
      *
@@ -6411,6 +6412,21 @@ declare namespace JMap {
      * ```
      */
     function getOrganizationId(): string
+
+    /**
+     * ***JMap.User.getOrganizationId***
+     *
+     * Returns the currently logged in user's organization, if the server is a JMap Cloud server, otherwise an empty orgnization object.
+     *
+     * Organizations are only defined when connected to a JMap Cloud server instance.
+     *
+     * @example ```ts
+     *
+     * // returns the user's organization
+     * JMap.User.getOrganization()
+     * ```
+     */
+    function getOrganization(): JOrganization
   }
 
   /**
