@@ -1791,6 +1791,7 @@ declare namespace JMap {
      *
      * @throws Error if layer not found or not a raster layer
      * @param layerId The JMap layer id
+     * @returns the current transparency value
      * @example ```ts
      *
      *  // returns the transparency of raster layer id=4
@@ -1806,6 +1807,7 @@ declare namespace JMap {
      *
      * @throws Error if layer or attribute not found
      * @param layerId The JMap layer id
+     * @returns the initial transparency value
      * @example ```ts
      *
      *  // returns the initial transparency of raster layer id=4
