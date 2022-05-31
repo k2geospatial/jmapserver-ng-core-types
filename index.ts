@@ -353,7 +353,6 @@ export interface JFeatureEventModule extends JEventModule {
 export interface JUserEventModule extends JEventModule {
   on: {
     sessionChanged(listenerId: string, fn: (params: JUserEventSessionChangedParams) => void): void
-    organizationChanged(listenerId: string, fn: (params: JUserEventOrganizationChangedParams) => void): void
   }
 }
 

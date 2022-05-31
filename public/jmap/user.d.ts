@@ -2,10 +2,6 @@ declare interface JUserEventSessionChangedParams {
   session: JSessionData
 }
 
-declare interface JUserEventOrganizationChangedParams {
-  organization: JOrganization
-}
-
 declare interface JSessionData {
   /**
    * The JMap user session token.
@@ -51,17 +47,17 @@ declare interface JOrganization {
   name: string
   description: string
   active: boolean
-  externalApiKeys: JExternalApiKey[]
+  externalApiKeys: JOrganizationExternalApiKey[]
 }
 
-declare interface JExternalApiKey {
+declare interface JOrganizationExternalApiKey {
   id: string
   title: string
   apiKey: string
-  type: JEXTERNAL_API_KEY_TYPES
+  type: JORGANIZATION_EXTERNAL_API_KEY_TYPES
 }
 
-// ALL_JEXTERNAL_API_KEY_TYPES in all-enum.ts
-declare const enum JEXTERNAL_API_KEY_TYPES {
+// ALL_JORGANIZATION_EXTERNAL_API_KEY_TYPES in all-enum.ts
+declare const enum JORGANIZATION_EXTERNAL_API_KEY_TYPES {
   MAPBOX_ACCESS_TOKEN = "MAPBOX_ACCESS_TOKEN"
 }
