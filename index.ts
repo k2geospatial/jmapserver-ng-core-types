@@ -811,6 +811,9 @@ export interface JLayerService {
   getVectorLayerIds(): JId[]
   getLayerAttributes(layerId: JId): JLayerAttribute[]
   getLayerAttribute(layerId: JId, attributeName: string): JLayerAttribute
+  getRasterLayerTransparency(layerId: JId): number
+  getRasterLayerInitialTransparency(layerId: JId): number
+  resetRasterLayerTransparency(layerId: JId): number
   exists(layerId: JId): boolean
   attributeExists(layerId: JId, attributeName: string): boolean
   getById(layerId: JId): JLayerTreeElement
@@ -860,6 +863,7 @@ export interface JLayerService {
   deactivateHover(): void
   hasInformationReport(layerId: JId): boolean
   openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
+  setRasterLayerTransparency(layerId: JId, transparency: number): void
 }
 
 export interface JLayerSearchService {
