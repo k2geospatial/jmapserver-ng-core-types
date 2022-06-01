@@ -8015,6 +8015,30 @@ declare namespace JMap {
         function visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
 
         /**
+         * ***JMap.Event.Layer.on.rasterTransparencyChange***
+         *
+         * This event is triggered when a raster element transparency changed.
+         *
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         *
+         * // Each time a raster element transparency is changed, will display the new transparency
+         * // in the console
+         * JMap.Event.Layer.on.rasterTransparencyChange(
+         *    "custom-raster-transparency-change",
+         *    params => {
+         *      console.log(`Layer element id="${params.layerId}" transparency="${params.transparency}"`)
+         *    }
+         * )
+         * ```
+         */
+        function rasterTransparencyChange(
+          listenerId: string,
+          fn: (params: JLayerEventRasterTransparencyParams) => void
+        ): void
+
+        /**
          * ***JMap.Event.Layer.on.selectabilityWillChange***
          *
          * This event is triggered just before a vector layer selectability is changed. This

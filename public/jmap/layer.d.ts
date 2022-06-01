@@ -192,6 +192,11 @@ declare interface JLayerEventVisibilityParams {
   areAllParentsVisible: boolean
 }
 
+declare interface JLayerEventRasterTransparencyParams {
+  layerId: JId
+  transparency: number
+}
+
 declare interface JLayerEventSelectabilityParams {
   layerId: JId
   selectability: boolean

@@ -297,6 +297,7 @@ export interface JLayerEventModule extends JEventModule {
       fn: (params: JLayerEventThematicCategoryVisibilityParams) => void
     ): void
     visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
+    rasterTransparencyChange(listenerId: string, fn: (params: JLayerEventRasterTransparencyParams) => void): void
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void): void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
     initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
