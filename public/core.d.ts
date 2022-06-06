@@ -1787,7 +1787,7 @@ declare namespace JMap {
     /**
      * **JMap.Layer.getRasterLayerTransparency**
      *
-     * Return the transparency for a  given raster layer
+     * Returns the transparency for a given raster layer
      *
      * @throws Error if layer not found or not a raster layer
      * @param layerId The JMap layer id
@@ -2269,7 +2269,7 @@ declare namespace JMap {
     /**
      * **JMap.Layer.setRasterLayerTransparency***
      *
-     * Set the transparency for a given raster layer
+     * Sets the transparency for a given raster layer
      *
      * @throws Error if layer is not found, not a raster layer or transparency is invalid
      * @param layerId The JMap layer id
@@ -2277,7 +2277,7 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Make raster layer id=10 transparent
-     * JMap.Layer.setRasterLayerTransparency(10, 100)
+     * JMap.Layer.setRasterLayerTransparency(10, 1)
      * ```
      */
     function setRasterLayerTransparency(layerId: JId, transparency: number): void
@@ -2285,7 +2285,7 @@ declare namespace JMap {
     /**
      * **JMap.Layer.resetRasterLayerTransparency**
      *
-     * Reset the raster layer transparency to its initial value as defined on the server
+     * Resets the raster layer transparency to its initial value as defined on the server
      *
      * @throws Error if layer is not found or not a raster layer
      * @param layerId The JMap layer id

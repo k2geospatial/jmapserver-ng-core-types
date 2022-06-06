@@ -434,7 +434,7 @@ declare interface JCoreOptions {
    *
    * If provided, will use the corresponding basemap as the default basemap.
    *
-   * If the id is unknown, will do nothing. To get all basemaps ids in the project, use [[JMap.Map.Basemap.getAllIds()]].
+   * If the id is unknown, will do nothing. To get all basemaps ids in the project, use [[JMap.Map.Basemap.getAllIds()]]
    *
    * Using the id "none" will use no basemap at startup.
    *
