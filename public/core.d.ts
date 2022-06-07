@@ -2293,7 +2293,7 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Make raster layer id=3 transparent
-     * JMap.Layer.setRasterLayerTransparency(10, 100)
+     * JMap.Layer.setRasterLayerTransparency(10, 1)
      * // Reset to its initial opacity
      * JMap.Map.resetRasterLayerTransparency(3)
      * ```
