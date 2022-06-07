@@ -1786,6 +1786,38 @@ declare namespace JMap {
     function getLayerAttribute(layerId: JId, attributeName: string): JLayerAttribute
 
     /**
+     * **JMap.Layer.getRasterLayerTransparency**
+     *
+     * Returns the transparency for a given raster layer
+     *
+     * @throws Error if layer not found or not a raster layer
+     * @param layerId The JMap layer id
+     * @returns the current transparency value
+     * @example ```ts
+     *
+     *  // returns the transparency of raster layer id=4
+     *  JMap.Layer.getRasterLayerTransparency(4)
+     * ```
+     */
+    function getRasterLayerTransparency(layerId: JId): number
+
+    /**
+     * **JMap.Layer.getRasterLayerInitialTransparency**
+     *
+     * Return the initial transparency (defined on the layer style) for a  given raster layer
+     *
+     * @throws Error if layer not found or not a raster layer
+     * @param layerId The JMap layer id
+     * @returns the initial transparency value
+     * @example ```ts
+     *
+     *  // returns the initial transparency of raster layer id=4
+     *  JMap.Layer.getRasterLayerInitialTransparency(4)
+     * ```
+     */
+    function getRasterLayerInitialTransparency(layerId: JId): number
+
+    /**
      * **JMap.Layer.getLayerAttributes**
      *
      * Returns all attribute descriptors for a particuler layer
@@ -2234,6 +2266,40 @@ declare namespace JMap {
      * ```
      **/
     function openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
+
+    /**
+     * **JMap.Layer.setRasterLayerTransparency***
+     *
+     * Sets the transparency for a given raster layer
+     *
+     * @throws Error if layer is not found, not a raster layer or transparency is invalid
+     * @param layerId The JMap layer id
+     * @param transparency the new layer transparency between 0 and 1
+     * @example ```ts
+     *
+     * // Make raster layer id=10 transparent
+     * JMap.Layer.setRasterLayerTransparency(10, 1)
+     * ```
+     */
+    function setRasterLayerTransparency(layerId: JId, transparency: number): void
+
+    /**
+     * **JMap.Layer.resetRasterLayerTransparency**
+     *
+     * Resets the raster layer transparency to its initial value as defined on the server
+     *
+     * @throws Error if layer is not found or not a raster layer
+     * @param layerId The JMap layer id
+     * @returns the initial transparency value
+     * @example ```ts
+     *
+     * // Make raster layer id=3 transparent
+     * JMap.Layer.setRasterLayerTransparency(10, 1)
+     * // Reset to its initial opacity
+     * JMap.Map.resetRasterLayerTransparency(3)
+     * ```
+     */
+    function resetRasterLayerTransparency(layerId: JId): number
   }
 
   /**
@@ -7948,6 +8014,30 @@ declare namespace JMap {
          * ```
          */
         function visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
+
+        /**
+         * ***JMap.Event.Layer.on.rasterTransparencyChange***
+         *
+         * This event is triggered when a raster element transparency changed.
+         *
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         *
+         * // Each time a raster element transparency is changed, will display the new transparency
+         * // in the console
+         * JMap.Event.Layer.on.rasterTransparencyChange(
+         *    "custom-raster-transparency-change",
+         *    params => {
+         *      console.log(`Layer element id="${params.layerId}" transparency="${params.transparency}"`)
+         *    }
+         * )
+         * ```
+         */
+        function rasterTransparencyChange(
+          listenerId: string,
+          fn: (params: JLayerEventRasterTransparencyParams) => void
+        ): void
 
         /**
          * ***JMap.Event.Layer.on.selectabilityWillChange***

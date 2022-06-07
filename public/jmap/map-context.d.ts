@@ -119,6 +119,7 @@ declare interface JMapContextDataLayer extends JMapContextDataLayerElement {
   thematics: JMapContextDataThematic[]
   dynamicFilterConditions: JDynamicFilterCondition[]
   dynamicFilterIsActive: boolean
+  transparency?: number
 }
 
 declare interface JMapContextDataThematic {
