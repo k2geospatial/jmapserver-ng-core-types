@@ -36,6 +36,7 @@ declare const enum JLAYER_ATTRIBUTE_TYPES {
 declare const enum JLAYER_THEMATIC_TYPES {
   INDIVIDUAL = "INDIVIDUAL_VALUES",
   GRADUATED = "GRADUATED_STYLE",
+  STYLE_RULE = "STYLE_RULE",
   OTHER = "OTHER"
 }
 
@@ -43,14 +44,8 @@ declare const enum JLAYER_THEMATIC_TYPES {
 declare const enum JLAYER_THEMATIC_FAMILY_TYPES {
   CLASSIFICATION = "Classification",
   PROPORTIONAL_SYMBOL = "ProportionalSymbol",
+  STYLE_RULE = "StyleRule",
   OTHER = "Other"
-}
-
-// ALL_LAYER_THEMATIC_PRIMITIVE_TYPES in all-enum.ts
-declare const enum JLAYER_THEMATIC_PRIMITIVE_TYPES {
-  LINE = "LINE",
-  POINT = "POINT",
-  AREA = "AREA"
 }
 
 // ALL_LAYER_STYLE_TYPES in all-enum.ts
@@ -178,6 +173,12 @@ declare interface JLayerEventThematicCategoryVisibilityParams {
   layerId: JId
   thematicId: JId
   hiddenCategoryIndexes: number[]
+}
+
+declare interface JLayerEventThematicConditionVisibilityParams {
+  layerId: JId
+  thematicId: JId
+  hiddenConditionIds: string[]
 }
 
 declare interface JLayerEventThematicVisibilityParams {
@@ -349,9 +350,6 @@ declare interface JLayerThematic {
   name: string
   description: string
   type: JLAYER_THEMATIC_TYPES
-  baseStyle: JLayerStyle
-  primitiveType: JLAYER_THEMATIC_PRIMITIVE_TYPES
-  elementCount: number
   title: string
   subTitle: string
   dynamicLegend: boolean
@@ -359,13 +357,29 @@ declare interface JLayerThematic {
 
 declare interface JLayerThematicClassification extends JLayerThematic {
   categoryCount: number
-  dynamicLegend: boolean
   colorPaletteName: string
   attribute: string
   nullValueSupported: boolean
   outOfSampleDataIgnored: boolean
   categories: JLayerThematicCategory[]
   hiddenCategoryIndexes: number[]
+}
+
+declare interface JLayerThematicStyleRule extends JLayerThematic {
+  conditions: JLayerThematicCondition[]
+  hiddenConditionIds: string[]
+}
+
+declare interface JLayerThematicCondition {
+  id: string
+  title: string
+  scaledStyles: JLayerThematicConditionScaledStyle[]
+}
+
+declare interface JLayerThematicConditionScaledStyle {
+  minZoom: number
+  maxZoom: number
+  styleId: string
 }
 
 declare interface JLayerThematicCategory {
@@ -377,6 +391,7 @@ declare interface JLayerThematicCategory {
 }
 
 declare interface JLayerThematicCategoryIndividual extends JLayerThematicCategory {
+  type: JLAYER_THEMATIC_TYPES.INDIVIDUAL
   value: any
 }
 
@@ -541,12 +556,21 @@ declare interface JLayerThematicSetVisibilityParams {
   layerId: JId
   thematicId: JId
   visibility: boolean
+  hiddenCategoryIndexes?: number[]
+  hiddenConditionIds?: string[]
 }
 
 declare interface JLayerThematicSetCategoryVisibilityParams {
   layerId: JId
   thematicId: JId
   categoryIndex: number
+  visibility: boolean
+}
+
+declare interface JLayerThematicSetConditionVisibilityParams {
+  layerId: JId
+  thematicId: string
+  conditionId: string
   visibility: boolean
 }
 

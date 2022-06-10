@@ -932,34 +932,6 @@ declare namespace JMap {
       function setCategoryVisibility(params: JLayerThematicSetCategoryVisibilityParams): void
 
       /**
-       * **JMap.Layer.Thematic.setCategoriesVisibility**
-       *
-       * Shows or hides specific layer thematic categories on the map.
-       *
-       * @throws Error if layer or thematic is not found, or if an invalid param is provided
-       * @param params an array of [[JLayerThematicSetCategoryVisibilityParams]] objects
-       * @example ```ts
-       *
-       * // Hide the first and third category of thematic id=3 of layer id=7
-       * JMap.Layer.Thematic.setCategoriesVisibility([
-       * {
-       *    layerId: 7,
-       *    thematicId: 3,
-       *    categoryIndex: 0,
-       *    visibility: false
-       *  },
-       * {
-       *    layerId: 7,
-       *    thematicId: 3,
-       *    categoryIndex: 2,
-       *    visibility: false
-       *  },
-       * ])
-       * ```
-       */
-      function setCategoriesVisibility(params: JLayerThematicSetCategoryVisibilityParams[]): void
-
-      /**
        * **JMap.Layer.Thematic.setAllCategoriesVisibility**
        *
        * Shows or hides all thematic categories of a layer on the map
@@ -979,6 +951,51 @@ declare namespace JMap {
        * ```
        */
       function setAllCategoriesVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
+
+      /**
+       * **JMap.Layer.Thematic.setConditionVisibility**
+       *
+       * Shows or hides a specific layer thematic condition on the map.
+       *
+       * Works only for JMap Cloud server.
+       *
+       * @throws Error if layer or thematic is not found, or thematic is not a style rule thematic, or if an invalid param is provided
+       * @param params a [[JLayerThematicSetConditionVisibilityParams]] object
+       * @example ```ts
+       *
+       * // Hide condition of thematic id="ac7b197c-ca14-4295-b349-8cba6a4dc631" of layer id="53ff7632-0d5e-497a-a1b0-25ce3f941023"
+       * JMap.Layer.Thematic.setConditionVisibility({
+       *    layerId: "53ff7632-0d5e-497a-a1b0-25ce3f941023",
+       *    thematicId: "ac7b197c-ca14-4295-b349-8cba6a4dc631",
+       *    conditionId: "ac7b197c-ca14-4295-b349-8cba6a4dc631",
+       *    visibility: false // false to hide, true to show
+       *  })
+       * ```
+       */
+      function setConditionVisibility(params: JLayerThematicSetConditionVisibilityParams): void
+
+      /**
+       * **JMap.Layer.Thematic.setAllConditionsVisibility**
+       *
+       * Shows or hides all thematic conditions of a layer thematic on the map
+       *
+       * Works only for JMap Cloud server, on style rule based thematics.
+       *
+       * @throws Error if layer or thematic is not found, or thematic is not a style rule thematic, or if an invalid param is provided
+       * @param layerId The JMap layer id
+       * @param thematicId The thematic id
+       * @param visibility true to show, false to hide
+       * @example ```ts
+       *
+       * // Hide all conditions of thematic id="ac7b197c-ca14-4295-b349-8cba6a4dc631" of layer id="53ff7632-0d5e-497a-a1b0-25ce3f941023"
+       * JMap.Layer.Thematic.setAllConditionsVisibility(
+       *    layerId: "53ff7632-0d5e-497a-a1b0-25ce3f941023",
+       *    thematicId: "ac7b197c-ca14-4295-b349-8cba6a4dc631",
+       *    visibility: false
+       *  )
+       * ```
+       */
+      function setAllConditionsVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
 
       /**
        * **JMap.Layer.Thematic.getFamilyTypeById**
@@ -8099,7 +8116,7 @@ declare namespace JMap {
          *
          * // Each time a layer thematic category visibility state is changed this method is processed
          * JMap.Event.Layer.on.thematicCategoriesVisibilityChange(
-         *    "custom-thematic-visibility-change",
+         *    "custom-thematic-categories-visibility-change",
          *    params => {
          *      console.log(
          *        `Layer id="${params.layerId}", ` +
@@ -8113,6 +8130,35 @@ declare namespace JMap {
         function thematicCategoriesVisibilityChange(
           listenerId: string,
           fn: (params: JLayerEventThematicCategoryVisibilityParams) => void
+        ): void
+
+        /**
+         * ***JMap.Event.Layer.on.thematicConditionsVisibilityChange***
+         *
+         * This event is triggered when the visibility state of a layer thematic condition changes.
+         *
+         * It's works only for JMap Cloud server, for style rule thematics.
+         *
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         *
+         * // Each time a layer thematic condition visibility state is changed this method is processed
+         * JMap.Event.Layer.on.thematicConditionsVisibilityChange(
+         *    "custom-thematic-conditions-visibility-change",
+         *    params => {
+         *      console.log(
+         *        `Layer id="${params.layerId}", ` +
+         *        `thematic id="${params.thematicId}" ` +
+         *        `hidden conditions="${params.hiddenConditionIds.toString()}"`
+         *      )
+         *    }
+         * )
+         * ```
+         */
+        function thematicConditionsVisibilityChange(
+          listenerId: string,
+          fn: (params: JLayerEventThematicConditionVisibilityParams) => void
         ): void
 
         /**
