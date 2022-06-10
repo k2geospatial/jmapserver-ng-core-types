@@ -185,6 +185,8 @@ declare interface JLayerEventThematicVisibilityParams {
   layerId: JId
   thematicId: JId
   visibility: boolean
+  hiddenCategoryIndexes?: number[]
+  hiddenConditionIds?: string[]
 }
 
 declare interface JLayerEventVisibilityParams {
