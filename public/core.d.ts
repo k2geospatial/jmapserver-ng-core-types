@@ -8137,7 +8137,7 @@ declare namespace JMap {
          *
          * This event is triggered when the visibility state of a layer thematic condition changes.
          *
-         * It's works only for JMap Cloud server, for style rule thematics.
+         * It works only for JMap Cloud server, for style rule thematics.
          *
          * @param listenerId Your listener id (must be unique for all layer events)
          * @param fn Your listener function
