@@ -955,6 +955,8 @@ export interface JServerService {
   isReady(): boolean
   getVersion(): JServerVersion
   getType(): JSERVER_TYPES
+  isSaas(): boolean
+  isLegacy(): boolean
   getMinimumVersion(): JMinimumServerVersion
   isMinimumVersionRespected(serverInfo?: JServerInfo): boolean
   getShortVersion(): string

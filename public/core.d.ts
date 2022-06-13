@@ -138,10 +138,38 @@ declare namespace JMap {
      * @example ```ts
      *
      * // display the server type, "legacy" (JMap 7) or "saas" (JMap Cloud)
-     * console.log(`Server type is "${JMap.Server.getType()}""`)
+     * console.log(`Server type is "${JMap.Server.getType()}"`)
      * ```
      */
     function getType(): JSERVER_TYPES
+
+    /**
+     * **JMap.Server.isSaas**
+     *
+     * Returns true if the server is a JMap Cloud instance.
+     *
+     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
+     * @example ```ts
+     *
+     * // display the type of server
+     * console.log(`Server type is "${JMap.Server.isSaas() ? 'JMap Cloud' : 'JMap 7'}"`)
+     * ```
+     */
+    function isSaas(): boolean
+
+    /**
+     * **JMap.Server.isLegacy**
+     *
+     * Returns true if the server is a JMap 7 instance.
+     *
+     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
+     * @example ```ts
+     *
+     * // display the type of server
+     * console.log(`Server type is "${JMap.Server.isLegacy() ? 'JMap 7' : 'JMap Cloud'}"`)
+     * ```
+     */
+    function isLegacy(): boolean
 
     /**
      * **JMap.Server.getMinimumVersion**
