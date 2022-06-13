@@ -296,6 +296,10 @@ export interface JLayerEventModule extends JEventModule {
       listenerId: string,
       fn: (params: JLayerEventThematicCategoryVisibilityParams) => void
     ): void
+    thematicConditionsVisibilityChange(
+      listenerId: string,
+      fn: (params: JLayerEventThematicConditionVisibilityParams) => void
+    ): void
     visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
     rasterTransparencyChange(listenerId: string, fn: (params: JLayerEventRasterTransparencyParams) => void): void
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void): void
@@ -881,8 +885,9 @@ export interface JLayerThematicService {
   setVisibilityById(layerId: JId, thematicId: JId, visibility: boolean): void
   setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
   setCategoryVisibility(params: JLayerThematicSetCategoryVisibilityParams): void
-  setCategoriesVisibility(params: JLayerThematicSetCategoryVisibilityParams[]): void
   setAllCategoriesVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
+  setConditionVisibility(params: JLayerThematicSetConditionVisibilityParams): void
+  setAllConditionsVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
   getFamilyTypeById(layerId: JId, thematicId: JId): JLAYER_THEMATIC_FAMILY_TYPES
 }
 
@@ -950,6 +955,8 @@ export interface JServerService {
   isReady(): boolean
   getVersion(): JServerVersion
   getType(): JSERVER_TYPES
+  isSaas(): boolean
+  isLegacy(): boolean
   getMinimumVersion(): JMinimumServerVersion
   isMinimumVersionRespected(serverInfo?: JServerInfo): boolean
   getShortVersion(): string

@@ -125,6 +125,8 @@ declare interface JMapContextDataLayer extends JMapContextDataLayerElement {
 declare interface JMapContextDataThematic {
   id: JId
   isVisible: boolean
+  hiddenCategoryIndexes?: number[]
+  hiddenConditionIds?: string[]
 }
 
 declare interface JMapContext {
