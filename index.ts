@@ -301,7 +301,6 @@ export interface JLayerEventModule extends JEventModule {
       fn: (params: JLayerEventThematicConditionVisibilityParams) => void
     ): void
     visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
-    rasterTransparencyChange(listenerId: string, fn: (params: JLayerEventRasterTransparencyParams) => void): void
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void): void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
     initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
@@ -473,6 +472,7 @@ export interface JMapState {
   containerHeight: number
   modificationType: JMAP_MODIFICATION_TYPES
   attributions: JMapAttribution[]
+  rasterOpacityByLayerId: { [id: JId]: number }
 }
 
 export interface JProjectState {
@@ -705,6 +705,10 @@ export interface JMapService {
   openModificationPopupForCenter(): void
   openModificationPopupForScale(): void
   closeModificationPopup(): void
+  getRasterLayerTransparency(layerId: JId): number
+  getRasterLayerInitialTransparency(layerId: JId): number
+  resetRasterLayerTransparency(layerId: JId): number
+  setRasterLayerTransparency(layerId: JId, transparency: number): void
 }
 
 export interface JMapBasemapService {
@@ -817,9 +821,6 @@ export interface JLayerService {
   getVectorLayerIds(): JId[]
   getLayerAttributes(layerId: JId): JLayerAttribute[]
   getLayerAttribute(layerId: JId, attributeName: string): JLayerAttribute
-  getRasterLayerTransparency(layerId: JId): number
-  getRasterLayerInitialTransparency(layerId: JId): number
-  resetRasterLayerTransparency(layerId: JId): number
   exists(layerId: JId): boolean
   attributeExists(layerId: JId, attributeName: string): boolean
   getById(layerId: JId): JLayerTreeElement
@@ -869,7 +870,6 @@ export interface JLayerService {
   deactivateHover(): void
   hasInformationReport(layerId: JId): boolean
   openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
-  setRasterLayerTransparency(layerId: JId, transparency: number): void
 }
 
 export interface JLayerSearchService {
