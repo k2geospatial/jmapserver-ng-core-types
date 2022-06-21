@@ -116,6 +116,7 @@ export interface JUtilService {
 }
 
 export interface JArrayService {
+  clear<T>(array: T[]): T[]
   remove<T>(array: T[], element: T): T[]
   findByProperty<T extends object>(array: T[], propertyName: string, value: any): T | undefined
   findIndexByProperty<T extends object>(array: T[], propertyName: string, value: any, nonStrict?: boolean): number

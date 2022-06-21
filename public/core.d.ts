@@ -6405,7 +6405,7 @@ declare namespace JMap {
      *
      * Change the user password on JMap server
      *
-     * @throws Errors if passwords are not string or empty, if new password is not valid or if newPassword lenght is lower that the minimum lenght required.
+     * @throws Errors if passwords are not string or empty, if new password is not valid or if newPassword length is lower that the minimum length required.
      * @param newPassword The user new password
      * @param currentPassword The user current password
      * @example ```ts
@@ -10903,6 +10903,24 @@ declare namespace JMap {
      * Here you'll find all array related methods
      */
     namespace Array {
+      /**
+       * **JMap.Util.Array.clear**
+       *
+       * Removes all items of the specified array, making it empty.
+       *
+       * @param array the array
+       * @returns the given array (and not a copy)
+       * @example ```ts
+       *
+       * const myNumbers = [3, 5, 6, 7]
+       * // remove all items
+       * JMap.Util.Array.clear(myNumbers)
+       * console.log(`Count=${myNumbers.length}`)
+       * // display message "Count=0"
+       * ```
+       */
+      function clear<T>(array: T[]): T[]
+
       /**
        * **JMap.Util.Array.remove**
        *
