@@ -8477,6 +8477,7 @@ declare namespace JMap {
          * and only works well with a base Style Rule with only one condition and one Style Map Scale on JMap Cloud
          *
          * @param listenerId Your listener id (must be unique for all map events)
+         * @param layerId The JMap Layer Id
          * @param fn Your listener function
          * @example ```ts
          *
@@ -8546,6 +8547,7 @@ declare namespace JMap {
          * and only works well with a base Style Rule with only one condition and one Style Map Scale on JMap Cloud
          *
          * @param listenerId Your listener id (must be unique for all map events)
+         * @param layerId The JMap Layer Id
          * @param fn Your listener function
          * @example ```ts
          *
