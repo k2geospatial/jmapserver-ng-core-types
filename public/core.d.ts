@@ -8542,7 +8542,7 @@ declare namespace JMap {
         /**
          * ***JMap.Event.Map.on.mouseLeaveOnLayer***
          *
-         * This event is triggered when the mouse leave a layer feature, and is not over another feature.
+         * This event is triggered when the mouse leaves a layer feature, and is not over another feature.
          * **IMPORTANT! :** This event currently only works when a JMap layer's "base style" is displayed on the map (non-thematic),
          * and only works well with a base Style Rule with only one condition and one Style Map Scale on JMap Cloud
          *
