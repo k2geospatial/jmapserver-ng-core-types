@@ -8480,7 +8480,7 @@ declare namespace JMap {
          * @param fn Your listener function
          * @example ```ts
          *
-         * // When mouse is moving on the map over JMap layer id=2, will display 2 messages in the console
+         * // When mouse is moving on the map over JMap layer id=2, will display messages in the console
          * JMap.Event.Map.on.mouseMoveOnLayer(
          *    "custom-map-mouse-move-on-layer",
          *    2,
