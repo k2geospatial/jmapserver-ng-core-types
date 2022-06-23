@@ -213,10 +213,15 @@ export interface JEventListener {
   id: string
   fn: JEventFunction
 }
+export type JEventSimpleListenerDeclaration = (listenerId: string, fn: JEventFunction) => void
+
+export type JEventResourceListenerDeclaration = (listenerId: string, resourceId: JId, fn: JEventFunction) => void
+
+export type JEventListenerDeclaration = JEventSimpleListenerDeclaration | JEventResourceListenerDeclaration
 
 export interface JEventModule {
   on: {
-    [method: string]: (listenerId: string, fn: JEventFunction) => void
+    [method: string]: JEventListenerDeclaration
   }
   existById(listenerId: string): boolean
   activate(listenerId: string): void
@@ -320,9 +325,9 @@ export interface JMapEventModule extends JEventModule {
     move(listenerId: string, fn: (params: JMapEventParams) => void): void
     moveEnd(listenerId: string, fn: (params: JMapEventParams) => void): void
     mouseMove(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
-    mouseMoveOnLayer(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
-    mouseEnter(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
-    mouseLeave(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
+    mouseMoveOnLayer(listenerId: string, layerId: JId, fn: (params: JMapEventFeaturesParams) => void): void
+    mouseEnterOnLayer(listenerId: string, layerId: JId, fn: (params: JMapEventFeaturesParams) => void): void
+    mouseLeaveOnLayer(listenerId: string, layerId: JId, fn: (params: JMapEventLayerParams) => void): void
     click(listenerId: string, fn: (params: JMapEventLocationParams) => void): void
     zoomStart(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
     zoom(listenerId: string, fn: (params: JMapEventZoomParams) => void): void
@@ -865,9 +870,6 @@ export interface JLayerService {
    * @deprecated use [[JMap.Layer.Thematic.setThematicsVisibility]] instead
    */
   setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
-  isHoverActive(): boolean
-  activateHover(): void
-  deactivateHover(): void
   hasInformationReport(layerId: JId): boolean
   openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
 }

@@ -2204,49 +2204,6 @@ declare namespace JMap {
     function deleteLayer(layerId: JId): void
 
     /**
-     * **JMap.Layer.isHoverActive**
-     *
-     * Returns true if the hover is active on the map.
-     *
-     * @example ```ts
-     *
-     * // hover is false by default, but can be activated
-     * JMap.Layer.isHoverActive()
-     * ```
-     **/
-    function isHoverActive(): boolean
-
-    /**
-     * **JMap.Layer.activateHover**
-     *
-     * By default when mouse cursor pass hover a feature, it is not highlighted on the map.
-     *
-     * But you can activate the feature hover.
-     *
-     * @example ```ts
-     *
-     * // Activate feature hover highlight
-     * JMap.Layer.activateHover()
-     * ```
-     **/
-    function activateHover(): void
-
-    /**
-     * **JMap.Layer.deactivateHover**
-     *
-     * By default when mouse cursor pass hover a feature, it is not highlighted on the map.
-     *
-     * But you can activate it and deactivate as you like
-     *
-     * @example ```ts
-     *
-     * // Deactivate feature hover highlight
-     * JMap.Layer.deactivateHover()
-     * ```
-     **/
-    function deactivateHover(): void
-
-    /**
      * **JMap.Layer.hasInformationReport**
      *
      * Returns true if the given layer has an information report set in JMap Admin.
@@ -8515,15 +8472,18 @@ declare namespace JMap {
         /**
          * ***JMap.Event.Map.on.mouseMoveOnLayer***
          *
-         * This event is triggered when the mouse is moving over the map (when user or library pan the map).
+         * This event is triggered when the mouse is moving over a JMap Layer on the map.
+         * **IMPORTANT! :** This event currently only works when a JMap layer's "base style" is displayed on the map (non-thematic),
+         * and only works well with a base Style Rule with only one condition and one Style Map Scale on JMap Cloud
          *
          * @param listenerId Your listener id (must be unique for all map events)
          * @param fn Your listener function
          * @example ```ts
          *
-         * // When mouse is moving over the map, will display 2 messages in the console
+         * // When mouse is moving over the map over JMap layer id=2, will display 2 messages in the console
          * JMap.Event.Map.on.mouseMoveOnLayer(
          *    "custom-map-mouse-move-on-layer",
+         *    2,
          *    args => {
          *      console.log(
          *          `The mouse is moving on layer id="${args.layerId}"`,
@@ -8537,24 +8497,28 @@ declare namespace JMap {
          * )
          * ```
          */
-        function mouseMoveOnLayer(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
+        function mouseMoveOnLayer(listenerId: string, layerId: JId, fn: (params: JMapEventFeaturesParams) => void): void
 
         /**
-         * ***JMap.Event.Map.on.mouseEnter***
+         * ***JMap.Event.Map.on.mouseEnterOnLayer***
          *
-         * This event is triggered when the mouse enter over a layer feature.
+         * This event is triggered when the mouse enter over a layer feature on a specific layer.
          *
          * When switching from one feature to another, this event is not called again if the features
-         * are joined or intersect.
+         * are joined or intersect. This event only works on vector layers
+         * **IMPORTANT! :** This event currently only works when a JMap layer's "base style" is displayed on the map (non-thematic),
+         * and only works well with a base Style Rule with only one condition and one Style Map Scale on JMap Cloud
          *
          * @param listenerId Your listener id (must be unique for all map events)
+         * @param layerId The JMap Layer Id
          * @param fn Your listener function
          * @example ```ts
          *
-         * // When mouse is entering over a layer feature(s), will display 2 messages
+         * // When mouse is entering over layer id=2 feature(s), will display 2 messages
          * // in the console
-         * JMap.Event.Map.on.mousemouseEnterMoveOnLayer(
+         * JMap.Event.Map.on.mouseEnterOnLayer(
          *    "custom-map-mouse-enter",
+         *    2,
          *    args => {
          *      console.log(
          *          `The mouse entered an element of layer id="${args.layerId}"`,
@@ -8568,20 +8532,25 @@ declare namespace JMap {
          * )
          * ```
          */
-        function mouseEnter(listenerId: string, fn: (params: JMapEventFeaturesParams) => void): void
+        function mouseEnterOnLayer(
+          listenerId: string,
+          layerId: JId,
+          fn: (params: JMapEventFeaturesParams) => void
+        ): void
 
         /**
-         * ***JMap.Event.Map.on.mouseLeave***
+         * ***JMap.Event.Map.on.mouseLeaveOnLayer***
          *
-         * This event is triggered when the mouse leave a layer feature, and is not over another
-         * feature.
+         * This event is triggered when the mouse leave a layer feature, and is not over another feature.
+         * **IMPORTANT! :** This event currently only works when a JMap layer's "base style" is displayed on the map (non-thematic),
+         * and only works well with a base Style Rule with only one condition and one Style Map Scale on JMap Cloud
          *
          * @param listenerId Your listener id (must be unique for all map events)
          * @param fn Your listener function
          * @example ```ts
          *
          * // When mouse is leaving a layer, will display a message in the console
-         * JMap.Event.Map.on.mouseLeave(
+         * JMap.Event.Map.on.mouseLeaveOnLayer(
          *    "custom-map-mouse-leave",
          *    args => {
          *      console.log(
@@ -8592,7 +8561,7 @@ declare namespace JMap {
          * )
          * ```
          */
-        function mouseLeave(listenerId: string, fn: (params: JMapEventLayerParams) => void): void
+        function mouseLeaveOnLayer(listenerId: string, layerId: JId, fn: (params: JMapEventLayerParams) => void): void
 
         /**
          * ***JMap.Event.Map.on.click***
