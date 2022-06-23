@@ -208,7 +208,7 @@ export interface JEventService {
   Query: JQueryEventModule
 }
 
-export type JEventFunction = (params?: any) => void
+export type JEventFunction = (params?: any) => void | Promise<any>
 
 export interface JEventListener {
   id: string
@@ -246,6 +246,7 @@ export interface JFormEventModule extends JEventModule {
     layerDialogClosed(listenerId: string, fn: (params: JFormLayerDialogCloseEventParams) => void): void
     subFormDialogOpened(listenerId: string, fn: (params: JFormSubFormDialogOpenEventParams) => void): void
     subFormDialogClosed(listenerId: string, fn: (params: JFormSubFormDialogCloseEventParams) => void): void
+    beforeSubmit(listenerId: string, fn: (params: JFormBeforeSubmitEventParams) => void | Promise<any>): void
     submit(listenerId: string, fn: (params: JFormSubmitEventParams) => void): void
   }
 }
