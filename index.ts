@@ -213,15 +213,16 @@ export interface JEventListener {
   id: string
   fn: JEventFunction
 }
-export type JEventSimpleListenerDeclaration = (listenerId: string, fn: JEventFunction) => void
 
-export type JEventResourceListenerDeclaration = (listenerId: string, resourceId: JId, fn: JEventFunction) => void
+export type JEventSimpleListenerFunction = (listenerId: string, fn: JEventFunction) => void
 
-export type JEventListenerDeclaration = JEventSimpleListenerDeclaration | JEventResourceListenerDeclaration
+export type JEventResourceListenerFunction = (listenerId: string, resourceId: JId, fn: JEventFunction) => void
+
+export type JEventListenerFunction = JEventSimpleListenerFunction | JEventResourceListenerFunction
 
 export interface JEventModule {
   on: {
-    [method: string]: JEventListenerDeclaration
+    [method: string]: JEventListenerFunction
   }
   existById(listenerId: string): boolean
   activate(listenerId: string): void
