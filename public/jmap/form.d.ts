@@ -536,7 +536,13 @@ declare interface JFormBeforeSubmitEventParams {
   isCreation: boolean
   getFormData(): JAttributeValueByName
   setFormData(attributeValueByName: JAttributeValueByName): void
+  /**
+   * Set only for attribute form creation
+   */
   getGeometry?(): GeoJSON.Geometry
+  /**
+   * Set only for attribute form creation
+   */
   setGeometry?(geometry: GeoJSON.Geometry): void
 }
 

@@ -7808,13 +7808,16 @@ declare namespace JMap {
          *      // because we don't need them in this context.
          *      // But get and set FormData methods are always defined, in all cases
          *    }
-         *    // if you have an asynch process you can here return a Promise and NG will wait for
+         *    // You can return a Promise here and and NG will wait for
          *    // that promise to resolve before submitting the form
          *   }
          * )
          * ```
          */
-        function beforeSubmit(listenerId: string, fn: (params: JFormBeforeSubmitEventParams) => void): void
+        function beforeSubmit(
+          listenerId: string,
+          fn: (params: JFormBeforeSubmitEventParams) => void | Promise<any>
+        ): void
 
         /**
          * ***JMap.Event.Form.on.submit***
