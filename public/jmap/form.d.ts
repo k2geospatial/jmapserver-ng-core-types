@@ -527,6 +527,25 @@ declare interface JFormSubmitEventParams extends JFormSubmitResult {
   // nothing to add
 }
 
+declare interface JFormBeforeSubmitEventParams {
+  layerId: JId
+  formId: JId
+  isAttributeForm: boolean
+  isExternalForm: boolean
+  isSubForm: boolean
+  isCreation: boolean
+  getFormData(): JAttributeValueByName
+  setFormData(attributeValueByName: JAttributeValueByName): void
+  /**
+   * Set only for attribute form creation
+   */
+  getGeometry?(): GeoJSON.Geometry
+  /**
+   * Set only for attribute form creation
+   */
+  setGeometry?(geometry: GeoJSON.Geometry): void
+}
+
 interface JFormDialogEventParams {
   layerId: JId
 }

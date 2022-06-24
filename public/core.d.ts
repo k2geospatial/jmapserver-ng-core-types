@@ -7773,6 +7773,53 @@ declare namespace JMap {
         function subFormDialogClosed(listenerId: string, fn: () => void): void
 
         /**
+         * ***JMap.Event.Form.on.beforeSubmit***
+         *
+         * This event is triggered each time a form (or subform) is submitted, just before the data are submitted server side.
+         *
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         *
+         * JMap.Event.Form.on.beforeSubmit(
+         *   "custom-form-before-submit",
+         *   params => {
+         *    const {
+         *      layerId,
+         *      formId,
+         *      isAttributeForm,
+         *      isExternalForm,
+         *      isSubForm,
+         *      isCreation,
+         *      getFormData,
+         *      setFormData,
+         *      getGeometry,
+         *      setGeometry
+         *    } = params
+         *    console.info(`Form id=${formId} will be submit`)
+         *    if (isAttributeForm && isCreation) {
+         *      const geometry = getGeometry()
+         *      const attributeByValue = getFormData()
+         *      ... do your stuffs here
+         *      // you can change the geometry and/or the data with setGeometry and setFormData
+         *      // this methods don't throws if the parameters are incorrect, but form submition will fail
+         *    } else {
+         *      // in this case, not an attribute form creation, get and set geometry methods are undefined,
+         *      // because we don't need them in this context.
+         *      // But get and set FormData methods are always defined, in all cases
+         *    }
+         *    // You can return a Promise here and and NG will wait for
+         *    // that promise to resolve before submitting the form
+         *   }
+         * )
+         * ```
+         */
+        function beforeSubmit(
+          listenerId: string,
+          fn: (params: JFormBeforeSubmitEventParams) => void | Promise<any>
+        ): void
+
+        /**
          * ***JMap.Event.Form.on.submit***
          *
          * This event is triggered each time a form (or subform) is submitted.
