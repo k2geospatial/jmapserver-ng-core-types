@@ -8601,9 +8601,10 @@ declare namespace JMap {
          * @param fn Your listener function
          * @example ```ts
          *
-         * // When mouse is leaving a layer, will display a message in the console
+         * // When mouse is leaving layer id=2, will display a message in the console
          * JMap.Event.Map.on.mouseLeaveOnLayer(
          *    "custom-map-mouse-leave",
+         *    2,
          *    args => {
          *      console.log(
          *          `The mouse leaved the layer id="${args.layerId}"`, args.location,
