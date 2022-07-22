@@ -2,11 +2,22 @@ declare interface JUserEventSessionChangedParams {
   session: JSessionData
 }
 
-declare interface JSessionData {
+declare interface JTokenInfo {
   /**
-   * The JMap user session token.
+   * The JMap user session token (legacy) or auth0 access token (Saas JMap Cloud).
    */
-  token: string
+  accessToken: string
+  /**
+   * The auth0 refresh token.
+   */
+  refreshToken: string
+  /**
+   * The auth0 access token expiration time in seconds.
+   */
+  accessTokenExpiration: number
+}
+
+declare interface JSessionData extends JTokenInfo {
   /**
    * The user permission to change his password
    */
