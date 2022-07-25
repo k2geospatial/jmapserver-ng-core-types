@@ -516,11 +516,10 @@ export interface JQueryState {
   queriesByLayerId: { [key in JId]: JQuery[] }
 }
 
-export interface JUserState {
+export interface JUserState extends JTokenInfo {
   isLoggingIn: boolean
   identity: JUserIdentity
   organization: JOrganization
-  token: string
   informations: JUserInfo[]
   changePasswordAllowed: boolean
 }
