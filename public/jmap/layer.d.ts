@@ -270,7 +270,7 @@ declare interface JLayer extends JLayerTreeElement {
   minimumVisibleMapboxZoom: number | undefined
   maximumVisibleMapboxZoom: number | undefined
   styleRules: JLayerStyleRule[]
-  defaultStyleRule: JLayerStyleRule
+  defaultStyleRule: JLayerStyleRule | undefined
   thematics: JLayerThematic[]
   queries: JQuery[]
   extent: JBoundaryBox | null
