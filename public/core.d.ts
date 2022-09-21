@@ -2314,7 +2314,7 @@ declare namespace JMap {
      *
      * The OGC define rules for bboxes that cross the anti-meridian, stating that for such a bbox, the westmost coordinate must be expressed as a positive number.
      *
-     * For instance, this bbox: [-190, 42, -70, 50] would be expressed as [170, 42, -70, 50] in OGC-compliant syntax. Some services require that bboxes respect that syntax, but JS cartographic APIs and frameworks often use the non OGC-compliant for
+     * For instance, this bbox: [-190, 42, -70, 50] would be expressed as [170, 42, -70, 50] in OGC-compliant syntax. Some services require that bboxes respect that syntax, but JS cartographic APIs and frameworks often use the non OGC-compliant format
      *
      * The ogcCompliant parameter ensure that the returned bbox will be expressed in the good form.
      *
