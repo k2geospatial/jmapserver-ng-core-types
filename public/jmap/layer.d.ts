@@ -1,5 +1,12 @@
-// ALL_LAYER_TYPES in all-enum.ts
-declare const enum JLAYER_TYPES {
+// ALL_LAYER_LAYER_TYPES in all-enum.ts
+declare const enum JLAYER_LAYER_TYPES {
+  VECTOR = "VECTOR",
+  RASTER = "RASTER",
+  OGC_API_FEATURES = "OGC_API_FEATURES"
+}
+
+// ALL_LAYER_ELEMENT_TYPES in all-enum.ts
+declare const enum JLAYER_ELEMENT_TYPES {
   POINT = "POINT",
   LINE = "LINE",
   POLYGON = "POLYGON",
@@ -262,7 +269,8 @@ declare interface JLayerGroup extends JLayerTreeElement {
 
 declare interface JLayer extends JLayerTreeElement {
   geometry: JLayerGeometry
-  type: JLAYER_TYPES
+  elementType: JLAYER_ELEMENT_TYPES
+  layerType: JLAYER_LAYER_TYPES
   defaultMetadatas: JLayerMetadata[]
   metadataSections: JLayerMetadataSection[]
   attributes: JLayerAttribute[]
