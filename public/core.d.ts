@@ -8101,7 +8101,7 @@ declare namespace JMap {
          * @param fn Your listener function
          * @example ```ts
          *
-         * // Each time a layer's source has changed, will display a message
+         * // Each time a layer's source has changed, it will display a message
          * // in the console
          * JMap.Event.Layer.on.sourceChange(
          *    "custom-source-change",
