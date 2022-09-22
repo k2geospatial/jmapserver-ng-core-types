@@ -9274,7 +9274,7 @@ declare namespace JMap {
          *    "custom-session-change",
          *    params => {
          *      if (params.session.accessToken === "-1") {
-         *        console.log("Session has been closed")
+         *        console.log("Session has been closed", params.session)
          *      } else {
          *        console.log(`New session opened`, params.session)
          *      }
