@@ -309,6 +309,7 @@ export interface JLayerEventModule extends JEventModule {
       fn: (params: JLayerEventThematicConditionVisibilityParams) => void
     ): void
     visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
+    sourceChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
     selectabilityWillChange(listenerId: string, fn: (params: JLayerEventSelectabilityParams) => void): void
     layerDeletion(listenerId: string, fn: (params: JLayerEventParams) => void): void
     initialSearchApplied(listenerId: string, fn: (params: JLayerInitialSearchEventParams) => void): void
@@ -604,6 +605,7 @@ export interface JGeometryService {
   checkLocation(location: JLocation): void
   isValidLocation(location: JLocation | undefined): boolean
   isValidBbox(bbox: JBoundaryBox | undefined): boolean
+  getNormalizedBbox(bbox: JBoundaryBox, ogcCompliant: boolean): JBoundaryBox
   isValidGeometry(geometry: any): boolean
   checkCircle(circle: JCircle): void
   checkPolygon(polygon: JPolygon): void

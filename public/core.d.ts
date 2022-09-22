@@ -2304,6 +2304,34 @@ declare namespace JMap {
     function isValidBbox(bbox: JBoundaryBox | undefined): boolean
 
     /**
+     * **JMap.Geometry.getNormalizedBbox**
+     *
+     * Returns a normalized bbox that can be used in query string. The input bbox must be expressed in degrees and must also respect the convention of sw longitude being numerically smaller than ne longitude
+     *
+     * A bbox that spans more than 360 degrees will be normalized as [-180, <sw-latitude>, 180, <ne-latitude>]
+     *
+     * A bbox which easting coordinates are not in the range -360<-->+360 will be translated to respect valid coordinates
+     *
+     * The OGC define rules for bboxes that cross the antimeridian, stating that for such a bbox, the westmost coordinate must be expressed as a positive number.
+     *
+     * For instance, this bbox: [-190, 42, -70, 50] would be expressed as [170, 42, -70, 50] in OGC-compliant syntax. Some services require that bboxes respect that syntax, but JS cartographic APIs and frameworks often use the non OGC-compliant format
+     *
+     * The ogcCompliant parameter ensures that the returned bbox will be expressed in the good form.
+     *
+     * @example ```ts
+     *
+     * let bbox = { sw: { x: -190, y: 10 }, ne: { x: -170, y: 12 } }
+     * // Normalize using OGC syntax
+     * let normalizedBbox = JMap.Geometry.getNormalizedBbox(bbox, true)
+     * // { sw: { x: 170, y: 10 }, ne: { x: -170, y: 12 } }
+     * ```
+     * @param bbox the boundary box to normalize (expressed in degrees)
+     * @param ogcCompliant wheter we want an OGC-compliant bbox, or not (default false)
+     * @throws if the passed bbox is malformed, or invalid.
+     */
+    function getNormalizedBbox(bbox: JBoundaryBox, ogcCompliant?: boolean): JBoundaryBox
+
+    /**
      * **JMap.Geometry.isValidGeometry**
      *
      * Returns true if the provided geometry is valid.
@@ -3312,7 +3340,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.refreshLayerById**
      *
-     * This method only works with editable layers
+     * This method only works with vector layers that are not served via vector tiles
      *
      * Refreshes the specified layer data on the Map. Can be called for instance after a feature has been added, deleted, or modified in the layer content server-side
      *
@@ -8063,6 +8091,27 @@ declare namespace JMap {
          * ```
          */
         function visibilityChange(listenerId: string, fn: (params: JLayerEventVisibilityParams) => void): void
+
+        /**
+         * ***JMap.Event.Layer.on.sourceChange***
+         *
+         * This event is triggered when a layer's source has changed (for instance after modifying, adding or deleting a feature).
+         *
+         * @param listenerId Your listener id (must be unique for all layer events)
+         * @param fn Your listener function
+         * @example ```ts
+         *
+         * // Each time a layer's source has changed, it will display a message
+         * // in the console
+         * JMap.Event.Layer.on.sourceChange(
+         *    "custom-source-change",
+         *    params => {
+         *      console.log(`Source for layer id="${params.layerId}" has changed"`)
+         *    }
+         * )
+         * ```
+         */
+        function sourceChange(listenerId: string, fn: (params: JLayerEventParams) => void): void
 
         /**
          * ***JMap.Event.Layer.on.selectabilityWillChange***
