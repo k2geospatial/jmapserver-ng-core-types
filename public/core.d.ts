@@ -3340,7 +3340,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.refreshLayerById**
      *
-     * This method only works with editable layers and some layers served as geoJSON
+     * This method only works with vector layers that are not served via vector tiles
      *
      * Refreshes the specified layer data on the Map. Can be called for instance after a feature has been added, deleted, or modified in the layer content server-side
      *
