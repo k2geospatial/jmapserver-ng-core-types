@@ -9260,19 +9260,20 @@ declare namespace JMap {
         /**
          * ***JMap.Event.User.on.sessionChanged***
          *
-         * This event is triggered when the user session changed.
+         * This event is triggered when the user session has changed.
          *
-         * If it's a logout, the token in params.session is equals to "-1".
+         * If it's a logout, the accessToken in params.session is equals to "-1".
          *
          * @param listenerId Your listener id (must be unique for all user events)
          * @param fn Your listener function
          * @example ```ts
          *
+         *
          * // Each time the session has changed this method is processed
          * JMap.Event.User.on.sessionChanged(
          *    "custom-session-change",
          *    params => {
-         *      if (params.session.token === "-1") {
+         *      if (params.session.accessToken === "-1") {
          *        console.log("Session has been closed")
          *      } else {
          *        console.log(`New session opened`, params.session)
