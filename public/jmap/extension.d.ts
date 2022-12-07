@@ -162,6 +162,7 @@ declare interface JCoreExtension {
    * See Mapbox documentation for reference:
    *
    * https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters
+   *
    * https://docs.mapbox.com/mapbox-gl-js/api/properties/#requestparameters
    *
    * @example ```ts
