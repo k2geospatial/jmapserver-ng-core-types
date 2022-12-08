@@ -151,13 +151,13 @@ declare interface JCoreExtension {
   onRegistrationDone?: () => void
 
   /**
-   * An optionnal handler that returns a Mapbox GL JS RequestParameters object
+   * An optional handler that returns a Mapbox GL JS RequestParameters object
    *
-   * Provide this handler if your extention needs to add something special in MapBox map requests,
+   * Provide this handler if your extentions needs to add something special in MapBox map requests,
    * like providing credentials, adding headers, etc.
    *
    * Great care must be taken to not blindly modify every request passed to this handler. You should only modify requests known to your extension. This can usually
-   * be determined by looking at the url received by the handler
+   * be determined by looking at the url received by the handler.
    *
    * See Mapbox documentation for reference:
    *
