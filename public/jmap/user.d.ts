@@ -4,15 +4,15 @@ declare interface JUserEventSessionChangedParams {
 
 declare interface JTokenInfo {
   /**
-   * The JMap user session token (legacy) or auth0 access token (Saas JMap Cloud).
+   * The JMap user session token (legacy) or access token (Saas JMap Cloud).
    */
   accessToken: string
   /**
-   * The auth0 refresh token.
+   * The refresh token.
    */
   refreshToken: string
   /**
-   * The auth0 access token expiration time in seconds.
+   * The access token expiration time in seconds.
    */
   accessTokenExpiration: number
 }
@@ -36,9 +36,13 @@ declare interface JSessionData extends JTokenInfo {
    */
   user: JUserIdentity
   /**
-   * THe JMap Cloud organization, only for JMap Cloud servers.
+   * Infos about the user's organizations, only for JMap Cloud servers.
    */
-  organization: JOrganization
+  organizationInfos: JOrganizationInfo[]
+  /**
+   * THe JMap Cloud organization in which the user is currently logged in, only for JMap Cloud servers.
+   */
+  currentOrganization: JOrganization
 }
 
 declare interface JUserIdentity {
@@ -53,11 +57,18 @@ declare interface JUserInfo {
   value: undefined | null | string | number | Date
 }
 
-declare interface JOrganization {
+declare interface JOrganizationInfo {
   id: string
+  auth0Id: string
   name: string
-  description: string
+  logoUrl: string
+  primaryColor: string
+  backgroundColor: string
   active: boolean
+}
+
+declare interface JOrganization extends JOrganizationInfo {
+  description: string
   externalApiKeys: JOrganizationExternalApiKey[]
 }
 
