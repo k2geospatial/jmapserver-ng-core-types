@@ -6383,7 +6383,7 @@ declare namespace JMap {
      *'
      * ```
      *
-     * will return something like
+     * will return something like:
      *
      *```js
      *{

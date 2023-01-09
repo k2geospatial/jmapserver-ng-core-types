@@ -263,29 +263,11 @@ declare interface JCoreOptions {
   /**
    * The JMap user's session token.
    *
-   * If you don't use the library logged as an anonymous user (see the ***anonymous*** parameter in this section),
-   * you must provide the JMap session id to the JMap library.
+   * If you don't use the library with an anonymous user (see the [[***JCoreOptions.anonymous***]] parameter in this section), you must provide a JMap Server session token or a JMap Cloud refresh token to the JMap library.
    *
-   * To get a session token, you can use the JMap Rest API on your JMap Server. By exemple if your server url is "https://my-jmap-server/", With the [curl tool](https://curl.haxx.se/docs/) you can get for the user "jdo@company.com" his token like that (adapt the username and password ...) :
-   * ```sh
-   * curl -X POST "https://my-jmap-server/services/rest/v2.0/session" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"username\": \"jdo@company.com\", \"password\": \"xxx\", \"type\": \"WEB\"}"
-   * ```
+   * To get a session or refresh token, you can use the JMap Rest API on your JMap Server. See [[JMap.User.setToken]] for detailed examples on how to fetch a token through JMap's REST API.
    *
-   * If the request is successfull, the response is like that :
-   * ```js
-   * {
-   *   "message": "The result is a WEB session info",
-   *   "status": "OK",
-   *   "result": {
-   *     "sessionId": 23558109,
-   *     ...
-   *   }
-   * }
-   * ```
-   *
-   * The library "**token**" is the parameter "**sessionId**" in REST the response.
-   *
-   * So to start the library using the token you can do like that :
+   * So to start the library using the fetched token you can configure your startup options like this :
    * ```html
    * <html>
    *   ...
@@ -301,7 +283,9 @@ declare interface JCoreOptions {
    * </html>
    * ```
    *
-   * If you don't want to make an AJAX call to the REST API, you can use the JMap library to login (JMap will make the AJAX call to the rest API). But you have to wait for the lib to be loaded. To know if the lib has been loaded you can check if the JMAp namespace exist or not. Bellow the example :
+   * If you don't want to make an AJAX call to the REST API, you can use the JMap library to login (JMap will make the AJAX call to the rest API). You have to wait for the lib to be loaded and the server to be ready to accept requests.
+   *
+   * To know if the lib has been loaded you can check if the JMAp namespace exist or not. See bellow for an example:
    *
    * ```html
    * <!DOCTYPE html>
@@ -326,7 +310,7 @@ declare interface JCoreOptions {
    *       <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/index.js"></script>
    *       <script>
    *         (function jmapLogin() {
-   *           if (window.hasOwnProperty("JMap")) {
+   *           if (window.hasOwnProperty("JMap") && JMap.Server.isReady()) {
    *             JMap.User.login("jdo@company.com", "xxx")
    *           } else {
    *             console.log("Waiting for the JMap lib to be loaded ...")
@@ -340,6 +324,32 @@ declare interface JCoreOptions {
    *
    */
   token?: string
+
+  /**
+   * The JMap Cloud organization id associated with the refresh token.
+   *
+   * For JMap CLoud only. Only taken into account if a refresh token has been passed via the [[JCoreOptions.token]] startup option (or the equivalent hash parameter version).
+   *
+   * You can pass this organization id to open a session on JMap Cloud via the startup options.
+   *
+   * A typical usage:
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         token: "v1.MRq [.....] Rehef72YWws", // a refresh token
+   *         organization: "my-organization-id"
+   *       }
+   *     </script>
+   *     ...
+   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/"></script>
+   *   </body>
+   * </html>
+   * ```
+   */
+  organizationId?: string
 
   /**
    * By default the geolocation service is enabled.
