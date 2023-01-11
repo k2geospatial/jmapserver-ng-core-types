@@ -2848,7 +2848,7 @@ declare namespace JMap {
      *
      * Returns the MapBox JS library used to create the map.
      *
-     * Usefull to be able to create a map library object, by example a popup.
+     * Useful to be able to create a map library object, by example a popup.
      *
      * @example ```ts
      *
@@ -6335,7 +6335,7 @@ declare namespace JMap {
     /**
      * **JMap.User.setToken**
      *
-     * Sets the user session data. Usefull if you want to make a call to our Rest API and set the session token by yourself.
+     * Sets the user session data. Useful if you want to make a call to our Rest API and set the session token by yourself.
      *
      *
      * This process is a bit different for JMap Server than for JMap CLoud.
@@ -9730,7 +9730,7 @@ declare namespace JMap {
      *
      * Tell if an extension has been registered or not.
      *
-     * It can be usefull to know if a JMap extension is in use or not.
+     * It can be useful to know if a JMap extension is in use or not.
      *
      * @throws Error if extensionId format is not correct
      * @param extensionId The extension id

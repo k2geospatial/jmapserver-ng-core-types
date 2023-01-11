@@ -172,7 +172,7 @@ declare interface JCoreOptions {
   onProjectsChange?(params: JProjectAllEventParams): void
 
   /**
-   * By default project thumbnails are not loaded, because they are not usefull if JMap Core lib is used alone.
+   * By default project thumbnails are not loaded, because they are not useful if JMap Core lib is used alone.
    *
    * To load asynchronously project thumbnails, set startup option "loadProjectThumbnails" to true.
    *
@@ -285,7 +285,7 @@ declare interface JCoreOptions {
    *
    * If you don't want to make an AJAX call to the REST API, you can use the JMap library to login (JMap will make the AJAX call to the rest API). You have to wait for the lib to be loaded and the server to be ready to accept requests.
    *
-   * To know if the lib has been loaded you can check if the JMAp namespace exist or not. See bellow for an example:
+   * To know if the lib has been loaded you can check if the JMAp namespace exists or not. See below for an example:
    *
    * ```html
    * <!DOCTYPE html>

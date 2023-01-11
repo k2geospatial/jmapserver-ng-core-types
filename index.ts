@@ -519,7 +519,7 @@ export interface JQueryState {
 
 export interface JUserState extends JTokenInfo {
   isLoggingIn: boolean
-  isLoggingIntoOrganisation: boolean
+  isLoggingIntoOrganization: boolean
   isReloadingSession: boolean
   identity: JUserIdentity
   currentOrganization: JOrganization // the organization in which the user is currently logged in
