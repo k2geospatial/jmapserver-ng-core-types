@@ -165,7 +165,7 @@ declare interface JMapNavigationStep {
  *  **JMapBoxEventData**
  *
  * This interface describe optionnal data we can pass to MapBox events
- * in order to transport usefull information while consuming the events in your application
+ * in order to transport useful information while consuming the events in your application
  *
  *
  */
