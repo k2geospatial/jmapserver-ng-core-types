@@ -68,7 +68,6 @@ declare interface JOrganizationInfo {
 }
 
 declare interface JOrganization extends JOrganizationInfo {
-  description: string
   externalApiKeys: JOrganizationExternalApiKey[]
 }
 
