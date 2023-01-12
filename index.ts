@@ -909,7 +909,7 @@ export interface JUserService {
   hasPreference(name: string): Promise<boolean>
   removePreference(name: string): Promise<string | null>
   setPreference(name: string, value: string | undefined): Promise<void>
-  setToken: (token: string, organizationId?: string) => Promise<JSessionData>
+  setToken(token: string, organizationId?: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
   loginIntoOrganization(organizationId: string): Promise<JSessionData>
   loginWithIdentityProvider(providerId: string): void
