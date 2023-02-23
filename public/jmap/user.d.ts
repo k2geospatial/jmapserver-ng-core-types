@@ -69,6 +69,7 @@ declare interface JOrganizationInfo {
 
 declare interface JOrganization extends JOrganizationInfo {
   externalApiKeys: JOrganizationExternalApiKey[]
+  enabledExtensions: JProjectServerExtension[]
 }
 
 declare interface JOrganizationExternalApiKey {
