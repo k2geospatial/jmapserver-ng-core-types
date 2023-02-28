@@ -72,6 +72,19 @@ declare interface JCoreExtension {
    */
   serverExtensionId?: string
   /**
+   * If your extensions is available for JMap Cloud, you have to set this parameter.
+   *
+   * This parameter is used to uniquely identify your extension amongst all other JMap Cloud extensions
+   *
+   * This parameter can be set alongside [[JCoreExtension.serverExtensionId]] if your extension is also available for JMap Server.
+   *
+   * If set, this parameter ***must*** be a {@link https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)|UUID v4 string}. Each Jmap Cloud extension must have a unique identifier, so you have to make sure that each of your extensions defines a unique `jmapCloudExtensionUrn`.
+   *
+   * JMap Cloud ***only*** supports [[JCoreExtension.isProjectExtension|Project extensions]]
+   *
+   */
+  jmapCloudExtensionUrn?: string
+  /**
    * If you want you can expose a service.
    *
    * If your extension id is "MyExtension", your service will be accessible like that :

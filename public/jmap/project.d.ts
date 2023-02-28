@@ -13,6 +13,7 @@ declare interface JProjectAllEventParams {
 
 declare interface JProjectServerExtension {
   id: string
+  urn: string // Unique identifier. Same as id for JMS
   name: string
   jsUrl: string
   data: any | null
