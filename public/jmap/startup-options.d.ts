@@ -405,19 +405,33 @@ declare interface JCoreOptions {
   onReady?: () => void
 
   /**
-   * For developpers, you can ovveride the project's extensions url here
+   * As a developer, you can override the project's extensions jsUrl during development
    *
-   * Ex: the extension having id="custom-extension" is set on the project.
-   * It's url is "https://cdn.jsdelivr.net/npm/custom-extension@1.0.10/public/index.js"
+   * Ex: the extension having id="custom-extension" is set on the project. Its unique identifier is:
+   * * for JMap Server: `serverExtensionId` = "my.extention.classPath"
+   * * for JMap Cloud: `jmapCloudExtensionUrn` = "949079ff-d021-45dd-93c0-611bfcebfc2b"
    *
-   * But in development, to test your changes you want to load your dev file, that is located
-   * for example at this location : "https://localhost:8083/build/index.js".
+   * It's jsUrl is "https://cdn.jsdelivr.net/npm/custom-extension@1.0.10/public/index.js"
    *
-   * In order to change the extension jsUrl dynamically, you can override like this :
+   * During development, you need to be able to load your local code instead of the code located at the extension's jsUrl location.
+   *
+   * Your local development code could for instance be available at: "https://localhost:8083/build/index.js".
+   *
+   * In order to change the extension jsUrl dynamically, you can set your `JMAP_OPTIONS.extensionsUrlOverride` property like this:
+   *
+   * For JMAp Server:
    * [{
-   *  id: "custom-extension",
+   *  extensionUniqueIdentifier: "my.extention.classPath",
    *  jsUrl: "https://localhost:8083/build/index.js"
    * }]
+   *
+   * For JMap Cloud:
+   * [{
+   *  extensionUniqueIdentifier: "949079ff-d021-45dd-93c0-611bfcebfc2b",
+   *  jsUrl: "https://localhost:8083/build/index.js"
+   * }]
+   *
+   *
    */
   extensionsUrlOverride?: JExtensionServerOverride[]
 
