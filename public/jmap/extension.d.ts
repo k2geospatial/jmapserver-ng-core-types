@@ -74,7 +74,7 @@ declare interface JCoreExtension {
   /**
    * If your extensions is available for JMap Cloud, you have to set this parameter.
    *
-   * This parameter is used to uniquely identify your extension amongst all other JMap Cloud extensions
+   * This parameter is used to uniquely identify your extension among all other JMap Cloud extensions.
    *
    * This parameter can be set alongside [[JCoreExtension.serverExtensionId]] if your extension is also available for JMap Server.
    *
