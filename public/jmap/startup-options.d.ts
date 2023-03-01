@@ -411,7 +411,7 @@ declare interface JCoreOptions {
    * * for JMap Server: `serverExtensionId` = "my.extention.classPath"
    * * for JMap Cloud: `jmapCloudExtensionUrn` = "949079ff-d021-45dd-93c0-611bfcebfc2b"
    *
-   * It's jsUrl is "https://cdn.jsdelivr.net/npm/custom-extension@1.0.10/public/index.js"
+   * Its jsUrl is "https://cdn.jsdelivr.net/npm/custom-extension@1.0.10/public/index.js"
    *
    * During development, you need to be able to load your local code instead of the code located at the extension's jsUrl location.
    *
