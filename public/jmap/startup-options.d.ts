@@ -405,7 +405,7 @@ declare interface JCoreOptions {
   onReady?: () => void
 
   /**
-   * As a developer, you can override a project's extension jsUrl during development
+   * As a developer, you can override a project's extension jsUrl during development.
    *
    * Ex: the extension having id="custom-extension" is set on the project. Its unique identifier is:
    * * for JMap Server: `serverExtensionId` = "my.extention.classPath"
