@@ -3,7 +3,15 @@ declare interface JExtensionEventParams {
 }
 
 declare interface JExtensionServerOverride {
-  id: string
+  /**
+   * The extension's override unique identifier.
+   *
+   * For JMap CLoud, this would be the [[JCoreExtension.jmapCloudExtensionUrn]] property of your extension
+   *
+   * For JMap Server, this would be the [[JCoreExtension.serverExtensionId]] property of your extension
+   *
+   */
+  extensionUniqueIdentifier: string
   jsUrl: string
 }
 
