@@ -7043,6 +7043,31 @@ declare namespace JMap {
          * ```
          */
         function coreReady(listenerId: string, fn: () => void): void
+
+        /**
+         * ***JMap.Event.Main.on.fatalError***
+         *
+         * This event is triggered when a fatal error occurs in JMap. The event parameters will give you information about the error.
+         *
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         *
+         * // log a message in the console when a fatal error occurs
+         * JMap.Event.Main.on.fatalError(
+         *   "custom-core-fatal-error",
+         *   (params) => {
+         *      console.log(`A fatal error occured in JMap.
+         *
+         *        ** Context of the error: "${params.context}";
+         *        ** information about the error: "${params.source}";
+         *        ** consequence of the error: "${params.action}".`
+         *      )
+         *   }
+         * )
+         * ```
+         */
+        function fatalError(listenerId: string, fn: (params: JMainFatalErrorEventParams) => void): void
       }
 
       /**
