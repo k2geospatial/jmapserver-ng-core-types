@@ -372,6 +372,7 @@ export interface JUserEventModule extends JEventModule {
 export interface JCoreEventModule extends JEventModule {
   on: {
     coreReady(listenerId: string, fn: () => void): void
+    fatalError(listenerId: string, fn: (params: JMainFatalErrorEventParams) => void): void
   }
 }
 
