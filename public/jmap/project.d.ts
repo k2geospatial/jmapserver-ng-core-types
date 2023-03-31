@@ -29,6 +29,8 @@ declare interface JProject {
   colorSelection: string
   colorBackground: string
   initialExtent: JBounds | null
+  minimumVisibleMapboxZoom: number
+  maximumVisibleMapboxZoom: number
   mapUnit: JMAP_DISTANCE_UNITS
   apiKey: {
     google: string | null
