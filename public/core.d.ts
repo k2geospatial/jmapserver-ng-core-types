@@ -3972,13 +3972,14 @@ declare namespace JMap {
      * Zooms or unzooms the map to reach the given map scale
      *
      * @param scaleDenominator must be greater than 0
+     * @param options animation, zoom padding, stop event, etc ...
      * @example ```ts
      *
      * // zooms or unzooms the map to reach the given map scale
-     * JMap.Map.setScale(2344)
+     * JMap.Map.setScale(2344, { animate: true })
      * ```
      */
-    function setScale(scaleDenominator: number): number
+    function setScale(scaleDenominator: number, options?: JPanAndZoomOptions): number
 
     /**
      * ***JMap.Map.getZoomFromScale***

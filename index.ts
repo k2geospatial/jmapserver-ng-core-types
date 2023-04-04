@@ -711,7 +711,7 @@ export interface JMapService {
   getResolution(params?: JLatitudeAndZoom): number
   getScale(params?: JLatitudeAndZoom): string
   getScaleDenominator(params?: JLatitudeAndZoom): number
-  setScale(scaleDenominator: number): number
+  setScale(scaleDenominator: number, options?: JPanAndZoomOptions): number
   getZoomFromScale(scaleDenominator: number, latitude?: number): number
   getMouseCursor(): string
   setMouseCursor(cursor: string): void
