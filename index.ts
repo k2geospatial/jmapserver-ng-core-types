@@ -847,22 +847,6 @@ export interface JLayerService {
   setSelectabilityById(layerId: JId, selectability: boolean, ignoreVisibility?: boolean): void
   setLayersSelectability(params: JLayerSetLayersSelectabilityParams[]): void
   isAllLayerParentsVisible(layerId: JId): boolean
-  /**
-   * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead
-   */
-  getAllThematicsForLayer(layerId: JId): JLayerThematic[]
-  /**
-   * @deprecated use [[JMap.Layer.Thematic.getById]] instead
-   */
-  getThematicById(layerId: JId, thematicId: JId): JLayerThematic
-  /**
-   * @deprecated use [[JMap.Layer.Thematic.hasAnyVisibleByLayerId]] instead
-   */
-  hasVisibleThematics(layerId: JId): boolean
-  /**
-   * @deprecated use [[JMap.Layer.Thematic.getAllVisibleByLayerId]] instead
-   */
-  getVisibleThematics(layerId: JId): JLayerThematic[]
   setVisible(layerId: JId, visible: boolean): void
   setLayersVisibility(params: JLayerSetLayersVisibilityParams[]): void
   ensureLayerIsVisible(layerId: JId): void
@@ -870,14 +854,6 @@ export interface JLayerService {
   setLayerGroupExpansion(layerGroupId: JId, isExpanded: boolean): void
   setLayerGroupsExpansion(params: JLayerSetLayerGroupsExpansionParams[]): void
   deleteLayer(layerId: JId): void
-  /**
-   * @deprecated use [[JMap.Layer.Thematic.setVisibilityById]] instead
-   */
-  setThematicVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
-  /**
-   * @deprecated use [[JMap.Layer.Thematic.setThematicsVisibility]] instead
-   */
-  setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
   hasInformationReport(layerId: JId): boolean
   openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
 }
@@ -949,8 +925,6 @@ export interface JMouseOverService {
   openPopupForSelection(params: JMouseOverOpenPopupForSelectionParams): void
   renderForFeaturesAtLocation(containerId: string, location: JLocation): boolean // return true if has mouseover
   renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean // return true if has mouseover
-  getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined
-  processJSAndPhotosForContent(content: JMouseOverContent): void
   openInformationReportInNewTab(layerId: JId): Promise<string>
 }
 

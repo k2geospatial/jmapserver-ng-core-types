@@ -1594,48 +1594,6 @@ declare namespace JMap {
     }
 
     /**
-     * **JMap.Layer.getAllThematicsForLayer**
-     *
-     * @deprecated use [[JMap.Layer.Thematic.getAllByLayerId]] instead
-     */
-    function getAllThematicsForLayer(layerId: JId): JLayerThematic[]
-
-    /**
-     * **JMap.Layer.getThematicById**
-     *
-     * @deprecated use [[JMap.Layer.Thematic.getById]] instead
-     */
-    function getThematicById(layerId: JId, thematicId: JId): JLayerThematic
-
-    /**
-     * **JMap.Layer.hasVisibleThematics**
-     *
-     * @deprecated use [[JMap.Layer.Thematic.hasAnyVisibleByLayerId]] instead
-     */
-    function hasVisibleThematics(layerId: JId): boolean
-
-    /**
-     * **JMap.Layer.getVisibleThematics**
-     *
-     * @deprecated use [[JMap.Layer.Thematic.getAllVisibleByLayerId]] instead
-     */
-    function getVisibleThematics(layerId: JId): JLayerThematic[]
-
-    /**
-     * **JMap.Layer.setThematicVisibility**
-     *
-     * @deprecated use [[JMap.Layer.Thematic.setVisibilityById]] instead
-     */
-    function setThematicVisibility(layerId: JId, thematicId: JId, visibility: boolean): void
-
-    /**
-     * **JMap.Layer.setThematicsVisibility**
-     *
-     * @deprecated use [[JMap.Layer.Thematic.setThematicsVisibility]] instead
-     */
-    function setThematicsVisibility(params: JLayerThematicSetVisibilityParams[]): void
-
-    /**
      * **JMap.Layer.getLayerTree**
      *
      * Returns project's layer tree.
@@ -5482,75 +5440,6 @@ declare namespace JMap {
      * ```
      */
     function renderForFeaturesSelection(containerId: string, selection: JMapSelection): boolean
-
-    /**
-     * **JMap.MouseOver.getMouseOverContent**
-     *
-     * Returns the mousever content for the provided feature selection. If no mouseover are defined
-     * for any layer it returns undefined.
-     *
-     * The result you get need first to be inserted in the DOM, then after the insertion,
-     * you need to call the method processJSAndPhotosForContent()
-     * (in order to finish displaying all informations)
-     *
-     * You should not use this function, except for a very special need, instead you should use the
-     * function JMap.MouseOver.renderForFeaturesSelection that do the same thing in one step.
-     *
-     * @throws Error if selection format is not good
-     * @param selection A feature selection, the mouseover will be processed only for this features
-     * @return the mouseover content or undefined
-     * @example ```ts
-     *
-     * const mouseOverContent = JMap.MouseOver.getMouseOverContent({
-     *  4: [ // selection for layer 4
-     *    { id: 345, type: "Point", geometry: {...}, properties: [...] },
-     *    { id: 234, type: "Point", geometry: {...}, properties: [...] }
-     *  ],
-     *  8: [ // selection for layer 8
-     *    { id: 187, type: "Line", geometry: {...}, properties: [...] },
-     *    { id: 98, type: "Line", geometry: {...}, properties: [...] }
-     *  ]
-     * })
-     *
-     * const mouseOverDiv = document.getElementById("my-div-id")
-     * if (mouseOverContent) {
-     *  mouseOverDiv.innerHTML = mouseOverContent.html
-     *  JMap.MouseOver.processJSAndPhotosForContent(mouseOverContent)
-     * } else {
-     *  // Emptying the div if no mouseover
-     *  mouseOverDiv.innerHTML = ""
-     * }
-     * ```
-     */
-    function getMouseOverContent(selection: JMapSelection): JMouseOverContent | undefined
-
-    /**
-     * **JMap.MouseOver.processJSAndPhotosForContent**
-     *
-     * Use this function only if you use JMap.MouseOver.getMouseOverContent function before.
-     *
-     * You can call this function after having inserted the mouseover html in the DOM.
-     *
-     * The function will eval the mouseover javascript (from the extension mouseover), and if needed make
-     * a call to the server to get the features photos and display it (so we need the mouseover content to be
-     * exist in the DOM.
-     *
-     * @throws Error if mouseover content format is not good
-     * @param content The mouseover content you get from method JMap.MouseOver.getMouseOverContent
-     * @example ```ts
-     *
-     * const mouseOverContent = JMap.MouseOver.getMouseOverContent(...)
-     * const mouseOverDiv = document.getElementById("my-div-id")
-     * if (mouseOverContent) {
-     *  mouseOverDiv.innerHTML = mouseOverContent.html
-     *  JMap.MouseOver.processJSAndPhotosForContent(mouseOverContent)
-     * } else {
-     *  // Emptying the div if no mouseover
-     *  mouseOverDiv.innerHTML = ""
-     * }
-     * ```
-     */
-    function processJSAndPhotosForContent(content: JMouseOverContent): void
 
     /**
      * **JMap.MouseOver.openInformationReportInNewTab**
