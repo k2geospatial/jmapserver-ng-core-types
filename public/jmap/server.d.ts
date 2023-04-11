@@ -14,8 +14,7 @@ declare const enum JSERVER_SAAS_STATUS {
 // ALL_SERVER_SAAS_STATUS in all-enum.ts
 declare const enum JSERVER_IDENTITY_PROVIDER_TYPES {
   SSO = "sso",
-  AUTH0_SPA = "auth0-spa",
-  JMAP_CLOUD = "jmapcloud.io"
+  AUTH0_SPA = "auth0-spa"
 }
 
 declare interface JServerIdentityProviderById {
@@ -42,19 +41,12 @@ declare interface JServerSaasService {
   restBaseUrl: string
 }
 
-declare type JServerAnyIdentityProvider =
-  | JServerIdentityProviderJMapCloudNative
-  | JServerIdentityProviderAuth0Password
-  | JServerIdentityProviderSso
+declare type JServerAnyIdentityProvider = JServerIdentityProviderAuth0Password | JServerIdentityProviderSso
 
 declare interface JServerIdentityProviderBase {
   id: string
   name: string
   type: JSERVER_IDENTITY_PROVIDER_TYPES
-}
-
-declare interface JServerIdentityProviderJMapCloudNative extends JServerIdentityProviderBase {
-  type: JSERVER_IDENTITY_PROVIDER_TYPES.JMAP_CLOUD
 }
 
 declare interface JServerIdentityProviderAuth0Password extends JServerIdentityProviderBase {
