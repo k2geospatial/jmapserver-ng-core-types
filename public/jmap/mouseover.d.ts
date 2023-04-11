@@ -8,7 +8,10 @@ declare interface JMapMouseOver {
 
 declare interface JMouseOverContent {
   html: string
-  photoFeatureIdsByLayerId: { [key in JId]: JId[] }
+  pendingPhotoFeatureIdsByLayerId: { [key in JId]: JId[] }
+  pendingLineLengthFeatureIdsByLayerId: { [key in JId]: JId[] }
+  pendingPolygonAreaFeatureIdsByLayerId: { [key in JId]: JId[] }
+  pendingCentroidFeatureIdsByLayerId: { [key in JId]: JId[] }
   toEvalJS: string[]
 }
 
@@ -20,8 +23,8 @@ declare interface JMouseOverOpenPopupParams {
 }
 
 declare interface JMouseOverOpenPopupForSelectionParams {
-  selection: JMapSelection 
-  location?: JLocation 
+  selection: JMapSelection
+  location?: JLocation
   panToLocation?: boolean
 }
 
