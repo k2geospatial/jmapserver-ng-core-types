@@ -382,6 +382,7 @@ export interface JMapContextEventModule extends JEventModule {
     afterMapDataChange(listenerId: string, fn: (params: JMapContextAfterMapDataChangeEventParams) => void): void
     beforeApply(listenerId: string, fn: (params: JMapContextBeforeApplyEventParams) => void): void
     afterApply(listenerId: string, fn: (params: JMapContextAfterApplyEventParams) => void): void
+    applyError(listenerId: string, fn: (params: JMapContextEventParams) => void): void
     initialized(listenerId: string, fn: (params: JMapContextSetActiveResult) => void): void
   }
 }
