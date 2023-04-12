@@ -7480,6 +7480,23 @@ declare namespace JMap {
         function afterApply(listenerId: string, fn: (params: JMapContextAfterApplyEventParams) => void): void
 
         /**
+         * ***JMap.Event.MapContext.on.applyError***
+         *
+         * This event is triggered when an error occurs while applying a map-context.
+         *
+         * @param listenerId Your listener id (must be unique)
+         * @param fn Your listener function
+         * @example ```ts
+         *
+         * // Triggered after a map-context error occurs
+         * JMap.Event.MapContext.on.applyError("my-apply-error-listener", params => {
+         *   console.info(`An error occured while applying map context id="${params.context.title}"`, params.context)
+         * })
+         * ```
+         */
+        function applyError(listenerId: string, fn: (params: JMapContextEventParams) => void): void
+
+        /**
          * ***JMap.Event.MapContext.on.initialized***
          *
          * This event is triggered when the map-context service is initialized.
