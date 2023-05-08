@@ -520,6 +520,7 @@ export interface JQueryState {
 }
 
 export interface JUserState extends JTokenInfo {
+  isAnonymous: boolean
   isLoggingIn: boolean
   isLoggingIntoOrganization: boolean
   isReloadingSession: boolean
