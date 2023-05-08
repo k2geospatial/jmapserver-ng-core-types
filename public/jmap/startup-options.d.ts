@@ -328,11 +328,12 @@ declare interface JCoreOptions {
   /**
    * The JMap Cloud organization id associated with the refresh token.
    *
-   * For JMap CLoud only. Only taken into account if a refresh token has been passed via the [[JCoreOptions.token]] startup option (or the equivalent hash parameter version).
+   * For JMap CLoud only. Only taken into account if a refresh token has been passed via the [[JCoreOptions.token]] startup option (or the equivalent hash parameter version)
+   * ***or*** if the "anonymous" option has been passed, together with a project id.
    *
    * You can pass this organization id to open a session on JMap Cloud via the startup options.
    *
-   * A typical usage:
+   * A typical usage for a session opening:
    * ```html
    * <html>
    *   ...
@@ -340,7 +341,7 @@ declare interface JCoreOptions {
    *     <script type="text/javascript">
    *       window.JMAP_OPTIONS = {
    *         token: "v1.MRq [.....] Rehef72YWws", // a refresh token
-   *         organization: "my-organization-id"
+   *         organizationId: "my-organization-id"
    *       }
    *     </script>
    *     ...
@@ -348,7 +349,24 @@ declare interface JCoreOptions {
    *   </body>
    * </html>
    * ```
-   */
+   *
+   * A typical usage for a JMap Cloud public project:
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         anonymous: true,
+   *         projectId: "my-project-id",
+   *         organizationId: "my-organization-id"
+   *       }
+   *     </script>
+   *     ...
+   *     <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/jmap-core-js@x.x.x/public/"></script>
+   *   </body>
+   * </html>
+   * ```   */
   organizationId?: string
 
   /**
