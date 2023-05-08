@@ -333,7 +333,7 @@ declare interface JCoreOptions {
    *
    * You can pass this organization id to open a session on JMap Cloud via the startup options.
    *
-   * A typical usage for a session oppening:
+   * A typical usage for a session opening:
    * ```html
    * <html>
    *   ...
