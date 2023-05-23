@@ -6376,8 +6376,8 @@ declare namespace JMap {
      *
      * Changes the user's full name.
      *
-     * @throws Errors if full name is not a string or is empty.
-     * @param newFullName The user new full name.
+     * @throws Error if full name is not a string or is empty.
+     * @param newFullName The user's new full name.
      * @example ```ts
      *
      * // change the user's full name
@@ -6393,8 +6393,8 @@ declare namespace JMap {
      *
      * Change the user password on JMap server
      *
-     * @throws Errors if passwords are not string or empty, if new password is not valid or if newPassword:
-     *  - length is lower that the minimum length required (JMap Server)
+     * @throws Error if passwords are not strings or are empty, if new password is not valid or if newPassword's:
+     *  - length is lower than the minimum length required (JMap Server)
      *  - strength is not high enough (JMap Cloud - at least 8 characters, at least one lowercase letter, one uppercase letter, one number, and one special character)
      * @param newPassword The user new password
      * @param currentPassword The user current password
@@ -6424,7 +6424,7 @@ declare namespace JMap {
     /**
      * ***JMap.User.isPasswordCompliant***
      *
-     * Returns true if the passed password complies with the platform's password policy (JMap Server or JMap Cloud), false otherwise.
+     * Returns true if the password complies with the platform's password policy (JMap Server or JMap Cloud), false otherwise.
      *
      * @example ```ts
      *
@@ -6438,7 +6438,7 @@ declare namespace JMap {
     /**
      * ***JMap.User.getPasswordPolicyCompliance***
      *
-     * Returns an object describing the passed password compliance with the platform's password policy (JMap Server or JMap Cloud)
+     * Returns an object describing the password compliance with the platform's password policy (JMap Server or JMap Cloud)
      *
      * @example ```ts
      *
