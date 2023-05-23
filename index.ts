@@ -898,7 +898,12 @@ export interface JUserService {
   addInfo(info: JUserInfo): void
   removeInfo(infoId: string): void
   changePassword(newPassword: string, currentPassword: string): Promise<void>
+  changeFullName(newFullName: string): Promise<void>
   getMinimumPasswordLength(): number
+  isPasswordCompliant(password: string): boolean
+  getPasswordPolicyCompliance(
+    password: string
+  ): JJMapServerPasswordPolicyCompliance | JJMapCloudPasswordPolicyCompliance
   isPseudoUser(): boolean
   getOrganizationId(): string
 }
