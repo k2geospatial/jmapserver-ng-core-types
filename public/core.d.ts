@@ -5154,9 +5154,8 @@ declare namespace JMap {
        *     "https://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
        *     "https://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
        *   ],
-       *   previewImageAsUrlOrBase64: "https://searchengineland.com/figz/wp-content/seloads/2013/11/Screen-Shot-2013-11-22-at-3.41.27-PM.png",
-       *   true // = activate the new basemap
-       * })
+       *   previewImageAsUrlOrBase64: "https://searchengineland.com/figz/wp-content/seloads/2013/11/Screen-Shot-2013-11-22-at-3.41.27-PM.png"
+       *  }, true) // true = activate the new basemap
        *
        * // Add a quadkey (not x/y/z) basemap
        * JMap.Map.Basemap.add(
@@ -5167,9 +5166,7 @@ declare namespace JMap {
        *      "https://t.ssl.ak.dynamic.tiles.virtualearth.net/comp/ch/{quadkey}?mkt=fr-CA&it=G,LC,BX,RL&shading=hill&n=z&og=1226&cstl=vb&src=o"
        *    ],
        *    previewImageAsUrlOrBase64: "http://www.toxel.com/wp-content/uploads/2008/08/creativelogos11.jpg"
-       *  },
-       *  true // = activate the new basemap
-       * )
+       *  }, true) // true = activate the new basemap
        * ```
        */
       function add(basemap: JBasemap, activate?: boolean, beforeId?: string): void
