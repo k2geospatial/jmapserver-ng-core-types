@@ -565,7 +565,7 @@ declare interface JCoreMapOptions {
   /**
    * The print pixel ratio is used when exporting map screen captures from JMap NG's "exportation / print" panel. All Vector data rendering from the map will be enhanced if this parameter is set to a higher than normal value.
    *
-   * The default and minimum print pixel ratio value is 2. If you would like to have an exportation of your map to a business printer quality, you could set the print pixel ratio to 3 or 4.
+   * The default and minimum print pixel ratio value is 2. If you would like to export your map to a business printer quality, you could set the print pixel ratio to 3 or 4.
    *
    * A print pixel ratio smaller than the minimum print pixel ratio will not be taken into account.
    *
