@@ -4119,7 +4119,7 @@ declare namespace JMap {
      *
      * Forces the map to redraw using the current device pixel ratio in usage.
      *
-     * Rejects if the current `device pixel ratio/map size` combination is invalid.
+     * Rejects if the current `device pixel ratio/map size` combination is invalid .
      *
      * This is a technical method that you should never have to use.
      *
