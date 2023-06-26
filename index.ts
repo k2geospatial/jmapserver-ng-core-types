@@ -727,6 +727,7 @@ export interface JMapService {
   getPrintPixelRatio(): number
   setPrintPixelRatio(pixelRatio: number): void
   applyCurrentPixelRatio(): Promise<void>
+  isPrintPixelRatioCurrentlyValid(): boolean
 }
 
 export interface JMapBasemapService {
