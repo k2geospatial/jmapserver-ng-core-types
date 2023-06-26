@@ -4094,7 +4094,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.setPrintPixelRatio***
      *
-     * Sets the print pixel ratio. This value must be set before the map is displayed (before opening a project).
+     * Sets the print pixel ratio.
      *
      * The print pixel ratio is used when exporting map screen captures from JMap NG's "exportation / print" panel. All Vector data rendering from the map will be enhanced if this parameter is set to a higher than normal value.
      *
@@ -4113,6 +4113,20 @@ declare namespace JMap {
      * ```
      */
     function setPrintPixelRatio(pixelRatio: number): void
+
+    /**
+     * **JMap.Map.applyCurrentPixelRatio***
+     *
+     * Forces the map to redraw using the current print pixel ratio in usage.
+     *
+     * This is a technical method that you should never have to use.
+     *
+     * @example ```ts
+     *
+     * JMap.Map.applyCurrentPixelRatio().then(()=>console.log("Print pixel ratio has been applied"))
+     * ```
+     */
+    function applyCurrentPixelRatio(): Promise<void>
 
     /**
      * **JMap.Map.resetRasterLayerTransparency**
