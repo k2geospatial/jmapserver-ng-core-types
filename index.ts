@@ -724,10 +724,8 @@ export interface JMapService {
   getRasterLayerInitialTransparency(layerId: JId): number
   resetRasterLayerTransparency(layerId: JId): number
   setRasterLayerTransparency(layerId: JId, transparency: number): void
-  getPrintPixelRatio(): number
-  setPrintPixelRatio(pixelRatio: number): void
   applyCurrentPixelRatio(): Promise<void>
-  isPrintPixelRatioCurrentlyValid(): boolean
+  isPixelRatioCurrentlyValid(pixelRatio: number): boolean
 }
 
 export interface JMapBasemapService {
