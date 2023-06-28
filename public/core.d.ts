@@ -4079,42 +4079,6 @@ declare namespace JMap {
     function setRasterLayerTransparency(layerId: JId, transparency: number): void
 
     /**
-     * ***JMap.Map.getPrintPixelRatio***
-     *
-     * Returns the current print pixel ratio.
-     *
-     * @example ```ts
-     *
-     * console.log(JMap.Map.getPrintPixelRatio())
-     * // 3
-     * ```
-     */
-    function getPrintPixelRatio(): number
-
-    /**
-     * ***JMap.Map.setPrintPixelRatio***
-     *
-     * Sets the print pixel ratio.
-     *
-     * The print pixel ratio is used when exporting map screen captures from JMap NG's "exportation / print" panel. All Vector data rendering from the map will be enhanced if this parameter is set to a higher than normal value.
-     *
-     * The default and minimum print pixel ratio value is 2. If you would like to export your map to a business printer quality, you could set the print pixel ratio to 3 or 4, or more, depending on browser type and browser's window size.
-     *
-     * A print pixel ratio smaller than the minimum print pixel ratio will generate an error.
-     *
-     * Print pixel ratio value must be set to a reasonable value, otherwise it can lead to rendering or performance problems.
-     *
-     * @throws Error if the map is already mounted, or if pixelRatio is invalid
-     * @param pixelRatio the print pixel ratio that will be used in the next displayed map
-     * @example ```ts
-     *
-     * // make print pixel ratio equal to 3
-     * JMap.Map.setPrintPixelRatio(3)
-     * ```
-     */
-    function setPrintPixelRatio(pixelRatio: number): void
-
-    /**
      * ***JMap.Map.applyCurrentPixelRatio***
      *
      * Forces the map to redraw using the current device pixel ratio in usage.
@@ -4133,21 +4097,20 @@ declare namespace JMap {
     function applyCurrentPixelRatio(): Promise<void>
 
     /**
-     * ***JMap.Map.isPrintPixelRatioCurrentlyValid***
+     * ***JMap.Map.isPixelRatioCurrentlyValid***
      *
-     * Returns true if the `print pixel ratio/map size` combination is currently valid, false otherwise.
-     *
+     * Returns true if the `pixel ratio/map size` combination is currently valid, false otherwise.
+     * @throws Error if pixelRatio is not a number
+     * @param pixelRatio The pixel ratio to test
      * @example ```ts
      *
-     * JMap.Map.setPrintPixelRatio(2)
-     * JMap.Map.isPrintPixelRatioCurrentlyValid()
+     * JMap.Map.isPixelRatioCurrentlyValid(2)
      * // true
-     * JMap.Map.setPrintPixelRatio(9999)
-     * JMap.Map.isPrintPixelRatioCurrentlyValid()
+     * JMap.Map.isPixelRatioCurrentlyValid(9999)
      * // false
      * ```
      */
-    function isPrintPixelRatioCurrentlyValid(): boolean
+    function isPixelRatioCurrentlyValid(pixelRatio: number): boolean
 
     /**
      * **JMap.Map.resetRasterLayerTransparency**
