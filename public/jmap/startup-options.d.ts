@@ -232,7 +232,7 @@ declare interface JCoreOptions {
   /**
    * If the project you access can be accessed anonymously,
    * you are not forced to pass a session token but you have
-   * to explicitly tell the JMap NG library to log as an anonymous
+   * to explicitly tell the JMap Cloud NG library to log as an anonymous
    * user by setting the "***anonymous***" parameter like that :
    *
    * ```html
@@ -461,13 +461,13 @@ declare interface JCoreOptions {
    *
    * But you can avoid this UI by setting this option to true.
    *
-   * For example NG App don't need NG Core minimal UI and use this option.
+   * For example NG don't need NG Core minimal UI and use this option.
    */
   hideMainLayout?: boolean
 
   /**
    * If true, no basemap will be available/displayed.
-   * In JMap NG App, no basemap panel will be displayed in the left panel
+   * In JMap Cloud NG, no basemap panel will be displayed in the left panel
    */
   disableBasemaps?: boolean
 

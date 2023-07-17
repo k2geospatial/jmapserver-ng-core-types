@@ -1,7 +1,7 @@
 {
   "name": "jmapcloud-ng-core-types",
   "version": "0.0.0",
-  "description": "JMap Cloud specific version of JMap NG Core types and interfaces",
+  "description": "JMap Cloud specific version of JMap Cloud NG Core types and interfaces",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

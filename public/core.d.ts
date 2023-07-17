@@ -1,13 +1,13 @@
 /**
- * This is the JMap NG Core library API documentation.
+ * This is the JMap Cloud NG Core library API documentation.
  *
  * Examples are availables <a href="https://doc.k2geospatial.com/jmap/doc/ng_dev/examples.html" target="_blank">here</a>.
  *
- * You can customize JMap NG Core library by providing startup options ([[JCoreOptions]]).
+ * You can customize JMap Cloud NG Core library by providing startup options ([[JCoreOptions]]).
  *
  * After being loaded, the **NG Core** library is accessible through the namespace **JMap** in the javascript console. For example :
  * ```ts
- * // returns the JMap NG Core version.
+ * // returns the JMap Cloud NG Core version.
  * JMap.getVersion()
  * ```
  */
@@ -15,7 +15,7 @@ declare namespace JMap {
   /**
    * **JMap.getVersion**
    *
-   * Returns the JMap NG Core library build version.
+   * Returns the JMap Cloud NG Core library build version.
    *
    * @example ```ts
    *
@@ -28,7 +28,7 @@ declare namespace JMap {
   /**
    * **JMap.getApiVersion**
    *
-   * Returns the JMap NG Core library API (typescript interfaces) version.
+   * Returns the JMap Cloud NG Core library API (typescript interfaces) version.
    *
    * For the same API version, multiple implementation versions can exist.
    *
@@ -47,7 +47,7 @@ declare namespace JMap {
    *
    * @example ```ts
    *
-   * // returns the JMap NG Core library Redux store
+   * // returns the JMap Cloud NG Core library Redux store
    * const reduxStore = JMap.getDataStore()
    * reduxStore.dispatch(...)
    * ```
@@ -59,7 +59,7 @@ declare namespace JMap {
    *
    * Returns the in use JMap server Rest API url.
    *
-   * This is the url on which the JMap NG Core library makes all of its ajax calls.
+   * This is the url on which the JMap Cloud NG Core library makes all of its ajax calls.
    *
    * @example ```ts
    *
@@ -72,11 +72,11 @@ declare namespace JMap {
   /**
    * **JMap.openDocumentation**
    *
-   * Open JMap NG Core library interface online documentation, in a new tab.
+   * Open JMap Cloud NG Core library interface online documentation, in a new tab.
    *
    * @example ```ts
    *
-   * // open JMap NG Core library online JS API documentation, in a new tab
+   * // open JMap Cloud NG Core library online JS API documentation, in a new tab
    * JMap.openDocumentation()
    * ```
    */
@@ -85,7 +85,7 @@ declare namespace JMap {
   /**
    * **JMap.getOS**
    *
-   * Returns the operating system on witch JMap NG Core library is running client side.
+   * Returns the operating system on witch JMap Cloud NG Core library is running client side.
    *
    * Possible values returned are defined here [[JOPERATING_SYSTEMS]].
    *
@@ -105,7 +105,7 @@ declare namespace JMap {
     /**
      * **JMap.Server.isReady**
      *
-     * Returns a string identifying the full version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
+     * Returns a string identifying the full version of the JMap Server to which JMap Cloud NG is currently connected to. Returns an empty string if the server is not yet connected.
      *
      * @example ```ts
      *
@@ -202,7 +202,7 @@ declare namespace JMap {
     /**
      * **JMap.Server.getShortVersion**
      *
-     * Returns a normalized string identifying the major version of the JMap Server to which JMap NG is currently connected to. Returns an empty string if the server is not yet connected.
+     * Returns a normalized string identifying the major version of the JMap Server to which JMap Cloud NG is currently connected to. Returns an empty string if the server is not yet connected.
      *
      * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @example ```ts
@@ -440,7 +440,7 @@ declare namespace JMap {
     /**
      * **JMap.Geolocation.isEnabled**
      *
-     * Returns false if the JMap NG Core library has been started with option that disable the geolocation.
+     * Returns false if the JMap Cloud NG Core library has been started with option that disable the geolocation.
      *
      * See startup parameter [[JCoreOption.geolocationEnabled]].
      *
@@ -1909,7 +1909,7 @@ declare namespace JMap {
      * Returns the tree element visibility property.
      *
      * The visibility property is initialy defined on the project, and can be
-     * changed by the user through the JMap NG Core library.
+     * changed by the user through the JMap Cloud NG Core library.
      *
      * If this property is false, the layer cannot be displayed on the map.
      *
@@ -1933,7 +1933,7 @@ declare namespace JMap {
      * Returns the tree element selectable property.
      *
      * The selectable property is initialy defined on the project, and can be
-     * changed by the user through the JMap NG Core library.
+     * changed by the user through the JMap Cloud NG Core library.
      *
      * If this property is false, the layer's features can't be selected on the map by user interaction, or by API calls.
      *
@@ -1981,7 +1981,7 @@ declare namespace JMap {
      * If it's a JMap layer, it applies the selectability to it.
      *
      * The selectability property is initialy defined on the project, and can be
-     * changed by the user through the JMap NG Core library.
+     * changed by the user through the JMap Cloud NG Core library.
      *
      * If this property is true, the layer's features can be selected on the map.
      *
@@ -2025,7 +2025,7 @@ declare namespace JMap {
      * If it's a JMap layer, it apply the visibility to it.
      *
      * The visibility property is initialy defined on the project, and can be
-     * changed by the user through the JMap NG Core library.
+     * changed by the user through the JMap Cloud NG Core library.
      *
      * If this property is false, the layer cannot be displayed on the map.
      *
@@ -2056,7 +2056,7 @@ declare namespace JMap {
      * If it's a JMap layer, it apply the visibility to it.
      *
      * The visibility property is initialy defined on the project, and can be
-     * changed by the user through the JMap NG Core library.
+     * changed by the user through the JMap Cloud NG Core library.
      *
      * If this property is false, the layer cannot be displayed on the map.
      *
@@ -4163,7 +4163,7 @@ declare namespace JMap {
      *
      * When you activate an interactor, the previous one is deactivated, and the new one activated on the map.
      *
-     * When you don't need anymore an interactor you can terminate it, and it will not exist anymore in the JMap NG Core library.
+     * When you don't need anymore an interactor you can terminate it, and it will not exist anymore in the JMap Cloud NG Core library.
      */
     namespace Interaction {
       /**
@@ -4202,7 +4202,7 @@ declare namespace JMap {
        *
        * Terminate the map interactor.
        *
-       * After being terminated, the interactor doesn't exist anymore in JMap NG Core library.
+       * After being terminated, the interactor doesn't exist anymore in JMap Cloud NG Core library.
        *
        * You cannot activate it anymore.
        *
@@ -5492,7 +5492,7 @@ declare namespace JMap {
   /**
    * **JMap.Project**
    *
-   * From this section you can manage the project that is in use in the JMap NG Core library.
+   * From this section you can manage the project that is in use in the JMap Cloud NG Core library.
    */
   namespace Project {
     /**
@@ -5763,7 +5763,7 @@ declare namespace JMap {
      *
      * Returns loaded JMap project base64 image thumbnail.
      *
-     * When JMap NG Core lib is started, it doesn't load projects thumbnails, but you can load it
+     * When JMap Cloud NG Core lib is started, it doesn't load projects thumbnails, but you can load it
      * by setting the startup option "loadAllProjectThumbnails" as true.
      *
      * If no thumbnail has been loaded it returns an empty string.
@@ -6539,7 +6539,7 @@ declare namespace JMap {
   /**
    * **JMap.Language**
    *
-   * From this section you can manage the locale and translations used in JMap NG.
+   * From this section you can manage the locale and translations used in JMap Cloud NG.
    */
   namespace Language {
     /**
@@ -6589,7 +6589,7 @@ declare namespace JMap {
     /**
      * **JMap.Language.getDefaultLocale**
      *
-     * Get the default locale used by JMap NG. This locale can be used when a translation is not available in the current locale, for instance.
+     * Get the default locale used by JMap Cloud NG. This locale can be used when a translation is not available in the current locale, for instance.
      *
      * @example ```ts
      *
@@ -6603,7 +6603,7 @@ declare namespace JMap {
     /**
      * **JMap.Language.setLocale**
      * 
-     * Sets the current locale. JMap NG will automatically reload.
+     * Sets the current locale. JMap Cloud NG will automatically reload.
 
      * @throws if locale is invalid
      * @param locale the new locale to use
@@ -6620,10 +6620,10 @@ declare namespace JMap {
     /**
      * **JMap.Language.addBundle**
      *
-     * This method lets you add your own translations into JMap NG translation engine (for instance, all translations needed for one of your extensions)
+     * This method lets you add your own translations into JMap Cloud NG translation engine (for instance, all translations needed for one of your extensions)
      *
      * Once added, a bundle cannot be overriden, and its identity must be unique (its id). You can specify a default locale for your bundle, in wich case
-     * the JMap NG translation engine will fall back to your bundle's default locale instead of on the system's default locale if a translation is not found
+     * the JMap Cloud NG translation engine will fall back to your bundle's default locale instead of on the system's default locale if a translation is not found
      * in your bundle for the current locale.
      *
      * @throws if bundle is invalid or already defined
@@ -6657,7 +6657,7 @@ declare namespace JMap {
     /**
      * **JMap.Language.bundleExitsById**
      *
-     * Returns true if the bundle exists in the JMap NG translation engine, false otherwise
+     * Returns true if the bundle exists in the JMap Cloud NG translation engine, false otherwise
      *
      * @param bundleId
      */
@@ -6682,7 +6682,7 @@ declare namespace JMap {
     /**
      * **JMap.Language.getAllBundleIds**
      *
-     * Returns the list of bundle ids used by the JMap NG translation engine
+     * Returns the list of bundle ids used by the JMap Cloud NG translation engine
      *
      * @example ```ts
      *
@@ -6695,7 +6695,7 @@ declare namespace JMap {
     /**
      * **JMap.Language.getBundles**
      *
-     * Returns an bbject of all the translation bundles loaded in JMap NG at the moment of the call, indexed by id
+     * Returns an bbject of all the translation bundles loaded in JMap Cloud NG at the moment of the call, indexed by id
      *
      * @example ```ts
      *
@@ -6763,7 +6763,7 @@ declare namespace JMap {
     /**
      * **JMap.Language.isValidLocale**
      *
-     * returns true is the passed locale is supported by JMap NG, false otherwise
+     * returns true is the passed locale is supported by JMap Cloud NG, false otherwise
      *
      * @param locale the locale to be tested
      *
@@ -6963,7 +6963,7 @@ declare namespace JMap {
   /**
    * **JMap.Event**
    *
-   * From this section you can manage your own event listeners reacting to JMap NG Core library events.
+   * From this section you can manage your own event listeners reacting to JMap Cloud NG Core library events.
    *
    * For all your listener you need provide a listener id. We introduced this notion of listener ids in order
    * to be able to know what's the problem if something goes wrong in a listener.
@@ -6979,13 +6979,13 @@ declare namespace JMap {
    *
    * Listeners can be deactivated and reactivated.
    *
-   * Deactivating a listener keep it in the JMap NG Core library, but ignore it when an event is emitted.
+   * Deactivating a listener keep it in the JMap Cloud NG Core library, but ignore it when an event is emitted.
    */
   namespace Event {
     /**
      * ***JMap.Event.Main***
      *
-     * Here you can manage all JMap NG Core high level event listeners.
+     * Here you can manage all JMap Cloud NG Core high level event listeners.
      *
      * Click to see all events available: ***[[JMap.Event.Main.on]]***.
      */
@@ -6993,7 +6993,7 @@ declare namespace JMap {
       /**
        * ***JMap.Event.Main.on***
        *
-       * Here you have all JMap NG Core high level available events on which you can attach a listener.
+       * Here you have all JMap Cloud NG Core high level available events on which you can attach a listener.
        */
       namespace on {
         /**
@@ -7093,7 +7093,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -7116,7 +7116,7 @@ declare namespace JMap {
       /**
        * ***JMap.Event.Query.on***
        *
-       * Here you have all JMap NG Core query events on which you can attach a listener.
+       * Here you have all JMap Cloud NG Core query events on which you can attach a listener.
        */
       namespace on {
         /**
@@ -7237,7 +7237,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -7260,7 +7260,7 @@ declare namespace JMap {
       /**
        * ***JMap.Event.Geocoding.on***
        *
-       * Here you have all JMap NG Core geocoding events on which you can attach a listener.
+       * Here you have all JMap Cloud NG Core geocoding events on which you can attach a listener.
        */
       namespace on {
         /**
@@ -7343,7 +7343,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -7359,7 +7359,7 @@ declare namespace JMap {
       /**
        * ***JMap.Event.Server.on***
        *
-       * Here have all JMap NG Core server related events.
+       * Here have all JMap Cloud NG Core server related events.
        */
       namespace on {
         /**
@@ -7428,7 +7428,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -7443,7 +7443,7 @@ declare namespace JMap {
     /**
      * ***JMap.Event.MapContext***
      *
-     * Here you can manage all JMap NG map context event listeners.
+     * Here you can manage all JMap Cloud NG map context event listeners.
      *
      * Click to see all events available: ***[[JMap.Event.MapContext.on]]***.
      */
@@ -7451,7 +7451,7 @@ declare namespace JMap {
       /**
        * ***JMap.Event.MapContext.on***
        *
-       * Here you have all JMap NG available map context events on which you can attach a listener.
+       * Here you have all JMap Cloud NG available map context events on which you can attach a listener.
        */
       namespace on {
         /**
@@ -7647,7 +7647,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, does nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -7771,7 +7771,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -7984,7 +7984,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -8136,7 +8136,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -8531,7 +8531,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -9091,7 +9091,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -9181,7 +9181,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -9308,7 +9308,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -9337,7 +9337,7 @@ declare namespace JMap {
         /**
          * ***JMap.Event.Language.on.localeChange***
          *
-         * This event is triggered when the current locale is changed in JMap NG translation engine.
+         * This event is triggered when the current locale is changed in JMap Cloud NG translation engine.
          *
          * @param listenerId Your listener id (must be unique for all user events)
          * @param fn Your listener function
@@ -9396,7 +9396,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -9493,7 +9493,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -9690,7 +9690,7 @@ declare namespace JMap {
        *
        * If the listener doesn't exist, do nothing.
        *
-       * Remove the listener from JMap NG Core library. The listener is deleted and never called again after that.
+       * Remove the listener from JMap Cloud NG Core library. The listener is deleted and never called again after that.
        *
        * @param listenerId The listener id
        * @example ```ts
@@ -11701,7 +11701,7 @@ declare namespace JMap {
     /**
      * **JMap.MapContext.setCreateTitle**
      *
-     * Set the title for the creation panel (visible in NG app only).
+     * Set the title for the creation panel (visible in NG only).
      *
      * @throws if newTitle is not a string
      * @param newTitle the new title to display
@@ -11716,7 +11716,7 @@ declare namespace JMap {
     /**
      * **JMap.MapContext.setCreateDescription**
      *
-     * Set the description for the creation panel (visible in NG app only).
+     * Set the description for the creation panel (visible in NG only).
      *
      * @throws if newDescription is not a string
      * @param newDescription the new description to display
@@ -11731,7 +11731,7 @@ declare namespace JMap {
     /**
      * **JMap.MapContext.setCreateTitleError**
      *
-     * Set the title creation in error or not for the creation panel (visible in NG app only).
+     * Set the title creation in error or not for the creation panel (visible in NG only).
      *
      * @param hasError true or false
      * @example ```ts

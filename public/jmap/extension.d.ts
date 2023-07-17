@@ -112,7 +112,7 @@ declare interface JCoreExtension {
    */
   startBeforeMapIsReady?: boolean
   /**
-   * You can provide a translation bundle for your extesion. All translations will be handled by the JMap NG
+   * You can provide a translation bundle for your extesion. All translations will be handled by the JMap Cloud NG
    * translation engine. See [[JMap.Language.addBundle]] for more details on bundles
    */
   translationBundle?: JTranslationBundle
