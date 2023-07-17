@@ -4,7 +4,7 @@ module.exports = {
    */  
   COPY_DIR: "/Users/username/workspaces/",
   /**
-   * SOURCE_DIRS: project folders where you want to copy jmap-core files 
+   * SOURCE_DIRS: project folders where you want to copy jmapcloud-ng-core-types files 
    */
-  SOURCE_DIRS: "jmap-core-js, jmap-app, jmap-app-js, my-extension-js"
+  SOURCE_DIRS: "jmapcloud-ng-core, jmapcloud-ng-types, jmapcloud-ng, my-extension-js"
 }

@@ -3638,18 +3638,18 @@ declare namespace JMap {
     /**
      * **JMap.Map.setDefaultZoomOptions**
      *
-     * Set zoom default values in JMap Core.
+     * Set zoom default values in JMap Cloud NG Core.
      *
      * This default values will be used in all methods that use zoom options.
      *
      * If zoom options are passed in methods, this default values will be overriden by passed values.
      *
-     * If no object is passed, default values are reset with JMap Core default values.
+     * If no object is passed, default values are reset with JMap Cloud NG Core default values.
      *
      * @param options animation, paddings, and maxZoom
      * @example ```ts
      *
-     * // Set default values used by JMap Core
+     * // Set default values used by JMap Cloud NG Core
      * JMap.Map.setDefaultZoomOptions({
      *  animate: false,
      *  paddingTop: 20,
@@ -3658,7 +3658,7 @@ declare namespace JMap {
      *  paddingBottom: 20
      * })
      *
-     * // Reset default values with JMap Core default values
+     * // Reset default values with JMap Cloud NG Core default values
      * // animate=true, and paddings are all 50.
      * JMap.Map.setDefaultZoomOptions()
      * ```
@@ -5829,7 +5829,7 @@ declare namespace JMap {
      * Deactivate the current displayed project. The map is destroyed.
      *
      * After calling this method :
-     *  - In JMap Core : nothing is displayed on screen.
+     *  - In JMap Cloud NG Core : nothing is displayed on screen.
      *  - In JMap App : project list selection is displayed.
      *
      * @example ```ts
@@ -6049,7 +6049,7 @@ declare namespace JMap {
      * @returns a Promise that resolves with the value from the user storage (or null if the preference is not set).
      * @example ```ts
      *
-     * let prefName = "jmap-core-basemap"
+     * let prefName = "jmapcloud-ng-core-basemap"
      * JMap.User
      *  .getPreference(prefName)
      *  .then(preferenceValue => console.log(`Preference item "${prefName}" value is "${preferenceValue}"`))
@@ -6069,7 +6069,7 @@ declare namespace JMap {
      * @param name the name of the preference
      * @example ```ts
      *
-     * let prefName = "jmap-core-basemap"
+     * let prefName = "jmapcloud-ng-core-basemap"
      * JMap.User
      *  .hasPreference(prefName)
      *  .then(hasPreferenceValue => console.log(`Preference item "${prefName}" exists: ${hasPreferenceValue.toString()}`))
@@ -6087,7 +6087,7 @@ declare namespace JMap {
      * @returns a Promise that removes the user preference, and resolves with the value of the removed preference, or null if the preference does not exist
      * @param name the name of the preference
      *
-     * let prefName = "jmap-core-basemap"
+     * let prefName = "jmapcloud-ng-core-basemap"
      * JMap.User
      *  .removePreference(prefName)
      *  .then(removedPreferenceValue => {
@@ -6114,9 +6114,9 @@ declare namespace JMap {
      *
      * @example ```ts
      *
-     * let prefName = "jmap-core-basemap"
+     * let prefName = "jmapcloud-ng-core-basemap"
      *
-     * // Set the value "light" for user preference "jmap-core-basemap"
+     * // Set the value "light" for user preference "jmapcloud-ng-core-basemap"
      * JMap.User
      *  .setPreference(prefName, "light")
      *  .then(preferenceValue => console.log(`Preference item "${prefName}" has been set`))
@@ -6370,7 +6370,7 @@ declare namespace JMap {
     /**
      * ***JMap.User.addInfo***
      *
-     * Add a custom user info, stored in the redux store (JMap Core), and displayed in the user panel (JMap App).
+     * Add a custom user info, stored in the redux store (JMap Cloud NG Core), and displayed in the user panel (JMap App).
      *
      * @param info The user info
      * @throws if info is not an object, if an attribute is missing or invalid type, if "id" already exists
@@ -6389,7 +6389,7 @@ declare namespace JMap {
     /**
      * ***JMap.User.removeInfo***
      *
-     * Remove a user info, from the redux store (JMap Core) and in the user panel (JMap App).
+     * Remove a user info, from the redux store (JMap Cloud NG Core) and in the user panel (JMap App).
      *
      * @param infoId The user info id
      * @example ```ts
@@ -6442,7 +6442,7 @@ declare namespace JMap {
     /**
      * ***JMap.User.getMinimumPasswordLength***
      *
-     * Returns the minumum password length defined in JMap Core
+     * Returns the minumum password length defined in JMap Cloud NG Core
      *
      * @example ```ts
      *
@@ -6687,7 +6687,7 @@ declare namespace JMap {
      * @example ```ts
      *
      * JMap.Language.getAllBundleIds()
-     * // ["jmap-core-js", "jmap-app-js", "my-custom-bundle", ...]
+     * // ["jmapcloud-ng-core", "jmapcloud-ng", "my-custom-bundle", ...]
      * ```
      */
     function getAllBundleIds(): string[]
@@ -7000,7 +7000,7 @@ declare namespace JMap {
          * ***JMap.Event.Main.on.coreReady***
          *
          * This event is triggered once:
-         * * the jmap-core library is loaded,
+         * * the jmapcloud-ng-core library is loaded,
          * * the redux store and its reducers are also loaded,
          * * The initial session validation has been run. At thas point if the session has successfully been validated, the logged-in user will also be available
          *
@@ -8972,7 +8972,7 @@ declare namespace JMap {
          *
          * This event is triggered when the map container is ready to use.
          *
-         * Triggered just before the first time the map is created, when JMap Core check
+         * Triggered just before the first time the map is created, when JMap Cloud NG Core check
          * if the map container exist or not (and create it if needed).
          *
          * @param listenerId Your listener id (must be unique for all map events)

@@ -1,23 +1,23 @@
-**JMap Core library documentation**
+**JMap Cloud NG Core library documentation**
 
-You can explore the JMap Core library API by clicking on this link ***[[JMap]]***.
+You can explore the JMap Cloud NG Core library API by clicking on this link ***[[JMap]]***.
 
-The project has been written in Typescript, so this documentation provides information about result types or arguments to pass to the JMap Core library.
+The project has been written in Typescript, so this documentation provides information about result types or arguments to pass to the JMap Cloud NG Core library.
 
-If you want, you can have a look at the typescript public interfaces located in our Github project named [jmap-core](https://github.com/k2geospatial/jmap-core).
+If you want, you can have a look at the typescript public interfaces located in our Github project named [jmapcloud-ng-core-types](https://github.com/k2geospatial/jmapcloud-ng-core-types).
 
-This project is also published on [NPM](https://www.npmjs.com/package/jmap-core).
+This project is also published on [NPM](https://www.npmjs.com/package/jmapcloud-ng-core-types).
 
-If your project is written in Typescript you can get all autocompletions for the JMap Core library by adding this NPM package to your project :
+If your project is written in Typescript you can get all autocompletions for the JMap Cloud NG Core library by adding this NPM package to your project :
 ```bash
-npm i -D jmap-core
+npm i -D jmapcloud-ng-core-types
 ```
 
-JMap Core library purpose is to provide a JS API in order to fully integrate JMap in your Web Application.
+JMap Cloud NG Core library purpose is to provide a JS API in order to fully integrate JMap in your Web Application.
 
-By default the JMap Core library is started without any options. So nothing special is done except some DOM initializations (for popup containers, etc ...).
+By default the JMap Cloud NG Core library is started without any options. So nothing special is done except some DOM initializations (for popup containers, etc ...).
 
-Before being able to use the JMap Core library, you must be authenticated (= having a valid JMap token) and you need to set some JMap startup options ([[JCoreOptions]]).
+Before being able to use the JMap Cloud NG Core library, you must be authenticated (= having a valid JMap token) and you need to set some JMap startup options ([[JCoreOptions]]).
 
 You can start a JMAP UI components where you want in your page.
 

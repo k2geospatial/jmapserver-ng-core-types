@@ -11,7 +11,7 @@ declare interface Window {
  * The URL is like "https://cdn.jsdelivr.net/npm/jmap-core-js@0.5.0/public/",
  * but it depends on the version you want to use.
  *
- * First you need to import our JS file in your http file, in order to load the JMap Core library.
+ * First you need to import our JS file in your http file, in order to load the JMap Cloud NG Core library.
  * It's recommended to put the CDN import at the end of the body tag, like that :
  * ```html
  * ...
@@ -24,11 +24,11 @@ declare interface Window {
  *   </body>
  * </html>
  * ```
- * To make the JMap Core library working you need to provide some required information like :
+ * To make the JMap Cloud NG Core library working you need to provide some required information like :
  *
  *   - Your JMap Server Rest API URL
  *   - The project id to open
- *   - A valid JMap user session token, **or** set the JMap Core library to log as "anonymous"
+ *   - A valid JMap user session token, **or** set the JMap Cloud NG Core library to log as "anonymous"
  *
  * It can be passed by setting a global JS variable named "JMAP_OPTIONS" :
  *
@@ -172,11 +172,11 @@ declare interface JCoreOptions {
   onProjectsChange?(params: JProjectAllEventParams): void
 
   /**
-   * By default project thumbnails are not loaded, because they are not useful if JMap Core lib is used alone.
+   * By default project thumbnails are not loaded, because they are not useful if JMap Cloud NG Core lib is used alone.
    *
    * To load asynchronously project thumbnails, set startup option "loadProjectThumbnails" to true.
    *
-   * JMap Core lib will load all project thumbnails (or preview) in project objects (property "base64ImageThumbnail").
+   * JMap Cloud NG Core lib will load all project thumbnails (or preview) in project objects (property "base64ImageThumbnail").
    *
    * The thumbnail is stored as a base64 string image, that you can use to set an img src attribute directly.
    *

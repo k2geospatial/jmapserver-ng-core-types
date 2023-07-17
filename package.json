@@ -1,7 +1,7 @@
 {
-  "name": "jmap-core",
-  "version": "2.10.6",
-  "description": "JMap Core library Typescript API",
+  "name": "jmapcloud-ng-core-types",
+  "version": "0.0.0",
+  "description": "JMap Cloud specific version of JMap NG Core types and interfaces",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,20 +13,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/k2geospatial/jmap-core.git"
+    "url": "git@github.com:k2geospatial/jmapcloud-ng-core-types.git"
   },
   "keywords": [
     "k2",
     "geospatial",
-    "jmap",
-    "jmap-core"
+    "jmapcloud",
+    "ng-core"
   ],
   "author": "K2Geospatial",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/k2geospatial/jmap-core/issues"
+    "url": "https://github.com/k2geospatial/jmapcloud-ng-core-types/issues"
   },
-  "homepage": "https://github.com/k2geospatial/jmap-core#readme",
+  "homepage": "https://github.com/k2geospatial/jmapcloud-ng-core-types#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-typedoc": "^2.2.2",
