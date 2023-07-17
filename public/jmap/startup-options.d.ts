@@ -86,7 +86,7 @@ declare interface Window {
  * For example, you can pass this parameters like that :
  *   - **http:// my-company/my-custom-page-using-jmap?ngToken=95423672742&ngProjectId=10**.
  *
- * When JMAP Core library starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
+ * When JMap Cloud NG Core library starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
  * the **JMap project id=*10***, then load the map in the **div id="*jmap-map*"**.
  */
 declare interface JCoreOptions {

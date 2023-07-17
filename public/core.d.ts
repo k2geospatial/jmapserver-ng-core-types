@@ -5830,7 +5830,7 @@ declare namespace JMap {
      *
      * After calling this method :
      *  - In JMap Cloud NG Core : nothing is displayed on screen.
-     *  - In JMap App : project list selection is displayed.
+     *  - In JMap Cloud NG : project list selection is displayed.
      *
      * @example ```ts
      *
@@ -6370,7 +6370,7 @@ declare namespace JMap {
     /**
      * ***JMap.User.addInfo***
      *
-     * Add a custom user info, stored in the redux store (JMap Cloud NG Core), and displayed in the user panel (JMap App).
+     * Add a custom user info, stored in the redux store (JMap Cloud NG Core), and displayed in the user panel (JMap Cloud NG).
      *
      * @param info The user info
      * @throws if info is not an object, if an attribute is missing or invalid type, if "id" already exists
@@ -6389,7 +6389,7 @@ declare namespace JMap {
     /**
      * ***JMap.User.removeInfo***
      *
-     * Remove a user info, from the redux store (JMap Cloud NG Core) and in the user panel (JMap App).
+     * Remove a user info, from the redux store (JMap Cloud NG Core) and in the user panel (JMap Cloud NG).
      *
      * @param infoId The user info id
      * @example ```ts
@@ -9122,7 +9122,7 @@ declare namespace JMap {
          *
          * This event is triggered once when the photo container has been created in the dom.
          *
-         * You should not need to use this event, it's a technical one required by JMap App.
+         * You should not need to use this event, it's a technical one required by JMap Cloud NG.
          *
          * @param listenerId Your listener id (must be unique)
          * @param fn Your listener function
@@ -10407,7 +10407,7 @@ declare namespace JMap {
      *
      * Returns default values if form has not been edited, else form values.
      *
-     * This is a technical method used by JMap App, you should never have to use this function
+     * This is a technical method used by JMap Cloud NG, you should never have to use this function
      *
      * @example ```ts
      *
