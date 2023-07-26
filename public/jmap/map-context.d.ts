@@ -84,7 +84,7 @@ declare interface JMapContextDataV0 {
   }>
   annotationsTextMarkersProperties: Array<{
     id: string
-    location: mapboxgl.LngLatLike
+    location: maplibregl.LngLatLike
     textSize: number
     textColor: string
     textRotation: number

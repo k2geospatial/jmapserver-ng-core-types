@@ -245,7 +245,7 @@ declare interface JLayerDynamicFilterConditionsRemoved extends JLayerEventParams
 }
 
 declare interface JMapEventLoadedParams {
-  map: mapboxgl.Map
+  map: maplibregl.Map
 }
 
 declare interface JLayerGeometry {

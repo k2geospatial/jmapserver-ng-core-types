@@ -2799,7 +2799,7 @@ declare namespace JMap {
      * JMap.Map.getMap()
      * ```
      */
-    function getMap(): mapboxgl.Map
+    function getMap(): maplibregl.Map
 
     /**
      * **JMap.Map.getMapJSLib**
@@ -4144,7 +4144,7 @@ declare namespace JMap {
      *
      * An interactor is a JS object that define 4 functions (for more details consult interface [[JMapInteractor]]) :
      * ```ts
-     *  - init(map: mapboxgl.Map): void
+     *  - init(map: maplibregl.Map): void
      *  - activate(): void
      *  - deactivate(): void
      *  - terminate(): void
@@ -12123,18 +12123,31 @@ declare namespace JMap {
    * Here you'll find all external library JMap expose to its client
    */
   namespace Library {
+    // /**
+    //  * **JMap.Library.mapboxgl**
+    //  *
+    //  * Returns the mapboxgl library.
+    //  *
+    //  * @example ```ts
+    //  *
+    //  * // get the mapboxgl library
+    //  * const mapboxgl = JMap.Library.mapboxgl()
+    //  * ```
+    //  */
+    // function mapboxgl(): any
+
     /**
-     * **JMap.Library.mapboxgl**
+     * **JMap.Library.maplibregl**
      *
-     * Returns the mapboxgl library.
+     * Returns the maplibre-gl library.
      *
      * @example ```ts
      *
-     * // get the mapboxgl library
-     * const mapboxgl = JMap.Library.mapboxgl()
+     * // get the maplibre-gl library
+     * const maplibregl = JMap.Library.maplibregl()
      * ```
      */
-    function mapboxgl(): any
+    function maplibregl(): any
 
     /**
      * **JMap.Library.html2canvas**

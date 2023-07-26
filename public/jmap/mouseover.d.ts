@@ -30,8 +30,8 @@ declare interface JMouseOverOpenPopupForSelectionParams {
 
 declare interface JMouseOverSelectionParams {
   selection: JMapSelection
-  popup: mapboxgl.Popup
-  map: mapboxgl.Map | undefined
+  popup: maplibregl.Popup
+  map: maplibregl.Map | undefined
   location: JLocation
 }
 

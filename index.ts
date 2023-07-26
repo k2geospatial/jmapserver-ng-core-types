@@ -1,5 +1,5 @@
 import { Feature, FeatureCollection, LineString, MultiLineString, Point, Polygon } from "geojson"
-import { Map } from "mapbox-gl"
+import { Map } from "maplibre-gl"
 import { Store } from "redux"
 
 export interface JCoreService extends JCoreMainService {
@@ -36,7 +36,8 @@ export interface JUIService {
 }
 
 export interface JLibraryService {
-  mapboxgl(): any
+  maplibregl(): any
+  // mapboxgl(): any // TODO: remove
   html2canvas(): any
 }
 
