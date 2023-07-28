@@ -207,7 +207,7 @@ declare interface JCoreExtension {
    * ```
    *
    */
-  injectMapRequestParameters?: maplibregl.TransformRequestFunction
+  injectMapRequestParameters?: maplibregl.RequestTransformFunction
 }
 
 declare interface JExtensionMouseOver {

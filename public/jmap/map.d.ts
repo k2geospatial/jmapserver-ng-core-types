@@ -188,8 +188,8 @@ declare interface JMapBoxEventData {
 }
 
 declare interface JMapMapboxLayerStyleDefinition {
-  styleLayer: maplibregl.Layer
-  borderStyleLayer?: maplibregl.Layer
+  styleLayer: maplibregl.LayerSpecification
+  borderStyleLayer?: maplibregl.LayerSpecification
 }
 
 declare interface JMapNavigateToParams extends JPanAndZoomOptions {
