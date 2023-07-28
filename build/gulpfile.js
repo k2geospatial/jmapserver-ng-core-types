@@ -7,7 +7,7 @@ const join = path.join // shortcut
 const fs = require("fs")
 const gulp = require("gulp")
 const execSync = require("child_process").execSync
-const typedoc = require("gulp-typedoc")
+const gulpTypedoc = require("gulp-typedoc")
 
 const existEnvConfigFile = fs.existsSync("env-config.js")
 if (existEnvConfigFile) {
@@ -27,7 +27,7 @@ if (existEnvConfigFile) {
 // __dirname is the directory witch contains the gulpfile.js file
 const ROOT_DIR = join(__dirname, "..")
 const DOC_ROOT_DIR = join(__dirname, "../docs")
-const SRC_DIR = join(ROOT_DIR, "/src/public")
+const SRC_DIR = join(ROOT_DIR, "/public")
 const packageJSON = JSON.parse(fs.readFileSync("../package.json"))
 const newNpmVersion = packageJSON.version
 const DOC_LATEST_DIR = join(ROOT_DIR, "./docs/latest")
@@ -88,22 +88,20 @@ gulp.task("commit", cb => {
 /******************************** DOCUMENTATION ********************************/
 
 // https://typedoc.org/api/
+// see the following for typescript language level compatibility: https://typedoc.org/guides/installation/#requirements
 gulp.task("typedoc", cb => {
   console.log(`DOC : generating doc in directory "${DOC_DIR}"`)
   console.log(`DOC : file://${DOC_DIR}/index.html`)
   return gulp.src(["../public/**/*.ts"]).pipe(
-    typedoc({
+    gulpTypedoc({
       readme: "./public-doc-readme.md",
-      mode: "file",
       excludeExternals: true,
       excludePrivate: true,
       tsconfig: "./tsconfig.json",
-      includeDeclarations: true,
       out: DOC_DIR,
       name: "jmapcloud-ng-core-types",
       hideGenerator: true,
-      version: false,
-      ignoreCompilerErrors: false
+      version: false
     })
   )
 })
