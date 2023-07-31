@@ -103,10 +103,7 @@ gulp.task("typedoc", cb => {
       name: "jmapcloud-ng-core-types",
       hideGenerator: true,
       version: false
-    }).on("end", () => {
-      console.log("toto")
-      cb()
-    })
+    }).on("end", cb)
   )
 })
 
