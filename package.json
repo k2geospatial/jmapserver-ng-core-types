@@ -1,6 +1,6 @@
 {
   "name": "jmapcloud-ng-core-types",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "JMap Cloud specific version of JMap Cloud NG Core types and interfaces",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   "homepage": "https://github.com/k2geospatial/jmapcloud-ng-core-types#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
-    "gulp-typedoc": "^3.0.2",
+    "gulp-typedoc-k2": "^3.0.2-k2",
     "typedoc": "^0.22.0"
   },
   "dependencies": {
