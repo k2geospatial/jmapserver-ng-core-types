@@ -33,7 +33,7 @@ declare const enum JMAP_RASTER_SCHEME_TYPES {
 }
 
 declare interface JMapInteractor {
-  init(map: mapboxgl.Map): void
+  init(map: maplibregl.Map): void
   activate(): void
   deactivate(): void
   terminate(): void
@@ -64,7 +64,7 @@ declare interface JDisplayExtentParams {
 }
 
 declare interface JMapEventParams {
-  map: mapboxgl.Map
+  map: maplibregl.Map
   mapEvent: any
 }
 
@@ -188,8 +188,8 @@ declare interface JMapBoxEventData {
 }
 
 declare interface JMapMapboxLayerStyleDefinition {
-  styleLayer: mapboxgl.Layer
-  borderStyleLayer?: mapboxgl.Layer
+  styleLayer: maplibregl.LayerSpecification
+  borderStyleLayer?: maplibregl.LayerSpecification
 }
 
 declare interface JMapNavigateToParams extends JPanAndZoomOptions {
@@ -618,5 +618,5 @@ declare interface JCoreMapOptions {
    * </html>
    * ```
    */
-  onStartupMapReadyFn?: (map: mapboxgl.Map) => void
+  onStartupMapReadyFn?: (map: maplibregl.Map) => void
 }

@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "../public/transpiled",
-    "baseUrl": "../src",
+    "baseUrl": "../public",
+    "types": ["maplibre-gl"],
     "strict": true,
+    "allowSyntheticDefaultImports": true, // needed for MapLibre https://www.typescriptlang.org/tsconfig#allowSyntheticDefaultImports
     "sourceMap": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
@@ -17,7 +19,6 @@
     ]
   },
   "include": [
-    "../src/**/*",
-    "../node_modules/jmapcloud-ng-core-types/**/*"
+    "../public/**/*"
   ]
 }

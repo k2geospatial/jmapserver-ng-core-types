@@ -9,17 +9,7 @@
     "module": "esnext",
     "target": "es5",
     "jsx": "react",
-    "lib": [
-      "es2017",
-      "dom",
-      "es5",
-      "es2015.promise"
-    ]
+    "lib": ["es2017", "dom", "es5", "es2015.promise"]
   },
-  "include": [
-    "../public/**/*",
-    "../private/**/*",
-    "./index.ts",
-    "./all-enums.ts"
-  ]
+  "include": ["./public/**/*", "./index.ts", "./all-enums.ts"]
 }
