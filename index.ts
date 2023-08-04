@@ -680,8 +680,8 @@ export interface JMapService {
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
   getMapLibreSupportedJMapLayerIds(): JId[]
-  getMapLibreSupportedJMapLayerBefore(layerId: JId): JId | undefined
-  getMapLibreSupportedJMapLayerAfter(layerId: JId): JId | undefined
+  getMapLibreSupportedJMapLayerIdBefore(layerId: JId): JId | undefined
+  getMapLibreSupportedJMapLayerIdAfter(layerId: JId): JId | undefined
   refreshLayerById(layerId: JId): void
   getRenderedJMapLayerIds(): JId[]
   getRenderedFeatures(layerId: JId, params?: JLocation | JBoundaryBox | JCircle | JGetRenderedFeaturesParams): Feature[]

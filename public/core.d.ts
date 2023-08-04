@@ -3264,7 +3264,7 @@ declare namespace JMap {
     function getMapLibreSupportedJMapLayerIds(): JId[]
 
     /**
-     * **JMap.Map.getMapLibreSupportedJMapLayerBefore**
+     * **JMap.Map.getMapLibreSupportedJMapLayerIdBefore**
      *
      * Returns the Map JS library supported JMap layer id that is ordered before the JMap layer id provided in argument.
      *
@@ -3274,13 +3274,13 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Returns the layer id that is located before layer id=4
-     * JMap.Map.getMapLibreSupportedJMapLayerBefore(4)
+     * JMap.Map.getMapLibreSupportedJMapLayerIdBefore(4)
      * ```
      */
-    function getMapLibreSupportedJMapLayerBefore(layerId: JId): JId | undefined
+    function getMapLibreSupportedJMapLayerIdBefore(layerId: JId): JId | undefined
 
     /**
-     * **JMap.Map.getMapLibreSupportedJMapLayerAfter**
+     * **JMap.Map.getMapLibreSupportedJMapLayerIdAfter**
      *
      * Returns the Map JS library supported JMap layer id that is ordered after the JMap layer id provided in argument.
      *
@@ -3290,10 +3290,10 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Returns the layer id that is located after layer id=3
-     * JMap.Map.getMapLibreSupportedJMapLayerAfter(3)
+     * JMap.Map.getMapLibreSupportedJMapLayerIdAfter(3)
      * ```
      */
-    function getMapLibreSupportedJMapLayerAfter(layerId: JId): JId | undefined
+    function getMapLibreSupportedJMapLayerIdAfter(layerId: JId): JId | undefined
 
     /**
      * **JMap.Map.refreshLayerById**

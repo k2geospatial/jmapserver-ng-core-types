@@ -297,7 +297,7 @@ declare interface JCoreMapOptions {
    * the JMap Cloud NG Core library will use it automatically, nothing else to do for you.
    *
    * The mapbox token is used by JMap in order to fully use mapbox capabilities
-   * like displaying a mapbox base maps or mapbox geocoding.
+   * like displaying a mapbox base maps or using mapbox geocoding.
    *
    * But if no token is set in JMap Admin, or if you want to use
    * the mapbox token of your choice, you have to set the "***mapboxToken***" parameter :
