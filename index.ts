@@ -470,7 +470,7 @@ export interface JMapState {
   activeBasemapId: string | undefined
   basemaps: JBasemap[]
   selection: JMapSelection
-  jmapLayerIdsSupportedByMap: JId[]
+  jmapLayerIdsSupportedByMapLibre: JId[]
   scaleControlPosition: JMAP_POSITIONS
   distanceUnit: JMAP_DISTANCE_UNITS
   isNavigationHistoryControlVisible: boolean
@@ -662,7 +662,7 @@ export interface JMapService {
   getExtent(): JBoundaryBox
   getCenter(): { x: number; y: number }
   getZoom(): number
-  getMapSourceIdByJMapLayerId(layerId: JId): string
+  getMapLibreSourceIdByJMapLayerId(layerId: JId): string
   isScaleControlVisible(): boolean
   setScaleControlVisibility(isVisible: boolean, position?: JMAP_POSITIONS): void
   setScaleControlUnits(units: "imperial" | "metric" | "nautical"): void
@@ -679,9 +679,9 @@ export interface JMapService {
   isLayerRendered(layerId: JId): boolean
   getLayersVisibilityStatus(): JMapLayersVisibilityStatus
   getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
-  getMapSupportedJMapLayerIds(): JId[]
-  getMapSupportedJMapLayerBefore(layerId: JId): JId | undefined
-  getMapSupportedJMapLayerAfter(layerId: JId): JId | undefined
+  getMapLibreSupportedJMapLayerIds(): JId[]
+  getMapLibreSupportedJMapLayerBefore(layerId: JId): JId | undefined
+  getMapLibreSupportedJMapLayerAfter(layerId: JId): JId | undefined
   refreshLayerById(layerId: JId): void
   getRenderedJMapLayerIds(): JId[]
   getRenderedFeatures(layerId: JId, params?: JLocation | JBoundaryBox | JCircle | JGetRenderedFeaturesParams): Feature[]

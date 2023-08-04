@@ -2804,7 +2804,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.getMapJSLib**
      *
-     * Returns the JS library used to create the map.
+     * Returns the JS library used to create the map (MapLibre).
      *
      * Useful to be able to create a map library object, for instance a popup.
      *
@@ -2946,7 +2946,7 @@ declare namespace JMap {
     function getZoom(): number
 
     /**
-     * ***JMap.Map.getMapSourceIdByJMapLayerId***
+     * ***JMap.Map.getMapLibreSourceIdByJMapLayerId***
      *
      * Returns the source id of the given Jmap layer id.
      *
@@ -2955,10 +2955,10 @@ declare namespace JMap {
      * @example ```ts
      *
      * // returns the source id of the JMap layer with id 4
-     * JMap.Map.getMapSourceIdByJMapLayerId(4)
+     * JMap.Map.getMapLibreSourceIdByJMapLayerId(4)
      * ```
      */
-    function getMapSourceIdByJMapLayerId(layerId: JId): string
+    function getMapLibreSourceIdByJMapLayerId(layerId: JId): string
 
     /**
      * ***JMap.Map.isNavigationHistoryControlVisible***
@@ -3247,24 +3247,24 @@ declare namespace JMap {
     function getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
 
     /**
-     * **JMap.Map.getMapSupportedJMapLayerIds**
+     * **JMap.Map.getMapLibreSupportedJMapLayerIds**
      *
      * Returns all layer ids that are displayed by the map.
      *
-     * The Map JS library doesn't support all layer types defined in JMap Server.
+     * The Map JS library doesn't support all layer types defined in JMap .
      *
      * This function returns all layers ids that are managed by the map.
      *
      * @example ```ts
      *
      * // returns layer ids supported by the Map JS library
-     * JMap.Map.getMapSupportedJMapLayerIds()
+     * JMap.Map.getMapLibreSupportedJMapLayerIds()
      * ```
      */
-    function getMapSupportedJMapLayerIds(): JId[]
+    function getMapLibreSupportedJMapLayerIds(): JId[]
 
     /**
-     * **JMap.Map.getMapSupportedJMapLayerBefore**
+     * **JMap.Map.getMapLibreSupportedJMapLayerBefore**
      *
      * Returns the Map JS library supported JMap layer id that is ordered before the JMap layer id provided in argument.
      *
@@ -3274,13 +3274,13 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Returns the layer id that is located before layer id=4
-     * JMap.Map.getMapSupportedJMapLayerBefore(4)
+     * JMap.Map.getMapLibreSupportedJMapLayerBefore(4)
      * ```
      */
-    function getMapSupportedJMapLayerBefore(layerId: JId): JId | undefined
+    function getMapLibreSupportedJMapLayerBefore(layerId: JId): JId | undefined
 
     /**
-     * **JMap.Map.getMapSupportedJMapLayerAfter**
+     * **JMap.Map.getMapLibreSupportedJMapLayerAfter**
      *
      * Returns the Map JS library supported JMap layer id that is ordered after the JMap layer id provided in argument.
      *
@@ -3290,10 +3290,10 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Returns the layer id that is located after layer id=3
-     * JMap.Map.getMapSupportedJMapLayerAfter(3)
+     * JMap.Map.getMapLibreSupportedJMapLayerAfter(3)
      * ```
      */
-    function getMapSupportedJMapLayerAfter(layerId: JId): JId | undefined
+    function getMapLibreSupportedJMapLayerAfter(layerId: JId): JId | undefined
 
     /**
      * **JMap.Map.refreshLayerById**
@@ -3673,7 +3673,7 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Navigate to a location on the map
-     * JMap.Map.navigateTo({center: { x: 45.34, y: 65.87 }, zoom: 5, bearing: 170, pitch: 30, mapEventData: { stopJMapEventPropagation: true }})
+     * JMap.Map.navigateTo({center: { x: 45.34, y: 65.87 }, zoom: 5, bearing: 170, pitch: 30, mapLibreEventData: { stopJMapEventPropagation: true }})
      * ```
      */
     function navigateTo(params: JMapNavigateToParams): void
@@ -8609,7 +8609,7 @@ declare namespace JMap {
          *    "custom-map-move-start",
          *    args => {
          *      console.log(`The map start moving`, args.map, args.mapEvent)
-         *      // mapEvent is the Map event
+         *      // mapEvent is the MapLibre event
          *    }
          * )
          * ```
@@ -8630,7 +8630,7 @@ declare namespace JMap {
          *    "custom-map-move",
          *    args => {
          *      console.log(`The map is moving`, args.map, args.mapEvent)
-         *      // mapEvent is the Map event
+         *      // mapEvent is the MapLibre event
          *    }
          * )
          * ```
@@ -8651,7 +8651,7 @@ declare namespace JMap {
          *    "custom-map-move-end",
          *    args => {
          *      console.log(`The map stop moving`, args.map, args.mapEvent)
-         *      // mapEvent is the Map event
+         *      // mapEvent is the MapLibre event
          *    }
          * )
          * ```
@@ -8673,7 +8673,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse is moving on layer id="${args.layerId}"`, map.location,
-         *          args.map, args.mapEvent // mapEvent is the Map event
+         *          args.map, args.mapEvent // mapEvent is the MapLibre event
          *      )
          *    }
          * )
@@ -8701,7 +8701,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse is moving on layer id="${args.layerId}"`,
-         *          args.map, args.mapEvent // the mapEvent is the Map event
+         *          args.map, args.mapEvent // the mapEvent is the MapLibre event
          *      )
          *      console.log(
          *        `The mouse cursor is over ${args.features.length} features`,
@@ -8737,7 +8737,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse entered an element of layer id="${args.layerId}"`,
-         *          args.map, args.mapEvent // mapEvent is the Map event
+         *          args.map, args.mapEvent // mapEvent is the MapLibre event
          *      )
          *      console.log(
          *        `The mouse cursor is over ${args.features.length} features`,
@@ -8773,7 +8773,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse leaved the layer id="${args.layerId}"`, args.location,
-         *          args.map, args.mapEvent // mapEvent is the Map event
+         *          args.map, args.mapEvent // mapEvent is the MapLibre event
          *      )
          *    }
          * )
@@ -8797,7 +8797,7 @@ declare namespace JMap {
          *      const location = args.location
          *      console.log(
          *          `The mouse has been clicked at { x="${location.x}, y="${location.y}" }"`,
-         *          args.map, args.mapEvent // mapEvent is the Map event
+         *          args.map, args.mapEvent // mapEvent is the MapLibre event
          *      )
          *    }
          * )
