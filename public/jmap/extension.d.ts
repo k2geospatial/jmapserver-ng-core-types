@@ -172,19 +172,19 @@ declare interface JCoreExtension {
   onRegistrationDone?: () => void
 
   /**
-   * An optional handler that returns a Mapbox GL JS RequestParameters object
+   * An optional handler that returns a MapLibre RequestParameters object
    *
-   * Provide this handler if your extentions needs to add something special in MapBox map requests,
+   * Provide this handler if your extentions needs to add something special in map requests,
    * like providing credentials, adding headers, etc.
    *
    * Great care must be taken to not blindly modify every request passed to this handler. You should only modify requests known to your extension. This can usually
    * be determined by looking at the url received by the handler.
    *
-   * See Mapbox documentation for reference:
+   * See MapLibre documentation for reference:
    *
-   * https://docs.mapbox.com/mapbox-gl-js/api/map/#map-parameters
+   * https://maplibre.org/maplibre-gl-js/docs/API/types/maplibregl.MapOptions
    *
-   * https://docs.mapbox.com/mapbox-gl-js/api/properties/#requestparameters
+   * https://maplibre.org/maplibre-gl-js/docs/API/types/maplibregl.RequestParameters
    *
    * @example ```ts
    * JMap.Extension.register({

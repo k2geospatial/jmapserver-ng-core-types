@@ -162,14 +162,14 @@ declare interface JMapNavigationStep {
 }
 
 /**
- *  **JMapBoxEventData**
+ *  **JMapEventData**
  *
- * This interface describe optionnal data we can pass to MapBox events
+ * This interface describe optionnal data we can pass to Map events
  * in order to transport useful information while consuming the events in your application
  *
  *
  */
-declare interface JMapBoxEventData {
+declare interface JMapEventData {
   /**
    * **stopJMapEventPropagation**
    *
@@ -185,11 +185,6 @@ declare interface JMapBoxEventData {
    *
    */
   preventNavigationStepPush?: boolean
-}
-
-declare interface JMapMapboxLayerStyleDefinition {
-  styleLayer: maplibregl.LayerSpecification
-  borderStyleLayer?: maplibregl.LayerSpecification
 }
 
 declare interface JMapNavigateToParams extends JPanAndZoomOptions {
@@ -266,7 +261,7 @@ declare interface JPanAndZoomOptions extends Partial<JZoomOptions> {
   /**
    * Event related options
    */
-  mapBoxEventData?: JMapBoxEventData
+  mapEventData?: JMapEventData
 }
 
 declare interface JCoreMapOptions {
@@ -301,8 +296,8 @@ declare interface JCoreMapOptions {
    * If a mapbox token is set through the JMap Admin interface,
    * the JMap Cloud NG Core library will use it automatically, nothing else to do for you.
    *
-   * The Mapbox token is used by JMap in order to fully use Mapbox capabilities
-   * like displaying a mapbox base maps.
+   * The mapbox token is used by JMap in order to fully use mapbox capabilities
+   * like displaying a mapbox base maps or mapbox geocoding.
    *
    * But if no token is set in JMap Admin, or if you want to use
    * the mapbox token of your choice, you have to set the "***mapboxToken***" parameter :

@@ -32,7 +32,7 @@ declare type JPolygon = JPoint[]
 declare interface JCircle {
   center: JLocation
   /**
-   * With mapbox the radius unit is kilometer
+   * The radius unit is kilometer
    */
   radius: number
 }
