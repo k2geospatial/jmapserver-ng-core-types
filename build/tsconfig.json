@@ -4,7 +4,7 @@
     "baseUrl": "../public",
     "types": ["maplibre-gl"],
     "strict": true,
-    "allowSyntheticDefaultImports": true, // needed for MapLibre https://www.typescriptlang.org/tsconfig#allowSyntheticDefaultImports
+    "allowSyntheticDefaultImports": true, // needed for Maplibre https://www.typescriptlang.org/tsconfig#allowSyntheticDefaultImports
     "sourceMap": true,
     "noImplicitAny": true,
     "moduleResolution": "node",

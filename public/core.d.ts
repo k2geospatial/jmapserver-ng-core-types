@@ -2791,11 +2791,11 @@ declare namespace JMap {
     /**
      * **JMap.Map.getMap**
      *
-     * Returns the Mapbox map instance, a MapBox map.
+     * Returns the Maplibre map instance, a Maplibre map.
      *
      * @example ```ts
      *
-     * // returns the Mapbox map instance
+     * // returns the Maplibre map instance
      * JMap.Map.getMap()
      * ```
      */
@@ -2804,13 +2804,13 @@ declare namespace JMap {
     /**
      * **JMap.Map.getMapJSLib**
      *
-     * Returns the MapBox JS library used to create the map.
+     * Returns the JS library used to create the map (Maplibre).
      *
-     * Useful to be able to create a map library object, by example a popup.
+     * Useful to be able to create a map library object, for instance a popup.
      *
      * @example ```ts
      *
-     * // Create a MapBox popup
+     * // Create a Map popup
      * const myCustomPopup = JMap.Map.getMapJSLib().Popup({
      *   closeButton: false,
      *   closeOnClick: false
@@ -2946,7 +2946,7 @@ declare namespace JMap {
     function getZoom(): number
 
     /**
-     * ***JMap.Map.getMapBoxSourceIdByJMapLayerId***
+     * ***JMap.Map.getMaplibreSourceIdByJMapLayerId***
      *
      * Returns the source id of the given Jmap layer id.
      *
@@ -2955,10 +2955,10 @@ declare namespace JMap {
      * @example ```ts
      *
      * // returns the source id of the JMap layer with id 4
-     * JMap.Map.getMapBoxSourceIdByJMapLayerId(4)
+     * JMap.Map.getMaplibreSourceIdByJMapLayerId(4)
      * ```
      */
-    function getMapBoxSourceIdByJMapLayerId(layerId: JId): string
+    function getMaplibreSourceIdByJMapLayerId(layerId: JId): string
 
     /**
      * ***JMap.Map.isNavigationHistoryControlVisible***
@@ -3247,26 +3247,26 @@ declare namespace JMap {
     function getLayersVisibilityStatusAsArray(): JMapLayerVisibilityStatus[]
 
     /**
-     * **JMap.Map.getMapboxSupportedJMapLayerIds**
+     * **JMap.Map.getMaplibreSupportedJMapLayerIds**
      *
      * Returns all layer ids that are displayed by the map.
      *
-     * Mapbox doesn't support all layer types defined in JMap Server.
+     * The Map JS library doesn't support all layer types defined in JMap .
      *
      * This function returns all layers ids that are managed by the map.
      *
      * @example ```ts
      *
-     * // returns layer ids supported by the Mapbox
-     * JMap.Map.getMapboxSupportedJMapLayerIds()
+     * // returns layer ids supported by the Map JS library
+     * JMap.Map.getMaplibreSupportedJMapLayerIds()
      * ```
      */
-    function getMapboxSupportedJMapLayerIds(): JId[]
+    function getMaplibreSupportedJMapLayerIds(): JId[]
 
     /**
-     * **JMap.Map.getMapboxSupportedJMapLayerBefore**
+     * **JMap.Map.getMaplibreSupportedJMapLayerIdBefore**
      *
-     * Returns the Mapbox supported JMap layer id that is ordered before the JMap layer id provided in argument.
+     * Returns the Map JS library supported JMap layer id that is ordered before the JMap layer id provided in argument.
      *
      * @throws Error if layer is not found
      * @param layerId The JMap layer id
@@ -3274,15 +3274,15 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Returns the layer id that is located before layer id=4
-     * JMap.Map.getMapboxSupportedJMapLayerBefore(4)
+     * JMap.Map.getMaplibreSupportedJMapLayerIdBefore(4)
      * ```
      */
-    function getMapboxSupportedJMapLayerBefore(layerId: JId): JId | undefined
+    function getMaplibreSupportedJMapLayerIdBefore(layerId: JId): JId | undefined
 
     /**
-     * **JMap.Map.getMapboxSupportedJMapLayerAfter**
+     * **JMap.Map.getMaplibreSupportedJMapLayerIdAfter**
      *
-     * Returns the Mapbox supported JMap layer id that is ordered after the JMap layer id provided in argument.
+     * Returns the Map JS library supported JMap layer id that is ordered after the JMap layer id provided in argument.
      *
      * @throws Error if layer is not found
      * @param layerId The JMap layer id
@@ -3290,10 +3290,10 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Returns the layer id that is located after layer id=3
-     * JMap.Map.getMapboxSupportedJMapLayerAfter(3)
+     * JMap.Map.getMaplibreSupportedJMapLayerIdAfter(3)
      * ```
      */
-    function getMapboxSupportedJMapLayerAfter(layerId: JId): JId | undefined
+    function getMaplibreSupportedJMapLayerIdAfter(layerId: JId): JId | undefined
 
     /**
      * **JMap.Map.refreshLayerById**
@@ -3318,7 +3318,7 @@ declare namespace JMap {
      *
      * Returns the ids of the layers that are displayed on the map.
      *
-     * Mapbox doesn't support all layer types defined on JMap Server.
+     * The Map JS library doesn't support all layer types defined on JMap Server.
      *
      * This function returns all layers ids that are managed by the map.
      *
@@ -3333,11 +3333,11 @@ declare namespace JMap {
     /**
      * **JMap.Map.getRenderedFeatures**
      *
-     * Returns rendered geojson features for the specified Jmap layer. Features that are not rendered (i.e. filtered by MapBox) are not returned
+     * Returns rendered geojson features for the specified Jmap layer. Features that are not rendered (i.e. filtered by the Map JS library) are not returned
      *
      * If the JMap layer is not visible, no features are returned.
      *
-     * MapBox splits geometries along tiles internally, meaning for instance that a polygon feature that crosses many tiles will be returned as multiple polygon pieces (sharing all properties of the original source features).
+     * The Map JS library splits geometries along tiles internally, meaning for instance that a polygon feature that crosses many tiles will be returned as multiple polygon pieces (sharing all properties of the original source features).
      * By default, getRenderedFeatures will only return one of those pieces (a random one).
      * If you pass a JGetRenderedFeaturesParams with keepAllTiles = true, all feature pieces will be returned by getRenderedFeatures.
      *
@@ -3364,8 +3364,8 @@ declare namespace JMap {
      *  ne: { x: 48.54, y: 70.43 }
      * })
      *
-     * // Returns all rendered geojson features for layer 4 that intersect a circle (radius in km), without any mapbox filter
-     * JMap.Map.getRenderedFeatures(4, {filter: { center: { x: 45.54, y: 65.43 }, radius: .5 }, ignoreMapBoxFilter: true})
+     * // Returns all rendered geojson features for layer 4 that intersect a circle (radius in km), without any Map JS library filter
+     * JMap.Map.getRenderedFeatures(4, {geoFilter: { center: { x: 45.54, y: 65.43 }, radius: .5 }})
      * ```
      */
     function getRenderedFeatures(
@@ -3376,11 +3376,11 @@ declare namespace JMap {
     /**
      * **JMap.Map.getSourceFeatures**
      *
-     * Returns geojson features for the specified JMap layer whether or not they are currently rendered by MapBox (i.e. whether or not they are filtered on screen)
+     * Returns geojson features for the specified JMap layer whether or not they are currently rendered by the map (i.e. whether or not they are filtered on screen)
      *
      * If the JMap layer is not visible, no features are returned.
      *
-     * MapBox splits geometries along tiles internally, meaning for instance that a polygon feature that crosses many tiles will be returned as multiple polygon pieces (sharing all properties of the original source features).
+     * The map splits geometries along tiles internally, meaning for instance that a polygon feature that crosses many tiles will be returned as multiple polygon pieces (sharing all properties of the original source features).
      * By default, getSourceFeatures will only return one of those pieces (a random one).
      * If you pass a JGetSourceFeaturesParams with keepAllTiles = true, all feature pieces will be returned by getSourceFeatures.
      * If you pass a JGetSourceFeaturesParams with keepAllTiles = false (or if keepAllTiles is not specified), and if a viewport is specified in the JGetSourceFeaturesParams, the sole feature piece returned is garanteed to be included in the viewport.
@@ -3673,7 +3673,7 @@ declare namespace JMap {
      * @example ```ts
      *
      * // Navigate to a location on the map
-     * JMap.Map.navigateTo({center: { x: 45.34, y: 65.87 }, zoom: 5, bearing: 170, pitch: 30, mapBoxEventData: { stopJMapEventPropagation: true }})
+     * JMap.Map.navigateTo({center: { x: 45.34, y: 65.87 }, zoom: 5, bearing: 170, pitch: 30, maplibreEventData: { stopJMapEventPropagation: true }})
      * ```
      */
     function navigateTo(params: JMapNavigateToParams): void
@@ -3973,7 +3973,7 @@ declare namespace JMap {
      *
      * Set the map mouse cursor.
      *
-     * If cursor is an empty string will unset the cursor (the mapbox default will be used).
+     * If cursor is an empty string will unset the cursor (the map default cursor will be used).
      *
      * @throws if the map is not ready
      * @param cursor the mouse cursor
@@ -5684,7 +5684,7 @@ declare namespace JMap {
      *
      * Returns loaded JMap project projection.
      *
-     * In MapBox, projection is always "***EPSG:3857***", but that function returns the project
+     * In the map, the projection is always "***EPSG:3857***", but that function returns the project
      * defined projection (so it can be different than ***ESPG:3857***).
      *
      * @throws If no project is loaded
@@ -8609,7 +8609,7 @@ declare namespace JMap {
          *    "custom-map-move-start",
          *    args => {
          *      console.log(`The map start moving`, args.map, args.mapEvent)
-         *      // mapEvent is the Mapbox event
+         *      // mapEvent is the Maplibre event
          *    }
          * )
          * ```
@@ -8630,7 +8630,7 @@ declare namespace JMap {
          *    "custom-map-move",
          *    args => {
          *      console.log(`The map is moving`, args.map, args.mapEvent)
-         *      // mapEvent is the Mapbox event
+         *      // mapEvent is the Maplibre event
          *    }
          * )
          * ```
@@ -8651,7 +8651,7 @@ declare namespace JMap {
          *    "custom-map-move-end",
          *    args => {
          *      console.log(`The map stop moving`, args.map, args.mapEvent)
-         *      // mapEvent is the Mapbox event
+         *      // mapEvent is the Maplibre event
          *    }
          * )
          * ```
@@ -8673,7 +8673,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse is moving on layer id="${args.layerId}"`, map.location,
-         *          args.map, args.mapEvent // mapEvent is the Mapbox event
+         *          args.map, args.mapEvent // mapEvent is the Maplibre event
          *      )
          *    }
          * )
@@ -8701,7 +8701,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse is moving on layer id="${args.layerId}"`,
-         *          args.map, args.mapEvent // the mapEvent is the Mapbox event
+         *          args.map, args.mapEvent // the mapEvent is the Maplibre event
          *      )
          *      console.log(
          *        `The mouse cursor is over ${args.features.length} features`,
@@ -8737,7 +8737,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse entered an element of layer id="${args.layerId}"`,
-         *          args.map, args.mapEvent // mapEvent is the Mapbox event
+         *          args.map, args.mapEvent // mapEvent is the Maplibre event
          *      )
          *      console.log(
          *        `The mouse cursor is over ${args.features.length} features`,
@@ -8773,7 +8773,7 @@ declare namespace JMap {
          *    args => {
          *      console.log(
          *          `The mouse leaved the layer id="${args.layerId}"`, args.location,
-         *          args.map, args.mapEvent // mapEvent is the Mapbox event
+         *          args.map, args.mapEvent // mapEvent is the Maplibre event
          *      )
          *    }
          * )
@@ -8797,7 +8797,7 @@ declare namespace JMap {
          *      const location = args.location
          *      console.log(
          *          `The mouse has been clicked at { x="${location.x}, y="${location.y}" }"`,
-         *          args.map, args.mapEvent // mapEvent is the Mapbox event
+         *          args.map, args.mapEvent // mapEvent is the Maplibre event
          *      )
          *    }
          * )
@@ -12123,19 +12123,6 @@ declare namespace JMap {
    * Here you'll find all external library JMap expose to its client
    */
   namespace Library {
-    // /**
-    //  * **JMap.Library.mapboxgl**
-    //  *
-    //  * Returns the mapboxgl library.
-    //  *
-    //  * @example ```ts
-    //  *
-    //  * // get the mapboxgl library
-    //  * const mapboxgl = JMap.Library.mapboxgl()
-    //  * ```
-    //  */
-    // function mapboxgl(): any
-
     /**
      * **JMap.Library.maplibregl**
      *
