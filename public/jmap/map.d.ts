@@ -162,14 +162,14 @@ declare interface JMapNavigationStep {
 }
 
 /**
- *  **JMapLibreEventData**
+ *  **JMaplibreEventData**
  *
  * This interface describe optionnal data we can pass to Map events
  * in order to transport useful information while consuming the events in your application
  *
  *
  */
-declare interface JMapLibreEventData {
+declare interface JMaplibreEventData {
   /**
    * **stopJMapEventPropagation**
    *
@@ -259,9 +259,9 @@ declare interface JZoomOptions {
 
 declare interface JPanAndZoomOptions extends Partial<JZoomOptions> {
   /**
-   * Event related options/data passed to MapLibre event
+   * Event related options/data passed to Maplibre event
    */
-  mapLibreEventData?: JMapLibreEventData
+  maplibreEventData?: JMaplibreEventData
 }
 
 declare interface JCoreMapOptions {

@@ -172,7 +172,7 @@ declare interface JCoreExtension {
   onRegistrationDone?: () => void
 
   /**
-   * An optional handler that returns a MapLibre RequestParameters object
+   * An optional handler that returns a Maplibre RequestParameters object
    *
    * Provide this handler if your extentions needs to add something special in map requests,
    * like providing credentials, adding headers, etc.
@@ -180,7 +180,7 @@ declare interface JCoreExtension {
    * Great care must be taken to not blindly modify every request passed to this handler. You should only modify requests known to your extension. This can usually
    * be determined by looking at the url received by the handler.
    *
-   * See MapLibre documentation for reference:
+   * See Maplibre documentation for reference:
    *
    * https://maplibre.org/maplibre-gl-js/docs/API/types/maplibregl.MapOptions
    *
