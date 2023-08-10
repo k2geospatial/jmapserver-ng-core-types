@@ -108,6 +108,8 @@ gulp.task("typedoc", cb => {
     --entryPoints ./JMap.d.ts \\
     --entryPointStrategy expand \\
     --navigation.fullTree true \\
+    --treatWarningsAsErrors true \\
+    --treatValidationWarningsAsErrors true
     `,
     { cwd: "." }
   )
