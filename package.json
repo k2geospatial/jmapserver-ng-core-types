@@ -29,7 +29,6 @@
   "homepage": "https://github.com/k2geospatial/jmapcloud-ng-core-types#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
-    "gulp-typedoc-k2": "^3.0.2-k2.1",
     "typedoc": "^0.24.8"
   },
   "dependencies": {
