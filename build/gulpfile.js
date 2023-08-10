@@ -113,6 +113,7 @@ gulp.task("typedoc", cb => {
     `,
     { cwd: "." }
   )
+  // TODO: eventually do the following in a Promise "finally"
   execSync(`rm ./JMap.d.ts`, { cwd: "." })
   cb()
 })
