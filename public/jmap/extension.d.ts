@@ -6,9 +6,9 @@ declare interface JExtensionServerOverride {
   /**
    * The extension's override unique identifier.
    *
-   * For JMap CLoud, this would be the [[JCoreExtension.jmapCloudExtensionUrn]] property of your extension
+   * For JMap CLoud, this would be the {@link JCoreExtension.jmapCloudExtensionUrn} property of your extension
    *
-   * For JMap Server, this would be the [[JCoreExtension.serverExtensionId]] property of your extension
+   * For JMap Server, this would be the {@link JCoreExtension.serverExtensionId} property of your extension
    *
    */
   extensionUniqueIdentifier: string
@@ -84,11 +84,11 @@ declare interface JCoreExtension {
    *
    * This parameter is used to uniquely identify your extension among all other JMap Cloud extensions.
    *
-   * This parameter can be set alongside [[JCoreExtension.serverExtensionId]] if your extension is also available for JMap Server.
+   * This parameter can be set alongside {@link JCoreExtension.serverExtensionId} if your extension is also available for JMap Server.
    *
    * If set, this parameter ***must*** be a {@link https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)|UUID v4 string}. Each Jmap Cloud extension must have a unique identifier, so you have to make sure that each of your extensions defines a unique `jmapCloudExtensionUrn`.
    *
-   * JMap Cloud ***only*** supports [[JCoreExtension.isProjectExtension|Project extensions]]
+   * JMap Cloud ***only*** supports {@link JCoreExtension.isProjectExtension|Project extensions}
    *
    */
   jmapCloudExtensionUrn?: string
@@ -113,7 +113,7 @@ declare interface JCoreExtension {
   startBeforeMapIsReady?: boolean
   /**
    * You can provide a translation bundle for your extesion. All translations will be handled by the JMap Cloud NG
-   * translation engine. See [[JMap.Language.addBundle]] for more details on bundles
+   * translation engine. See {@link JMap.Language.addBundle} for more details on bundles
    */
   translationBundle?: JTranslationBundle
   /**
@@ -147,7 +147,7 @@ declare interface JCoreExtension {
    *
    * Like that you can develop UI component that react to the redux state changes.
    *
-   * You can get the data store using this function : [[JMap.getDataStore]], and then dispatch
+   * You can get the data store using this function : {@link JMap.getDataStore}, and then dispatch
    * your own actions.
    *
    * A redux reducer is a pure JS function that take the current reducer state (can be undefined first time)
@@ -157,7 +157,7 @@ declare interface JCoreExtension {
   /**
    * You can provide a renderMouseOver function.
    *
-   * If set, this function has to return a [[JExtensionMouseOver]], and it will be displayed
+   * If set, this function has to return a {@link JExtensionMouseOver}, and it will be displayed
    * at the end of the standard mouseover.
    *
    * @param layer The JMap layer object

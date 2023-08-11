@@ -263,9 +263,9 @@ declare interface JCoreOptions {
   /**
    * The JMap user's session token.
    *
-   * If you don't use the library with an anonymous user (see the [[***JCoreOptions.anonymous***]] parameter in this section), you must provide a JMap Server session token or a JMap Cloud refresh token to the JMap library.
+   * If you don't use the library with an anonymous user (see the ***{@link JCoreOptions.anonymous}*** parameter in this section), you must provide a JMap Server session token or a JMap Cloud refresh token to the JMap library.
    *
-   * To get a session or refresh token, you can use the JMap Rest API on your JMap Server. See [[JMap.User.setToken]] for detailed examples on how to fetch a token through JMap's REST API.
+   * To get a session or refresh token, you can use the JMap Rest API on your JMap Server. See {@link JMap.User.setToken} for detailed examples on how to fetch a token through JMap's REST API.
    *
    * So to start the library using the fetched token you can configure your startup options like this :
    * ```html
@@ -328,7 +328,7 @@ declare interface JCoreOptions {
   /**
    * The JMap Cloud organization id associated with the refresh token.
    *
-   * For JMap CLoud only. Only taken into account if a refresh token has been passed via the [[JCoreOptions.token]] startup option (or the equivalent hash parameter version)
+   * For JMap CLoud only. Only taken into account if a refresh token has been passed via the {@link JCoreOptions.token} startup option (or the equivalent hash parameter version)
    * ***or*** if the "anonymous" option has been passed, together with a project id.
    *
    * You can pass this organization id to open a session on JMap Cloud via the startup options.
@@ -394,14 +394,14 @@ declare interface JCoreOptions {
   /**
    * All map related options.
    *
-   * Click on [[JCoreMapOptions]] to get details.
+   * Click on {@link JCoreMapOptions} to get details.
    */
   map?: JCoreMapOptions
 
   /**
    * Optional extensions.
    *
-   * Click [[JCoreExtension]] to get details about how defining an extension.
+   * Click {@link JCoreExtension} to get details about how defining an extension.
    */
   extensions?: JCoreExtension[]
 
@@ -413,7 +413,7 @@ declare interface JCoreOptions {
   /**
    * If set to any of the locales supported by JMap, will define the default locale, bypassing browser or user-defined locale.
    *
-   * Supported locales  can be retrieved by calling [[JMap.User.getLocales()]]
+   * Supported locales  can be retrieved by calling {@link JMap.Language.getLocales}
    */
   locale?: string
 
@@ -476,7 +476,7 @@ declare interface JCoreOptions {
    *
    * If provided, will use the corresponding basemap as the default basemap.
    *
-   * If the id is unknown, will do nothing. To get all basemaps ids in the project, use [[JMap.Map.Basemap.getAllIds()]]
+   * If the id is unknown, will do nothing. To get all basemaps ids in the project, use {@link JMap.Map.Basemap.getAllIds}
    *
    * Using the id "none" will use no basemap at startup.
    *

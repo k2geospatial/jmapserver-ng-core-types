@@ -7,8 +7,6 @@ const join = path.join // shortcut
 const fs = require("fs")
 const gulp = require("gulp")
 const execSync = require("child_process").execSync
-// TODO: create a PR for this fork or find another solution
-const gulpTypedoc = require("gulp-typedoc-k2")
 
 const existEnvConfigFile = fs.existsSync("env-config.js")
 if (existEnvConfigFile) {
@@ -93,18 +91,31 @@ gulp.task("commit", cb => {
 gulp.task("typedoc", cb => {
   console.log(`DOC : generating doc in directory "${DOC_DIR}"`)
   console.log(`DOC : file://${DOC_DIR}/index.html`)
-  gulp.src(["../public/**/*.ts"]).pipe(
-    gulpTypedoc({
-      readme: "./public-doc-readme.md",
-      excludeExternals: true,
-      excludePrivate: true,
-      tsconfig: "./tsconfig.json",
-      out: DOC_DIR,
-      name: "jmapcloud-ng-core-types",
-      hideGenerator: true,
-      version: false
-    }).on("end", cb)
+
+  execSync(`cat ../public/core.d.ts ../public/jmap/*ts > ./JMap.d.ts`, { cwd: "." })
+  execSync(
+    `npx typedoc \\
+    --readme ./public-doc-readme.md \\
+    --basePath ../public \\
+    --excludeExternals true \\
+    --excludePrivate true \\
+    --tsconfig ./tsconfig.json \\
+    --out ${DOC_DIR} \\
+    --name "JMap Cloud NG Core types" \\
+    --hideGenerator true \\
+    --version false \\
+    --disableSources true \\
+    --entryPoints ./JMap.d.ts \\
+    --entryPointStrategy expand \\
+    --navigation.fullTree true \\
+    --treatWarningsAsErrors true \\
+    --treatValidationWarningsAsErrors true
+    `,
+    { cwd: "." }
   )
+  // TODO: eventually do the following in a Promise "finally"
+  execSync(`rm ./JMap.d.ts`, { cwd: "." })
+  cb()
 })
 
 /********************************** PUBLIC TASKS **********************************/

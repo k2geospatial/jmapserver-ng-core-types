@@ -3,7 +3,7 @@
  *
  * Examples are availables <a href="https://doc.k2geospatial.com/jmap/doc/ng_dev/examples.html" target="_blank">here</a>.
  *
- * You can customize JMap Cloud NG Core library by providing startup options ([[JCoreOptions]]).
+ * You can customize JMap Cloud NG Core library by providing startup options ({@link JCoreOptions}).
  *
  * After being loaded, the **NG Core** library is accessible through the namespace **JMap** in the javascript console. For example :
  * ```ts
@@ -87,7 +87,7 @@ declare namespace JMap {
    *
    * Returns the operating system on witch JMap Cloud NG Core library is running client side.
    *
-   * Possible values returned are defined here [[JOPERATING_SYSTEMS]].
+   * Possible values returned are defined here {@link JOPERATING_SYSTEMS}.
    *
    * @example ```ts
    *
@@ -230,7 +230,7 @@ declare namespace JMap {
     /**
      * **JMap.Server.getIdentityProviderById**
      *
-     * Returns the specified Identity Provider. Provider Ids can be derived from [[JMap.Server.getAllIdentityProvidersById]]
+     * Returns the specified Identity Provider. Provider Ids can be derived from {@link JMap.Server.getAllIdentityProvidersById}
      *
      * @throws if specified provider id is not valid or not found, or if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
      * @param providerId the provider identity id
@@ -369,9 +369,9 @@ declare namespace JMap {
     /**
      * **JMap.Geocoding.forwardSearch**
      *
-     * Proceeds with a forward geocoding search. Some characters are not permitted in search strings (see [[JMap.Geocoding.getInvalidSearchStringCharacters]]).
+     * Proceeds with a forward geocoding search. Some characters are not permitted in search strings (see {@link JMap.Geocoding.getInvalidSearchStringCharacters}).
      * Calling this method may not trigger immediately a forward geocoding search if the string is too short, or if the method is repetitively called too fast.
-     * You can set an event listener to have access to the forward search results (see [[TBD]]). Search Reasults are also available in the redux store under store-->geocoding-->results
+     * You can set an event listener to have access to the forward search results. Search Reasults are also available in the redux store under store-->geocoding-->results
      *
      * @param searchText The place name to search for. Can be an address, a region's name, or a geographical location expressed as "longitude,latitude" (ex: "-73.576321,45.495757" )
      * @param options an optional JGeocodingOptions object
@@ -395,7 +395,7 @@ declare namespace JMap {
     /**
      * **JMap.Geocoding.displayForwardSearchResult**
      *
-     * Will display on the map the result of a [[JMap.Geocoding.forwardSearch]] single result.
+     * Will display on the map the result of a {@link JMap.Geocoding.forwardSearch} single result.
      *
      * @param forwardSearchResult A JGeocodingResult object
      * @throws If geocoding is not enabled, or if an unexpected error occurs
@@ -442,7 +442,7 @@ declare namespace JMap {
      *
      * Returns false if the JMap Cloud NG Core library has been started with option that disable the geolocation.
      *
-     * See startup parameter [[JCoreOption.geolocationEnabled]].
+     * See startup parameter {@link JCoreOptions.geolocationEnabled}.
      *
      * @example ```ts
      *
@@ -739,7 +739,7 @@ declare namespace JMap {
      * @param parameterName: the name of the parameter
      * @param fn: the function that will be processed when the property changed
      *
-     * @returns the listener id, can be used to remove the listener with [[JMap.History.removePropertyChangeListener]]
+     * @returns the listener id, can be used to remove the listener with {@link JMap.History.removePropertyChangeListener}
      *
      * @throws Error if parameterName is not a valid string or fn is not a function
      *
@@ -759,7 +759,7 @@ declare namespace JMap {
      * **JMap.History.removePropertyChangeListener**
      *
      * You can detach a property listener by its id that has been returned when it has been created
-     * with function [[JMap.History.onParameterChange]].
+     * with function {@link JMap.History.onParameterChange}.
      *
      * After that the listener will be destroyed.
      *
@@ -945,7 +945,7 @@ declare namespace JMap {
        * Shows or hides a specific layer thematic category on the map.
        *
        * @throws Error if layer or thematic is not found, or if an invalid param is provided
-       * @param params a [[JLayerThematicSetCategoryVisibilityParams]] object
+       * @param params a {@link JLayerThematicSetCategoryVisibilityParams} object
        * @example ```ts
        *
        * // Hide the first category of thematic id=3 of layer id=7
@@ -988,7 +988,7 @@ declare namespace JMap {
        * Works only for JMap Cloud server.
        *
        * @throws Error if layer or thematic is not found, or thematic is not a style rule thematic, or if an invalid param is provided
-       * @param params a [[JLayerThematicSetConditionVisibilityParams]] object
+       * @param params a {@link JLayerThematicSetConditionVisibilityParams} object
        * @example ```ts
        *
        * // Hide condition of thematic id="ac7b197c-ca14-4295-b349-8cba6a4dc631" of layer id="53ff7632-0d5e-497a-a1b0-25ce3f941023"
@@ -2451,7 +2451,7 @@ declare namespace JMap {
     /**
      * **JMap.Geometry.getFeatureFromLine**
      *
-     * Returns a line feature from a line object ([[JLine]]).
+     * Returns a line feature from a line object ({@link JLine}).
      *
      * @param line A line array
      * @example ```ts
@@ -2483,7 +2483,7 @@ declare namespace JMap {
     /**
      * **JMap.Geometry.getPolygonFeatureFromCircle**
      *
-     * Returns a polygon feature from a circle object ([[JCircle]]).
+     * Returns a polygon feature from a circle object ({@link JCircle}).
      *
      * @param circle A circle object
      * @param units unit of the radius
@@ -2499,7 +2499,7 @@ declare namespace JMap {
     /**
      * **JMap.Geometry.getFeatureFromPolygon**
      *
-     * Returns a polygon feature from a polygon array ([[JPolygon]]).
+     * Returns a polygon feature from a polygon array ({@link JPolygon}).
      *
      * @param polygon A polygon array
      * @example ```ts
@@ -2514,7 +2514,7 @@ declare namespace JMap {
     /**
      * **JMap.Geometry.getBboxFromFeature**
      *
-     * Returns the feature geometry boundary box ([[JBoundaryBox]]).
+     * Returns the feature geometry boundary box ({@link JBoundaryBox}).
      *
      * @param feature A feature object
      * @example ```ts
@@ -3711,7 +3711,7 @@ declare namespace JMap {
      *
      * Display a pulsing dot on the map to hilite a location, with options
      *
-     * Flashed feature can be immediatly removed using [[JMap.Map.clearFlashingLocations]]
+     * Flashed feature can be immediatly removed using {@link JMap.Map.clearFlashingLocations}
      *
      * @param location a JLocation
      * @param options (see example)
@@ -3756,7 +3756,7 @@ declare namespace JMap {
      *
      * Display a collection of pulsing dots on the map to hilite several locations, with options
      *
-     * Flashed features can be immediatly removed using [[JMap.Map.clearFlashingLocations]]
+     * Flashed features can be immediatly removed using {@link JMap.Map.clearFlashingLocations}
      *
      * @param locations an array of JLocations
      * @param options (see example)
@@ -3799,7 +3799,7 @@ declare namespace JMap {
     /**
      * **JMap.Map.clearFlashingLocations**
      *
-     * Immediatly remove all flashed locations on the map that have been displayed using [[JMap.Map.flashLocation]] or [[JMap.Map.flashLocations]]
+     * Immediatly remove all flashed locations on the map that have been displayed using {@link JMap.Map.flashLocation} or {@link JMap.Map.flashLocations}
      *
      * @example ```ts
      *
@@ -4142,7 +4142,7 @@ declare namespace JMap {
      *
      * So we defined our own map interactors for JMap, and we also allow you to create and register your own interactors.
      *
-     * An interactor is a JS object that define 4 functions (for more details consult interface [[JMapInteractor]]) :
+     * An interactor is a JS object that define 4 functions (for more details consult interface {@link JMapInteractor}) :
      * ```ts
      *  - init(map: maplibregl.Map): void
      *  - activate(): void
@@ -4664,7 +4664,7 @@ declare namespace JMap {
        * @throws Error if layer is not found or location format is not good
        * @param layerId The JMap layer id
        * @param location The location where you want feature selection
-       * @param params selection parameters, see [[JMapSelectionParams]]
+       * @param params selection parameters, see {@link JMapSelectionParams}
        * @returns The features array
        * @example ```ts
        *
@@ -4686,7 +4686,7 @@ declare namespace JMap {
        * @throws Error if layer is not found or if circle format is not good
        * @param layerId The JMap layer id
        * @param circle The circle
-       * @param params selection parameters, see [[JMapSelectionParams]]
+       * @param params selection parameters, see {@link JMapSelectionParams}
        * @returns The features array
        * @example ```ts
        *
@@ -4715,7 +4715,7 @@ declare namespace JMap {
        * @throws Error if layer is not found or if line format is not good
        * @param layerId The JMap layer id
        * @param line The line
-       * @param params selection parameters, see [[JMapSelectionParams]]
+       * @param params selection parameters, see {@link JMapSelectionParams}
        * @returns The features array
        * @example ```ts
        *
@@ -4741,7 +4741,7 @@ declare namespace JMap {
        * @throws Error if layer is not found or if line format is not good
        * @param layerId The JMap layer id
        * @param polygon The line
-       * @param params selection parameters, see [[JMapSelectionParams]]
+       * @param params selection parameters, see {@link JMapSelectionParams}
        * @returns The features array
        * @example ```ts
        *
@@ -4772,7 +4772,7 @@ declare namespace JMap {
        *
        * @throws Error if location format is not good
        * @param location The location where you want feature selection
-       * @param params selection parameters, see [[JMapSelectionParams]]
+       * @param params selection parameters, see {@link JMapSelectionParams}
        * @returns The new feature selection
        * @example ```ts
        *
@@ -4789,7 +4789,7 @@ declare namespace JMap {
        *
        * @throws Error if circle format is not good
        * @param circle The circle
-       * @param params selection parameters, see [[JMapSelectionParams]]
+       * @param params selection parameters, see {@link JMapSelectionParams}
        * @returns The new feature selection
        * @example ```ts
        *
@@ -4810,7 +4810,7 @@ declare namespace JMap {
        *
        * @throws Error if line format is not good
        * @param line The line
-       * @param params selection parameters, see [[JMapSelectionParams]]
+       * @param params selection parameters, see {@link JMapSelectionParams}
        * @returns The new feature selection
        * @example ```ts
        *
@@ -4832,7 +4832,7 @@ declare namespace JMap {
        *
        * @throws Error if polygon format is not good
        * @param polygon The polygon
-       * @param params selection parameters, see [[JMapSelectionParams]]
+       * @param params selection parameters, see {@link JMapSelectionParams}
        * @returns The new feature selection
        * @example ```ts
        *
@@ -5030,7 +5030,7 @@ declare namespace JMap {
        *
        * Returns true if basemaps are disabled.
        *
-       * Can be disabled with option disableBasemaps [[JCoreOptions]] in JS options, or with url param "ngDisableBasemaps=true".
+       * Can be disabled with option disableBasemaps {@link JCoreOptions} in JS options, or with url param "ngDisableBasemaps=true".
        *
        * @example ```ts
        *
@@ -5874,7 +5874,7 @@ declare namespace JMap {
     /**
      * **JMap.Project.isChangeDisabled**
      *
-     * Returns true if the project change has been disabled by startup option "disableProjectChange" (see [[JCoreOptions]]).
+     * Returns true if the project change has been disabled by startup option "disableProjectChange" (see {@link JCoreOptions}).
      *
      * Notice that as long the first project has not been loaded, this method returns false even if the parameter is true.
      *
@@ -6167,7 +6167,7 @@ declare namespace JMap {
      *
      * For JMapCloud only.
      *
-     * Sets and returns Session Data specific to a JMap Cloud organization. You need to be previously authenticated via the [[JMap.User.login]] method before calling this method.
+     * Sets and returns Session Data specific to a JMap Cloud organization. You need to be previously authenticated via the {@link JMap.User.login} method before calling this method.
      * This method can also be used to switch between organizations while a user is already logged in.
      *
      * @throws Error if user is not authenticated
@@ -6203,7 +6203,7 @@ declare namespace JMap {
     /**
      * **JMap.User.loginWithIdentityProvider**
      *
-     * Logs in the user using the specified Identity Provider. See [[JMap.Server.getAllIdentityProvidersById]] for info about Identity providers
+     * Logs in the user using the specified Identity Provider. See {@link JMap.Server.getAllIdentityProvidersById} for info about Identity providers
      *
      * @example ```ts
      *
@@ -6261,9 +6261,9 @@ declare namespace JMap {
      *
      * This process is a bit different for JMap Server than for JMap CLoud.
      *
-     * For JMap Server, you need to fetch a session token from the REST API, and call [[JMap.User.setToken]] without spedifying the organization Id.
+     * For JMap Server, you need to fetch a session token from the REST API, and call {@link JMap.User.setToken} without spedifying the organization Id.
      *
-     * For JMap Cloud, you need to fetch a ***refresh token*** from the JMap Cloud Rest API, and pass this refresh token, along with the the optional organisation Id, to the [[JMap.User.setToken]] method. Beware that a refresh token can only be used once, it is invalidated afterward
+     * For JMap Cloud, you need to fetch a ***refresh token*** from the JMap Cloud Rest API, and pass this refresh token, along with the the optional organisation Id, to the {@link JMap.User.setToken} method. Beware that a refresh token can only be used once, it is invalidated afterward
      *
      * Fetching data from a REST API can be done with the curl command-line tool (https://curl.haxx.se/docs/)
      *
@@ -6610,7 +6610,7 @@ declare namespace JMap {
      * 
      * @example ```ts
      * 
-     * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
+     * // Supported locales can be retrieved by calling JMap.Language.getLocales()
      * const locale = "fr"
      * JMap.Language.setLocale(locale)
      * ```
@@ -6627,11 +6627,11 @@ declare namespace JMap {
      * in your bundle for the current locale.
      *
      * @throws if bundle is invalid or already defined
-     * @param bundle a [[JTranslationBundle]] object
+     * @param bundle a {@link JTranslationBundle} object
      *
      * @example ```ts
      *
-     * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
+     * // Supported locales can be retrieved by calling JMap.Language.getLocales()
      *
      * const bundle = {
      *  id: "my-custom-bundle-id",
@@ -6718,7 +6718,7 @@ declare namespace JMap {
      *
      * @example ```ts
      *
-     * // Supported locales can be retrieved by calling [[JMap.Language.getLocales()]]
+     * // Supported locales can be retrieved by calling JMap.Language.getLocales()
      *
      * const bundle = {
      *  id: "my-custom-bundle-id",
@@ -6987,7 +6987,7 @@ declare namespace JMap {
      *
      * Here you can manage all JMap Cloud NG Core high level event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Main.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Main.on}***.
      */
     namespace Main {
       /**
@@ -7110,7 +7110,7 @@ declare namespace JMap {
      *
      * Here you can manage all query event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Query.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Query.on}***.
      */
     namespace Query {
       /**
@@ -7254,7 +7254,7 @@ declare namespace JMap {
      *
      * Here you can manage all geocoding event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Geocoding.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Geocoding.on}***.
      */
     namespace Geocoding {
       /**
@@ -7445,7 +7445,7 @@ declare namespace JMap {
      *
      * Here you can manage all JMap Cloud NG map context event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.MapContext.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.MapContext.on}***.
      */
     namespace MapContext {
       /**
@@ -7664,7 +7664,7 @@ declare namespace JMap {
      *
      * Here you can manage all extension event listeners.
      *
-     * List of events are located in ***[[JMap.Event.Extension.on]]***.
+     * List of events are located in ***{@link JMap.Event.Extension.on}***.
      */
     namespace Extension {
       /**
@@ -7788,7 +7788,7 @@ declare namespace JMap {
      *
      * Here you can manage all form event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Form.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Form.on}***.
      */
     namespace Form {
       /**
@@ -8001,7 +8001,7 @@ declare namespace JMap {
      *
      * Here you can manage all project related event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Project.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Project.on}***.
      */
     namespace Project {
       /**
@@ -8153,7 +8153,7 @@ declare namespace JMap {
      *
      * Here you can manage all layer related event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Layer.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Layer.on}***.
      */
     namespace Layer {
       /**
@@ -8379,7 +8379,7 @@ declare namespace JMap {
          *
          * This event is triggered when some dynamic filters are set.
          *
-         * Could happen when a map context is applied, or when we use the method [[JMap.Layer.DynamicFilter.set]].
+         * Could happen when a map context is applied, or when we use the method {@link JMap.Layer.DynamicFilter.set}.
          *
          * @param listenerId Your listener id (must be unique for all layer events)
          * @param fn Your listener function
@@ -8548,7 +8548,7 @@ declare namespace JMap {
      *
      * Here you can manage all map related event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Map.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Map.on}***.
      */
     namespace Map {
       /**
@@ -9108,7 +9108,7 @@ declare namespace JMap {
      *
      * Here you can manage all photo event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Photo.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Photo.on}***.
      */
     namespace Photo {
       /**
@@ -9198,7 +9198,7 @@ declare namespace JMap {
      *
      * Here you can manage all feature related event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Feature.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Feature.on}***.
      */
     namespace Feature {
       /**
@@ -9325,7 +9325,7 @@ declare namespace JMap {
      *
      * Here you can manage all language related event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.Language.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.Language.on}***.
      */
     namespace Language {
       /**
@@ -9413,7 +9413,7 @@ declare namespace JMap {
      *
      * Here you can manage all user related event listeners.
      *
-     * Click to see all events available: ***[[JMap.Event.User.on]]***.
+     * Click to see all events available: ***{@link JMap.Event.User.on}***.
      */
     namespace User {
       /**
@@ -9510,7 +9510,7 @@ declare namespace JMap {
      *
      * Here you can manage all mouseover related event listeners.
      *
-     * List of events are located in ***[[JMap.Event.MouseOver.on]]***.
+     * List of events are located in ***{@link JMap.Event.MouseOver.on}***.
      */
     namespace MouseOver {
       /**
@@ -9712,7 +9712,7 @@ declare namespace JMap {
    *
    * This mecanism provide a clean way to integrate in JMap your own extension plugin.
    *
-   * You can create an object that implement the interface [[JCoreExtension]], and register it
+   * You can create an object that implement the interface {@link JCoreExtension}, and register it
    * from this section.
    *
    * By example you register an extension with id="***MyCompany***"".
@@ -10100,7 +10100,7 @@ declare namespace JMap {
      *
      * Returns the currently displayed form.
      *
-     * Use [[JMap.Form.hasDisplayedForm()]] to know if a form is currently displayed.
+     * Use {@link JMap.Form.hasDisplayedForm} to know if a form is currently displayed.
      *
      * @throws if no layer is displayed
      * @example ```ts
@@ -10119,7 +10119,7 @@ declare namespace JMap {
      *
      * Resets the currently displayed form.
      *
-     * Use [[JMap.Form.hasDisplayedForm()]] to know if a form is currently displayed.
+     * Use {@link JMap.Form.hasDisplayedForm} to know if a form is currently displayed.
      *
      * @throws if no layer is displayed
      * @example ```ts
@@ -10142,7 +10142,7 @@ declare namespace JMap {
      *
      * Index starts at 0 (attribute form), 1 (first external form), etc...
      *
-     * Use [[JMap.Form.hasDisplayedForm()]] to know if a form is currently displayed.
+     * Use {@link JMap.Form.hasDisplayedForm} to know if a form is currently displayed.
      *
      * @param tabIndex the tab index
      * @throws if no layer is displayed, if index is invalid.
@@ -10305,7 +10305,7 @@ declare namespace JMap {
      *  const layerId = 3
      *  const featureId = 4
      *  // in this exemple we fetch the feature from the server, but we could get from the map
-     *  // with the following method [[JMap.Map.getRenderedFeatures]]
+     *  // with the following method JMap.Map.getRenderedFeatures
      *  const feature = await JMap.Feature.getById(layerId, featureId)
      *  // opens form update dialog for one element of layer id=3
      *  JMap.Form
@@ -11377,7 +11377,7 @@ declare namespace JMap {
      *
      * Throws an Error if the passed Id is not a valid JMap Id, otherwise does nothing. You can use this method as a safeguard in your methods that accept JMap Ids.
      * JMap.Util.checkJmapId always run a strict check on the passed value, i.e. the string "123" will not pass. If you want the value to be compliant, you
-     * can use [[JMap.Util.getJmapIdAsIntegerIfPossible]] to transform it.
+     * can use {@link JMap.Util.getJmapIdAsIntegerIfPossible} to transform it.
      *
      *
      * @param id The JMap Id to validate
@@ -11674,7 +11674,7 @@ declare namespace JMap {
      *
      * Updates a map context meta-data (= data that describe the context), without changing the map data.
      *
-     * The map context map's data will not be changed, for that use [[JMap.MapContext.update]] function.
+     * The map context map's data will not be changed, for that use {@link JMap.MapContext.update} function.
      *
      * The map-context meta-data is persisted server-side.
      *
