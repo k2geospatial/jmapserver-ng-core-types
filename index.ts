@@ -618,10 +618,7 @@ export interface JGeometryService {
   checkLine(line: JLine): void
   checkBbox(bbox: JBoundaryBox): void
   getArea(feature: Feature): number
-  getLineLength(
-    feature: Feature<LineString> | Feature<MultiLineString>,
-    units?: JGEOMETRY_UNITS | JMAP_DISTANCE_UNITS
-  ): number
+  getLineLength(feature: Feature<LineString | MultiLineString>, units?: JGEOMETRY_UNITS | JMAP_DISTANCE_UNITS): number
   getCentroid(feature: Feature | FeatureCollection): Feature<Point>
   getFeatureFromLine(line: JLine): Feature<LineString>
   getFeatureFromWkt(wkt: string): Feature

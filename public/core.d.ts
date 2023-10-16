@@ -2429,7 +2429,7 @@ declare namespace JMap {
      * ```
      */
     function getLineLength(
-      feature: GeoJSON.Feature<GeoJSON.LineString> | GeoJSON.Feature<GeoJSON.MultiLineString>,
+      feature: GeoJSON.Feature<GeoJSON.LineString | GeoJSON.MultiLineString>,
       units?: JGEOMETRY_UNITS | JMAP_DISTANCE_UNITS
     ): number
 
