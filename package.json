@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pub": "export NODE_ENV='production'; gulp publish --gulpfile build/gulpfile.js;",
-    "copy": "export NODE_ENV='production'; gulp copy --gulpfile build/gulpfile.js;",
-    "commit-doc": "export NODE_ENV='production'; gulp commit-doc --gulpfile build/gulpfile.js;",
-    "doc-test": "export DOC_DIR='./docs/latest'; gulp typedoc --gulpfile build/gulpfile.js;",
-    "copy-latest": "gulp copy-latest --gulpfile build/gulpfile.js;"
+    "pub": "export NODE_ENV='production'; node build/buildfile.js publish;",
+    "copy": "export NODE_ENV='production'; node build/buildfile.js copy;",
+    "commit-doc": "export NODE_ENV='production'; node build/buildfile.js commit-doc;",
+    "doc-test": "export DOC_DIR='./docs/latest'; node build/buildfile.js doc-test;",
+    "copy-latest": "node build/buildfile.js copy-latest;"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,6 @@
   },
   "homepage": "https://github.com/k2geospatial/jmapcloud-ng-core-types#readme",
   "devDependencies": {
-    "gulp": "^4.0.2",
     "typedoc": "^0.24.8"
   },
   "dependencies": {
