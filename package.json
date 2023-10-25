@@ -1,6 +1,6 @@
 {
   "name": "jmapcloud-ng-core-types",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "JMap Cloud specific version of JMap Cloud NG Core types and interfaces",
   "main": "index.js",
   "scripts": {
