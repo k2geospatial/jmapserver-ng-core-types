@@ -4079,38 +4079,31 @@ declare namespace JMap {
     function setRasterLayerTransparency(layerId: JId, transparency: number): void
 
     /**
-     * ***JMap.Map.applyCurrentPixelRatio***
+     * ***JMap.Map.setPixelRatio***
      *
-     * Forces the map to redraw using the current device pixel ratio in usage.
+     * This is a technical method that you should not have to use.
      *
-     * Rejects if the current `device pixel ratio/map size` combination is invalid .
+     * Will try to set the map's pixel ratio to the passed value. Note that the pixel ratio may not be applied exactly because of the map's drawing canvas size limitations.
      *
-     * This is a technical method that you should never have to use.
+     * The method will return:
      *
-     * @example ```ts
+     * * false if the passed pixel ratio is the same as the current map's pixel ratio
+     * * false if the applied pixel ratio is not successful (i.e. if the map's canvas size has not changed with the new pixel ratio)
+     * * true if the pixel ratio application is successful or partially successful (i.e. if the map's canvas size has changed)
      *
-     * JMap.Map.applyCurrentPixelRatio()
-     *    .then(()=>console.log("Pixel ratio has been applied"))
-     *    .catch(error=>console.log("An error occured while applying the pixel ratio:" , error))
-     * ```
+     * @param pixelRatio
      */
-    function applyCurrentPixelRatio(): Promise<void>
+    function setPixelRatio(pixelRatio: number): boolean
 
     /**
-     * ***JMap.Map.isPixelRatioCurrentlyValid***
+     * ***JMap.Map.getPixelRatio***
      *
-     * Returns true if the `pixel ratio/map size` combination is currently valid, false otherwise.
-     * @throws Error if pixelRatio is not a number
-     * @param pixelRatio The pixel ratio to test
-     * @example ```ts
+     * This is a technical method that you should not have to use.
      *
-     * JMap.Map.isPixelRatioCurrentlyValid(2)
-     * // true
-     * JMap.Map.isPixelRatioCurrentlyValid(9999)
-     * // false
-     * ```
+     * Returns the map's current pixel ratio. Note that this pixel ratio is not garanteed to be the exact pixel ratio applied to the map, because of the map's drawing canvas size limitations.
+     *
      */
-    function isPixelRatioCurrentlyValid(pixelRatio: number): boolean
+    function getPixelRatio(): number
 
     /**
      * **JMap.Map.resetRasterLayerTransparency**
