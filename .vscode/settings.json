@@ -17,5 +17,8 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "search.exclude": {
+    "**/docs": true
   }
 }
