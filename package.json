@@ -1,7 +1,7 @@
 {
-  "name": "jmapcloud-ng-core-types",
-  "version": "0.4.6",
-  "description": "JMap Cloud specific version of JMap Cloud NG Core types and interfaces",
+  "name": "jmapserver-ng-core-types",
+  "version": "1.0.0",
+  "description": "JMap Server specific version of JMap Server NG Core types and interfaces",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,20 +13,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:k2geospatial/jmapcloud-ng-core-types.git"
+    "url": "git@github.com:k2geospatial/jmapserver-ng-core-types.git"
   },
   "keywords": [
     "k2",
     "geospatial",
-    "jmapcloud",
+    "jmapserver",
     "ng-core"
   ],
   "author": "K2Geospatial",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/k2geospatial/jmapcloud-ng-core-types/issues"
+    "url": "https://github.com/k2geospatial/jmapserver-ng-core-types/issues"
   },
-  "homepage": "https://github.com/k2geospatial/jmapcloud-ng-core-types#readme",
+  "homepage": "https://github.com/k2geospatial/jmapserver-ng-core-types#readme",
   "devDependencies": {
     "typedoc": "^0.24.8"
   },

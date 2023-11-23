@@ -266,7 +266,7 @@ declare interface JPanAndZoomOptions extends Partial<JZoomOptions> {
 
 declare interface JCoreMapOptions {
   /**
-   * When the JMap Cloud NG Core library start it will create or use an existing div container in which the map will be inserted into.
+   * When the JMap Server NG Core library start it will create or use an existing div container in which the map will be inserted into.
    *
    * By default the div container id is "***jmap-map***", but you can set the id of your choice like that :
    * ```html
@@ -288,13 +288,13 @@ declare interface JCoreMapOptions {
    *
    * In the above example the map will be inserted in the div having "my-custom-container-id" as id. You need to set the width and the height of this div by yourself.
    *
-   * If no container is found in the DOM with the specified id, JMap Cloud NG Core library will create and append it automatically in the body element of the web page.
+   * If no container is found in the DOM with the specified id, JMap Server NG Core library will create and append it automatically in the body element of the web page.
    */
   containerId?: string
 
   /**
    * If a mapbox token is set through the JMap Admin interface,
-   * the JMap Cloud NG Core library will use it automatically, nothing else to do for you.
+   * the JMap Server NG Core library will use it automatically, nothing else to do for you.
    *
    * The mapbox token is used by JMap in order to fully use mapbox capabilities
    * like displaying a mapbox base maps or using mapbox geocoding.
@@ -589,7 +589,7 @@ declare interface JCoreMapOptions {
 
   /**
    * You can execute a custom piece of code at runtime, after the map is ready,
-   * and only one time at JMap Cloud NG Core library startup.
+   * and only one time at JMap Server NG Core library startup.
    *
    * For that you have to set the "***onStartupMapReadyFn***" parameter which is a function.
    * Here an example that will display a message "Hello the map is ready !" in the console :

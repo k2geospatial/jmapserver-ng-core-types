@@ -11,7 +11,7 @@ declare interface Window {
  * The URL is like "https://cdn.jsdelivr.net/npm/jmap-core-js@0.5.0/public/",
  * but it depends on the version you want to use.
  *
- * First you need to import our JS file in your http file, in order to load the JMap Cloud NG Core library.
+ * First you need to import our JS file in your http file, in order to load the JMap Server NG Core library.
  * It's recommended to put the CDN import at the end of the body tag, like that :
  * ```html
  * ...
@@ -24,11 +24,11 @@ declare interface Window {
  *   </body>
  * </html>
  * ```
- * To make the JMap Cloud NG Core library working you need to provide some required information like :
+ * To make the JMap Server NG Core library working you need to provide some required information like :
  *
  *   - Your JMap Server Rest API URL
  *   - The project id to open
- *   - A valid JMap user session token, **or** set the JMap Cloud NG Core library to log as "anonymous"
+ *   - A valid JMap user session token, **or** set the JMap Server NG Core library to log as "anonymous"
  *
  * It can be passed by setting a global JS variable named "JMAP_OPTIONS" :
  *
@@ -86,7 +86,7 @@ declare interface Window {
  * For example, you can pass this parameters like that :
  *   - **http:// my-company/my-custom-page-using-jmap?ngToken=95423672742&ngProjectId=10**.
  *
- * When JMap Cloud NG Core library starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
+ * When JMap Server NG Core library starts, if the **JMap token "*95423672742*"** is valid, it will automatically load
  * the **JMap project id=*10***, then load the map in the **div id="*jmap-map*"**.
  */
 declare interface JCoreOptions {
@@ -172,11 +172,11 @@ declare interface JCoreOptions {
   onProjectsChange?(params: JProjectAllEventParams): void
 
   /**
-   * By default project thumbnails are not loaded, because they are not useful if JMap Cloud NG Core lib is used alone.
+   * By default project thumbnails are not loaded, because they are not useful if JMap Server NG Core lib is used alone.
    *
    * To load asynchronously project thumbnails, set startup option "loadProjectThumbnails" to true.
    *
-   * JMap Cloud NG Core lib will load all project thumbnails (or preview) in project objects (property "base64ImageThumbnail").
+   * JMap Server NG Core lib will load all project thumbnails (or preview) in project objects (property "base64ImageThumbnail").
    *
    * The thumbnail is stored as a base64 string image, that you can use to set an img src attribute directly.
    *
@@ -232,7 +232,7 @@ declare interface JCoreOptions {
   /**
    * If the project you access can be accessed anonymously,
    * you are not forced to pass a session token but you have
-   * to explicitly tell the JMap Cloud NG library to log as an anonymous
+   * to explicitly tell the JMap Server NG library to log as an anonymous
    * user by setting the "***anonymous***" parameter like that :
    *
    * ```html
@@ -467,7 +467,7 @@ declare interface JCoreOptions {
 
   /**
    * If true, no basemap will be available/displayed.
-   * In JMap Cloud NG, no basemap panel will be displayed in the left panel
+   * In JMap Server NG, no basemap panel will be displayed in the left panel
    */
   disableBasemaps?: boolean
 

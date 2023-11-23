@@ -29,7 +29,7 @@ const packageJSON = JSON.parse(fs.readFileSync(join(__dirname, "../package.json"
 const newNpmVersion = packageJSON.version
 const DOC_LATEST_DIR = join(ROOT_DIR, "./docs/latest")
 const DOC_DIR = process.env.DOC_DIR ? join(ROOT_DIR, process.env.DOC_DIR) : join(DOC_ROOT_DIR, `v${newNpmVersion}`)
-const SOURCE_DIRS = process.env.SOURCE_DIRS ? process.env.SOURCE_DIRS : "jmapcloud-ng-core, jmapcloud-ng"
+const SOURCE_DIRS = process.env.SOURCE_DIRS ? process.env.SOURCE_DIRS : "jmapserver-ng-core, jmapserver-ng"
 
 console.log("Directories :")
 console.log(`  Doc dir  => ${DOC_ROOT_DIR}`)
@@ -109,7 +109,7 @@ function generateTypedoc() {
     --excludePrivate true \\
     --tsconfig ${join(__dirname, "./tsconfig.json")} \\
     --out ${DOC_DIR} \\
-    --name "JMap Cloud NG Core Types" \\
+    --name "JMap Server NG Core Types" \\
     --hideGenerator true \\
     --version false \\
     --disableSources true \\
@@ -137,17 +137,17 @@ function copyTypesToOtherProjects() {
 
     fs.cpSync(
       join(ROOT_DIR, "public/"),
-      join(process.env.COPY_DIR, `${sourceDir}/node_modules/jmapcloud-ng-core-types/public/`),
+      join(process.env.COPY_DIR, `${sourceDir}/node_modules/jmapserver-ng-core-types/public/`),
       { recursive: true, force: true }
     )
     fs.cpSync(
       join(ROOT_DIR, "index.ts"),
-      join(process.env.COPY_DIR, `${sourceDir}/node_modules/jmapcloud-ng-core-types/index.ts`),
+      join(process.env.COPY_DIR, `${sourceDir}/node_modules/jmapserver-ng-core-types/index.ts`),
       { recursive: true, force: true }
     )
     fs.cpSync(
       join(ROOT_DIR, "all-enums.ts"),
-      join(process.env.COPY_DIR, `${sourceDir}/node_modules/jmapcloud-ng-core-types/all-enums.ts`),
+      join(process.env.COPY_DIR, `${sourceDir}/node_modules/jmapserver-ng-core-types/all-enums.ts`),
       { recursive: true, force: true }
     )
   }
