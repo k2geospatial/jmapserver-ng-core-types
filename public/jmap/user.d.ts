@@ -8,10 +8,6 @@ declare interface JTokenInfo {
    */
   accessToken: string
   /**
-   * The refresh token.
-   */
-  refreshToken: string
-  /**
    * The access token expiration time in seconds.
    */
   accessTokenExpiration: number

@@ -892,7 +892,6 @@ export interface JUserService {
   setPreference(name: string, value: string | undefined): Promise<void>
   setToken(token: string, organizationId?: string): Promise<JSessionData>
   login(login: string, password: string): Promise<JSessionData>
-  loginIntoOrganization(organizationId: string): Promise<JSessionData>
   loginWithIdentityProvider(providerId: string): void
   logout(): Promise<void>
   isLoggedIn(): boolean
@@ -949,8 +948,6 @@ export interface JServerService {
   isReady(): boolean
   getVersion(): JServerVersion
   getType(): JSERVER_TYPES
-  isSaas(): boolean
-  isLegacy(): boolean
   getMinimumVersion(): JMinimumServerVersion
   isMinimumVersionRespected(serverInfo?: JServerInfo): boolean
   getShortVersion(): string
