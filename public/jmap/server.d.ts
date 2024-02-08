@@ -1,8 +1,3 @@
-// ALL_SERVER_TYPES in all-enum.ts
-declare const enum JSERVER_TYPES {
-  LEGACY = "legacy"
-}
-
 // ALL_SERVER_SAAS_STATUS in all-enum.ts
 declare const enum JSERVER_SAAS_STATUS {
   STARTING = "STARTING",
@@ -24,7 +19,6 @@ declare interface JServerInfo {
   identityProviderById: JServerIdentityProviderById
   standardLoginAvailable: boolean
   version: JServerVersion
-  type: JSERVER_TYPES
 }
 
 declare interface JServerSaasService {
