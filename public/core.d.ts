@@ -6382,7 +6382,7 @@ declare namespace JMap {
     /**
      * ***JMap.User.getPasswordPolicyCompliance***
      *
-     * Returns an object describing the password compliance with the platform's password policy (JMap Server or JMap Cloud)
+     * Returns an object describing the password compliance with the platform's password policy (JMap Server )
      *
      * @example ```ts
      *
@@ -6401,7 +6401,7 @@ declare namespace JMap {
      */
     function getPasswordPolicyCompliance(
       password: string
-    ): JJMapServerPasswordPolicyCompliance | JJMapCloudPasswordPolicyCompliance
+    ): JJMapPasswordPolicyCompliance
 
     /**
      * ***JMap.User.isPseudoUser***
