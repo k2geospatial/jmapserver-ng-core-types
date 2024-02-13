@@ -130,48 +130,6 @@ declare namespace JMap {
     function getVersion(): JServerVersion
 
     /**
-     * **JMap.Server.getType**
-     *
-     * Returns the server type.
-     *
-     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
-     * @example ```ts
-     *
-     * // display the server type, "legacy" (JMap 7) or "saas" (JMap Cloud)
-     * console.log(`Server type is "${JMap.Server.getType()}"`)
-     * ```
-     */
-    function getType(): JSERVER_TYPES
-
-    /**
-     * **JMap.Server.isSaas**
-     *
-     * Returns true if the server is a JMap Server instance.
-     *
-     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
-     * @example ```ts
-     *
-     * // display the type of server
-     * console.log(`Server type is "${JMap.Server.isSaas() ? 'JMap Cloud' : 'JMap 7'}"`)
-     * ```
-     */
-    function isSaas(): boolean
-
-    /**
-     * **JMap.Server.isLegacy**
-     *
-     * Returns true if the server is a JMap 7 instance.
-     *
-     * @throws if the server is not ready (info from server has not been fetched). Call JMap.Server.isReady() to know this information.
-     * @example ```ts
-     *
-     * // display the type of server
-     * console.log(`Server type is "${JMap.Server.isLegacy() ? 'JMap 7' : 'JMap Cloud'}"`)
-     * ```
-     */
-    function isLegacy(): boolean
-
-    /**
      * **JMap.Server.getMinimumVersion**
      *
      * Returns the minimum server version required by NG to work fine.
@@ -183,7 +141,7 @@ declare namespace JMap {
      * JMap.Server.getMinimumVersion()
      * ```
      */
-    function getMinimumVersion(): JMinimumServerVersion
+    function getMinimumVersion(): JServerVersion
 
     /**
      * **JMap.Server.isMinimumVersionRespected**
@@ -6154,44 +6112,6 @@ declare namespace JMap {
      * ```
      */
     function login(login: string, password: string): Promise<JSessionData>
-
-    /**
-     * **JMap.User.loginIntoOrganization**
-     *
-     * For JMapCloud only.
-     *
-     * Sets and returns Session Data specific to a JMap Cloud organization. You need to be previously authenticated via the {@link JMap.User.login} method before calling this method.
-     * This method can also be used to switch between organizations while a user is already logged in.
-     *
-     * @throws Error if user is not authenticated
-     * @param organizationId
-     * @example ```ts
-     *
-     * const userLogin = "jdo@mycompany.com"
-     * const userPassword = "xxx"
-     *
-     * // Open a new user session, and get back user data from server
-     * JMap.User
-     *    .login(userLogin, userPassword)
-     *    .then(sessionData => {
-     *        console.log(`User ${userLogin} has been authenticated, will login to one of it's organization`)
-     *        if(sessionData.organizationInfos.length === 0){
-     *          console.error("User has no organization")
-     *        }else{
-     *          const organizationInfo = sessionData.organizationInfos[sessionData.organizationInfos.length - 1]
-     *          JMap.User
-     *            .loginIntoOrganization(organizationInfo.id)
-     *            .then(sessionData2=>{
-     *              console.log(`User ${userLogin} has been logged into organization "${sessionData2.currentOrganization.name}", his session token is "${sessionData2.accessToken}"`)
-     *            })
-     *        }
-     *    })
-     *    .catch(error => {
-     *      console.error(`Cannot loggin ${userLogin}, error: `, error)
-     *    })
-     * ```
-     */
-    function loginIntoOrganization(organizationId: string): Promise<JSessionData>
 
     /**
      * **JMap.User.loginWithIdentityProvider**

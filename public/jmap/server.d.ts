@@ -1,17 +1,3 @@
-// ALL_SERVER_TYPES in all-enum.ts
-declare const enum JSERVER_TYPES {
-  LEGACY = "legacy",
-  SAAS = "saas"
-}
-
-// ALL_SERVER_SAAS_STATUS in all-enum.ts
-declare const enum JSERVER_SAAS_STATUS {
-  STARTING = "STARTING",
-  UP = "UP",
-  DOWN = "DOWN"
-}
-
-// ALL_SERVER_SAAS_STATUS in all-enum.ts
 declare const enum JSERVER_IDENTITY_PROVIDER_TYPES {
   SSO = "sso",
   AUTH0_SPA = "auth0-spa"
@@ -21,24 +7,10 @@ declare interface JServerIdentityProviderById {
   [id: string]: JServerAnyIdentityProvider
 }
 
-declare interface JServerSaasServiceById {
-  [id: string]: JServerSaasService
-}
-
 declare interface JServerInfo {
   identityProviderById: JServerIdentityProviderById
   standardLoginAvailable: boolean
   version: JServerVersion
-  type: JSERVER_TYPES
-  saasServiceById?: JServerSaasServiceById
-}
-
-declare interface JServerSaasService {
-  id: string
-  name: string
-  version: string
-  status: JSERVER_SAAS_STATUS
-  restBaseUrl: string
 }
 
 declare type JServerAnyIdentityProvider = JServerIdentityProviderAuth0Password | JServerIdentityProviderSso
@@ -66,11 +38,6 @@ declare interface JServerVersion {
   title: string
   mainVersion: number
   buildNumber: number
-}
-
-declare interface JMinimumServerVersion {
-  legacy: JServerVersion
-  saas: JServerVersion
 }
 
 declare interface JServerInfoReadyEventParams {
