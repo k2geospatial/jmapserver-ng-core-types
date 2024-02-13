@@ -902,9 +902,7 @@ export interface JUserService {
   changeFullName(newFullName: string): Promise<void>
   getMinimumPasswordLength(): number
   isPasswordCompliant(password: string): boolean
-  getPasswordPolicyCompliance(
-    password: string
-  ): JJMapServerPasswordPolicyCompliance | JJMapCloudPasswordPolicyCompliance
+  getPasswordPolicyCompliance(password: string): JJMapPasswordPolicyCompliance
   isPseudoUser(): boolean
   isSystemUser(): boolean
   getOrganizationId(): string
