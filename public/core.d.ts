@@ -141,7 +141,7 @@ declare namespace JMap {
      * JMap.Server.getMinimumVersion()
      * ```
      */
-    function getMinimumVersion(): JMinimumServerVersion
+    function getMinimumVersion(): JServerVersion
 
     /**
      * **JMap.Server.isMinimumVersionRespected**
