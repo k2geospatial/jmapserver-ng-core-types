@@ -20,5 +20,10 @@
   },
   "search.exclude": {
     "**/docs": true
+  },
+  "[typescript][typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
   }
 }
