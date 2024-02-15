@@ -347,8 +347,18 @@ declare interface JLayerAttribute {
   name: string
   label: string
   type: JLAYER_ATTRIBUTE_TYPES
+  attributeStatistics: JLayerAttributeStatistics
 }
 
+declare interface JLayerAttributeStatistics {
+  tooManyUniqueValues: boolean
+  uniqueValues?: any[]
+  minimumValue?: number
+  maximumValue?: number
+  sum?: number
+  average?: number
+  standardDeviation?: number
+}
 declare interface JLayerTreeElement {
   id: JId
   name: string
