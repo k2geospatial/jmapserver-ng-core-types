@@ -1790,19 +1790,19 @@ declare namespace JMap {
     function getById(layerId: JId): JLayerTreeElement
 
     /**
-     * **JMap.Layer.getLayerAttributeStatistics**
+     * **JMap.Layer.getLayerAttributesWithStatistics**
      *
-     * Returns the JMap layer with its attribute statistics.
+     * Returns the layer's attributes with their statistics.
      *
      * @throws Error if no layer found for the id
      * @param layerId The JMap layer id
      * @example ```ts
      *
-     * // returns the JMap layer id=3 with its attribute statistics
-     * JMap.Layer.getLayerAttributeStatistics(3)
+     * // returns the attributes of layer id=3 with their statistics
+     * JMap.Layer.getLayerAttributesWithStatistics(3)
      * ```
      */
-    function getLayerAttributeStatistics(layerId: JId): Promise<JLayerAttributeWithStatistics[]>
+    function getLayerAttributesWithStatistics(layerId: JId): Promise<JLayerAttribute[]>
 
     /**
      * **JMap.Layer.getSelfOrChildren**
@@ -6414,9 +6414,7 @@ declare namespace JMap {
      * /*
      * ```
      */
-    function getPasswordPolicyCompliance(
-      password: string
-    ): JJMapPasswordPolicyCompliance
+    function getPasswordPolicyCompliance(password: string): JJMapPasswordPolicyCompliance
 
     /**
      * ***JMap.User.isPseudoUser***
