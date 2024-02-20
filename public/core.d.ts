@@ -1790,6 +1790,21 @@ declare namespace JMap {
     function getById(layerId: JId): JLayerTreeElement
 
     /**
+     * **JMap.Layer.getLayerAttributeStatistics**
+     *
+     * Returns the JMap layer with its attribute statistics.
+     *
+     * @throws Error if no layer found for the id
+     * @param layerId The JMap layer id
+     * @example ```ts
+     *
+     * // returns the JMap layer id=3 with its attribute statistics
+     * JMap.Layer.getLayerAttributeStatistics(3)
+     * ```
+     */
+    function getLayerAttributeStatistics(layerId: JId): Promise<JLayerAttributeWithStatistics[]>
+
+    /**
      * **JMap.Layer.getSelfOrChildren**
      *
      * If the layerId is a layer returns it.

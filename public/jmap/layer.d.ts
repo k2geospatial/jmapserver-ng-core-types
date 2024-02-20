@@ -347,6 +347,15 @@ declare interface JLayerAttribute {
   name: string
   label: string
   type: JLAYER_ATTRIBUTE_TYPES
+  jdbcType?: number
+  attributeStatistics: JLayerAttributeStatistics | null
+}
+
+declare interface JLayerAttributeWithStatistics {
+  name: string
+  title: string
+  type: string
+  jdbcType: number
   attributeStatistics: JLayerAttributeStatistics
 }
 
