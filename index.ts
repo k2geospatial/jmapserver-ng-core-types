@@ -484,6 +484,7 @@ export interface JMapState {
   modificationType: JMAP_MODIFICATION_TYPES
   attributions: JMapAttribution[]
   rasterOpacityByLayerId: { [id: JId]: number }
+  projection: JProjection
 }
 
 export interface JProjectState {
