@@ -350,6 +350,10 @@ declare interface JLayerAttribute {
   attributeStatistics: JLayerAttributeStatistics | null
 }
 
+declare interface JLayerAttributeWithStatistics extends JLayerAttribute {
+  attributeStatistics: JLayerAttributeStatistics
+}
+
 declare interface JLayerAttributeStatistics {
   tooManyUniqueValues: boolean
   uniqueValues?: any[]
