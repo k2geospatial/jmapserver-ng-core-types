@@ -1802,7 +1802,7 @@ declare namespace JMap {
      * JMap.Layer.getLayerAttributesWithStatistics(3)
      * ```
      */
-    function getLayerAttributesWithStatistics(layerId: JId): Promise<JLayerAttribute[]>
+    function getLayerAttributesWithStatistics(layerId: JId): Promise<JLayerAttributeWithStatistics[]>
 
     /**
      * **JMap.Layer.getSelfOrChildren**

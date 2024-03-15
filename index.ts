@@ -842,7 +842,7 @@ export interface JLayerService {
   exists(layerId: JId): boolean
   attributeExists(layerId: JId, attributeName: string): boolean
   getById(layerId: JId): JLayerTreeElement
-  getLayerAttributesWithStatistics(layerId: JId): Promise<JLayerAttribute[]>
+  getLayerAttributesWithStatistics(layerId: JId): Promise<JLayerAttributeWithStatistics[]>
   getSelfOrChildren(layerId: JId): JLayer[]
   getName(layerId: JId): string
   getDescription(layerId: JId): string
