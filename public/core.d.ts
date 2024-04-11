@@ -5058,6 +5058,22 @@ declare namespace JMap {
       function isOSMId(basemapId: string): boolean
 
       /**
+       * ***JMap.Map.Basemap.isGoogleMapsId***
+       *
+       * Returns true if the basemap id is a Google Maps basemap.
+       *
+       * @example ```ts
+       *
+       * // returns true
+       * JMap.Map.Basemap.isGoogleMapsId("google-roadmap")
+       *
+       * // returns false
+       * JMap.Map.Basemap.isGoogleMapsId("mapbox-streets")
+       * ```
+       */
+      function isGoogleMapsId(basemapId: string): boolean
+
+      /**
        * ***JMap.Map.Basemap.getActiveId***
        *
        * Returns the active basemap id, undefined is no basemap is activated.
