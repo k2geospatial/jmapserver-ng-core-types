@@ -735,6 +735,7 @@ export interface JMapBasemapService {
   isDisabled(): boolean
   isActive(): boolean
   isMapboxId(basemapId: string): boolean
+  isGoogleMapsId(basemapId: string): boolean
   isOSMId(basemapId: string): boolean
   getActiveId(): string | undefined
   existsById(basemapId: string): boolean

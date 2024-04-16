@@ -322,6 +322,36 @@ declare interface JCoreMapOptions {
   mapboxToken?: string
 
   /**
+   * If a Google Maps API key is set through the JMap Admin interface,
+   * the JMap Server NG Core library will use it automatically, nothing else to do for you.
+   *
+   * The Google Maps API key is used by JMap Server NG in order to display Google basemaps and to use other Google related functionalities.
+   *
+   * In order to use Google basemaps, you need to enable the Map Tiles API in your Google account. See the {@link https://developers.google.com/maps/documentation/tile/cloud-setup?_gl=1*hgipm1*_up*MQ..*_ga*MTE3OTc5MTI1Ni4xNzEyMzI0Njc4*_ga_NRWSTWS78N*MTcxMjMyNDY3Ny4xLjAuMTcxMjMyNDY3Ny4wLjAuMA.. |documentation} for more details about this
+   *
+   * If no Google Maps API key is set in JMap Admin, or if you want to use
+   * the Google Maps API key of your choice, you have to set the "***googleMapsApiKey***" parameter :
+   *
+   * ```html
+   * <html>
+   *   ...
+   *   <body>
+   *     <script type="text/javascript">
+   *       window.JMAP_OPTIONS = {
+   *         ...
+   *         map: {
+   *           googleMapsApiKey: "google-maps-api-key"
+   *         }
+   *       }
+   *     </script>
+   *     ...
+   *   </body>
+   * </html>
+   * ```
+   */
+  googleMapsApiKey?: string
+
+  /**
    * By default the Map Rotation control is not visible.
    *
    * But if ***mapRotationControlVisible*** is true, it will be displayed on the map.
