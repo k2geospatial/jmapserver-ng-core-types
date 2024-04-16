@@ -140,6 +140,7 @@ export interface JPhotoService {
 
 export interface JFeatureService {
   getById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
+  getByLayerId(layerId: JId, bbox: JBoundaryBox): Promise<GeoJSON.Feature[]>
   getByIds(layerId: JId, featureIds: JId[]): Promise<GeoJSON.Feature[]>
   geometryUpdateById(params: JFeatureGeometryUpdateParams): Promise<GeoJSON.Feature>
   deleteById(layerId: JId, featureId: JId): Promise<GeoJSON.Feature>
