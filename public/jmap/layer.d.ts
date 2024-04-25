@@ -290,6 +290,7 @@ declare interface JLayer extends JLayerTreeElement {
   thematics: JLayerThematic[]
   queries: JQuery[]
   extent: JBoundaryBox | null
+  wgs84Extent: JBoundaryBox | null
   permissions: JLayerPermissions
   canEditGeometry: boolean
   hasAttributeForm: boolean

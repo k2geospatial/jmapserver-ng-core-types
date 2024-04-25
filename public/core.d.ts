@@ -1885,23 +1885,17 @@ declare namespace JMap {
      *
      * Returns the extent of the layer in ESPG:4326 coordinates
      *
-     * With a JMap Cloud server, a call is made to the server.
-     *
-     * With a JMap 7 server, no call to server is made, returns the cached extent.
-     *
      * @example ```ts
      *
      * // returns the bounding box (JBoundaryBox) of the layer ID 3 in decimal degrees
-     * JMap.Layer
-     *  .getEPSG4326Extent(3)
-     *  .then(extent => console.info("Extent of layer id=3", extent))
-     *  .catch(error => console.error(error))
+     *
+     * console.log("WGS84 extent of layer id="3" is: ", JMap.Layer.getEPSG4326Extent(3))
      * ```
      *
-     * @throws Error if no layer found for the id
+     * @throws Error if no layer found for the id or if layer is a group
      * @param layerId The JMap layer id
      */
-    function getEPSG4326Extent(layerId: JId): Promise<JBoundaryBox | null>
+    function getEPSG4326Extent(layerId: JId): JBoundaryBox | null
 
     /**
      * **JMap.Layer.isVisible**
@@ -3821,14 +3815,14 @@ declare namespace JMap {
      *
      * @param layerId a layer Id
      * @param params (see example)
-     * @returns A promise boolean that is true if the layer has an extent or false otherwise.
+     * @returns true if the layer has an extent or false otherwise.
      * @example ```ts
      *
      * // Move to layer 4 extent and display it for a few second
      * JMap.Map.displayLayerExtent(4, {moveToExtent: true})
      * ```
      **/
-    function displayLayerExtent(layerId: JId, params?: JDisplayExtentParams): Promise<boolean>
+    function displayLayerExtent(layerId: JId, params?: JDisplayExtentParams): boolean
 
     /**
      * **JMap.Map.displayExtent**
@@ -5970,7 +5964,7 @@ declare namespace JMap {
      * console.log("Long/lat location", longLatLocation)
      * ```
      */
-    function reprojectLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
+    function reprojectLocation(location: JLocation, toProjection: string, fromProjection?: string): Promise<JLocation>
 
     /**
      * ***JMap.Projection.reprojectBoundaryBox***
@@ -5998,7 +5992,7 @@ declare namespace JMap {
       boundaryBox: JBoundaryBox,
       toProjection: string,
       fromProjection?: string
-    ): JBoundaryBox
+    ): Promise<JBoundaryBox>
   }
 
   /**
