@@ -710,7 +710,7 @@ export interface JMapService {
   flashLocation(location: JLocation, options?: JMapFlashLocationParams): void
   flashLocations(locations: JLocation[], options?: JMapFlashLocationParams): void
   clearFlashingLocations(): void
-  displayLayerExtent(layerId: JId, params?: JDisplayExtentParams): Promise<boolean>
+  displayLayerExtent(layerId: JId, params?: JDisplayExtentParams): boolean
   displayExtent(extent: JBoundaryBox, params?: JDisplayExtentParams): void
   getResolution(params?: JLatitudeAndZoom): number
   getScale(params?: JLatitudeAndZoom): string
@@ -796,8 +796,8 @@ export interface JMapFilterService {
 }
 
 export interface JProjectionService {
-  reprojectLocation(location: JLocation, toProjection: string, fromProjection?: string): JLocation
-  reprojectBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): JBoundaryBox
+  reprojectLocation(location: JLocation, toProjection: string, fromProjection?: string): Promise<JLocation>
+  reprojectBoundaryBox(boundaryBox: JBoundaryBox, toProjection: string, fromProjection?: string): Promise<JBoundaryBox>
 }
 
 export interface JProjectService {
@@ -848,7 +848,7 @@ export interface JLayerService {
   getSelfOrChildren(layerId: JId): JLayer[]
   getName(layerId: JId): string
   getDescription(layerId: JId): string
-  getEPSG4326Extent(layerId: JId): Promise<JBoundaryBox | null>
+  getEPSG4326Extent(layerId: JId): JBoundaryBox | null
   isVisible(layerId: JId, checkParentVisibility?: boolean): boolean
   isVectorLayerById(layerId: JId): boolean
   isSelectableById(layerId: JId): boolean
