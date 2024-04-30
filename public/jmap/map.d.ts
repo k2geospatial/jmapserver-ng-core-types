@@ -123,20 +123,6 @@ declare type JMapSelection = {
   [key in JId]: GeoJSON.Feature[]
 }
 
-declare interface JMapLayerVisibilityStatus {
-  layerId: JId
-  layerName: string
-  isRendered: boolean
-  visibilityProperty: boolean
-  parentVisibility: boolean
-  scaleVisibility: boolean
-  extentVisibility: boolean
-}
-
-declare type JMapLayersVisibilityStatus = {
-  [key in JId]: JMapLayerVisibilityStatus
-}
-
 declare interface JProjection {
   code: string
   name: string
