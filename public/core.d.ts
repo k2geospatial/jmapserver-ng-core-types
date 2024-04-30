@@ -5847,7 +5847,7 @@ declare namespace JMap {
      * @example ```ts
      *
      * // returns the location in long/lat
-     * const longLatLocation = JMap.Projection.reprojectLocation({
+     * const longLatLocation = await JMap.Projection.reprojectLocation({
      *    x: -8251305.053809433,
      *    y: 5683448.361086178
      *  },
@@ -5871,7 +5871,7 @@ declare namespace JMap {
      * @example ```ts
      *
      * // returns the boundary box in long/lat
-     * const longLatBbox = JMap.Projection.reprojectBoundaryBox({
+     * const longLatBbox = await JMap.Projection.reprojectBoundaryBox({
      *    x: -8251305.053809433,
      *    y: 5683448.361086178
      *  },
