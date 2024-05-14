@@ -1,6 +1,6 @@
 {
   "name": "jmapserver-ng-core-types",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "JMap Server specific version of JMap Server NG Core types and interfaces",
   "main": "index.js",
   "scripts": {
