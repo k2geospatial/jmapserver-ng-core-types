@@ -41,7 +41,8 @@ declare interface JCoreExtensionParams {
  *
  * Then you have to register your extension like that :
  *
- * @example ```ts
+ * @example
+ *  ```ts
  * // This a minimal model
  * // You need to provide an id and an initFn function at least
  * // This model is useless, but just for the example
@@ -186,7 +187,8 @@ declare interface JCoreExtension {
    *
    * https://maplibre.org/maplibre-gl-js/docs/API/types/maplibregl.RequestParameters
    *
-   * @example ```ts
+   * @example
+   *  ```ts
    * JMap.Extension.register({
    *  id: "MyExtension", // Unique id
    *  initFn: () => {
