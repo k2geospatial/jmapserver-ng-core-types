@@ -1,5 +1,4 @@
 import { Feature, FeatureCollection, LineString, MultiLineString, Point, Polygon } from "geojson"
-import { Map } from "maplibre-gl"
 import { Store } from "redux"
 
 export interface JCoreService extends JCoreMainService {
@@ -653,7 +652,7 @@ export interface JMapService {
   Selection: JMapSelectionService
   Basemap: JMapBasemapService
   Attribution: JMapAttributionService
-  getMap(): Map
+  getMap(): maplibregl.Map
   getMapJSLib(): any
   getDomContainerId(): string
   getAllDistanceUnits(): JMAP_DISTANCE_UNITS[]

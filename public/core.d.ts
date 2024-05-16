@@ -4024,7 +4024,7 @@ declare namespace JMap {
      *
      * An interactor is a JS object that define 4 functions (for more details consult interface {@link JMapInteractor}) :
      * ```ts
-     *  - init(map: maplibregl.Map): void
+     *  - init(map: Map): void
      *  - activate(): void
      *  - deactivate(): void
      *  - terminate(): void

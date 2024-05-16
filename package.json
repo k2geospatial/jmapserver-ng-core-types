@@ -33,7 +33,7 @@
   "dependencies": {
     "@types/geojson": "^7946.0.14",
     "geojson": "^0.5.0",
-    "maplibre-gl": "^4.2.0",
+    "maplibre-gl": "^4.3.0",
     "redux": "^5.0.1"
   }
 }

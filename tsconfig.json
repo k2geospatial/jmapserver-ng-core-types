@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "./out",
     "baseUrl": "./",
+    "types": ["maplibre-gl"],
     "strict": true,
     "sourceMap": true,
     "noImplicitAny": true,
