@@ -21,8 +21,8 @@ declare interface JSessionData extends JTokenInfo {
   /**
    * The user information.
    *
-   * @example ```ts
-   *
+   * @example
+   *  ```ts
    * user: {
    *   username: "jdo@company.com",
    *   fullName: "John Do",
