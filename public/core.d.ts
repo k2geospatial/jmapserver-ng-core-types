@@ -8429,7 +8429,7 @@ declare namespace JMap {
         /**
          * ***JMap.Event.Map.on.mapLoad***
          *
-         * This event is triggered when a layer is deleted.
+         * This event is triggered when the map is created and ready.
          *
          * @param listenerId Your listener id (must be unique for all map events)
          * @param fn Your listener function
