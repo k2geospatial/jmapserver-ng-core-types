@@ -549,7 +549,7 @@ declare interface JCoreMapOptions {
   zoom?: number
 
   /**
-   * The map will zoom and pan to fit exactly the extent :
+   * This option has precedence over ***{@link JCoreMapOptions.bearing}***, ***{@link JCoreMapOptions.zoom}***, and ***{@link JCoreMapOptions.center}*** startup options. The map will zoom and pan to fit exactly the extent:
    *
    * ```html
    * <html>
