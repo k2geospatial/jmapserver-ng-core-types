@@ -469,6 +469,7 @@ export interface JMapState {
   boundaryBox: JBoundaryBox
   activeBasemapId: string | undefined
   basemaps: JBasemap[]
+  basemapsAreInitialized: boolean
   selection: JMapSelection
   jmapLayerIdsSupportedByMaplibre: JId[]
   scaleControlPosition: JMAP_POSITIONS
