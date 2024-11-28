@@ -10622,32 +10622,6 @@ declare namespace JMap {
     function getDefaultValues(formMetaData: JFormMetaData, initialData?: JAttributeValueByName): JAttributeValueByName
 
     /**
-     * ***JMap.Form.getPreparedData***
-     *
-     * This function prepare the data, it returns a copy object containing the values formatted in a way that fit the server needs.
-     *
-     * It's not mandatory to use this function but it's highly recommended to use it before :
-     * - sending them to the server ()
-     * - validating them using JMap.Form.getPreparedData (change values to fit the )
-     *
-     * It returns another object without modifing the passed object.
-     *
-     * Use to set the correct type (number if a string number is passed), and many other things.
-     *
-     * @param formMetaData A JMap form's metadata
-     * @param data The form data
-     * @returns the prepared data
-     * @example
-     *  ```ts
-     * const data = ...
-     * const form = ...
-     * const preparedData = JMap.Form.getPreparedData(form, data)
-     * const errors = JMap.Form.validateData(form, preparedData)
-     * ```
-     */
-    function getPreparedData(formMetaData: JFormMetaData, data: JAttributeValueByName): JAttributeValueByName
-
-    /**
      * ***JMap.Form.validateData***
      *
      * Returns errors for the given form id and data.
