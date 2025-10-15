@@ -816,6 +816,7 @@ export interface JProjectService {
   getSelectionColor(): string
   getBackgroundColor(): string
   getInitialExtent(): JBounds | null
+  getMaximumExtent(): JBounds | null
   getBase64ImageThumbnail(): string
   loadAllProjectThumbnails(params?: JProjectLoadThumbnailsParams): Promise<void>
   isChangeDisabled(): boolean
