@@ -480,7 +480,7 @@ declare namespace JMap {
      * @example
      *  ```ts
      * // returns the feature of layer id="3" and bbox
-     * JMap.Feature.getByLayer(3, {
+     * JMap.Feature.getByLayerId(3, {
      *   ne: {
      *     x: -73.69935286533261,
      *     y: 45.51487645603402
