@@ -29,6 +29,7 @@ declare interface JProject {
   colorSelection: string
   colorBackground: string
   initialExtent: JBounds | null
+  maximumExtent: JBounds | null
   minimumVisibleZoom: number
   maximumVisibleZoom: number
   mapUnit: JMAP_DISTANCE_UNITS
