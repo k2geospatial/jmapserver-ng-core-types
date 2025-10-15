@@ -5656,7 +5656,7 @@ declare namespace JMap {
     function getInitialExtent(): JBounds | null
 
     /**
-     * **JMap.Project.getMaximumlExtent**
+     * **JMap.Project.getMaximumExtent**
      *
      * Returns loaded JMap project maximum extent.
      * This is the extent to which the map will be constrained.
@@ -5666,10 +5666,10 @@ declare namespace JMap {
      * @example
      *  ```ts
      * // returns the project maximum extent if exists
-     * JMap.Project.getMaximumlExtent()
+     * JMap.Project.getMaximumExtent()
      * ```
      */
-    function getMaximumlExtent(): JBounds | null
+    function getMaximumExtent(): JBounds | null
 
     /**
      * **JMap.Project.getBase64ImageThumbnail**
