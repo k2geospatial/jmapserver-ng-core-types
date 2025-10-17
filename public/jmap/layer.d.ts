@@ -349,6 +349,7 @@ declare interface JLayerAttribute {
   label: string
   type: JLAYER_ATTRIBUTE_TYPES
   attributeStatistics: JLayerAttributeStatistics | null
+  formatPattern: string | null
 }
 
 declare interface JLayerAttributeWithStatistics extends JLayerAttribute {
