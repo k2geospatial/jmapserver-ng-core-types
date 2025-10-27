@@ -5714,6 +5714,30 @@ declare namespace JMap {
     function activateById(projectId: JId): JProject
 
     /**
+     * **JMap.Project.refreshById**
+     *
+     * Refreshes a project. This will refresh the project information from the server, or add it to the list of projects in NG if not already present, but will not refresh the project's layers if the map is already loaded.
+     * This method is reserved for internal usage, you should not need to call it.
+     *
+     * User session rigths are checked server side and an error is thrown if user doesn't have the access right for the project.
+     *
+     * @throws Error missing project id or if project is not found
+     * @param projectId The JMap project id
+     * @return a promise that is resolved when the project has been loaded successfully
+     * @example
+     *  ```ts
+     * try {
+     *   // refresh project id=2
+     *   const project = JMap.Project.refreshById(2)
+     *   console.info(`Project id=${project.id} has been refreshed.`, project)
+     * } catch (error) {
+     *   console.error(`Cannot refresh the project : ${error}`)
+     * }
+     * ```
+     */
+    function refreshById(projectId: JId): Promise<JProject>
+
+    /**
      * **JMap.Project.activateByName**
      *
      * Activate a project on the map, for a given project name.

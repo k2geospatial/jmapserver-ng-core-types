@@ -799,6 +799,7 @@ export interface JProjectService {
   hasProjectActivated(): boolean
   getActiveProject(): JProject
   activateById(projectId: JId): JProject
+  refreshById(projectId: JId): Promise<JProject>
   activateByName(projectName: string): JProject
   deactivate(): void
   getAllProjects(): Promise<JProject[]>
