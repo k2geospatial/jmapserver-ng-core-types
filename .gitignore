@@ -1,3 +1,4 @@
 node_modules
 build/env-config.js
 build/JMap.d.ts
+.DS_Store
