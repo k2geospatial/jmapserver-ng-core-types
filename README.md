@@ -1,3 +1,7 @@
+#### after initial checkout :
+
+duplicate the `.npmrc.example` file, rename the copy to `.npmrc` and configure values inside that file.
+
 # jmapserver-ng-core-types
 
 Don't rename the NPM script named ***pub*** for ***publish***.
