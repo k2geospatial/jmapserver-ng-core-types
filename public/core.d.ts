@@ -444,6 +444,19 @@ declare namespace JMap {
     function followMyLocation(options?: JPanAndZoomOptions): Promise<JLocation>
 
     /**
+     * **JMap.Geolocation.stopFollowingMyLocation**
+     *
+     * Stops following the user location and hides the geolocation marker.
+     *
+     * @example
+     *  ```ts
+     * // stop following user location updates
+     * JMap.Geolocation.stopFollowingMyLocation()
+     * ```
+     */
+    function stopFollowingMyLocation(): void
+
+    /**
      * **JMap.Geolocation.goToMyLocation**
      *
      * @deprecated Use JMap.Geolocation.followMyLocation instead.
