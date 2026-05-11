@@ -427,7 +427,26 @@ declare namespace JMap {
     function getMyLocation(): Promise<JLocation>
 
     /**
+     * **JMap.Geolocation.followMyLocation**
+     *
+     * Returns the user current location if promise succeed, pan and zoom to this location and starts monitoring the user location.
+     *
+     * @throws if browser doesn't support geolocation, if geolocation is disabled, if an unexpected error occurs while getting location from browser
+     * @param options pan and zoom options
+     * @example
+     *  ```ts
+     * // pan and zoom to the user location and start monitoring location updates
+     * JMap.Geolocation.followMyLocation()
+     *    .then(location => console.info("Paned and zommed to user location ", location))
+     *    .error(error => console.error("Cannot get my location : ", error))
+     * ```
+     */
+    function followMyLocation(options?: JPanAndZoomOptions): Promise<JLocation>
+
+    /**
      * **JMap.Geolocation.goToMyLocation**
+     *
+     * @deprecated Use JMap.Geolocation.followMyLocation instead.
      *
      * Returns the user current location if promise succeed, and pan and zoom to this location.
      *
