@@ -167,6 +167,11 @@ export interface JGeolocationService {
   isSupportedByBrowser(): boolean
   isEnabled(): boolean
   getMyLocation(): Promise<JLocation>
+  followMyLocation(options?: JPanAndZoomOptions): Promise<JLocation>
+  stopFollowingMyLocation(): void
+  /**
+   * @deprecated Use followMyLocation instead.
+   */
   goToMyLocation(options?: JPanAndZoomOptions): Promise<JLocation>
 }
 
