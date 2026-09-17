@@ -312,6 +312,23 @@ declare interface JLayerInformationReport {
   preFormatted: boolean
   singlePresentationPage: string
   multiplePresentationPage: string
+  singleBirtImages?: JLayerInformationReportBirtImage[]
+  multipleBirtImages?: JLayerInformationReportBirtImage[]
+}
+
+declare const enum JLAYER_INFORMATION_REPORT_BIRT_IMAGE_ZOOM_TYPES {
+  SCALE = 0,
+  REGION = 1
+}
+
+declare interface JLayerInformationReportBirtImage {
+  birtElementId: number
+  location?: JLocation
+  scale: number
+  imageWidth: number
+  imageHeight: number
+  drawStaticElements: boolean
+  zoomType: JLAYER_INFORMATION_REPORT_BIRT_IMAGE_ZOOM_TYPES
 }
 
 declare interface JDynamicFilter {
