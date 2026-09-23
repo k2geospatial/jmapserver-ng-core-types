@@ -314,6 +314,17 @@ declare interface JLayerInformationReport {
   multiplePresentationPage: string
   singleBirtImages?: JLayerInformationReportBirtImage[]
   multipleBirtImages?: JLayerInformationReportBirtImage[]
+  wmsFeatureInfo?: JLayerWmsFeatureInfo
+}
+
+declare interface JLayerWmsFeatureInfo {
+  url: string
+  version: string
+  layers: string
+  styles: string
+  crs: string
+  imageFormat: string
+  infoFormat: string
 }
 
 declare const enum JLAYER_INFORMATION_REPORT_BIRT_IMAGE_ZOOM_TYPES {

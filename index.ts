@@ -866,6 +866,7 @@ export interface JLayerService {
   deleteLayer(layerId: JId): void
   hasInformationReport(layerId: JId): boolean
   openInformationReportInNewTab(layerId: JId, featureIds: JId[]): Promise<string>
+  openWmsInformationReportInNewTab(layerId: JId, reportIndex: number, location: JLocation): Promise<string>
 }
 
 export interface JLayerSearchService {
