@@ -177,6 +177,7 @@ export interface JGeolocationService {
 
 export interface JQueryService {
   initializeQueryFormById(layerId: JId, queryId: string): Promise<JQuery>
+  isFormInitialized(layerId: JId, queryId: string): boolean
   getAllGroups(): JQueryGroup[]
   groupExist(groupId: JId): boolean
   getQueriesByLayerId(layerId: JId): JQuery[]
