@@ -12,10 +12,10 @@ declare interface JQuery {
   layerId: JId
   maxScale: number
   maxResults: number,
-  isInitialized: boolean
+  isInitialized: boolean // true only when form metadata was loaded successfully
   isLoading: boolean
   hasLoadingError: boolean
-  formMetaData: JFormMetaData
+  formMetaData: JFormMetaData | undefined
 }
 
 declare interface JQueryBeforeEventParams {
