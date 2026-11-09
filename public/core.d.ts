@@ -6750,7 +6750,7 @@ declare namespace JMap {
    * For a given project, a JMap administrator can create query groups and put inside
    * all queries he wants, not depending on a particular layers.
    *
-   * You can get queries definitions (including the form definition) and process a query from this section.
+   * You can get query definitions and process a query from this section. Form metadata is loaded on demand.
    */
   namespace Query {
     /**
@@ -6758,19 +6758,47 @@ declare namespace JMap {
      *
      * By default attribute query forms are not fetched from server, because sometime it takes too much time.
      *
-     * This method will fetch the query form.
+     * This method loads the query form if needed. Concurrent calls for the same query share the load.
+     * If the form is already loaded, it returns the existing query without fetching it again.
+     * A successful load emits the queryFormLoad event. In the JMap application, this event
+     * updates the UI only when the same query is still active. Calling this method outside
+     * the query panel does not activate a query in the UI.
      *
      * @param layerId the JMap layer id
-     * @param queryId the query id
+     * @param queryId The full query id, for example "layers/2/attribute-queries/3"
      * @example
      *  ```ts
      * // initializes query id="layers/2/attribute-queries/3" form of layer id=2, then returns the filled query
      * JMap.Query.initializeQueryFormById(2, "layers/2/attribute-queries/3")
      *  .then(query => console.log("Query form has been loaded", query))
-     *  .catch(error => console.error("An error occured while loading query id='layers/2/attribute-queries/3'"))
+     *  .catch(error => console.error("An error occurred while loading query id='layers/2/attribute-queries/3'", error))
      * ```
      */
     function initializeQueryFormById(layerId: JId, queryId: string): Promise<JQuery>
+
+    /**
+     * ***JMap.Query.isFormInitialized***
+     *
+     * Returns true when the query form metadata is available. Returns false before loading,
+     * while loading, and after a loading error.
+     *
+     * @throws if the layer or query id is invalid or the query does not exist
+     * @param layerId The JMap layer id
+     * @param queryId The full query id, for example "layers/2/attribute-queries/3"
+     * @example
+     * ```ts
+     * async function ensureQueryFormIsReady() {
+     *   const layerId = 2
+     *   const queryId = "layers/2/attribute-queries/3"
+     *   if (!JMap.Query.isFormInitialized(layerId, queryId)) {
+     *     await JMap.Query.initializeQueryFormById(layerId, queryId)
+     *   }
+     *   // The query form metadata is ready to use.
+     * }
+     * ensureQueryFormIsReady().catch(console.error)
+     * ```
+     */
+    function isFormInitialized(layerId: JId, queryId: string): boolean
 
     /**
      * ***JMap.Query.getAllGroups***
@@ -6837,11 +6865,11 @@ declare namespace JMap {
      *
      * @throws if layer or query ids are not correct (invalid format or no resource exists)
      * @param layerId The JMap layer id
-     * @param queryId The JMap query id
+     * @param queryId The full query id, for example "layers/12/attribute-queries/3"
      * @example
      *  ```ts
      * // returns query id=3 of layer id=12
-     * JMap.Query.getQueryByLayerId(12, 3)
+     * JMap.Query.getQueryByLayerId(12, "layers/12/attribute-queries/3")
      * ```
      */
     function getQueryByLayerId(layerId: JId, queryId: string): JQuery
@@ -6880,23 +6908,45 @@ declare namespace JMap {
     /**
      * ***JMap.Query.fetchFeatures***
      *
-     * Process a query request to the JMap server, for given layer and query ids, and provided form data
+     * Process a query request to the JMap server, for given layer and query ids, and provided form data.
+     * Loads the query form metadata first if it is not already available.
+     * Callers can also initialize the form explicitly when they need to confirm readiness before fetching.
      *
-     * @throws if group or query ids are not correct (invalid format or no resource exists)
+     * @throws if the layer or query id is invalid or the query does not exist
      * @param layerId The JMap layer id
-     * @param queryId The JMap query id
+     * @param queryId The full query id, for example "layers/3/attribute-queries/5"
      * @param data The form data (values mapping the query form definition)
      * @example
      *  ```ts
      * // returns a promise that when resolved returns the result of the search,
      * // an array of features, for layer id=3 and query id=5.
      * JMap.Query
-     *   .fetchFeatures(3, 5, {
+     *   .fetchFeatures(3, "layers/3/attribute-queries/5", {
      *    "$PARAM1": "test",
      *    "$PARAM2": 35
      *   })
      *   .then(features => console.info(`Found ${features.length} features.`))
      *   .catch(error => console.error("Error while processing query request.", error))
+     * ```
+     * @example
+     * ```ts
+     * async function fetchFeaturesAfterFormLoad() {
+     *   const layerId = 3
+     *   const queryId = "layers/3/attribute-queries/5"
+     *
+     *   if (!JMap.Query.isFormInitialized(layerId, queryId)) {
+     *     await JMap.Query.initializeQueryFormById(layerId, queryId)
+     *   }
+     *
+     *   const features = await JMap.Query.fetchFeatures(layerId, queryId, {
+     *     "$PARAM1": "test",
+     *     "$PARAM2": 35
+     *   })
+     *   console.info(`Found ${features.length} features.`)
+     *   return features
+     * }
+     *
+     * fetchFeaturesAfterFormLoad().catch(error => console.error("Query failed", error))
      * ```
      */
     function fetchFeatures(layerId: JId, queryId: string, data: any): Promise<any[]> // features
